@@ -1,0 +1,10 @@
+{
+  "name": "hedvig-redux",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "private": true,
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "redux": "^3.7.2"
+  }
+}
