@@ -1,5 +1,3 @@
-require('isomorphic-fetch')
-
 const apiMiddleware = ({dispatch}) => next => action => {
   if (action.type !== 'API') {
     return next(action)
