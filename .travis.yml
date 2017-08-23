@@ -1,26 +1,20 @@
 language: node_js
-
 sudo: false
-
 node_js:
-  - "7"
-
-# cache:
-#   yarn: true
-#   directories:
-#     - node_modules
-
+- '7'
 before_install:
-  - npm install exp --global
-  - exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-
+- npm install exp --global
+- exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 install:
-  - cd hedvig-redux
-  - yarn install
-  - cd ..
-  - cd hedvig-app
-  - yarn install
-  - exp publish
-
+- cd hedvig-redux
+- yarn install
+- cd ..
+- cd hedvig-app
+- yarn install
+- exp publish
 script:
-  - echo "Done"
+- echo "Done"
+notifications:
+  slack:
+    rooms:
+      secure: tnd6AzwKhMNu5aBb5fyCxkXpXGulit4gYcKlLYN07S25dOZD1iugwtSybhd5SXUQjIHAoeoMdfQ9QvyBkxvCxK+wSTcmpVLJXYcvVGlvsEQ6KsublK7Q/SIwFu4DupMlU+9tFQEYHiU9LSNBTLFrsPxEjY3Ngq8vPMsMsckKpNg8YFr35/2oizSuUJA6iTRVAueVfrJSdVvVWvCRScr4RX2CxD4KpzaIHB6ExMMiraBAVc+fWmr+gGqMbtJG/BRIRUq6VanvKlUlssdVDfJ4EQ/HKSkZNSdptqr6rBTZEcoelPAWw4DIhUAm38BxQ8I3ZprQS1X7MEUQiV4e62xdOe76s0jewyp6OqOJesyigxUX40plCZ3VwyBYsn5OzwsaR5Y2uJyDObkGijhpgHLDE4YO/O4DFDr5XwGD/tuwPhtJN1DCn39tHuyXVs77Q3LPK2QUem6XUNvoG2JcqESJ+17E2Pzdg/SiAaqkKGzcEO+w0eVW7KUVim0PyD48SeysgR8849hqdpsDpB3y/+Lj84kUrBPlUByMRstcVfkDQ2ZzKa2yzLhtnBT4AEPbktA6K958Cw5fVphdGFmZNPcT8Yb1tN20sL4D232kz+bQaOEacYFrYDlVBQRe0Nq0pq2PP+qhzDhcXnhMUC/M2vbe8Sp6qY1pE9rAR7SxV0+Je8E=
