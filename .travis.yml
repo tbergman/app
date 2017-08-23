@@ -20,7 +20,7 @@ install:
   - cd ..
   - cd hedvig-app
   - yarn install
-  - yarn deploy
+  - exp publish
 
 script:
   - echo "Done"
