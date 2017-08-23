@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: true
 node_js:
 - '7'
 before_install:
@@ -11,6 +11,10 @@ install:
 - cd ..
 - cd hedvig-app
 - yarn install
+- echo "Some magic to make exp publish work on Travis..."
+- sudo sysctl fs.inotify.max_user_watches=524288
+- sudo sysctl fs.inotify.max_queued_events=524288
+- sudo sysctl -p
 - exp publish
 script:
 - echo "Done"
