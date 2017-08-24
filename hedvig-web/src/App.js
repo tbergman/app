@@ -1,12 +1,12 @@
 import React, { Component } from "react"
 import { Provider } from "react-redux"
 
-import App from "./containers/App"
+import Home from "./containers/Home"
 
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
 
-class AppWithState extends Component {
+class App extends Component {
   constructor() {
     super()
     this.store = hedvigRedux.configureStore()
@@ -16,10 +16,10 @@ class AppWithState extends Component {
   render() {
     return (
       <Provider store={this.store}>
-        <App />
+        <Home />
       </Provider>
     )
   }
 }
 
-export default AppWithState
+export default App

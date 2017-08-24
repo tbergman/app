@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import App from "../components/App"
+import Home from "../components/Home"
 import { helloActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
@@ -14,6 +14,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
+const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home)
 
-export default AppContainer
+export default HomeContainer
