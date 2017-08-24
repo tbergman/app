@@ -1,11 +1,14 @@
 import React from "react"
 import { StyleSheet, Text, View, TextInput } from "react-native"
+import styled from "styled-components/native"
+
+const Name = styled.Text`font-size: 30px;`
 
 const Home = ({ state, sayHello }) => {
   return (
     <View style={styles.container}>
       <Text>
-        Your name: {state.hello.name}
+        Your name: <Name>{state.hello.name}</Name>
       </Text>
       <TextInput
         value={state.hello.name}

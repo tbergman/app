@@ -1,4 +1,7 @@
 import React from "react"
+import styled from "styled-components"
+
+const Name = styled.span`font-size: 30px;`
 
 const App = ({ state, sayHello }) => {
   return (
@@ -13,7 +16,7 @@ const App = ({ state, sayHello }) => {
         />
       </label>
       <p>
-        Hello: {state.hello.name}
+        Hello: <Name>{state.hello.name}</Name>
       </p>
     </div>
   )
