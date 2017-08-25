@@ -4,16 +4,17 @@ import AnotherScreen from "../components/AnotherScreen"
 import Intro from "./Intro"
 import Login from "./Login"
 import Onboarding from "./Onboarding"
-// import AddEditItem from "./AddEditItem"
+import AddEditItem from "./AddEditItem"
 import Profile from "./Profile"
-// import InsuranceOffer from "./InsuranceOffer"
-// import InventoryList from "./InventoryList"
-// import InsuranceList from "./InsuranceList"
-// import AddEditInsurance from "./AddEditInsurance"
-// import RegisterPayment from "./RegisterPayment"
-// import ChangePayment from "./ChangePayment"
-// import RegisterCashback from "./RegisterCashback"
-// import ChangeCashback from "./ChangeCashback"
+import InsuranceOffer from "./InsuranceOffer"
+import InsuranceDenial from "./InsuranceDenial"
+import InventoryList from "./InventoryList"
+import InsuranceList from "./InsuranceList"
+import AddEditInsurance from "./AddEditInsurance"
+import RegisterPayment from "./RegisterPayment"
+import ChangePayment from "./ChangePayment"
+import RegisterCashback from "./RegisterCashback"
+import ChangeCashback from "./ChangeCashback"
 // import SignBankid from "./SignBankid"
 // import FullTerms from "./FullTerms"
 // import Share from "./Share"
@@ -26,16 +27,17 @@ const Navigator = StackNavigator({
   Intro: { screen: Intro },
   Login: { screen: Login },
   Onboarding: { screen: Onboarding },
-  // AddEditItem: { screen: AddEditItem },
-  Profile: { screen: Profile }
-  // InsuranceOffer: { screen: InsuranceOffer },
-  // InventoryList: { screen: InventoryList },
-  // InsuranceList: { screen: InsuranceList },
-  // AddEditInsurance: { screen: AddEditInsurance },
-  // RegisterPayment: { screen: RegisterPayment },
-  // ChangePayment: { screen: ChangePayment },
-  // RegisterCashback: { screen: RegisterCashback },
-  // ChangeCashback: { screen: ChangeCashback },
+  AddEditItem: { screen: AddEditItem },
+  Profile: { screen: Profile },
+  InsuranceOffer: { screen: InsuranceOffer },
+  InsuranceDenial: { screen: InsuranceDenial },
+  InventoryList: { screen: InventoryList },
+  InsuranceList: { screen: InsuranceList },
+  AddEditInsurance: { screen: AddEditInsurance },
+  RegisterPayment: { screen: RegisterPayment },
+  ChangePayment: { screen: ChangePayment },
+  RegisterCashback: { screen: RegisterCashback },
+  ChangeCashback: { screen: ChangeCashback }
   // SignBankid: { screen: SignBankid },
   // FullTerms: { screen: FullTerms },
   // Share: { screen: Share },

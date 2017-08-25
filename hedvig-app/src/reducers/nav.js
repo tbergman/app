@@ -1,7 +1,7 @@
 import Navigator from "../components/Navigator"
 
 const initialState = Navigator.router.getStateForAction(
-  Navigator.router.getActionForPathAndParams("Intro")
+  Navigator.router.getActionForPathAndParams("RegisterCashback")
 )
 
 const navReducer = (state = initialState, action) => {
