@@ -2,9 +2,10 @@ import React, { Component } from "react"
 import { Provider } from "react-redux"
 import { routerReducer } from "react-router-redux"
 import { Navigator, routerMiddleware } from "./components/Navigator"
-
+import * as Navigation from "./services/Navigation"
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
+window.Navigation = Navigation
 
 class App extends Component {
   constructor() {

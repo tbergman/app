@@ -4,6 +4,8 @@ import { Provider } from "react-redux"
 const hedvigRedux = require("hedvig-redux")
 import nav from "./src/reducers/nav"
 import AppNavigator from "./src/containers/AppNavigator"
+import * as Navigation from "./src/services/Navigation"
+window.Navigation = Navigation
 
 export default class App extends React.Component {
   constructor() {
