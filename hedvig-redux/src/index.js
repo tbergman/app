@@ -4,11 +4,15 @@ const apiMiddleware = require("./middleware/api")
 const loggingMiddleware = require("./middleware/logging")
 const helloActions = require("./actions/hello")
 
-function configureStore({ initialState, additionalReducers } = {}) {
+function configureStore(
+  { initialState, additionalReducers, additionalMiddleware = [] } = {}
+) {
   let store = createStore(
     rootReducer(additionalReducers),
     initialState,
-    compose(applyMiddleware(loggingMiddleware, apiMiddleware))
+    compose(
+      applyMiddleware(loggingMiddleware, apiMiddleware, ...additionalMiddleware)
+    )
   )
   return store
 }
