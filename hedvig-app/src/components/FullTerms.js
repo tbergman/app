@@ -3,16 +3,15 @@ import { Text } from "react-native"
 import Link from "../containers/Link"
 import { Placeholder } from "./Styles"
 
-export default class AddEditItem extends React.Component {
+export default class FullTerms extends React.Component {
   static navigationOptions = {
-    title: "Add / Edit Item"
+    title: "Full Terms"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Add / Edit Item</Text>
-        <Link to="Claim" title="Claim" />
+        <Text>Full Terms</Text>
       </Placeholder>
     )
   }

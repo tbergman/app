@@ -3,16 +3,16 @@ import { Text } from "react-native"
 import Link from "../containers/Link"
 import { Placeholder } from "./Styles"
 
-export default class AddEditItem extends React.Component {
+export default class Share extends React.Component {
   static navigationOptions = {
-    title: "Add / Edit Item"
+    title: "Share"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Add / Edit Item</Text>
-        <Link to="Claim" title="Claim" />
+        <Text>Share</Text>
+        <Link to="Dashboard" title="Go to dashboard" />
       </Placeholder>
     )
   }

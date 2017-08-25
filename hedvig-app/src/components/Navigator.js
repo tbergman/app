@@ -15,11 +15,11 @@ import RegisterPayment from "./RegisterPayment"
 import ChangePayment from "./ChangePayment"
 import RegisterCashback from "./RegisterCashback"
 import ChangeCashback from "./ChangeCashback"
-// import SignBankid from "./SignBankid"
-// import FullTerms from "./FullTerms"
-// import Share from "./Share"
-// import Dashboard from "./Dashboard"
-// import Claim from "./Claim"
+import SignBankid from "./SignBankid"
+import FullTerms from "./FullTerms"
+import Share from "./Share"
+import Dashboard from "./Dashboard"
+import Claim from "./Claim"
 
 const Navigator = StackNavigator({
   Home: { screen: Home },
@@ -37,12 +37,12 @@ const Navigator = StackNavigator({
   RegisterPayment: { screen: RegisterPayment },
   ChangePayment: { screen: ChangePayment },
   RegisterCashback: { screen: RegisterCashback },
-  ChangeCashback: { screen: ChangeCashback }
-  // SignBankid: { screen: SignBankid },
-  // FullTerms: { screen: FullTerms },
-  // Share: { screen: Share },
-  // Dashboard: { screen: Dashboard },
-  // Claim: { screen: Claim },
+  ChangeCashback: { screen: ChangeCashback },
+  SignBankid: { screen: SignBankid },
+  FullTerms: { screen: FullTerms },
+  Share: { screen: Share },
+  Dashboard: { screen: Dashboard },
+  Claim: { screen: Claim }
 })
 
 export default Navigator

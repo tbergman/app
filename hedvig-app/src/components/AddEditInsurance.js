@@ -12,6 +12,7 @@ export default class AddEditInsurance extends React.Component {
     return (
       <Placeholder>
         <Text>Add / Edit Insurance</Text>
+        <Link to="Claim" title="Claim" />
       </Placeholder>
     )
   }
