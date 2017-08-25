@@ -1,10 +1,11 @@
 import React from "react"
-import { StyleSheet, Text, View, TextInput } from "react-native"
+import { StyleSheet, Text, View, TextInput, Button } from "react-native"
 import styled from "styled-components/native"
 
 const Name = styled.Text`font-size: 30px;`
 
-const Home = ({ state, sayHello }) => {
+const Home = ({ state, sayHello, navigation }) => {
+  const { navigate } = navigation
   return (
     <View style={styles.container}>
       <Text>
@@ -20,6 +21,12 @@ const Home = ({ state, sayHello }) => {
           alignSelf: "stretch"
         }}
       />
+      <Button
+        title="Go to another screen"
+        onPress={() => {
+          navigate("AnotherScreen")
+        }}
+      />
     </View>
   )
 }
@@ -30,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-start"
   }
 })
 
