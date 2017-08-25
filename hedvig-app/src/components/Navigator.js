@@ -5,7 +5,7 @@ import Intro from "./Intro"
 import Login from "./Login"
 import Onboarding from "./Onboarding"
 // import AddEditItem from "./AddEditItem"
-// import Profile from "./Profile"
+import Profile from "./Profile"
 // import InsuranceOffer from "./InsuranceOffer"
 // import InventoryList from "./InventoryList"
 // import InsuranceList from "./InsuranceList"
@@ -25,9 +25,9 @@ const Navigator = StackNavigator({
   AnotherScreen: { screen: AnotherScreen },
   Intro: { screen: Intro },
   Login: { screen: Login },
-  Onboarding: { screen: Onboarding }
+  Onboarding: { screen: Onboarding },
   // AddEditItem: { screen: AddEditItem },
-  // Profile: { screen: Profile },
+  Profile: { screen: Profile }
   // InsuranceOffer: { screen: InsuranceOffer },
   // InventoryList: { screen: InventoryList },
   // InsuranceList: { screen: InsuranceList },
