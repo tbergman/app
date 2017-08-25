@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Provider } from "react-redux"
 
-import Home from "./containers/Home"
+import Navigator from "./components/Navigator"
 
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={this.store}>
-        <Home />
+        <Navigator />
       </Provider>
     )
   }
