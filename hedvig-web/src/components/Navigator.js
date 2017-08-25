@@ -10,6 +10,7 @@ import Onboarding from "./Onboarding"
 import AddEditItem from "./AddEditItem"
 import Profile from "./Profile"
 import InsuranceOffer from "./InsuranceOffer"
+import InsuranceDenial from "./InsuranceDenial"
 import InventoryList from "./InventoryList"
 import InsuranceList from "./InsuranceList"
 import AddEditInsurance from "./AddEditInsurance"
@@ -39,6 +40,7 @@ const Navigator = () =>
       <Route path="/add-edit-item" component={AddEditItem} />
       <Route path="/profile" component={Profile} />
       <Route path="/insurance-offer" component={InsuranceOffer} />
+      <Route path="/insurance-denial" component={InsuranceDenial} />
       <Route path="/inventory-list" component={InventoryList} />
       <Route path="/insurance-list" component={InsuranceList} />
       <Route path="/add-edit-insurance" component={AddEditInsurance} />
