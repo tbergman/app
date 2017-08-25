@@ -2,13 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Placeholder } from "./Styles"
 
-const AddEditItem = () => {
+const Landing = () => {
   return (
     <Placeholder>
-      Add / Edit Item
-      <Link to="/claim">Claim</Link>
+      Landing
+      <Link to="/login">Login</Link>
     </Placeholder>
   )
 }
 
-export default AddEditItem
+export default Landing
