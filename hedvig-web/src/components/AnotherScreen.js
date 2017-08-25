@@ -1,19 +1,11 @@
 import React from "react"
-import styled from "styled-components"
-
-const StyledDiv = styled.div`
-  flex: 1;
-  align-self: stretch;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-`
+import { Placeholder } from "./Styles"
 
 const AnotherScreen = () => {
   return (
-    <StyledDiv>
+    <Placeholder>
       <p>Another Screen</p>
-    </StyledDiv>
+    </Placeholder>
   )
 }
 
