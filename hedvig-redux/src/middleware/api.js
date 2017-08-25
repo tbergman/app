@@ -20,4 +20,4 @@ const apiMiddleware = ({dispatch}) => next => action => {
     .catch(data => dispatch({type: action.payload.ERROR || 'API_ERROR', payload: data}))
 }
 
-module.exports = apiMiddleware
+export default apiMiddleware;

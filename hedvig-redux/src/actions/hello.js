@@ -1,4 +1,4 @@
-function hello(name) {
+export function hello(name) {
   return {
     type: "HELLO",
     payload: {
@@ -7,6 +7,6 @@ function hello(name) {
   }
 }
 
-module.exports = {
+export default {
   hello
 }

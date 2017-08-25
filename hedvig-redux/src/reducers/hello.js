@@ -7,4 +7,4 @@ const reducer = (state = { name: null }, action) => {
   }
 }
 
-module.exports = reducer
+export default reducer;

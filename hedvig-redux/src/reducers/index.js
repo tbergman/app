@@ -1,5 +1,5 @@
-const { combineReducers } = require("redux")
-const helloReducer = require("./hello")
+import { combineReducers } from 'redux';
+import helloReducer from './hello';
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -11,4 +11,4 @@ const rootReducer = (additionalReducers = {}) =>
     )
   )
 
-module.exports = rootReducer
+export default rootReducer;

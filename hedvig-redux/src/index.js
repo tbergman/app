@@ -1,8 +1,8 @@
-const { createStore, applyMiddleware, compose } = require("redux")
-const rootReducer = require("./reducers/index")
-const apiMiddleware = require("./middleware/api")
-const loggingMiddleware = require("./middleware/logging")
-const helloActions = require("./actions/hello")
+import { createStore, applyMiddleware, compose } from "redux"
+import rootReducer from "./reducers/index"
+import apiMiddleware from "./middleware/api"
+import loggingMiddleware from "./middleware/logging"
+import helloActions from "./actions/hello"
 
 function configureStore(
   { initialState, additionalReducers, additionalMiddleware = [] } = {}
@@ -27,7 +27,4 @@ if (require.main === module) {
   main()
 }
 
-module.exports = {
-  helloActions,
-  configureStore
-}
+export { helloActions, configureStore }

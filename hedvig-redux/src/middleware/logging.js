@@ -3,4 +3,4 @@ const loggingMiddleware = ({dispatch}) => next => action => {
   return next(action)
 }
 
-module.exports = loggingMiddleware
+export default loggingMiddleware;

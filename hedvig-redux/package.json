@@ -3,8 +3,15 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "private": true,
+  "scripts": {
+    "build": "babel src -d build",
+    "run-babel": "./node_modules/babel-cli/bin/babel-node.js src/index.js"
+  },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
     "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
   }
 }

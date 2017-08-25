@@ -15,9 +15,10 @@
     "styled-components": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "make link && react-scripts start",
+    "build": "make prepare-build && react-scripts build && make link",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && s3cmd sync build/* s3://hedinternal"
   }
 }
