@@ -3,7 +3,7 @@ import Home from "../containers/Home"
 import AnotherScreen from "../components/AnotherScreen"
 import Intro from "./Intro"
 import Login from "./Login"
-// import Onboarding from "./Onboarding"
+import Onboarding from "./Onboarding"
 // import AddEditItem from "./AddEditItem"
 // import Profile from "./Profile"
 // import InsuranceOffer from "./InsuranceOffer"
@@ -24,8 +24,8 @@ const Navigator = StackNavigator({
   Home: { screen: Home },
   AnotherScreen: { screen: AnotherScreen },
   Intro: { screen: Intro },
-  Login: { screen: Login }
-  // Onboarding: { screen: Onboarding },
+  Login: { screen: Login },
+  Onboarding: { screen: Onboarding }
   // AddEditItem: { screen: AddEditItem },
   // Profile: { screen: Profile },
   // InsuranceOffer: { screen: InsuranceOffer },
