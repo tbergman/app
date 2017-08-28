@@ -22,7 +22,7 @@ import ChangeCashback from "./ChangeCashback"
 import SignBankid from "./SignBankid"
 import FullTerms from "./FullTerms"
 import Share from "./Share"
-import Dashboard from "./Dashboard"
+import Dashboard from "../containers/Dashboard"
 import Claim from "./Claim"
 
 // Create a history of your choosing (we're using a browser history in this case)

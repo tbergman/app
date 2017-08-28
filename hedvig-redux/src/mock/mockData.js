@@ -1,7 +1,14 @@
 const mockData = {
   GET: {
     "/me": {
-      name: "Pascal"
+      data: {
+        name: "Pascal"
+      }
+    },
+    "/me/insurance": {
+      data: {
+        foo: "bar"
+      }
     }
   }
 }

@@ -8,4 +8,9 @@ const Placeholder = styled.View`
   align-items: center;
 `
 
-export { Placeholder }
+const BaseViewStyle = styled.View`
+  flex: 1;
+  background-color: white;
+`
+
+export { Placeholder, BaseViewStyle }

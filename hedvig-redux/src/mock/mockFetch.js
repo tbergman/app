@@ -21,13 +21,15 @@ ES6 import
 import { fetch } from "./src/mock/mockFetch"
 */
 
+const MOCK_TIMEOUT_MS = 200
+
 export function fetch(url, { method = "GET", headers = {}, body } = {}) {
   return new Promise((resolve, reject) => {
     if (
       mockData.hasOwnProperty(method) &&
       mockData[method].hasOwnProperty(url)
     ) {
-      resolve(mockData[method][url])
+      setTimeout(() => resolve(mockData[method][url]), MOCK_TIMEOUT_MS)
     } else {
       reject({
         status: 404,

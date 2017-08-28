@@ -18,7 +18,7 @@ import ChangeCashback from "./ChangeCashback"
 import SignBankid from "./SignBankid"
 import FullTerms from "./FullTerms"
 import Share from "./Share"
-import Dashboard from "./Dashboard"
+import Dashboard from "../containers/Dashboard"
 import Claim from "./Claim"
 
 const Navigator = StackNavigator({
