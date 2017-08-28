@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src -d build",
     "run-babel": "./node_modules/babel-cli/bin/babel-node.js src/index.js",
+    "repl": "./node_modules/babel-cli/bin/babel-node.js",
     "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
@@ -13,7 +14,6 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0"
