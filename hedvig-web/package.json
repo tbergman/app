@@ -19,7 +19,7 @@
     "build": "make prepare-build && react-scripts build && make link",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && s3cmd sync build/* s3://hedinternal.threadsafe.co",
+    "deploy": "yarn build && s3cmd sync build/* $HEDVIG_S3_BUCKET",
     "lint": "./node_modules/.bin/eslint src"
   },
   "devDependencies": {
