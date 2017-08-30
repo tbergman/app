@@ -2,8 +2,10 @@ import { createStore, applyMiddleware, compose } from "redux"
 import rootReducer from "./reducers/index"
 import apiMiddleware from "./middleware/api"
 import loggingMiddleware from "./middleware/logging"
+import mockMiddleware from "./middleware/mock"
 import helloActions from "./actions/hello"
 import insuranceActions from "./actions/insurance"
+import mockChatActions from "./actions/mock/chat"
 
 function configureStore(
   { initialState, additionalReducers, additionalMiddleware = [] } = {}
@@ -12,7 +14,12 @@ function configureStore(
     rootReducer(additionalReducers),
     initialState,
     compose(
-      applyMiddleware(loggingMiddleware, apiMiddleware, ...additionalMiddleware)
+      applyMiddleware(
+        loggingMiddleware,
+        apiMiddleware,
+        mockMiddleware,
+        ...additionalMiddleware
+      )
     )
   )
   return store
@@ -28,4 +35,4 @@ if (require.main === module) {
   main()
 }
 
-export { helloActions, configureStore, insuranceActions }
+export { helloActions, configureStore, insuranceActions, mockChatActions }

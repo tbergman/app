@@ -1,5 +1,6 @@
 import React from "react"
 import { Text, View } from "react-native"
+import Chat from "./Chat"
 import Link from "../containers/Link"
 import { BaseViewStyle } from "./Styles"
 import Placeholder from "rn-placeholder"
@@ -27,24 +28,10 @@ export default class Intro extends React.Component {
   render() {
     this.wait()
     return (
-      <BaseViewStyle>
+      <View style={{ flex: 1 }}>
         <Text>Intro</Text>
-
-        <Placeholder.ImageContent
-          position="right"
-          hasRadius
-          lineNumber={5}
-          textSize={14}
-          lineSpacing={5}
-          color="#00ff00"
-          width="100%"
-          lastLineWidth="30%"
-          firstLineWidth="10%"
-          onReady={this.state.ready}
-        >
-          <Link to="Login" title="Login" />
-        </Placeholder.ImageContent>
-      </BaseViewStyle>
+        <Chat />
+      </View>
     )
   }
 }

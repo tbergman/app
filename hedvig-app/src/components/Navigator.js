@@ -20,6 +20,7 @@ import FullTerms from "./FullTerms"
 import Share from "./Share"
 import Dashboard from "../containers/Dashboard"
 import Claim from "./Claim"
+import Chat from "../containers/Chat"
 
 const Navigator = StackNavigator({
   Home: { screen: Home },
@@ -42,7 +43,8 @@ const Navigator = StackNavigator({
   FullTerms: { screen: FullTerms },
   Share: { screen: Share },
   Dashboard: { screen: Dashboard },
-  Claim: { screen: Claim }
+  Claim: { screen: Claim },
+  Chat: { screen: Chat }
 })
 
 export default Navigator

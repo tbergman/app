@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import Dashboard from "../components/Dashboard"
+import { createClaimAndNavigateToChat } from "../services/Insurance"
 import { insuranceActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
@@ -10,7 +11,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => dispatch(insuranceActions.getDashboard())
+    load: () => dispatch(insuranceActions.getDashboard()),
+    createClaim: () => {
+      createClaimAndNavigateToChat(dispatch)
+    }
   }
 }
 

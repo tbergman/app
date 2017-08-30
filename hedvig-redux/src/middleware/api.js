@@ -19,10 +19,12 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     //     return Promise.resolve()
     //   }
     // })
-    .then(data => dispatch({ type: action.payload.SUCCESS, payload: data }))
-    .catch(data =>
+    .then(data => {
+      dispatch({ type: action.payload.SUCCESS, payload: data })
+    })
+    .catch(data => {
       dispatch({ type: action.payload.ERROR || "API_ERROR", payload: data })
-    )
+    })
 }
 
 export default apiMiddleware

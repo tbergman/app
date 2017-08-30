@@ -13,4 +13,12 @@ const BaseViewStyle = styled.View`
   background-color: white;
 `
 
-export { Placeholder, BaseViewStyle }
+const ChatMessageStyle = styled.View`
+  flex-direction: row;
+  padding: 10px;
+  width: 80%;
+  background: lightgray;
+  margin-bottom: 20;
+`
+
+export { Placeholder, BaseViewStyle, ChatMessageStyle }
