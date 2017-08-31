@@ -16,6 +16,10 @@ export default class Chat extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.scrollView.scrollToEnd({ animated: true })
+  }
+
   renderTextMessage(message) {
     let flexDirection = message.header.fromMe ? "row-reverse" : "row"
     let alignSelf = message.header.fromMe ? "flex-end" : "flex-start"
@@ -66,7 +70,11 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <BaseScrolleViewStyle>
+      <BaseScrolleViewStyle
+        innerRef={scrollView => {
+          this.scrollView = scrollView
+        }}
+      >
         <Text>Chat</Text>
         {this.maybeMessages()}
       </BaseScrolleViewStyle>
