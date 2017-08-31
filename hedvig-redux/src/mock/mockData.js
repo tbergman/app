@@ -5,10 +5,10 @@ function makeMockTextMessage(fromMe, content) {
   }
 }
 
-function makeMockLinkMessage(to) {
+function makeMockLinkMessage(to, title) {
   return {
     header: { type: "link" },
-    body: { to }
+    body: { to, title }
   }
 }
 
@@ -20,7 +20,25 @@ const welcomeMessages = [
   "Nu vet du vet jag är, för att jag ska veta vem du är behöver du logga in med BankID."
 ]
   .map((message, i) => makeMockTextMessage(false, message))
-  .concat(makeMockLinkMessage("Login"))
+  .concat(makeMockLinkMessage("Login", "Logga in"))
+
+const onboardingMessages = [
+  "Snyggt Fredrik!",
+  "För att kunna föreslå den bästa försäkringen för dig är så kommer jag ställa några frågor",
+  "Bor du i hyresrätt eller äger du din bostad?"
+]
+  .map((message, i) => makeMockTextMessage(false, message))
+  .concat(
+    [
+      "Jag äger min bostad",
+      "Är det en ville eller lägenhet?",
+      "Lägenhet",
+      "Fråga...",
+      "Svar...",
+      "Tack, då tror jag att jag har tillräckligt för nu. Tryck här för att se ditt erbjudande."
+    ].map((message, i) => makeMockTextMessage(i % 2 === 0, message))
+  )
+  .concat(makeMockLinkMessage("InsuranceOffer", "Se erbjudande"))
 
 const claimMessages = [
   "Hi! It seems like you have a claim to report. I'm here to help you. What happend?",
@@ -60,6 +78,9 @@ const mockData = {
       data: {
         foo: "bar"
       }
+    },
+    "/onboarding": {
+      data: onboardingMessages
     }
   },
   welcomeMessages,

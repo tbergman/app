@@ -4,7 +4,7 @@ import { mockChatActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
   return {
-    messages: state.mockedChat.messages,
+    messages: state.chat.messages,
     numVisibleMessages: state.mockedChat.numVisibleMessages
   }
 }

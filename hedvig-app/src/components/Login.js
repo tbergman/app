@@ -11,9 +11,8 @@ export default class Login extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Login</Text>
-        <Link to="Onboarding" title="Onboarding" />
-        <Link to="Dashboard" title="Dashboard" />
+        <Text>Här kommer du logga in med BankID</Text>
+        <Link to="Onboarding" title="Jag har loggat in" />
       </Placeholder>
     )
   }

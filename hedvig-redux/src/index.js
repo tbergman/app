@@ -5,6 +5,8 @@ import loggingMiddleware from "./middleware/logging"
 import mockMiddleware from "./middleware/mock"
 import helloActions from "./actions/hello"
 import insuranceActions from "./actions/insurance"
+import chatActions from "./actions/chat"
+
 import mockChatActions from "./actions/mock/chat"
 
 function configureStore(
@@ -35,4 +37,10 @@ if (require.main === module) {
   main()
 }
 
-export { helloActions, configureStore, insuranceActions, mockChatActions }
+export {
+  helloActions,
+  configureStore,
+  insuranceActions,
+  chatActions,
+  mockChatActions
+}

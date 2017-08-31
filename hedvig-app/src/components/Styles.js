@@ -13,6 +13,11 @@ const BaseViewStyle = styled.View`
   background-color: white;
 `
 
+const BaseScrolleViewStyle = styled.ScrollView`
+  flex: 1;
+  background-color: white;
+`
+
 const ChatMessageStyle = styled.View`
   flex-direction: row;
   padding: 10px;
@@ -21,4 +26,4 @@ const ChatMessageStyle = styled.View`
   margin-bottom: 20;
 `
 
-export { Placeholder, BaseViewStyle, ChatMessageStyle }
+export { Placeholder, BaseViewStyle, BaseScrolleViewStyle, ChatMessageStyle }

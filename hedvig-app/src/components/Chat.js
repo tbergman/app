@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View, TouchableHighlight } from "react-native"
 import Link from "../containers/Link"
-import { BaseViewStyle, ChatMessageStyle } from "./Styles"
+import { BaseScrolleViewStyle, ChatMessageStyle } from "./Styles"
 import Placeholder from "rn-placeholder"
 
 export default class Chat extends React.Component {
@@ -40,7 +40,7 @@ export default class Chat extends React.Component {
   }
 
   renderLinkMessage(message) {
-    return <Link to="Login" title="Login" />
+    return <Link to={message.body.to} title={message.body.title} />
   }
 
   maybeMessages() {
@@ -66,10 +66,10 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <BaseViewStyle>
+      <BaseScrolleViewStyle>
         <Text>Chat</Text>
         {this.maybeMessages()}
-      </BaseViewStyle>
+      </BaseScrolleViewStyle>
     )
   }
 }
