@@ -11,7 +11,7 @@ export default class AddEditItem extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Add / Edit Item</Text>
+        <Text>Här lägger du till eller ändrar ett värdeförmål.</Text>
         <Link to="Claim" title="Claim" />
       </Placeholder>
     )

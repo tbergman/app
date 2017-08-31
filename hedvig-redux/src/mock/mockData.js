@@ -35,8 +35,14 @@ const onboardingMessages = [
       "Lägenhet",
       "Fråga...",
       "Svar...",
-      "Tack, då tror jag att jag har tillräckligt för nu. Tryck här för att se ditt erbjudande."
+      "Tryck här för att lägga till värdesaker"
     ].map((message, i) => makeMockTextMessage(i % 2 === 0, message))
+  )
+  .concat(makeMockLinkMessage("AddEditItem", "Lägg till värdesaker"))
+  .concat(
+    [
+      "Tack, då tror jag att jag har tillräckligt för nu. Tryck här för att se ditt erbjudande."
+    ].map((message, i) => makeMockTextMessage(i % 2 !== 0, message))
   )
   .concat(makeMockLinkMessage("InsuranceOffer", "Se erbjudande"))
 
