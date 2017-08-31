@@ -12,7 +12,7 @@ function makeMockLinkMessage(to, title) {
   }
 }
 
-const welcomeMessages = [
+const introMessages = [
   "Hej och välkommen! Jag är Hedvig och kommer alltid finnas tillgänglig här för dig.",
   "Nu kommer jag förklara hur enkelt det är att försäkra sig med Hedvig.",
   "Först...",
@@ -62,15 +62,8 @@ const mockData = {
         foo: "bar"
       }
     },
-    "/messages": {
-      data: [
-        {
-          header: { fromMe: false, type: "text" },
-          body: {
-            content: "Hello"
-          }
-        }
-      ]
+    "/messages/intro": {
+      data: introMessages
     }
   },
   POST: {
@@ -83,7 +76,6 @@ const mockData = {
       data: onboardingMessages
     }
   },
-  welcomeMessages,
   claimMessages
 }
 

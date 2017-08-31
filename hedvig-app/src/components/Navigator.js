@@ -1,7 +1,7 @@
 import { StackNavigator } from "react-navigation"
 import Home from "../containers/Home"
 import AnotherScreen from "../components/AnotherScreen"
-import Intro from "./Intro"
+import Intro from "../containers/Intro"
 import Login from "./Login"
 import Onboarding from "../containers/Onboarding"
 import AddEditItem from "./AddEditItem"

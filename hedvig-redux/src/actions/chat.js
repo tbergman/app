@@ -1,4 +1,15 @@
-import { API, LOADED_ONBOARDING } from "./types"
+import { API, LOADED_INTRO_MESSAGES, LOADED_ONBOARDING } from "./types"
+
+export function getIntroMessages() {
+  return {
+    type: API,
+    payload: {
+      url: "/messages/intro",
+      method: "GET",
+      SUCCESS: LOADED_INTRO_MESSAGES
+    }
+  }
+}
 
 export function startOnboarding() {
   return {
@@ -10,7 +21,7 @@ export function startOnboarding() {
     }
   }
 }
-
 export default {
+  getIntroMessages,
   startOnboarding
 }

@@ -17,6 +17,10 @@ export default class Intro extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.load()
+  }
+
   wait() {
     setTimeout(() => {
       this.setState({
