@@ -26,4 +26,21 @@ const ChatMessageStyle = styled.View`
   margin-bottom: 20;
 `
 
-export { Placeholder, BaseViewStyle, BaseScrolleViewStyle, ChatMessageStyle }
+const TextplainerStyle = styled.Text`
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding: 40px 20px;
+  font-size: 30px;
+  align-self: stretch;
+  text-align: center;
+  margin: 20px;
+`
+
+export {
+  Placeholder,
+  BaseViewStyle,
+  BaseScrolleViewStyle,
+  ChatMessageStyle,
+  TextplainerStyle
+}

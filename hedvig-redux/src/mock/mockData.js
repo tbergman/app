@@ -13,7 +13,8 @@ function makeMockLinkMessage(to, title) {
 }
 
 const introMessages = [
-  "Hej och välkommen! Jag är Hedvig och kommer alltid finnas tillgänglig här för dig.",
+  "Hej och välkommen! Det här är en demo-app. För att se nästa meddelande, tryck på detta eller något annat meddelande.",
+  "Jag är Hedvig och kommer alltid finnas tillgänglig här för dig.",
   "Nu kommer jag förklara hur enkelt det är att försäkra sig med Hedvig.",
   "Först...",
   "Sedan...",
@@ -31,7 +32,7 @@ const onboardingMessages = [
   .concat(
     [
       "Jag äger min bostad",
-      "Är det en ville eller lägenhet?",
+      "Är det en villa eller lägenhet?",
       "Lägenhet",
       "Fråga...",
       "Svar...",
@@ -47,14 +48,20 @@ const onboardingMessages = [
   .concat(makeMockLinkMessage("InsuranceOffer", "Se erbjudande"))
 
 const claimMessages = [
-  "Hi! It seems like you have a claim to report. I'm here to help you. What happend?",
-  "I lost my wallet on the subway.",
-  "I'm sorry to hear that. Did you see the person who stole your wallet?",
-  "Yes",
-  "Ok, what valueables did you have in your wallet?",
-  "An SL card and 500 sek",
-  "Ok, I'll tranfer 1800 to you right away."
-].map((message, i) => makeMockTextMessage(i % 2 !== 0, message))
+  "Hej! Har något hänt eller behöver du hjälp med något?",
+  "Ja, min plånbok har blivit stulen på tunnelbanan.",
+  "Tråkigt att höra, men jag kommer göra mitt bästa för att hjälpa dig. Såg du den som stal plånboken?",
+  "Ja",
+  "...",
+  "...",
+  "Jag kommer be dig spela in en kort videoredogörelse för händelsen.",
+  "Film skickad...",
+  "Tack! Vi kommer titta på ditt ärende och hålla dig uppdatera här i chatten. Är det något mer vi kan hjälpa till med nu?",
+  "Nej, det blir bra.",
+  "Vi har tittat på ditt ärende och kommer föra över 1500 kr."
+]
+  .map((message, i) => makeMockTextMessage(i % 2 !== 0, message))
+  .concat(makeMockLinkMessage("Feedback", "Ge Feedback"))
 
 const mockData = {
   GET: {

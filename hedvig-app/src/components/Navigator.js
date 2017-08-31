@@ -21,6 +21,7 @@ import Share from "./Share"
 import Dashboard from "../containers/Dashboard"
 import Claim from "./Claim"
 import Chat from "../containers/Chat"
+import Feedback from "./Feedback"
 
 const Navigator = StackNavigator({
   Home: { screen: Home },
@@ -44,7 +45,8 @@ const Navigator = StackNavigator({
   Share: { screen: Share },
   Dashboard: { screen: Dashboard },
   Claim: { screen: Claim },
-  Chat: { screen: Chat }
+  Chat: { screen: Chat },
+  Feedback: { screen: Feedback }
 })
 
 export default Navigator

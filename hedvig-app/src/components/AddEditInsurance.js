@@ -1,6 +1,7 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link, ClaimLink } from "../containers/Link"
+import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class AddEditInsurance extends React.Component {
@@ -11,12 +12,10 @@ export default class AddEditInsurance extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>
-          Här kommer kunna lägga till, ändra eller se detaljer om något ur din
-          färsäkring.
-        </Text>
+        <Textplainer text="Här kommer du kunna lägga till, ändra eller se detaljer om något i din
+          försäkring." />
         <Text>&nbsp;</Text>
-        <Text>Har något hänt rörande denna del i din försäkring?</Text>
+        <Text>Har något hänt eller behöver du hjälp?</Text>
         <ClaimLink title="Rapportera ärende" />
       </Placeholder>
     )

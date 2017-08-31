@@ -4,16 +4,16 @@ import { Link } from "../containers/Link"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
-export default class Login extends React.Component {
+export default class Share extends React.Component {
   static navigationOptions = {
-    title: "Login"
+    title: "Feedback"
   }
 
   render() {
     return (
       <Placeholder>
-        <Textplainer text="Här kommer du logga in med BankID" />
-        <Link to="Onboarding" title="Jag har loggat in" />
+        <Textplainer text="Här kommer du kunna lämna feedback till Hedvig" />
+        <Link to="Dashboard" title="Gå till min översikt" />
       </Placeholder>
     )
   }

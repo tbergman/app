@@ -1,6 +1,5 @@
 import React from "react"
-import { Text } from "react-native"
-import { Link } from "../containers/Link"
+import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class FullTerms extends React.Component {
@@ -11,10 +10,7 @@ export default class FullTerms extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>
-          Här kommer en bekräftelse på att fullständiga villkor skickats till
-          din e-post
-        </Text>
+        <Textplainer text="Här kommer vi låta skicka ge feedback på din upplevelse av Hedvig" />
       </Placeholder>
     )
   }

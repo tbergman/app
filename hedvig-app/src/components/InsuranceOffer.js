@@ -2,6 +2,8 @@ import React from "react"
 import { Text } from "react-native"
 import { Link } from "../containers/Link"
 import { Placeholder as PlaceholderStyle } from "./Styles"
+import { Textplainer } from "./Placeholder"
+import Placeholder from "rn-placeholder"
 
 export default class InsuranceOffer extends React.Component {
   static navigationOptions = {
@@ -11,12 +13,14 @@ export default class InsuranceOffer extends React.Component {
   render() {
     return (
       <PlaceholderStyle>
-        <Text>Här kommer du se en sammanställning av ditt erbjudande</Text>
+        <Textplainer text="Här kommer du se en sammanställning av ditt försäkringserbjudande från Hedvig" />
         <Link to="Profile" title="Ändra info om mig" />
-        <Link to="InventoryList" title="Ändra min försäkring" />
-        <Link to="InsuranceList" title="Uppdatera värdesaker" />
+        <Link to="InsuranceList" title="Ändra min försäkring" />
+        <Link to="InventoryList" title="Uppdatera värdesaker" />
         <Text>&nbsp;</Text>
-        <Link to="RegisterPayment" title="Det ser fint ut" />
+        <Text>Är du nöjd med förslaget?</Text>
+        <Link to="RegisterPayment" title="Ja, ta mig vidare" />
+        <Link to="Chat" title="Nej, jag vill prata vidare med Hedvig" />
       </PlaceholderStyle>
     )
   }

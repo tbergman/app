@@ -1,6 +1,6 @@
 import React from "react"
 import { Text } from "react-native"
-import { Link } from "../containers/Link"
+import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class ChangeCashback extends React.Component {
@@ -11,7 +11,7 @@ export default class ChangeCashback extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Här kommer du kunna ändra var din cashback betalas ut.</Text>
+        <Textplainer text="Här kommer du kunna ändra var din cashback betalas ut." />
         <Text>
           Du kommer kunna välja på att ge till välgörenhet eller betala ut till
           ditt autogiro-konto

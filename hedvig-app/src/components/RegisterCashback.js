@@ -1,6 +1,7 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link } from "../containers/Link"
+import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class RegisterCashback extends React.Component {
@@ -11,20 +12,17 @@ export default class RegisterCashback extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Här kommer du kunna välja var din cashback ska betalas ut.</Text>
+        <Textplainer text="Här kommer vi förklara vad cashback är och hur du väljer vart den ska betalas ut." />
         <Text>
-          Du kommer kunna välja på att ge till välgörenhet eller betala ut till
-          ditt autogiro-konto
+          Du kan välja mellan att betala ut till välgörenhet eller ditt
+          autogiro-konto.
         </Text>
         <Text>&nbsp;</Text>
-        <Text>
-          När du valt sätt som din cashback betalas ut kommer du kunna ändra
-          valet här
-        </Text>
+        <Text>Valet du gjort kan ändras här:</Text>
         <Link to="ChangeCashback" title="Ändra konto för cashback" />
         <Text>&nbsp;</Text>
         <Text>När du är nöjd trycker du här</Text>
-        <Link to="SignBankid" title="Gå vidare till signering" />
+        <Link to="SignBankid" title="Ta mig vidare till signering" />
       </Placeholder>
     )
   }

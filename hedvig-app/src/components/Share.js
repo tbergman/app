@@ -1,6 +1,6 @@
 import React from "react"
-import { Text } from "react-native"
 import { Link } from "../containers/Link"
+import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class Share extends React.Component {
@@ -11,7 +11,7 @@ export default class Share extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Här kommer du kunna dela Hedvig</Text>
+        <Textplainer text="Här kommer du kunna dela Hedvig" />
         <Link to="Dashboard" title="Gå till min översikt" />
       </Placeholder>
     )
