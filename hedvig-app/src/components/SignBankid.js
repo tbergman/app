@@ -5,15 +5,27 @@ import { Placeholder } from "./Styles"
 
 export default class SignBankid extends React.Component {
   static navigationOptions = {
-    title: "Sign"
+    title: "Skriv Under Försäkring"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Sign with BankID</Text>
-        <Link to="FullTerms" title="See full terms" />
-        <Link to="Share" title="Share" />
+        <Text>
+          Här kommer du kunna skriva under din försäkring med Hedvig m.h.a.
+          BankID
+        </Text>
+        <Text>-</Text>
+        <Text>Här kommer du kunna få fullständig information via e-post</Text>
+        <Link to="FullTerms" title="Skicka avtal till min e-post" />
+        <Text>-</Text>
+        <Text>Du kommer även kunna dela Hedvig här</Text>
+        <Link to="Share" title="Dela" />
+        <Text>-</Text>
+        <Text>
+          När du signerat kommer du komma se en översikt över din försäkring
+        </Text>
+        <Link to="Dashboard" title="Gå till min översikt" />
       </Placeholder>
     )
   }

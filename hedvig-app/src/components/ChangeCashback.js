@@ -5,13 +5,17 @@ import { Placeholder } from "./Styles"
 
 export default class ChangeCashback extends React.Component {
   static navigationOptions = {
-    title: "Change Cashback"
+    title: "Ändra Cashback"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Change Cashback</Text>
+        <Text>Här kommer du kunna ändra var din cashback betalas ut.</Text>
+        <Text>
+          Du kommer kunna välja på att ge till välgörenhet eller betala ut till
+          ditt autogiro-konto
+        </Text>
       </Placeholder>
     )
   }

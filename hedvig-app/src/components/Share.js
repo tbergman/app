@@ -5,14 +5,14 @@ import { Placeholder } from "./Styles"
 
 export default class Share extends React.Component {
   static navigationOptions = {
-    title: "Share"
+    title: "Dela"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Share</Text>
-        <Link to="Dashboard" title="Go to dashboard" />
+        <Text>Här kommer du kunna dela Hedvig</Text>
+        <Link to="Dashboard" title="Gå till min översikt" />
       </Placeholder>
     )
   }

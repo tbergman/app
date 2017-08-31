@@ -5,13 +5,16 @@ import { Placeholder } from "./Styles"
 
 export default class FullTerms extends React.Component {
   static navigationOptions = {
-    title: "Full Terms"
+    title: "Fullständiga Villkor"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Full Terms</Text>
+        <Text>
+          Här kommer en bekräftelse på att fullständiga villkor skickats till
+          din e-post
+        </Text>
       </Placeholder>
     )
   }

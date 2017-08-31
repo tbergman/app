@@ -5,13 +5,13 @@ import { Placeholder } from "./Styles"
 
 export default class ChangePayment extends React.Component {
   static navigationOptions = {
-    title: "Change Payment"
+    title: "Ändra Autogiro"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Change Payment</Text>
+        <Text>Här kommer du kunna ändra autogiro</Text>
       </Placeholder>
     )
   }
