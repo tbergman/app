@@ -70,6 +70,9 @@ const mockData = {
     },
     "/messages/intro": {
       data: introMessages
+    },
+    "/mock-messages/claim": {
+      data: claimMessages
     }
   },
   POST: {
@@ -81,8 +84,7 @@ const mockData = {
     "/onboarding": {
       data: onboardingMessages
     }
-  },
-  claimMessages
+  }
 }
 
 export default mockData

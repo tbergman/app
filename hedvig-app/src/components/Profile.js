@@ -1,19 +1,19 @@
 import React from "react"
 import { Text } from "react-native"
-import Link from "../containers/Link"
+import { Link } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class Profile extends React.Component {
   static navigationOptions = {
-    title: "My Profile"
+    title: "Min Profil"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>My Profile</Text>
-        <Link to="ChangePayment" title="Change payment" />
-        <Link to="ChangeCashback" title="Change cashback" />
+        <Text>Här kommer du kunna se och ändra information om dig själv</Text>
+        <Link to="ChangePayment" title="Ändra betalmetod" />
+        <Link to="ChangeCashback" title="Ändra sätt att få cashback" />
       </Placeholder>
     )
   }

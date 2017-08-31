@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Text } from "react-native"
-import Link from "../containers/Link"
+import { Link, ClaimLink } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class Dashboard extends React.Component {
@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
         <Link to="Profile" title="My Profile" />
         <Link to="InventoryList" title="Inventory List" />
         <Link to="InsuranceList" title="Insurance List" />
-        <Button title="Claim" onPress={this.createClaim.bind(this)} />
+        <ClaimLink title="Rapportera händelse" />
         <Link to="SignBankid" title="Update insurance" />
       </Placeholder>
     )

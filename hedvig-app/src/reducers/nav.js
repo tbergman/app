@@ -1,7 +1,7 @@
 import Navigator from "../components/Navigator"
 
 const initialState = Navigator.router.getStateForAction(
-  Navigator.router.getActionForPathAndParams("Onboarding")
+  Navigator.router.getActionForPathAndParams("Dashboard")
 )
 
 const navReducer = (state = initialState, action) => {

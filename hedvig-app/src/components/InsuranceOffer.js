@@ -1,22 +1,23 @@
 import React from "react"
 import { Text } from "react-native"
-import Link from "../containers/Link"
-import { Placeholder } from "./Styles"
+import { Link } from "../containers/Link"
+import { Placeholder as PlaceholderStyle } from "./Styles"
 
 export default class InsuranceOffer extends React.Component {
   static navigationOptions = {
-    title: "Insurance Offer"
+    title: "Ditt Försäkringserbjudande"
   }
 
   render() {
     return (
-      <Placeholder>
-        <Text>Insurance Offer</Text>
-        <Link to="Profile" title="My Profile" />
-        <Link to="InventoryList" title="Inventory List" />
-        <Link to="InsuranceList" title="Insurance List" />
-        <Link to="RegisterPayment" title="Register Payment" />
-      </Placeholder>
+      <PlaceholderStyle>
+        <Text>Här kommer du se en sammanställning av ditt erbjudande</Text>
+        <Link to="Profile" title="Ändra info om mig" />
+        <Link to="InventoryList" title="Ändra min försäkring" />
+        <Link to="InsuranceList" title="Uppdatera värdesaker" />
+        <Text>-</Text>
+        <Link to="RegisterPayment" title="Det ser fint ut" />
+      </PlaceholderStyle>
     )
   }
 }

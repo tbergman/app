@@ -1,7 +1,7 @@
 import React from "react"
 import { Button } from "react-native"
 
-const Link = ({ to, title, navigateTo }) => {
+export const Link = ({ to, title, navigateTo }) => {
   return (
     <Button
       title={title}
@@ -12,4 +12,13 @@ const Link = ({ to, title, navigateTo }) => {
   )
 }
 
-export default Link
+export const ClaimLink = ({ title, createClaimAndNavigateToChat }) => {
+  return (
+    <Button
+      title={title}
+      onPress={() => {
+        createClaimAndNavigateToChat()
+      }}
+    />
+  )
+}

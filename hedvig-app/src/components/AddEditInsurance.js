@@ -1,18 +1,18 @@
 import React from "react"
 import { Text } from "react-native"
-import Link from "../containers/Link"
+import { Link, ClaimLink } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class AddEditInsurance extends React.Component {
   static navigationOptions = {
-    title: "Add / Edit Insurance"
+    title: "Lägg till / Ändra Försäkring"
   }
 
   render() {
     return (
       <Placeholder>
         <Text>Add / Edit Insurance</Text>
-        <Link to="Claim" title="Claim" />
+        <ClaimLink title="Rapportera ärende" />
       </Placeholder>
     )
   }

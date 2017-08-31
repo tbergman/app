@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import Chat from "../containers/Chat"
-import Link from "../containers/Link"
+import { Link } from "../containers/Link"
 import { BaseViewStyle } from "./Styles"
 import Placeholder from "rn-placeholder"
 

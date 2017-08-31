@@ -1,6 +1,6 @@
 import React from "react"
 import { Text } from "react-native"
-import Link from "../containers/Link"
+import { Link, ClaimLink } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class AddEditItem extends React.Component {
@@ -12,7 +12,7 @@ export default class AddEditItem extends React.Component {
     return (
       <Placeholder>
         <Text>Här lägger du till eller ändrar ett värdeförmål.</Text>
-        <Link to="Claim" title="Claim" />
+        <ClaimLink title="Förlorat ditt föremål?" />
       </Placeholder>
     )
   }

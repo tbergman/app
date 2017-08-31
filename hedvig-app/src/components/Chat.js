@@ -1,6 +1,6 @@
 import React from "react"
 import { Text, View, TouchableHighlight } from "react-native"
-import Link from "../containers/Link"
+import { Link } from "../containers/Link"
 import { BaseScrolleViewStyle, ChatMessageStyle } from "./Styles"
 import Placeholder from "rn-placeholder"
 

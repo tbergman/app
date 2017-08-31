@@ -1,18 +1,21 @@
 import React from "react"
 import { Text } from "react-native"
-import Link from "../containers/Link"
+import { Link } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class InventoryList extends React.Component {
   static navigationOptions = {
-    title: "Inventory List"
+    title: "Försäkringsinnehåll"
   }
 
   render() {
     return (
       <Placeholder>
-        <Text>Inventory List</Text>
-        <Link to="AddEditItem" title="Add / Edit item" />
+        <Text>Här kommer du se vad som ingår i din försäkring</Text>
+        <Link
+          to="AddEditInsurance"
+          title="Lägg till eller ändra i försäkring"
+        />
       </Placeholder>
     )
   }

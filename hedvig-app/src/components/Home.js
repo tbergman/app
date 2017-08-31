@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View, TextInput } from "react-native"
 import styled from "styled-components/native"
-import Link from "../containers/Link"
+import { Link } from "../containers/Link"
 
 const Name = styled.Text`font-size: 30px;`
 
