@@ -15,10 +15,10 @@ export default class RegisterPayment extends React.Component {
           Här kommer du kunna välja vilket konto du vill anända för in- och
           utbetalningar
         </Text>
-        <Text>-</Text>
+        <Text>&nbsp;</Text>
         <Text>När du valt konto kommer du kunna ändra konto här:</Text>
         <Link to="ChangePayment" title="Ändra konto för autogiro" />
-        <Text>-</Text>
+        <Text>&nbsp;</Text>
         <Text>När du är klar går du vidare här</Text>
         <Link to="RegisterCashback" title="Ok, ser bra ut!" />
       </Placeholder>

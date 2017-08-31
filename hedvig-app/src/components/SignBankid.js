@@ -15,13 +15,13 @@ export default class SignBankid extends React.Component {
           Här kommer du kunna skriva under din försäkring med Hedvig m.h.a.
           BankID
         </Text>
-        <Text>-</Text>
+        <Text>&nbsp;</Text>
         <Text>Här kommer du kunna få fullständig information via e-post</Text>
         <Link to="FullTerms" title="Skicka avtal till min e-post" />
-        <Text>-</Text>
+        <Text>&nbsp;</Text>
         <Text>Du kommer även kunna dela Hedvig här</Text>
         <Link to="Share" title="Dela" />
-        <Text>-</Text>
+        <Text>&nbsp;</Text>
         <Text>
           När du signerat kommer du komma se en översikt över din försäkring
         </Text>

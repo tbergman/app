@@ -11,8 +11,13 @@ export default class AddEditItem extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Här lägger du till eller ändrar ett värdeförmål.</Text>
-        <ClaimLink title="Förlorat ditt föremål?" />
+        <Text>
+          Här kommer kunna lägga till, ändra eller se detaljer om ett
+          värdeföremål.
+        </Text>
+        <Text>&nbsp;</Text>
+        <Text>Har något hänt rörande denna detta värdeföremål?</Text>
+        <ClaimLink title="Rapportera ärende" />
       </Placeholder>
     )
   }

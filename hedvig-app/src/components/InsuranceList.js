@@ -12,7 +12,10 @@ export default class InsuranceList extends React.Component {
     return (
       <Placeholder>
         <Text>Insurance List</Text>
-        <Link to="AddEditInsurance" title="Add / Edit insurance" />
+        <Link
+          to="AddEditInsurance"
+          title="Lägg till, titta på eller ändra en färsäkring"
+        />
       </Placeholder>
     )
   }

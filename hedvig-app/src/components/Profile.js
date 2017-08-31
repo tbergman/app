@@ -14,6 +14,7 @@ export default class Profile extends React.Component {
         <Text>Här kommer du kunna se och ändra information om dig själv</Text>
         <Link to="ChangePayment" title="Ändra betalmetod" />
         <Link to="ChangeCashback" title="Ändra sätt att få cashback" />
+        <Link to="Login" title="Logga ut" />
       </Placeholder>
     )
   }

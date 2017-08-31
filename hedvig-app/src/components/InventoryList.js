@@ -5,7 +5,7 @@ import { Placeholder } from "./Styles"
 
 export default class InventoryList extends React.Component {
   static navigationOptions = {
-    title: "Försäkringsinnehåll"
+    title: "Dina värdeföremål"
   }
 
   render() {
@@ -14,7 +14,7 @@ export default class InventoryList extends React.Component {
         <Text>Här kommer du se vad som ingår i din försäkring</Text>
         <Link
           to="AddEditInsurance"
-          title="Lägg till eller ändra i försäkring"
+          title="Lägg till, titta på eller ändra ett värdeföremål"
         />
       </Placeholder>
     )

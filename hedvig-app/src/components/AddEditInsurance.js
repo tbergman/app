@@ -11,7 +11,12 @@ export default class AddEditInsurance extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Add / Edit Insurance</Text>
+        <Text>
+          Här kommer kunna lägga till, ändra eller se detaljer om något ur din
+          färsäkring.
+        </Text>
+        <Text>&nbsp;</Text>
+        <Text>Har något hänt rörande denna del i din försäkring?</Text>
         <ClaimLink title="Rapportera ärende" />
       </Placeholder>
     )

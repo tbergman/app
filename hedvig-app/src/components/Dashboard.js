@@ -1,34 +1,29 @@
 import React from "react"
 import { Button, Text } from "react-native"
 import { Link, ClaimLink } from "../containers/Link"
-import { Placeholder } from "./Styles"
+import { Placeholder as PlaceholderStyle } from "./Styles"
 
 export default class Dashboard extends React.Component {
   static navigationOptions = {
-    title: "Dashboard"
-  }
-
-  componentDidMount() {
-    this.props.load()
-  }
-
-  createClaim() {
-    this.props.createClaim()
+    title: "Din Föresäkring"
   }
 
   render() {
     return (
-      <Placeholder>
-        <Text>
-          Dashboard -&nbsp;
-          {this.props.dashboard ? this.props.dashboard.data.foo : ":("}
-        </Text>
-        <Link to="Profile" title="My Profile" />
-        <Link to="InventoryList" title="Inventory List" />
-        <Link to="InsuranceList" title="Insurance List" />
+      <PlaceholderStyle>
+        <Text>Här kommer du se en sammanställning av din försäkring</Text>
+        <Link to="Profile" title="Se / ändra info om mig" />
+        <Link to="InsuranceList" title="Se / ändra min försäkring" />
+        <Link to="InventoryList" title="Se / ändra värdesaker" />
+        <Text>&nbsp;</Text>
+        <Text>Har något hänt? Tryck här:</Text>
         <ClaimLink title="Rapportera händelse" />
-        <Link to="SignBankid" title="Update insurance" />
-      </Placeholder>
+        <Text>&nbsp;</Text>
+        <Text>
+          Om du uppdaterat din försäkring kan du bekräfta uppdateringen här
+        </Text>
+        <Link to="SignBankid" title="Bekräfta uppdaterad försäkring" />
+      </PlaceholderStyle>
     )
   }
 }

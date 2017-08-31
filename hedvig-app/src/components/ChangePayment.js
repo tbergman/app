@@ -11,7 +11,7 @@ export default class ChangePayment extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Text>Här kommer du kunna ändra autogiro</Text>
+        <Text>Här kommer du kunna ändra autogiro-konto</Text>
       </Placeholder>
     )
   }

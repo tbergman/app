@@ -10,10 +10,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    load: () => dispatch(insuranceActions.getDashboard()),
-    createClaim: () => createClaimAndNavigateToChat(dispatch)
-  }
+  return {}
 }
 
 const DashboardContainer = connect(mapStateToProps, mapDispatchToProps)(
