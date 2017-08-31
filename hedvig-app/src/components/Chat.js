@@ -17,7 +17,9 @@ export default class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    this.scrollView.scrollToEnd({ animated: true })
+    setTimeout(() => {
+      this.scrollView.scrollToEnd({ animated: true })
+    }, 0)
   }
 
   renderTextMessage(message) {
