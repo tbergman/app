@@ -1,13 +1,15 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link, ClaimLink } from "../containers/Link"
+import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class AddEditItem extends React.Component {
-  static navigationOptions = {
-    title: "Lägg till / Ändra Värdeföremål"
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: "Lägg till / Ändra Värdeföremål",
+    headerRight: <HeaderRightChat navigation={navigation} />
+  })
 
   render() {
     return (

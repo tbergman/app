@@ -1,13 +1,15 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link } from "../containers/Link"
+import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class SignBankid extends React.Component {
-  static navigationOptions = {
-    title: "Skriv Under Försäkring"
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: "Skriv Under Försäkring",
+    headerRight: <HeaderRightChat navigation={navigation} />
+  })
 
   render() {
     return (

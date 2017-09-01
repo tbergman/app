@@ -1,13 +1,15 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link } from "../containers/Link"
+import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class Profile extends React.Component {
-  static navigationOptions = {
-    title: "Min Profil"
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: "Min Profil",
+    headerRight: <HeaderRightChat navigation={navigation} />
+  })
 
   render() {
     return (

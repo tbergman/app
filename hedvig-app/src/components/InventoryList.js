@@ -1,13 +1,15 @@
 import React from "react"
 import { Text } from "react-native"
 import { Link } from "../containers/Link"
+import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class InventoryList extends React.Component {
-  static navigationOptions = {
-    title: "Dina värdeföremål"
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: "Dina värdeföremål",
+    headerRight: <HeaderRightChat navigation={navigation} />
+  })
 
   render() {
     return (
