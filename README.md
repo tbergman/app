@@ -40,7 +40,11 @@ HEDVIG_S3_BUCKET=<your_bucket_name> yarn deploy
 
 ## Client / Server communcation
 
-### Chat message types
+### Chat
+
+![image](https://user-images.githubusercontent.com/206061/30038446-f1a534e0-91c4-11e7-9ee7-74ba6bf4c976.png)
+
+#### Chat message types
 
 * `text` - Plain text message
 * `single_select` - Single select question / answer
