@@ -10,7 +10,7 @@ export default class App extends React.Component {
     animation: null
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this._playAnimation()
   }
 
@@ -18,34 +18,24 @@ export default class App extends React.Component {
     return (
       <View style={styles.animationContainer}>
         <Button title="Restart Animation" onPress={this._playAnimation} />
-        {this.state.animation && (
-          <Lottie
-            ref={animation => {
-              this.animation = animation
-            }}
-            style={{
-              height: 108 * 2,
-              width: 192 * 2,
-              backgroundColor: "transparent"
-            }}
-            source={animationJson}
-          />
-        )}
+        <Lottie
+          ref={animation => {
+            this.animation = animation
+          }}
+          style={{
+            height: 108 * 2,
+            width: 192 * 2,
+            backgroundColor: "transparent"
+          }}
+          source={animationJson}
+        />
       </View>
     )
   }
 
   _playAnimation = () => {
-    if (!this.state.animation) {
-      this._loadAnimationAsync()
-    } else {
-      this.animation.reset()
-      this.animation.play()
-    }
-  }
-
-  _loadAnimationAsync = async () => {
-    this.setState({ animation: animationJson }, this._playAnimation)
+    this.animation.reset()
+    this.animation.play()
   }
 }
 
