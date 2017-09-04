@@ -22,6 +22,7 @@ import Dashboard from "../containers/Dashboard"
 import Claim from "./Claim"
 import Chat from "../containers/Chat"
 import Feedback from "./Feedback"
+import AnimatedLogo from "./AnimatedLogo"
 
 const Navigator = StackNavigator({
   Home: { screen: Home },
@@ -46,7 +47,8 @@ const Navigator = StackNavigator({
   Dashboard: { screen: Dashboard },
   Claim: { screen: Claim },
   Chat: { screen: Chat },
-  Feedback: { screen: Feedback }
+  Feedback: { screen: Feedback },
+  AnimatedLogo: { screen: AnimatedLogo }
 })
 
 export default Navigator
