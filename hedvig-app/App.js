@@ -1,3 +1,6 @@
+/* global module process require */
+import StorybookUI from "./storybook"
+
 import React from "react"
 import { Provider } from "react-redux"
 
@@ -7,7 +10,7 @@ import AppNavigator from "./src/containers/AppNavigator"
 import * as Navigation from "./src/services/Navigation"
 window.Navigation = Navigation
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor() {
     super()
     this.store = hedvigRedux.configureStore({ additionalReducers: { nav } })
@@ -22,3 +25,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+module.exports = process.env.REACT_NATIVE_STORYBOOK_MODE ? StorybookUI : App
