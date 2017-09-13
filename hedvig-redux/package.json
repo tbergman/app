@@ -11,7 +11,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

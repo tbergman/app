@@ -7,11 +7,15 @@ import helloActions from "./actions/hello"
 import insuranceActions from "./actions/insurance"
 import chatActions from "./actions/chat"
 
+import createSagaMiddleware from "redux-saga"
+import rootSaga from "./sagas/index"
+
 import mockChatActions from "./actions/mock/chat"
 
 function configureStore(
   { initialState, additionalReducers, additionalMiddleware = [] } = {}
 ) {
+  let sagaMiddleware = createSagaMiddleware()
   let store = createStore(
     rootReducer(additionalReducers),
     initialState,
@@ -20,10 +24,12 @@ function configureStore(
         loggingMiddleware,
         apiMiddleware,
         mockMiddleware,
+        sagaMiddleware,
         ...additionalMiddleware
       )
     )
   )
+  sagaMiddleware.run(rootSaga)
   return store
 }
 
