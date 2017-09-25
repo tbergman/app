@@ -251,11 +251,14 @@ Response code: 204
 
 ![image](https://user-images.githubusercontent.com/206061/30038446-f1a534e0-91c4-11e7-9ee7-74ba6bf4c976.png)
 
+Chat messages are delivered through polling the /messages endpoint. Response format is {"timestamp1":message1, "timestamp2":message2,...}
+
 #### Chat message types
 
 * `text` - Plain text message
 * `single_select` - Single select question / answer
 * `multiple_select` - Multiple select question / answer
+* `multiple_choice` - Multiple actionable choices
 * `map_select` - Select position on a map
 * `datepicker` - Select a date
 * `video` or `audio` **not decided yet** - Let's a user record and upload a video or audio
