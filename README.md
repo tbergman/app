@@ -251,7 +251,8 @@ Response code: 204
 
 ![image](https://user-images.githubusercontent.com/206061/30038446-f1a534e0-91c4-11e7-9ee7-74ba6bf4c976.png)
 
-Chat messages are delivered through polling the /messages endpoint. Response format is {"timestamp1":message1, "timestamp2":message2,...}
+Chat messages are delivered through polling the /messages endpoint. 
+<BR>Response format is {"timestamp1":message1, "timestamp2":message2,...}
 
 #### Chat message types
 
@@ -269,37 +270,12 @@ Chat messages are delivered through polling the /messages endpoint. Response for
 
 GET /messages
 ```
-{ "data":
-  { "1":
-    {
-      "header": { "from": 1, "type": "text", "message_id": 1, "timestamp": 1231231231231 },
-      "body": { "content": "Welcome" }
-    }
-  }
-}
+"1506330482691":{"id":"message.hello","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330482691E12},"body":{"type":"text","content":"Hello I am Hedvig"}}}
 ```
 
 GET /messages
 ```
-{ "data":
-  { "1":
-    {
-      "header": { "from": 1, "type": "text", "message_id": 1, "timestamp": 1231231231231 },
-      "body": { "content": "Welcome" }
-    },
-    "2":
-    {
-      "header": { "from": 1, "type": "single_select", "response_path": "/response/2", "message_id": 2, "timestamp": 1231231231232 },
-      "body": { "question": "Which is your favourite color?",
-                "options": [
-                  {"id": 1, "value": "Red", "selected": false},
-                  {"id": 2, "value": "Green", "selected": false},
-                  {"id": 3, "value": "Blue", "selected": false}
-                ]
-              }
-    }
-  }
-}
+{"1506330403007":{"id":"message.hello","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330403007E12},"body":{"type":"multiple_choice","content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?","links":[{"text":"Jag vill ha en ny","selected":false,"URI":"/response","param":"action.new"},{"text":"Vill byta försäkring","selected":false,"URI":"/response","param":"action.change"},{"text":"Varför behöver jag?","selected":false,"URI":"/response","param":"action.why"},{"text":"Vem är du, Hedvig?","selected":false,"URI":"/response","param":"action.who"}]}},"1506330444463":{"id":"message.changecompany","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330444463E12},"body":{"type":"multiple_choice","content":"Ok, vilket bolag har du idag?","links":[{"text":"If","selected":false,"URI":"/response","param":"company.if"},{"text":"TH","selected":false,"URI":"/response","param":"company.th"},{"text":"LF","selected":false,"URI":"/response","param":"company.lf"}]}},"1506330482691":{"id":"error","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330482691E12},"body":{"type":"text","content":"Oj nu blev något fel..."}}}
 ```
 
 POST /message/2
