@@ -1,11 +1,11 @@
-import Navigator from "../components/Navigator"
+import { BaseNavigator } from "../components/navigation/base"
 
-const initialState = Navigator.router.getStateForAction(
-  Navigator.router.getActionForPathAndParams("Intro")
-)
+// const initialState = Navigator.router.getStateForAction(
+//   Navigator.router.getActionForPathAndParams("Intro")
+// )
 
-const navReducer = (state = initialState, action) => {
-  const nextState = Navigator.router.getStateForAction(action, state)
+const navReducer = (state, action) => {
+  const nextState = BaseNavigator.router.getStateForAction(action, state)
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state

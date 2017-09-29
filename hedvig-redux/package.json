@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "ramda": "^0.24.1",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6"
   },

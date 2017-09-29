@@ -10,7 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => dispatch(chatActions.getIntroMessages())
+    load: () => dispatch(chatActions.getMessages())
   }
 }
 

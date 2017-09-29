@@ -13,7 +13,8 @@ export default class Intro extends React.Component {
   constructor() {
     super()
     this.state = {
-      ready: false
+      // ready: false
+      ready: true
     }
   }
 
@@ -30,7 +31,7 @@ export default class Intro extends React.Component {
   }
 
   render() {
-    this.wait()
+    // this.wait()
     return (
       <View style={{ flex: 1 }}>
         <Text>Intro</Text>

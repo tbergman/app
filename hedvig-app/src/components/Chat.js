@@ -16,9 +16,13 @@ export default class Chat extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getMessages()
+  }
+
   componentDidUpdate() {
     setTimeout(() => {
-      this.scrollView.scrollToEnd({ animated: true })
+      // this.scrollView.scrollToEnd({ animated: true })
     }, 0)
   }
 
@@ -49,6 +53,14 @@ export default class Chat extends React.Component {
     return <Link to={message.body.to} title={message.body.title} />
   }
 
+  renderMultipleChoiceMessage(message) {
+    return (
+      <Text>
+        {message.body.content}
+      </Text>
+    )
+  }
+
   maybeMessages() {
     if (!this.props.messages) {
       return
@@ -57,11 +69,13 @@ export default class Chat extends React.Component {
     let messages = this.props.messages
       .slice(0, this.props.numVisibleMessages)
       .map(message => {
-        switch (message.header.type) {
+        switch (message.body.type) {
           case "text":
             return this.renderTextMessage(message)
           case "link":
             return this.renderLinkMessage(message)
+          case "multiple_choice":
+            return this.renderMultipleChoiceMessage(message)
           default:
             console.log("Unknown message", message)
         }

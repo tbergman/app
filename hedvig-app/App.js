@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 
 const hedvigRedux = require("hedvig-redux")
 import nav from "./src/reducers/nav"
-import AppNavigator from "./src/containers/AppNavigator"
+import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
 import * as Navigation from "./src/services/Navigation"
 window.Navigation = Navigation
 
@@ -20,7 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={this.store}>
-        <AppNavigator />
+        <ConnectedReduxBaseNavigator />
       </Provider>
     )
   }

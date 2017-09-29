@@ -12,7 +12,7 @@ function makeMockLinkMessage(to, title) {
   }
 }
 
-const introMessages = [
+const messages = [
   "Hej och välkommen! Det här är en demo-app. För att se nästa meddelande, tryck på detta eller något annat meddelande.",
   "Jag är Hedvig och kommer alltid finnas tillgänglig här för dig.",
   "Nu kommer jag förklara hur enkelt det är att försäkra sig med Hedvig.",
@@ -75,8 +75,8 @@ const mockData = {
         foo: "bar"
       }
     },
-    "/messages/intro": {
-      data: introMessages
+    "/messages": {
+      data: messages
     },
     "/mock-messages/claim": {
       data: claimMessages
