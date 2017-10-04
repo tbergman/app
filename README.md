@@ -263,7 +263,6 @@ Chat messages are recieved by POSTING to the /response endpoint
 * `single_select` - Single select question / answer
 * `multiple_select` - Multiple select question / answer
 * `multiple_choice` - Multiple actionable choices
-* `map_select` - Select position on a map
 * `datepicker` - Select a date
 * `video` or `audio` **not decided yet** - Let's a user record and upload a video or audio
 * `hero` - A big "hero" / "jumbotron" to showcase key (marketing?) messages
