@@ -140,7 +140,7 @@ Get my current insurance (also includes new price if user has requested a quote 
 
 ### Add / edit / delete an asset
 
-`POST (for create) PUT (for edit) DELETE /insurance/assets/{id} (id if editing or deleting)
+`POST (for create) PUT (for edit) DELETE /asset/{id} (id if editing or deleting)
 
 #### Request body example
 
