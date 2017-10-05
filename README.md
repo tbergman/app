@@ -263,10 +263,10 @@ Chat messages are recieved by POSTING to the /response endpoint
 ```
 "1507042098159": {
   "id":"message.getname",
+  "timestamp": 1507042098159,
   "header":{
      "fromId":1,
      "responsePath":"/response",
-     "timeStamp":1.507042098159E12
   },
   "body":{
      "type":"text",
@@ -278,10 +278,10 @@ Chat messages are recieved by POSTING to the /response endpoint
 ```
 "17879879179871": {
   "id":"message.hello",
+  "timestamp": 17879879179871,
   "header":{
      "fromId":1,
-     "responsePath":"/response",
-     "timeStamp":1.507042097247E12
+     "responsePath":"/response"
   },
   "body":{
      "type":"single_select",
@@ -301,17 +301,17 @@ Chat messages are recieved by POSTING to the /response endpoint
   }
 }
 ```
-* `multiple_choice` - Multiple select question / answer
+* `multiple_select` - Multiple select question / answer
 ```
 "1507042097247": {
   "id":"message.hello",
+  "timestamp": 1507042097247,
   "header":{
      "fromId":1,
      "responsePath":"/response",
-     "timeStamp":1.507042097247E12
   },
   "body":{
-     "type":"multiple_choice",
+     "type":"multiple_select",
      "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
      "choices":[
         {
@@ -338,10 +338,10 @@ Chat messages are recieved by POSTING to the /response endpoint
 ```
 "1507042098159": {
   "id":"message.getname",
+  "timestamp": 1507042098159,
   "header":{
      "fromId":1,
      "responsePath":"/response",
-     "timeStamp":1.507042098159E12
   },
   "body":{
      "type":"datepicker",
@@ -353,10 +353,10 @@ Chat messages are recieved by POSTING to the /response endpoint
 ```
 "1507042098159": {
   "id":"message.getname",
+  "timestamp": 1507042098159,
   "header":{
      "fromId":1,
-     "responsePath":"/response",
-     "timeStamp":1.507042098159E12
+     "responsePath":"/response"
   },
   "body":{
      "type":"video",
@@ -368,10 +368,10 @@ Chat messages are recieved by POSTING to the /response endpoint
 ```
 "1507042098159": {
   "id":"message.getname",
+  "timestamp": 1507042098159,
   "header":{
      "fromId":1,
-     "responsePath":"/response",
-     "timeStamp":1.507042098159E12
+     "responsePath":"/response"
   },
   "body":{
      "type":"hero",
