@@ -260,9 +260,80 @@ Chat messages are recieved by POSTING to the /response endpoint
 #### Chat message types
 
 * `text` - Plain text message
+```
+"1507042098159": {
+  "id":"message.getname",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042098159E12
+  },
+  "body":{
+     "type":"text",
+     "content":"Trevlig, vad heter du?"
+  }
+}
+```
 * `single_select` - Single select question / answer
-* `multiple_select` - Multiple select question / answer
-* `multiple_choice` - Multiple actionable choices
+```
+"17879879179871": {
+  "id":"message.hello",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042097247E12
+  },
+  "body":{
+     "type":"single_select",
+     "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+     "choices":[
+        {
+           "type": "selection",
+           "text":"Jag vill ha en ny",
+        },
+        {
+           "type": "link",
+           "text":"I want to see my assets",
+           "href": "/asset-tracker",
+           "view": "AssetTracker"
+        }
+     ]
+  }
+}
+```
+* `multiple_choice` - Multiple select question / answer
+```
+"1507042097247": {
+  "id":"message.hello",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042097247E12
+  },
+  "body":{
+     "type":"multiple_choice",
+     "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+     "links":[
+        {
+           "text":"Jag vill ha en ny",
+           "selected":false
+        },
+        {
+           "text":"Vill byta försäkring",
+           "selected":false
+        },
+        {
+           "text":"Varför behöver jag?",
+           "selected":false
+        },
+        {
+           "text":"Vem är du, Hedvig?",
+           "selected":false
+        }
+     ]
+  }
+}
+```
 * `datepicker` - Select a date
 * `video` or `audio` **not decided yet** - Let's a user record and upload a video or audio
 * `hero` - A big "hero" / "jumbotron" to showcase key (marketing?) messages
