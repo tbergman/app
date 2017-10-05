@@ -410,3 +410,46 @@ To reply to a particular message just use the same id as the message you are rep
     {"type":"text","content":"John"}
 }
 ```
+
+### Authentication
+
+For authentication we utilize the JWT tokens. The tokens should be added to the _Authorization_ header and prepended with _Bearer _.
+
+Ex:```Authorization:Bearer AKLSJDLAJD.ASDLKJADJ.KJALJDSLA```
+
+#### On newly started applications
+
+Newly started application should be initiated by calling helloHedvig
+endpoint and get an access token. Further calles to the backend should
+include this token.
+
+
+POST /helloHedvig
+
+```
+Response:
+XXXX.XXXXX.XXXX
+```
+
+#### BankId authentication
+
+The bankId authentication flow mimics the flow used by BankId.  A call
+to /member/bankid/auth starts the auth process. In order to know if
+the auth request succeded or not the client must poll
+/member/bankid/collect.
+
+POST /member/bankid/auth
+
+Arguments:
+* ssn - (Optional) The personnumer of the authenticating member
+
+
+#### BankId collect
+
+POST /member/bankid/collect
+
+Response:
+SUCCESS
+FAILIURE
+.
+.
