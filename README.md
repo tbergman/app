@@ -274,6 +274,21 @@ Chat messages are recieved by POSTING to the /response endpoint
   }
 }
 ```
+* `number` - Numeric input
+```
+"1507042098159": {
+  "id":"message.getname",
+  "timestamp": 1507042098159,
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+  },
+  "body":{
+     "type":"number",
+     "content":"Trevlig, vad heter du?"
+  }
+}
+```
 * `single_select` - Single select question / answer
 ```
 "17879879179871": {
