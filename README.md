@@ -313,7 +313,7 @@ Chat messages are recieved by POSTING to the /response endpoint
   "body":{
      "type":"multiple_choice",
      "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
-     "links":[
+     "choices":[
         {
            "text":"Jag vill ha en ny",
            "selected":false
@@ -335,9 +335,52 @@ Chat messages are recieved by POSTING to the /response endpoint
 }
 ```
 * `datepicker` - Select a date
-* `video` or `audio` **not decided yet** - Let's a user record and upload a video or audio
+```
+"1507042098159": {
+  "id":"message.getname",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042098159E12
+  },
+  "body":{
+     "type":"datepicker",
+     "content":"Select a date."
+  }
+}
+```
+* `video`
+```
+"1507042098159": {
+  "id":"message.getname",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042098159E12
+  },
+  "body":{
+     "type":"video",
+     "content":"Record a video"
+  }
+}
+```
 * `hero` - A big "hero" / "jumbotron" to showcase key (marketing?) messages
-* `link` - A link to another view
+```
+"1507042098159": {
+  "id":"message.getname",
+  "header":{
+     "fromId":1,
+     "responsePath":"/response",
+     "timeStamp":1.507042098159E12
+  },
+  "body":{
+     "type":"hero",
+     "content":"I'm a hero",
+     "imageUri": "http://placekitten.com/g/200/300"
+  }
+}
+```
+* ~`link` - A link to another view~ This is now a `single_select` type with one `choices.type` set to `link`
 
 #### Chat flow example
 
