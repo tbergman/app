@@ -8,7 +8,7 @@ import AddEditItem from "./AddEditItem"
 import Profile from "./Profile"
 import InsuranceOffer from "./InsuranceOffer"
 import InsuranceDenial from "./InsuranceDenial"
-import InventoryList from "./InventoryList"
+import AssetList from "./AssetList"
 import InsuranceList from "./InsuranceList"
 import AddEditInsurance from "./AddEditInsurance"
 import RegisterPayment from "./RegisterPayment"
@@ -34,7 +34,7 @@ const Navigator = StackNavigator({
   Profile: { screen: Profile },
   InsuranceOffer: { screen: InsuranceOffer },
   InsuranceDenial: { screen: InsuranceDenial },
-  InventoryList: { screen: InventoryList },
+  AssetList: { screen: AssetList },
   InsuranceList: { screen: InsuranceList },
   AddEditInsurance: { screen: AddEditInsurance },
   RegisterPayment: { screen: RegisterPayment },

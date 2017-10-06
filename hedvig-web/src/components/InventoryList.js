@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Placeholder } from "./Styles"
 
-const InventoryList = () => {
+const AssetList = () => {
   return (
     <Placeholder>
       Inventory List
@@ -11,4 +11,4 @@ const InventoryList = () => {
   )
 }
 
-export default InventoryList
+export default AssetList

@@ -18,7 +18,7 @@ export default class Dashboard extends React.Component {
         <Textplainer text="Här kommer du se en sammanställning av din försäkring" />
         <Link to="Profile" title="Se / ändra info om mig" />
         <Link to="InsuranceList" title="Se / ändra min försäkring" />
-        <Link to="InventoryList" title="Se / ändra värdesaker" />
+        <Link to="AssetList" title="Se / ändra värdesaker" />
         <Text>&nbsp;</Text>
         <Text>Har något hänt eller behöver du hjälp?</Text>
         <ClaimLink title="Rapportera händelse" />

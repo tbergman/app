@@ -16,7 +16,7 @@ export default class InsuranceOffer extends React.Component {
         <Textplainer text="Här kommer du se en sammanställning av ditt försäkringserbjudande från Hedvig" />
         <Link to="Profile" title="Ändra info om mig" />
         <Link to="InsuranceList" title="Ändra min försäkring" />
-        <Link to="InventoryList" title="Uppdatera värdesaker" />
+        <Link to="AssetList" title="Uppdatera värdesaker" />
         <Text>&nbsp;</Text>
         <Text>Är du nöjd med förslaget?</Text>
         <Link to="RegisterPayment" title="Ja, ta mig vidare" />

@@ -1,10 +1,10 @@
 import { BaseNavigator } from "../components/navigation/base"
 
-// const initialState = Navigator.router.getStateForAction(
-//   Navigator.router.getActionForPathAndParams("Intro")
-// )
+const initialState = BaseNavigator.router.getStateForAction(
+  BaseNavigator.router.getActionForPathAndParams("ChatBase")
+)
 
-const navReducer = (state, action) => {
+const navReducer = (state = initialState, action) => {
   const nextState = BaseNavigator.router.getStateForAction(action, state)
 
   // Simply return the original `state` if `nextState` is null or undefined.

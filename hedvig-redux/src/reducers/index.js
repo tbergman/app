@@ -3,6 +3,8 @@ import helloReducer from "./hello"
 import insuranceReducer from "./insurance"
 import chatReducer from "./chat"
 import mockedChatReducer from "./mock/chat"
+import authenticationReducer from "./authentication"
+import assetTrackerReducer from "./assetTracker"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -11,7 +13,9 @@ const rootReducer = (additionalReducers = {}) =>
         hello: helloReducer,
         insurance: insuranceReducer,
         chat: chatReducer,
-        mockedChat: mockedChatReducer
+        mockedChat: mockedChatReducer,
+        authentication: authenticationReducer,
+        assetTracker: assetTrackerReducer
       },
       additionalReducers
     )

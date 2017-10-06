@@ -3,6 +3,8 @@ import { Button, Text } from "react-native"
 import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
+import { AssetNavigator } from "../asset-tracker/AssetNavigator"
+
 import { Placeholder } from "../Styles"
 
 class DashboardTab extends React.Component {
@@ -74,7 +76,7 @@ const MyTabNavigator = TabNavigator(
       screen: DashboardTab
     },
     AssetTrackerTab: {
-      screen: AssetTrackerTab
+      screen: AssetNavigator
     }
   },
   {

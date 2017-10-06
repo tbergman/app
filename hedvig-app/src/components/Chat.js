@@ -1,99 +1,52 @@
 import React from "react"
-import { Text, View, TouchableHighlight } from "react-native"
-import { Link } from "../containers/Link"
-import { BaseScrolleViewStyle, ChatMessageStyle } from "./Styles"
-import Placeholder from "rn-placeholder"
+import { Text } from "react-native"
+import styled from "styled-components/native"
+
+import MessageList from "../containers/chat/MessageList"
+import ChatNumberInput from "../containers/chat/ChatNumberInput"
+import ChatTextInput from "../containers/chat/ChatTextInput"
+import DateInput from "../containers/chat/DateInput"
+import MultipleSelectInput from "../containers/chat/MultipleSelectInput"
+import SingleSelectInput from "../containers/chat/SingleSelectInput"
+
+const getInputComponent = function(messages) {
+  if (messages.length === 0) {
+    return null
+  }
+  let lastIndex = messages.length - 1
+  let lastMessage = messages[lastIndex]
+  let lastMessageType = lastMessage.body.type
+  return {
+    multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
+    text: <ChatTextInput messageIndex={lastIndex} />,
+    number: <ChatNumberInput messageIndex={lastIndex} />,
+    single_select: <SingleSelectInput messageIndex={lastIndex} />,
+    datepicker: <DateInput messageIndex={lastIndex} />
+  }[lastMessageType]
+}
+
+const Container = styled.View`
+  flex: 1;
+  align-self: stretch;
+`
+
+const Half = styled.View`
+  flex: 1;
+  align-self: stretch;
+  border: solid 1px black;
+`
 
 export default class Chat extends React.Component {
-  static navigationOptions = {
-    title: "Chat"
-  }
-
-  constructor() {
-    super()
-    this.state = {
-      ready: false
-    }
-  }
-
-  componentDidMount() {
-    this.props.getMessages()
-  }
-
-  componentDidUpdate() {
-    setTimeout(() => {
-      // this.scrollView.scrollToEnd({ animated: true })
-    }, 0)
-  }
-
-  renderTextMessage(message) {
-    let flexDirection = message.header.fromMe ? "row-reverse" : "row"
-    let alignSelf = message.header.fromMe ? "flex-end" : "flex-start"
-    let textAlign = message.header.fromMe ? "right" : "left"
-    return (
-      <TouchableHighlight
-        onPress={this.props.displayNextMessage}
-        underlayColor="transparent"
-      >
-        <ChatMessageStyle
-          style={{
-            flexDirection: flexDirection,
-            alignSelf: alignSelf
-          }}
-        >
-          <Text style={{ textAlign: textAlign }}>
-            {message.body.content}
-          </Text>
-        </ChatMessageStyle>
-      </TouchableHighlight>
-    )
-  }
-
-  renderLinkMessage(message) {
-    return <Link to={message.body.to} title={message.body.title} />
-  }
-
-  renderMultipleChoiceMessage(message) {
-    return (
-      <Text>
-        {message.body.content}
-      </Text>
-    )
-  }
-
-  maybeMessages() {
-    if (!this.props.messages) {
-      return
-    }
-    console.log(this.props.numVisibleMessages)
-    let messages = this.props.messages
-      .slice(0, this.props.numVisibleMessages)
-      .map(message => {
-        switch (message.body.type) {
-          case "text":
-            return this.renderTextMessage(message)
-          case "link":
-            return this.renderLinkMessage(message)
-          case "multiple_choice":
-            return this.renderMultipleChoiceMessage(message)
-          default:
-            console.log("Unknown message", message)
-        }
-      })
-
-    return messages
-  }
-
   render() {
     return (
-      <BaseScrolleViewStyle
-        innerRef={scrollView => {
-          this.scrollView = scrollView
-        }}
-      >
-        <Text>Chat</Text>
-        {this.maybeMessages()}
-      </BaseScrolleViewStyle>
+      <Container>
+        <Half>
+          <MessageList />
+        </Half>
+        <Half>
+          {getInputComponent(this.props.messages)}
+        </Half>
+      </Container>
     )
   }
 }

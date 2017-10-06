@@ -1,18 +1,16 @@
 import { connect } from "react-redux"
 import Chat from "../components/Chat"
-import { mockChatActions, chatActions } from "hedvig-redux"
+import { chatActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
   return {
-    messages: state.chat.messages,
-    numVisibleMessages: state.mockedChat.numVisibleMessages
+    messages: state.chat.messages
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMessages: () => dispatch(chatActions.getMessages()),
-    displayNextMessage: () => dispatch(mockChatActions.displayNextMessage())
+    getMessages: () => dispatch(chatActions.getMessages())
   }
 }
 

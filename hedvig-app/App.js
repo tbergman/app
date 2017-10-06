@@ -5,6 +5,7 @@ import React from "react"
 import { Provider } from "react-redux"
 
 const hedvigRedux = require("hedvig-redux")
+window.hedvigRedux = hedvigRedux
 import nav from "./src/reducers/nav"
 import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
 import * as Navigation from "./src/services/Navigation"
@@ -15,6 +16,14 @@ class App extends React.Component {
     super()
     this.store = hedvigRedux.configureStore({ additionalReducers: { nav } })
     window.store = this.store
+  }
+
+  componentDidMount() {
+    this.store.dispatch({
+      type: hedvigRedux.types.AUTHENTICATE,
+      payload: { ssn: Math.floor(Math.random() * 100000).toString() }
+    })
+    this.store.dispatch(hedvigRedux.chatActions.getMessages())
   }
 
   render() {

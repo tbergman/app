@@ -11,7 +11,7 @@ import AddEditItem from "./AddEditItem"
 import Profile from "./Profile"
 import InsuranceOffer from "./InsuranceOffer"
 import InsuranceDenial from "./InsuranceDenial"
-import InventoryList from "./InventoryList"
+// import AssetList from "./AssetList"
 import InsuranceList from "./InsuranceList"
 import AddEditInsurance from "./AddEditInsurance"
 import AnotherScreen from "./AnotherScreen"
@@ -41,7 +41,7 @@ const Navigator = () =>
       <Route path="/profile" component={Profile} />
       <Route path="/insurance-offer" component={InsuranceOffer} />
       <Route path="/insurance-denial" component={InsuranceDenial} />
-      <Route path="/inventory-list" component={InventoryList} />
+      {/* <Route path="/inventory-list" component={AssetList} /> */}
       <Route path="/insurance-list" component={InsuranceList} />
       <Route path="/add-edit-insurance" component={AddEditInsurance} />
       <Route path="/another-screen" component={AnotherScreen} />

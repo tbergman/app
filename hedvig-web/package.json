@@ -25,5 +25,6 @@
   "devDependencies": {
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0"
-  }
+  },
+  "proxy": "http://gateway.hedvig.com"
 }
