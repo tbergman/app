@@ -62,22 +62,21 @@ Get a quote
 
 ```
 {
-  "insurance": {
-    "fire": {
-      "state": "waiting_for_payment",
-      "included_in_base_package": false,
-    },
-    "theft": {
-      "state": "disabled",
-      "included_in_base_package": false
-    },
-    "waterleak": {
-      "state": "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
-      "included_in_base_package": true
-    },
-    "current_total_price": 0,
-    "new_total_price": 500
-    }
+ "insurance": {
+  "fire": {
+    "state": "waiting_for_payment",
+    "included_in_base_package": false,
+  },
+  "theft": {
+    "state": "disabled",
+    "included_in_base_package": false
+  },
+  "waterleak": {
+    "state": "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
+    "included_in_base_package": true
+  },
+  "current_total_price": 0,
+  "new_total_price": 500
   }
 }
 ```
@@ -392,6 +391,21 @@ Chat messages are recieved by POSTING to the /response endpoint
      "type":"hero",
      "content":"I'm a hero",
      "imageUri": "http://placekitten.com/g/200/300"
+  }
+}
+```
+* `photo_upload`
+```
+"1507042098159": {
+  "id":"message.getname",
+  "timestamp": 1507042098159,
+  "header":{
+     "fromId":1,
+     "responsePath":"/response"
+  },
+  "body":{
+     "type":"photo_upload",
+     "content":"Upload a photo"
   }
 }
 ```
