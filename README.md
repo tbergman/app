@@ -308,8 +308,8 @@ Chat messages are recieved by POSTING to the /response endpoint
         {
            "type": "link",
            "text":"I want to see my assets",
-           "href": "/asset-tracker",
-           "view": "AssetTracker"
+           "view": "AssetTracker",
+           "appUrl": "bankid://"
         }
      ]
   }
