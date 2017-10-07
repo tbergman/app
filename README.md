@@ -289,6 +289,7 @@ Chat messages are recieved by POSTING to the /response endpoint
 }
 ```
 * `single_select` - Single select question / answer
+
 NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
 ```
 "17879879179871": {
