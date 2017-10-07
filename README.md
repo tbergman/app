@@ -289,6 +289,7 @@ Chat messages are recieved by POSTING to the /response endpoint
 }
 ```
 * `single_select` - Single select question / answer
+NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
 ```
 "17879879179871": {
   "id":"message.hello",
@@ -309,7 +310,8 @@ Chat messages are recieved by POSTING to the /response endpoint
            "type": "link",
            "text":"I want to see my assets",
            "view": "AssetTracker",
-           "appUrl": "bankid://"
+           "appUrl": "bankid://",
+           "webUrl": "http://hedvig.com"
         }
      ]
   }
