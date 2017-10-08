@@ -284,7 +284,7 @@ simply POST this to /response:
    "body":{
     "type":"text",
     "id":4,
-   ** "text":"John Doe"},**
+   <pre><b> "text":"John Doe"},</b></pre>
    "timestamp":1507473841.801000000
 }
 ```
