@@ -253,7 +253,41 @@ Response code: 204
 Chat messages are delivered through polling the /messages endpoint. They are delivered in timestamp order (as seen by the API-GATEWAY)
 <BR>Response format is {"timestamp1":message1, "timestamp2":message2,...}
 <BR><BR>
-Chat messages are recieved by POSTING to the /response endpoint
+Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
+  
+```
+"1507473841801":{
+  "globalId":4,
+  "id":"message.getname",
+  "header":{
+    "messageId":4,
+    "fromId":1,
+    "responsePath":"/response",
+    "timeStamp":1507473841801},
+   "body":{
+    "type":"text",
+    "id":4,
+    "text":"Trevlig, vad heter du?"},
+   "timestamp":1507473841.801000000}
+```
+simply POST this to /response:
+
+```
+{
+  "globalId":4,
+  "id":"message.getname",
+  "header":{
+    "messageId":4,
+    "fromId":1,
+    "responsePath":"/response",
+    "timeStamp":1507473841801},
+   "body":{
+    "type":"text",
+    "id":4,
+   <B> "text":"John Doe"},</B>
+   "timestamp":1507473841.801000000
+}
+```
 <BR>Request format is {message}
 
 #### Chat message types
@@ -353,18 +387,20 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
 ```
 * `datepicker` - Select a date
 ```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
+"1507474046966":{
+  "globalId":7,
+  "id":"message.greetings",
   "header":{
-     "fromId":1,
-     "responsePath":"/response",
-  },
-  "body":{
-     "type":"datepicker",
-     "content":"Select a date."
-  }
-}
+    "messageId":7,
+    "fromId":1230923,
+    "responsePath":"/response",
+    "timeStamp":1507474046966},
+   "body":{
+    "type":"date_picker",
+    "id":7,
+    "text":"Hej John Doe, kul att du gillar försäkring :). När är du född?",
+    "date":[2002,8,25,0,0]},
+   "timestamp":1507474046.966000000}
 ```
 * `video`
 ```
