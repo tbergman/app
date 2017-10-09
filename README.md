@@ -534,6 +534,28 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
 ```
 * ~`link` - A link to another view~ This is now a `single_select` type with one `choices.type` set to `link`
 
+#### Reset a conversation
+
+Used in claim and onboarding.
+
+`POST /chat/reset`
+
+#### Edit the last message from current user
+
+On the next `GET /messages`, the backend serves messages which let the user edit their last answer.
+
+`POST /chat/edit`
+
+Example:
+
+Hedvig: What's your name?
+User: Kirderf
+Hedvig: Hey Kirderf, where do you live?
+`User clicks edit`
+Hedvig: Ok, everyone makes mistakes. What's you name?
+User: Fredrik
+Hedvig: Ok Fredrik, where do you live?
+
 #### Chat flow example
 
 GET /messages
@@ -582,6 +604,10 @@ POST /helloHedvig
 Response:
 XXXX.XXXXX.XXXX
 ```
+
+### Log out
+
+`POST /logout` (authorized request)
 
 #### BankId authentication
 
