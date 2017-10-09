@@ -162,12 +162,10 @@ Hedvig to get back to the user in the chat / email
 ```
 [
   {
-    "id": "someid",
-    "photoUrl": "https://unsplash.it/200/200",
-    "receiptUrl": "https://unsplash.it/100/200",
+    "image_urls": [...],
     "title": "Laptop"
     "state": "COVERED"
-    "includedInBasePackage": false
+    "included_in_base_package": false
   },
   ...
 ]
@@ -181,12 +179,10 @@ Hedvig to get back to the user in the chat / email
 
 ```
 {
-  "id": "someid",
-  "photoUrl": "https://unsplash.it/200/200",
-  "receiptUrl": "https://unsplash.it/100/200",
+  "image_urls": [...],
   "title": "Laptop"
   "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "includedInBasePackage": false
+  "included_in_base_package": false
 }
 ```
 
@@ -195,14 +191,11 @@ Hedvig to get back to the user in the chat / email
 2xx
 
 ```
-```
 {
-  "id": "someid",
-  "photoUrl": "https://unsplash.it/200/200",
-  "receiptUrl": "https://unsplash.it/100/200",
+  "image_urls": [...],
   "title": "Laptop"
   "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "includedInBasePackage": false
+  "included_in_base_package": false
 }
 ```
 
@@ -230,7 +223,7 @@ Reponse code: 204
 
 ### Claim video / audio / photo upload
 
-`POST {responsePath}` where responsePath is provided in the chat message with corresponding type
+`POST {response_path}` where response_path is provided in the chat message with corresponding type
 
 ### List cashback options
 
@@ -376,17 +369,20 @@ simply POST this to /response:
 
 * `text` - Plain text message
 ```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response",
+"1507549994762": {
+  "id": "message.getname",
+  "header": {
+    "messageId": 20,
+    "fromId": 1,
+    "responsePath": "/response",
+    "timeStamp": 1507549994762
   },
-  "body":{
-     "type":"text",
-     "content":"Trevlig, vad heter du?"
-  }
+  "body": {
+    "type": "text",
+    "id": 20,
+    "text": "Trevlig, vad heter du?"
+  },
+  "timestamp": 1507549994.762
 }
 ```
 * `number` - Numeric input
@@ -400,7 +396,7 @@ simply POST this to /response:
   },
   "body":{
      "type":"number",
-     "content":"Trevlig, vad heter du?"
+     "text":"Trevlig, vad heter du?"
   }
 }
 ```
@@ -417,7 +413,7 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   },
   "body":{
      "type":"single_select",
-     "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+     "text":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
      "choices":[
         {
            "type": "selection",
@@ -445,7 +441,7 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   },
   "body":{
      "type":"multiple_select",
-     "content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+     "text":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
      "choices":[
         {
            "text":"Jag vill ha en ny",
@@ -495,7 +491,7 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   },
   "body":{
      "type":"video",
-     "content":"Record a video"
+     "text":"Record a video"
   }
 }
 ```
@@ -510,7 +506,7 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   },
   "body":{
      "type":"hero",
-     "content":"I'm a hero",
+     "text":"I'm a hero",
      "imageUri": "http://placekitten.com/g/200/300"
   }
 }
@@ -526,7 +522,7 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   },
   "body":{
      "type":"photo_upload",
-     "content":"Upload a photo"
+     "text":"Upload a photo"
   }
 }
 ```
