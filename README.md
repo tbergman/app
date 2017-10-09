@@ -252,6 +252,7 @@ Reponse code: 204
 ```
 [
   {
+    "id": "someid",
     "title": "Rädda Barnen",
     "description": "Lorem ipsum dolor sit amet...",
     "selected": false,
@@ -259,6 +260,7 @@ Reponse code: 204
     "imageUrl": "https://unsplash.it/400/200"
   },
   {
+    "id": "someotherid",
     "title": "Mitt konto",
     "description": "Lorem ipsum dolor sit amet...",
     "selected": true,
@@ -277,6 +279,7 @@ Reponse code: 204
 ```
 [
   {
+    "id": "someid",
     "title": "Rädda Barnen",
     "description": "Lorem ipsum dolor sit amet...",
     "selected": true,
@@ -284,6 +287,7 @@ Reponse code: 204
     "imageUrl": "https://unsplash.it/400/200"
   },
   {
+    "id": "someotherid",
     "title": "Mitt konto",
     "description": "Lorem ipsum dolor sit amet...",
     "selected": false,
@@ -296,18 +300,24 @@ Reponse code: 204
 #### Response body example
 
 ```
-{
-  "id1": {
-    "name": "Rädda Barnen",
+[
+  {
+    "id": "someid",
+    "title": "Rädda Barnen",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": true,
-    "charity": true
+    "charity": true,
+    "imageUrl": "https://unsplash.it/400/200"
   },
-  "id2": {
-    "name": "Mitt konto",
+  {
+    "id": "someotherid",
+    "title": "Mitt konto",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": false,
-    "charity": false
+    "charity": false,
+    "imageUrl": "https://unsplash.it/400/200"
   }
-}
+]
 ```
 
 ### Get current user
