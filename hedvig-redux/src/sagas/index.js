@@ -22,6 +22,8 @@ import { authenticateSaga } from "./authenticate"
 import { apiSaga } from "./api"
 import { sendChatResponseSaga } from "./chat"
 import { updateItemSaga, getAssetsSaga } from "./assetTracker"
+import { uploadSaga } from "./upload"
+import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 
 // TODO: Move to actions
 const message = content => {
@@ -58,7 +60,10 @@ const root = function* rootSaga() {
     apiSaga(),
     sendChatResponseSaga(),
     updateItemSaga(),
-    getAssetsSaga()
+    getAssetsSaga(),
+    uploadSaga(),
+    addInsuranceSaga(),
+    removeInsuranceSaga()
   ])
 }
 

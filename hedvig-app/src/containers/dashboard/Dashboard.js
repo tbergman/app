@@ -1,16 +1,19 @@
 import { connect } from "react-redux"
-import Dashboard from "../components/Dashboard"
-import { createClaimAndNavigateToChat } from "../services/Insurance"
+import Dashboard from "../../components/dashboard/Dashboard"
+import { createClaimAndNavigateToChat } from "../../services/Insurance"
 import { insuranceActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
   return {
-    dashboard: state.insurance.dashboard
+    categories: state.insurance.categories
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    getInsurance: () => dispatch(insuranceActions.getInsurance()),
+    dispatch
+  }
 }
 
 const DashboardContainer = connect(mapStateToProps, mapDispatchToProps)(

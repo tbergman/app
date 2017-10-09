@@ -1,9 +1,11 @@
 import React from "react"
-import { View } from "react-native"
+import { View, Text } from "react-native"
 import { TabNavigator, StackNavigator } from "react-navigation"
 
-import { FloatingHomeButton } from "./floatingButtons"
+import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
+import ChatModal from "./ChatModal"
+import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
 
@@ -14,6 +16,9 @@ const HomeBaseNavigator = StackNavigator(
     },
     MyModal: {
       screen: MyModalNavigator
+    },
+    Carousel: {
+      screen: Carousel
     }
   },
   {
@@ -25,7 +30,7 @@ const HomeBaseNavigator = StackNavigator(
 const HomeBase = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      {/* <FloatingChatButton navigation={navigation} /> */}
+      <FloatingChatButton />
       <HomeBaseNavigator />
     </View>
   )
@@ -34,16 +39,30 @@ const HomeBase = ({ navigation }) => {
 const ChatBase = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      <FloatingHomeButton navigation={navigation} />
-      <Chat />
+      <FloatingHomeButton />
+      <Chat navigation={navigation} />
     </View>
   )
 }
 
+const ChatModalNavigator = StackNavigator(
+  {
+    Chat: { screen: ChatBase },
+    ChatModal: {
+      screen: ChatModal
+    }
+  },
+  {
+    initialRouteName: "Chat",
+    mode: "modal",
+    headerMode: "none"
+  }
+)
+
 const BaseNavigator = TabNavigator(
   {
     ChatBase: {
-      screen: ChatBase
+      screen: ChatModalNavigator
     },
     HomeBase: {
       screen: HomeBase

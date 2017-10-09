@@ -7,14 +7,18 @@ import { Placeholder } from "../Styles"
 
 class ListItem extends React.Component {
   _onPress = () => {
-    this.props.navigation.navigate("AddEditAsset", {itemId: this.props.item.id})
+    this.props.navigation.navigate("AddEditAsset", {
+      itemId: this.props.item.id
+    })
   }
 
   render() {
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View>
-          <Text style={{ color: "blue" }}>{this.props.item.name}</Text>
+          <Text style={{ color: "blue" }}>
+            {this.props.item.name}
+          </Text>
         </View>
       </TouchableOpacity>
     )
@@ -28,7 +32,7 @@ export default class AssetList extends React.Component {
   })
 
   componentDidMount() {
-    this.props.dispatch({type: "LOADED_ASSETS"})
+    this.props.dispatch({ type: "LOADED_ASSETS" })
   }
 
   render() {
@@ -45,12 +49,8 @@ export default class AssetList extends React.Component {
         </Placeholder>
         <FlatList
           data={assets}
-          renderItem={({ item }) => (
-            <ListItem
-              item={item}
-              navigation={this.props.navigation}
-            />
-          )}
+          renderItem={({ item }) =>
+            <ListItem item={item} navigation={this.props.navigation} />}
         />
       </View>
     )

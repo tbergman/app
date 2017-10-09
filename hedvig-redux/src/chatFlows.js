@@ -41,8 +41,8 @@ async function sendTextResponse() {
 async function main() {
   await authenticate()
   await getMessages()
-  await selectFirstOption()
-  await sendTextResponse()
+  // await selectFirstOption()
+  // await sendTextResponse()
   console.log(store.getState().chat.messages)
 }
 main()

@@ -1,3 +1,4 @@
+const R = require("ramda")
 import React from "react"
 
 import { storiesOf } from "@storybook/react-native"
@@ -8,7 +9,6 @@ import { Provider } from "react-redux"
 import { configureStore, chatActions, types } from "hedvig-redux"
 
 import nav from "../../src/reducers/nav"
-import Profile from "../../src/components/Profile"
 import AssetList from "../../src/containers/asset-tracker/AssetList"
 import AddEditAsset from "../../src/components/asset-tracker/AddEditAsset"
 import { AssetTracker } from "../../src/components/asset-tracker/AssetNavigator"
@@ -21,6 +21,10 @@ import { default as ChatTextInputContainer } from "../../src/containers/chat/Cha
 import ChatNumberInput from "../../src/containers/chat/ChatNumberInput"
 import DateInput from "../../src/containers/chat/DateInput"
 import SingleSelectInput from "../../src/containers/chat/SingleSelectInput"
+import VideoInput from "../../src/containers/chat/VideoInput"
+import PhotoInput from "../../src/containers/chat/PhotoInput"
+import Dashboard from "../../src/containers/dashboard/Dashboard"
+import Profile from "../../src/containers/Profile"
 
 import { BaseNavigator } from "../../src/components/navigation/base"
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
@@ -60,7 +64,56 @@ storiesOf("Navigation", module)
       }
     })
     window.tabBarStore = tabBarStore
-    tabBarStore.dispatch(chatActions.getMessages())
+    tabBarStore.dispatch({
+      type: "LOADED_MESSAGES",
+      payload: {
+        "1": {
+          id: "message.hello",
+          timestamp: 1,
+          header: {
+            fromId: 1,
+            responsePath: "/response"
+          },
+          body: {
+            type: "single_select",
+            content: "Single select",
+            choices: [
+              {
+                type: "selection",
+                text: "Jag vill ha en ny"
+              },
+              {
+                type: "link",
+                text: "I want to see my assets",
+                view: "AssetTracker"
+              },
+              {
+                type: "link",
+                text: "Launch the calendar",
+                appUrl: "calshow://"
+              },
+              {
+                type: "link",
+                text: "Launch a webview",
+                webUrl: "http://threadsafestudio.com"
+              }
+            ]
+          }
+        }
+        // "2": {
+        //   id: "message.getname",
+        //   timestamp: 2,
+        //   header: {
+        //     fromId: 1,
+        //     responsePath: "/response"
+        //   },
+        //   body: {
+        //     type: "video",
+        //     content: "Record a video"
+        //   }
+        // }
+      }
+    })
     return (
       <StorybookProvider store={tabBarStore}>
         {story()}
@@ -69,10 +122,10 @@ storiesOf("Navigation", module)
   })
   .add("TabBar", () => <ConnectedReduxBaseNavigator />)
 
-const messages = [
-  {
+const messages = {
+  "1": {
     id: "message.hello",
-    timestamp: ++timestamp,
+    timestamp: 1,
     header: {
       fromId: 1,
       responsePath: "/response"
@@ -100,9 +153,9 @@ const messages = [
       ]
     }
   },
-  {
+  "2": {
     id: "message.getname",
-    timestamp: ++timestamp,
+    timestamp: 2,
     header: {
       fromId: 1,
       responsePath: "/response"
@@ -112,9 +165,9 @@ const messages = [
       content: "Enter some text"
     }
   },
-  {
+  "3": {
     id: "message.getname",
-    timestamp: ++timestamp,
+    timestamp: 3,
     header: {
       fromId: 1,
       responsePath: "/response"
@@ -124,9 +177,9 @@ const messages = [
       content: "Enter a number"
     }
   },
-  {
+  "4": {
     id: "message.hello",
-    timestamp: ++timestamp,
+    timestamp: 4,
     header: {
       fromId: 1,
       responsePath: "/response"
@@ -148,9 +201,9 @@ const messages = [
       ]
     }
   },
-  {
+  "5": {
     id: "message.getname",
-    timestamp: ++timestamp,
+    timestamp: 5,
     header: {
       fromId: 1,
       responsePath: "/response"
@@ -159,13 +212,58 @@ const messages = [
       type: "datepicker",
       content: "Select a date."
     }
+  },
+  "6": {
+    id: "message.getname",
+    timestamp: 6,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "video",
+      content: "Record a video"
+    }
+  },
+  "7": {
+    id: "message.getname",
+    timestamp: 7,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "photo_upload",
+      content: "Upload a photo"
+    }
   }
-]
+}
+
+const dashboard = {
+  insurance: {
+    fire: {
+      state: "waiting_for_payment",
+      included_in_base_package: false
+    },
+    theft: {
+      state: "disabled",
+      included_in_base_package: false
+    },
+    waterleak: {
+      state: "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
+      included_in_base_package: true
+    },
+    current_total_price: 0,
+    new_total_price: 500
+  }
+}
 
 storiesOf("Chat input widgets", module)
   .addDecorator(story => {
     const chatStore = configureStore({
-      initialState: { chat: { messages } },
+      initialState: {
+        chat: { messages: R.sortBy(R.path(["timestamp"]), R.values(messages)) }
+      },
       additionalReducers: { nav }
     })
     chatStore.dispatch({
@@ -183,16 +281,22 @@ storiesOf("Chat input widgets", module)
     return <MultipleSelectInput messageIndex={0} />
   })
   .add("ChatTextInput container", () => {
-    return <ChatTextInputContainer messageIndex={0} />
+    return <ChatTextInputContainer messageIndex={1} />
   })
   .add("ChatNumberInput container", () => {
-    return <ChatNumberInput messageIndex={0} />
+    return <ChatNumberInput messageIndex={2} />
   })
   .add("DateInput container", () => {
-    return <DateInput messageIndex={0} />
+    return <DateInput messageIndex={4} />
   })
   .add("SingleSelectInput container", () => {
-    return <SingleSelectInput messageIndex={0} />
+    return <SingleSelectInput messageIndex={3} />
+  })
+  .add("VideoInput container", () => {
+    return <VideoInput messageIndex={5} />
+  })
+  .add("PhotoInput container", () => {
+    return <PhotoInput messageIndex={6} />
   })
 
 // Chat Histories
@@ -211,7 +315,7 @@ const chatHistoryStoryBase = storiesOf(
     </StorybookProvider>
   )
 })
-messages.forEach(m =>
+R.values(messages).forEach(m =>
   chatHistoryStoryBase.add(`${m.body.type} message`, () => {
     chatHistoryStore.dispatch({ type: "LOADED_MESSAGES", payload: [m] })
     return <ChatContainer />
@@ -244,3 +348,27 @@ storiesOf("Components", module)
   .add("Profile", () => <Profile />)
   .add("AnimatedLogo", () => <AnimatedLogo />)
   .add("VideoExample", () => <VideoExample />)
+
+storiesOf("Dashboard", module)
+  .addDecorator(story => {
+    const dashboardStore = configureStore({ additionalReducers: { nav } })
+    window.dashboardStore = dashboardStore
+    return (
+      <StorybookProvider store={dashboardStore}>
+        {story()}
+      </StorybookProvider>
+    )
+  })
+  .add("Dashboard", () => <Dashboard />)
+
+storiesOf("Profile", module)
+  .addDecorator(story => {
+    const profileStore = configureStore({ additionalReducers: { nav } })
+    window.profileStore = profileStore
+    return (
+      <StorybookProvider store={profileStore}>
+        {story()}
+      </StorybookProvider>
+    )
+  })
+  .add("Profile", () => <Profile />)

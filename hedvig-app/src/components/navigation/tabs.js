@@ -4,25 +4,10 @@ import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
 import { AssetNavigator } from "../asset-tracker/AssetNavigator"
+import Dashboard from "../../containers/dashboard/Dashboard"
+import Profile from "../../containers/Profile"
 
 import { Placeholder } from "../Styles"
-
-class DashboardTab extends React.Component {
-  render() {
-    return (
-      <Placeholder>
-        <Text>Dashboard</Text>
-        <Button
-          title="Launch modal on 2"
-          onPress={() =>
-            this.props.navigation.navigate("MyModal", {
-              initialRouteName: "B"
-            })}
-        />
-      </Placeholder>
-    )
-  }
-}
 
 class AssetTrackerTab extends React.Component {
   render() {
@@ -59,8 +44,15 @@ class MyTabs extends React.Component {
           }}
         />
         <Button
-          title="Asset Tracker"
+          title="Profile"
           disabled={this.props.navigation.state.index === 1}
+          onPress={() => {
+            this.props.navigation.navigate("ProfileTab")
+          }}
+        />
+        <Button
+          title="Asset Tracker"
+          disabled={this.props.navigation.state.index === 2}
           onPress={() => {
             this.props.navigation.navigate("AssetTrackerTab")
           }}
@@ -73,7 +65,10 @@ class MyTabs extends React.Component {
 const MyTabNavigator = TabNavigator(
   {
     DashboardTab: {
-      screen: DashboardTab
+      screen: Dashboard
+    },
+    ProfileTab: {
+      screen: Profile
     },
     AssetTrackerTab: {
       screen: AssetNavigator
@@ -88,4 +83,4 @@ const MyTabNavigator = TabNavigator(
   }
 )
 
-export { MyTabNavigator, DashboardTab, AssetTrackerTab }
+export { MyTabNavigator }

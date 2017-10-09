@@ -4,9 +4,10 @@ import rootReducer from "./reducers/index"
 import loggingMiddleware from "./middleware/logging"
 import mockMiddleware from "./middleware/mock"
 import helloActions from "./actions/hello"
-import insuranceActions from "./actions/insurance"
+import * as insuranceActions from "./actions/insurance"
 import * as chatActions from "./actions/chat"
 import * as assetActions from "./actions/assetTracker"
+import * as uploadActions from "./actions/upload"
 import * as types from "./actions/types"
 
 import createSagaMiddleware from "redux-saga"
@@ -52,5 +53,6 @@ export {
   insuranceActions,
   chatActions,
   assetActions,
-  mockChatActions
+  mockChatActions,
+  uploadActions
 }

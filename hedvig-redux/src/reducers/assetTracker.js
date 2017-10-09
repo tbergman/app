@@ -6,18 +6,18 @@ import {
 
 const assets = [
   {
-    name: "iPad Air 2",
-    state: "insured",
+    title: "iPad Air 2",
+    state: "COVERED",
     imageUrl: "https://unsplash.it/200/200"
   },
   {
-    name: "Ray Ban Clubmaster",
-    state: "incomplete",
+    title: "Ray Ban Clubmaster",
+    state: "CREATED",
     imageUrl: "https://unsplash.it/200/200"
   },
   {
-    name: "iPhone 6",
-    state: "not_insured",
+    title: "iPhone 6",
+    state: "PENDING",
     imageUrl: "https://unsplash.it/200/200"
   }
 ].map((asset, i) => {

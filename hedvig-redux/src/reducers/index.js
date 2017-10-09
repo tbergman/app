@@ -5,6 +5,8 @@ import chatReducer from "./chat"
 import mockedChatReducer from "./mock/chat"
 import authenticationReducer from "./authentication"
 import assetTrackerReducer from "./assetTracker"
+import userReducer from "./user"
+import cashbackReducer from "./cashback"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -15,7 +17,9 @@ const rootReducer = (additionalReducers = {}) =>
         chat: chatReducer,
         mockedChat: mockedChatReducer,
         authentication: authenticationReducer,
-        assetTracker: assetTrackerReducer
+        assetTracker: assetTrackerReducer,
+        user: userReducer,
+        cashback: cashbackReducer
       },
       additionalReducers
     )

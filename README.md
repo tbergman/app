@@ -40,6 +40,16 @@ HEDVIG_S3_BUCKET=<your_bucket_name> yarn deploy
 
 ## Client / Server communcation
 
+### Peril states
+
+* `"ADD_REQUESTED"` - set by the client to mark a user's request to add this peril
+* `"REMOVE_REQUESTED"` - set by the client to mark a user's request to remove this peril
+* `"ADD_PENDING"` - the peril add is pending
+* `"REMOVE_PENDING"` - the peril remove is pending
+* `"WAITING_FOR_PAYMENT"` - needs payment to get activated
+* `"NOT_COVERED"` - this peril is not covered by the user's insurance
+* `"COVERED"` - this peril is covered by the user's insurance
+
 ### Initiate an insurance update by requesting a quote
 
 Get a quote
@@ -49,35 +59,48 @@ Get a quote
 #### Request body example:
 
 ```
-{
-  "insurance": {
-    "fire": true,
-    "theft": false,
-    "waterleak": true
-  }
-}
+"categories": [
+  {
+    "title": "Du och din familj",
+    "iconUrl": "https://unsplash.it/70/70"
+    "perils": [
+      {
+        "title": "Peril 1 CREATED",
+        "key": 0,
+        "state": "ADD_REQUESTED",   // ADD_REQUESTED when a user wants to add this peril or REMOVE_REQUESTED when a user wants to remove this peril
+        "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
+        "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
+      },
+      ...
+    ],
+  },
+  ...
+]
 ```
 
 #### Response body example
 
 ```
 {
- "insurance": {
-  "fire": {
-    "state": "waiting_for_payment",
-    "included_in_base_package": false,
-  },
-  "theft": {
-    "state": "disabled",
-    "included_in_base_package": false
-  },
-  "waterleak": {
-    "state": "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
-    "included_in_base_package": true
-  },
-  "current_total_price": 0,
-  "new_total_price": 500
-  }
+  "categories": [
+    {
+      "title": "Du och din familj",
+      "iconUrl": "https://unsplash.it/70/70"
+      "perils": [
+        {
+          "title": "Peril 1 CREATED",
+          "key": 0,
+          "state": "CREATED",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
+        },
+        ...
+      ],
+    },
+    ...
+  ],
+  "currentTotalPrice": 0,
+  "newTotalPrice": 500
 }
 ```
 
@@ -101,52 +124,64 @@ Get my current insurance (also includes new price if user has requested a quote 
 
 ```
 {
-  "insurance": {
-    "fire": {
-      "state": "waiting_for_payment",
-      "included_in_base_package": false,
+  "categories": [
+    {
+      "title": "Du och din familj",
+      "iconUrl": "https://unsplash.it/70/70"
+      "perils": [
+        {
+          "title": "Peril 1 CREATED",
+          "key": 0,
+          "state": "CREATED",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
+        },
+        ...
+      ],
     },
-    "theft": {
-      "state": "disabled",
-      "included_in_base_package": false
-    },
-    "waterleak": {
-      "state": "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
-      "included_in_base_package": true
-    },
-    "assets": [
-      {
-        "id": "12312412",
-        "image_urls": [...],
-        "name": "Kamera"
-        "state": "enabled", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
-        "included_in_base_package": true
-      },
-      {
-        "id": "1231241124122",
-        "image_urls": [...],
-        "name": "Laptop"
-        "state": "waiting_for_signing", // any of "disabled", "waiting_for_signing", "waiting_for_payment", "enabled"
-        "included_in_base_package": false
-      }
-    ]
-    "current_total_price": 500
-    "new_total_price": 600 // only set if the user has made quote request that differs from their current insurance
-    }
-  }
+    ...
+  ],
+  "currentTotalPrice": 0,
+  "newTotalPrice": 500  // only set if the user has made quote request that differs from their current insurance
 }
+```
+
+### Asset states
+
+* `"CREATED"` - information posted to backend
+* `"PENDING"` - Wait for
+Hedvig to get back to the user in the chat / email
+* `"WAITING_FOR_PAYMENT"`
+* `"NOT_COVERED"` - if they chose not to pay, or Hedvig decided this can’t be covered
+* `"COVERED"`
+
+### List assets
+
+`GET /insurance/assets`
+
+```
+[
+  {
+    "image_urls": [...],
+    "title": "Laptop"
+    "state": "COVERED"
+    "included_in_base_package": false
+  },
+  ...
+]
 ```
 
 ### Add / edit / delete an asset
 
-`POST (for create) PUT (for edit) DELETE /asset/{id} (id if editing or deleting)
+`POST (for create) PUT (for edit) DELETE /insurance/assets/{id} (id if editing or deleting)
 
 #### Request body example
 
 ```
 {
   "image_urls": [...],
-  "name": "Laptop"
+  "title": "Laptop"
+  "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
   "included_in_base_package": false
 }
 ```
@@ -154,6 +189,15 @@ Get my current insurance (also includes new price if user has requested a quote 
 #### Response code
 
 2xx
+
+```
+{
+  "image_urls": [...],
+  "title": "Laptop"
+  "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
+  "included_in_base_package": false
+}
+```
 
 ### Claims
 
@@ -188,18 +232,22 @@ Reponse code: 204
 `GET /cashback/options`
 
 ```
-{
-  "id1": {
-    "name": "Rädda Barnen",
+[
+  {
+    "title": "Rädda Barnen",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": false,
-    "charity": true
+    "charity": true,
+    "imageUrl": "https://unsplash.it/400/200"
   },
-  "id2": {
-    "name": "Mitt konto",
+  {
+    "title": "Mitt konto",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": true,
-    "charity": false
+    "charity": false,
+    "imageUrl": "https://unsplash.it/400/200"
   }
-}
+]
 ```
 
 ### Edit cashback option via separate endpoint (used in profile view)
@@ -209,18 +257,22 @@ Reponse code: 204
 #### Request body example
 
 ```
-{
-  "id1": {
-    "name": "Rädda Barnen",
+[
+  {
+    "title": "Rädda Barnen",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": true,
-    "charity": true
+    "charity": true,
+    "imageUrl": "https://unsplash.it/400/200"
   },
-  "id2": {
-    "name": "Mitt konto",
+  {
+    "title": "Mitt konto",
+    "description": "Lorem ipsum dolor sit amet...",
     "selected": false,
-    "charity": false
+    "charity": false,
+    "imageUrl": "https://unsplash.it/400/200"
   }
-}
+]
 ```
 
 #### Response body example
@@ -239,6 +291,29 @@ Reponse code: 204
   }
 }
 ```
+
+### Get current user
+
+`GET /me`
+
+```
+{
+  "name": "Anakin Skywalker",
+  "familyMembers": [
+    "Anakin Skywalker",
+    "Padmé Amidala",
+    "Luke Skywalker",
+    "Leia Organa"
+  ],
+  "age": 26,
+  "email": "anakkin@skywalk.er",
+  "address": "Krukmakargatan 5",
+  "livingAreaSqm": "48",
+  "maskedBankAccountNumber": "XXXX XXXX 1234",
+  "selectedCashback": "Rädda Barnen"
+}
+```
+
 
 ### Send insurance letter by email
 

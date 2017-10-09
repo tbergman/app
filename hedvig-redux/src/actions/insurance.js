@@ -1,12 +1,12 @@
-import { API, LOADED_DASHBOARD, CREATED_CLAIM } from "./types"
+import { API, LOADED_INSURANCE, CREATED_CLAIM, REMOVE_PERIL, ADD_PERIL } from "./types"
 
-export function getDashboard() {
+export function getInsurance() {
   return {
     type: API,
     payload: {
       url: "/insurance",
       method: "GET",
-      SUCCESS: LOADED_DASHBOARD
+      SUCCESS: LOADED_INSURANCE
     }
   }
 }
@@ -22,7 +22,31 @@ export function createClaim() {
   }
 }
 
-export default {
-  getDashboard,
-  createClaim
+export function removePeril(peril) {
+  return {
+    type: REMOVE_PERIL,
+    payload: {
+      peril
+    }
+  }
+}
+
+export function addPeril(peril) {
+  return {
+    type: ADD_PERIL,
+    payload: {
+      peril
+    }
+  }
+}
+
+export function createQuote() {
+  return {
+    type: API,
+    payload: {
+      url: "/insurance/quote",
+      method: "POST",
+      SUCCESS: CREATED_QUOTE
+    }
+  }
 }
