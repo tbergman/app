@@ -177,11 +177,11 @@ Hedvig to get back to the user in the chat / email
 
 `POST (for create) PUT (for edit) DELETE /insurance/assets/{id} (id if editing or deleting)
 
-#### Request body example
+#### Request body example (for POST and PUT - no body required for DELETE)
 
 ```
 {
-  "id": "someidIfWe'reEditingOrDeleted",
+  "id": "someidIfWe'reEditing",
   "photoUrl": "https://unsplash.it/200/200",
   "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
