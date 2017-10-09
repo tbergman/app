@@ -162,10 +162,12 @@ Hedvig to get back to the user in the chat / email
 ```
 [
   {
-    "image_urls": [...],
+    "id": "someid",
+    "photoUrl": "https://unsplash.it/200/200",
+    "receiptUrl": "https://unsplash.it/100/200",
     "title": "Laptop"
     "state": "COVERED"
-    "included_in_base_package": false
+    "includedInBasePackage": false
   },
   ...
 ]
@@ -179,10 +181,12 @@ Hedvig to get back to the user in the chat / email
 
 ```
 {
-  "image_urls": [...],
+  "id": "someid",
+  "photoUrl": "https://unsplash.it/200/200",
+  "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
   "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "included_in_base_package": false
+  "includedInBasePackage": false
 }
 ```
 
@@ -191,11 +195,14 @@ Hedvig to get back to the user in the chat / email
 2xx
 
 ```
+```
 {
-  "image_urls": [...],
+  "id": "someid",
+  "photoUrl": "https://unsplash.it/200/200",
+  "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
   "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "included_in_base_package": false
+  "includedInBasePackage": false
 }
 ```
 
@@ -223,7 +230,7 @@ Reponse code: 204
 
 ### Claim video / audio / photo upload
 
-`POST {response_path}` where response_path is provided in the chat message with corresponding type
+`POST {responsePath}` where responsePath is provided in the chat message with corresponding type
 
 ### List cashback options
 
