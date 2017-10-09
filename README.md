@@ -162,10 +162,12 @@ Hedvig to get back to the user in the chat / email
 ```
 [
   {
-    "image_urls": [...],
+    "id": "someid",
+    "photoUrl": "https://unsplash.it/200/200",
+    "receiptUrl": "https://unsplash.it/100/200",
     "title": "Laptop"
     "state": "COVERED"
-    "included_in_base_package": false
+    "includedInBasePackage": false
   },
   ...
 ]
@@ -179,10 +181,12 @@ Hedvig to get back to the user in the chat / email
 
 ```
 {
-  "image_urls": [...],
+  "id": "someidIfWe'reEditingOrDeleted",
+  "photoUrl": "https://unsplash.it/200/200",
+  "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
   "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "included_in_base_package": false
+  "includedInBasePackage": false
 }
 ```
 
@@ -192,10 +196,12 @@ Hedvig to get back to the user in the chat / email
 
 ```
 {
-  "image_urls": [...],
+  "id": "someid",
+  "photoUrl": "https://unsplash.it/200/200",
+  "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
   "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "included_in_base_package": false
+  "includedInBasePackage": false
 }
 ```
 
