@@ -549,11 +549,17 @@ On the next `GET /messages`, the backend serves messages which let the user edit
 Example:
 
 Hedvig: What's your name?
+
 User: Kirderf
+
 Hedvig: Hey Kirderf, where do you live?
+
 `User clicks edit`
+
 Hedvig: Ok, everyone makes mistakes. What's you name?
+
 User: Fredrik
+
 Hedvig: Ok Fredrik, where do you live?
 
 #### Chat flow example
