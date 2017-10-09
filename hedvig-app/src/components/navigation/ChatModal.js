@@ -3,10 +3,12 @@ import { View, Text } from "react-native"
 
 import { AssetTracker } from "../../components/asset-tracker/AssetNavigator"
 import VideoExample from "../../components/VideoExample"
+import Dashboard from "../../containers/dashboard/Dashboard"
 
 const VIEW_MAPPING = {
   AssetTracker,
-  VideoExample
+  VideoExample,
+  Dashboard
 }
 
 /*
@@ -17,7 +19,8 @@ const VIEW_MAPPING = {
 */
 const ChatModal = ({ navigation }) => {
   let content = React.createElement(
-    VIEW_MAPPING[navigation.state.params.link.view]
+    VIEW_MAPPING[navigation.state.params.link.view],
+    { navigation }
   )
   return (
     <View style={{ flex: 1, alignSelf: "stretch" }}>

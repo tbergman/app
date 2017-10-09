@@ -3,14 +3,20 @@ import React from "react"
 import { Text, View, TouchableOpacity, Linking } from "react-native"
 import { WebBrowser } from "expo"
 
-const SingleSelectInput = ({ message, done, launchModal = R.identity }) => {
+const SingleSelectInput = ({
+  message,
+  selectChoice,
+  done,
+  launchModal = R.identity
+}) => {
   let opts = message.body.choices.map(choice => {
     return (
       <TouchableOpacity
         key={choice.text}
         onPress={() => {
           if (choice.type === "selection") {
-            done(message, choice)
+            selectChoice(message, choice)
+            done(message)
           } else if (choice.type === "link" && choice.view !== undefined) {
             launchModal(choice)
           } else if (choice.type === "link" && choice.appUrl !== undefined) {

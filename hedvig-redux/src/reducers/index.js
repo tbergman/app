@@ -7,6 +7,7 @@ import authenticationReducer from "./authentication"
 import assetTrackerReducer from "./assetTracker"
 import userReducer from "./user"
 import cashbackReducer from "./cashback"
+import statusMessageReducer from "./statusMessage"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -19,7 +20,8 @@ const rootReducer = (additionalReducers = {}) =>
         authentication: authenticationReducer,
         assetTracker: assetTrackerReducer,
         user: userReducer,
-        cashback: cashbackReducer
+        cashback: cashbackReducer,
+        statusMessage: statusMessageReducer
       },
       additionalReducers
     )

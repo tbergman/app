@@ -8,6 +8,8 @@ import ChatModal from "./ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
+import StatusBar from "../../containers/StatusBar"
+import Share from "../Share"
 
 const HomeBaseNavigator = StackNavigator(
   {
@@ -50,7 +52,10 @@ const ChatModalNavigator = StackNavigator(
     Chat: { screen: ChatBase },
     ChatModal: {
       screen: ChatModal
-    }
+    },
+    Carousel: {
+      screen: Carousel
+    },
   },
   {
     initialRouteName: "Chat",
@@ -66,11 +71,14 @@ const BaseNavigator = TabNavigator(
     },
     HomeBase: {
       screen: HomeBase
+    },
+    Share: {
+      screen: Share
     }
   },
   {
-    tabBarComponent: () => <View />,
-    // tabBarPosition: "top",
+    tabBarComponent: () => <StatusBar />,
+    tabBarPosition: "top",
     swipeEnabled: false,
     animationEnabled: false,
     initialRouteName: "HomeBase"

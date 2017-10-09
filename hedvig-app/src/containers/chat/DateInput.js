@@ -16,8 +16,7 @@ const mapDispatchToProps = dispatch => {
     send: message =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          type: "datepicker",
-          content: message._inputValue
+          date: message._inputValue
         })
       )
   }

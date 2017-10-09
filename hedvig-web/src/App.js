@@ -4,8 +4,10 @@ import { routerReducer } from "react-router-redux"
 import { Navigator, routerMiddleware } from "./components/Navigator"
 import * as Navigation from "./services/Navigation"
 import * as hedvigRedux from "hedvig-redux"
+import moment from "moment"
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
+window.moment = moment
 
 class App extends Component {
   constructor() {

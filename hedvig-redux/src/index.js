@@ -8,6 +8,7 @@ import * as insuranceActions from "./actions/insurance"
 import * as chatActions from "./actions/chat"
 import * as assetActions from "./actions/assetTracker"
 import * as uploadActions from "./actions/upload"
+import * as statusMessageActions from "./actions/statusMessage"
 import * as types from "./actions/types"
 
 import createSagaMiddleware from "redux-saga"
@@ -38,7 +39,7 @@ function configureStore(
 
 function main() {
   let store = configureStore()
-  store.dispatch(insuranceActions.getDashboard())
+  // store.dispatch(insuranceActions.getDashboard())
   console.log(JSON.stringify(store.getState(), null, 4))
 }
 
@@ -54,5 +55,6 @@ export {
   chatActions,
   assetActions,
   mockChatActions,
-  uploadActions
+  uploadActions,
+  statusMessageActions
 }

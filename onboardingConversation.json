@@ -1,0 +1,261 @@
+{
+  "1507556244263": {
+    "globalId": 61,
+    "id": "message.hello",
+    "header": {
+      "messageId": 61,
+      "fromId": 1,
+      "responsePath": "/response",
+      "timeStamp": 1507556244263
+    },
+    "body": {
+      "type": "single_select",
+      "id": 61,
+      "text": "Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+      "choices": [
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Jag vill ha en ny",
+          "value": "message.getname",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Vill byta försäkring",
+          "value": "message.changecompany",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Varför behöver jag?",
+          "value": "message.whyinsurance",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Vem är du, Hedvig?",
+          "value": "message.whoishedvig",
+          "selected": false
+        }
+      ]
+    },
+    "timestamp": "2017-10-09T13:37:24.263Z"
+  },
+  "1507556245180": {
+    "globalId": 62,
+    "id": "message.hello",
+    "header": {
+      "messageId": 62,
+      "fromId": 44909,
+      "responsePath": "/response",
+      "timeStamp": 1507556245180
+    },
+    "body": {
+      "type": "single_select",
+      "id": 62,
+      "text": "Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
+      "choices": [
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Jag vill ha en ny",
+          "value": "message.getname",
+          "selected": true
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Vill byta försäkring",
+          "value": "message.changecompany",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Varför behöver jag?",
+          "value": "message.whyinsurance",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Vem är du, Hedvig?",
+          "value": "message.whoishedvig",
+          "selected": false
+        }
+      ]
+    },
+    "timestamp": "2017-10-09T13:37:25.180Z"
+  },
+  "1507556245181": {
+    "globalId": 63,
+    "id": "message.getname",
+    "header": {
+      "messageId": 63,
+      "fromId": 1,
+      "responsePath": "/response",
+      "timeStamp": 1507556245181
+    },
+    "body": { "type": "text", "id": 63, "text": "Trevlig, vad heter du?" },
+    "timestamp": "2017-10-09T13:37:25.181Z"
+  },
+  "1507556247261": {
+    "globalId": 64,
+    "id": "message.getname",
+    "header": {
+      "messageId": 64,
+      "fromId": 44909,
+      "responsePath": "/response",
+      "timeStamp": 1507556247261
+    },
+    "body": { "type": "text", "id": 64, "text": "Pascal" },
+    "timestamp": "2017-10-09T13:37:27.261Z"
+  },
+  "1507556247268": {
+    "globalId": 65,
+    "id": "message.greetings",
+    "header": {
+      "messageId": 65,
+      "fromId": 1,
+      "responsePath": "/response",
+      "timeStamp": 1507556247268
+    },
+    "body": {
+      "type": "date_picker",
+      "id": 65,
+      "text": "Hej Pascal, kul att du gillar försäkring :). När är du född?",
+      "date": "1986-04-08T00:00:00"
+    },
+    "timestamp": "2017-10-09T13:37:27.268Z"
+  },
+  "1507556249386": {
+    "globalId": 66,
+    "id": "message.greetings",
+    "header": {
+      "messageId": 66,
+      "fromId": 44909,
+      "responsePath": "/response",
+      "timeStamp": 1507556249386
+    },
+    "body": {
+      "type": "date_picker",
+      "id": 66,
+      "text": "Hej Pascal, kul att du gillar försäkring :). När är du född?",
+      "date": "2017-10-09T13:37:27.786"
+    },
+    "timestamp": "2017-10-09T13:37:29.386Z"
+  },
+  "1507556249389": {
+    "globalId": 67,
+    "id": "message.bye",
+    "header": {
+      "messageId": 67,
+      "fromId": 1,
+      "responsePath": "/response",
+      "timeStamp": 1507556249389
+    },
+    "body": {
+      "type": "single_select",
+      "id": 67,
+      "text": "Ok Pascal, så det jag vet om dig är att du är förr 2017-10-09T13:37:27.786, jag hör av mig!",
+      "choices": [
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Starta bank id",
+          "value": "message.bankid.status",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Spela in audio",
+          "value": "message.audio",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Spela in video",
+          "value": "message.video",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "You need a hero!",
+          "value": "message.hero",
+          "selected": false
+        }
+      ]
+    },
+    "timestamp": "2017-10-09T13:37:29.389Z"
+  },
+  "1507556251332": {
+    "globalId": 68,
+    "id": "message.bye",
+    "header": {
+      "messageId": 68,
+      "fromId": 44909,
+      "responsePath": "/response",
+      "timeStamp": 1507556251332
+    },
+    "body": {
+      "type": "single_select",
+      "id": 68,
+      "text": "Ok Pascal, så det jag vet om dig är att du är förr 2017-10-09T13:37:27.786, jag hör av mig!",
+      "choices": [
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Starta bank id",
+          "value": "message.bankid.status",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Spela in audio",
+          "value": "message.audio",
+          "selected": false
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "Spela in video",
+          "value": "message.video",
+          "selected": true
+        },
+        {
+          "type": "selection",
+          "type": "selection",
+          "text": "You need a hero!",
+          "value": "message.hero",
+          "selected": false
+        }
+      ]
+    },
+    "timestamp": "2017-10-09T13:37:31.332Z"
+  },
+  "1507556251335": {
+    "globalId": 69,
+    "id": "message.video",
+    "header": {
+      "messageId": 69,
+      "fromId": 1,
+      "responsePath": "/response",
+      "timeStamp": 1507556251335
+    },
+    "body": {
+      "type": "audio",
+      "id": 69,
+      "text": "Här kan du spela in en video om vad som hänt...",
+      "URL": "http://videoploadurl"
+    },
+    "timestamp": "2017-10-09T13:37:31.335Z"
+  }
+}

@@ -16,7 +16,7 @@ const renderMessage = function(message, idx) {
         }}
       >
         <Text style={{ textAlign: textAlign }}>
-          {message.body.content}
+          {message.body.text}
         </Text>
       </ChatMessageStyle>
     </View>
@@ -27,9 +27,12 @@ const renderMessages = function(messages) {
   return messages.map(renderMessage)
 }
 
-const MessageList = function({ messages }) {
+const MessageList = ({ messages }) => {
   return (
-    <BaseScrolleViewStyle>
+    <BaseScrolleViewStyle
+      innerRef={x => (this.ref = x)}
+      onContentSizeChange={() => this.ref.scrollToEnd()}
+    >
       {renderMessages(messages)}
     </BaseScrolleViewStyle>
   )

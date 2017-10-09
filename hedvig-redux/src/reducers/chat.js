@@ -10,7 +10,7 @@ import { MOCK_LOADED_CLAIM_MESSAGES } from "../actions/mock/types"
 
 const selectChoice = (state, { payload: { message, choice } }) => {
   let messages = state.messages
-  let messageIndex = messages.findIndex(m => R.equals(m, message))
+  let messageIndex = messages.findIndex(m => m.globalId === message.globalId)
   let choiceIndex = messages[messageIndex].body.choices.findIndex(l =>
     R.equals(l, choice)
   )
@@ -26,7 +26,7 @@ const selectChoice = (state, { payload: { message, choice } }) => {
 
 const setResponseValue = (state, { payload: { message, value } }) => {
   let messages = state.messages
-  let messageIndex = messages.findIndex(m => R.equals(m, message))
+  let messageIndex = messages.findIndex(m => m.globalId === message.globalId)
   let newState = dotProp.set(
     state,
     `messages.${messageIndex}._inputValue`,

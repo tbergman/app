@@ -8,11 +8,11 @@ import {
   PERIL_ADDED
 } from "../actions/types"
 import { baseURL } from "../services/environment"
-import * as assetActions from "../actions/assetTracker"
+import * as insuranceActions from "../actions/insurance"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 
 const removePeril = function*({ payload: { peril } }) {
-  const state = yield select();
+  const state = yield select()
   state.insurance.categories[0].perils[0].state = "REMOVE_REQUESTED"
 
   yield put({
@@ -27,11 +27,11 @@ const removePeril = function*({ payload: { peril } }) {
   })
   let success = yield take(PERIL_REMOVED)
   console.log("Peril removed - response payload:", success.payload)
-  yield put(assetActions.getInsurance())
+  // TODO: Put this back: yield put(insuranceActions.getInsurance())
 }
 
 const addPeril = function*({ payload: { peril } }) {
-  const state = yield select();
+  const state = yield select()
   state.insurance.categories[0].perils[0].state = "ADD_REQUESTED"
 
   yield put({
@@ -46,7 +46,7 @@ const addPeril = function*({ payload: { peril } }) {
   })
   let success = yield take(PERIL_ADDED)
   console.log("Peril removed - response payload:", success.payload)
-  yield put(assetActions.getInsurance())
+  // TODO: Put this back: yield put(insuranceActions.getInsurance())
 }
 
 const removeInsuranceSaga = function*() {

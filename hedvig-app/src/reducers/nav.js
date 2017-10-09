@@ -1,7 +1,7 @@
 import { BaseNavigator } from "../components/navigation/base"
 
 const initialState = BaseNavigator.router.getStateForAction(
-  BaseNavigator.router.getActionForPathAndParams("ChatBase")
+  BaseNavigator.router.getActionForPathAndParams("HomeBase")
 )
 
 const navReducer = (state = initialState, action) => {

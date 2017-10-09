@@ -1,6 +1,7 @@
 import React from "react"
 import { Text, TouchableOpacity, DatePickerIOS, View } from "react-native"
 import styled from "styled-components/native"
+import moment from "moment"
 
 const StyledView = styled.View`border: solid 1px black;`
 
@@ -17,10 +18,10 @@ const DateInput = ({ message, onChange, send }) => {
         mode="date"
         date={
           message._inputValue === undefined
-            ? new Date()
-            : new Date(message._inputValue)
+            ? moment(message.body.date).toDate()
+            : moment(message._inputValue).toDate()
         }
-        onDateChange={date => onChange(message, date.toString())}
+        onDateChange={date => onChange(message, moment(date).toISOString())}
       />
       <TouchableOpacity onPress={() => send(message)}>
         <Text>Send</Text>

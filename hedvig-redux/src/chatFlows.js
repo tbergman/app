@@ -1,4 +1,4 @@
-/* global store hedvigRedux */
+/* global store hedvigRedux moment */
 
 /*
 Paste these into the Chrome console. They rely on `store` and `hedvigRedux` being global.
@@ -16,6 +16,19 @@ async function getMessages() {
   await new Promise(resolve => setTimeout(resolve, 1000))
 }
 
+async function singleSelectOption(index) {
+  let message = store.getState().chat.messages.slice(-1).pop()
+  store.dispatch(
+    hedvigRedux.chatActions.selectChoice(message, message.body.choices[index])
+  )
+  store.dispatch(
+    hedvigRedux.chatActions.sendChatResponse(
+      store.getState().chat.messages[store.getState().chat.messages.length - 1]
+    )
+  )
+  await new Promise(resolve => setTimeout(resolve, 1000))
+}
+
 async function selectFirstOption() {
   let message = store.getState().chat.messages[0]
   store.dispatch(
@@ -30,10 +43,25 @@ async function selectFirstOption() {
 async function sendTextResponse() {
   let lastMessage = store.getState().chat.messages.slice(-1).pop()
   store.dispatch(
-    hedvigRedux.chatActions.sendChatResponse(lastMessage, {
-      type: "text",
-      content: "Pascal"
-    })
+    hedvigRedux.chatActions.sendChatResponse(
+      lastMessage,
+      Object.assign({}, lastMessage.body, {
+        text: "Pascal"
+      })
+    )
+  )
+  await new Promise(resolve => setTimeout(resolve, 1000))
+}
+
+async function sendDateResponse() {
+  let lastMessage = store.getState().chat.messages.slice(-1).pop()
+  store.dispatch(
+    hedvigRedux.chatActions.sendChatResponse(
+      lastMessage,
+      Object.assign({}, lastMessage.body, {
+        date: moment().toISOString()
+      })
+    )
   )
   await new Promise(resolve => setTimeout(resolve, 1000))
 }
@@ -41,8 +69,15 @@ async function sendTextResponse() {
 async function main() {
   await authenticate()
   await getMessages()
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(0)
+  await new Promise(resolve => setTimeout(resolve, 1000))
   // await selectFirstOption()
-  // await sendTextResponse()
+  await sendTextResponse()
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await sendDateResponse()
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(2)
   console.log(store.getState().chat.messages)
 }
 main()

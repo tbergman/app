@@ -38,6 +38,18 @@ cd hedvig-web
 HEDVIG_S3_BUCKET=<your_bucket_name> yarn deploy
 ```
 
+## Internal api
+
+### Status bar messages
+
+You can use the status bar to show a message, warning or error:
+`store.dispatch(
+  hedvigRedux.statusMessageActions.setStatusMessage(
+    {message: "Hello World!"}
+  )
+)`
+where you use any of these keys: `message`, `warning` or `error`
+
 ## Client / Server communcation
 
 ### Peril states

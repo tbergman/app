@@ -20,7 +20,8 @@ const typesList = [
   "GET_ASSETS",
   "LOADED_ASSETS",
   "LOADED_USER",
-  "LOADED_CASHBACK_ALTERNATIVES"
+  "LOADED_CASHBACK_ALTERNATIVES",
+  "STATUS_MESSAGE"
 ]
 
 const typesMap = {}

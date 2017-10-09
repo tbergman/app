@@ -76,16 +76,22 @@ storiesOf("Navigation", module)
           },
           body: {
             type: "single_select",
-            content: "Single select",
+            text: "Single select",
             choices: [
               {
                 type: "selection",
-                text: "Jag vill ha en ny"
+                text: "Jag vill ha en ny",
+                selected: false
               },
               {
                 type: "link",
                 text: "I want to see my assets",
                 view: "AssetTracker"
+              },
+              {
+                type: "link",
+                text: "I want to see my offer",
+                view: "Dashboard"
               },
               {
                 type: "link",
@@ -95,11 +101,11 @@ storiesOf("Navigation", module)
               {
                 type: "link",
                 text: "Launch a webview",
-                webUrl: "http://threadsafestudio.com"
+                webUrl: "http://hedvig.com"
               }
             ]
           }
-        }
+        },
         // "2": {
         //   id: "message.getname",
         //   timestamp: 2,
@@ -132,7 +138,7 @@ const messages = {
     },
     body: {
       type: "multiple_select",
-      content: "Multiple select",
+      text: "Multiple select",
       choices: [
         {
           text: "Jag vill ha en ny",
@@ -162,7 +168,7 @@ const messages = {
     },
     body: {
       type: "text",
-      content: "Enter some text"
+      text: "Enter some text"
     }
   },
   "3": {
@@ -174,7 +180,7 @@ const messages = {
     },
     body: {
       type: "number",
-      content: "Enter a number"
+      text: "Enter a number"
     }
   },
   "4": {
@@ -186,7 +192,7 @@ const messages = {
     },
     body: {
       type: "single_select",
-      content: "Single select",
+      text: "Single select",
       choices: [
         {
           type: "selection",
@@ -209,8 +215,9 @@ const messages = {
       responsePath: "/response"
     },
     body: {
-      type: "datepicker",
-      content: "Select a date."
+      type: "date_picker",
+      text: "Select a date.",
+      date: "2013-02-04T22:44:30.652Z"
     }
   },
   "6": {
@@ -321,6 +328,22 @@ R.values(messages).forEach(m =>
     return <ChatContainer />
   })
 )
+
+storiesOf("Chat Backend IO", module)
+  .addDecorator(story => {
+    const chatBackendIOStore = configureStore({ additionalReducers: { nav } })
+    chatBackendIOStore.dispatch({
+      type: "AUTHENTICATE",
+      payload: { ssn: Math.floor(Math.random() * 100000).toString() }
+    })
+    chatBackendIOStore.dispatch(chatActions.getMessages())
+    return (
+      <StorybookProvider store={chatBackendIOStore}>
+        {story()}
+      </StorybookProvider>
+    )
+  })
+  .add("Chat", () => <ChatContainer />)
 
 storiesOf("Asset Tracker", module)
   .addDecorator(story => {

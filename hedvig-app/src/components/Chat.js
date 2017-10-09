@@ -29,7 +29,7 @@ const getInputComponent = function(messages, navigation) {
           navigation.navigate("ChatModal", { link: choice })}
       />
     ),
-    datepicker: <DateInput messageIndex={lastIndex} />,
+    date_picker: <DateInput messageIndex={lastIndex} />,
     video: (
       <VideoInput
         messageIndex={lastIndex}
