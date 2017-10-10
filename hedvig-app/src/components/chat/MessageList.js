@@ -38,7 +38,7 @@ const renderMessage = function(message, idx) {
     MessageRenderComponent = MessageMapping[message.body.type]
   }
   return (
-    <View key={idx}>
+    <View key={message.globalId || idx}>
       <ChatMessageStyle
         style={{
           flexDirection: flexDirection,

@@ -1,5 +1,11 @@
 const R = require("ramda")
-import { API, SEND_CHAT_RESPONSE } from "../actions/types"
+import {
+  API,
+  SEND_CHAT_RESPONSE,
+  LOADING_MESSAGES_START,
+  LOADING_MESSAGES_END,
+  LOADED_MESSAGES
+} from "../actions/types"
 import * as chatActions from "../actions/chat"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 
@@ -10,6 +16,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   )
   let body = Object.assign(messageFromState.body, bodyOverride)
   messageFromState.body = body
+  yield put({ type: LOADING_MESSAGES_START, payload: {} })
   yield put({
     type: API,
     payload: {
@@ -22,6 +29,8 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   })
   let success = yield take("SEND_CHAT_RESPONSE_SUCCESS")
   yield put(chatActions.getMessages())
+  yield take(LOADED_MESSAGES)
+  yield put({ type: LOADING_MESSAGES_END, payload: {} })
 }
 
 const sendChatResponseSaga = function*() {

@@ -1,8 +1,11 @@
 const R = require("ramda")
 const dotProp = require("dot-prop-immutable")
+const moment = require("moment")
 import {
   LOADED_ONBOARDING,
   LOADED_MESSAGES,
+  LOADING_MESSAGES_START,
+  LOADING_MESSAGES_END,
   CHOICE_SELECTED,
   SET_RESPONSE_VALUE
 } from "../actions/types"
@@ -35,7 +38,32 @@ const setResponseValue = (state, { payload: { message, value } }) => {
   return newState
 }
 
-const reducer = (state = { messages: [] }, action) => {
+const loadingMessage = () => {
+  return {
+    globalId: -1,
+    id: "loading",
+    header: {
+      fromId: 1
+    },
+    body: { type: "text", text: "..." },
+    timestamp: moment().toISOString()
+  }
+}
+
+const handleLoading = (state, { type }) => {
+  if (type === LOADING_MESSAGES_START) {
+    let stateWithLoading = Object.assign({}, state, { loadingMessages: true })
+    let newState = dotProp.set(state, `messages`, [
+      ...state.messages,
+      loadingMessage()
+    ])
+    return newState
+  } else if (type === LOADING_MESSAGES_END) {
+    return Object.assign({}, state, { loadingMessages: false })
+  }
+}
+
+const reducer = (state = { messages: [], loadingMessages: false }, action) => {
   switch (action.type) {
     case MOCK_LOADED_CLAIM_MESSAGES:
     case LOADED_MESSAGES:
@@ -47,6 +75,9 @@ const reducer = (state = { messages: [] }, action) => {
       return selectChoice(state, action)
     case SET_RESPONSE_VALUE:
       return setResponseValue(state, action)
+    case LOADING_MESSAGES_START:
+    case LOADING_MESSAGES_END:
+      return handleLoading(state, action)
     default:
       return state
   }
