@@ -170,13 +170,21 @@ Hedvig to get back to the user in the chat / email
 ### Upload image files
 `POST file in field fileUpload to /asset/fileupload/`
 ```
-<form method="post" action="gateway.hedvig.com/asset/fileupload/" enctype="multipart/form-data">
+<form method="post" action="https://gateway.hedvig.com/asset/fileupload/" enctype="multipart/form-data">
   <input type="file" class="file" name="fileUpload"/>
 </form>
 ```
 Returns 2xx with id of saved image
 ```
 {id:2d3ab7cc-469b-416b-a146-61937542dc51}
+```
+Images are then loaded from
+```
+GET /asset/image/{id}
+```
+Ex:
+```
+https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
 ```
 
 ### List assets
