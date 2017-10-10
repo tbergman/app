@@ -189,7 +189,7 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
 
 ### List assets
 
-`GET /insurance/assets`
+`GET /asset/`
 
 ```
 [
@@ -207,7 +207,7 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
 
 ### Add / edit / delete an asset
 
-`POST (for create) PUT (for edit) DELETE /insurance/assets/{id} (id if editing or deleting)
+`POST (for create) PUT (for edit) DELETE /asset/ (set id field if editing or deleting)
 
 #### Request body example (for POST and PUT - no body required for DELETE)
 
