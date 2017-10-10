@@ -167,6 +167,14 @@ Hedvig to get back to the user in the chat / email
 * `"NOT_COVERED"` - if they chose not to pay, or Hedvig decided this can’t be covered
 * `"COVERED"`
 
+### Upload image files
+`POST file in field fileUpload to /asset/fileupload/`
+```
+<form method="post" action="gateway.hedvi.com/asset/fileupload/" enctype="multipart/form-data">
+  <input type="file" class="file" name="fileUpload"/>
+</form>
+```
+
 ### List assets
 
 `GET /insurance/assets`
