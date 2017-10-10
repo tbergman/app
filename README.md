@@ -206,9 +206,9 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
 ]
 ```
 
-### Add / edit / delete an asset
+### Add / edit an asset
 
-`POST (for create) PUT (for edit) DELETE /asset/ (set id field if editing or deleting)
+`POST (for create) PUT (for edit) /asset/ (set id in payload if editing)`
 
 #### Request body example (for POST and PUT - no body required for DELETE)
 
@@ -222,6 +222,13 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
   "includedInBasePackage": false
   "registrationDate": "2017-10-10"
 }
+```
+### Delete an asset
+
+`DELETE /asset/{id}`
+
+```
+gateway.hedvig.com/asset/57003ec1-bdd0-4e8b-a98e-325fa5b629de
 ```
 
 #### Response code
