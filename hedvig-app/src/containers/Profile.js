@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { insuranceActions } from "hedvig-redux"
 import Profile from "../components/Profile"
-window.insuranceActions = insuranceActions
+import { cashbackActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateCashback: (selectedCashback) => dispatch(cashbackActions.updateCashback(selectedCashback)),
     dispatch
   }
 }

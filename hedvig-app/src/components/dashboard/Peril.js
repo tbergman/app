@@ -34,13 +34,22 @@ export class Peril extends React.Component {
     }
   }
 
+  _cashbackCarouselCta(peril) {
+    if (peril.state == "COVERED") {
+      return (
+        <Button title="Claim" onPress={() => this.props.raisePerilClaim(peril)} />
+      )
+    }
+  }
+
   render() {
     let peril = this.props.peril
     let removePeril = this.props.removePeril
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate("Carousel", {
         items: this.props.categoryPerils,
-        initialSlideIndex: this.props.perilIndex
+        initialSlideIndex: this.props.perilIndex,
+        renderCta: this._cashbackCarouselCta.bind(this)
       })}>
         <StyledPeril>
           <Placeholder.Media

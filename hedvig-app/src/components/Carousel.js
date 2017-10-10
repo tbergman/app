@@ -17,6 +17,7 @@ export class Carousel extends React.Component {
 
   navParams = this.props.navigation.state.params
   items = this.navParams.items
+  renderCta = this.navParams.renderCta
   state = {
     slideIndex: this.navParams.initialSlideIndex || 0
   }
@@ -64,6 +65,7 @@ export class Carousel extends React.Component {
         </View>
         <Text>Title: {item.title}</Text>
         <Text>Description: {item.description}</Text>
+        {this.renderCta && this.renderCta(item)}
       </View>
     )
   }

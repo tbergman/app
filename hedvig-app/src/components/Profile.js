@@ -64,9 +64,18 @@ export default class Profile extends React.Component {
   _selectedCashback() {
     let cta = <Button title="Ändra" onPress={() => this.props.navigation.navigate("Carousel", {
       items: this.props.cashbackAlternatives,
-      initialSlideIndex: 0
+      initialSlideIndex: 0,
+      renderCta: this._cashbackCarouselCta.bind(this)
     })} />
     return this._userRow("Välgörenhet", this.props.user.selectedCashback, cta)
+  }
+
+  _cashbackCarouselCta(item) {
+    if (!item.selected) {
+      return (
+        <Button title="Select" onPress={() => this.props.updateCashback(item)} />
+      )
+    }
   }
 
   render() {

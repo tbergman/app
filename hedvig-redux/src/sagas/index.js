@@ -25,6 +25,7 @@ import { updateItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 import { handleStatusMessage } from "./statusMessage"
+import { updateCashbackSaga } from "./cashback"
 
 // TODO: Move to actions
 const message = content => {
@@ -65,7 +66,8 @@ const root = function* rootSaga() {
     uploadSaga(),
     addInsuranceSaga(),
     removeInsuranceSaga(),
-    handleStatusMessage()
+    handleStatusMessage(),
+    updateCashbackSaga()
   ])
 }
 

@@ -9,6 +9,7 @@ import * as chatActions from "./actions/chat"
 import * as assetActions from "./actions/assetTracker"
 import * as uploadActions from "./actions/upload"
 import * as statusMessageActions from "./actions/statusMessage"
+import * as cashbackActions from "./actions/cashback"
 import * as types from "./actions/types"
 
 import createSagaMiddleware from "redux-saga"
@@ -56,5 +57,6 @@ export {
   assetActions,
   mockChatActions,
   uploadActions,
-  statusMessageActions
+  statusMessageActions,
+  cashbackActions
 }

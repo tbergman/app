@@ -21,7 +21,8 @@ const typesList = [
   "LOADED_ASSETS",
   "LOADED_USER",
   "LOADED_CASHBACK_ALTERNATIVES",
-  "STATUS_MESSAGE"
+  "STATUS_MESSAGE",
+  "UPDATE_CASHBACK"
 ]
 
 const typesMap = {}

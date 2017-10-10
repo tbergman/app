@@ -37,11 +37,12 @@ const api = function*(action) {
       502: `Bad gateway (${url})`,
       503: `Service unavailable (${url})`,
     }[response.status.toString()]
-    let unknownHttpError = !knownHttpError && response.status >= 400 && `Server error ${response.status} ${url}`
+    let unknownHttpError = !knownHttpError && response.status >= 400 && `Server error ${response.status} (${url})`
     // Bad request
     // Unauthenticated
     if (knownHttpError || unknownHttpError) {
       yield put(statusMessageActions.setStatusMessage({error: knownHttpError || unknownHttpError}))
+      data = null
     } else if (response.status !== 204) {
       data = yield response.json()
     } else {
