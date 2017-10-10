@@ -200,6 +200,7 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
     "title": "Laptop"
     "state": "COVERED"
     "includedInBasePackage": false
+    "registrationDate": "2017-10-10"
   },
   ...
 ]
@@ -219,6 +220,7 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
   "title": "Laptop"
   "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
   "includedInBasePackage": false
+  "registrationDate": "2017-10-10"
 }
 ```
 
@@ -234,6 +236,7 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
   "title": "Laptop"
   "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
   "includedInBasePackage": false
+  "registrationDate": "2017-10-10"
 }
 ```
 
