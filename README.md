@@ -262,12 +262,6 @@ Response code: 204
 
 Reponse code: 204
 
-#### Initiate a claim for specific insurance
-
-`POST /claim/insurance/{id}`
-
-Reponse code: 204
-
 **After initiating a claim the client fetches `/messages`**
 
 ### Claim video / audio / photo upload
