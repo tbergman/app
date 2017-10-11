@@ -26,7 +26,6 @@ import PhotoInput from "../../src/containers/chat/PhotoInput"
 import Dashboard from "../../src/containers/dashboard/Dashboard"
 import Profile from "../../src/containers/Profile"
 
-import { BaseNavigator } from "../../src/components/navigation/base"
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
 
 /*
@@ -52,21 +51,13 @@ storiesOf("Navigation", module)
   .addDecorator(story => {
     const tabBarStore = configureStore({
       additionalReducers: {
-        nav: (state, action) => {
-          const nextState = BaseNavigator.router.getStateForAction(
-            action,
-            state
-          )
-
-          // Simply return the original `state` if `nextState` is null or undefined.
-          return nextState || state
-        }
+        nav
       }
     })
     window.tabBarStore = tabBarStore
     tabBarStore.dispatch({
-      type: types.AUTHENTICATE,
-      payload: { ssn: "191212121212" }
+      type: "AUTHENTICATE",
+      payload: { ssn: Math.floor(Math.random() * 100000).toString() }
     })
     tabBarStore.dispatch({
       type: "LOADED_MESSAGES",
@@ -352,6 +343,10 @@ storiesOf("Chat Backend IO", module)
 storiesOf("Asset Tracker", module)
   .addDecorator(story => {
     const assetStore = configureStore({ additionalReducers: { nav } })
+    assetStore.dispatch({
+      type: "AUTHENTICATE",
+      payload: { ssn: Math.floor(Math.random() * 100000).toString() }
+    })
     return (
       <StorybookProvider store={assetStore}>
         {story()}

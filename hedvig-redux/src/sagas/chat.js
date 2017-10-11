@@ -5,7 +5,8 @@ import {
   LOADING_MESSAGES_START,
   LOADING_MESSAGES_END,
   LOADED_MESSAGES,
-  API_AND_NAVIGATE_TO_CHAT
+  API_AND_NAVIGATE_TO_CHAT,
+  SWITCH_BASE
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
 import { take, takeEvery, put, select } from "redux-saga/effects"
@@ -48,12 +49,8 @@ const apiAndNavigateToChat = function*({ payload }) {
     yield put(chatActions.getMessages())
   }
   yield put({
-    type: "Navigation/NAVIGATE",
-    routeName: "ChatBase",
-    action: {
-      type: "Navigation/NAVIGATE",
-      routeName: "ChatBase"
-    }
+    type: SWITCH_BASE,
+    payload: "chat"
   })
 }
 

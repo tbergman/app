@@ -13,7 +13,7 @@ const images = [
   "https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg"
 ]
 const states = ["CREATED", "ADD_PENDING", "REMOVE_PENDING", "WAITING_FOR_PAYMENT", "NOT_COVERED", "COVERED"]
-const perils = [...Array(20).keys()].map((i) => {
+const perils = [...R.range(0, 20)].map((i) => {
   let state = states[i % states.length]
   return {
     title: `${names[i % names.length]} ${i+1} ${state}`,

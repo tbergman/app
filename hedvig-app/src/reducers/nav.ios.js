@@ -1,4 +1,4 @@
-import { BaseNavigator } from "../components/navigation/base"
+import BaseNavigator from "../components/navigation/base-navigator/BaseNavigator"
 
 const initialState = BaseNavigator.router.getStateForAction(
   BaseNavigator.router.getActionForPathAndParams("HomeBase")

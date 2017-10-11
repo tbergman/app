@@ -19,7 +19,7 @@ const removePeril = function*({ payload: { peril } }) {
     type: API,
     payload: {
       method: "POST",
-      url: `${baseURL}/insurance/quote`,
+      url: `/insurance/quote`,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(state, null, 4),
       SUCCESS: PERIL_REMOVED
@@ -38,7 +38,7 @@ const addPeril = function*({ payload: { peril } }) {
     type: API,
     payload: {
       method: "POST",
-      url: `${baseURL}/insurance/quote`,
+      url: `/insurance/quote`,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(state, null, 4),
       SUCCESS: PERIL_ADDED

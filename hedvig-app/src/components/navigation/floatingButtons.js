@@ -1,6 +1,11 @@
 import React from "react"
 import { Text, TouchableHighlight } from "react-native"
+import { types } from "hedvig-redux"
 import { connect } from "react-redux"
+import {
+  showChatAction,
+  showDashboardAction
+} from "../../actions/baseNavigation"
 
 const FloatingChatButtonComponent = ({
   dispatch,
@@ -16,15 +21,7 @@ const FloatingChatButtonComponent = ({
         right,
         zIndex
       }}
-      onPress={() =>
-        dispatch({
-          type: "Navigation/NAVIGATE",
-          routeName: "ChatBase",
-          action: {
-            type: "Navigation/NAVIGATE",
-            routeName: "ChatBase"
-          }
-        })}
+      onPress={() => dispatch(showChatAction())}
     >
       <Text>Chat</Text>
     </TouchableHighlight>
@@ -47,15 +44,7 @@ const FloatingHomeButtonComponent = ({
         right,
         zIndex
       }}
-      onPress={() =>
-        dispatch({
-          type: "Navigation/NAVIGATE",
-          routeName: "HomeBase",
-          action: {
-            type: "Navigation/NAVIGATE",
-            routeName: "HomeBase"
-          }
-        })}
+      onPress={() => dispatch(showDashboardAction())}
     >
       <Text>Dashboard</Text>
     </TouchableHighlight>

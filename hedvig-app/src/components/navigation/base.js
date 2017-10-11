@@ -1,6 +1,6 @@
 import React from "react"
-import { View, Text } from "react-native"
-import { TabNavigator, StackNavigator } from "react-navigation"
+import { View } from "react-native"
+import { StackNavigator } from "react-navigation"
 
 import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
@@ -9,7 +9,6 @@ import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
 import StatusBar from "../../containers/StatusBar"
-import Share from "../Share"
 
 const HomeBaseNavigator = StackNavigator(
   {
@@ -29,11 +28,16 @@ const HomeBaseNavigator = StackNavigator(
   }
 )
 
-const HomeBase = ({ navigation }) => {
+/*
+NOTE: The order of the floating buttons vs the other components in the
+ChatBase and HomeBase below affects whether the floating buttons are visible
+on Android!
+*/
+const HomeBase = () => {
   return (
     <View style={{ flex: 1 }}>
-      <FloatingChatButton />
       <HomeBaseNavigator />
+      <FloatingChatButton />
     </View>
   )
 }
@@ -41,8 +45,8 @@ const HomeBase = ({ navigation }) => {
 const ChatBase = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      <FloatingHomeButton />
       <Chat navigation={navigation} />
+      <FloatingHomeButton />
     </View>
   )
 }
@@ -55,7 +59,7 @@ const ChatModalNavigator = StackNavigator(
     },
     Carousel: {
       screen: Carousel
-    },
+    }
   },
   {
     initialRouteName: "Chat",
@@ -64,25 +68,4 @@ const ChatModalNavigator = StackNavigator(
   }
 )
 
-const BaseNavigator = TabNavigator(
-  {
-    ChatBase: {
-      screen: ChatModalNavigator
-    },
-    HomeBase: {
-      screen: HomeBase
-    },
-    Share: {
-      screen: Share
-    }
-  },
-  {
-    tabBarComponent: () => <StatusBar />,
-    tabBarPosition: "top",
-    swipeEnabled: false,
-    animationEnabled: false,
-    initialRouteName: "HomeBase"
-  }
-)
-
-export { HomeBase, ChatBase, BaseNavigator }
+export { HomeBase, ChatModalNavigator, StatusBar }

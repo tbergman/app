@@ -3,17 +3,11 @@ import { AUTHENTICATE } from "../actions/types"
 import { baseURL } from "../services/environment"
 
 const authenticate = function*(action) {
-  console.log(`POST ${baseURL}/authenticate?ssn=${action.payload.ssn}`)
-  let authResponse = yield fetch(
-    `${baseURL}/authenticate?ssn=${action.payload.ssn}`,
-    {
-      method: "POST"
-    }
-  )
-  let uuid = yield authResponse.text()
-  console.log(`GET ${baseURL}/collect?uuid=${uuid}`)
-  let collectResponse = yield fetch(`${baseURL}/collect?uuid=${uuid}`)
-  let token = yield collectResponse.text()
+  console.log(`POST ${baseURL}/helloHedvig`)
+  let authResponse = yield fetch(`${baseURL}/helloHedvig`, {
+    method: "POST"
+  })
+  let token = yield authResponse.text()
   console.log("Got token", token)
   yield put({ type: "RECEIVED_TOKEN", payload: token })
 }

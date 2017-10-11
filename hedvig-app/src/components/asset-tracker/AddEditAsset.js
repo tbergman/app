@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, Button, TextInput, DatePickerIOS, Image, TouchableOpacity } from "react-native"
+import { View, Text, Button, TextInput, DatePickerIOS, DatePickerAndroid, Image, TouchableOpacity, Platform } from "react-native"
 import { Link, ClaimLink } from "../../containers/Link"
 import { HeaderRightChat } from "../NavBar"
 import { Textplainer } from "../Placeholder"
@@ -57,22 +57,38 @@ export default class AddEditAsset extends React.Component {
     }
   }
 
-  _onDateChange(date) {
-
+  async showAndroidDatePicker() {
+    this.setState({editingDate: false})
+    try {
+      const {action, year, month, day} = await DatePickerAndroid.open({
+        // Use `new Date()` for current date.
+        // May 25 2020. Month 0 is January.
+        date: new Date(1984, 8, 11)
+      })
+      if (action !== DatePickerAndroid.dismissedAction) {
+        this._updateDate(new Date(year, month, day))
+      }
+    } catch ({code, message}) {
+      console.warn('Cannot open date picker', message);
+    }
   }
 
   maybeDatePicker() {
     if (this.state.editingDate) {
-      return (
-        <DatePickerIOS
-          ref="DatePickerIOS"
-          mode="date"
-          date={ new Date() }
-          maximumDate={ new Date() }
-          onDateChange={ (date) => this._onDateChange(date) }
-          onLayout={ (event) => this._getComponentDimensions(event) }
-      />
-      )
+      if (Platform.OS === "ios") {
+        return (
+          <DatePickerIOS
+            ref="DatePickerIOS"
+            mode="date"
+            date={ new Date() }
+            maximumDate={ new Date() }
+            onDateChange={ (date) => this._updateDate(date) }
+            onLayout={ (event) => this._getComponentDimensions(event) }
+          />
+        )
+      } else if (Platform.OS === "android") {
+        this.showAndroidDatePicker()
+      }
     }
   }
 
@@ -95,9 +111,22 @@ export default class AddEditAsset extends React.Component {
     }
   }
 
-  _updateText(text) {
+  _updateTitle(title) {
     let item = this.state.item
-    item.title = text
+    item.title = title
+    this.setState({item})
+  }
+
+  _updateDate(date) {
+    console.log("Selected date" + date.toString())
+    let item = this.state.item
+    item.date = date
+    this.setState({item})
+  }
+
+  _updatePrice(price) {
+    let item = this.state.item
+    item.price = price
     this.setState({item})
   }
 
@@ -169,16 +198,16 @@ export default class AddEditAsset extends React.Component {
           {this.chooseOrDisplayImage()}
           <View>
             <Text>Pryl</Text>
-            <TextInput ref="nameInput" placeholder="Namnge din pryl" editable={this.state.editingName} value={this.state.item.title} returnKeyType="next" onChangeText={(text) => this._updateText(text)} onSubmitEditing={(event) => {
+            <TextInput ref="nameInput" placeholder="Namnge din pryl" editable={this.state.editingName} value={this.state.item.title} returnKeyType="next" onChangeText={(text) => this._updateTitle(text)} onSubmitEditing={(event) => {
               this.setState({editingDate: true})
             }} />
             <Button title={this.state.editingName ? "Ok" : "Ändra namn"} onPress={() => this._editName()} />
             <Text>Inköpt</Text>
-            <Text>Ange inköpsdatum</Text>
+            <Text>{this.state.item.date ? this.state.item.date.toString() : "Ange inköpsdatum"}</Text>
             <Button title={this.state.editingDate ? "Ok" : "Ändra datum"} onPress={() => this.setState({editingDate: !this.state.editingDate})} />
             {this.maybeDatePicker()}
             <Text>Inköpspris</Text>
-            <TextInput ref="priceInput" keyboardType="numeric" placeholder="Ange ditt inköpspris" editable={this.state.editingPrice} returnKeyType="next" value={this.state.item.price} />
+            <TextInput ref="priceInput" keyboardType="numeric" placeholder="Ange ditt inköpspris" editable={this.state.editingPrice} value={this.state.item.price} onChangeText={(price) => this._updatePrice(price)} />
             <Button title={this.state.editingPrice ? "Ok" : "Ändra pris"} onPress={() => this._editPrice()} />
           </View>
         </View>

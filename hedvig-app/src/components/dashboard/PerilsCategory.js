@@ -25,7 +25,8 @@ export class PerilsCategory extends React.Component {
 
   coveredPerils(enableRemove = false) {
     return R.filter(peril => this.coveredStates.includes(peril.state), this.props.perils).map((peril, i) => {
-      return <Peril peril={peril} key={i} enableRemove={enableRemove} navigation={this.props.navigation} categoryPerils={this.props.perils} perilIndex={i} />
+      let perilIndex = this.props.perils.findIndex(p => p.id === peril.id)
+      return <Peril peril={peril} key={i} enableRemove={enableRemove} navigation={this.props.navigation} categoryPerils={this.props.perils} perilIndex={perilIndex} />
     })
   }
 

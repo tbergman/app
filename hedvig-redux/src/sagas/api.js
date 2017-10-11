@@ -33,6 +33,7 @@ const api = function*(action) {
       402: `Payment required (${url})`,
       403: `Forbidden (${url})`,
       404: `Not found (${url})`,
+      405: `Method Not Allowed (${url})`,
       500: `Internal server error (${url})`,
       502: `Bad gateway (${url})`,
       503: `Service unavailable (${url})`,

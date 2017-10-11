@@ -1,7 +1,7 @@
 import React from "react"
-import { BaseNavigator } from "../../components/navigation/base"
 import { addNavigationHelpers } from "react-navigation"
 import { connect } from "react-redux"
+import BaseNavigator from "../../components/navigation/base-navigator/BaseNavigator"
 
 const ReduxBaseNavigator = ({ dispatch, nav }) => {
   return (
@@ -22,4 +22,4 @@ const mapStateToProps = state => {
 
 const ConnectedReduxBaseNavigator = connect(mapStateToProps)(ReduxBaseNavigator)
 
-export { ConnectedReduxBaseNavigator, ReduxBaseNavigator }
+export { ReduxBaseNavigator, ConnectedReduxBaseNavigator }

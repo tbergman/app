@@ -6,6 +6,7 @@ import {
   LOADED_ASSETS
 } from "../actions/types"
 import { baseURL } from "../services/environment"
+window.baseURL = baseURL
 import * as assetActions from "../actions/assetTracker"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 
@@ -18,7 +19,7 @@ const postItem = function*({ payload: item }) {
     type: API,
     payload: {
       method: item.id ? "PUT" : "POST",
-      url: `${baseURL}/asset/${id}`,
+      url: `/asset/${id}`,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item, null, 4),
       SUCCESS: ITEM_UPDATED
@@ -34,7 +35,7 @@ const getAssets = function*() {
     type: API,
     payload: {
       method: "GET",
-      url: `${baseURL}/insurance`,
+      url: `/insurance`,
       headers: { "Content-Type": "application/json" },
       body: null,
       SUCCESS: LOADED_ASSETS
