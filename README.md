@@ -347,7 +347,7 @@ Reponse code: 204
 
 ### Get current user
 
-`GET /me`
+`GET ~~/me~~ /member/me`
 
 ```
 {
