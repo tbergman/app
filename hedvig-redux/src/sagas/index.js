@@ -20,7 +20,7 @@ https://stackoverflow.com/questions/45155249/when-using-redux-saga-with-react-na
 import { take, takeEvery, put, all } from "redux-saga/effects"
 import { authenticateSaga } from "./authenticate"
 import { apiSaga } from "./api"
-import { sendChatResponseSaga } from "./chat"
+import { sendChatResponseSaga, apiAndNavigateToChatSaga } from "./chat"
 import { updateItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
@@ -61,6 +61,7 @@ const root = function* rootSaga() {
     authenticateSaga(),
     apiSaga(),
     sendChatResponseSaga(),
+    apiAndNavigateToChatSaga(),
     updateItemSaga(),
     getAssetsSaga(),
     uploadSaga(),

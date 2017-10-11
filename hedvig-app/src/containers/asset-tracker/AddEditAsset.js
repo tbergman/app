@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import AddEditAsset from "../../components/asset-tracker/AddEditAsset"
 import * as Navigation from "../../services/Navigation"
-import { assetActions } from "hedvig-redux"
+import { assetActions, chatActions } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,7 +13,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateItem: (item) => dispatch(assetActions.updateItem(item))
+    updateItem: (item) => dispatch(assetActions.updateItem(item)),
+    raiseAssetClaim: asset =>
+      dispatch(
+        chatActions.apiAndNavigateToChat({
+          method: "POST",
+          url: `/claim/asset/${asset.id}`,
+          body: null,
+          SUCCESS: "ASSET_CLAIM_SUCCESS"
+        })
+      ),
   }
 }
 

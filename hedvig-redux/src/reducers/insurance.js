@@ -18,6 +18,7 @@ const perils = [...Array(20).keys()].map((i) => {
   return {
     title: `${names[i % names.length]} ${i+1} ${state}`,
     key: i,
+    id: i.toString(),
     state: state,
     imageUrl: images[i % images.length],
     description: description.substr(0, 100 + 10 * i)
@@ -32,7 +33,7 @@ const categories = [
 const reducer = (state = {categories: [], currentTotalPrice: null, newTotalPrice: null}, action) => {
   switch (action.type) {
     case LOADED_INSURANCE:
-      return Object.assign({}, state, {categories: categories})
+      return Object.assign({}, state, {categories: categories, currentTotalPrice: 500, newTotalPrice: 500})
     default:
       return state
   }

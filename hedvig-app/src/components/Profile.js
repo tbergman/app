@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, Button, View } from "react-native"
+import { Text, Button, View, Share } from "react-native"
 import { Link } from "../containers/Link"
 import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
@@ -42,22 +42,22 @@ export default class Profile extends React.Component {
   }
 
   _familyMembers() {
-    let cta = <Button title="Ändra" onPress={() => console.log("Ändra Familjemedlemmar pressed")} />
+    let cta = <Button title="Ändra" onPress={() => this.props.editFamilyMembers()} />
     return this._userRow("Familjemedlemmar", R.join(", ", this.props.user.familyMembers), cta)
   }
 
   _personalInfo() {
-    let cta = <Button title="Ändra" onPress={() => console.log("Ändra Personlig info pressed")} />
+    let cta = <Button title="Ändra" onPress={() => this.props.editPersonalInfo()} />
     return this._userRow("Personlig info", `${this.props.user.age} år | ${this.props.user.email}`, cta)
   }
 
   _livingInfo() {
-    let cta = <Button title="Ändra" onPress={() => console.log("Ändra Boende pressed")} />
+    let cta = <Button title="Ändra" onPress={() => this.props.editApartmentInfo()} />
     return this._userRow("Boende", `${this.props.user.address} | ${this.props.livingAreaSqm} m2`, cta)
   }
 
   _bankAccount() {
-    let cta = <Button title="Ändra" onPress={() => console.log("Ändra Bankkonto info pressed")} />
+    let cta = <Button title="Ändra" onPress={() => this.props.editBankAccount()} />
     return this._userRow("Bankkonto", this.props.user.maskedBankAccountNumber, cta)
   }
 
@@ -78,6 +78,21 @@ export default class Profile extends React.Component {
     }
   }
 
+  _sharePressed() {
+    Share.share({
+      message: 'Hedvig är ett modernt försäkringsbolag. Ladda ned Hedvig på AppStore eller Google Play. Läs mer på https://hedvig.com',
+      // url: 'https://hedvig.com',
+      title: 'Hedvig - ett modernt försäkringsbolag'
+    }, {
+      // Android only:
+      dialogTitle: 'Dela Hedvig',
+      // iOS only:
+      excludedActivityTypes: [
+        'com.apple.UIKit.activity.PostToTwitter'
+      ]
+    })
+  }
+
   render() {
     return (
         <View style={{flex: 1}}>
@@ -87,6 +102,7 @@ export default class Profile extends React.Component {
           {!R.isEmpty(this.props.user) && this._livingInfo()}
           {!R.isEmpty(this.props.user) && this._bankAccount()}
           {!R.isEmpty(this.props.user) && this._selectedCashback()}
+          <Button title="Dela" onPress={() => this._sharePressed()} />
           <Link to="Login" title="Logga ut" />
         </View>
     )

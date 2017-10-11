@@ -31,6 +31,13 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  maybeCheckoutButton() {
+    if (this.props.newTotalPrice !== null)
+    return (
+      <Button title="Checkout" onPress={() => this.props.checkout()} />
+    )
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -53,6 +60,7 @@ export default class Dashboard extends React.Component {
               })}
           />
         </ScrollView>
+        {this.maybeCheckoutButton()}
       </View>
     )
   }

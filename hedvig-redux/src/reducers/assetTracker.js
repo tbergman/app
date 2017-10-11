@@ -22,7 +22,7 @@ const assets = [
   }
 ].map((asset, i) => {
   asset["key"] = i
-  asset["id"] = i
+  asset["id"] = i.toString()
   return asset
 })
 

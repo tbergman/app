@@ -65,6 +65,10 @@ storiesOf("Navigation", module)
     })
     window.tabBarStore = tabBarStore
     tabBarStore.dispatch({
+      type: types.AUTHENTICATE,
+      payload: { ssn: "191212121212" }
+    })
+    tabBarStore.dispatch({
       type: "LOADED_MESSAGES",
       payload: {
         "1": {
@@ -105,7 +109,7 @@ storiesOf("Navigation", module)
               }
             ]
           }
-        },
+        }
         // "2": {
         //   id: "message.getname",
         //   timestamp: 2,

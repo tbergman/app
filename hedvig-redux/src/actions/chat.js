@@ -6,7 +6,8 @@ import {
   SEND_MULTIPLE_CHOICE_ANSWER,
   SET_RESPONSE_VALUE,
   SEND_TEXT_ANSWER,
-  SEND_CHAT_RESPONSE
+  SEND_CHAT_RESPONSE,
+  API_AND_NAVIGATE_TO_CHAT
 } from "./types"
 
 export function getMessages() {
@@ -58,5 +59,12 @@ export function sendChatResponse(message, bodyOverride = {}) {
       message,
       bodyOverride
     }
+  }
+}
+
+export function apiAndNavigateToChat(apiPayload) {
+  return {
+    type: API_AND_NAVIGATE_TO_CHAT,
+    payload: apiPayload
   }
 }

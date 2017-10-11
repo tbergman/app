@@ -4,7 +4,8 @@ import {
   SEND_CHAT_RESPONSE,
   LOADING_MESSAGES_START,
   LOADING_MESSAGES_END,
-  LOADED_MESSAGES
+  LOADED_MESSAGES,
+  API_AND_NAVIGATE_TO_CHAT
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
 import { take, takeEvery, put, select } from "redux-saga/effects"
@@ -37,4 +38,27 @@ const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
 
-export { sendChatResponseSaga }
+const apiAndNavigateToChat = function*({ payload }) {
+  if (payload) {
+    yield put({
+      type: API,
+      payload
+    })
+    let success = yield take(payload.SUCCESS)
+    yield put(chatActions.getMessages())
+  }
+  yield put({
+    type: "Navigation/NAVIGATE",
+    routeName: "ChatBase",
+    action: {
+      type: "Navigation/NAVIGATE",
+      routeName: "ChatBase"
+    }
+  })
+}
+
+const apiAndNavigateToChatSaga = function*() {
+  yield takeEvery(API_AND_NAVIGATE_TO_CHAT, apiAndNavigateToChat)
+}
+
+export { sendChatResponseSaga, apiAndNavigateToChatSaga }

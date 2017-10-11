@@ -17,7 +17,7 @@ class ListItem extends React.Component {
       <TouchableOpacity onPress={this._onPress}>
         <View>
           <Text style={{ color: "blue" }}>
-            {this.props.item.name}
+            {this.props.item.title}
           </Text>
         </View>
       </TouchableOpacity>
@@ -35,8 +35,20 @@ export default class AssetList extends React.Component {
     this.props.dispatch({ type: "LOADED_ASSETS" })
   }
 
+  maybeList() {
+    if (this.props.assets.length > 0) {
+      return (
+        <FlatList
+          data={this.props.assets}
+          renderItem={({ item }) =>
+            <ListItem item={item} navigation={this.props.navigation} />}
+        />
+      )
+    }
+  }
+
   render() {
-    let assets = this.props.assets
+    console.log("NUM ASSETS: " + this.props.assets.length.toString())
 
     return (
       <View style={{ flex: 1 }}>
@@ -47,11 +59,7 @@ export default class AssetList extends React.Component {
         <Placeholder>
           <Textplainer text="Asset Tracker" />
         </Placeholder>
-        <FlatList
-          data={assets}
-          renderItem={({ item }) =>
-            <ListItem item={item} navigation={this.props.navigation} />}
-        />
+        {this.maybeList()}
       </View>
     )
   }

@@ -24,7 +24,8 @@ const typesList = [
   "LOADED_USER",
   "LOADED_CASHBACK_ALTERNATIVES",
   "STATUS_MESSAGE",
-  "UPDATE_CASHBACK"
+  "UPDATE_CASHBACK",
+  "API_AND_NAVIGATE_TO_CHAT"
 ]
 
 const typesMap = {}

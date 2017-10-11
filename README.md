@@ -77,6 +77,7 @@ Get a quote
     "iconUrl": "https://unsplash.it/70/70"
     "perils": [
       {
+        "id": "someid",
         "title": "Peril 1 CREATED",
         "key": 0,
         "state": "ADD_REQUESTED",   // ADD_REQUESTED when a user wants to add this peril or REMOVE_REQUESTED when a user wants to remove this peril
@@ -100,6 +101,7 @@ Get a quote
       "iconUrl": "https://unsplash.it/70/70"
       "perils": [
         {
+          "id": "someid",
           "title": "Peril 1 CREATED",
           "key": 0,
           "state": "CREATED",
@@ -136,6 +138,7 @@ Get my current insurance (also includes new price if user has requested a quote 
       "iconUrl": "https://unsplash.it/70/70"
       "perils": [
         {
+          "id": "someid",
           "title": "Peril 1 CREATED",
           "key": 0,
           "state": "CREATED",
@@ -148,7 +151,7 @@ Get my current insurance (also includes new price if user has requested a quote 
     ...
   ],
   "currentTotalPrice": 0,
-  "newTotalPrice": 500  // only set if the user has made quote request that differs from their current insurance
+  "newTotalPrice": 500  // This is only set to an integer if the user hasn't paid an updated insurance. Otherwise, when no update is done, it's set to null.
 }
 ```
 
@@ -240,6 +243,10 @@ gateway.hedvig.com/asset/57003ec1-bdd0-4e8b-a98e-325fa5b629de
   "registrationDate": "2017-10-10"
 }
 ```
+
+### Checkout
+
+`POST /checkout`
 
 ### Claims
 
@@ -366,12 +373,46 @@ Reponse code: 204
 }
 ```
 
+### Update profile
+
+The client:
+
+1. makes the corresponding request
+2. navigates to chat where the the converation in /messages is about updating the requested topic
+
+#### Request personal information update
+
+`POST /update-personal-information`
+
+#### Request family members update
+
+`POST /update-family-members`
+
+#### Request apartment information update
+
+`POST /update-apartment-information`
+
+#### Request personal information update
+
+`POST /update-bank-account`
 
 ### Send insurance letter by email
 
 `POST /insurance/email-policy`
 
 Response code: 204
+
+### Push notifications
+
+Read more about the client / server requirements [here](https://docs.expo.io/versions/latest/guides/push-notifications.html#2-call-expos-push-api-with-the-users-token)
+
+`POST /push-token`
+
+```
+{
+  "token": "somepushtoken"
+}
+```
 
 ### Chat
 
@@ -381,7 +422,7 @@ Chat messages are delivered through polling the /messages endpoint. They are del
 <BR>Response format is {"timestamp1":message1, "timestamp2":message2,...}
 <BR><BR>
 Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
-  
+
 ```
 "1507473841801":{
   "globalId":4,

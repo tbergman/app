@@ -35,7 +35,8 @@ export default class AddEditAsset extends React.Component {
   })
 
   save() {
-    this.props.navigation.navigate("AssetList")
+    this.props.updateItem(this.state.item)
+    this.props.navigation.goBack()
   }
 
   editing() {
@@ -51,8 +52,8 @@ export default class AddEditAsset extends React.Component {
   }
 
   maybeClaimButton() {
-    if (!R.isEmpty(this.state.item)) {
-      return <Button title="Rapportera skada" onPress={() => console.log("Rapportera skada pressed")} />
+    if (!R.isNil(this.state.item.id)) {
+      return <Button title="Rapportera skada" onPress={() => this.props.raiseAssetClaim(this.state.item)} />
     }
   }
 
@@ -92,6 +93,12 @@ export default class AddEditAsset extends React.Component {
     if (this.state.editingName) {
       this.refs.nameInput.focus()
     }
+  }
+
+  _updateText(text) {
+    let item = this.state.item
+    item.title = text
+    this.setState({item})
   }
 
   _editPrice = async () => {
@@ -156,13 +163,13 @@ export default class AddEditAsset extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Text>{this.state.item.name || "Ny pryl"}</Text>
+        <Text>{this.state.item.title || "Ny pryl"}</Text>
         <View style={{flex: 1}}>
           <Button title="Fota din pryl" onPress={this._takePhoto} />
           {this.chooseOrDisplayImage()}
           <View>
             <Text>Pryl</Text>
-            <TextInput ref="nameInput" placeholder="Namnge din pryl" editable={this.state.editingName} value={this.state.item.name} returnKeyType="next" onSubmitEditing={(event) => {
+            <TextInput ref="nameInput" placeholder="Namnge din pryl" editable={this.state.editingName} value={this.state.item.title} returnKeyType="next" onChangeText={(text) => this._updateText(text)} onSubmitEditing={(event) => {
               this.setState({editingDate: true})
             }} />
             <Button title={this.state.editingName ? "Ok" : "Ändra namn"} onPress={() => this._editName()} />
