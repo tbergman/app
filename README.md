@@ -112,19 +112,13 @@ Get a quote
     ...
   ],
   "currentTotalPrice": 0,
-  "newTotalPrice": 500
+  "newTotalPrice": 500,
+  "status": OK,
+  "statusDescription": ""
 }
 ```
 
-or in case the user is denied a quote
-
-```
-{
-  "insurance": {
-    "denied": true
-  }
-}
-```
+or in case the user is denied a quote the status is set to DENIED and statusDescription contains a text for display
 
 ### My current insurance
 
