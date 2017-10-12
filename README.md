@@ -517,6 +517,12 @@ NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
   }
 }
 ```
+
+List of valid `view` values:
+
+* `AssetTracker`
+* `Dashboard`
+
 * `multiple_select` - Multiple select question / answer
 ```
 "1507042097247": {
