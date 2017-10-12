@@ -246,7 +246,9 @@ gateway.hedvig.com/asset/57003ec1-bdd0-4e8b-a98e-325fa5b629de
 
 ### Checkout
 
-`POST /checkout`
+When a member has reviewed and accepted an quote.
+
+`POST /hedvig/quoteAccept`
 
 ### Claims
 
