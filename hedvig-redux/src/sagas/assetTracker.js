@@ -35,7 +35,7 @@ const getAssets = function*() {
     type: API,
     payload: {
       method: "GET",
-      url: `/insurance`,
+      url: `/asset/`,
       headers: { "Content-Type": "application/json" },
       body: null,
       SUCCESS: LOADED_ASSETS

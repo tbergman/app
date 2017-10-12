@@ -66,6 +66,7 @@ export class Carousel extends React.Component {
         <Text>Title: {item.title}</Text>
         <Text>Description: {item.description}</Text>
         {this.renderCta && this.renderCta(item)}
+        <Button title="Close" onPress={() => this.props.navigation.goBack()} />
       </View>
     )
   }

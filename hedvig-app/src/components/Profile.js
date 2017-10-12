@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
   })
 
   componentWillMount() {
-    this.props.dispatch({ type: "LOADED_USER" })
+    this.props.getUser()
     this.props.dispatch({ type: "LOADED_CASHBACK_ALTERNATIVES" })
   }
 
@@ -41,33 +41,43 @@ export default class Profile extends React.Component {
     )
   }
 
-  _familyMembers() {
-    let cta = <Button title="Ändra" onPress={() => this.props.editFamilyMembers()} />
-    return this._userRow("Familjemedlemmar", R.join(", ", this.props.user.familyMembers), cta)
+  _maybeFamilyMembers() {
+    if (this.props.user.familyMembers) {
+      let cta = <Button title="Ändra" onPress={() => this.props.editFamilyMembers()} />
+      return this._userRow("Familjemedlemmar", R.join(", ", this.props.user.familyMembers), cta)
+    }
   }
 
-  _personalInfo() {
-    let cta = <Button title="Ändra" onPress={() => this.props.editPersonalInfo()} />
-    return this._userRow("Personlig info", `${this.props.user.age} år | ${this.props.user.email}`, cta)
+  _maybePersonalInfo() {
+    if (this.props.user.age) {
+      let cta = <Button title="Ändra" onPress={() => this.props.editPersonalInfo()} />
+      return this._userRow("Personlig info", `${this.props.user.age} år | ${this.props.user.email}`, cta)
+    }
   }
 
-  _livingInfo() {
-    let cta = <Button title="Ändra" onPress={() => this.props.editApartmentInfo()} />
-    return this._userRow("Boende", `${this.props.user.address} | ${this.props.livingAreaSqm} m2`, cta)
+  _maybeLivingInfo() {
+    if (this.props.user.address) {
+      let cta = <Button title="Ändra" onPress={() => this.props.editApartmentInfo()} />
+      return this._userRow("Boende", `${this.props.user.address} | ${this.props.user.livingAreaSqm} m2`, cta)
+    }
   }
 
-  _bankAccount() {
-    let cta = <Button title="Ändra" onPress={() => this.props.editBankAccount()} />
-    return this._userRow("Bankkonto", this.props.user.maskedBankAccountNumber, cta)
+  _maybeBankAccount() {
+    if (this.props.user.maskedBankAccountNumber) {
+      let cta = <Button title="Ändra" onPress={() => this.props.editBankAccount()} />
+      return this._userRow("Bankkonto", this.props.user.maskedBankAccountNumber, cta)
+    }
   }
 
-  _selectedCashback() {
-    let cta = <Button title="Ändra" onPress={() => this.props.navigation.navigate("Carousel", {
-      items: this.props.cashbackAlternatives,
-      initialSlideIndex: 0,
-      renderCta: this._cashbackCarouselCta.bind(this)
-    })} />
-    return this._userRow("Välgörenhet", this.props.user.selectedCashback, cta)
+  _maybeSelectedCashback() {
+    if (this.props.user.foo) {
+      let cta = <Button title="Ändra" onPress={() => this.props.navigation.navigate("Carousel", {
+        items: this.props.cashbackAlternatives,
+        initialSlideIndex: 0,
+        renderCta: this._cashbackCarouselCta.bind(this)
+      })} />
+      return this._userRow("Välgörenhet", this.props.user.selectedCashback, cta)
+    }
   }
 
   _cashbackCarouselCta(item) {
@@ -93,18 +103,28 @@ export default class Profile extends React.Component {
     })
   }
 
+  _maybeUserInfo() {
+    if (this.props.user) {
+      return (
+        <View>
+          {this._maybeFamilyMembers()}
+          {this._maybePersonalInfo()}
+          {this._maybeLivingInfo()}
+          {this._maybeBankAccount()}
+          {this._maybeSelectedCashback()}
+        </View>
+      )
+    }
+  }
+
   render() {
     return (
-        <View style={{flex: 1}}>
-          <Button title="Dina försäkringsvillkor" onPress={() => console.log("Dina försäkringsvillkor pressed")} />
-          {!R.isEmpty(this.props.user) && this._familyMembers()}
-          {!R.isEmpty(this.props.user) && this._personalInfo()}
-          {!R.isEmpty(this.props.user) && this._livingInfo()}
-          {!R.isEmpty(this.props.user) && this._bankAccount()}
-          {!R.isEmpty(this.props.user) && this._selectedCashback()}
-          <Button title="Dela" onPress={() => this._sharePressed()} />
-          <Link to="Login" title="Logga ut" />
-        </View>
+      <View style={{flex: 1}}>
+        <Button title="Dina försäkringsvillkor" onPress={() => console.log("Dina försäkringsvillkor pressed")} />
+        {this._maybeUserInfo()}
+        <Button title="Dela" onPress={() => this._sharePressed()} />
+        <Link to="Login" title="Logga ut" />
+      </View>
     )
   }
 }

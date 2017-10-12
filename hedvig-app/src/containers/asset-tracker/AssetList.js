@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAssets: () => assetActions.getAssets(),
+    getAssets: () => dispatch(assetActions.getAssets()),
     dispatch
   }
 }

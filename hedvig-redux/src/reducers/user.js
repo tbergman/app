@@ -18,10 +18,10 @@ const user = {
   "selectedCashback": "Rädda Barnen"
 }
 
-const reducer = (state = { user: {} }, action) => {
+const reducer = (state = { currentUser: {} }, action) => {
   switch (action.type) {
     case LOADED_USER:
-      return Object.assign({}, state, {user})
+      return Object.assign({}, state, {currentUser: action.payload})
     default:
       return state
   }

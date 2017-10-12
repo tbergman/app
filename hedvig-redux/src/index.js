@@ -10,6 +10,7 @@ import * as assetActions from "./actions/assetTracker"
 import * as uploadActions from "./actions/upload"
 import * as statusMessageActions from "./actions/statusMessage"
 import * as cashbackActions from "./actions/cashback"
+import * as userActions from "./actions/user"
 import * as types from "./actions/types"
 
 import createSagaMiddleware from "redux-saga"
@@ -18,7 +19,12 @@ import { rootSaga } from "./sagas/index"
 import mockChatActions from "./actions/mock/chat"
 
 function configureStore(
-  { initialState, additionalReducers, additionalMiddleware = [] } = {}
+  {
+    initialState,
+    additionalReducers,
+    additionalMiddleware = [],
+    additionalSagas
+  } = {}
 ) {
   let sagaMiddleware = createSagaMiddleware()
   let store = createStore(
@@ -34,7 +40,7 @@ function configureStore(
       )
     )
   )
-  sagaMiddleware.run(rootSaga)
+  sagaMiddleware.run(rootSaga(additionalSagas))
   return store
 }
 
@@ -58,5 +64,6 @@ export {
   mockChatActions,
   uploadActions,
   statusMessageActions,
-  cashbackActions
+  cashbackActions,
+  userActions
 }

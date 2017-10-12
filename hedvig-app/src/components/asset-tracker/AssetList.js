@@ -31,8 +31,8 @@ export default class AssetList extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
-  componentDidMount() {
-    this.props.dispatch({ type: "LOADED_ASSETS" })
+  componentWillMount() {
+    this.props.getAssets()
   }
 
   maybeList() {
@@ -48,8 +48,6 @@ export default class AssetList extends React.Component {
   }
 
   render() {
-    console.log("NUM ASSETS: " + this.props.assets.length.toString())
-
     return (
       <View style={{ flex: 1 }}>
         <Button

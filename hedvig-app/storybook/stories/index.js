@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import { configureStore, chatActions, types } from "hedvig-redux"
 
 import nav from "../../src/reducers/nav"
+import { apiAndNavigateToChatSaga } from "../../src/sagas/apiAndNavigate"
 import AssetList from "../../src/containers/asset-tracker/AssetList"
 import AddEditAsset from "../../src/components/asset-tracker/AddEditAsset"
 import { AssetTracker } from "../../src/components/asset-tracker/AssetNavigator"
@@ -50,9 +51,8 @@ let timestamp = 1507042098159
 storiesOf("Navigation", module)
   .addDecorator(story => {
     const tabBarStore = configureStore({
-      additionalReducers: {
-        nav
-      }
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
     })
     window.tabBarStore = tabBarStore
     tabBarStore.dispatch({
@@ -266,7 +266,8 @@ storiesOf("Chat input widgets", module)
       initialState: {
         chat: { messages: R.sortBy(R.path(["timestamp"]), R.values(messages)) }
       },
-      additionalReducers: { nav }
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
     })
     chatStore.dispatch({
       type: types.AUTHENTICATE,
@@ -309,7 +310,8 @@ const chatHistoryStoryBase = storiesOf(
 ).addDecorator(story => {
   chatHistoryStore = configureStore({
     initialState: { chat: { messages: [] } },
-    additionalReducers: { nav }
+    additionalReducers: { nav },
+    additionalSagas: [apiAndNavigateToChatSaga()]
   })
   return (
     <StorybookProvider store={chatHistoryStore}>
@@ -326,7 +328,10 @@ R.values(messages).forEach(m =>
 
 storiesOf("Chat Backend IO", module)
   .addDecorator(story => {
-    const chatBackendIOStore = configureStore({ additionalReducers: { nav } })
+    const chatBackendIOStore = configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
+    })
     chatBackendIOStore.dispatch({
       type: "AUTHENTICATE",
       payload: { ssn: Math.floor(Math.random() * 100000).toString() }
@@ -342,7 +347,10 @@ storiesOf("Chat Backend IO", module)
 
 storiesOf("Asset Tracker", module)
   .addDecorator(story => {
-    const assetStore = configureStore({ additionalReducers: { nav } })
+    const assetStore = configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
+    })
     assetStore.dispatch({
       type: "AUTHENTICATE",
       payload: { ssn: Math.floor(Math.random() * 100000).toString() }
@@ -359,7 +367,10 @@ storiesOf("Asset Tracker", module)
 
 storiesOf("Components", module)
   .addDecorator(story => {
-    const hedvigStore = configureStore({ additionalReducers: { nav } })
+    const hedvigStore = configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
+    })
     window.hedvigStore = hedvigStore
     return (
       <StorybookProvider store={hedvigStore}>
@@ -373,7 +384,10 @@ storiesOf("Components", module)
 
 storiesOf("Dashboard", module)
   .addDecorator(story => {
-    const dashboardStore = configureStore({ additionalReducers: { nav } })
+    const dashboardStore = configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
+    })
     window.dashboardStore = dashboardStore
     return (
       <StorybookProvider store={dashboardStore}>
@@ -385,7 +399,10 @@ storiesOf("Dashboard", module)
 
 storiesOf("Profile", module)
   .addDecorator(story => {
-    const profileStore = configureStore({ additionalReducers: { nav } })
+    const profileStore = configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()]
+    })
     window.profileStore = profileStore
     return (
       <StorybookProvider store={profileStore}>

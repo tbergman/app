@@ -1,4 +1,4 @@
-import { UPDATE_ITEM } from "./types"
+import { UPDATE_ITEM, GET_ASSETS } from "./types"
 
 export function updateItem(item) {
   return {
