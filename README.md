@@ -606,6 +606,12 @@ List of valid `view` values:
 ```
 * ~`link` - A link to another view~ This is now a `single_select` type with one `choices.type` set to `link`
 
+#### Generate a main menu (what do you want to do today) message from Hedvig
+
+`POST /chat/main`
+
+This will generate a new message which is available through the /messages endpoint
+
 #### Reset a conversation
 
 Used in claim and onboarding.
