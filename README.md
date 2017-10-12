@@ -299,6 +299,9 @@ Reponse code: 204
 
 `POST /cashback`
 
+* Parameter `optionId`
+* Value `id` of the option selected
+
 #### Request body example
 
 ```
