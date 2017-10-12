@@ -155,6 +155,10 @@ Get my current insurance (also includes new price if user has requested a quote 
 }
 ```
 
+### Send insurance policy email
+
+`POST /insurance/email-policy`
+
 ### Asset states
 
 * `"CREATED"` - information posted to backend
