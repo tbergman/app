@@ -374,25 +374,10 @@ The client:
 1. makes the corresponding request
 2. navigates to chat where the the converation in /messages is about updating the requested topic
 
-#### Request personal information update
+`POST /hedvig/initiateUpdate`
 
-`POST /update-personal-information`
-
-#### Request family members update
-
-`POST /update-family-members`
-
-#### Request apartment information update
-
-`POST /update-apartment-information`
-
-#### Request personal information update
-
-`POST /update-bank-account`
-
-### Send insurance letter by email
-
-`POST /insurance/email-policy`
+* Paramter: `what`
+* Values: `PERSONAL_INFORMATOIN, FAMILY_MEMBERS, APARTMENT_INFORMATION, BANK_ACCOUNT`
 
 Response code: 204
 
