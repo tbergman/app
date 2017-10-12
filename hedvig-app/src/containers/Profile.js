@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { insuranceActions } from "hedvig-redux"
 import Profile from "../components/Profile"
-import { cashbackActions, chatActions } from "hedvig-redux"
+import { cashbackActions, chatActions, userActions } from "hedvig-redux"
 
 const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
   dispatch(
@@ -16,7 +16,7 @@ const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user,
+    user: state.user.currentUser,
     cashbackAlternatives: state.cashback.alternatives,
     state
   }
@@ -24,6 +24,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    getUser: () =>dispatch(userActions.getCurrentUser()),
     updateCashback: (selectedCashback) => dispatch(cashbackActions.updateCashback(selectedCashback)),
     editPersonalInfo: () => _apiAndNavigateToChat(dispatch, "/update-personal-information", "REQUESTED_PERSONAL_INFO_UPDATE"),
     editFamilyMembers: () => _apiAndNavigateToChat(dispatch, "/update-family-members", "REQUESTED_FAMILY_MEMBERS_UPDATE"),

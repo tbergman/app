@@ -44,11 +44,10 @@ export default class AddEditAsset extends React.Component {
   }
 
   cta() {
-    if (this.state.item) {
-      if (this.editing()) {
-        return <Button title="Spara" onPress={() => this.save()} />
-      }
+    if (this.state.item && this.editing()) {
+      return <Button title="Spara" onPress={() => this.save()} />
     }
+    return <Button title="Avbryt" onPress={() => this.props.navigation.goBack()} />
   }
 
   maybeClaimButton() {

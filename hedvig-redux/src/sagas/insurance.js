@@ -11,9 +11,21 @@ import { baseURL } from "../services/environment"
 import * as insuranceActions from "../actions/insurance"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 
+// Returns a pointer to the found peril in categories
+const findPerilInCategories = (peril, categories) => {
+  for (let ci = 0; ci < categories.length; ci++) {
+    let category = categories[ci]
+    let pi = category.perils.findIndex(p => p.id === peril.id)
+    if (pi !== -1) {
+      return category[pi]
+    }
+  }
+}
+
 const removePeril = function*({ payload: { peril } }) {
   const state = yield select()
-  state.insurance.categories[0].perils[0].state = "REMOVE_REQUESTED"
+  let statePeril = findPerilInCategories(peril, state.insurance.categories)
+  statePeril.state = "REMOVE_REQUESTED"
 
   yield put({
     type: API,
@@ -32,7 +44,8 @@ const removePeril = function*({ payload: { peril } }) {
 
 const addPeril = function*({ payload: { peril } }) {
   const state = yield select()
-  state.insurance.categories[0].perils[0].state = "ADD_REQUESTED"
+  let statePeril = findPerilInCategories(peril, state.insurance.categories)
+  statePeril.state = "ADD_REQUESTED"
 
   yield put({
     type: API,

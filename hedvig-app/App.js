@@ -9,12 +9,16 @@ window.hedvigRedux = hedvigRedux
 import nav from "./src/reducers/nav"
 import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
 import * as Navigation from "./src/services/Navigation"
+import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
 window.Navigation = Navigation
 
 class App extends React.Component {
   constructor() {
     super()
-    this.store = hedvigRedux.configureStore({ additionalReducers: { nav } })
+    this.store = hedvigRedux.configureStore({
+      additionalReducers: { nav },
+      additionalSagas: [apiAndNavigateToChatSaga()] // NOTE: Don't forget to call these sagas to start them!
+    })
     window.store = this.store
   }
 

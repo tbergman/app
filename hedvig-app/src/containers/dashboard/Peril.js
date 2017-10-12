@@ -10,8 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    removePeril: () => dispatch(insuranceActions.removePeril()),
-    addPeril: () => dispatch(insuranceActions.addPeril()),
+    removePeril: (peril) => dispatch(insuranceActions.removePeril(peril)),
+    addPeril: (peril) => dispatch(insuranceActions.addPeril(peril)),
     raisePerilClaim: peril =>
       dispatch(
         chatActions.apiAndNavigateToChat({

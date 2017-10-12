@@ -19,8 +19,8 @@ export default class Dashboard extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
-  componentDidMount() {
-    this.props.dispatch({ type: "LOADED_INSURANCE" })
+  componentWillMount() {
+    this.props.getInsurance()
   }
 
   renderCategories() {

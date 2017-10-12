@@ -33,7 +33,7 @@ const categories = [
 const reducer = (state = {categories: [], currentTotalPrice: null, newTotalPrice: null}, action) => {
   switch (action.type) {
     case LOADED_INSURANCE:
-      return Object.assign({}, state, {categories: categories, currentTotalPrice: 500, newTotalPrice: 500})
+      return Object.assign({}, state, action.payload)
     default:
       return state
   }

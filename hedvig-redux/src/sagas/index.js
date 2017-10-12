@@ -20,7 +20,7 @@ https://stackoverflow.com/questions/45155249/when-using-redux-saga-with-react-na
 import { take, takeEvery, put, all } from "redux-saga/effects"
 import { authenticateSaga } from "./authenticate"
 import { apiSaga } from "./api"
-import { sendChatResponseSaga, apiAndNavigateToChatSaga } from "./chat"
+import { sendChatResponseSaga } from "./chat"
 import { updateItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
@@ -54,22 +54,23 @@ const printMessageContent = function*() {
   })
 }
 
-const root = function* rootSaga() {
-  yield all([
-    watchOnboarding(),
-    printMessageContent(),
-    authenticateSaga(),
-    apiSaga(),
-    sendChatResponseSaga(),
-    apiAndNavigateToChatSaga(),
-    updateItemSaga(),
-    getAssetsSaga(),
-    uploadSaga(),
-    addInsuranceSaga(),
-    removeInsuranceSaga(),
-    handleStatusMessage(),
-    updateCashbackSaga()
-  ])
-}
+const root = (additionalSagas = []) =>
+  function* rootSaga() {
+    yield all([
+      watchOnboarding(),
+      printMessageContent(),
+      authenticateSaga(),
+      apiSaga(),
+      sendChatResponseSaga(),
+      updateItemSaga(),
+      getAssetsSaga(),
+      uploadSaga(),
+      addInsuranceSaga(),
+      removeInsuranceSaga(),
+      handleStatusMessage(),
+      updateCashbackSaga(),
+      ...additionalSagas
+    ])
+  }
 
 export const rootSaga = root
