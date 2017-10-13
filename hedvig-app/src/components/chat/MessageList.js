@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, Image } from "react-native"
 import { BaseScrolleViewStyle, ChatMessageStyle } from "../Styles"
 
 const SelectMessage = ({ message, textAlign }) => {
@@ -14,6 +14,20 @@ const SelectMessage = ({ message, textAlign }) => {
   )
 }
 
+const HeroMessage = ({ message, textAlign }) => {
+  return (
+    <View>
+      <Text style={{ textAlign }}>
+        {message.body.text}
+      </Text>
+      <Image
+        source={{ uri: message.body.imageUri }}
+        style={{ height: 150, width: 300 }}
+      />
+    </View>
+  )
+}
+
 const DefaultMessage = ({ message, textAlign }) => {
   return (
     <Text style={{ textAlign }}>
@@ -22,9 +36,13 @@ const DefaultMessage = ({ message, textAlign }) => {
   )
 }
 
-const MessageMapping = {
+const UserMessageMapping = {
   single_select: SelectMessage,
   multiple_select: SelectMessage
+}
+
+const HedvigMessageMapping = {
+  hero: HeroMessage
 }
 
 const renderMessage = function(message, idx) {
@@ -34,8 +52,13 @@ const renderMessage = function(message, idx) {
   let textAlign = fromMe ? "right" : "left"
 
   let MessageRenderComponent = DefaultMessage
-  if (fromMe && MessageMapping.hasOwnProperty(message.body.type)) {
-    MessageRenderComponent = MessageMapping[message.body.type]
+  if (fromMe && UserMessageMapping.hasOwnProperty(message.body.type)) {
+    MessageRenderComponent = UserMessageMapping[message.body.type]
+  } else if (
+    !fromMe &&
+    HedvigMessageMapping.hasOwnProperty(message.body.type)
+  ) {
+    MessageRenderComponent = HedvigMessageMapping[message.body.type]
   }
   return (
     <View key={message.globalId || idx}>

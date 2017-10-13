@@ -8,6 +8,7 @@ import assetTrackerReducer from "./assetTracker"
 import userReducer from "./user"
 import cashbackReducer from "./cashback"
 import statusMessageReducer from "./statusMessage"
+import dialogReducer from "./dialog"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -21,7 +22,8 @@ const rootReducer = (additionalReducers = {}) =>
         assetTracker: assetTrackerReducer,
         user: userReducer,
         cashback: cashbackReducer,
-        statusMessage: statusMessageReducer
+        statusMessage: statusMessageReducer,
+        dialog: dialogReducer
       },
       additionalReducers
     )

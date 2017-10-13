@@ -1,5 +1,6 @@
 import {
   API,
+  API_ERROR,
   UPDATE_ITEM,
   ITEM_UPDATED,
   GET_ASSETS,
@@ -25,7 +26,7 @@ const postItem = function*({ payload: item }) {
       SUCCESS: ITEM_UPDATED
     }
   })
-  let success = yield take(ITEM_UPDATED)
+  let success = yield take([ITEM_UPDATED, API_ERROR])
   console.log("Item updated response payload:", success.payload)
   yield put(assetActions.getAssets())
 }

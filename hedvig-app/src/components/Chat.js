@@ -54,6 +54,11 @@ const Half = styled.View`
 `
 
 export default class Chat extends React.Component {
+
+  componentDidMount() {
+    this.props.registerForPushNotifications()
+  }
+
   render() {
     return (
       <Container>

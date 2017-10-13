@@ -21,6 +21,10 @@ const StyledIcon = styled.Image`
 
 export class PerilsCategory extends React.Component {
 
+  state = {
+    showCategory: false
+  }
+
   coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
 
   coveredPerils(enableRemove = false) {
@@ -54,7 +58,7 @@ export class PerilsCategory extends React.Component {
           </StyledPerilsCategory>
         </View>
       )
-    } else {
+    } else if (this.state.showCategory) {
       return <StyledPerilsCategory>{this.coveredPerils()}</StyledPerilsCategory>
     }
   }
@@ -64,7 +68,12 @@ export class PerilsCategory extends React.Component {
       <View>
         <StyledCategoryHeading>
           <StyledIcon source={{uri: this.props.iconUrl}} />
-          <Text>{this.props.title}</Text>
+          <Text>
+            {this.props.title}
+          </Text>
+          <TouchableOpacity onPress={() => this.setState({showCategory: !this.state.showCategory})}>
+            <Text> {this.state.showCategory ? "Dölj" : "Visa"}</Text>
+          </TouchableOpacity>
         </StyledCategoryHeading>
         {this.perils()}
       </View>

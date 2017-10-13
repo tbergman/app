@@ -44,17 +44,17 @@ class MyTabs extends React.Component {
           }}
         />
         <Button
-          title="Profile"
+          title="Asset Tracker"
           disabled={this.props.navigation.state.index === 1}
           onPress={() => {
-            this.props.navigation.navigate("ProfileTab")
+            this.props.navigation.navigate("AssetTrackerTab")
           }}
         />
         <Button
-          title="Asset Tracker"
+          title="Profile"
           disabled={this.props.navigation.state.index === 2}
           onPress={() => {
-            this.props.navigation.navigate("AssetTrackerTab")
+            this.props.navigation.navigate("ProfileTab")
           }}
         />
       </MyTabsContainer>
@@ -67,11 +67,11 @@ const MyTabNavigator = TabNavigator(
     DashboardTab: {
       screen: Dashboard
     },
-    ProfileTab: {
-      screen: Profile
-    },
     AssetTrackerTab: {
       screen: AssetNavigator
+    },
+    ProfileTab: {
+      screen: Profile
     }
   },
   {

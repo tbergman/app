@@ -1,5 +1,6 @@
 const typesList = [
   "API",
+  "API_ERROR",
   "UPLOAD",
   "AUTHENTICATE",
   "LOADED_MESSAGES",
@@ -26,7 +27,9 @@ const typesList = [
   "STATUS_MESSAGE",
   "UPDATE_CASHBACK",
   "API_AND_NAVIGATE_TO_CHAT",
-  "SWITCH_BASE"
+  "SWITCH_BASE",
+  "DIALOG_MESSAGE",
+  "EMPTY_DIALOG_MESSAGE"
 ]
 
 const typesMap = {}

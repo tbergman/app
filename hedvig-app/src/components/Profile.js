@@ -120,10 +120,10 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Button title="Dina försäkringsvillkor" onPress={() => console.log("Dina försäkringsvillkor pressed")} />
+        <Button title="Dina försäkringsvillkor" onPress={() => this.props.sendPolicyEmail()} />
         {this._maybeUserInfo()}
         <Button title="Dela" onPress={() => this._sharePressed()} />
-        <Link to="Login" title="Logga ut" />
+        <Button title="Logga ut" onPress={() => this.props.logout()} />
       </View>
     )
   }

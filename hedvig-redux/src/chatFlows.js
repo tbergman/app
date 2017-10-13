@@ -72,12 +72,5 @@ async function main() {
   await new Promise(resolve => setTimeout(resolve, 1000))
   await singleSelectOption(0)
   await new Promise(resolve => setTimeout(resolve, 1000))
-  // await selectFirstOption()
-  await sendTextResponse()
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  await sendDateResponse()
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  await singleSelectOption(2)
-  console.log(store.getState().chat.messages)
 }
 main()

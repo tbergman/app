@@ -1,9 +1,8 @@
 import React from "react"
 import { Text, TouchableHighlight } from "react-native"
-import { types } from "hedvig-redux"
+import { types, chatActions } from "hedvig-redux"
 import { connect } from "react-redux"
 import {
-  showChatAction,
   showDashboardAction
 } from "../../actions/baseNavigation"
 
@@ -21,7 +20,12 @@ const FloatingChatButtonComponent = ({
         right,
         zIndex
       }}
-      onPress={() => dispatch(showChatAction())}
+      onPress={() => dispatch(chatActions.apiAndNavigateToChat({
+        method: "POST",
+        url: "/chat/main",
+        body: null,
+        SUCCESS: "INITIATED_CHAT_MAIN"
+      }))}
     >
       <Text>Chat</Text>
     </TouchableHighlight>

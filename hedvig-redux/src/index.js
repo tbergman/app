@@ -11,6 +11,8 @@ import * as uploadActions from "./actions/upload"
 import * as statusMessageActions from "./actions/statusMessage"
 import * as cashbackActions from "./actions/cashback"
 import * as userActions from "./actions/user"
+import * as pushNotificationActions from "./actions/pushNotification"
+import * as dialogActions from "./actions/dialog"
 import * as types from "./actions/types"
 
 import createSagaMiddleware from "redux-saga"
@@ -65,5 +67,7 @@ export {
   uploadActions,
   statusMessageActions,
   cashbackActions,
-  userActions
+  userActions,
+  pushNotificationActions,
+  dialogActions
 }

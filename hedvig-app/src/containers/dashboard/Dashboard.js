@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         chatActions.apiAndNavigateToChat({
           method: "POST",
-          url: "/checkout",
+          url: "/hedvig/quoteAccepted",
           body: null,
           SUCCESS: "INITIATE_CHECKOUT"
         })

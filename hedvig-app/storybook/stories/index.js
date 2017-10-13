@@ -26,6 +26,7 @@ import VideoInput from "../../src/containers/chat/VideoInput"
 import PhotoInput from "../../src/containers/chat/PhotoInput"
 import Dashboard from "../../src/containers/dashboard/Dashboard"
 import Profile from "../../src/containers/Profile"
+import { showChatAction } from "../../src/actions/baseNavigation"
 
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
 
@@ -48,9 +49,76 @@ class StorybookProvider extends React.Component {
 
 let timestamp = 1507042098159
 
+const MOCK_MESSAGES = {
+  "1": {
+    id: "message.hello",
+    timestamp: 1,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "single_select",
+      text: "Single select",
+      choices: [
+        {
+          type: "selection",
+          text: "Jag vill ha en ny",
+          selected: false
+        },
+        {
+          type: "link",
+          text: "I want to see my assets",
+          view: "AssetTracker"
+        },
+        {
+          type: "link",
+          text: "I want to see my offer",
+          view: "Dashboard"
+        },
+        {
+          type: "link",
+          text: "Launch the calendar",
+          appUrl: "calshow://"
+        },
+        {
+          type: "link",
+          text: "Launch a webview",
+          webUrl: "http://hedvig.com"
+        }
+      ]
+    }
+  },
+  // "2": {
+  //   id: "message.getname",
+  //   timestamp: 2,
+  //   header: {
+  //     fromId: 1,
+  //     responsePath: "/response"
+  //   },
+  //   body: {
+  //     type: "video",
+  //     content: "Record a video"
+  //   }
+  // }
+  "3": {
+    id: "message.getname",
+    timestamp: 3,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "hero",
+      text: "I'm a hero",
+      imageUri: "http://via.placeholder.com/300x150"
+    }
+  }
+}
+let tabBarStore
 storiesOf("Navigation", module)
   .addDecorator(story => {
-    const tabBarStore = configureStore({
+    tabBarStore = configureStore({
       additionalReducers: { nav },
       additionalSagas: [apiAndNavigateToChatSaga()]
     })
@@ -59,69 +127,20 @@ storiesOf("Navigation", module)
       type: "AUTHENTICATE",
       payload: { ssn: Math.floor(Math.random() * 100000).toString() }
     })
-    tabBarStore.dispatch({
-      type: "LOADED_MESSAGES",
-      payload: {
-        "1": {
-          id: "message.hello",
-          timestamp: 1,
-          header: {
-            fromId: 1,
-            responsePath: "/response"
-          },
-          body: {
-            type: "single_select",
-            text: "Single select",
-            choices: [
-              {
-                type: "selection",
-                text: "Jag vill ha en ny",
-                selected: false
-              },
-              {
-                type: "link",
-                text: "I want to see my assets",
-                view: "AssetTracker"
-              },
-              {
-                type: "link",
-                text: "I want to see my offer",
-                view: "Dashboard"
-              },
-              {
-                type: "link",
-                text: "Launch the calendar",
-                appUrl: "calshow://"
-              },
-              {
-                type: "link",
-                text: "Launch a webview",
-                webUrl: "http://hedvig.com"
-              }
-            ]
-          }
-        }
-        // "2": {
-        //   id: "message.getname",
-        //   timestamp: 2,
-        //   header: {
-        //     fromId: 1,
-        //     responsePath: "/response"
-        //   },
-        //   body: {
-        //     type: "video",
-        //     content: "Record a video"
-        //   }
-        // }
-      }
-    })
     return (
       <StorybookProvider store={tabBarStore}>
         {story()}
       </StorybookProvider>
     )
   })
-  .add("TabBar", () => <ConnectedReduxBaseNavigator />)
+  .add("TabBar", () => {
+    tabBarStore.dispatch(showChatAction())
+    tabBarStore.dispatch({
+      type: "LOADED_MESSAGES",
+      payload: MOCK_MESSAGES
+    })
+    return <ConnectedReduxBaseNavigator />
+  })
 
 const messages = {
   "1": {

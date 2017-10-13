@@ -50,3 +50,17 @@ export function createQuote() {
     }
   }
 }
+
+export function sendPolicyEmail() {
+  return {
+    type: API,
+    payload: {
+      url: "insurance/email-policy",
+      method: "POST",
+      SUCCESS: "SENT_POLICY_EMAIL"
+    },
+    statusMessage: {
+      message: "Policy email sent"
+    }
+  }
+}

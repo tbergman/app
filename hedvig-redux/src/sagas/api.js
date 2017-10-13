@@ -1,5 +1,9 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
 import { baseURL } from "../services/environment"
+import {
+  API,
+  API_ERROR
+} from "../actions/types"
 import * as statusMessageActions from "../actions/statusMessage"
 
 const api = function*(action) {
@@ -17,9 +21,10 @@ const api = function*(action) {
       .body}`
   )
   let data
+  let response
   try {
     let url = action.payload.url
-    let response = yield fetch(baseURL + url, {
+    response = yield fetch(baseURL + url, {
       method: action.payload.method,
       headers: Object.assign(
         { Authorization: `Bearer ${token}` },
@@ -50,17 +55,21 @@ const api = function*(action) {
       data = null
     }
     yield put({ type: action.payload.SUCCESS, payload: data })
+    if (action.statusMessage) {
+      yield put(statusMessageActions.setStatusMessage(action.statusMessage))
+    }
   } catch (e) {
+    console.log("API Error: ", e, response, data)
     yield put(statusMessageActions.setStatusMessage({error: e.toString()}))
     yield put({
-      type: action.payload.ERROR || "API_ERROR",
+      type: action.payload.ERROR || API_ERROR,
       payload: data || e.toString()
     })
   }
 }
 
 const apiSaga = function*() {
-  yield takeEvery("API", api)
+  yield takeEvery(API, api)
 }
 
 export { apiSaga }

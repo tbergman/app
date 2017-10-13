@@ -8,18 +8,20 @@ import { baseURL } from "../services/environment"
 
 
 const updateCashback = function*({ payload: selectedItem }) {
-  let state = yield select()
-  let cashbackAlternatives = state.cashback.alternatives.map(alternative => {
-    alternative.selected = selectedItem.id === alternative.id
-    return alternative
-  })
+  // Use this to return the whole cashbackAlternatives list with selected: true
+  // only one the selected item
+  // let state = yield select()
+  // let cashbackAlternatives = state.cashback.alternatives.map(alternative => {
+  //   alternative.selected = selectedItem.id === alternative.id
+  //   return alternative
+  // })
   yield put({
     type: API,
     payload: {
       method: "POST",
-      url: `/cashback/options`,
+      url: `/cashback?optionId=${selectedItem.id}`,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cashbackAlternatives, null, 4),
+      // body: JSON.stringify(cashbackAlternatives, null, 4),
       SUCCESS: "UPDATED_CASHBACK"
     }
   })

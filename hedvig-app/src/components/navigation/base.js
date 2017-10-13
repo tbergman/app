@@ -1,6 +1,8 @@
 import React from "react"
 import { View } from "react-native"
 import { StackNavigator } from "react-navigation"
+import Dialog from "../../containers/Dialog"
+
 
 import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
@@ -38,6 +40,7 @@ const HomeBase = () => {
     <View style={{ flex: 1 }}>
       <HomeBaseNavigator />
       <FloatingChatButton />
+      <Dialog />
     </View>
   )
 }
@@ -47,6 +50,7 @@ const ChatBase = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <Chat navigation={navigation} />
       <FloatingHomeButton />
+      <Dialog />
     </View>
   )
 }
