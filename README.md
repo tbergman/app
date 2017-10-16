@@ -423,7 +423,10 @@ Chat messages are recieved by POSTING to the /response endpoint with the id fiel
    "body":{
     "type":"text",
     "id":4,
-    "text":"Trevlig, vad heter du?"},
+    "text": "😁 Hej, jag heter Hedvig!\n\nFint att ha dig här\n\nJag är en försäkringsbot så låt mig visa vad jag gör!",
+    "imageURL": "http://www.apa.org/Images/insurance-title-image_tcm7-198694.jpg",
+    "imageWidth": 730,
+    "imageHeight": 330},
    "timestamp":1507473841.801000000}
 ```
 simply POST this to /response:
