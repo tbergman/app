@@ -26,6 +26,7 @@ import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 import { handleStatusMessage } from "./statusMessage"
 import { updateCashbackSaga } from "./cashback"
+import runner from "./sagaRunner"
 
 // TODO: Move to actions
 const message = content => {
@@ -56,19 +57,19 @@ const printMessageContent = function*() {
 
 const root = (additionalSagas = []) =>
   function* rootSaga() {
-    yield all([
-      watchOnboarding(),
-      printMessageContent(),
-      authenticateSaga(),
-      apiSaga(),
-      sendChatResponseSaga(),
-      updateItemSaga(),
-      getAssetsSaga(),
-      uploadSaga(),
-      addInsuranceSaga(),
-      removeInsuranceSaga(),
-      handleStatusMessage(),
-      updateCashbackSaga(),
+    yield runner([
+      watchOnboarding,
+      printMessageContent,
+      authenticateSaga,
+      apiSaga,
+      sendChatResponseSaga,
+      updateItemSaga,
+      getAssetsSaga,
+      uploadSaga,
+      addInsuranceSaga,
+      removeInsuranceSaga,
+      handleStatusMessage,
+      updateCashbackSaga,
       ...additionalSagas
     ])
   }

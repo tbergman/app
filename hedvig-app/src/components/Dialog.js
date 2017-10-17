@@ -8,12 +8,14 @@ export default class Dialog extends React.Component {
   componentDidUpdate() {
     if (this.props.message.title) {
       this.popupDialog.show()
+    } else {
+      this.popupDialog.dismiss()
     }
   }
 
   close() {
-    this.props.emptyDialog()
     this.popupDialog.dismiss()
+    this.props.emptyDialog()
   }
 
   button() {
@@ -35,7 +37,7 @@ export default class Dialog extends React.Component {
     return (
       <PopupDialog
         ref={(popupDialog) => { this.popupDialog = popupDialog }}
-        dialogTitle={<DialogTitle title={this.props.message.title || "No title"} />}
+        dialogTitle={<DialogTitle title={this.props.message.title || ""} />}
         style={{flex: 1}}
       >
         <View style={{ alignItems: "center", padding: 20, flex: 1 }}>

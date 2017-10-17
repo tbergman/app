@@ -1,6 +1,10 @@
 import React from "react"
 import { Text, View, Image } from "react-native"
-import { BaseScrolleViewStyle, ChatMessageStyle } from "../Styles"
+import {
+  BaseScrolleViewStyle,
+  ChatMessageStyle,
+  ChatMessageTextStyle
+} from "../Styles"
 
 const SelectMessage = ({ message, textAlign }) => {
   return (
@@ -30,9 +34,9 @@ const HeroMessage = ({ message, textAlign }) => {
 
 const DefaultMessage = ({ message, textAlign }) => {
   return (
-    <Text style={{ textAlign }}>
+    <ChatMessageTextStyle style={{ textAlign }}>
       {message.body.text}
-    </Text>
+    </ChatMessageTextStyle>
   )
 }
 

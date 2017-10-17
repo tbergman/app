@@ -1,6 +1,21 @@
 {
   "expo": {
+    "name": "Hedvig",
+    "icon": "./icon.png",
+    "version": "1.0.4",
+    "slug": "hedvig-app",
     "sdkVersion": "21.0.0",
+    "loading": {
+      "icon": "./icon.png"
+    },
+    "privacy": "unlisted",
+    "ios": {
+      "buildNumber": "1.0.4",
+      "bundleIdentifier": "com.threadsafestudio.hedvig"
+    },
+    "android": {
+      "package": "com.threadsafestudio.hedvig"
+    },
     "packagerOpts": {
       "projectRoots": "",
       "config": "rn-cli.config.js"

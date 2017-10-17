@@ -30,6 +30,10 @@ import { showChatAction } from "../../src/actions/baseNavigation"
 
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
 
+import { theme } from "hedvig-style"
+import { ThemeProvider } from "styled-components"
+import WithAssets from "../../src/components/WithAssets"
+
 /*
 A Provider that doesn't re-render if you change the `store` prop.
 */
@@ -40,9 +44,13 @@ class StorybookProvider extends React.Component {
 
   render() {
     return (
-      <Provider store={this.props.store}>
-        {this.props.children}
-      </Provider>
+      <WithAssets>
+        <ThemeProvider theme={theme}>
+          <Provider store={this.props.store}>
+            {this.props.children}
+          </Provider>
+        </ThemeProvider>
+      </WithAssets>
     )
   }
 }
@@ -120,7 +128,7 @@ storiesOf("Navigation", module)
   .addDecorator(story => {
     tabBarStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     window.tabBarStore = tabBarStore
     tabBarStore.dispatch({

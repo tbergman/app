@@ -10,6 +10,9 @@ import nav from "./src/reducers/nav"
 import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
 import * as Navigation from "./src/services/Navigation"
 import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
+import { ThemeProvider } from "styled-components"
+import { theme } from "hedvig-style"
+import WithAssets from "./src/components/WithAssets"
 window.Navigation = Navigation
 
 class App extends React.Component {
@@ -17,7 +20,7 @@ class App extends React.Component {
     super()
     this.store = hedvigRedux.configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()] // NOTE: Don't forget to call these sagas to start them!
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     window.store = this.store
   }
@@ -32,9 +35,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <Provider store={this.store}>
-        <ConnectedReduxBaseNavigator />
-      </Provider>
+      <WithAssets>
+        <ThemeProvider theme={theme}>
+          <Provider store={this.store}>
+            <ConnectedReduxBaseNavigator />
+          </Provider>
+        </ThemeProvider>
+      </WithAssets>
     )
   }
 }
