@@ -411,6 +411,20 @@ Chat messages are delivered through polling the /messages endpoint. They are del
 <BR><BR>
 Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
 
+* Message header
+The message headers contains information about: 
+```
+"messageId":6,
+"fromId":1,
+"responsePath":"/response",
+"timeStamp":1508233456622,
+"loadingIndicator":"loader",
+"avatarName":null,
+"pollingInterval":1000
+```
+
+The loadingIndicator is the loading animation displayed after the message is shown and before the next message appears. The avatarName is the animation to be displayed above the message and the pollingInterval is the delay time in the case of a paragraph message before the client polls the server for new messages
+
 ```
 "1507473841801":{
   "globalId":4,
@@ -459,12 +473,38 @@ simply POST this to /response:
     "messageId": 20,
     "fromId": 1,
     "responsePath": "/response",
-    "timeStamp": 1507549994762
+    "timeStamp": 1507549994762,
+    "loadingIndicator":"loader",
+    "avatarName":null
   },
   "body": {
     "type": "text",
     "id": 20,
     "text": "Trevlig, vad heter du?"
+  },
+  "timestamp": 1507549994.762
+}
+```
+* `paragraph` - Plain text/image message with no response option
+```
+"1507549994762": {
+  "id": "message.getname",
+  "header": {
+    "messageId": 20,
+    "fromId": 1,
+    "responsePath": "/response",
+    "timeStamp": 1507549994762,
+    "loadingIndicator":"loader",
+    "avatarName":null,
+    "pollingInterval":1000
+  },
+  "body": {
+    "type": "text",
+    "id": 20,
+    "text": "Trevlig, vad heter du?",
+    "imageURL": "http://www.apa.org/Images/insurance-title-image_tcm7-198694.jpg",
+    "imageWidth": 730,
+    "imageHeight": 330
   },
   "timestamp": 1507549994.762
 }
@@ -477,6 +517,8 @@ simply POST this to /response:
   "header":{
      "fromId":1,
      "responsePath":"/response",
+     "loadingIndicator":"loader",
+    "avatarName":null
   },
   "body":{
      "type":"number",
