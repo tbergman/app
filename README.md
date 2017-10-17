@@ -463,6 +463,23 @@ simply POST this to /response:
 ```
 <BR>Request format is {message}
 
+#### Avatar / lottie animations
+
+* `/avatars` - Returns a list of available lottie animations to pre-load by the client
+```
+[
+  {"name":"loader",
+  "URL":"https://www.lottiefiles.com/storage/datafiles/qm9uaAEoe13l3eQ/data.json","width":500,
+  "height":500,
+  "duration":1000},   
+  {"name":"bike",
+  "URL":"https://www.lottiefiles.com/storage/datafiles/dlzGwlfS0fkCJcq/data.json",
+  "width":500,
+  "height":500,
+  "duration":2000}
+]
+```
+
 #### Chat message types
 
 * `text` - Plain text message
