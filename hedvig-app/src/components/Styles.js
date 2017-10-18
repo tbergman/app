@@ -1,4 +1,5 @@
 import styled from "styled-components/native"
+import * as typography from "./styles/typography"
 
 export const Placeholder = styled.View`
   flex: 1;
@@ -26,12 +27,10 @@ export const ChatMessageStyle = styled.View`
   margin-bottom: 20;
 `
 
-export const ChatMessageTextStyle = styled.Text`
+export const ChatMessageTextStyle = typography.MerriweatherFontText.extend`
   color: ${props => props.theme.colors.hedvigMessageText};
-  font-family: "merriweather";
+  font-size: ${props => props.theme.typography.hedvigMessage.fontSize};
 `
-
-export const CircularFontText = styled.Text`font-family: "circular";`
 
 export const TextplainerStyle = styled.Text`
   border-style: solid;

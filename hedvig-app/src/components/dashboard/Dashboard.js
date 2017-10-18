@@ -14,7 +14,7 @@ import { PerilsCategory } from "./PerilsCategory"
 import { Placeholder as PlaceholderStyle } from "../Styles"
 import Placeholder from "rn-placeholder"
 import styled from "styled-components/native"
-import { CircularFontText } from "../../components/Styles.js"
+import { CircularFontText } from "../../components/styles/typography"
 const R = require("ramda")
 
 export default class Dashboard extends React.Component {
