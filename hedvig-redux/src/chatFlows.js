@@ -66,11 +66,38 @@ async function sendDateResponse() {
   await new Promise(resolve => setTimeout(resolve, 1000))
 }
 
+async function bankIdCollect() {
+  let lastMessage = store.getState().chat.messages.slice(-1).pop()
+  store.dispatch({
+    type: "API",
+    payload: {
+      method: "POST",
+      url: `/member/bankid/collect?referenceToken=${lastMessage.body
+        .referenceId}`,
+      body: null
+    }
+  })
+  await new Promise(resolve => setTimeout(resolve, 1000))
+}
+
 async function main() {
   await authenticate()
   await getMessages()
+
   await new Promise(resolve => setTimeout(resolve, 1000))
   await singleSelectOption(0)
   await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(0)
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(0)
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(0)
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  await singleSelectOption(0)
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  await bankIdCollect()
+
+  await getMessages()
 }
 main()

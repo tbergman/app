@@ -17,11 +17,11 @@ const SingleSelectInput = ({
           if (choice.type === "selection") {
             selectChoice(message, choice)
             done(message)
-          } else if (choice.type === "link" && choice.view !== undefined) {
+          } else if (choice.type === "link" && choice.view !== null) {
             launchModal(choice)
-          } else if (choice.type === "link" && choice.appUrl !== undefined) {
+          } else if (choice.type === "link" && choice.appUrl !== null) {
             Linking.openURL(choice.appUrl)
-          } else if (choice.type === "link" && choice.webUrl !== undefined) {
+          } else if (choice.type === "link" && choice.webUrl !== null) {
             WebBrowser.openBrowserAsync(choice.webUrl)
           }
         }}
