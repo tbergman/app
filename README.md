@@ -413,6 +413,8 @@ Chat messages are delivered through polling the /messages endpoint. They are del
 <BR><BR>
 Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
 
+The form feed character '\f' is used to separate text bewteen chat-bubbles when rendering a single message
+
 * Message header
 The message headers contains information about: 
 ```
