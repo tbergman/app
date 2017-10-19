@@ -128,6 +128,8 @@ Get my current insurance (also includes new price if user has requested a quote 
 
 `GET /insurance`
 
+NOTE: A call to /insurance is issued after every call to /messages to ensure an up-to-date view of insurance status. This is an MVP solution which might render a larger than necessary number of messages.
+
 #### Response body example
 
 ```
