@@ -10,6 +10,7 @@ import MultipleSelectInput from "../containers/chat/MultipleSelectInput"
 import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import VideoInput from "../containers/chat/VideoInput"
 import PhotoInput from "../containers/chat/PhotoInput"
+import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
 
 const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
@@ -38,7 +39,8 @@ const getInputComponent = function(messages, navigation) {
         }}
       />
     ),
-    photo_upload: <PhotoInput messageIndex={lastIndex} />
+    photo_upload: <PhotoInput messageIndex={lastIndex} />,
+    bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />
   }[lastMessageType]
 }
 
@@ -54,7 +56,6 @@ const Half = styled.View`
 `
 
 export default class Chat extends React.Component {
-
   componentDidMount() {
     this.props.registerForPushNotifications()
   }

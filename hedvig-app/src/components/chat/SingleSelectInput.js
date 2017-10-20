@@ -18,10 +18,16 @@ const SingleSelectInput = ({
             selectChoice(message, choice)
             done(message)
           } else if (choice.type === "link" && choice.view !== null) {
+            selectChoice(message, choice)
+            done(message)
             launchModal(choice)
           } else if (choice.type === "link" && choice.appUrl !== null) {
+            selectChoice(message, choice)
+            done(message)
             Linking.openURL(choice.appUrl)
           } else if (choice.type === "link" && choice.webUrl !== null) {
+            selectChoice(message, choice)
+            done(message)
             WebBrowser.openBrowserAsync(choice.webUrl)
           }
         }}

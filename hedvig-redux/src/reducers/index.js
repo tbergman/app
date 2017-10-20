@@ -9,6 +9,7 @@ import userReducer from "./user"
 import cashbackReducer from "./cashback"
 import statusMessageReducer from "./statusMessage"
 import dialogReducer from "./dialog"
+import bankIdReducer from "./bankid"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -23,7 +24,8 @@ const rootReducer = (additionalReducers = {}) =>
         user: userReducer,
         cashback: cashbackReducer,
         statusMessage: statusMessageReducer,
-        dialog: dialogReducer
+        dialog: dialogReducer,
+        bankid: bankIdReducer
       },
       additionalReducers
     )

@@ -22,7 +22,7 @@ export async function registerForPushNotificationsAsync(dispatch) {
   // Stop here if the user did not grant permissions
   if (finalStatus !== 'granted') {
     console.log("Push token not granted")
-    dispatch(dialogActions.showDialog({title: "Notiser", paragraph: "Vänligen aktivera notiser för Hedvig i dina systeminställningar."}))
+    // dispatch(dialogActions.showDialog({title: "Notiser", paragraph: "Vänligen aktivera notiser för Hedvig i dina systeminställningar."}))
     return
   }
   console.log("Push token granted")

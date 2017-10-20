@@ -26,6 +26,7 @@ import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 import { handleStatusMessage } from "./statusMessage"
 import { updateCashbackSaga } from "./cashback"
+import { collectSaga } from "./bankid"
 import runner from "./sagaRunner"
 
 // TODO: Move to actions
@@ -70,6 +71,7 @@ const root = (additionalSagas = []) =>
       removeInsuranceSaga,
       handleStatusMessage,
       updateCashbackSaga,
+      collectSaga,
       ...additionalSagas
     ])
   }

@@ -15,6 +15,13 @@ import { Placeholder as PlaceholderStyle } from "../Styles"
 import Placeholder from "rn-placeholder"
 import styled from "styled-components/native"
 import { CircularFontText } from "../../components/styles/typography"
+import { TextButton } from "../Button"
+import {
+  StyledDashboardContainer,
+  StyledDashboardHeader,
+  StyledDashboardHeaderRow
+} from "../styles/dashboard"
+import { StyledText, StyledHeading } from "../styles/text"
 const R = require("ramda")
 
 export default class Dashboard extends React.Component {
@@ -53,11 +60,21 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Button
-          title={this.state.editMode ? "Ok" : "Ändra"}
-          onPress={() => this.setState({ editMode: !this.state.editMode })}
-        />
+      <StyledDashboardContainer style={{ flex: 1 }}>
+        <StyledDashboardHeader>
+          <StyledDashboardHeaderRow>
+            <StyledHeading>Din hemförsäkring</StyledHeading>
+            <TextButton
+              title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
+              onPress={() => this.setState({ editMode: !this.state.editMode })}
+            />
+          </StyledDashboardHeaderRow>
+          <StyledDashboardHeaderRow>
+            <StyledText>Aktiv</StyledText>
+            <StyledText>299 kr/mån</StyledText>
+            <StyledText>Gäller i hela världen</StyledText>
+          </StyledDashboardHeaderRow>
+        </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -66,7 +83,7 @@ export default class Dashboard extends React.Component {
           </View>
         </ScrollView>
         {this.maybeCheckoutButton()}
-      </View>
+      </StyledDashboardContainer>
     )
   }
 }
