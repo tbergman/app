@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Text } from "react-native"
+import { Button, Text, View } from "react-native"
 import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
@@ -8,6 +8,7 @@ import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
 
 import { Placeholder } from "../Styles"
+import { StyledTabBarContainer, StyledTabBarButton, StyledTabBarButtonText } from "../styles/tabbar"
 
 class AssetTrackerTab extends React.Component {
   render() {
@@ -31,33 +32,48 @@ const MyTabsContainer = styled.View`
   justify-content: space-between;
 `
 
+const TabBarButton = ({title, disabled, navigation, navigateTo}) => {
+  return (
+    <StyledTabBarButton
+      disabled={disabled}
+      onPress={() => {
+        navigation.navigate(navigateTo)
+      }}
+      activeOpacity={0.9}
+    >
+      <StyledTabBarButtonText disabled={disabled}>
+        {title}
+      </StyledTabBarButtonText>
+    </StyledTabBarButton>
+  )
+}
+
 class MyTabs extends React.Component {
   render() {
     // console.log("TAB INDEX", this.props.navigation.state.index)
     return (
-      <MyTabsContainer>
-        <Button
-          title="Dashboard"
-          disabled={this.props.navigation.state.index === 0}
-          onPress={() => {
-            this.props.navigation.navigate("DashboardTab")
-          }}
-        />
-        <Button
-          title="Asset Tracker"
-          disabled={this.props.navigation.state.index === 1}
-          onPress={() => {
-            this.props.navigation.navigate("AssetTrackerTab")
-          }}
-        />
-        <Button
-          title="Profile"
-          disabled={this.props.navigation.state.index === 2}
-          onPress={() => {
-            this.props.navigation.navigate("ProfileTab")
-          }}
-        />
-      </MyTabsContainer>
+      <StyledTabBarContainer>
+        <MyTabsContainer>
+          <TabBarButton
+            title="Dashboard"
+            disabled={this.props.navigation.state.index === 0}
+            navigation={this.props.navigation}
+            navigateTo="DashboardTab"
+          />
+          <TabBarButton
+            title="Prylbank"
+            disabled={this.props.navigation.state.index === 1}
+            navigation={this.props.navigation}
+            navigateTo="AssetTrackerTab"
+          />
+          <TabBarButton
+            title="Profil"
+            disabled={this.props.navigation.state.index === 2}
+            navigation={this.props.navigation}
+            navigateTo="ProfileTab"
+          />
+        </MyTabsContainer>
+      </StyledTabBarContainer>
     )
   }
 }

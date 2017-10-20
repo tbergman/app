@@ -38,6 +38,7 @@ export default class Dialog extends React.Component {
       <PopupDialog
         ref={(popupDialog) => { this.popupDialog = popupDialog }}
         dialogTitle={<DialogTitle title={this.props.message.title || ""} />}
+        dismissOnTouchOutside={false}
         style={{flex: 1}}
       >
         <View style={{ alignItems: "center", padding: 20, flex: 1 }}>

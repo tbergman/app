@@ -128,6 +128,8 @@ Get my current insurance (also includes new price if user has requested a quote 
 
 `GET /insurance`
 
+NOTE: A call to /insurance is issued after every call to /messages to ensure an up-to-date view of insurance status. This is an MVP solution which might render a larger than necessary number of messages.
+
 #### Response body example
 
 ```
@@ -410,6 +412,8 @@ Chat messages are delivered through polling the /messages endpoint. They are del
 <BR>Response format is {"timestamp1":message1, "timestamp2":message2,...}
 <BR><BR>
 Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
+
+The form feed character '\f' is used to separate text bewteen chat-bubbles when rendering a single message
 
 * Message header
 The message headers contains information about: 

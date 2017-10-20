@@ -10,6 +10,9 @@ import MultipleSelectInput from "../containers/chat/MultipleSelectInput"
 import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import VideoInput from "../containers/chat/VideoInput"
 import PhotoInput from "../containers/chat/PhotoInput"
+import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
+import { StyledChatContainer, StyledMessageArea, StyledResponseArea } from "./styles/chat"
+import ParagraphInput from "../containers/chat/ParagraphInput"
 
 const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
@@ -38,37 +41,27 @@ const getInputComponent = function(messages, navigation) {
         }}
       />
     ),
-    photo_upload: <PhotoInput messageIndex={lastIndex} />
+    photo_upload: <PhotoInput messageIndex={lastIndex} />,
+    bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
+    paragraph: <ParagraphInput messageIndex={lastIndex} />
   }[lastMessageType]
 }
 
-const Container = styled.View`
-  flex: 1;
-  align-self: stretch;
-`
-
-const Half = styled.View`
-  flex: 1;
-  align-self: stretch;
-  border: solid 1px black;
-`
-
 export default class Chat extends React.Component {
-
   componentDidMount() {
     this.props.registerForPushNotifications()
   }
 
   render() {
     return (
-      <Container>
-        <Half>
+      <StyledChatContainer>
+        <StyledMessageArea>
           <MessageList />
-        </Half>
-        <Half>
+        </StyledMessageArea>
+        <StyledResponseArea>
           {getInputComponent(this.props.messages, this.props.navigation)}
-        </Half>
-      </Container>
+        </StyledResponseArea>
+      </StyledChatContainer>
     )
   }
 }

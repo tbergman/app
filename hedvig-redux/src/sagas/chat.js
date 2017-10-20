@@ -4,10 +4,20 @@ import {
   SEND_CHAT_RESPONSE,
   LOADING_MESSAGES_START,
   LOADING_MESSAGES_END,
-  LOADED_MESSAGES
+  LOADED_MESSAGES,
+  START_POLLING_MESSAGES,
+  STOP_POLLING_MESSAGES
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
-import { take, takeEvery, put, select } from "redux-saga/effects"
+import {
+  take,
+  takeEvery,
+  put,
+  select,
+  takeLatest,
+  call
+} from "redux-saga/effects"
+import { delay } from "redux-saga"
 
 const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   let state = yield select()
@@ -37,4 +47,28 @@ const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
 
-export { sendChatResponseSaga }
+const DEFAULT_POLLING_INTERVAL = 1000
+const pollMessageHandler = function*(action) {
+  if (action.type === START_POLLING_MESSAGES) {
+    console.log("Polling for messages")
+    let pollingInterval =
+      action.payload.pollingInterval || DEFAULT_POLLING_INTERVAL
+    yield put(chatActions.getMessages())
+    yield call(delay, pollingInterval)
+    yield put({
+      type: START_POLLING_MESSAGES,
+      payload: { pollingInterval }
+    })
+  } else if (action.type === STOP_POLLING_MESSAGES) {
+    console.log("Stopped polling for messages")
+  }
+}
+
+const pollMessagesSaga = function*() {
+  yield takeLatest(
+    [START_POLLING_MESSAGES, STOP_POLLING_MESSAGES],
+    pollMessageHandler
+  )
+}
+
+export { sendChatResponseSaga, pollMessagesSaga }

@@ -2,6 +2,8 @@ import R from "ramda"
 import React from "react"
 import { Text, View, TouchableOpacity, Linking } from "react-native"
 import { WebBrowser } from "expo"
+import { ChatResponseButton } from "../Button"
+import { StyledRightAlignedOptions } from "../styles/chat"
 
 const SingleSelectInput = ({
   message,
@@ -10,26 +12,32 @@ const SingleSelectInput = ({
   launchModal = R.identity
 }) => {
   let opts = message.body.choices.map(choice => {
+    let text = `${choice.text} ${choice.type === "link" ? "➡️" : ""}`
     return (
-      <TouchableOpacity
-        key={choice.text}
-        onPress={() => {
-          if (choice.type === "selection") {
-            selectChoice(message, choice)
-            done(message)
-          } else if (choice.type === "link" && choice.view !== undefined) {
-            launchModal(choice)
-          } else if (choice.type === "link" && choice.appUrl !== undefined) {
-            Linking.openURL(choice.appUrl)
-          } else if (choice.type === "link" && choice.webUrl !== undefined) {
-            WebBrowser.openBrowserAsync(choice.webUrl)
-          }
-        }}
-      >
-        <Text>
-          {choice.text} {choice.type === "link" ? "➡️" : null}
-        </Text>
-      </TouchableOpacity>
+      <StyledRightAlignedOptions>
+        <ChatResponseButton
+          key={choice.text}
+          title={text}
+          onPress={() => {
+            if (choice.type === "selection") {
+              selectChoice(message, choice)
+              done(message)
+            } else if (choice.type === "link" && choice.view !== null) {
+              selectChoice(message, choice)
+              done(message)
+              launchModal(choice)
+            } else if (choice.type === "link" && choice.appUrl !== null) {
+              selectChoice(message, choice)
+              done(message)
+              Linking.openURL(choice.appUrl)
+            } else if (choice.type === "link" && choice.webUrl !== null) {
+              selectChoice(message, choice)
+              done(message)
+              WebBrowser.openBrowserAsync(choice.webUrl)
+            }
+          }}
+        />
+      </StyledRightAlignedOptions>
     )
   })
   return (

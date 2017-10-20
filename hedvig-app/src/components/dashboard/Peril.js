@@ -1,12 +1,9 @@
 import React from "react"
 import { View, ScrollView, Button, Text, Image, TouchableOpacity } from "react-native"
 import Placeholder from "rn-placeholder"
-import styled from "styled-components/native"
+import { StyledPeril, StyledPerilIcon } from "../styles/dashboard"
+import { StyledSmallPassiveText } from "../styles/text"
 
-const StyledPeril = styled.View`
-  width: 90
-  align-items: center
-`
 
 export class Peril extends React.Component {
 
@@ -26,15 +23,45 @@ export class Peril extends React.Component {
     }
   }
 
+  renderAddPeril(peril) {
+    return (
+      <TouchableOpacity onPress={() => this._addPerilPressed()}>
+        <StyledPeril>
+          <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}}>
+            <Text style={{
+              position: "absolute",
+              top: 0,
+              right: 0
+            }}>+</Text>
+          </StyledPerilIcon>
+          <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
+        </StyledPeril>
+      </TouchableOpacity>
+    )
+  }
+
+  renderRemovePeril(peril) {
+    return (
+      <TouchableOpacity onPress={() => this._removePerilPressed()}>
+        <StyledPeril>
+          <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}}>
+            <Text style={{
+              position: "absolute",
+              top: 0,
+              right: 0
+            }}>-</Text>
+          </StyledPerilIcon>
+          <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
+        </StyledPeril>
+      </TouchableOpacity>
+    )
+  }
+
   renderPeril(peril) {
     return (
       <StyledPeril>
-        <Placeholder.Media
-          size={70}
-          color="lightgray"
-          hasRadius
-        />
-        <Text style={{color: "black", textAlign: "center"}}>{peril.title}</Text>
+        <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}} />
+        <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
       </StyledPeril>
     )
   }
@@ -43,20 +70,10 @@ export class Peril extends React.Component {
     let peril = this.props.peril
     // In edit mode: A peril the user can add
     if (this.props.enableAdd) {
-      return (
-        <TouchableOpacity onPress={() => this._addPerilPressed()}>
-          {this.renderPeril(peril)}
-          <Text>Add</Text>
-        </TouchableOpacity>
-      )
+      return this.renderAddPeril(peril)
     // In edit mode: A peril the user can remove
     } else if (this.props.enableRemove) {
-      return (
-        <TouchableOpacity onPress={() => this._removePerilPressed()}>
-          {this.renderPeril(peril)}
-          <Text>Remove</Text>
-        </TouchableOpacity>
-      )
+      return this.renderRemovePeril(peril)
     // Not in edit mode
     } else {
       return (

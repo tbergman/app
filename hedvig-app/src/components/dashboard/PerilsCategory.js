@@ -2,22 +2,20 @@ import React from "react"
 import { View, ScrollView, Button, Text, Image, TouchableOpacity } from "react-native"
 import Peril from "../../containers/dashboard/Peril"
 import styled from "styled-components/native"
+import {
+  StyledCategoryContainer,
+  StyledCategoryHeader,
+  StyledCategoryIcon,
+  StyledCategoryTextContainer,
+  StyledExpandButton,
+  StyledPerilsContainer,
+  StyledPerilsRow
+} from "../styles/dashboard"
+import { StyledRow, StyledWrappingRow } from "../styles/general"
+import { StyledHeading, StyledPassiveText } from "../styles/text"
 const R = require("ramda")
 
-const StyledPerilsCategory = styled.View`
-  flex-wrap: wrap
-  flex-direction: row
-`
 
-const StyledCategoryHeading = styled.View`
-  flex-direction: row
-  align-items: center
-`
-
-const StyledIcon = styled.Image`
-  width: 70
-  height: 70
-`
 
 export class PerilsCategory extends React.Component {
 
@@ -49,34 +47,45 @@ export class PerilsCategory extends React.Component {
   perils() {
     if (this.props.editMode) {
       return (
-        <View>
-          <StyledPerilsCategory>
+        <StyledPerilsContainer>
+          <StyledPerilsRow>
             {this.coveredPerils(true)}
-          </StyledPerilsCategory>
-          <StyledPerilsCategory>
+          </StyledPerilsRow>
+          <StyledPerilsRow>
             {this.uncoveredPerils()}
-          </StyledPerilsCategory>
-        </View>
+          </StyledPerilsRow>
+        </StyledPerilsContainer>
       )
     } else if (this.state.showCategory) {
-      return <StyledPerilsCategory>{this.coveredPerils()}</StyledPerilsCategory>
+      return <StyledPerilsContainer>{this.coveredPerils()}</StyledPerilsContainer>
     }
   }
 
   render() {
     return (
-      <View>
-        <StyledCategoryHeading>
-          <StyledIcon source={{uri: this.props.iconUrl}} />
-          <Text>
-            {this.props.title}
-          </Text>
-          <TouchableOpacity onPress={() => this.setState({showCategory: !this.state.showCategory})}>
-            <Text> {this.state.showCategory ? "Dölj" : "Visa"}</Text>
-          </TouchableOpacity>
-        </StyledCategoryHeading>
+      <StyledCategoryContainer>
+        <StyledCategoryHeader>
+          <StyledCategoryIcon source={{uri: this.props.iconUrl}} />
+          <StyledCategoryTextContainer>
+            <StyledRow>
+              <StyledHeading>
+                {this.props.title}
+              </StyledHeading>
+            </StyledRow>
+            <StyledRow>
+              <StyledPassiveText>
+                Lorem, ipsum, dolor...
+              </StyledPassiveText>
+            </StyledRow>
+          </StyledCategoryTextContainer>
+          <StyledExpandButton>
+            <TouchableOpacity onPress={() => this.setState({showCategory: !this.state.showCategory})}>
+              <Text> {this.state.showCategory ? "Dölj" : "Visa"}</Text>
+            </TouchableOpacity>
+          </StyledExpandButton>
+        </StyledCategoryHeader>
         {this.perils()}
-      </View>
+      </StyledCategoryContainer>
     )
   }
 }

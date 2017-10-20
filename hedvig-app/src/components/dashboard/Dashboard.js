@@ -14,7 +14,16 @@ import { PerilsCategory } from "./PerilsCategory"
 import { Placeholder as PlaceholderStyle } from "../Styles"
 import Placeholder from "rn-placeholder"
 import styled from "styled-components/native"
-import { CircularFontText } from "../../components/Styles.js"
+import { CircularFontText } from "../../components/styles/typography"
+import { TextButton, RoundedButton } from "../Button"
+import {
+  StyledDashboardContainer,
+  StyledDashboardHeader,
+  StyledDashboardHeaderRow,
+  StyledCategoriesContainer,
+  StyledCheckoutButton
+} from "../styles/dashboard"
+import { StyledText, StyledHeading } from "../styles/text"
 const R = require("ramda")
 
 export default class Dashboard extends React.Component {
@@ -32,7 +41,7 @@ export default class Dashboard extends React.Component {
   }
 
   renderCategories() {
-    return this.props.categories.map(({ title, perils, iconUrl }, i) => {
+    let categories = this.props.categories.map(({ title, perils, iconUrl }, i) => {
       return (
         <PerilsCategory
           title={title}
@@ -44,29 +53,50 @@ export default class Dashboard extends React.Component {
         />
       )
     })
+    return (
+      <StyledCategoriesContainer>
+        {categories}
+      </StyledCategoriesContainer>
+    )
   }
 
   maybeCheckoutButton() {
-    if (this.props.newTotalPrice !== null)
-      return <Button title="Checkout" onPress={() => this.props.checkout()} />
+    if (this.props.newTotalPrice !== null) {
+      let prefix = `${this.props.newTotalPrice} kr`
+      return (
+        <StyledCheckoutButton>
+          <RoundedButton
+            prefix={prefix}
+            title="Betala ändringar"
+            onPress={() => this.props.checkout()}
+          />
+        </StyledCheckoutButton>
+      )
+    }
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Button
-          title={this.state.editMode ? "Ok" : "Ändra"}
-          onPress={() => this.setState({ editMode: !this.state.editMode })}
-        />
+      <StyledDashboardContainer style={{ flex: 1 }}>
+        <StyledDashboardHeader>
+          <StyledDashboardHeaderRow>
+            <StyledHeading>Din hemförsäkring</StyledHeading>
+            <TextButton
+              title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
+              onPress={() => this.setState({ editMode: !this.state.editMode })}
+            />
+          </StyledDashboardHeaderRow>
+          <StyledDashboardHeaderRow>
+            <StyledText>Aktiv</StyledText>
+            <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
+            <StyledText>Gäller i hela världen</StyledText>
+          </StyledDashboardHeaderRow>
+        </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Placeholder.Media size={70} color="lightgray" hasRadius />
-            <CircularFontText>Gäller i hela världen</CircularFontText>
-          </View>
         </ScrollView>
         {this.maybeCheckoutButton()}
-      </View>
+      </StyledDashboardContainer>
     )
   }
 }

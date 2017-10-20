@@ -1,3 +1,23 @@
+## Deploying to TestFlight
+
+```
+node bump.js
+<commit the bumped version>
+exp start
+exp build:ios
+watch -n 5 exp build:status
+wget <link to IPA when build:status is done>
+<upload IPA using Application Loader>
+<administrate TestFlight on iTunes Connect>
+```
+
+NOTES
+
+* I think `expo.version` and `expo.ios.buildNumber` have to be in the format `x.y.z`, where `x,y,z` are integers and **x > 0**.
+* The app icon cannot contain alpha/transparency.
+
+---------------
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

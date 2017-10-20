@@ -20,12 +20,13 @@ https://stackoverflow.com/questions/45155249/when-using-redux-saga-with-react-na
 import { take, takeEvery, put, all } from "redux-saga/effects"
 import { authenticateSaga } from "./authenticate"
 import { apiSaga } from "./api"
-import { sendChatResponseSaga } from "./chat"
+import { sendChatResponseSaga, pollMessagesSaga } from "./chat"
 import { updateItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 import { handleStatusMessage } from "./statusMessage"
 import { updateCashbackSaga } from "./cashback"
+import { collectSaga } from "./bankid"
 import runner from "./sagaRunner"
 
 // TODO: Move to actions
@@ -63,6 +64,7 @@ const root = (additionalSagas = []) =>
       authenticateSaga,
       apiSaga,
       sendChatResponseSaga,
+      pollMessagesSaga,
       updateItemSaga,
       getAssetsSaga,
       uploadSaga,
@@ -70,6 +72,7 @@ const root = (additionalSagas = []) =>
       removeInsuranceSaga,
       handleStatusMessage,
       updateCashbackSaga,
+      collectSaga,
       ...additionalSagas
     ])
   }

@@ -1,14 +1,32 @@
 import React from "react"
 import { Text, View, Image } from "react-native"
-import {
-  BaseScrolleViewStyle,
-  ChatMessageStyle,
-  ChatMessageTextStyle
-} from "../Styles"
+import { BaseScrollViewStyle } from "../Styles"
+import { StyledDefaultMessage, StyledChatMessage } from "../styles/chat"
+
+const renderImage = message => {
+  if (
+    message.body.imageURL &&
+    message.body.imageHeight &&
+    message.body.imageWidth
+  ) {
+    return (
+      <Image
+        source={{ uri: message.body.imageURL }}
+        style={{
+          height: message.body.imageHeight,
+          width: message.body.imageWidth
+        }}
+      />
+    )
+  } else {
+    return null
+  }
+}
 
 const SelectMessage = ({ message, textAlign }) => {
   return (
     <View>
+      {renderImage(message)}
       {message.body.choices.filter(c => c.selected).map(c =>
         <Text key={c.text} style={{ textAlign }}>
           {c.text}
@@ -21,6 +39,7 @@ const SelectMessage = ({ message, textAlign }) => {
 const HeroMessage = ({ message, textAlign }) => {
   return (
     <View>
+      {renderImage(message)}
       <Text style={{ textAlign }}>
         {message.body.text}
       </Text>
@@ -34,9 +53,10 @@ const HeroMessage = ({ message, textAlign }) => {
 
 const DefaultMessage = ({ message, textAlign }) => {
   return (
-    <ChatMessageTextStyle style={{ textAlign }}>
+    <StyledDefaultMessage style={{ textAlign }}>
+      {renderImage(message)}
       {message.body.text}
-    </ChatMessageTextStyle>
+    </StyledDefaultMessage>
   )
 }
 
@@ -66,14 +86,14 @@ const renderMessage = function(message, idx) {
   }
   return (
     <View key={message.globalId || idx}>
-      <ChatMessageStyle
+      <StyledChatMessage
         style={{
           flexDirection: flexDirection,
           alignSelf: alignSelf
         }}
       >
         <MessageRenderComponent message={message} textAlign={textAlign} />
-      </ChatMessageStyle>
+      </StyledChatMessage>
     </View>
   )
 }
@@ -84,12 +104,12 @@ const renderMessages = function(messages) {
 
 const MessageList = ({ messages }) => {
   return (
-    <BaseScrolleViewStyle
+    <BaseScrollViewStyle
       innerRef={x => (this.ref = x)}
       onContentSizeChange={() => this.ref.scrollToEnd()}
     >
       {renderMessages(messages)}
-    </BaseScrolleViewStyle>
+    </BaseScrollViewStyle>
   )
 }
 

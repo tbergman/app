@@ -294,7 +294,7 @@ storiesOf("Chat input widgets", module)
         chat: { messages: R.sortBy(R.path(["timestamp"]), R.values(messages)) }
       },
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     chatStore.dispatch({
       type: types.AUTHENTICATE,
@@ -338,7 +338,7 @@ const chatHistoryStoryBase = storiesOf(
   chatHistoryStore = configureStore({
     initialState: { chat: { messages: [] } },
     additionalReducers: { nav },
-    additionalSagas: [apiAndNavigateToChatSaga()]
+    additionalSagas: [apiAndNavigateToChatSaga]
   })
   return (
     <StorybookProvider store={chatHistoryStore}>
@@ -357,7 +357,7 @@ storiesOf("Chat Backend IO", module)
   .addDecorator(story => {
     const chatBackendIOStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     chatBackendIOStore.dispatch({
       type: "AUTHENTICATE",
@@ -376,7 +376,7 @@ storiesOf("Asset Tracker", module)
   .addDecorator(story => {
     const assetStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     assetStore.dispatch({
       type: "AUTHENTICATE",
@@ -396,7 +396,7 @@ storiesOf("Components", module)
   .addDecorator(story => {
     const hedvigStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     window.hedvigStore = hedvigStore
     return (
@@ -413,7 +413,7 @@ storiesOf("Dashboard", module)
   .addDecorator(story => {
     const dashboardStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     window.dashboardStore = dashboardStore
     return (
@@ -428,7 +428,7 @@ storiesOf("Profile", module)
   .addDecorator(story => {
     const profileStore = configureStore({
       additionalReducers: { nav },
-      additionalSagas: [apiAndNavigateToChatSaga()]
+      additionalSagas: [apiAndNavigateToChatSaga]
     })
     window.profileStore = profileStore
     return (

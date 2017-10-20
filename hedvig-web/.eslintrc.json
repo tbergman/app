@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": ["react-app", "prettier"],
   "env": {
     "es6": true,
@@ -13,6 +14,7 @@
     }
   },
   "rules": {
-    "no-undef": "error"
+    "no-undef": "error",
+    "jsx-a11y/href-no-hash": "off"
   }
 }
