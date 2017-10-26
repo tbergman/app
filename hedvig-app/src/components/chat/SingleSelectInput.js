@@ -2,8 +2,8 @@ import R from "ramda"
 import React from "react"
 import { Text, View, TouchableOpacity, Linking } from "react-native"
 import { WebBrowser } from "expo"
-import { ChatResponseButton } from "../Button"
-import { StyledRightAlignedOptions } from "../styles/chat"
+import { SingleSelectOptionButton } from "../Button"
+import { StyledRightAlignedOptions, StyledMarginRightContainer } from "../styles/chat"
 
 const SingleSelectInput = ({
   message,
@@ -12,12 +12,10 @@ const SingleSelectInput = ({
   launchModal = R.identity
 }) => {
   let opts = message.body.choices.map(choice => {
-    let text = `${choice.text} ${choice.type === "link" ? "➡️" : ""}`
     return (
-      <StyledRightAlignedOptions>
-        <ChatResponseButton
-          key={choice.text}
-          title={text}
+      <StyledRightAlignedOptions key={choice.text}>
+        <SingleSelectOptionButton
+          title={choice.text}
           onPress={() => {
             if (choice.type === "selection") {
               selectChoice(message, choice)
@@ -41,9 +39,9 @@ const SingleSelectInput = ({
     )
   })
   return (
-    <View>
+    <StyledMarginRightContainer>
       {opts}
-    </View>
+    </StyledMarginRightContainer>
   )
 }
 

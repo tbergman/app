@@ -6,7 +6,11 @@ import {
   LOADING_MESSAGES_END,
   LOADED_MESSAGES,
   START_POLLING_MESSAGES,
-  STOP_POLLING_MESSAGES
+  STOP_POLLING_MESSAGES,
+  LOADED_AVATARS,
+  LOADED_AVATAR_DATA,
+  RESET_CONVERSATION,
+  EDIT_LAST_RESPONSE
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
 import {
@@ -15,7 +19,9 @@ import {
   put,
   select,
   takeLatest,
-  call
+  call,
+  all,
+  fork
 } from "redux-saga/effects"
 import { delay } from "redux-saga"
 
@@ -47,6 +53,40 @@ const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
 
+const resetConversation = function*(action) {
+  yield put({
+    type: API,
+    payload: {
+      url: "/chat/reset",
+      method: "POST",
+      SUCCESS: "CHAT_RESET_REQUESTED"
+    }
+  })
+  let success = yield take("CHAT_RESET_REQUESTED")
+  yield put(chatActions.getMessages())
+}
+
+const resetConversationSaga = function*() {
+  yield takeEvery(RESET_CONVERSATION, resetConversation)
+}
+
+const editLastResponse = function*(action) {
+  yield put({
+    type: API,
+    payload: {
+      url: "/chat/edit",
+      method: "POST",
+      SUCCESS: "EDITED_LAST_RESPONSE"
+    }
+  })
+  let success = yield take("EDITED_LAST_RESPONSE")
+  yield put(chatActions.getMessages())
+}
+
+const editLastResponseSaga = function*() {
+  // yield takeEvery(EDIT_LAST_RESPONSE, editLastResponse)
+}
+
 const DEFAULT_POLLING_INTERVAL = 1000
 const pollMessageHandler = function*(action) {
   if (action.type === START_POLLING_MESSAGES) {
@@ -71,4 +111,43 @@ const pollMessagesSaga = function*() {
   )
 }
 
-export { sendChatResponseSaga, pollMessagesSaga }
+/*
+Using `all`, `map` and `fork` is the equivalent of:
+yield fork(...)
+yield fork(...)
+yield fork(...)
+...
+See redux-saga docs for `fork`
+*/
+const downloadAvatarData = function*(action) {
+  console.log("Going to download avatar data")
+  yield all(
+    action.payload.map(avatar => {
+      return fork(function*() {
+        console.log("Going to download avatar", avatar)
+        let response = yield fetch(avatar.URL)
+        let json = yield response.json()
+        console.log("Downloaded avatar", avatar)
+        yield put({
+          type: LOADED_AVATAR_DATA,
+          payload: {
+            name: avatar.name,
+            data: json
+          }
+        })
+      })
+    })
+  )
+}
+
+const downloadAvatarSaga = function*() {
+  yield takeEvery(LOADED_AVATARS, downloadAvatarData)
+}
+
+export {
+  sendChatResponseSaga,
+  pollMessagesSaga,
+  downloadAvatarSaga,
+  resetConversationSaga,
+  editLastResponseSaga
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import { View, ScrollView, Button, Text, Image, TouchableOpacity } from "react-native"
 import Placeholder from "rn-placeholder"
-import { StyledPeril, StyledPerilIcon } from "../styles/dashboard"
+import { StyledPeril, StyledPerilIcon, StyledPerilTitle, StyledAddRemoveIcon } from "../styles/dashboard"
 import { StyledSmallPassiveText } from "../styles/text"
 
 
@@ -27,14 +27,10 @@ export class Peril extends React.Component {
     return (
       <TouchableOpacity onPress={() => this._addPerilPressed()}>
         <StyledPeril>
-          <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}}>
-            <Text style={{
-              position: "absolute",
-              top: 0,
-              right: 0
-            }}>+</Text>
+          <StyledPerilIcon source={{uri: peril.imageUrl}}>
+            <StyledAddRemoveIcon source={require('../../../assets/icons/edit_perils/add_peril.png')} />
           </StyledPerilIcon>
-          <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
+          <StyledPerilTitle>{peril.title}</StyledPerilTitle>
         </StyledPeril>
       </TouchableOpacity>
     )
@@ -44,14 +40,10 @@ export class Peril extends React.Component {
     return (
       <TouchableOpacity onPress={() => this._removePerilPressed()}>
         <StyledPeril>
-          <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}}>
-            <Text style={{
-              position: "absolute",
-              top: 0,
-              right: 0
-            }}>-</Text>
+          <StyledPerilIcon source={{uri: peril.imageUrl}}>
+            <StyledAddRemoveIcon source={require('../../../assets/icons/edit_perils/remove_peril.png')} />
           </StyledPerilIcon>
-          <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
+          <StyledPerilTitle>{peril.title}</StyledPerilTitle>
         </StyledPeril>
       </TouchableOpacity>
     )
@@ -60,8 +52,8 @@ export class Peril extends React.Component {
   renderPeril(peril) {
     return (
       <StyledPeril>
-        <StyledPerilIcon source={{uri: "https://unsplash.it/40/40"}} />
-        <StyledSmallPassiveText>{peril.title}</StyledSmallPassiveText>
+        <StyledPerilIcon source={{uri: peril.imageUrl}} />
+        <StyledPerilTitle>{peril.title}</StyledPerilTitle>
       </StyledPeril>
     )
   }

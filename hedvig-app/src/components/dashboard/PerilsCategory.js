@@ -57,7 +57,13 @@ export class PerilsCategory extends React.Component {
         </StyledPerilsContainer>
       )
     } else if (this.state.showCategory) {
-      return <StyledPerilsContainer>{this.coveredPerils()}</StyledPerilsContainer>
+      return (
+        <StyledPerilsContainer>
+          <StyledPerilsRow>
+            {this.coveredPerils()}
+          </StyledPerilsRow>
+        </StyledPerilsContainer>
+      )
     }
   }
 

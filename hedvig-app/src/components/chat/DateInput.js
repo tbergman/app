@@ -1,9 +1,14 @@
 import React from "react"
 import { Text, TouchableOpacity, DatePickerIOS, DatePickerAndroid, View, Platform } from "react-native"
-import styled from "styled-components/native"
+import { Util } from "expo"
+import {
+  StyledDatePickerResultRow,
+  StyledFakeTextInput,
+  StyledFakeTextInputText
+} from "../styles/chat"
+import { SendIconButton } from "../Button"
 import moment from "moment"
-
-const StyledView = styled.View`border: solid 1px black;`
+import "moment/locale/sv"
 
 // TODO: Render DatePickerAndroid on Android
 class DateInput extends React.Component {
@@ -35,6 +40,7 @@ class DateInput extends React.Component {
               : moment(message._inputValue).toDate()
           }
           onDateChange={date => onChange(message, moment(date).toISOString())}
+          style={{flex: 1}}
         />
       )
     } else if (Platform.OS === "android") {
@@ -50,17 +56,17 @@ class DateInput extends React.Component {
   render() {
     let { message, onChange, send } = this.props
     return (
-      <StyledView>
-        <View>
-          <Text>
-            Date: {message._inputValue}
-          </Text>
-        </View>
+      <View>
+        <StyledDatePickerResultRow>
+          <StyledFakeTextInput>
+            <StyledFakeTextInputText>
+              {moment(message._inputValue).format('LL')}
+            </StyledFakeTextInputText>
+          </StyledFakeTextInput>
+          <SendIconButton onPress={() => (send(message))} />
+        </StyledDatePickerResultRow>
         {this.datePicker(message, onChange)}
-        <TouchableOpacity onPress={() => send(message)}>
-          <Text>Send</Text>
-        </TouchableOpacity>
-      </StyledView>
+      </View>
     )
   }
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components/native"
+import { StyledSmallPassiveText } from "./text"
 
 export const StyledDashboardContainer = styled.View`
   flex: 1;
@@ -27,12 +28,12 @@ export const StyledCategoryContainer = styled.View`
   margin-bottom: 8px;
   flex: 1;
   background-color: ${props => props.theme.colors.white};
-  padding: 16px 16px 0px 16px;
+  padding-top: 16px;
 `
 
 export const StyledCategoryHeader = styled.View`
   flex-direction: row;
-  padding-bottom: 16px;
+  padding: 0px 16px 16px 16px;
 `
 
 export const StyledCategoryIcon = styled.Image`
@@ -72,11 +73,24 @@ export const StyledCheckoutButton = styled.View`
 `
 
 export const StyledPeril = styled.View`
-  margin-right: 28px;
+  width: 50px;
+  margin-left: 22px;
   align-items: center;
+`
+
+export const StyledPerilTitle = StyledSmallPassiveText.extend`
+  text-align: center;
 `
 
 export const StyledPerilIcon = styled.Image`
   width: 40px;
   height: 40px;
+`
+
+export const StyledAddRemoveIcon = styled.Image`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
 `

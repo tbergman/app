@@ -1,18 +1,32 @@
 import React from "react"
-import { Text, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity, Image } from "react-native"
 import {
+  StyledButton,
+  StyledDisabledButton,
   StyledButtonText,
+  StyledButtonTextInverted,
   StyledButtonTextPrefix,
   StyledRoundedButton,
-  StyledRoundedButtonText,
-  StyledChatResponseButton
+  StyledRoundedButtonInverted,
+  StyledChatResponseButton,
+  StyledMultipleSelectOptionButton,
+  StyledFabButton
 } from "./styles/button"
+import { StyledDialogButton, StyledDialogButtonText } from "./styles/dialog"
 
 const hitSlop = {
   top: 20,
   right: 20,
   bottom: 20,
   left: 20
+}
+
+export const Button = ({onPress, children}) => {
+  return (
+    <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
+      {children}
+    </TouchableOpacity>
+  )
 }
 
 export const TextButton = ({title, onPress}) => {
@@ -23,16 +37,105 @@ export const TextButton = ({title, onPress}) => {
   )
 }
 
-export const RoundedButton = ({title, prefix, onPress, _ContainerComponent=StyledRoundedButton}) => {
+export const RoundedButtonWithChildren = ({onPress, children}) => {
   return (
-    <_ContainerComponent onPress={onPress}>
-      <StyledButtonText>
+    <StyledRoundedButton onPress={onPress}>
+      {children}
+    </StyledRoundedButton>
+  )
+}
+
+export const RoundedInvertedButtonWithChildren = ({onPress, children}) => {
+  return (
+    <StyledRoundedButtonInverted onPress={onPress} hitSlop={hitSlop}>
+      {children}
+    </StyledRoundedButtonInverted>
+  )
+}
+
+export const RoundedButton = ({title, prefix, onPress, selected=false, _ContainerComponent=RoundedButtonWithChildren, _TextComponent=StyledButtonText}) => {
+  return (
+    <_ContainerComponent onPress={onPress} selected={selected}>
+      <_TextComponent>
         {prefix && (<StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>)}
         {title}
-      </StyledButtonText>
+      </_TextComponent>
     </_ContainerComponent>
   )
 }
 
-export const ChatResponseButton = ({title, prefix, onPress, _ContainerComponent}) =>
- RoundedButton({title, prefix, onPress, _ContainerComponent: StyledChatResponseButton})
+export const SingleSelectOptionButton = ({title, prefix, onPress, selected}) =>
+  RoundedButton({title, prefix, onPress, selected, _ContainerComponent: StyledChatResponseButton})
+
+export const MultipleSelectOptionButton = ({title, prefix, onPress, selected}) => {
+  return (
+    <StyledMultipleSelectOptionButton
+      onPress={onPress}
+      selected={selected}
+      underlayColor="transparent"
+      activeOpacity={0.5}
+    >
+      <StyledButtonText>
+        {prefix && (<StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>)}
+        {title}
+      </StyledButtonText>
+    </StyledMultipleSelectOptionButton>
+  )
+}
+
+
+export const TextInputSubmitButton = ({title, prefix, onPress}) =>
+  RoundedButton({
+    title,
+    prefix,
+    onPress,
+    _ContainerComponent: RoundedInvertedButtonWithChildren,
+    _TextComponent: StyledButtonTextInverted
+  })
+
+
+// Dialog
+
+export const DialogButton = ({title, onPress, borderRight=false}) => {
+  return (
+    <StyledDialogButton onPress={onPress} borderRight={borderRight}>
+      <StyledDialogButtonText>{title}</StyledDialogButtonText>
+    </StyledDialogButton>
+  )
+}
+
+// Icon buttons
+
+export const IconButton = ({iconModule, onPress, _ButtonComponent=StyledButton}) => {
+  return (
+    <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
+      <Image source={iconModule} style={{width: 40, height: 40}} />
+    </_ButtonComponent>
+  )
+}
+
+export const DisabledIconButton = ({iconModule}) =>
+  IconButton({iconModule, _ButtonComponent: StyledDisabledButton})
+
+export const SendIconButton = ({onPress}) =>
+  <IconButton iconModule={require("../../assets/icons/chat/send.png")} onPress={onPress} />
+
+export const SendDisabledIconButton = () =>
+  <DisabledIconButton iconModule={require("../../assets/icons/chat/send_idle.png")} />
+
+export const ChatNavDashboardButton = (onPress) =>
+  <IconButton iconModule={require("../../assets/icons/chat/to_dashboard.png")} />
+
+export const ChatNavRestartButton = (onPress) =>
+  <IconButton iconModule={require("../../assets/icons/chat/restart.png")} />
+
+// Fabs
+
+const FabButton = ({iconModule, onPress}) =>
+  IconButton({iconModule, onPress, _ButtonComponent: StyledFabButton})
+
+export const DashboardFabButton = ({onPress}) =>
+  <FabButton iconModule={require("../../assets/buttons/fab/close_fab.png")} onPress={onPress} />
+
+export const ChatFabButton = ({onPress}) =>
+  <FabButton iconModule={require("../../assets/buttons/fab/open_fab.png")} onPress={onPress} />

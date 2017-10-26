@@ -43,6 +43,7 @@ class App extends React.Component {
       payload: { deviceInfo: getDeviceInfo() }
     })
     this.store.dispatch(hedvigRedux.chatActions.getMessages())
+    this.store.dispatch(hedvigRedux.chatActions.getAvatars())
   }
 
   componentWillUnmount() {

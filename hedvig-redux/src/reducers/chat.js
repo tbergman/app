@@ -7,7 +7,9 @@ import {
   LOADING_MESSAGES_START,
   LOADING_MESSAGES_END,
   CHOICE_SELECTED,
-  SET_RESPONSE_VALUE
+  SET_RESPONSE_VALUE,
+  LOADED_AVATARS,
+  LOADED_AVATAR_DATA
 } from "../actions/types"
 import { MOCK_LOADED_CLAIM_MESSAGES } from "../actions/mock/types"
 
@@ -38,32 +40,48 @@ const setResponseValue = (state, { payload: { message, value } }) => {
   return newState
 }
 
-const loadingMessage = () => {
-  return {
-    globalId: -1,
-    id: "loading",
-    header: {
-      fromId: 1
-    },
-    body: { type: "text", text: "..." },
-    timestamp: moment().toISOString()
-  }
-}
+// const loadingMessage = () => {
+//   return {
+//     globalId: -1,
+//     id: "loading",
+//     header: {
+//       fromId: 1
+//     },
+//     body: { type: "text", text: "..." },
+//     timestamp: moment().toISOString()
+//   }
+// }
 
 const handleLoading = (state, { type }) => {
   if (type === LOADING_MESSAGES_START) {
     let stateWithLoading = Object.assign({}, state, { loadingMessages: true })
-    let newState = dotProp.set(state, `messages`, [
-      ...state.messages,
-      loadingMessage()
-    ])
-    return newState
+    // let newState = dotProp.set(state, `messages`, [
+    //   ...state.messages,
+    //   loadingMessage()
+    // ])
+    return stateWithLoading
   } else if (type === LOADING_MESSAGES_END) {
     return Object.assign({}, state, { loadingMessages: false })
   }
 }
 
-const reducer = (state = { messages: [], loadingMessages: false }, action) => {
+const handleLoadedAvatars = (state, action) => {
+  let avatarsByName = R.indexBy(R.prop("name"), action.payload)
+  return Object.assign({}, state, { avatars: avatarsByName })
+}
+
+const handleLoadedAvatarData = (state, action) => {
+  return dotProp.set(
+    state,
+    `avatars.${action.payload.name}.data`,
+    action.payload.data
+  )
+}
+
+const reducer = (
+  state = { messages: [], loadingMessages: false, avatars: {} },
+  action
+) => {
   switch (action.type) {
     case MOCK_LOADED_CLAIM_MESSAGES:
     case LOADED_MESSAGES:
@@ -78,6 +96,10 @@ const reducer = (state = { messages: [], loadingMessages: false }, action) => {
     case LOADING_MESSAGES_START:
     case LOADING_MESSAGES_END:
       return handleLoading(state, action)
+    case LOADED_AVATARS:
+      return handleLoadedAvatars(state, action)
+    case LOADED_AVATAR_DATA:
+      return handleLoadedAvatarData(state, action)
     default:
       return state
   }

@@ -10,7 +10,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    emptyDialog: () => dispatch(dialogActions.emptyDialog())
+    emptyDialog: () => dispatch(dialogActions.emptyDialog()),
+    confirmButtonPressed: () => dispatch(dialogActions.confirmButtonPressed()),
+    dismissButtonPressed: () => dispatch(dialogActions.dismissButtonPressed())
   }
 }
 

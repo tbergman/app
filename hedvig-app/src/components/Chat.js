@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from "react-native"
 import styled from "styled-components/native"
 
 import MessageList from "../containers/chat/MessageList"
+import LoadingIndicator from "../containers/chat/LoadingIndicator"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
 import ChatTextInput from "../containers/chat/ChatTextInput"
 import DateInput from "../containers/chat/DateInput"
@@ -11,8 +12,14 @@ import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import VideoInput from "../containers/chat/VideoInput"
 import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
-import { StyledChatContainer, StyledMessageArea, StyledResponseArea } from "./styles/chat"
+import {
+  StyledChatContainer,
+  StyledMessageArea,
+  StyledResponseArea
+} from "./styles/chat"
 import ParagraphInput from "../containers/chat/ParagraphInput"
+import { NavBar } from "./NavBar"
+import { ChatNavRestartButton, ChatNavDashboardButton } from "./Button"
 
 const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
@@ -53,10 +60,24 @@ export default class Chat extends React.Component {
   }
 
   render() {
+    let lastIndex = this.props.messages.length - 1
     return (
       <StyledChatContainer>
+        <NavBar
+          title="Chat"
+          headerLeft={
+            <ChatNavRestartButton onPress={() => {
+              debugger
+              this.props.resetConversation()}}
+            />
+          }
+          headerRight={
+            <ChatNavDashboardButton onPress={() => this.props.showDashboard()} />
+          }
+        />
         <StyledMessageArea>
           <MessageList />
+          <LoadingIndicator messageIndex={lastIndex} />
         </StyledMessageArea>
         <StyledResponseArea>
           {getInputComponent(this.props.messages, this.props.navigation)}

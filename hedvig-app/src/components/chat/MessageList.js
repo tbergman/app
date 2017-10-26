@@ -1,7 +1,14 @@
 import React from "react"
-import { Text, View, Image } from "react-native"
+import { Text, View, Image, Dimensions } from "react-native"
 import { BaseScrollViewStyle } from "../Styles"
-import { StyledDefaultMessage, StyledChatMessage } from "../styles/chat"
+import {
+  StyledDefaultMessageText,
+  StyledChatMessage,
+  StyledHeroMessage,
+  StyledAvatarContainer
+} from "../styles/chat"
+import Avatar from "../../containers/chat/Avatar"
+import { theme } from "hedvig-style"
 
 const renderImage = message => {
   if (
@@ -25,38 +32,44 @@ const renderImage = message => {
 
 const SelectMessage = ({ message, textAlign }) => {
   return (
-    <View>
+    <StyledDefaultMessageText>
       {renderImage(message)}
       {message.body.choices.filter(c => c.selected).map(c =>
         <Text key={c.text} style={{ textAlign }}>
           {c.text}
         </Text>
       )}
-    </View>
+    </StyledDefaultMessageText>
   )
 }
 
 const HeroMessage = ({ message, textAlign }) => {
+  const window = Dimensions.get('window')
+  // (window width - (2 outer margin + 2 inner margin) * 0.98)
+  const imageWidth = Math.round((window.width - 4 * theme.mobile.margin.medium) * 0.98)
   return (
-    <View>
+    <StyledHeroMessage>
       {renderImage(message)}
-      <Text style={{ textAlign }}>
+      <StyledDefaultMessageText style={{ textAlign }}>
         {message.body.text}
-      </Text>
+      </StyledDefaultMessageText>
       <Image
+        resizeMode="contain"
         source={{ uri: message.body.imageUri }}
-        style={{ height: 150, width: 300 }}
+        style={{ height: 200, width: imageWidth,  }}
       />
-    </View>
+    </StyledHeroMessage>
   )
 }
 
 const DefaultMessage = ({ message, textAlign }) => {
   return (
-    <StyledDefaultMessage style={{ textAlign }}>
-      {renderImage(message)}
-      {message.body.text}
-    </StyledDefaultMessage>
+    <StyledChatMessage>
+      <StyledDefaultMessageText style={{ textAlign }}>
+        {renderImage(message)}
+        {message.body.text}
+      </StyledDefaultMessageText>
+    </StyledChatMessage>
   )
 }
 
@@ -69,7 +82,7 @@ const HedvigMessageMapping = {
   hero: HeroMessage
 }
 
-const renderMessage = function(message, idx) {
+const renderMessage = function(message, idx, includeAvatar=false) {
   let fromMe = message.header.fromId !== 1
   let flexDirection = fromMe ? "row-reverse" : "row"
   let alignSelf = fromMe ? "flex-end" : "flex-start"
@@ -84,22 +97,33 @@ const renderMessage = function(message, idx) {
   ) {
     MessageRenderComponent = HedvigMessageMapping[message.body.type]
   }
+  let avatar = includeAvatar
+    ? (
+      <StyledAvatarContainer>
+        <Avatar messageIndex={idx} />
+      </StyledAvatarContainer>
+    )
+    : null
   return (
     <View key={message.globalId || idx}>
-      <StyledChatMessage
+      {avatar}
+      <View
         style={{
           flexDirection: flexDirection,
           alignSelf: alignSelf
         }}
       >
         <MessageRenderComponent message={message} textAlign={textAlign} />
-      </StyledChatMessage>
+      </View>
     </View>
   )
 }
 
 const renderMessages = function(messages) {
-  return messages.map(renderMessage)
+  return messages.map((message, idx) => {
+    let includeAvatar = idx === messages.length - 1
+    return renderMessage(message, idx, includeAvatar)
+  })
 }
 
 const MessageList = ({ messages }) => {

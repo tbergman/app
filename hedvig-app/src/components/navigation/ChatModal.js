@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Button } from "react-native"
 
 import { AssetTracker } from "../../components/asset-tracker/AssetNavigator"
 import VideoExample from "../../components/VideoExample"
@@ -17,6 +17,9 @@ const VIEW_MAPPING = {
   link object should be a key in the VIEW_MAPPING above. This View is dynamically
   created using React.createElement below.
 */
+
+// TODO: Fire a CHAT_MODAL_CLOSED action (saga -> POST) when the close
+// button is pressed
 const ChatModal = ({ navigation }) => {
   let content = React.createElement(
     VIEW_MAPPING[navigation.state.params.link.view],
@@ -24,6 +27,7 @@ const ChatModal = ({ navigation }) => {
   )
   return (
     <View style={{ flex: 1, alignSelf: "stretch" }}>
+      <Button title="Close" onPress={() => navigation.goBack()} />
       {content}
     </View>
   )

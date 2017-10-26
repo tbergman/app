@@ -1,8 +1,23 @@
 import React from "react"
-import { View, Text, Button } from "react-native"
+import { View, Text, Dimensions } from "react-native"
 import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog'
+import { theme } from "hedvig-style"
+import {
+  TextContainer,
+  Heading,
+  Paragraph,
+  ButtonsContainer
+} from "./styles/dialog"
+import { DialogButton } from "./Button"
 
-
+/**
+ * Props:
+ * * `message`, ex: {title: "<some title>", paragraph: "<some paragraph>"}
+ * * `dismissButtonTitle`, ex: "Confirm"
+ * * `dismissButtonOnPress`, ex: () => console.log("Confirm pressed")
+ * * `confirmButtonTitle`, ex: "Cancel"
+ * * `confirmButtonOnPress`, ex: () => console.log("Cancel pressed")
+ */
 export default class Dialog extends React.Component {
 
   componentDidUpdate() {
@@ -18,33 +33,54 @@ export default class Dialog extends React.Component {
     this.props.emptyDialog()
   }
 
-  button() {
+  confirmButtonPressed() {
+    this.props.confirmButtonPressed()
+    this.close()
+  }
+
+  dismissButtonPressed() {
+    this.props.dismissButtonPressed()
+    this.close()
+  }
+
+  buttons() {
+    dismissButton = <DialogButton
+      title={this.props.message.dismissButtonTitle || "Ok"}
+      onPress={() => this.dismissButtonPressed()}
+    />
+    let confirmButton
+    if (this.props.message.confirmButtonTitle) {
+      confirmButton = <DialogButton
+        title={this.props.message.confirmButtonTitle}
+        onPress={() => this.confirmButtonPressed()}
+        borderRight={true}
+      />
+    }
+
     return(
-      // bottom: 0 has a small goes slightly over the dialog bottom
-      <View style={{
-        position: "absolute",
-        bottom: 1
-      }}>
-        <Button
-          title="Ok"
-          onPress={() => this.close()}
-        />
-      </View>
+      <ButtonsContainer>
+        {dismissButton}
+        {confirmButton}
+      </ButtonsContainer>
     )
   }
 
   render() {
+    let window = Dimensions.get('window')
+    let width = window.width - 2*theme.mobile.margin.big
     return (
       <PopupDialog
         ref={(popupDialog) => { this.popupDialog = popupDialog }}
-        dialogTitle={<DialogTitle title={this.props.message.title || ""} />}
         dismissOnTouchOutside={false}
+        width={width}
+        height={0.4}
         style={{flex: 1}}
       >
-        <View style={{ alignItems: "center", padding: 20, flex: 1 }}>
+        <TextContainer>
+          <Heading>{this.props.message.title}</Heading>
           <Text>{this.props.message.paragraph}</Text>
-          {this.button()}
-        </View>
+        </TextContainer>
+        {this.buttons()}
       </PopupDialog>
     )
   }

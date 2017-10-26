@@ -15,8 +15,8 @@ import AddEditAsset from "../../src/components/asset-tracker/AddEditAsset"
 import { AssetTracker } from "../../src/components/asset-tracker/AssetNavigator"
 import AnimatedLogo from "../../src/components/AnimatedLogo"
 import VideoExample from "../../src/components/VideoExample"
-import { default as ChatComponent } from "../../src/components/Chat"
 import { default as ChatContainer } from "../../src/containers/Chat"
+import { ChatModalNavigator } from "../../src/components/navigation/base"
 import MultipleSelectInput from "../../src/containers/chat/MultipleSelectInput"
 import { default as ChatTextInputContainer } from "../../src/containers/chat/ChatTextInput"
 import ChatNumberInput from "../../src/containers/chat/ChatNumberInput"
@@ -222,9 +222,8 @@ const messages = {
         },
         {
           type: "link",
-          text: "I want to see my assets",
-          href: "/asset-tracker",
-          view: "AssetTracker"
+          text: "Show me my offer",
+          view: "Dashboard"
         }
       ]
     }
@@ -336,7 +335,9 @@ const chatHistoryStoryBase = storiesOf(
   module
 ).addDecorator(story => {
   chatHistoryStore = configureStore({
-    initialState: { chat: { messages: [] } },
+    initialState: {
+      chat: { messages: [], loadingMessages: false, avatars: {} }
+    },
     additionalReducers: { nav },
     additionalSagas: [apiAndNavigateToChatSaga]
   })
@@ -349,7 +350,8 @@ const chatHistoryStoryBase = storiesOf(
 R.values(messages).forEach(m =>
   chatHistoryStoryBase.add(`${m.body.type} message`, () => {
     chatHistoryStore.dispatch({ type: "LOADED_MESSAGES", payload: [m] })
-    return <ChatContainer />
+    // chatHistoryStore.dispatch(showChatAction())
+    return <ChatModalNavigator />
   })
 )
 

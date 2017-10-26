@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import {
   showDashboardAction
 } from "../../actions/baseNavigation"
+import { DashboardFabButton, ChatFabButton } from "../Button"
 
 const FloatingChatButtonComponent = ({
   dispatch,
@@ -13,47 +14,19 @@ const FloatingChatButtonComponent = ({
   zIndex = 100
 }) => {
   return (
-    <TouchableHighlight
-      style={{
-        position: "absolute",
-        bottom,
-        right,
-        zIndex
-      }}
-      onPress={() => dispatch(chatActions.apiAndNavigateToChat({
-        method: "POST",
-        url: "/chat/main",
-        body: null,
-        SUCCESS: "INITIATED_CHAT_MAIN"
-      }))}
-    >
-      <Text>Chat</Text>
-    </TouchableHighlight>
+    <ChatFabButton onPress={() => dispatch(chatActions.apiAndNavigateToChat({
+      method: "POST",
+      url: "/chat/main",
+      body: null,
+      SUCCESS: "INITIATED_CHAT_MAIN"
+    }))} />
   )
 }
 
 const FloatingChatButton = connect()(FloatingChatButtonComponent)
 
-const FloatingHomeButtonComponent = ({
-  dispatch,
-  bottom = 20,
-  right = 20,
-  zIndex = 100
-}) => {
-  return (
-    <TouchableHighlight
-      style={{
-        position: "absolute",
-        bottom,
-        right,
-        zIndex
-      }}
-      onPress={() => dispatch(showDashboardAction())}
-    >
-      <Text>Dashboard</Text>
-    </TouchableHighlight>
-  )
-}
+const FloatingHomeButtonComponent = ({dispatch}) =>
+  <DashboardFabButton onPress={() => dispatch(showDashboardAction())} />
 
 const FloatingHomeButton = connect()(FloatingHomeButtonComponent)
 

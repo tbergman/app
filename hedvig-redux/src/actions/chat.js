@@ -7,7 +7,10 @@ import {
   SET_RESPONSE_VALUE,
   SEND_TEXT_ANSWER,
   SEND_CHAT_RESPONSE,
-  API_AND_NAVIGATE_TO_CHAT
+  API_AND_NAVIGATE_TO_CHAT,
+  LOADED_AVATARS,
+  RESET_CONVERSATION,
+  EDIT_LAST_RESPONSE
 } from "./types"
 
 export function getMessages() {
@@ -29,6 +32,18 @@ export function startOnboarding() {
       method: "POST",
       SUCCESS: LOADED_ONBOARDING
     }
+  }
+}
+
+export function resetConversation() {
+  return {
+    type: RESET_CONVERSATION
+  }
+}
+
+export function editLastResponse() {
+  return {
+    type: EDIT_LAST_RESPONSE
   }
 }
 
@@ -66,5 +81,17 @@ export function apiAndNavigateToChat(apiPayload) {
   return {
     type: API_AND_NAVIGATE_TO_CHAT,
     payload: apiPayload
+  }
+}
+
+export function getAvatars() {
+  return {
+    type: API,
+    payload: {
+      url: "/avatars",
+      method: "GET",
+      body: null,
+      SUCCESS: LOADED_AVATARS
+    }
   }
 }

@@ -3,7 +3,6 @@ import { View } from "react-native"
 import { StackNavigator } from "react-navigation"
 import Dialog from "../../containers/Dialog"
 
-
 import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
 import ChatModal from "./ChatModal"
@@ -68,7 +67,10 @@ const ChatModalNavigator = StackNavigator(
   {
     initialRouteName: "Chat",
     mode: "modal",
-    headerMode: "none"
+    headerMode: "none",
+    navigationOptions: {
+      gesturesEnabled: false
+    }
   }
 )
 

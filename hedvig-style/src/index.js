@@ -20,6 +20,14 @@ const colors = {
 
 module.exports.theme = {
   colors: colors,
+  mobile: {
+    margin: {
+      tiny: 8,
+      small: 12,
+      medium: 16,
+      big: 24
+    }
+  },
   typography: {
     activeText: {
       color: colors.activeText,
@@ -37,6 +45,14 @@ module.exports.theme = {
     },
     heading: {
       fontSize: 16
+    },
+    input: {
+      fontSize: 16
+    }
+  },
+  input: {
+    default: {
+      height: 40
     }
   },
   button: {

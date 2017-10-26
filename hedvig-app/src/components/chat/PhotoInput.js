@@ -1,10 +1,9 @@
 import R from "ramda"
 import React from "react"
-import { TouchableOpacity, Text, Image } from "react-native"
+import { View, Text, Image } from "react-native"
 import { Permissions, ImagePicker } from "expo"
-import styled from "styled-components/native"
-
-const StyledView = styled.View`border: solid 1px black;`
+import { SingleSelectOptionButton } from "../Button"
+import { StyledMarginRightContainer, StyledRightAlignedOptions } from "../styles/chat"
 
 const getPermissions = async () => {
   await Permissions.getAsync(Permissions.CAMERA)
@@ -28,24 +27,26 @@ const getAndUploadImage = async (mode, message, upload) => {
 const choosePhotoAndUpload = (upload, message) => {
   getPermissions()
   return (
-    <StyledView>
-      <TouchableOpacity
-        onPress={() => getAndUploadImage("camera", message, upload)}
-      >
-        <Text>Take a photo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => getAndUploadImage("picker", message, upload)}
-      >
-        <Text>Choose a photo</Text>
-      </TouchableOpacity>
-    </StyledView>
+    <StyledMarginRightContainer>
+      <StyledRightAlignedOptions>
+        <SingleSelectOptionButton
+          onPress={() => getAndUploadImage("camera", message, upload)}
+          title="Ta en bild"
+        />
+      </StyledRightAlignedOptions>
+      <StyledRightAlignedOptions>
+        <SingleSelectOptionButton
+          onPress={() => getAndUploadImage("picker", message, upload)}
+          title="Välj en bild"
+        />
+      </StyledRightAlignedOptions>
+    </StyledMarginRightContainer>
   )
 }
 
 const sendPhotoLink = (message, reset, done) => {
   return (
-    <StyledView>
+    <View>
       <Image source={{ uri: message._inputValue }} style={{ height: 200 }} />
       <TouchableOpacity onPress={() => reset(message)}>
         <Text>Reset</Text>
@@ -53,7 +54,7 @@ const sendPhotoLink = (message, reset, done) => {
       <TouchableOpacity onPress={() => done(message)}>
         <Text>Send</Text>
       </TouchableOpacity>
-    </StyledView>
+    </View>
   )
 }
 
