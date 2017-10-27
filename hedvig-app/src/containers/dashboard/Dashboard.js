@@ -5,6 +5,7 @@ import { insuranceActions, chatActions } from "hedvig-redux"
 
 const mapStateToProps = state => {
   return {
+    insurance: state.insurance,
     categories: state.insurance.categories,
     currentTotalPrice: state.insurance.currentTotalPrice,
     newTotalPrice: state.insurance.newTotalPrice

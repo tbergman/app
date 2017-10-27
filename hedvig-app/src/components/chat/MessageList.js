@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, Image, Dimensions } from "react-native"
+import { Text, View, Image, Dimensions, Keyboard } from "react-native"
 import { BaseScrollViewStyle } from "../Styles"
 import {
   StyledDefaultMessageText,
@@ -44,9 +44,11 @@ const SelectMessage = ({ message, textAlign }) => {
 }
 
 const HeroMessage = ({ message, textAlign }) => {
-  const window = Dimensions.get('window')
+  const window = Dimensions.get("window")
   // (window width - (2 outer margin + 2 inner margin) * 0.98)
-  const imageWidth = Math.round((window.width - 4 * theme.mobile.margin.medium) * 0.98)
+  const imageWidth = Math.round(
+    (window.width - 4 * theme.mobile.margin.medium) * 0.98
+  )
   return (
     <StyledHeroMessage>
       {renderImage(message)}
@@ -56,7 +58,7 @@ const HeroMessage = ({ message, textAlign }) => {
       <Image
         resizeMode="contain"
         source={{ uri: message.body.imageUri }}
-        style={{ height: 200, width: imageWidth,  }}
+        style={{ height: 200, width: imageWidth }}
       />
     </StyledHeroMessage>
   )
@@ -82,7 +84,7 @@ const HedvigMessageMapping = {
   hero: HeroMessage
 }
 
-const renderMessage = function(message, idx, includeAvatar=false) {
+const renderMessage = function(message, idx, includeAvatar = false) {
   let fromMe = message.header.fromId !== 1
   let flexDirection = fromMe ? "row-reverse" : "row"
   let alignSelf = fromMe ? "flex-end" : "flex-start"
@@ -98,11 +100,9 @@ const renderMessage = function(message, idx, includeAvatar=false) {
     MessageRenderComponent = HedvigMessageMapping[message.body.type]
   }
   let avatar = includeAvatar
-    ? (
-      <StyledAvatarContainer>
+    ? <StyledAvatarContainer>
         <Avatar messageIndex={idx} />
       </StyledAvatarContainer>
-    )
     : null
   return (
     <View key={message.globalId || idx}>
@@ -126,15 +126,41 @@ const renderMessages = function(messages) {
   })
 }
 
-const MessageList = ({ messages }) => {
-  return (
-    <BaseScrollViewStyle
-      innerRef={x => (this.ref = x)}
-      onContentSizeChange={() => this.ref.scrollToEnd()}
-    >
-      {renderMessages(messages)}
-    </BaseScrollViewStyle>
-  )
-}
+export default class MessageList extends React.Component {
+  componentDidMount() {
+    this.keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      this.handleKeyboardStateChange.bind(this)
+    )
+    this.keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      this.handleKeyboardStateChange.bind(this)
+    )
+  }
 
-export default MessageList
+  componentWillUnmount() {
+    if (this.keyboardDidShowListener) {
+      this.keyboardDidShowListener.remove()
+    }
+    if (this.keyboardDidHideListener) {
+      this.keyboardDidHideListener.remove()
+    }
+  }
+
+  handleKeyboardStateChange(event) {
+    if (this.ref) {
+      this.ref.scrollToEnd()
+    }
+  }
+
+  render() {
+    return (
+      <BaseScrollViewStyle
+        innerRef={x => (this.ref = x)}
+        onContentSizeChange={() => this.ref.scrollToEnd()}
+      >
+        {renderMessages(this.props.messages)}
+      </BaseScrollViewStyle>
+    )
+  }
+}

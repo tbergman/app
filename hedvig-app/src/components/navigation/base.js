@@ -5,7 +5,7 @@ import Dialog from "../../containers/Dialog"
 
 import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
-import ChatModal from "./ChatModal"
+import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"

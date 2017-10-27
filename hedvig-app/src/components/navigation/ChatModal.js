@@ -20,14 +20,20 @@ const VIEW_MAPPING = {
 
 // TODO: Fire a CHAT_MODAL_CLOSED action (saga -> POST) when the close
 // button is pressed
-const ChatModal = ({ navigation }) => {
+const ChatModal = ({ navigation, modalClosed }) => {
   let content = React.createElement(
     VIEW_MAPPING[navigation.state.params.link.view],
     { navigation }
   )
   return (
     <View style={{ flex: 1, alignSelf: "stretch" }}>
-      <Button title="Close" onPress={() => navigation.goBack()} />
+      <Button
+        title="Close"
+        onPress={() => {
+          modalClosed()
+          navigation.goBack()
+        }}
+      />
       {content}
     </View>
   )

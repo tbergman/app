@@ -106,10 +106,15 @@ export const DialogButton = ({title, onPress, borderRight=false}) => {
 
 // Icon buttons
 
-export const IconButton = ({iconModule, onPress, _ButtonComponent=StyledButton}) => {
+export const IconButton = ({iconModule, onPress, size="big", _ButtonComponent=StyledButton}) => {
+  let width = {
+    small: 16,
+    medium: 20,
+    big: 40
+  }[size]
   return (
     <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
-      <Image source={iconModule} style={{width: 40, height: 40}} />
+      <Image source={iconModule} style={{width: width, height: width}} />
     </_ButtonComponent>
   )
 }
@@ -123,11 +128,11 @@ export const SendIconButton = ({onPress}) =>
 export const SendDisabledIconButton = () =>
   <DisabledIconButton iconModule={require("../../assets/icons/chat/send_idle.png")} />
 
-export const ChatNavDashboardButton = (onPress) =>
-  <IconButton iconModule={require("../../assets/icons/chat/to_dashboard.png")} />
+export const ChatNavDashboardButton = ({onPress}) =>
+  <IconButton iconModule={require("../../assets/icons/chat/to_dashboard.png")} onPress={onPress} />
 
-export const ChatNavRestartButton = (onPress) =>
-  <IconButton iconModule={require("../../assets/icons/chat/restart.png")} />
+export const ChatNavRestartButton = ({onPress}) =>
+  <IconButton iconModule={require("../../assets/icons/chat/restart.png")} onPress={onPress} />
 
 // Fabs
 

@@ -1,21 +1,23 @@
 import styled from "styled-components/native"
 import * as typography from "./typography"
+import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingView"
 
 export const StyledChatContainer = styled.View`
   flex: 1;
   align-self: stretch;
-  background: ${props => props.theme.colors.white}
+  background: ${props => props.theme.colors.white};
+`
+
+export const StyledMessageAndResponseArea = styled(HedvigKeyboardAvoidingView)`
+  flex: 1;
 `
 
 export const StyledMessageArea = styled.View`
-  flex: 3;
-  align-self: stretch;
+  flex: auto;
   padding: 16px;
 `
 
-export const StyledResponseArea = styled.View`
-  flex: 2;
-`
+export const StyledResponseArea = styled.View`align-self: stretch;`
 
 // Regular text messages
 
@@ -45,9 +47,7 @@ export const StyledAvatarContainer = styled.View`
 
 // Single select & multiple select
 
-export const StyledMarginRightContainer = styled.View`
-  margin-right: 8px;
-`
+export const StyledMarginRightContainer = styled.View`margin-right: 8px;`
 
 export const StyledRightAlignedOptions = styled.View`
   flex-direction: row-reverse;
@@ -100,5 +100,5 @@ export const StyledFakeTextInput = styled.View`
 
 export const StyledFakeTextInputText = styled.Text`
   font-size: ${props => props.theme.typography.input.fontSize};
-  color: ${props => props.theme.typography.activeText.color}
+  color: ${props => props.theme.typography.activeText.color};
 `

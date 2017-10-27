@@ -74,6 +74,7 @@ Get a quote
 "categories": [
   {
     "title": "Du och din familj",
+    "description": "Brand, inbrott, vattenläcka",
     "iconUrl": "https://unsplash.it/70/70"
     "perils": [
       {
@@ -98,6 +99,7 @@ Get a quote
   "categories": [
     {
       "title": "Du och din familj",
+      "description": "Brand, inbrott, vattenläcka",
       "iconUrl": "https://unsplash.it/70/70"
       "perils": [
         {
@@ -137,6 +139,7 @@ NOTE: A call to /insurance is issued after every call to /messages to ensure an 
   "categories": [
     {
       "title": "Du och din familj",
+      "description": "Brand, inbrott, vattenläcka",
       "iconUrl": "https://unsplash.it/70/70"
       "perils": [
         {
@@ -416,7 +419,7 @@ Chat messages are recieved by POSTING to the /response endpoint with the id fiel
 The form feed character '\f' is used to separate text bewteen chat-bubbles when rendering a single message
 
 * Message header
-The message headers contains information about: 
+The message headers contains information about:
 ```
 "messageId":6,
 "fromId":1,

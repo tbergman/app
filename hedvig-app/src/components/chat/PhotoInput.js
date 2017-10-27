@@ -1,6 +1,6 @@
 import R from "ramda"
 import React from "react"
-import { View, Text, Image } from "react-native"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 import { Permissions, ImagePicker } from "expo"
 import { SingleSelectOptionButton } from "../Button"
 import { StyledMarginRightContainer, StyledRightAlignedOptions } from "../styles/chat"
@@ -44,26 +44,8 @@ const choosePhotoAndUpload = (upload, message) => {
   )
 }
 
-const sendPhotoLink = (message, reset, done) => {
-  return (
-    <View>
-      <Image source={{ uri: message._inputValue }} style={{ height: 200 }} />
-      <TouchableOpacity onPress={() => reset(message)}>
-        <Text>Reset</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => done(message)}>
-        <Text>Send</Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
-
-const PhotoInput = ({ message, upload, reset, done }) => {
-  if (!message._inputValue) {
-    return choosePhotoAndUpload(upload, message)
-  } else {
-    return sendPhotoLink(message, reset, done)
-  }
+const PhotoInput = ({ message, upload }) => {
+  return choosePhotoAndUpload(upload, message)
 }
 
 export default PhotoInput

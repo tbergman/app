@@ -5,6 +5,8 @@ import { storiesOf } from "@storybook/react-native"
 import { action } from "@storybook/addon-actions"
 import { linkTo } from "@storybook/addon-links"
 
+import { App } from "../../App"
+
 import { Provider } from "react-redux"
 import { configureStore, chatActions, types } from "hedvig-redux"
 
@@ -54,6 +56,8 @@ class StorybookProvider extends React.Component {
     )
   }
 }
+
+storiesOf("App", module).add("The whole app", () => <App />)
 
 let timestamp = 1507042098159
 

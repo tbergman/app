@@ -20,6 +20,16 @@ export const StyledDashboardHeaderRow = styled.View`
   margin-bottom: 10;
 `
 
+export const StyledDashboardHeaderItem = styled.View`
+  flex-direction: row;
+`
+
+export const StyledDashboardHeaderIcon = styled.Image`
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+`
+
 export const StyledCategoriesContainer = styled.View`
   padding: 8px;
 `

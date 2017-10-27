@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity, KeyboardAvoidingView } from "react-native"
 import styled from "styled-components/native"
 
 import MessageList from "../containers/chat/MessageList"
@@ -14,6 +14,7 @@ import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
 import {
   StyledChatContainer,
+  StyledMessageAndResponseArea,
   StyledMessageArea,
   StyledResponseArea
 } from "./styles/chat"
@@ -66,22 +67,25 @@ export default class Chat extends React.Component {
         <NavBar
           title="Chat"
           headerLeft={
-            <ChatNavRestartButton onPress={() => {
-              debugger
-              this.props.resetConversation()}}
+            <ChatNavRestartButton
+              onPress={() => this.props.resetConversation()}
             />
           }
           headerRight={
-            <ChatNavDashboardButton onPress={() => this.props.showDashboard()} />
+            <ChatNavDashboardButton
+              onPress={() => this.props.showDashboard()}
+            />
           }
         />
-        <StyledMessageArea>
-          <MessageList />
-          <LoadingIndicator messageIndex={lastIndex} />
-        </StyledMessageArea>
-        <StyledResponseArea>
-          {getInputComponent(this.props.messages, this.props.navigation)}
-        </StyledResponseArea>
+        <StyledMessageAndResponseArea behavior="padding">
+          <StyledMessageArea>
+            <MessageList />
+            <LoadingIndicator messageIndex={lastIndex} />
+          </StyledMessageArea>
+          <StyledResponseArea>
+            {getInputComponent(this.props.messages, this.props.navigation)}
+          </StyledResponseArea>
+        </StyledMessageAndResponseArea>
       </StyledChatContainer>
     )
   }

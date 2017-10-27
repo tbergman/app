@@ -21,7 +21,9 @@ import {
   StyledDashboardHeader,
   StyledDashboardHeaderRow,
   StyledCategoriesContainer,
-  StyledCheckoutButton
+  StyledCheckoutButton,
+  StyledDashboardHeaderItem,
+  StyledDashboardHeaderIcon
 } from "../styles/dashboard"
 import { StyledText, StyledHeading } from "../styles/text"
 const R = require("ramda")
@@ -75,6 +77,18 @@ export default class Dashboard extends React.Component {
     }
   }
 
+  statusIcon() {
+    imageModule = {
+      ACTIVE: require("../../../assets/icons/my_insurance/aktiv.png"),
+      PENDING: require("../../../assets/icons/edit_perils/added_peril.png"),
+      INACTIVE: require("../../../assets/icons/edit_perils/remove_peril.png"),
+      DENIED: require("../../../assets/icons/edit_perils/remove_peril.png")
+    }[this.props.insurance.status]
+    return (
+      <StyledDashboardHeaderIcon source={imageModule} />
+    )
+  }
+
   render() {
     return (
       <StyledDashboardContainer style={{ flex: 1 }}>
@@ -87,7 +101,10 @@ export default class Dashboard extends React.Component {
             />
           </StyledDashboardHeaderRow>
           <StyledDashboardHeaderRow>
-            <StyledText>Aktiv</StyledText>
+            <StyledDashboardHeaderItem>
+              {this.statusIcon()}
+              <StyledText>Aktiv</StyledText>
+            </StyledDashboardHeaderItem>
             <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
             <StyledText>Gäller i hela världen</StyledText>
           </StyledDashboardHeaderRow>

@@ -17,7 +17,7 @@ const findPerilInCategories = (peril, categories) => {
     let category = categories[ci]
     let pi = category.perils.findIndex(p => p.id === peril.id)
     if (pi !== -1) {
-      return category[pi]
+      return category.perils[pi]
     }
   }
 }
@@ -33,13 +33,13 @@ const removePeril = function*({ payload: { peril } }) {
       method: "POST",
       url: `/insurance/quote`,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(state, null, 4),
+      body: JSON.stringify(state.insurance, null, 4),
       SUCCESS: PERIL_REMOVED
     }
   })
   let success = yield take(PERIL_REMOVED)
   console.log("Peril removed - response payload:", success.payload)
-  // TODO: Put this back: yield put(insuranceActions.getInsurance())
+  yield put(insuranceActions.getInsurance())
 }
 
 const addPeril = function*({ payload: { peril } }) {
@@ -53,13 +53,13 @@ const addPeril = function*({ payload: { peril } }) {
       method: "POST",
       url: `/insurance/quote`,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(state, null, 4),
+      body: JSON.stringify(state.insurance, null, 4),
       SUCCESS: PERIL_ADDED
     }
   })
   let success = yield take(PERIL_ADDED)
   console.log("Peril removed - response payload:", success.payload)
-  // TODO: Put this back: yield put(insuranceActions.getInsurance())
+  yield put(insuranceActions.getInsurance())
 }
 
 const removeInsuranceSaga = function*() {

@@ -2,7 +2,7 @@
 import StorybookUI from "./storybook"
 
 import React from "react"
-import { AppState } from "react-native"
+import { AppState, Keyboard } from "react-native"
 import { Provider } from "react-redux"
 
 const hedvigRedux = require("hedvig-redux")
@@ -17,17 +17,24 @@ import WithAssets from "./src/components/WithAssets"
 window.Navigation = Navigation
 
 import { appStateChange } from "./src/actions/appState"
+import { keyboardStateChange } from "./src/actions/keyboardState"
 import appStateChangeReducer from "./src/reducers/appState"
+import keyboardStateChangeReducer from "./src/reducers/keyboardState"
 import { appStateSaga } from "./src/sagas/appState"
+import { keyboardSaga } from "./src/sagas/keyboard"
 
 import { getDeviceInfo } from "./src/services/DeviceInfo"
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor() {
     super()
     this.store = hedvigRedux.configureStore({
-      additionalReducers: { nav, appState: appStateChangeReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, appStateSaga]
+      additionalReducers: {
+        nav,
+        appState: appStateChangeReducer,
+        keyboard: keyboardStateChangeReducer
+      },
+      additionalSagas: [apiAndNavigateToChatSaga, appStateSaga, keyboardSaga]
     })
     window.store = this.store
   }
@@ -36,8 +43,26 @@ class App extends React.Component {
     this.store.dispatch(appStateChange(nextAppState))
   }
 
+  _keyboardWillShow(event) {
+    console.log("Keyboard shown")
+    this.store.dispatch(keyboardStateChange({ ...event, state: "shown" }))
+  }
+
+  _keyboardWillHide(event) {
+    console.log("Keyboard hidden")
+    this.store.dispatch(keyboardStateChange({ ...event, state: "hidden" }))
+  }
+
   componentDidMount() {
     AppState.addEventListener("change", this._handleAppStateChange)
+    this.keyboardWillShowListener = Keyboard.addListener(
+      "keyboardWillShow",
+      this._keyboardWillShow.bind(this)
+    )
+    this.keyboardWillHideListener = Keyboard.addListener(
+      "keyboardWillHide",
+      this._keyboardWillHide.bind(this)
+    )
     this.store.dispatch({
       type: hedvigRedux.types.AUTHENTICATE,
       payload: { deviceInfo: getDeviceInfo() }
@@ -48,6 +73,12 @@ class App extends React.Component {
 
   componentWillUnmount() {
     AppState.removeEventListener("change", this._handleAppStateChange)
+    if (this.keyboardWillShowListener) {
+      this.keyboardWillShowListener.remove()
+    }
+    if (this.keyboardWillHideListener) {
+      this.keyboardWillHideListener.remove()
+    }
   }
 
   render() {
