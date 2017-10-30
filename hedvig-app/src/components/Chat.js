@@ -12,6 +12,7 @@ import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import VideoInput from "../containers/chat/VideoInput"
 import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
+import AudioInput from "../containers/chat/AudioInput"
 import {
   StyledChatContainer,
   StyledMessageAndResponseArea,
@@ -51,7 +52,8 @@ const getInputComponent = function(messages, navigation) {
     ),
     photo_upload: <PhotoInput messageIndex={lastIndex} />,
     bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
-    paragraph: <ParagraphInput messageIndex={lastIndex} />
+    paragraph: <ParagraphInput messageIndex={lastIndex} />,
+    audio: <AudioInput messageIndex={lastIndex} />
   }[lastMessageType]
 }
 

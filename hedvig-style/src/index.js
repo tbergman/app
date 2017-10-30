@@ -17,7 +17,6 @@ const colors = {
   hedvigMessageBackground: "#F9FAFC"
 }
 
-
 module.exports.theme = {
   colors: colors,
   mobile: {
@@ -48,6 +47,11 @@ module.exports.theme = {
     },
     input: {
       fontSize: 16
+    },
+    form: {
+      input: {
+        fontSize: 14
+      }
     }
   },
   input: {

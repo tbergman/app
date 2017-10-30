@@ -13,6 +13,7 @@ import {
   EDIT_LAST_RESPONSE
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
+import * as insuranceActions from "../actions/insurance"
 import {
   take,
   takeEvery,
@@ -144,10 +145,24 @@ const downloadAvatarSaga = function*() {
   yield takeEvery(LOADED_AVATARS, downloadAvatarData)
 }
 
+const getInsuranceWithMessages = function*(action) {
+  console.log("Getting insurance together with messages")
+  yield put(insuranceActions.getInsurance())
+}
+
+const getInsuranceWithMessagesSaga = function*() {
+  yield takeEvery(API, function*(apiAction) {
+    if (apiAction.payload.url === chatActions.GET_MESSAGES_URL) {
+      yield getInsuranceWithMessages(apiAction)
+    }
+  })
+}
+
 export {
   sendChatResponseSaga,
   pollMessagesSaga,
   downloadAvatarSaga,
   resetConversationSaga,
-  editLastResponseSaga
+  editLastResponseSaga,
+  getInsuranceWithMessagesSaga
 }

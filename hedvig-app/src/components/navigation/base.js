@@ -48,7 +48,7 @@ const ChatBase = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <Chat navigation={navigation} />
-      <FloatingHomeButton />
+      {/* <FloatingHomeButton /> */}
       <Dialog />
     </View>
   )

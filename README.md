@@ -377,7 +377,16 @@ Reponse code: 204
   "address": "Krukmakargatan 5",
   "livingAreaSqm": "48",
   "maskedBankAccountNumber": "XXXX XXXX 1234",
-  "selectedCashback": "Rädda Barnen"
+  "paymentStatus": "ACTIVE",
+  "nextPaymentDate": 1507042098159,
+  "selectedCashback": "Rädda Barnen",
+  "selectedCashbackParagraph": "\“Tack kära Lucas för att du bidrar till att rädda livet på fler cancerdrabbade barn\"",
+  "selectedCashbackSignature": "Isabelle Ducellier, Generaldirektör",
+  "safetyIncreasers": [
+    "brandvarnare",
+    "säkerhetsdörr",
+    "gallergrind"
+  ]
 }
 ```
 
@@ -391,7 +400,7 @@ The client:
 `POST /hedvig/initiateUpdate`
 
 * Paramter: `what`
-* Values: `PERSONAL_INFORMATOIN, FAMILY_MEMBERS, APARTMENT_INFORMATION, BANK_ACCOUNT`
+* Values: `PERSONAL_INFORMATOIN, FAMILY_MEMBERS, APARTMENT_INFORMATION, BANK_ACCOUNT, SAFETY_INCREASERS`
 
 Response code: 204
 

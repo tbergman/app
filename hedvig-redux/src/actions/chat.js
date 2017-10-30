@@ -13,11 +13,13 @@ import {
   EDIT_LAST_RESPONSE
 } from "./types"
 
+export const GET_MESSAGES_URL = "/messages"
+
 export function getMessages() {
   return {
     type: API,
     payload: {
-      url: "/messages",
+      url: GET_MESSAGES_URL,
       method: "GET",
       SUCCESS: LOADED_MESSAGES
     }

@@ -49,6 +49,7 @@ export const StyledCategoryHeader = styled.View`
 export const StyledCategoryIcon = styled.Image`
   width: 74px;
   height: 74px;
+  border-radius: 37px;
 `
 
 export const StyledCategoryTextContainer = styled.View`

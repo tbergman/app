@@ -2,19 +2,25 @@ import React from "react"
 import { TouchableHighlight, Text } from "react-native"
 import * as Navigation from "../services/Navigation"
 import { FontAwesome } from "@expo/vector-icons"
-import { StyledNavBarContainer } from "./styles/navbar"
+import { StyledNavBarContainer, EmptyHeaderItem } from "./styles/navbar"
 import { SendDisabledIconButton } from "./Button"
+import { HedvigLogoBlue } from "./Icon"
 import { StyledHeading } from "./styles/text"
 
-export const NavBar = ({title, headerLeft, headerRight}) => {
-  title = title || "Title"
-  headerLeft = headerLeft || <SendDisabledIconButton />
-  headerRight = headerRight || <SendDisabledIconButton />
+export const NavBar = ({ title, headerLeft, headerRight }) => {
+  let TitleComponent
+  if (title) {
+    TitleComponent = <StyledHeading>{title}</StyledHeading>
+  } else {
+    TitleComponent = <HedvigLogoBlue />
+  }
+  headerLeft = headerLeft || <EmptyHeaderItem />
+  headerRight = headerRight || <EmptyHeaderItem />
 
   return (
     <StyledNavBarContainer>
       {headerLeft}
-      <StyledHeading>{title}</StyledHeading>
+      {TitleComponent}
       {headerRight}
     </StyledNavBarContainer>
   )

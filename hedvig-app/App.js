@@ -11,6 +11,7 @@ import nav from "./src/reducers/nav"
 import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
 import * as Navigation from "./src/services/Navigation"
 import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
+import { tokenStorageSaga } from "./src/sagas/TokenStorage"
 import { ThemeProvider } from "styled-components"
 import { theme } from "hedvig-style"
 import WithAssets from "./src/components/WithAssets"
@@ -22,8 +23,7 @@ import appStateChangeReducer from "./src/reducers/appState"
 import keyboardStateChangeReducer from "./src/reducers/keyboardState"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
-
-import { getDeviceInfo } from "./src/services/DeviceInfo"
+import { getOrLoadToken } from "./src/services/TokenStorage"
 
 export class App extends React.Component {
   constructor() {
@@ -34,7 +34,12 @@ export class App extends React.Component {
         appState: appStateChangeReducer,
         keyboard: keyboardStateChangeReducer
       },
-      additionalSagas: [apiAndNavigateToChatSaga, appStateSaga, keyboardSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        appStateSaga,
+        keyboardSaga,
+        tokenStorageSaga
+      ]
     })
     window.store = this.store
   }
@@ -63,10 +68,7 @@ export class App extends React.Component {
       "keyboardWillHide",
       this._keyboardWillHide.bind(this)
     )
-    this.store.dispatch({
-      type: hedvigRedux.types.AUTHENTICATE,
-      payload: { deviceInfo: getDeviceInfo() }
-    })
+    getOrLoadToken(this.store.dispatch)
     this.store.dispatch(hedvigRedux.chatActions.getMessages())
     this.store.dispatch(hedvigRedux.chatActions.getAvatars())
   }

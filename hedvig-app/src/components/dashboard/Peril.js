@@ -1,12 +1,22 @@
 import React from "react"
-import { View, ScrollView, Button, Text, Image, TouchableOpacity } from "react-native"
+import {
+  View,
+  ScrollView,
+  Button,
+  Text,
+  Image,
+  TouchableOpacity
+} from "react-native"
 import Placeholder from "rn-placeholder"
-import { StyledPeril, StyledPerilIcon, StyledPerilTitle, StyledAddRemoveIcon } from "../styles/dashboard"
+import {
+  StyledPeril,
+  StyledPerilIcon,
+  StyledPerilTitle,
+  StyledAddRemoveIcon
+} from "../styles/dashboard"
 import { StyledSmallPassiveText } from "../styles/text"
 
-
 export class Peril extends React.Component {
-
   _addPerilPressed() {
     this.props.addPeril(this.props.peril)
   }
@@ -18,7 +28,10 @@ export class Peril extends React.Component {
   _cashbackCarouselCta(peril) {
     if (peril.state == "COVERED") {
       return (
-        <Button title="Claim" onPress={() => this.props.raisePerilClaim(peril)} />
+        <Button
+          title="Claim"
+          onPress={() => this.props.raisePerilClaim(peril)}
+        />
       )
     }
   }
@@ -27,8 +40,10 @@ export class Peril extends React.Component {
     return (
       <TouchableOpacity onPress={() => this._addPerilPressed()}>
         <StyledPeril>
-          <StyledPerilIcon source={{uri: peril.imageUrl}}>
-            <StyledAddRemoveIcon source={require('../../../assets/icons/edit_perils/add_peril.png')} />
+          <StyledPerilIcon source={{ uri: peril.imageUrl }}>
+            <StyledAddRemoveIcon
+              source={require("../../../assets/icons/edit_perils/add_peril.png")}
+            />
           </StyledPerilIcon>
           <StyledPerilTitle>{peril.title}</StyledPerilTitle>
         </StyledPeril>
@@ -40,8 +55,10 @@ export class Peril extends React.Component {
     return (
       <TouchableOpacity onPress={() => this._removePerilPressed()}>
         <StyledPeril>
-          <StyledPerilIcon source={{uri: peril.imageUrl}}>
-            <StyledAddRemoveIcon source={require('../../../assets/icons/edit_perils/remove_peril.png')} />
+          <StyledPerilIcon source={{ uri: peril.imageUrl }}>
+            <StyledAddRemoveIcon
+              source={require("../../../assets/icons/edit_perils/remove_peril.png")}
+            />
           </StyledPerilIcon>
           <StyledPerilTitle>{peril.title}</StyledPerilTitle>
         </StyledPeril>
@@ -52,7 +69,7 @@ export class Peril extends React.Component {
   renderPeril(peril) {
     return (
       <StyledPeril>
-        <StyledPerilIcon source={{uri: peril.imageUrl}} />
+        <StyledPerilIcon source={{ uri: peril.imageUrl }} />
         <StyledPerilTitle>{peril.title}</StyledPerilTitle>
       </StyledPeril>
     )
@@ -63,18 +80,22 @@ export class Peril extends React.Component {
     // In edit mode: A peril the user can add
     if (this.props.enableAdd) {
       return this.renderAddPeril(peril)
-    // In edit mode: A peril the user can remove
+      // In edit mode: A peril the user can remove
     } else if (this.props.enableRemove) {
       return this.renderRemovePeril(peril)
-    // Not in edit mode
+      // Not in edit mode
     } else {
       return (
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Carousel", {
-          items: this.props.categoryPerils,
-          initialSlideIndex: this.props.perilIndex,
-          // Uncomment this if we want to enable peril specific claims
-          // renderCta: this._cashbackCarouselCta.bind(this)
-        })}>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate("Carousel", {
+              title: this.props.categoryTitle,
+              items: this.props.categoryPerils,
+              initialSlideIndex: this.props.perilIndex
+              // Uncomment this if we want to enable peril specific claims
+              // renderCta: this._cashbackCarouseOlCta.bind(this)
+            })}
+        >
           {this.renderPeril(peril)}
         </TouchableOpacity>
       )

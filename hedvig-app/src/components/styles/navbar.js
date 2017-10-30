@@ -7,10 +7,14 @@ export const StyledNavBarContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  ${'' /* Drop shadow */}
-  shadow-opacity: 0.1;
+  ${"" /* Drop shadow */} shadow-opacity: 0.1;
   shadow-radius: 5;
   shadow-color: black;
   z-index: 100;
   elevation: 1;
+`
+
+export const EmptyHeaderItem = styled.View`
+  width: 40px;
+  height: 40px;
 `

@@ -10,7 +10,9 @@ import { configureStore, chatActions, types } from "hedvig-redux"
 import { theme } from "hedvig-style"
 import { ThemeProvider } from "styled-components"
 
-import Chat from "../components/Chat"
+import * as TokenStorage from "../services/TokenStorage"
+import { tokenStorageSaga } from "../sagas/TokenStorage"
+import Chat from "../containers/Chat"
 
 /*
 import { Button, Welcome } from '@storybook/react/demo';
@@ -33,9 +35,7 @@ class StorybookProvider extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Provider store={this.props.store}>
-          {this.props.children}
-        </Provider>
+        <Provider store={this.props.store}>{this.props.children}</Provider>
       </ThemeProvider>
     )
   }
@@ -43,16 +43,9 @@ class StorybookProvider extends React.Component {
 
 storiesOf("Chat", module)
   .addDecorator(story => {
-    let chatStore = configureStore()
-    chatStore.dispatch({
-      type: "AUTHENTICATE",
-      payload: { ssn: Math.floor(Math.random() * 100000).toString() }
-    })
+    let chatStore = configureStore({ additionalSagas: [tokenStorageSaga] })
+    TokenStorage.getOrLoadToken(chatStore.dispatch)
     chatStore.dispatch(chatActions.getMessages())
-    return (
-      <StorybookProvider store={chatStore}>
-        {story()}
-      </StorybookProvider>
-    )
+    return <StorybookProvider store={chatStore}>{story()}</StorybookProvider>
   })
   .add("Chat", () => <Chat />)

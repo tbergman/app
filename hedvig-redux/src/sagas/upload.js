@@ -6,9 +6,9 @@ const uuidv4 = require("uuid/v4")
 const UPLOAD_URL = "http://hedvig-upload-test.s3-eu-west-1.amazonaws.com"
 
 const uploadHandler = function*(action) {
-  let { body: { uri, type } } = action.payload
+  let { body: { uri, type, fileExtension = "jpg" } } = action.payload
   let formData = new FormData()
-  formData.append("key", `${uuidv4()}.jpg`) // This has to come BEFORE `file` because xhr is lol
+  formData.append("key", `${uuidv4()}.${fileExtension}`) // This has to come BEFORE `file` because xhr is lol
   formData.append("file", {
     uri,
     type

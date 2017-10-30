@@ -39,27 +39,26 @@ export default class Dashboard extends React.Component {
   })
 
   componentWillMount() {
-    this.props.getInsurance()
+    // this.props.getInsurance()
   }
 
   renderCategories() {
-    let categories = this.props.categories.map(({ title, perils, iconUrl }, i) => {
-      return (
-        <PerilsCategory
-          title={title}
-          perils={perils}
-          editMode={this.state.editMode}
-          iconUrl={iconUrl}
-          key={i}
-          navigation={this.props.navigation}
-        />
-      )
-    })
-    return (
-      <StyledCategoriesContainer>
-        {categories}
-      </StyledCategoriesContainer>
+    let categories = this.props.categories.map(
+      ({ title, description, perils, iconUrl }, i) => {
+        return (
+          <PerilsCategory
+            title={title}
+            description={description}
+            perils={perils}
+            editMode={this.state.editMode}
+            iconUrl={iconUrl}
+            key={i}
+            navigation={this.props.navigation}
+          />
+        )
+      }
     )
+    return <StyledCategoriesContainer>{categories}</StyledCategoriesContainer>
   }
 
   maybeCheckoutButton() {
@@ -84,9 +83,7 @@ export default class Dashboard extends React.Component {
       INACTIVE: require("../../../assets/icons/edit_perils/remove_peril.png"),
       DENIED: require("../../../assets/icons/edit_perils/remove_peril.png")
     }[this.props.insurance.status]
-    return (
-      <StyledDashboardHeaderIcon source={imageModule} />
-    )
+    return <StyledDashboardHeaderIcon source={imageModule} />
   }
 
   render() {
@@ -109,9 +106,7 @@ export default class Dashboard extends React.Component {
             <StyledText>Gäller i hela världen</StyledText>
           </StyledDashboardHeaderRow>
         </StyledDashboardHeader>
-        <ScrollView style={{ flex: 1 }}>
-          {this.renderCategories()}
-        </ScrollView>
+        <ScrollView style={{ flex: 1 }}>{this.renderCategories()}</ScrollView>
         {this.maybeCheckoutButton()}
       </StyledDashboardContainer>
     )

@@ -1,4 +1,5 @@
 import React from "react"
+import { StyledMessage } from "../styles/chat"
 
 // const SelectMessage = ({ message, textAlign }) => {
 //   return (
@@ -28,9 +29,7 @@ import React from "react"
 
 const DefaultMessage = ({ message, textAlign }) => {
   return (
-    <div style={{ textAlign }}>
-      {message.body.text}
-    </div>
+    <StyledMessage style={{ textAlign }}>{message.body.text}</StyledMessage>
   )
 }
 
@@ -59,15 +58,16 @@ const renderMessage = function(message, idx) {
     MessageRenderComponent = HedvigMessageMapping[message.body.type]
   }
   return (
-    <div key={message.globalId || idx}>
-      <div
-        style={{
-          flexDirection: flexDirection,
-          alignSelf: alignSelf
-        }}
-      >
-        <MessageRenderComponent message={message} textAlign={textAlign} />
-      </div>
+    <div
+      key={message.globalId || idx}
+      style={{
+        display: "flex",
+        marginBottom: 5,
+        flexDirection: flexDirection,
+        alignSelf: alignSelf
+      }}
+    >
+      <MessageRenderComponent message={message} textAlign={textAlign} />
     </div>
   )
 }
@@ -77,11 +77,7 @@ const renderMessages = function(messages) {
 }
 
 const MessageList = ({ messages }) => {
-  return (
-    <div>
-      {renderMessages(messages)}
-    </div>
-  )
+  return <div>{renderMessages(messages)}</div>
 }
 
 export default MessageList

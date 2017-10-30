@@ -21,3 +21,8 @@ export const StyledCenteredRow = StyledRow.extend`
   align-items: center;
   justify-content: center;
 `
+
+export const StyledIcon = styled.Image`
+  width: ${props => props.width};
+  height: ${props => props.height};
+`

@@ -1,6 +1,6 @@
 import R from "ramda"
 import { take, takeEvery, put } from "redux-saga/effects"
-import { AUTHENTICATE } from "../actions/types"
+import { AUTHENTICATE, RECEIVED_TOKEN } from "../actions/types"
 import { baseURL } from "../services/environment"
 
 const authenticate = function*(action) {
@@ -15,7 +15,7 @@ const authenticate = function*(action) {
   let authResponse = yield fetch(`${baseURL}/helloHedvig`, requestOpts)
   let token = yield authResponse.text()
   console.log("Got token", token)
-  yield put({ type: "RECEIVED_TOKEN", payload: token })
+  yield put({ type: RECEIVED_TOKEN, payload: token })
 }
 
 const authenticateSaga = function*() {

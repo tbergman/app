@@ -1,22 +1,24 @@
 import styled from "styled-components/native"
+import { CircularFontText, MerriweatherFontText } from "./typography"
 
-export const StyledText = styled.Text`
+export const StyledText = CircularFontText.extend`
   color: ${props => props.theme.typography.activeText.color}
   font-size: ${props => props.theme.typography.activeText.fontSize}
 `
 
 export const StyledSmallText = StyledText.extend`
-  font-size: ${props => props.theme.typography.small.fontSize}
+  font-size: ${props => props.theme.typography.small.fontSize};
 `
 
 export const StyledPassiveText = StyledText.extend`
-  color: ${props => props.theme.typography.passiveText.color}
+  color: ${props => props.theme.typography.passiveText.color};
 `
 
 export const StyledSmallPassiveText = StyledSmallText.extend`
-  color: ${props => props.theme.typography.passiveText.color}
+  color: ${props => props.theme.typography.passiveText.color};
 `
 
-export const StyledHeading = StyledText.extend`
-  font-size: ${props => props.theme.typography.heading.fontSize}
+export const StyledHeading = MerriweatherFontText.extend`
+  color: ${props => props.theme.typography.activeText.color}
+  font-size: ${props => props.theme.typography.heading.fontSize};
 `

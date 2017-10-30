@@ -1,29 +1,32 @@
 import React from "react"
-import { Button, Text, FlatList, TouchableOpacity, View } from "react-native"
+import {
+  Button,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  View
+} from "react-native"
 import { Link } from "../../containers/Link"
 import { HeaderRightChat } from "../NavBar"
 import { Textplainer } from "../Placeholder"
 import { Placeholder } from "../Styles"
-
-class ListItem extends React.Component {
-  _onPress = () => {
-    this.props.navigation.navigate("AddEditAsset", {
-      itemId: this.props.item.id
-    })
-  }
-
-  render() {
-    return (
-      <TouchableOpacity onPress={this._onPress}>
-        <View>
-          <Text style={{ color: "blue" }}>
-            {this.props.item.title}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    )
-  }
-}
+import {
+  StyledAssetTrackerContainer,
+  StyledAssetListHeaderContainer,
+  StyledAddItemText
+} from "../styles/assetTracker"
+import {
+  StyledListHeader,
+  StyledList,
+  StyledListElement,
+  StyledListElementImage,
+  StyledListElementTexts,
+  StyledListElementHeading,
+  StyledListElementText,
+  StyledRowButton
+} from "../styles/list"
+import { AddButton, DisabledListNextButton } from "../Button"
 
 export default class AssetList extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -32,33 +35,71 @@ export default class AssetList extends React.Component {
   })
 
   componentWillMount() {
-    this.props.getAssets()
+    // this.props.getAssets()
+  }
+
+  _assetState(state) {
+    return {
+      CREATED: "Info saknas",
+      PENDING: "Behandlas av Hedvig",
+      WAITING_FOR_PAYMENT: "Inväntar betalning",
+      NOT_COVERED: "Ej försäkrad",
+      COVERED: "Försäkrad"
+    }[state]
+  }
+
+  _assetList() {
+    let assets = this.props.assets.map((asset, i) => {
+      return (
+        <TouchableOpacity
+          key={i}
+          onPress={() => {
+            this.props.navigation.navigate("AddEditAsset", {
+              itemId: asset.id
+            })
+          }}
+        >
+          <StyledListElement>
+            <StyledListElementImage
+              source={{ uri: "https://unsplash.it/40/40" }}
+            />
+            <StyledListElementTexts>
+              <StyledListElementHeading>
+                {asset.title || `Namnlös pryl`}
+              </StyledListElementHeading>
+              <StyledListElementText>
+                {this._assetState(asset.state)}
+              </StyledListElementText>
+            </StyledListElementTexts>
+            <StyledRowButton>
+              <DisabledListNextButton />
+            </StyledRowButton>
+          </StyledListElement>
+        </TouchableOpacity>
+      )
+    })
+    return <StyledList>{assets}</StyledList>
   }
 
   maybeList() {
     if (this.props.assets.length > 0) {
-      return (
-        <FlatList
-          data={this.props.assets}
-          renderItem={({ item }) =>
-            <ListItem item={item} navigation={this.props.navigation} />}
-        />
-      )
+      return this._assetList()
     }
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Button
-          title="Lägg till pryl"
-          onPress={() => this.props.navigation.navigate("AddEditAsset")}
-        />
-        <Placeholder>
-          <Textplainer text="Asset Tracker" />
-        </Placeholder>
+      <StyledAssetTrackerContainer>
+        <StyledListHeader>
+          <StyledAssetListHeaderContainer>
+            <StyledAddItemText>Lägg till pryl</StyledAddItemText>
+            <AddButton
+              onPress={() => this.props.navigation.navigate("AddEditAsset")}
+            />
+          </StyledAssetListHeaderContainer>
+        </StyledListHeader>
         {this.maybeList()}
-      </View>
+      </StyledAssetTrackerContainer>
     )
   }
 }

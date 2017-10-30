@@ -1,8 +1,6 @@
 const R = require("ramda")
 const dotProp = require("dot-prop-immutable")
-import {
-  LOADED_ASSETS
-} from "../actions/types"
+import { LOADED_ASSETS } from "../actions/types"
 
 const assets = [
   {
@@ -26,10 +24,10 @@ const assets = [
   return asset
 })
 
-const reducer = (state = {items: []}, action) => {
+const reducer = (state = { items: [] }, action) => {
   switch (action.type) {
     case LOADED_ASSETS:
-      return Object.assign({}, state, {items: action.payload})
+      return Object.assign({}, state, { items: action.payload })
     default:
       return state
   }

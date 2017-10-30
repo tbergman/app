@@ -10,11 +10,11 @@ export const StyledButtonText = styled.Text`
 `
 
 export const StyledButtonTextInverted = styled.Text`
-  color: ${props => props.theme.colors.white}
+  color: ${props => props.theme.colors.white};
 `
 
 export const StyledButtonTextPrefix = StyledButtonText.extend`
-  color: ${props => props.theme.button.textButton.prefixColor}
+  color: ${props => props.theme.button.textButton.prefixColor};
 `
 
 export const StyledRoundedButton = styled.TouchableOpacity`
@@ -31,6 +31,10 @@ export const StyledRoundedButton = styled.TouchableOpacity`
 
 export const StyledChatResponseButton = StyledRoundedButton.extend`
   margin-bottom: 8px;
+`
+
+export const StyledTransparentButton = StyledRoundedButton.extend`
+  background-color: transparent;
 `
 
 export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
@@ -52,12 +56,22 @@ export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
 `
 
 export const StyledRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${props => props.theme.colors.primary}
+  background-color: ${props => props.theme.colors.primary};
+`
+
+export const StyledRedRoundedButtonInverted = StyledRoundedButton.extend`
+  background-color: ${props => props.theme.colors.red};
+  border-color: ${props => props.theme.colors.red};
+`
+
+export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
+  background-color: ${props => props.theme.colors.turquoise};
+  border-color: ${props => props.theme.colors.turquoise};
 `
 
 export const StyledFabButton = StyledButton.extend`
   position: absolute;
   bottom: 20;
   right: 20;
-  zIndex: 10;
+  z-index: 10;
 `

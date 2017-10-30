@@ -25,9 +25,10 @@ import {
   pollMessagesSaga,
   downloadAvatarSaga,
   resetConversationSaga,
-  editLastResponseSaga
+  editLastResponseSaga,
+  getInsuranceWithMessagesSaga
 } from "./chat"
-import { updateItemSaga, getAssetsSaga } from "./assetTracker"
+import { updateItemSaga, deleteItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
 import { handleStatusMessage } from "./statusMessage"
@@ -75,7 +76,9 @@ const root = (additionalSagas = []) =>
       downloadAvatarSaga,
       resetConversationSaga,
       editLastResponseSaga,
+      getInsuranceWithMessagesSaga,
       updateItemSaga,
+      deleteItemSaga,
       getAssetsSaga,
       uploadSaga,
       addInsuranceSaga,
