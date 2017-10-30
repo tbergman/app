@@ -4,7 +4,7 @@
     "icon": "./icon.png",
     "version": "1.0.4",
     "slug": "hedvig-app",
-    "sdkVersion": "21.0.0",
+    "sdkVersion": "22.0.0",
     "loading": {
       "icon": "./icon.png"
     },

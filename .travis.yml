@@ -16,6 +16,9 @@ install:
 - sudo sysctl fs.inotify.max_queued_events=524288
 - sudo sysctl -p
 - yarn deploy
+- exp logout
+- exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
+- REACT_NATIVE_BASE_URL=http://hedvig.eu.ngrok.io exp publish
 script:
 - echo "Done"
 notifications:

@@ -396,14 +396,13 @@ export default class AddEditAsset extends React.Component {
   }
 
   _maybeCoverageInfo() {
-    if (this.state.item.id && this.state.item.state === "COVERED") {
+    if (this.state.item.id && this.state.item.state === "PENDING") {
       return (
         <StyledInputContainer>
           <StyledInputTexts>
             <StyledInputHeader>Försäkrad för</StyledInputHeader>
             <StyledInputText>Stäld, skadegörelse, olycka</StyledInputText>
           </StyledInputTexts>
-          <DisabledListNextButton size="mediumBig" />
         </StyledInputContainer>
       )
     }
