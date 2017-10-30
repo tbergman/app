@@ -20,7 +20,7 @@ install:
 
 - exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
 - cd ../hedvig-redux
-- sed -i -e 's/gateway.hedvig.com/hedvig.eu.ngrok.io/g' src/services/environment.js
+- sed -i -e 's/gateway.hedvig.com/hedvig.ngrok.io/g' src/services/environment.js
 - cd ../hedvig-app
 - exp publish
 
