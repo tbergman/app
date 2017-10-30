@@ -17,8 +17,13 @@ install:
 - sudo sysctl -p
 - yarn deploy
 - exp logout
+
 - exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
-- REACT_NATIVE_BASE_URL=http://hedvig.eu.ngrok.io exp publish
+- cd ../hedvig-redux
+- sed -i -e 's/gateway.hedvig.com/hedvig.eu.ngrok.io/g' src/services/environment.js
+- cd ../hedvig-app
+- exp publish
+
 script:
 - echo "Done"
 notifications:
