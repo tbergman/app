@@ -203,9 +203,11 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
     "id": "someid",
     "photoUrl": "https://unsplash.it/200/200",
     "receiptUrl": "https://unsplash.it/100/200",
-    "title": "Laptop"
-    "state": "COVERED"
-    "includedInBasePackage": false
+    "title": "Laptop",
+    "date": "2017-09-29T22:00:00.000Z",
+    "price": 123,
+    "state": "COVERED",
+    "includedInBasePackage": false,
     "registrationDate": "2017-10-10"
   },
   ...
@@ -224,6 +226,8 @@ https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
   "photoUrl": "https://unsplash.it/200/200",
   "receiptUrl": "https://unsplash.it/100/200",
   "title": "Laptop"
+  "date": "2017-09-29T22:00:00.000Z",
+  "price": 123,
   "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
   "includedInBasePackage": false
   "registrationDate": "2017-10-10"
@@ -246,9 +250,11 @@ gateway.hedvig.com/asset/57003ec1-bdd0-4e8b-a98e-325fa5b629de
   "id": "someid",
   "photoUrl": "https://unsplash.it/200/200",
   "receiptUrl": "https://unsplash.it/100/200",
-  "title": "Laptop"
-  "state": "PENDING" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "includedInBasePackage": false
+  "title": "Laptop",
+  "date": "2017-09-29T22:00:00.000Z",
+  "price": 123,
+  "state": "PENDING", // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
+  "includedInBasePackage": false,
   "registrationDate": "2017-10-10"
 }
 ```

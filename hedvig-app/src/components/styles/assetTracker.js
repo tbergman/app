@@ -85,3 +85,12 @@ export const StyledFooter = styled.View`
   padding-bottom: 32px;
   z-index: 5;
 `
+
+export const StyledAssetListElement = styled.TouchableOpacity`
+  flex: 1;
+  flex-direction: row;
+  padding: 16px;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-color: ${props => props.theme.colors.offWhite};
+`

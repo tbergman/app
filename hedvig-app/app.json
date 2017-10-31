@@ -2,7 +2,7 @@
   "expo": {
     "name": "Hedvig",
     "icon": "./icon.png",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "slug": "hedvig-app",
     "sdkVersion": "22.0.0",
     "loading": {
@@ -10,7 +10,7 @@
     },
     "privacy": "unlisted",
     "ios": {
-      "buildNumber": "1.0.4",
+      "buildNumber": "1.0.5",
       "bundleIdentifier": "com.hedvig.app"
     },
     "android": {

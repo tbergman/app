@@ -14,12 +14,12 @@ import { Placeholder } from "../Styles"
 import {
   StyledAssetTrackerContainer,
   StyledAssetListHeaderContainer,
-  StyledAddItemText
+  StyledAddItemText,
+  StyledAssetListElement
 } from "../styles/assetTracker"
 import {
   StyledListHeader,
   StyledList,
-  StyledListElement,
   StyledListElementImage,
   StyledListElementTexts,
   StyledListElementHeading,
@@ -35,7 +35,7 @@ export default class AssetList extends React.Component {
   })
 
   componentWillMount() {
-    // this.props.getAssets()
+    this.props.getAssets()
   }
 
   _assetState(state) {
@@ -51,31 +51,29 @@ export default class AssetList extends React.Component {
   _assetList() {
     let assets = this.props.assets.map((asset, i) => {
       return (
-        <TouchableOpacity
-          key={i}
+        <StyledAssetListElement
+          key={asset.id}
           onPress={() => {
             this.props.navigation.navigate("AddEditAsset", {
               itemId: asset.id
             })
           }}
         >
-          <StyledListElement>
-            <StyledListElementImage
-              source={{ uri: "https://unsplash.it/40/40" }}
-            />
-            <StyledListElementTexts>
-              <StyledListElementHeading>
-                {asset.title || `Namnlös pryl`}
-              </StyledListElementHeading>
-              <StyledListElementText>
-                {this._assetState(asset.state)}
-              </StyledListElementText>
-            </StyledListElementTexts>
-            <StyledRowButton>
-              <DisabledListNextButton />
-            </StyledRowButton>
-          </StyledListElement>
-        </TouchableOpacity>
+          <StyledListElementImage
+            source={{ uri: "https://unsplash.it/40/40" }}
+          />
+          <StyledListElementTexts>
+            <StyledListElementHeading>
+              {asset.title || `Namnlös pryl`}
+            </StyledListElementHeading>
+            <StyledListElementText>
+              {this._assetState(asset.state)}
+            </StyledListElementText>
+          </StyledListElementTexts>
+          <StyledRowButton>
+            <DisabledListNextButton />
+          </StyledRowButton>
+        </StyledAssetListElement>
       )
     })
     return <StyledList>{assets}</StyledList>

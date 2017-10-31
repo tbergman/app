@@ -441,22 +441,22 @@ storiesOf("Asset Tracker", module)
       type: "LOADED_ASSETS",
       payload: [
         {
-          id: "8f5ba2d6-7899-4790-b491-217ab535a4fa",
-          photoUrl: "https://unsplash.it/200/200",
-          receiptUrl: "https://unsplash.it/100/200",
-          title: "Laptop",
-          state: "PENDING",
+          id: "d38f4da4-8fb8-421d-bd1f-fd22ad7b1fd0",
           includedInBasePackage: false,
-          registrationDate: "2017-10-28"
+          photoUrl: null,
+          receiptUrl: null,
+          registrationDate: "2017-10-31",
+          state: "PENDING",
+          title: "Kdöd"
         },
         {
-          id: "cb60f249-853f-4700-aea8-e04b269138e6",
-          photoUrl: "https://unsplash.it/200/200",
-          receiptUrl: "https://unsplash.it/100/200",
-          title: "Laptop",
-          state: "PENDING",
+          id: "b4b722d7-e837-4311-b37e-2167320f6402",
           includedInBasePackage: false,
-          registrationDate: "2017-10-28"
+          photoUrl: null,
+          receiptUrl: null,
+          registrationDate: "2017-10-31",
+          state: "PENDING",
+          title: "Köksdörren"
         }
       ]
     })

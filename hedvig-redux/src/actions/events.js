@@ -2,8 +2,7 @@ import { API } from "./types"
 
 export function event(info) {
   return {
-    type: "_____DISABLED_____API",
-    // type: API,
+    type: API,
     payload: {
       url: "/event",
       method: "POST",

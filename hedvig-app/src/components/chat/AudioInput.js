@@ -218,7 +218,8 @@ export default class AudioInput extends React.Component {
     if (
       this.state.recordingInstance &&
       this.state.recordingStatus.isDoneRecording &&
-      !this.state.isPlaying
+      !this.state.isPlaying &&
+      !this.props.currentlyUploading
     ) {
       maybePlayback = (
         <View>
@@ -243,11 +244,22 @@ export default class AudioInput extends React.Component {
         </View>
       )
     }
+
+    let maybeUploading
+    if (this.props.currentlyUploading) {
+      // TODO: Replace with animation
+      maybeUploading = (
+        <StyledRightAlignedOptions>
+          <Text>Uploading...</Text>
+        </StyledRightAlignedOptions>
+      )
+    }
     return (
       <StyledMarginRightContainer>
         {content}
         {maybePlayback}
         {playbackControls}
+        {maybeUploading}
       </StyledMarginRightContainer>
     )
   }

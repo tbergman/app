@@ -79,7 +79,7 @@ export class Carousel extends React.Component {
   navbar() {
     return (
       <NavBar
-        title={this.navParams.title || "Carouselqu"}
+        title={this.navParams.title || "Carousel"}
         headerLeft={
           <NavigateBackButton onPress={() => this.props.navigation.goBack()} />
         }

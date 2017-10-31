@@ -18,12 +18,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    animationEnded: () =>
-      dispatch(
-        eventActions.event({
-          type: "ANIMATION_COMPLETE"
-        })
-      )
+    animationEnded: () => {}
+    // dispatch(
+    //   eventActions.event({
+    //     type: "ANIMATION_COMPLETE"
+    //   })
+    // )
   }
 }
 

@@ -1,5 +1,5 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
-import { UPLOAD } from "../actions/types"
+import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
 import { upload } from "../services/Upload"
 const uuidv4 = require("uuid/v4")
 
@@ -15,22 +15,26 @@ const uploadHandler = function*(action) {
   })
   action.payload.body = formData
   try {
-    let response = yield upload(UPLOAD_URL, action.payload, progress => {
-      console.log(
-        "Upload progress",
-        Math.round(progress.loaded / progress.total * 100),
-        "%"
-      )
-    })
+    yield put({ type: UPLOAD_STARTED, payload: action.payload })
+    let response = yield upload(
+      action.payload.uploadUrl || UPLOAD_URL,
+      action.payload,
+      progress => {
+        console.log(
+          "Upload progress",
+          Math.round(progress.loaded / progress.total * 100),
+          "%"
+        )
+      }
+    )
     console.log("Upload succeeded", response)
     let uploadedUrl = response.target.responseHeaders.Location
+    yield put({
+      type: UPLOAD_SUCCEEDED,
+      payload: Object.assign({}, action.payload, { uploadedUrl })
+    })
     if (action.payload.successActionCreator) {
       yield put(action.payload.successActionCreator(uploadedUrl))
-    } else {
-      yield put({
-        type: "UPLOAD_SUCCEEDED",
-        payload: uploadedUrl
-      })
     }
   } catch (e) {
     console.error("Upload failed", e)

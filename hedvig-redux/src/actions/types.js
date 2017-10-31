@@ -2,6 +2,8 @@ const typesList = [
   "API",
   "API_ERROR",
   "UPLOAD",
+  "UPLOAD_STARTED",
+  "UPLOAD_SUCCEEDED",
   "AUTHENTICATE",
   "RECEIVED_TOKEN",
   "LOADED_MESSAGES",

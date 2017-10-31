@@ -5,16 +5,21 @@ import { chatActions, uploadActions, dialogActions } from "hedvig-redux"
 const mapStateToProps = (state, ownProps) => {
   let message = state.chat.messages[ownProps.messageIndex]
   return {
-    message
+    message,
+    currentlyUploading: state.upload.currentlyUploading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    showPermissionDialog: () => dispatch(dialogActions.showDialog({
-      title: "Inspelning",
-      paragraph: "Vänligen aktivera ljudinspelning för Hedvig i dina systeminställningar."
-    })),
+    showPermissionDialog: () =>
+      dispatch(
+        dialogActions.showDialog({
+          title: "Inspelning",
+          paragraph:
+            "Vänligen aktivera ljudinspelning för Hedvig i dina systeminställningar."
+        })
+      ),
     upload: (message, info) =>
       dispatch(
         uploadActions.upload(info, url =>

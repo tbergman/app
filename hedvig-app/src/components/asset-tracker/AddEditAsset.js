@@ -206,7 +206,7 @@ export default class AddEditAsset extends React.Component {
 
   _updateDate(date) {
     console.log("Selected date" + date.toString())
-    let item = this.state.item.date
+    let item = this.state.item
     item.date = date
     this.setState({ item })
   }
@@ -367,7 +367,7 @@ export default class AddEditAsset extends React.Component {
     let actionSheetOptions = [
       {
         label: "Fota kvitto",
-        onSelected: () => this._pickImage(onPhotoPickedOrTaken)
+        onSelected: () => this._takePhoto(onPhotoPickedOrTaken)
       },
       {
         label: "Kopiera kvitton@hedvig.com",
