@@ -11,10 +11,10 @@
     "privacy": "unlisted",
     "ios": {
       "buildNumber": "1.0.4",
-      "bundleIdentifier": "com.threadsafestudio.hedvig"
+      "bundleIdentifier": "com.hedvig.app"
     },
     "android": {
-      "package": "com.threadsafestudio.hedvig"
+      "package": "com.hedvig.app"
     },
     "packagerOpts": {
       "projectRoots": "",

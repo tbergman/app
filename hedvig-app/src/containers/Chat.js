@@ -6,24 +6,28 @@ import { showDashboardAction } from "../actions/baseNavigation"
 
 const mapStateToProps = state => {
   return {
-    messages: state.chat.messages
+    messages: state.chat.messages,
+    insurance: state.insurance
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getMessages: () => dispatch(chatActions.getMessages()),
-    registerForPushNotifications: () => registerForPushNotificationsAsync(dispatch),
-    resetConversation: () => dispatch(
-      dialogActions.showDialog({
-        title: "Återställ konversation?",
-        paragraph: "Är du säker på att du vill återställa konverstationen?",
-        confirmButtonTitle: "Ja",
-        dismissButtonTitle: "Nej",
-        onConfirm: () => dispatch(chatActions.resetConversation()),
-        onDismiss: () => console.log("User didn't wan't to reset conversation.")
-      })
-    ),
+    registerForPushNotifications: () =>
+      registerForPushNotificationsAsync(dispatch),
+    resetConversation: () =>
+      dispatch(
+        dialogActions.showDialog({
+          title: "Återställ konversation?",
+          paragraph: "Är du säker på att du vill återställa konverstationen?",
+          confirmButtonTitle: "Ja",
+          dismissButtonTitle: "Nej",
+          onConfirm: () => dispatch(chatActions.resetConversation()),
+          onDismiss: () =>
+            console.log("User didn't wan't to reset conversation.")
+        })
+      ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
     showDashboard: () => dispatch(showDashboardAction())
   }

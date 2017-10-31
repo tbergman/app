@@ -2,13 +2,23 @@ import R from "ramda"
 import React from "react"
 import { View, Text, Button } from "react-native"
 import { Audio, Permissions } from "expo"
+import {
+  RecordButton,
+  StopRecordingButton,
+  SingleSelectOptionButton
+} from "../Button"
+import {
+  StyledMarginRightContainer,
+  StyledRightAlignedOptions
+} from "../styles/chat"
+import { StyledPassiveText } from "../styles/text"
 
 export default class AudioInput extends React.Component {
   state = {
     isRecording: false,
     recordingInstance: null,
     permissionGranted: null,
-    recordingStatus: null,
+    recordingStatus: { isDoneRecording: false },
     sound: null,
     playbackStatus: null,
     isPlaying: false
@@ -52,6 +62,7 @@ export default class AudioInput extends React.Component {
     try {
       console.log("Creating and preparing recorder")
       const recordingInstance = new Audio.Recording()
+      recordingInstance.setProgressUpdateInterval(100)
       recordingInstance.setOnRecordingStatusUpdate(
         this.onRecordingStatusUpdate.bind(this)
       )
@@ -114,6 +125,7 @@ export default class AudioInput extends React.Component {
     } else {
       soundToPlay = this.state.sound
     }
+    soundToPlay.setProgressUpdateIntervalAsync(100)
     soundToPlay.setVolumeAsync(1.0)
     soundToPlay.setOnPlaybackStatusUpdate(
       this.onPlaybackStatusUpdate.bind(this)
@@ -159,25 +171,26 @@ export default class AudioInput extends React.Component {
           title="Give Hedvig permission to record"
         />
       )
-    } else if (!this.state.isRecording) {
+    } else if (
+      !this.state.isRecording &&
+      !this.state.recordingStatus.isDoneRecording
+    ) {
       content = (
-        <Button
-          onPress={() => this.startRecordingAudio(message)}
-          title="Start recording"
-        />
+        <StyledRightAlignedOptions>
+          <RecordButton onPress={() => this.startRecordingAudio(message)} />
+        </StyledRightAlignedOptions>
       )
-    } else {
+    } else if (this.state.isRecording) {
       content = (
-        <View>
-          <Button
+        <StyledRightAlignedOptions>
+          <StopRecordingButton
             onPress={() => this.stopRecordingAudio(message)}
-            title="Stop recording"
           />
-          <Text>
+          <StyledPassiveText style={{ marginRight: 16 }}>
             Recording:{" "}
-            {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(1)} s
-          </Text>
-        </View>
+            {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(0)} s
+          </StyledPassiveText>
+        </StyledRightAlignedOptions>
       )
     }
 
@@ -186,23 +199,18 @@ export default class AudioInput extends React.Component {
     if (this.state.sound && this.state.isPlaying) {
       if (this.state.playbackStatus) {
         maybePlaybackStatus = (
-          <Text>
+          <StyledPassiveText style={{ marginRight: 16 }}>
             Playing:{" "}
-            {(this.state.playbackStatus.positionMillis /
-              this.state.playbackStatus.durationMillis *
-              100).toFixed(0)}{" "}
-            %
-          </Text>
+            {(this.state.playbackStatus.positionMillis / 1000).toFixed(0)} /{" "}
+            {(this.state.playbackStatus.durationMillis / 1000).toFixed(0)} s
+          </StyledPassiveText>
         )
       }
       playbackControls = (
-        <View>
-          <Button
-            title="Stop playback"
-            onPress={this.stopPlayback.bind(this)}
-          />
+        <StyledRightAlignedOptions>
+          <StopRecordingButton onPress={this.stopPlayback.bind(this)} />
           {maybePlaybackStatus}
-        </View>
+        </StyledRightAlignedOptions>
       )
     }
 
@@ -214,17 +222,33 @@ export default class AudioInput extends React.Component {
     ) {
       maybePlayback = (
         <View>
-          <Button title="Start playback" onPress={() => this.startPlayback()} />
-          <Button title="Upload" onPress={this.upload.bind(this)} />
+          <StyledRightAlignedOptions>
+            <SingleSelectOptionButton
+              title="Re-record"
+              onPress={() => this.startRecordingAudio()}
+            />
+          </StyledRightAlignedOptions>
+          <StyledRightAlignedOptions>
+            <SingleSelectOptionButton
+              title="Start playback"
+              onPress={() => this.startPlayback()}
+            />
+          </StyledRightAlignedOptions>
+          <StyledRightAlignedOptions>
+            <SingleSelectOptionButton
+              title="Upload"
+              onPress={this.upload.bind(this)}
+            />
+          </StyledRightAlignedOptions>
         </View>
       )
     }
     return (
-      <View style={{ flex: 1, alignSelf: "stretch" }}>
+      <StyledMarginRightContainer>
         {content}
         {maybePlayback}
         {playbackControls}
-      </View>
+      </StyledMarginRightContainer>
     )
   }
 }

@@ -64,6 +64,15 @@ export default class Chat extends React.Component {
 
   render() {
     let lastIndex = this.props.messages.length - 1
+    let headerRight
+    if (
+      this.props.insurance.status === "PENDING" ||
+      this.props.insurance.status === "ACTIVE"
+    ) {
+      headerRight = (
+        <ChatNavDashboardButton onPress={() => this.props.showDashboard()} />
+      )
+    }
     return (
       <StyledChatContainer>
         <NavBar
@@ -73,11 +82,7 @@ export default class Chat extends React.Component {
               onPress={() => this.props.resetConversation()}
             />
           }
-          headerRight={
-            <ChatNavDashboardButton
-              onPress={() => this.props.showDashboard()}
-            />
-          }
+          headerRight={headerRight}
         />
         <StyledMessageAndResponseArea behavior="padding">
           <StyledMessageArea>

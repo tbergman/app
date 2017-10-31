@@ -17,7 +17,9 @@ export const StyledMessageArea = styled.View`
   padding: 16px;
 `
 
-export const StyledResponseArea = styled.View`align-self: stretch;`
+export const StyledResponseArea = styled.View`
+  align-self: stretch;
+`
 
 // Regular text messages
 
@@ -47,16 +49,21 @@ export const StyledAvatarContainer = styled.View`
 
 // Single select & multiple select
 
-export const StyledMarginRightContainer = styled.View`margin-right: 8px;`
+export const StyledMarginRightContainer = styled.View`
+  margin: 0px 16px 40px 0px;
+`
 
 export const StyledRightAlignedOptions = styled.View`
   flex-direction: row-reverse;
   align-self: flex-end;
+  align-items: center;
 `
 
 // Multiple select
 
-export const StyledOptionsContainer = styled.View`margin-bottom: 8px;`
+export const StyledOptionsContainer = styled.View`
+  margin-bottom: 8px;
+`
 
 // Text input
 

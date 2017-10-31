@@ -13,9 +13,13 @@ const authenticate = function*(action) {
   }
   console.log(`POST ${baseURL}/helloHedvig`, requestOpts)
   let authResponse = yield fetch(`${baseURL}/helloHedvig`, requestOpts)
-  let token = yield authResponse.text()
-  console.log("Got token", token)
-  yield put({ type: RECEIVED_TOKEN, payload: token })
+  if (authResponse.status === 200) {
+    let token = yield authResponse.text()
+    console.log("Got token", token)
+    yield put({ type: RECEIVED_TOKEN, payload: token })
+  } else {
+    console.warn("Failed to receive token", authResponse)
+  }
 }
 
 const authenticateSaga = function*() {

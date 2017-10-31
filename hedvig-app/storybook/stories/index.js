@@ -181,7 +181,7 @@ const categories = [
 const insurance = {
   currentTotalPrice: 500,
   newTotalPrice: 600,
-  state: "ACTIVE",
+  status: "ACTIVE",
   categories
 }
 

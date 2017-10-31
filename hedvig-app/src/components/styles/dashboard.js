@@ -34,7 +34,7 @@ export const StyledCategoriesContainer = styled.View`
   padding: 8px;
 `
 
-export const StyledCategoryContainer = styled.View`
+export const StyledCategoryContainer = styled.TouchableOpacity`
   margin-bottom: 8px;
   flex: 1;
   background-color: ${props => props.theme.colors.white};
@@ -96,6 +96,7 @@ export const StyledPerilTitle = StyledSmallPassiveText.extend`
 export const StyledPerilIcon = styled.Image`
   width: 40px;
   height: 40px;
+  border-radius: 20px;
 `
 
 export const StyledAddRemoveIcon = styled.Image`

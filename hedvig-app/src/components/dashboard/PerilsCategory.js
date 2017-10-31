@@ -101,36 +101,35 @@ export class PerilsCategory extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity
+      <StyledCategoryContainer
+        activeOpacity={1}
         onPress={() =>
           this.setState({ showCategory: !this.state.showCategory })}
       >
-        <StyledCategoryContainer>
-          <StyledCategoryHeader>
-            <StyledCategoryIcon source={{ uri: this.props.iconUrl }} />
-            <StyledCategoryTextContainer>
-              <StyledRow>
-                <StyledHeading>{this.props.title}</StyledHeading>
-              </StyledRow>
-              <StyledRow>
-                <StyledPassiveText>
-                  {this.state.showCategory
-                    ? "Klicka på ikonerna för mer info"
-                    : this.props.description}
-                </StyledPassiveText>
-              </StyledRow>
-            </StyledCategoryTextContainer>
-            <StyledExpandButton>
-              {this.state.showCategory ? (
-                <DisabledCollapseButton />
-              ) : (
-                <DisabledExpandButton />
-              )}
-            </StyledExpandButton>
-          </StyledCategoryHeader>
-          {this.perils()}
-        </StyledCategoryContainer>
-      </TouchableOpacity>
+        <StyledCategoryHeader>
+          <StyledCategoryIcon source={{ uri: this.props.iconUrl }} />
+          <StyledCategoryTextContainer>
+            <StyledRow>
+              <StyledHeading>{this.props.title}</StyledHeading>
+            </StyledRow>
+            <StyledRow>
+              <StyledPassiveText>
+                {this.state.showCategory
+                  ? "Klicka på ikonerna för mer info"
+                  : this.props.description}
+              </StyledPassiveText>
+            </StyledRow>
+          </StyledCategoryTextContainer>
+          <StyledExpandButton>
+            {this.state.showCategory ? (
+              <DisabledCollapseButton />
+            ) : (
+              <DisabledExpandButton />
+            )}
+          </StyledExpandButton>
+        </StyledCategoryHeader>
+        {this.perils()}
+      </StyledCategoryContainer>
     )
   }
 }

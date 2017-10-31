@@ -305,10 +305,31 @@ export const DeleteButton = ({ onPress }) => (
   />
 )
 
+export const RecordButton = ({ onPress }) => (
+  <IconButton
+    iconModule={require("../../assets/icons/chat/record_audio.png")}
+    onPress={onPress}
+    size="huge"
+  />
+)
+
+export const StopRecordingButton = ({ onPress }) => (
+  <IconButton
+    iconModule={require("../../assets/icons/chat/stop_record_audio.png")}
+    onPress={onPress}
+    size="huge"
+  />
+)
+
 // Fabs
 
 const FabButton = ({ iconModule, onPress }) =>
-  IconButton({ iconModule, onPress, _ButtonComponent: StyledFabButton })
+  IconButton({
+    iconModule,
+    onPress,
+    _ButtonComponent: StyledFabButton,
+    size: "huge"
+  })
 
 export const DashboardFabButton = ({ onPress }) => (
   <FabButton
