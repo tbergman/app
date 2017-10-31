@@ -1,10 +1,16 @@
 import { connect } from "react-redux"
 import AddEditAsset from "../../components/asset-tracker/AddEditAsset"
 import * as Navigation from "../../services/Navigation"
-import { assetActions, chatActions, statusMessageActions } from "hedvig-redux"
+import {
+  assetActions,
+  chatActions,
+  statusMessageActions,
+  dialogActions
+} from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    keyboard: state.keyboard,
     getItem: id => {
       return state.assetTracker.items.find(item => item.id === id)
     }
@@ -13,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    showDialog: message => dispatch(dialogActions.showDialog(message)),
     updateItem: item => dispatch(assetActions.updateItem(item)),
     deleteItem: item => dispatch(assetActions.deleteItem(item)),
     setStatusMessage: message =>

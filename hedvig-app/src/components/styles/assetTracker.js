@@ -6,10 +6,11 @@ import {
   StyledHeading
 } from "./text"
 import { CircularFontText, MerriweatherFontText } from "./typography"
+import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingView"
 
 // List view
 
-export const StyledAssetTrackerContainer = styled.View`
+export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
 `

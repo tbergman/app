@@ -34,6 +34,7 @@ import {
   StyledTextInput,
   StyledFooter
 } from "../styles/assetTracker"
+import { EmptyHeaderItem } from "../styles/navbar"
 import { CameraCircleIcon, ChoosePhotoCircleIcon, InputAddIcon } from "../Icon"
 import {
   NavigateBackButton,
@@ -232,22 +233,25 @@ export default class AddEditAsset extends React.Component {
   _takePhoto = async onPhotoTaken => {
     const { status } = await Permissions.getAsync(Permissions.CAMERA)
     if (status !== "granted") {
-      alert(
-        "Hey! You might want to enable notifications for my app, they are good."
-      )
-    }
-    let result = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [4, 3]
-    })
+      this.props.showDialog({
+        title: "Kamera",
+        paragraph:
+          "Vänligen ge Hedvig tillgång till din kamera genom dina systeminställningar."
+      })
+    } else {
+      let result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [4, 3]
+      })
 
-    if (result.cancelled) {
-      console.log("launchCameraAsync cancelled")
-      return
-    }
+      if (result.cancelled) {
+        console.log("launchCameraAsync cancelled")
+        return
+      }
 
-    this.setState({ formIsDirty: true })
-    onPhotoTaken(result)
+      this.setState({ formIsDirty: true })
+      onPhotoTaken(result)
+    }
   }
 
   _pickImage = async onPhotoPicked => {
@@ -485,12 +489,16 @@ export default class AddEditAsset extends React.Component {
     )
   }
 
-  _footer() {
-    return (
-      <StyledFooter>
-        {this.state.editingDate ? this.datePicker() : this.cta()}
-      </StyledFooter>
-    )
+  _maybeFooter() {
+    if (this.props.keyboard.currentState.state !== "shown") {
+      return (
+        <StyledFooter>
+          {this.state.editingDate ? this.datePicker() : this.cta()}
+        </StyledFooter>
+      )
+    } else {
+      return <EmptyHeaderItem /> // So that the KeyboardAvoidingView actually pushes everything up
+    }
   }
 
   render() {
@@ -507,7 +515,7 @@ export default class AddEditAsset extends React.Component {
             {this._receiptInput()}
           </View>
         </StyledFormContainer>
-        {this._footer()}
+        {this._maybeFooter()}
       </StyledAssetTrackerContainer>
     )
   }
