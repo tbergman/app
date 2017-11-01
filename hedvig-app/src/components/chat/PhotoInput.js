@@ -3,7 +3,7 @@ import React from "react"
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import { Permissions, ImagePicker } from "expo"
 import { SingleSelectOptionButton } from "../Button"
-import { StyledMarginRightContainer, StyledRightAlignedOptions } from "../styles/chat"
+import { StyledMarginContainer, StyledRightAlignedOptions } from "../styles/chat"
 
 const getPermissions = async () => {
   await Permissions.getAsync(Permissions.CAMERA)
@@ -27,7 +27,7 @@ const getAndUploadImage = async (mode, message, upload) => {
 const choosePhotoAndUpload = (upload, message) => {
   getPermissions()
   return (
-    <StyledMarginRightContainer>
+    <StyledMarginContainer>
       <StyledRightAlignedOptions>
         <SingleSelectOptionButton
           onPress={() => getAndUploadImage("camera", message, upload)}
@@ -40,7 +40,7 @@ const choosePhotoAndUpload = (upload, message) => {
           title="Välj en bild"
         />
       </StyledRightAlignedOptions>
-    </StyledMarginRightContainer>
+    </StyledMarginContainer>
   )
 }
 

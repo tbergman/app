@@ -3,7 +3,10 @@ import React from "react"
 import { Text, View, TouchableOpacity, Linking } from "react-native"
 import { WebBrowser } from "expo"
 import { SingleSelectOptionButton } from "../Button"
-import { StyledRightAlignedOptions, StyledMarginRightContainer } from "../styles/chat"
+import {
+  StyledRightAlignedOptions,
+  StyledMarginContainer
+} from "../styles/chat"
 
 const SingleSelectInput = ({
   message,
@@ -38,11 +41,7 @@ const SingleSelectInput = ({
       </StyledRightAlignedOptions>
     )
   })
-  return (
-    <StyledMarginRightContainer>
-      {opts}
-    </StyledMarginRightContainer>
-  )
+  return <StyledMarginContainer>{opts}</StyledMarginContainer>
 }
 
 export default SingleSelectInput

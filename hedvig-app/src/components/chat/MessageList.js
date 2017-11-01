@@ -8,6 +8,7 @@ import {
   StyledAvatarContainer
 } from "../styles/chat"
 import Avatar from "../../containers/chat/Avatar"
+import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 import { theme } from "hedvig-style"
 
 const renderImage = message => {
@@ -34,11 +35,11 @@ const SelectMessage = ({ message, textAlign }) => {
   return (
     <StyledDefaultMessageText>
       {renderImage(message)}
-      {message.body.choices.filter(c => c.selected).map(c =>
+      {message.body.choices.filter(c => c.selected).map(c => (
         <Text key={c.text} style={{ textAlign }}>
           {c.text}
         </Text>
-      )}
+      ))}
     </StyledDefaultMessageText>
   )
 }
@@ -84,7 +85,7 @@ const HedvigMessageMapping = {
   hero: HeroMessage
 }
 
-const renderMessage = function(message, idx, includeAvatar = false) {
+const renderMessage = function(message, idx, lastIndex = false) {
   let fromMe = message.header.fromId !== 1
   let flexDirection = fromMe ? "row-reverse" : "row"
   let alignSelf = fromMe ? "flex-end" : "flex-start"
@@ -99,11 +100,12 @@ const renderMessage = function(message, idx, includeAvatar = false) {
   ) {
     MessageRenderComponent = HedvigMessageMapping[message.body.type]
   }
-  let avatar = includeAvatar
-    ? <StyledAvatarContainer>
+  let avatar =
+    lastIndex && message.header.avatarName ? (
+      <StyledAvatarContainer>
         <Avatar messageIndex={idx} />
       </StyledAvatarContainer>
-    : null
+    ) : null
   return (
     <View key={message.globalId || idx}>
       {avatar}
@@ -115,14 +117,15 @@ const renderMessage = function(message, idx, includeAvatar = false) {
       >
         <MessageRenderComponent message={message} textAlign={textAlign} />
       </View>
+      {lastIndex ? <LoadingIndicator messageIndex={idx} /> : null}
     </View>
   )
 }
 
 const renderMessages = function(messages) {
   return messages.map((message, idx) => {
-    let includeAvatar = idx === messages.length - 1
-    return renderMessage(message, idx, includeAvatar)
+    let lastIndex = idx === messages.length - 1
+    return renderMessage(message, idx, lastIndex)
   })
 }
 

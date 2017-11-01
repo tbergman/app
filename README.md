@@ -80,6 +80,7 @@ Get a quote
       {
         "id": "someid",
         "title": "Peril 1 CREATED",
+        "isRemovable": true,
         "key": 0,
         "state": "ADD_REQUESTED",   // ADD_REQUESTED when a user wants to add this peril or REMOVE_REQUESTED when a user wants to remove this peril
         "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
@@ -105,6 +106,7 @@ Get a quote
         {
           "id": "someid",
           "title": "Peril 1 CREATED",
+          "isRemovable": true,
           "key": 0,
           "state": "CREATED",
           "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
@@ -145,6 +147,7 @@ NOTE: A call to /insurance is issued after every call to /messages to ensure an 
         {
           "id": "someid",
           "title": "Peril 1 CREATED",
+          "isRemovable": true,
           "key": 0,
           "state": "CREATED",
           "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",

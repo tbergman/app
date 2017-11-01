@@ -49,20 +49,25 @@ export const StyledAvatarContainer = styled.View`
 
 // Single select & multiple select
 
-export const StyledMarginRightContainer = styled.View`
-  margin: 0px 16px 40px 0px;
+export const StyledMarginContainer = styled.View`
+  margin: 0px 16px 40px 16px;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 `
 
 export const StyledRightAlignedOptions = styled.View`
   flex-direction: row-reverse;
   align-self: flex-end;
   align-items: center;
+  margin-left: 5px;
 `
 
 // Multiple select
 
 export const StyledOptionsContainer = styled.View`
   margin-bottom: 8px;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 `
 
 // Text input

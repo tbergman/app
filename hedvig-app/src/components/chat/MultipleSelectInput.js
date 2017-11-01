@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity } from "react-native"
 import {
   StyledRightAlignedOptions,
   StyledOptionsContainer,
-  StyledMarginRightContainer
+  StyledMarginContainer
 } from "../styles/chat"
 import {
   MultipleSelectOptionButton,
@@ -14,9 +14,15 @@ import {
 
 const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let anyOptionSelected = R.any(choice => choice.selected, message.body.choices)
-  let sendButton = anyOptionSelected
-    ? <SendIconButton onPress={() => { done(message) }} />
-    : <SendDisabledIconButton />
+  let sendButton = anyOptionSelected ? (
+    <SendIconButton
+      onPress={() => {
+        done(message)
+      }}
+    />
+  ) : (
+    <SendDisabledIconButton />
+  )
   let opts = message.body.choices.map(choice => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
@@ -31,14 +37,10 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
     )
   })
   return (
-    <StyledMarginRightContainer>
-      <StyledOptionsContainer>
-        {opts}
-      </StyledOptionsContainer>
-      <StyledRightAlignedOptions>
-        {sendButton}
-      </StyledRightAlignedOptions>
-    </StyledMarginRightContainer>
+    <StyledMarginContainer>
+      <StyledOptionsContainer>{opts}</StyledOptionsContainer>
+      <StyledRightAlignedOptions>{sendButton}</StyledRightAlignedOptions>
+    </StyledMarginContainer>
   )
 }
 

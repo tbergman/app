@@ -8,7 +8,7 @@ import {
   SingleSelectOptionButton
 } from "../Button"
 import {
-  StyledMarginRightContainer,
+  StyledMarginContainer,
   StyledRightAlignedOptions
 } from "../styles/chat"
 import { StyledPassiveText } from "../styles/text"
@@ -255,12 +255,12 @@ export default class AudioInput extends React.Component {
       )
     }
     return (
-      <StyledMarginRightContainer>
+      <StyledMarginContainer>
         {content}
         {maybePlayback}
         {playbackControls}
         {maybeUploading}
-      </StyledMarginRightContainer>
+      </StyledMarginContainer>
     )
   }
 }

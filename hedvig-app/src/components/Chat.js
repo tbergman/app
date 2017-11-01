@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, KeyboardAvoidingView } from "react-native"
 import styled from "styled-components/native"
 
 import MessageList from "../containers/chat/MessageList"
-import LoadingIndicator from "../containers/chat/LoadingIndicator"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
 import ChatTextInput from "../containers/chat/ChatTextInput"
 import DateInput from "../containers/chat/DateInput"
@@ -87,7 +86,6 @@ export default class Chat extends React.Component {
         <StyledMessageAndResponseArea behavior="padding">
           <StyledMessageArea>
             <MessageList />
-            <LoadingIndicator messageIndex={lastIndex} />
           </StyledMessageArea>
           <StyledResponseArea>
             {getInputComponent(this.props.messages, this.props.navigation)}
