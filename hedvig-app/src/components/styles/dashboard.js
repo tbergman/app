@@ -96,7 +96,6 @@ export const StyledPerilTitle = StyledSmallPassiveText.extend`
 export const StyledPerilIcon = styled.Image`
   width: 40px;
   height: 40px;
-  border-radius: 20px;
 `
 
 export const StyledAddRemoveIcon = styled.Image`

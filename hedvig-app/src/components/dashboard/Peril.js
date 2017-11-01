@@ -52,18 +52,29 @@ export class Peril extends React.Component {
   }
 
   renderRemovePeril(peril) {
-    return (
-      <TouchableOpacity onPress={() => this._removePerilPressed()}>
-        <StyledPeril>
-          <StyledPerilIcon source={{ uri: peril.imageUrl }}>
-            <StyledAddRemoveIcon
-              source={require("../../../assets/icons/edit_perils/remove_peril.png")}
-            />
-          </StyledPerilIcon>
-          <StyledPerilTitle>{peril.title}</StyledPerilTitle>
-        </StyledPeril>
-      </TouchableOpacity>
-    )
+    if (peril.isRemovable) {
+      return (
+        <TouchableOpacity onPress={() => this._removePerilPressed()}>
+          <StyledPeril>
+            <StyledPerilIcon source={{ uri: peril.imageUrl }}>
+              <StyledAddRemoveIcon
+                source={require("../../../assets/icons/edit_perils/remove_peril.png")}
+              />
+            </StyledPerilIcon>
+            <StyledPerilTitle>{peril.title}</StyledPerilTitle>
+          </StyledPeril>
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <View>
+          <StyledPeril>
+            <StyledPerilIcon source={{ uri: peril.imageUrl }} />
+            <StyledPerilTitle>{peril.title}</StyledPerilTitle>
+          </StyledPeril>
+        </View>
+      )
+    }
   }
 
   renderPeril(peril) {
