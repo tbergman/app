@@ -3,7 +3,9 @@ import { Text, View, Image, Dimensions, Keyboard } from "react-native"
 import { BaseScrollViewStyle } from "../Styles"
 import {
   StyledDefaultMessageText,
+  StyledDefaultUserMessageText,
   StyledChatMessage,
+  StyledUserChatMessage,
   StyledHeroMessage,
   StyledAvatarContainer
 } from "../styles/chat"
@@ -31,19 +33,6 @@ const renderImage = message => {
   }
 }
 
-const SelectMessage = ({ message, textAlign }) => {
-  return (
-    <StyledDefaultMessageText>
-      {renderImage(message)}
-      {message.body.choices.filter(c => c.selected).map(c => (
-        <Text key={c.text} style={{ textAlign }}>
-          {c.text}
-        </Text>
-      ))}
-    </StyledDefaultMessageText>
-  )
-}
-
 const HeroMessage = ({ message, textAlign }) => {
   const window = Dimensions.get("window")
   // (window width - (2 outer margin + 2 inner margin) * 0.98)
@@ -65,21 +54,28 @@ const HeroMessage = ({ message, textAlign }) => {
   )
 }
 
-const DefaultMessage = ({ message, textAlign }) => {
+const DefaultHedvigMessage = ({ message, textAlign }) => {
   return (
     <StyledChatMessage>
+      {renderImage(message)}
       <StyledDefaultMessageText style={{ textAlign }}>
-        {renderImage(message)}
         {message.body.text}
       </StyledDefaultMessageText>
     </StyledChatMessage>
   )
 }
 
-const UserMessageMapping = {
-  single_select: SelectMessage,
-  multiple_select: SelectMessage
+const DefaultUserMessage = ({ message, textAlign }) => {
+  return (
+    <StyledUserChatMessage>
+      <StyledDefaultUserMessageText style={{ textAlign }}>
+        {message.body.text}
+      </StyledDefaultUserMessageText>
+    </StyledUserChatMessage>
+  )
 }
+
+const UserMessageMapping = {}
 
 const HedvigMessageMapping = {
   hero: HeroMessage
@@ -91,15 +87,19 @@ const renderMessage = function(message, idx, lastIndex = false) {
   let alignSelf = fromMe ? "flex-end" : "flex-start"
   let textAlign = fromMe ? "right" : "left"
 
-  let MessageRenderComponent = DefaultMessage
-  if (fromMe && UserMessageMapping.hasOwnProperty(message.body.type)) {
-    MessageRenderComponent = UserMessageMapping[message.body.type]
-  } else if (
-    !fromMe &&
-    HedvigMessageMapping.hasOwnProperty(message.body.type)
-  ) {
-    MessageRenderComponent = HedvigMessageMapping[message.body.type]
+  let MessageRenderComponent
+  if (!fromMe) {
+    MessageRenderComponent = DefaultHedvigMessage
+    if (HedvigMessageMapping.hasOwnProperty(message.body.type)) {
+      MessageRenderComponent = HedvigMessageMapping[message.body.type]
+    }
+  } else {
+    MessageRenderComponent = DefaultUserMessage
+    if (UserMessageMapping.hasOwnProperty(message.body.type)) {
+      MessageRenderComponent = UserMessageMapping[message.body.type]
+    }
   }
+
   let avatar =
     lastIndex && message.header.avatarName ? (
       <StyledAvatarContainer>

@@ -28,7 +28,10 @@ class Offer extends React.Component {
             <NavigateBackButton onPress={() => this.props.closeModal()} />
           }
         />
-        <Dashboard />
+        <Dashboard
+          navigation={this.props.navigation}
+          extraScrollViewPadding={250}
+        />
         <StyledCtaArea
           source={require("../../../assets/bgs/gradient-white-rectangle.png")}
           resizeMode="stretch"

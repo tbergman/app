@@ -22,16 +22,17 @@ export function saveToken(token) {
 }
 
 export function getOrLoadToken(dispatch) {
-  let token = loadToken()
-  if (token) {
-    dispatch({
-      type: types.RECEIVED_TOKEN,
-      payload: token
-    })
-  } else {
-    dispatch({
-      type: types.AUTHENTICATE,
-      payload: {}
-    })
-  }
+  // TODO: Load token from local storage
+  // let token = loadToken()
+  // if (token) {
+  //   dispatch({
+  //     type: types.RECEIVED_TOKEN,
+  //     payload: token
+  //   })
+  // } else {
+  dispatch({
+    type: types.AUTHENTICATE,
+    payload: {}
+  })
+  // }
 }

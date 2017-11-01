@@ -39,6 +39,9 @@ module.exports.theme = {
     hedvigMessage: {
       fontSize: 18
     },
+    userMessage: {
+      fontSize: 16
+    },
     small: {
       fontSize: 12
     },

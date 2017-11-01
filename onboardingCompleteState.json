@@ -1,0 +1,1100 @@
+{
+  "hello": {
+    "name": null
+  },
+  "insurance": {
+    "categories": [
+      {
+        "title": "Du och din familj",
+        "iconUrl": "https://unsplash.it/70/70",
+        "perils": [
+          {
+            "id": "ME.TRAVEL.LUGGAGE.DELAY",
+            "title": "Försenat bagage",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/forsenat_bagage%402x.png",
+            "shortText":
+              "Om ditt bagage blir försenat till ditt resmål så ersätter Hedvig dig för att köpa saker du behöver, så du slipper bada i långkalsongerna",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.ASSAULT",
+            "title": "Överfall",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/overfall%402x.png",
+            "shortText":
+              "Hedvig ersätter dig om du skulle bli misshandlad, rånad eller utsatt för annat våldsbrott",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.LEGAL",
+            "title": "Juridisk tvist",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/skadegorelse%402x.png",
+            "shortText":
+              "Om du hamnar i domstol så täcker Hedvig kostnaden för ditt ombud, och andra rättegångskostnader \n Hedvig täcker också om någon skulle kräva dig på skadestånd för att du har skadat någon, eller någons saker",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.TRAVEL.SICK",
+            "title": "Sjuk på resa",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/sjuk_pa_resa%402x.png",
+            "shortText":
+              "Om du skulle bli sjuk när du är på resa och behöva uppsöka vård så ersätter Hedvig dig för vårdkostnaderna. Du får också ersättning för dagar då du är sjuk",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.TRAVEL.ACCIDENT",
+            "title": "Olycka på resa",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/olycka_pa_resa%402x.png",
+            "shortText":
+              "Om du skulle vara med om en olycka och hamna på sjukhus så ersätter Hedvig vårdkostnaderna. Om det är allvarligt så ordnar vi med hemtransport till Sverige\nOm något skulle hända på hemmaplan så att du måste åka hem ersätter Hedvig det också",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.IDENTITY",
+            "title": "ID-kapning",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/id_kapning%402x.png",
+            "shortText": "Lorum",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "ME.TRAVEL.DELAY",
+            "title": "Försenad resa",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/forsenad_resa%402x.png",
+            "shortText":
+              "Om du kommer för sent till en resa ersätter Hedvig dig så att du kan ta dig dit du skulle\nDu får även ersättning om du under en resas gång blir försenad till en plats du var på väg till, och går miste om något kul du hade tänkt göra",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          }
+        ],
+        "description": "Försenat bagage, Överfall, Juridisk tvist, Sjuk på..."
+      },
+      {
+        "title": "Ditt hus",
+        "iconUrl": "https://unsplash.it/70/70",
+        "perils": [
+          {
+            "id": "HOUSE.WEATHER",
+            "title": "Oväder",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/ovadar%402x.png",
+            "shortText":
+              "Hedvig ersätter dig om ett skyfall skulle leda till att vatten kom in i din lägenhet, om hagel skulle förstöra dina balkongmöbler eller blixten skulle så ner så att din TV exploderar",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.FIRE",
+            "title": "Eldsvåda",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/eldsvada%402x.png",
+            "shortText":
+              "Om det av någon anledning skulle börja brinna i din lägenhet så ersätter Hedvig alla skador i den",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.DAMAGE",
+            "title": "Skadegörelse",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/skadegorelse%402x.png",
+            "shortText":
+              "Hedvig ersätter dig om någon skulle ta sig in i din lägenhet, hotellrum eller utrymme där du förvarar saker och förstöra dem",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.BUGS",
+            "title": "Skadedjur",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/skadedjur%402x.png",
+            "shortText": "Lorum",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.APPLIANCES",
+            "title": "Vitvaror",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/vitvaror%402x.png",
+            "shortText":
+              "Om din spis skulle gå sönder eller det blir kortslutning i din fina kaffemaskin så täcker Hedvig det. Hedvig ersätter också mat som förstörs om frysen skulle ge upp",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.WATER",
+            "title": "Vattenläcka",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/vattenlacka%402x.png",
+            "shortText":
+              "Om din diskmaskin går sönder och köksgolvet blir fullt av vatten, eller om ditt akvarium plötsligt skulle spricka så ersätter Hedvig skadorna på din lägenhet",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "HOUSE.BREAK-IN",
+            "title": "Inbrott",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/inbrott%402x.png",
+            "shortText":
+              "Om någon gör inbrott i din lägenhet eller ett förråd som hör till lägenheten och stjäl dina saker så ersätter Hedvig dig",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          }
+        ],
+        "description": "Oväder, Eldsvåda, Skadegörelse, Skadedjur, Vitvaro..."
+      },
+      {
+        "title": "Dina grejer",
+        "iconUrl": "https://unsplash.it/70/70",
+        "perils": [
+          {
+            "id": "STUFF.THEFT",
+            "title": "Stöld",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/stold%402x.png",
+            "shortText":
+              "Hedvig ersätter dig om din väska blir stulen när du är på restaurang, eller någon knycker din plånbok ur din ficka på bussen",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "STUFF.DAMAGE",
+            "title": "Skadegörelse",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/skadegorelse%402x.png",
+            "shortText":
+              "Om någon av dina saker blir förstörda i samband med våld mot dig, eller om någon typ skulle ge sig på din cykel på stan",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "STUFF.WEATHER",
+            "title": "Oväder",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/ovader%402x.png",
+            "shortText":
+              "Hedvig ersätter dig om ett oväder på något sätt skulle orsaka skador på dina prylar, utöver skador på din lägenhet",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "STUFF.CARELESS",
+            "title": "Drulle",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/drulle%402x.png",
+            "shortText":
+              "Om du trillar i sjön med din nya iPhone i fickan eller något du inte räknat med råkar hända med dina prylar, så täcker Hedvig det",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "STUFF.FIRE",
+            "title": "Eldsvåda",
+            "state": "COVERED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/eldsvada%402x.png",
+            "shortText":
+              "Om det skulle brinna så ersätter Hedvig utöver skador på din lägenhet även alla prylar som blir förstörda",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          },
+          {
+            "id": "STUFF.WATER",
+            "title": "Vattenläcka",
+            "state": "CREATED",
+            "imageUrl":
+              "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/vattenlacka%402x.png",
+            "shortText":
+              "Om du har en vattenläcka hemma så ersätter Hedvig utöver skador på din lägenhet även alla prylar som blir förstörda",
+            "longText":
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+            "isRemovable": null
+          }
+        ],
+        "description": "Stöld, Skadegörelse, Oväder, Drulle, Eldsvåda, Vat..."
+      }
+    ],
+    "currentTotalPrice": 100,
+    "newTotalPrice": 100,
+    "status": "PENDING",
+    "statusDescription": ""
+  },
+  "chat": {
+    "messages": [
+      {
+        "globalId": 9606,
+        "id": "message.onboardingstart",
+        "header": {
+          "messageId": 9606,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509536333772,
+          "loadingIndicator": "loader",
+          "avatarName": "h_symbol",
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 9636,
+          "text":
+            "😁 Hej, jag heter Hedvig!\n\fFint att ha dig här\n\fJag är en försäkringsbot så låt mig visa vad jag gör!",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ge mig ett försäkringsförslag",
+              "value": "message.forslagstart"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Visa mig",
+              "value": "message.cad"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Jag är redan medlem",
+              "value": "message.bankid.start"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "[Debug:mock my data]",
+              "value": "message.mockme"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T11:38:53.772Z"
+      },
+      {
+        "globalId": 9608,
+        "id": "message.bankid.start",
+        "header": {
+          "messageId": 9608,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509536337417,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 9638,
+          "text":
+            "Då måste jag fråga ifall du har bankID på den enheten du använder nu?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Klart jag har, det är ju ändå 2017",
+              "value": "message.bankid.autostart.send"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Nej det har jag inte",
+              "value": "message.bankid.start.manual"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T11:38:57.417Z"
+      },
+      {
+        "globalId": 9607,
+        "id": "message.onboardingstart",
+        "header": {
+          "messageId": 9607,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509536337417,
+          "loadingIndicator": "loader",
+          "avatarName": "h_symbol",
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 9637,
+          "text": "Jag är redan medlem",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ge mig ett försäkringsförslag",
+              "value": "message.forslagstart"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Visa mig",
+              "value": "message.cad"
+            },
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Jag är redan medlem",
+              "value": "message.bankid.start"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "[Debug:mock my data]",
+              "value": "message.mockme"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T11:38:57.417Z"
+      },
+      {
+        "globalId": 11278,
+        "id": "message.bankidja",
+        "header": {
+          "messageId": 11278,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561642930,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11308,
+          "text":
+            "Tackar! Enligt infon jag har fått bor du i en lägenhet på Maltgatan 4. Stämmer det?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ja",
+              "value": "message.kvadrat"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Nej",
+              "value": "message.manuellpersonnr"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:40:42.930Z"
+      },
+      {
+        "globalId": 11279,
+        "id": "message.bankidja",
+        "header": {
+          "messageId": 11279,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561656275,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11309,
+          "text": "Ja",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Ja",
+              "value": "message.kvadrat"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Nej",
+              "value": "message.manuellpersonnr"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:40:56.275Z"
+      },
+      {
+        "globalId": 11280,
+        "id": "message.kvadrat",
+        "header": {
+          "messageId": 11280,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561656275,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "number",
+          "id": 11310,
+          "text": "Och hur många kvadrat är lägenheten?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null
+        },
+        "timestamp": "2017-11-01T18:40:56.275Z"
+      },
+      {
+        "globalId": 11281,
+        "id": "message.kvadrat",
+        "header": {
+          "messageId": 11281,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561660819,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "number",
+          "id": 11311,
+          "text": "28kvm",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null
+        },
+        "timestamp": "2017-11-01T18:41:00.819Z"
+      },
+      {
+        "globalId": 11282,
+        "id": "message.lghtyp",
+        "header": {
+          "messageId": 11282,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561660819,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11312,
+          "text": "Då fortsätter vi! Hur bor du?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Äger bostadsrätt",
+              "value": "bostdsrätt"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Hyr hyresrätt",
+              "value": "hyresrätt"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Hyr i andra hand",
+              "value": "andrahand"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:00.819Z"
+      },
+      {
+        "globalId": 11283,
+        "id": "message.lghtyp",
+        "header": {
+          "messageId": 11283,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561668692,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11313,
+          "text": "Då fortsätter vi! Hur bor du?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Äger bostadsrätt",
+              "value": "bostdsrätt"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Hyr hyresrätt",
+              "value": "hyresrätt"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Hyr i andra hand",
+              "value": "andrahand"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:08.692Z"
+      },
+      {
+        "globalId": 11284,
+        "id": "message.pers",
+        "header": {
+          "messageId": 11284,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561668692,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "number",
+          "id": 11314,
+          "text":
+            "Hoppas du trivs!\n Bor du själv eller med andra? Fyll i hur många som bor i lägenheten",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null
+        },
+        "timestamp": "2017-11-01T18:41:08.692Z"
+      },
+      {
+        "globalId": 11285,
+        "id": "message.pers",
+        "header": {
+          "messageId": 11285,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561671868,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "number",
+          "id": 11315,
+          "text": "Jag bor själv",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null
+        },
+        "timestamp": "2017-11-01T18:41:11.868Z"
+      },
+      {
+        "globalId": 11286,
+        "id": "message.sakerhet",
+        "header": {
+          "messageId": 11286,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561671868,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "multiple_select",
+          "id": 11316,
+          "text":
+            "Tack!\nFinns någon av de här säkerhetsgrejerna i lägenheten?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Brandvarnare",
+              "value": "safety.alarm"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Brandsläckare",
+              "value": "safety.extinguisher"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Säkerhetsdörr",
+              "value": "safety.door"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Gallergrind",
+              "value": "safety.gate"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Inbrottslarm",
+              "value": "safety.burglaralarm"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:11.868Z"
+      },
+      {
+        "globalId": 11287,
+        "id": "message.sakerhet",
+        "header": {
+          "messageId": 11287,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561675203,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "multiple_select",
+          "id": 11317,
+          "text": "Jag har brandvarnare, brandsläckare.",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Brandvarnare",
+              "value": "safety.alarm"
+            },
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Brandsläckare",
+              "value": "safety.extinguisher"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Säkerhetsdörr",
+              "value": "safety.door"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Gallergrind",
+              "value": "safety.gate"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Inbrottslarm",
+              "value": "safety.burglaralarm"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:15.203Z"
+      },
+      {
+        "globalId": 11288,
+        "id": "message.dyrpryl",
+        "header": {
+          "messageId": 11288,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561675203,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11318,
+          "text": "Och äger du något som är värt över 75 000 kr? ",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Jag har inget så dyrt",
+              "value": "message.dyrprylnej"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Jag har dyra prylar",
+              "value": "message.dyrprylja"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:15.203Z"
+      },
+      {
+        "globalId": 11289,
+        "id": "message.dyrpryl",
+        "header": {
+          "messageId": 11289,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561677991,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11319,
+          "text": "Jag har inget så dyrt",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Jag har inget så dyrt",
+              "value": "message.dyrprylnej"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Jag har dyra prylar",
+              "value": "message.dyrprylja"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:17.991Z"
+      },
+      {
+        "globalId": 11290,
+        "id": "message.dyrprylnej",
+        "header": {
+          "messageId": 11290,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561677991,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11320,
+          "text":
+            "Okej!\nOm du skulle skaffa en dyr pryl senare är det bara att lägga till den direkt i appen så täcker jag den åt dig",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ok",
+              "value": "message.forsakringidag"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:17.991Z"
+      },
+      {
+        "globalId": 11291,
+        "id": "message.dyrprylnej",
+        "header": {
+          "messageId": 11291,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561681941,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11321,
+          "text": "Ok",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Ok",
+              "value": "message.forsakringidag"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:21.941Z"
+      },
+      {
+        "globalId": 11292,
+        "id": "message.forsakringidag",
+        "header": {
+          "messageId": 11292,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561681947,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11322,
+          "text": "Då är vi snart klara!\n\nHar du någon hemförsäkring idag?",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Nej",
+              "value": "message.forslag"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ja",
+              "value": "message.forsakringidagja"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:21.947Z"
+      },
+      {
+        "globalId": 11293,
+        "id": "message.forsakringidag",
+        "header": {
+          "messageId": 11293,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561685124,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11323,
+          "text": "Nej",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "selection",
+              "selected": true,
+              "text": "Nej",
+              "value": "message.forslag"
+            },
+            {
+              "type": "selection",
+              "selected": false,
+              "text": "Ja",
+              "value": "message.forsakringidagja"
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:25.124Z"
+      },
+      {
+        "globalId": 11294,
+        "id": "message.forslag",
+        "header": {
+          "messageId": 11294,
+          "fromId": 1,
+          "responsePath": "/response",
+          "timeStamp": 1509561685125,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": false
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11324,
+          "text":
+            "Okej! Nu har jag allt för att ge dig ditt förslag.\nSka bara räkna lite...\n\nSådärja!",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "link",
+              "selected": false,
+              "text": "Visa mig",
+              "value": "message.forslag.dashboard",
+              "view": "Dashboard",
+              "appUrl": null,
+              "webUrl": null
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:25.125Z"
+      },
+      {
+        "globalId": 11295,
+        "id": "message.forslag",
+        "header": {
+          "messageId": 11295,
+          "fromId": 339003640,
+          "responsePath": "/response",
+          "timeStamp": 1509561708274,
+          "loadingIndicator": "loader",
+          "avatarName": null,
+          "pollingInterval": 1000,
+          "editAllowed": true
+        },
+        "body": {
+          "type": "single_select",
+          "id": 11325,
+          "text": "Visa mig",
+          "imageURL": null,
+          "imageWidth": null,
+          "imageHeight": null,
+          "choices": [
+            {
+              "type": "link",
+              "selected": true,
+              "text": "Visa mig",
+              "value": "message.forslag.dashboard",
+              "view": "Dashboard",
+              "appUrl": null,
+              "webUrl": null
+            }
+          ]
+        },
+        "timestamp": "2017-11-01T18:41:48.274Z"
+      }
+    ],
+    "loadingMessages": false,
+    "avatars": {}
+  },
+  "mockedChat": {
+    "numVisibleMessages": 1
+  },
+  "authentication": {
+    "token": "BvtTbcyfC7B7Sw==.VkUkr8y0+NXDFw==.nJKVnzBWY9exLw=="
+  },
+  "assetTracker": {
+    "items": []
+  },
+  "user": {
+    "currentUser": {}
+  },
+  "cashback": {
+    "alternatives": {}
+  },
+  "statusMessage": {
+    "message": null,
+    "warning": null,
+    "error": null
+  },
+  "dialog": {
+    "message": {
+      "title": null,
+      "paragraph": null,
+      "confirmButtonTitle": null,
+      "dismissButtonTitle": null
+    }
+  },
+  "bankid": {
+    "referenceId": null,
+    "currentlyCollecting": false,
+    "tryCount": 0,
+    "response": null
+  },
+  "upload": {
+    "currentlyUploading": null
+  },
+  "router": {
+    "location": null
+  }
+}

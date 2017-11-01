@@ -106,7 +106,17 @@ export default class Dashboard extends React.Component {
             <StyledText>Gäller i hela världen</StyledText>
           </StyledDashboardHeaderRow>
         </StyledDashboardHeader>
-        <ScrollView style={{ flex: 1 }}>{this.renderCategories()}</ScrollView>
+        <ScrollView style={{ flex: 1 }}>
+          {this.renderCategories()}
+          {this.props.extraScrollViewPadding ? (
+            <View
+              style={{
+                alignSelf: "stretch",
+                height: this.props.extraScrollViewPadding
+              }}
+            />
+          ) : null}
+        </ScrollView>
         {this.maybeCheckoutButton()}
       </StyledDashboardContainer>
     )

@@ -1,16 +1,17 @@
 {
   "expo": {
     "name": "Hedvig",
-    "icon": "./icon.png",
-    "version": "1.0.5",
+    "icon": "./assets/app_icon.png",
+    "splash": {
+      "image": "./assets/splash_screen.png",
+      "backgroundColor": "#FFFFFF"
+    },
+    "version": "1.0.6",
     "slug": "hedvig-app",
     "sdkVersion": "22.0.0",
-    "loading": {
-      "icon": "./icon.png"
-    },
     "privacy": "unlisted",
     "ios": {
-      "buildNumber": "1.0.5",
+      "buildNumber": "1.0.6",
       "bundleIdentifier": "com.hedvig.app"
     },
     "android": {

@@ -28,6 +28,11 @@ export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
   font-size: ${props => props.theme.typography.hedvigMessage.fontSize};
 `
 
+export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
+  color: ${props => props.theme.colors.purple};
+  font-size: ${props => props.theme.typography.userMessage.fontSize};
+`
+
 export const StyledChatMessage = styled.View`
   flex-direction: row;
   padding: 12px 16px;
@@ -35,6 +40,18 @@ export const StyledChatMessage = styled.View`
   width: 80%;
   background: ${props => props.theme.colors.hedvigMessageBackground};
   margin-bottom: 8;
+`
+
+export const StyledUserChatMessage = styled.View`
+  height: ${props => props.theme.input.default.height};
+  padding: 10px 16px;
+  background-color: ${props => props.theme.colors.white};
+  border-color: ${props => props.theme.colors.primary};
+  border-width: 1px;
+  border-radius: 24px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 `
 
 export const StyledHeroMessage = StyledChatMessage.extend`

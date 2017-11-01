@@ -10,6 +10,7 @@ import SingleSelectInput from "../containers/chat/SingleSelectInput"
 // import VideoInput from "../containers/chat/VideoInput"
 // import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
+import ParagraphInput from "../containers/chat/ParagraphInput"
 
 const getInputComponent = function(messages) {
   if (messages.length === 0) {
@@ -33,7 +34,8 @@ const getInputComponent = function(messages) {
     //   />
     // ),
     // photo_upload: <PhotoInput messageIndex={lastIndex} />
-    bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />
+    bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
+    paragraph: <ParagraphInput messageIndex={lastIndex} />
   }[lastMessageType]
 }
 
