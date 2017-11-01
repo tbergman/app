@@ -26,9 +26,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         // First upload the photo
         uploadActions.upload({
-          url: `${environment.baseURL}/asset/fileupload/`,
+          // url: `${environment.baseURL}/asset/fileupload/`,
           body: { uri: item.photoUrl, type: "image/jpeg" },
-          addToken: true,
+          addToken: false,
           successActionCreator: uploadedPhotoUrl => {
             // Then, if we have a receiptUrl, upload that too
             if (item.receiptUrl) {

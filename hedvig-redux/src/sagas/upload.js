@@ -3,7 +3,7 @@ import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
 import { upload } from "../services/Upload"
 const uuidv4 = require("uuid/v4")
 
-const UPLOAD_URL = "http://hedvig-upload-test.s3-eu-west-1.amazonaws.com"
+const UPLOAD_URL = "http://com-hedvig-upload.s3-eu-central-1.amazonaws.com"
 
 const uploadHandler = function*(action) {
   if (action.payload.addToken) {
