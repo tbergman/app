@@ -16,14 +16,16 @@ import {
 import { theme } from "hedvig-style"
 
 class Offer extends React.Component {
+  componentWillMount() {
+    this.props.getInsurance()
+  }
+
   render() {
     return (
       <View style={{ flex: 1, alignSelf: "stretch" }}>
         <NavBar
           headerLeft={
-            <NavigateBackButton
-              onPress={() => this.props.navigation.goBack()}
-            />
+            <NavigateBackButton onPress={() => this.props.closeModal()} />
           }
         />
         <Dashboard />
@@ -34,10 +36,16 @@ class Offer extends React.Component {
           <StyledPriceText>{this.props.newTotalPrice} kr/mån</StyledPriceText>
           <StyledPriceComment>Ingen bidningstid</StyledPriceComment>
           <StyledButtonContainer>
-            <TurquoiseRoundedInvertedButton title="Byt till Hedvig" />
+            <TurquoiseRoundedInvertedButton
+              onPress={() => this.props.checkout()}
+              title="Byt till Hedvig"
+            />
           </StyledButtonContainer>
           <StyledButtonContainer>
-            <RoundedTransparentButton title="Jag har en fråga" />
+            <RoundedTransparentButton
+              onPress={() => this.props.closeModal()}
+              title="Jag har en fråga"
+            />
           </StyledButtonContainer>
         </StyledCtaArea>
       </View>

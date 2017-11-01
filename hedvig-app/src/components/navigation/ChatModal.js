@@ -3,12 +3,12 @@ import { View, Button } from "react-native"
 
 import { AssetTracker } from "../../components/asset-tracker/AssetNavigator"
 import VideoExample from "../../components/VideoExample"
-import Dashboard from "../../containers/dashboard/Dashboard"
+import Offer from "../../containers/dashboard/Offer"
 
 const VIEW_MAPPING = {
   AssetTracker,
   VideoExample,
-  Dashboard
+  Dashboard: Offer
 }
 
 /*
@@ -18,8 +18,6 @@ const VIEW_MAPPING = {
   created using React.createElement below.
 */
 
-// TODO: Fire a CHAT_MODAL_CLOSED action (saga -> POST) when the close
-// button is pressed
 const ChatModal = ({ navigation, modalClosed }) => {
   let content = React.createElement(
     VIEW_MAPPING[navigation.state.params.link.view],
@@ -27,13 +25,13 @@ const ChatModal = ({ navigation, modalClosed }) => {
   )
   return (
     <View style={{ flex: 1, alignSelf: "stretch" }}>
-      <Button
+      {/* <Button
         title="Close"
         onPress={() => {
           modalClosed()
           navigation.goBack()
         }}
-      />
+      /> */}
       {content}
     </View>
   )

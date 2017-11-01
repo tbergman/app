@@ -76,6 +76,18 @@ export class Carousel extends React.Component {
     }
   }
 
+  maybeCta() {
+    if (this.renderCta) {
+      return (
+        <StyledParagraphToggleContainer>
+          {this.renderCta(this.getItem())}
+        </StyledParagraphToggleContainer>
+      )
+    } else {
+      return null
+    }
+  }
+
   navbar() {
     return (
       <NavBar
@@ -114,8 +126,8 @@ export class Carousel extends React.Component {
               {this.shownDescription()}
             </StyledCarouselParagraph>
             {this.maybeToggleButton()}
+            {this.maybeCta()}
           </StyledCarouselTexts>
-          {this.renderCta && this.renderCta(item)}
         </StyledAlignedCarouselItems>
       </StyledCarouselContainer>
     )

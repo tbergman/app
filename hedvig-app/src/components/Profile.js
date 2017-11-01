@@ -33,7 +33,12 @@ import {
   ProfileBankAccountIcon,
   ProfileShareIcon
 } from "./Icon"
-import { ListNextButton, DisabledListNextButton } from "./Button"
+import {
+  ListNextButton,
+  DisabledListNextButton,
+  RoundedButton,
+  TurquoiseRoundedInvertedButton
+} from "./Button"
 import moment from "moment"
 import "moment/locale/sv"
 const R = require("ramda")
@@ -46,6 +51,7 @@ export default class Profile extends React.Component {
 
   componentWillMount() {
     this.props.getUser()
+    this.props.getCashbackAlternatives()
     this.props.dispatch({ type: "LOADED_CASHBACK_ALTERNATIVES" })
   }
 
@@ -155,10 +161,13 @@ export default class Profile extends React.Component {
   }
 
   _cashbackCarouselCta(item) {
-    if (!item.selected) {
+    if (item.selected) {
+      let title = item.charity ? "Tack för ditt bidrag" : "Ditt val"
+      return <TurquoiseRoundedInvertedButton title={title} disabled={true} />
+    } else {
       return (
-        <Button
-          title="Select"
+        <RoundedButton
+          title="Välj"
           onPress={() => this.props.updateCashback(item)}
         />
       )

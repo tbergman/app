@@ -40,5 +40,5 @@ export const StyledCarouselParagraph = CircularFontText.extend`
 `
 
 export const StyledParagraphToggleContainer = styled.View`
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `

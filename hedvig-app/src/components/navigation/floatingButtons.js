@@ -12,7 +12,7 @@ const FloatingChatButtonComponent = ({
   right = 20,
   zIndex = 100
 }) => {
-  if (insurance.newTotalPrice === null) {
+  if (insurance.status !== "PENDING") {
     return (
       <ChatFabButton
         onPress={() =>

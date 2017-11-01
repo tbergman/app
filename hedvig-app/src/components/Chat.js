@@ -65,7 +65,7 @@ export default class Chat extends React.Component {
     let lastIndex = this.props.messages.length - 1
     let headerRight
     if (
-      this.props.insurance.status === "PENDING" ||
+      this.props.insurance.status === "INACTIVE" ||
       this.props.insurance.status === "ACTIVE"
     ) {
       headerRight = (

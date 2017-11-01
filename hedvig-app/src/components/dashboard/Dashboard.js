@@ -80,7 +80,7 @@ export default class Dashboard extends React.Component {
     imageModule = {
       ACTIVE: require("../../../assets/icons/my_insurance/aktiv.png"),
       PENDING: require("../../../assets/icons/edit_perils/added_peril.png"),
-      INACTIVE: require("../../../assets/icons/edit_perils/remove_peril.png"),
+      INACTIVE: require("../../../assets/icons/edit_perils/added_peril.png"),
       DENIED: require("../../../assets/icons/edit_perils/remove_peril.png")
     }[this.props.insurance.status]
     return <StyledDashboardHeaderIcon source={imageModule} />

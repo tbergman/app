@@ -1,4 +1,4 @@
-import { LOADED_CASHBACK_ALTERNATIVES, UPDATE_CASHBACK } from "./types"
+import { API, LOADED_CASHBACK_ALTERNATIVES, UPDATE_CASHBACK } from "./types"
 
 export function getCashbackAlternatives() {
   return {
@@ -14,6 +14,6 @@ export function getCashbackAlternatives() {
 export function updateCashback(selectedCashback) {
   return {
     type: UPDATE_CASHBACK,
-    payload: selectedCashback,
+    payload: selectedCashback
   }
 }

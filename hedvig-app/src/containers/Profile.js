@@ -29,6 +29,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(userActions.getCurrentUser()),
+    getCashbackAlternatives: () =>
+      dispatch(cashbackActions.getCashbackAlternatives()),
     updateCashback: selectedCashback =>
       dispatch(cashbackActions.updateCashback(selectedCashback)),
     editPersonalInfo: () =>
