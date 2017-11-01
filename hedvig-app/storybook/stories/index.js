@@ -161,7 +161,7 @@ const perils = [...R.range(0, 20)].map(i => {
 const categories = [
   {
     title: "Du och din familj",
-    description: "Brand, inbrott, vattenläcka",
+    description: "Brand, inbrott, vattenläcka ".repeat(3),
     perils: perils.slice(0, 7),
     iconUrl: "https://unsplash.it/70/70"
   },
@@ -173,7 +173,7 @@ const categories = [
   },
   {
     title: "Prylar",
-    description: "Brand, inbrott, vattenläcka",
+    description: "",
     perils: perils.slice(14, 21),
     iconUrl: "https://unsplash.it/70/70"
   }

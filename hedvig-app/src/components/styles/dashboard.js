@@ -44,6 +44,7 @@ export const StyledCategoryContainer = styled.TouchableOpacity`
 export const StyledCategoryHeader = styled.View`
   flex-direction: row;
   padding: 0px 16px 16px 16px;
+  flex: 1;
 `
 
 export const StyledCategoryIcon = styled.Image`
@@ -55,12 +56,19 @@ export const StyledCategoryIcon = styled.Image`
 export const StyledCategoryTextContainer = styled.View`
   margin-left: 16px;
   justify-content: center;
+  align-self: stretch;
 `
 
 export const StyledExpandButton = styled.View`
-  flex: 1;
   align-items: flex-end;
   justify-content: center;
+`
+
+export const StyledCategoryTextAndButton = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const StyledPerilsContainer = styled.View`

@@ -16,7 +16,8 @@ import {
   StyledCategoryTextContainer,
   StyledExpandButton,
   StyledPerilsContainer,
-  StyledPerilsRow
+  StyledPerilsRow,
+  StyledCategoryTextAndButton
 } from "../styles/dashboard"
 import { DisabledCollapseButton, DisabledExpandButton } from "../Button"
 import { StyledRow, StyledWrappingRow } from "../styles/general"
@@ -108,25 +109,27 @@ export class PerilsCategory extends React.Component {
       >
         <StyledCategoryHeader>
           <StyledCategoryIcon source={{ uri: this.props.iconUrl }} />
-          <StyledCategoryTextContainer>
-            <StyledRow>
-              <StyledHeading>{this.props.title}</StyledHeading>
-            </StyledRow>
-            <StyledRow>
-              <StyledPassiveText>
-                {this.state.showCategory
-                  ? "Klicka på ikonerna för mer info"
-                  : this.props.description}
-              </StyledPassiveText>
-            </StyledRow>
-          </StyledCategoryTextContainer>
-          <StyledExpandButton>
-            {this.state.showCategory ? (
-              <DisabledCollapseButton />
-            ) : (
-              <DisabledExpandButton />
-            )}
-          </StyledExpandButton>
+          <StyledCategoryTextAndButton>
+            <StyledCategoryTextContainer>
+              <StyledRow>
+                <StyledHeading>{this.props.title}</StyledHeading>
+              </StyledRow>
+              <StyledRow>
+                <StyledPassiveText>
+                  {this.state.showCategory
+                    ? "Klicka på ikonerna för mer info"
+                    : this.props.description}
+                </StyledPassiveText>
+              </StyledRow>
+            </StyledCategoryTextContainer>
+            <StyledExpandButton>
+              {this.state.showCategory ? (
+                <DisabledCollapseButton />
+              ) : (
+                <DisabledExpandButton />
+              )}
+            </StyledExpandButton>
+          </StyledCategoryTextAndButton>
         </StyledCategoryHeader>
         {this.perils()}
       </StyledCategoryContainer>
