@@ -22,12 +22,14 @@ const mapDispatchToProps = dispatch => {
       ),
     upload: (message, info) =>
       dispatch(
-        uploadActions.upload(info, url =>
-          chatActions.sendChatResponse(message, {
-            type: "audio",
-            content: url
-          })
-        )
+        uploadActions.upload({
+          body: info,
+          successActionCreator: url =>
+            chatActions.sendChatResponse(message, {
+              type: "audio",
+              content: url
+            })
+        })
       )
   }
 }

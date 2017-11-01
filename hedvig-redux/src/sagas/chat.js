@@ -91,17 +91,19 @@ const editLastResponseSaga = function*() {
 const DEFAULT_POLLING_INTERVAL = 1000
 const pollMessageHandler = function*(action) {
   if (action.type === START_POLLING_MESSAGES) {
-    console.log("Polling for messages")
     let pollingInterval =
       action.payload.pollingInterval || DEFAULT_POLLING_INTERVAL
-    yield put(chatActions.getMessages())
+    console.log("Polling for messages in ", pollingInterval, "ms")
+    yield put({ type: LOADING_MESSAGES_START, payload: {} })
     yield call(delay, pollingInterval)
+    yield put(chatActions.getMessages())
     yield put({
       type: START_POLLING_MESSAGES,
       payload: { pollingInterval }
     })
   } else if (action.type === STOP_POLLING_MESSAGES) {
     console.log("Stopped polling for messages")
+    yield put({ type: LOADING_MESSAGES_END, payload: {} })
   }
 }
 

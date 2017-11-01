@@ -15,6 +15,7 @@ import * as pushNotificationActions from "./actions/pushNotification"
 import * as dialogActions from "./actions/dialog"
 import * as eventActions from "./actions/events"
 import * as types from "./actions/types"
+import * as environment from "./services/environment"
 
 import createSagaMiddleware from "redux-saga"
 import { rootSaga } from "./sagas/index"
@@ -61,6 +62,7 @@ export {
   helloActions,
   types,
   configureStore,
+  environment,
   insuranceActions,
   chatActions,
   assetActions,

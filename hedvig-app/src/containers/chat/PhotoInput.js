@@ -13,12 +13,14 @@ const mapDispatchToProps = dispatch => {
   return {
     upload: (message, info) =>
       dispatch(
-        uploadActions.upload(info, url =>
-          chatActions.sendChatResponse(message, {
-            type: "photo_upload",
-            content: url
-          })
-        )
+        uploadActions.upload({
+          body: info,
+          successActionCreator: url =>
+            chatActions.sendChatResponse(message, {
+              type: "photo_upload",
+              content: url
+            })
+        })
       )
   }
 }
