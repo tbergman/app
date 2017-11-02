@@ -102,8 +102,18 @@ export default class Dashboard extends React.Component {
               {this.statusIcon()}
               <StyledText>Aktiv</StyledText>
             </StyledDashboardHeaderItem>
-            <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
-            <StyledText>Gäller i hela världen</StyledText>
+            <StyledDashboardHeaderItem>
+              <StyledDashboardHeaderIcon
+                source={require("../../../assets/icons/my_insurance/pris.png")}
+              />
+              <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
+            </StyledDashboardHeaderItem>
+            <StyledDashboardHeaderItem>
+              <StyledDashboardHeaderIcon
+                source={require("../../../assets/icons/my_insurance/worldwide.png")}
+              />
+              <StyledText>Gäller i hela världen</StyledText>
+            </StyledDashboardHeaderItem>
           </StyledDashboardHeaderRow>
         </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>

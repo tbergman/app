@@ -5,6 +5,7 @@ import { Audio, Permissions } from "expo"
 import {
   RecordButton,
   StopRecordingButton,
+  StopRecordingAnimationButton,
   SingleSelectOptionButton
 } from "../Button"
 import {
@@ -183,7 +184,7 @@ export default class AudioInput extends React.Component {
     } else if (this.state.isRecording) {
       content = (
         <StyledRightAlignedOptions>
-          <StopRecordingButton
+          <StopRecordingAnimationButton
             onPress={() => this.stopRecordingAudio(message)}
           />
           <StyledPassiveText style={{ marginRight: 16 }}>

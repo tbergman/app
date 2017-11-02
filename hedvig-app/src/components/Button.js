@@ -1,5 +1,6 @@
 import React from "react"
 import { Text, TouchableOpacity, Image } from "react-native"
+import { DangerZone } from "expo"
 import {
   StyledButton,
   StyledDisabledButton,
@@ -16,6 +17,7 @@ import {
   StyledFabButton
 } from "./styles/button"
 import { StyledDialogButton, StyledDialogButtonText } from "./styles/dialog"
+const { Lottie } = DangerZone
 
 const hitSlop = {
   top: 20,
@@ -350,5 +352,49 @@ export const ChatFabButton = ({ onPress }) => (
   <FabButton
     iconModule={require("../../assets/buttons/fab/open_fab.png")}
     onPress={onPress}
+  />
+)
+
+// Animation buttons
+
+export const AnimationButton = ({
+  animationModule,
+  onPress,
+  width,
+  size = "big",
+  _ButtonComponent = StyledButton
+}) => {
+  width =
+    width ||
+    {
+      small: 16,
+      medium: 20,
+      mediumBig: 24,
+      big: 40,
+      huge: 56
+    }[size]
+  return (
+    <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
+      <Lottie
+        ref={animation => {
+          animation ? animation.play() : null
+        }}
+        style={{
+          height: width,
+          width: width,
+          backgroundColor: "transparent"
+        }}
+        loop={true}
+        source={animationModule}
+      />
+    </_ButtonComponent>
+  )
+}
+
+export const StopRecordingAnimationButton = ({ onPress }) => (
+  <AnimationButton
+    animationModule={require("../../assets/animations/hedvig_voice_recording_animation.json")}
+    onPress={onPress}
+    size="huge"
   />
 )

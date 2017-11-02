@@ -105,7 +105,7 @@ export default class Profile extends React.Component {
 
     if (this.props.user.safetyIncreasers) {
       return this._userRow({
-        title: "Trygghetshöjdare",
+        title: "Trygghetshöjare",
         icon: <ProfileLockIcon />,
         text: ucFirst(R.join(", ", this.props.user.safetyIncreasers)),
         onPress: () => this.props.editSafetyIncreasers()
