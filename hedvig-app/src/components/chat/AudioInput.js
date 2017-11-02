@@ -8,6 +8,7 @@ import {
   StopRecordingAnimationButton,
   SingleSelectOptionButton
 } from "../Button"
+import { UploadingAnimation } from "../Animation"
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions
@@ -251,7 +252,7 @@ export default class AudioInput extends React.Component {
       // TODO: Replace with animation
       maybeUploading = (
         <StyledRightAlignedOptions>
-          <Text>Uploading...</Text>
+          <UploadingAnimation />
         </StyledRightAlignedOptions>
       )
     }

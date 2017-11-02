@@ -1,4 +1,5 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
+import { delay } from "redux-saga"
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
 import { upload } from "../services/Upload"
 const uuidv4 = require("uuid/v4")
@@ -36,6 +37,7 @@ const uploadHandler = function*(action) {
     console.log("Upload succeeded", response)
     // debugger
     let uploadedUrl = response.target.responseHeaders.Location
+    yield delay(5000)
     yield put({
       type: UPLOAD_SUCCEEDED,
       payload: Object.assign({}, action.payload, { uploadedUrl })

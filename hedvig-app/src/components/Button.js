@@ -391,6 +391,14 @@ export const AnimationButton = ({
   )
 }
 
+export const DisabledAnimationButton = ({ animationModule, width, size }) =>
+  AnimationButton({
+    animationModule,
+    width,
+    size,
+    _ButtonComponent: StyledDisabledButton
+  })
+
 export const StopRecordingAnimationButton = ({ onPress }) => (
   <AnimationButton
     animationModule={require("../../assets/animations/hedvig_voice_recording_animation.json")}

@@ -37,7 +37,6 @@ export const StyledChatMessage = styled.View`
   flex-direction: row;
   padding: 12px 16px;
   border-radius: 8px;
-  width: 80%;
   background: ${props => props.theme.colors.hedvigMessageBackground};
   margin-bottom: 8;
 `

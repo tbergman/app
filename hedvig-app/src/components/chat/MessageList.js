@@ -172,6 +172,7 @@ export default class MessageList extends React.Component {
   render() {
     return (
       <BaseScrollViewStyle
+        showsVerticalScrollIndicator={false}
         innerRef={x => (this.ref = x)}
         onContentSizeChange={() => this.ref.scrollToEnd()}
       >

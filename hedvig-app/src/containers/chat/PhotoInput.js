@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
           successActionCreator: url =>
             chatActions.sendChatResponse(message, {
               type: "photo_upload",
-              content: url
+              text: url
             })
         })
       )
