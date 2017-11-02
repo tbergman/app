@@ -285,8 +285,13 @@ const messages = {
         },
         {
           type: "link",
-          text: "Show me my offer",
+          text: "Take me to the dashboard",
           view: "Dashboard"
+        },
+        {
+          type: "link",
+          text: "Show me my offer",
+          view: "Offer"
         }
       ]
     }

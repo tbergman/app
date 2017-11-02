@@ -4,6 +4,7 @@ import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
 import { AssetNavigator } from "../asset-tracker/AssetNavigator"
+import AssetList from "../../containers/asset-tracker/AssetList"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
 
@@ -84,7 +85,7 @@ const MyTabNavigator = TabNavigator(
       screen: Dashboard
     },
     AssetTrackerTab: {
-      screen: AssetNavigator
+      screen: AssetList
     },
     ProfileTab: {
       screen: Profile

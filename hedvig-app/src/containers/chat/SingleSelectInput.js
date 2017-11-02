@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import SingleSelectInput from "../../components/chat/SingleSelectInput"
 import { chatActions } from "hedvig-redux"
+import { showDashboardAction } from "../../actions/baseNavigation"
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -15,6 +16,9 @@ const mapDispatchToProps = dispatch => {
     },
     done: message => {
       return dispatch(chatActions.sendChatResponse(message))
+    },
+    goToDashboard: () => {
+      return dispatch(showDashboardAction())
     }
   }
 }

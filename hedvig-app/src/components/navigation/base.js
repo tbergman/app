@@ -10,6 +10,7 @@ import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
 import StatusBar from "../../containers/StatusBar"
+import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
 
 const HomeBaseNavigator = StackNavigator(
   {
@@ -21,6 +22,9 @@ const HomeBaseNavigator = StackNavigator(
     },
     Carousel: {
       screen: Carousel
+    },
+    AddEditAsset: {
+      screen: AddEditAsset
     }
   },
   {

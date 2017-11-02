@@ -12,6 +12,7 @@ const SingleSelectInput = ({
   message,
   selectChoice,
   done,
+  goToDashboard,
   launchModal = R.identity
 }) => {
   let opts = message.body.choices.map(choice => {
@@ -26,7 +27,11 @@ const SingleSelectInput = ({
             } else if (choice.type === "link" && choice.view !== null) {
               selectChoice(message, choice)
               done(message)
-              launchModal(choice)
+              if (choice.view === "Dashboard") {
+                goToDashboard()
+              } else {
+                launchModal(choice)
+              }
             } else if (choice.type === "link" && choice.appUrl !== null) {
               selectChoice(message, choice)
               done(message)

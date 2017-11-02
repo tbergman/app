@@ -1,14 +1,10 @@
 import React from "react"
 import { View, Button } from "react-native"
 
-import { AssetTracker } from "../../components/asset-tracker/AssetNavigator"
-import VideoExample from "../../components/VideoExample"
 import Offer from "../../containers/dashboard/Offer"
 
 const VIEW_MAPPING = {
-  AssetTracker,
-  VideoExample,
-  Dashboard: Offer
+  Offer
 }
 
 /*
