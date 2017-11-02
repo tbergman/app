@@ -13,11 +13,13 @@ export const TextContainer = styled.View`
 export const Heading = MerriweatherFontText.extend`
   font-size: 24px;
   margin-bottom: 16px;
+  text-align: center;
 `
 
 export const Paragraph = CircularFontText.extend`
   font-size: 16px;
   margin-bottom: 24px;
+  text-align: center;
 `
 
 // bottom: 0 has a small goes slightly over the dialog bottom
@@ -34,7 +36,7 @@ export const StyledDialogButton = styled.TouchableOpacity`
   justify-content: center;
   border-top-width: 1px;
   border-top-color: ${props => props.theme.colors.offWhite};
-  border-right-width: ${props => props.borderRight ? "1px" : "0"}
+  border-right-width: ${props => (props.borderRight ? "1px" : "0")}
   border-right-color: ${props => props.theme.colors.offWhite};
 `
 

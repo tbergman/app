@@ -41,8 +41,7 @@
     "metro-bundler": "^0.13.0",
     "moment": "2.19.0",
     "react": "16.0.0-beta.5",
-    "react-native":
-      "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
     "react-native-popup-dialog": "^0.9.36",
     "react-native-snap-carousel": "^3.2.3",
     "react-navigation": "^1.0.0-beta.11",
@@ -51,6 +50,7 @@
     "redux-saga": "^0.15.6",
     "rn-placeholder": "^1.0.1",
     "sentry-expo": "~1.6.0",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "wolfy87-eventemitter": "^5.2.3"
   }
 }

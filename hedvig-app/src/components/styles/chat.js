@@ -38,10 +38,11 @@ export const StyledChatMessage = styled.View`
   padding: 12px 16px;
   border-radius: 8px;
   background: ${props => props.theme.colors.hedvigMessageBackground};
-  margin-bottom: 8;
+  margin-bottom: 8px;
 `
 
 export const StyledUserChatMessage = styled.View`
+  margin-bottom: 8px;
   padding: 10px 16px;
   background-color: ${props => props.theme.colors.white};
   border-color: ${props => props.theme.colors.primary};
@@ -91,6 +92,7 @@ export const StyledTextInputContainer = styled.View`
   flex-direction: row;
   margin-right: 8px;
   margin-left: 8px;
+  margin-bottom: 8px;
 `
 
 export const StyledTextInput = styled.TextInput`

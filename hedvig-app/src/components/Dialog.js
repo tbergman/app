@@ -1,6 +1,9 @@
 import React from "react"
 import { View, Text, Dimensions } from "react-native"
-import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog'
+import PopupDialog, {
+  SlideAnimation,
+  DialogTitle
+} from "react-native-popup-dialog"
 import { theme } from "hedvig-style"
 import {
   TextContainer,
@@ -19,7 +22,6 @@ import { DialogButton } from "./Button"
  * * `confirmButtonOnPress`, ex: () => console.log("Cancel pressed")
  */
 export default class Dialog extends React.Component {
-
   componentDidUpdate() {
     if (this.props.message.title) {
       this.popupDialog.show()
@@ -44,20 +46,24 @@ export default class Dialog extends React.Component {
   }
 
   buttons() {
-    dismissButton = <DialogButton
-      title={this.props.message.dismissButtonTitle || "Ok"}
-      onPress={() => this.dismissButtonPressed()}
-    />
+    dismissButton = (
+      <DialogButton
+        title={this.props.message.dismissButtonTitle || "Ok"}
+        onPress={() => this.dismissButtonPressed()}
+      />
+    )
     let confirmButton
     if (this.props.message.confirmButtonTitle) {
-      confirmButton = <DialogButton
-        title={this.props.message.confirmButtonTitle}
-        onPress={() => this.confirmButtonPressed()}
-        borderRight={true}
-      />
+      confirmButton = (
+        <DialogButton
+          title={this.props.message.confirmButtonTitle}
+          onPress={() => this.confirmButtonPressed()}
+          borderRight={true}
+        />
+      )
     }
 
-    return(
+    return (
       <ButtonsContainer>
         {dismissButton}
         {confirmButton}
@@ -66,19 +72,21 @@ export default class Dialog extends React.Component {
   }
 
   render() {
-    let window = Dimensions.get('window')
-    let width = window.width - 2*theme.mobile.margin.big
+    let window = Dimensions.get("window")
+    let width = window.width - 2 * theme.mobile.margin.big
     return (
       <PopupDialog
-        ref={(popupDialog) => { this.popupDialog = popupDialog }}
+        ref={popupDialog => {
+          this.popupDialog = popupDialog
+        }}
         dismissOnTouchOutside={false}
         width={width}
         height={0.4}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
       >
         <TextContainer>
           <Heading>{this.props.message.title}</Heading>
-          <Text>{this.props.message.paragraph}</Text>
+          <Paragraph>{this.props.message.paragraph}</Paragraph>
         </TextContainer>
         {this.buttons()}
       </PopupDialog>

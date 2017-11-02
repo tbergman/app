@@ -14,6 +14,7 @@ import nav from "../../src/reducers/nav"
 import keyboardStateReducer from "../../src/reducers/keyboardState"
 import { apiAndNavigateToChatSaga } from "../../src/sagas/apiAndNavigate"
 import { tokenStorageSaga } from "../../src/sagas/TokenStorage"
+import { navigationSaga } from "../../src/sagas/navigation"
 import AssetList from "../../src/containers/asset-tracker/AssetList"
 import AddEditAsset from "../../src/containers/asset-tracker/AddEditAsset"
 import { AssetTracker } from "../../src/components/asset-tracker/AssetNavigator"
@@ -191,7 +192,11 @@ storiesOf("Navigation", module)
   .addDecorator(story => {
     tabBarStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     window.tabBarStore = tabBarStore
     tabBarStore.dispatch({
@@ -354,7 +359,11 @@ storiesOf("Chat input widgets", module)
         chat: { messages: R.sortBy(R.path(["timestamp"]), R.values(messages)) }
       },
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     chatStore.dispatch({
       type: types.AUTHENTICATE,
@@ -400,7 +409,11 @@ const chatHistoryStoryBase = storiesOf(
       keyboard: { currentState: { state: null } }
     },
     additionalReducers: { nav, keyboard: keyboardStateReducer },
-    additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+    additionalSagas: [
+      apiAndNavigateToChatSaga,
+      tokenStorageSaga,
+      navigationSaga
+    ]
   })
   return (
     <StorybookProvider store={chatHistoryStore}>{story()}</StorybookProvider>
@@ -418,7 +431,11 @@ storiesOf("Chat Backend IO", module)
   .addDecorator(story => {
     const chatBackendIOStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     chatBackendIOStore.dispatch({
       type: "AUTHENTICATE",
@@ -437,7 +454,11 @@ storiesOf("Asset Tracker", module)
   .addDecorator(story => {
     const assetStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     assetStore.dispatch({
       type: "AUTHENTICATE",
@@ -476,7 +497,11 @@ storiesOf("Components", module)
   .addDecorator(story => {
     const hedvigStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     window.hedvigStore = hedvigStore
     return <StorybookProvider store={hedvigStore}>{story()}</StorybookProvider>
@@ -489,7 +514,11 @@ storiesOf("Dashboard", module)
   .addDecorator(story => {
     const dashboardStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     window.dashboardStore = dashboardStore
     dashboardStore.dispatch({
@@ -508,7 +537,11 @@ storiesOf("Profile", module)
   .addDecorator(story => {
     profileStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     window.profileStore = profileStore
     return <StorybookProvider store={profileStore}>{story()}</StorybookProvider>
@@ -564,7 +597,11 @@ storiesOf("Carousel", module)
   .addDecorator(story => {
     dashboardStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
-      additionalSagas: [apiAndNavigateToChatSaga, tokenStorageSaga]
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga
+      ]
     })
     return (
       <StorybookProvider store={dashboardStore}>{story()}</StorybookProvider>

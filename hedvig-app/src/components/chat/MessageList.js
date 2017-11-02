@@ -13,6 +13,7 @@ import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 import { theme } from "hedvig-style"
+import { onScrollToEndEvent } from "../../services/MessageListScroll"
 
 const renderImage = message => {
   if (
@@ -152,6 +153,12 @@ export default class MessageList extends React.Component {
       "keyboardDidHide",
       this.handleKeyboardStateChange.bind(this)
     )
+    // TODO: Unregister this listener on componentWillUnmount
+    onScrollToEndEvent(() => {
+      if (this.ref) {
+        this.ref.scrollToEnd()
+      }
+    })
   }
 
   componentWillUnmount() {

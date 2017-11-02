@@ -14,6 +14,7 @@ import {
   StyledRightAlignedOptions
 } from "../styles/chat"
 import { StyledPassiveText } from "../styles/text"
+import { emitScrollToEndEvent } from "../../services/MessageListScroll"
 
 export default class AudioInput extends React.Component {
   state = {
@@ -24,6 +25,11 @@ export default class AudioInput extends React.Component {
     sound: null,
     playbackStatus: null,
     isPlaying: false
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("State change", prevState, this.state)
+    setTimeout(() => emitScrollToEndEvent(), 200)
   }
 
   onRecordingStatusUpdate(status) {

@@ -23,7 +23,10 @@ import appStateChangeReducer from "./src/reducers/appState"
 import keyboardStateChangeReducer from "./src/reducers/keyboardState"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
+import { navigationSaga } from "./src/sagas/navigation"
 import { getOrLoadToken } from "./src/services/TokenStorage"
+import EventEmitter from "./src/services/EventEmitter"
+window.EventEmitter = EventEmitter()
 
 export class App extends React.Component {
   constructor() {
@@ -38,7 +41,8 @@ export class App extends React.Component {
         apiAndNavigateToChatSaga,
         appStateSaga,
         keyboardSaga,
-        tokenStorageSaga
+        tokenStorageSaga,
+        navigationSaga
       ]
     })
     window.store = this.store

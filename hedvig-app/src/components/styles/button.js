@@ -1,15 +1,18 @@
 import styled from "styled-components/native"
+import { CircularFontText, MerriweatherFontText } from "./typography"
 
 export const StyledButton = styled.TouchableOpacity``
 
 export const StyledDisabledButton = styled.View``
 
-export const StyledButtonText = styled.Text`
+export const StyledButtonText = CircularFontText.extend`
   color: ${props => props.theme.button.textButton.color};
   font-size: ${props => props => props.theme.button.textButton.fontSize};
+  background-color: transparent;
+  line-height: ${props => props.theme.button.textButton.fontSize};
 `
 
-export const StyledButtonTextInverted = styled.Text`
+export const StyledButtonTextInverted = CircularFontText.extend`
   color: ${props => props.theme.colors.white};
 `
 
@@ -18,7 +21,7 @@ export const StyledButtonTextPrefix = StyledButtonText.extend`
 `
 
 export const StyledRoundedButton = styled.TouchableOpacity`
-  height: ${props => props.theme.input.default.height};
+  min-height: ${props => props.theme.input.option.height};
   padding: 10px 16px;
   background-color: ${props => props.theme.colors.white};
   border-color: ${props => props.theme.colors.primary};

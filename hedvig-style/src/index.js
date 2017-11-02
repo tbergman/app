@@ -37,7 +37,7 @@ module.exports.theme = {
       fontSize: 14
     },
     hedvigMessage: {
-      fontSize: 18
+      fontSize: 16
     },
     userMessage: {
       fontSize: 16
@@ -60,6 +60,9 @@ module.exports.theme = {
   input: {
     default: {
       height: 40
+    },
+    option: {
+      height: 20
     }
   },
   button: {
