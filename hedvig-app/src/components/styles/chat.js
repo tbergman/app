@@ -43,7 +43,6 @@ export const StyledChatMessage = styled.View`
 `
 
 export const StyledUserChatMessage = styled.View`
-  height: ${props => props.theme.input.default.height};
   padding: 10px 16px;
   background-color: ${props => props.theme.colors.white};
   border-color: ${props => props.theme.colors.primary};

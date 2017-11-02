@@ -77,6 +77,7 @@ const editLastResponse = function*(action) {
     payload: {
       url: "/chat/edit",
       method: "POST",
+      body: null,
       SUCCESS: "EDITED_LAST_RESPONSE"
     }
   })
@@ -85,7 +86,7 @@ const editLastResponse = function*(action) {
 }
 
 const editLastResponseSaga = function*() {
-  // yield takeEvery(EDIT_LAST_RESPONSE, editLastResponse)
+  yield takeEvery(EDIT_LAST_RESPONSE, editLastResponse)
 }
 
 const DEFAULT_POLLING_INTERVAL = 1000

@@ -445,7 +445,8 @@ The message headers contains information about:
 "timeStamp":1508233456622,
 "loadingIndicator":"loader",
 "avatarName":null,
-"pollingInterval":1000
+"pollingInterval":1000,
+"editAllowed": true
 ```
 
 The loadingIndicator is the loading animation displayed after the message is shown and before the next message appears. The avatarName is the animation to be displayed above the message and the pollingInterval is the delay time in the case of a paragraph message before the client polls the server for new messages

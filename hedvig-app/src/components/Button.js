@@ -321,6 +321,14 @@ export const StopRecordingButton = ({ onPress }) => (
   />
 )
 
+export const EditMessageButton = ({ onPress }) => (
+  <IconButton
+    iconModule={require("../../assets/icons/chat/edit_last_message.png")}
+    onPress={onPress}
+    size="mediumBig"
+  />
+)
+
 // Fabs
 
 const FabButton = ({ iconModule, onPress }) =>

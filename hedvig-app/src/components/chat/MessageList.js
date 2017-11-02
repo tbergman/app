@@ -9,6 +9,7 @@ import {
   StyledHeroMessage,
   StyledAvatarContainer
 } from "../styles/chat"
+import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 import { theme } from "hedvig-style"
@@ -66,12 +67,23 @@ const DefaultHedvigMessage = ({ message, textAlign }) => {
 }
 
 const DefaultUserMessage = ({ message, textAlign }) => {
+  let maybeEditMessageButton
+  if (message.header.editAllowed) {
+    maybeEditMessageButton = (
+      <View style={{ marginLeft: 10 }}>
+        <EditMessageButton />
+      </View>
+    )
+  }
   return (
-    <StyledUserChatMessage>
-      <StyledDefaultUserMessageText style={{ textAlign }}>
-        {message.body.text}
-      </StyledDefaultUserMessageText>
-    </StyledUserChatMessage>
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <StyledUserChatMessage>
+        <StyledDefaultUserMessageText style={{ textAlign }}>
+          {message.body.text}
+        </StyledDefaultUserMessageText>
+      </StyledUserChatMessage>
+      {maybeEditMessageButton}
+    </View>
   )
 }
 
