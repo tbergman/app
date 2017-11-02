@@ -11,20 +11,71 @@ import {
 import { baseURL } from "../services/environment"
 window.baseURL = baseURL
 import * as assetActions from "../actions/assetTracker"
+import * as uploadActions from "../actions/upload"
 import * as statusMessageActions from "../actions/statusMessage"
-import { take, takeEvery, put, select } from "redux-saga/effects"
+import { take, takeEvery, put, select, call } from "redux-saga/effects"
+import R from "ramda"
+
+// Upload files for an item
+
+const isLocalUrl = uri => !R.isNil(uri) && uri.startsWith("file://")
+
+const uploadUrlFields = function*(item) {
+  console.log("Uploading url fields in", item)
+
+  let photoUrlUploadedAction
+  if (isLocalUrl(item.photoUrl)) {
+    console.log("Uploading local photo URL", item.photoUrl)
+    yield put(
+      uploadActions.upload({
+        body: { uri: item.photoUrl, type: "image/jpeg" },
+        successActionCreator: uploadedUrl => ({
+          type: "UPLOAD_URL_SUCCEEDED",
+          payload: uploadedUrl
+        })
+      })
+    )
+    photoUrlUploadedAction = yield take("UPLOAD_URL_SUCCEEDED")
+  }
+
+  let receiptUrlUploadedAction
+  if (isLocalUrl(item.receiptUrl)) {
+    console.log("Uploading local receipt URL", item.photoUrl)
+    yield put(
+      uploadActions.upload({
+        body: { uri: item.receiptUrl, type: "image/jpeg" },
+        successActionCreator: uploadedUrl => ({
+          type: "UPLOAD_URL_SUCCEEDED",
+          payload: uploadedUrl
+        })
+      })
+    )
+    receiptUrlUploadedAction = yield take("UPLOAD_URL_SUCCEEDED")
+  }
+
+  if (photoUrlUploadedAction) {
+    item.photoUrl = photoUrlUploadedAction.payload
+  }
+  if (receiptUrlUploadedAction) {
+    item.receiptUrl = receiptUrlUploadedAction.payload
+  }
+
+  return item
+}
 
 // Create and update item
 
 const postItem = function*({ payload: item }) {
-  let id = item.id || ""
+  let itemWithUploadedFields = yield call(uploadUrlFields, item)
+
+  let id = itemWithUploadedFields.id || ""
   yield put({
     type: API,
     payload: {
-      method: item.id ? "PUT" : "POST",
+      method: itemWithUploadedFields.id ? "PUT" : "POST",
       url: `/asset/${id}`,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(item, null, 4),
+      body: JSON.stringify(itemWithUploadedFields, null, 4),
       SUCCESS: ITEM_UPDATED
     }
   })
@@ -32,7 +83,7 @@ const postItem = function*({ payload: item }) {
   if (action.type === ITEM_UPDATED) {
     yield put(
       statusMessageActions.setStatusMessage({
-        message: `${item.title || "Pryl"} sparad i prylbanken`
+        message: `${itemWithUploadedFields.title || "Pryl"} sparad i prylbanken`
       })
     )
   } else if (action.type === API_ERROR) {

@@ -23,35 +23,7 @@ const mapDispatchToProps = dispatch => {
   return {
     showDialog: message => dispatch(dialogActions.showDialog(message)),
     updateItem: item => {
-      dispatch(
-        // First upload the photo
-        uploadActions.upload({
-          // url: `${environment.baseURL}/asset/fileupload/`,
-          body: { uri: item.photoUrl, type: "image/jpeg" },
-          addToken: false,
-          successActionCreator: uploadedPhotoUrl => {
-            // Then, if we have a receiptUrl, upload that too
-            if (item.receiptUrl) {
-              return uploadActions.upload({
-                body: { uri: item.receiptUrl, type: "image/jpeg" },
-                successActionCreator: uploadedReceiptUrl =>
-                  // Finally, POST an item with both uploadedPhotoUrl and uploadedReceiptUrl
-                  assetActions.updateItem(
-                    Object.assign(item, {
-                      photoUrl: uploadedPhotoUrl,
-                      receiptUrl: uploadedReceiptUrl
-                    })
-                  )
-              })
-            } else {
-              // Otherwise, then POST an item with just uploadedPhotoUrl
-              return assetActions.updateItem(
-                Object.assign(item, { photoUrl: uploadedPhotoUrl })
-              )
-            }
-          }
-        })
-      )
+      dispatch(assetActions.updateItem(item))
     },
     deleteItem: item => dispatch(assetActions.deleteItem(item)),
     setStatusMessage: message =>
