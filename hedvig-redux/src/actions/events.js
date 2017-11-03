@@ -1,16 +1,12 @@
-import { API } from "./types"
+import { EVENT } from "./types"
 
-export function event(info) {
+export function event(info, opts = {}) {
   return {
-    type: API,
+    type: EVENT,
     payload: {
-      url: "/event",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(info),
-      SUCCESS: "POST_EVENT_SUCCESS"
+      info,
+      getMessagesAfter: opts.getMessagesAfter,
+      showLoadingIndicator: opts.showLoadingIndicator
     }
   }
 }

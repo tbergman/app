@@ -35,6 +35,8 @@ import { handleStatusMessage } from "./statusMessage"
 import { updateCashbackSaga } from "./cashback"
 import { handleDialogSaga } from "./dialog"
 import { collectSaga } from "./bankid"
+import { handleCheckoutSaga } from "./offer"
+import { handleEventSaga } from "./events"
 import runner from "./sagaRunner"
 
 // TODO: Move to actions
@@ -87,6 +89,8 @@ const root = (additionalSagas = []) =>
       updateCashbackSaga,
       collectSaga,
       handleDialogSaga,
+      handleCheckoutSaga,
+      handleEventSaga,
       ...additionalSagas
     ])
   }

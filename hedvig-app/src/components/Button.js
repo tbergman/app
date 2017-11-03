@@ -338,7 +338,7 @@ const FabButton = ({ iconModule, onPress }) =>
     iconModule,
     onPress,
     _ButtonComponent: StyledFabButton,
-    size: "huge"
+    width: 62
   })
 
 export const DashboardFabButton = ({ onPress }) => (

@@ -23,6 +23,7 @@ import {
 import { RoundedButton, NavigateBackButton } from "./Button"
 import { NavBar } from "./NavBar"
 const deviceWidth = Dimensions.get("window").width
+const itemWidth = 186
 
 export class Carousel extends React.Component {
   navParams = this.props.navigation.state.params
@@ -37,7 +38,9 @@ export class Carousel extends React.Component {
     return (
       <StyledCarouselImage
         source={{ uri: item.imageUrl }}
-        width={deviceWidth - 100}
+        width={itemWidth}
+        height={itemWidth}
+        resizeMode="contain"
       />
     )
   }
@@ -113,7 +116,7 @@ export class Carousel extends React.Component {
               data={this.items}
               renderItem={this._renderItem}
               sliderWidth={deviceWidth}
-              itemWidth={deviceWidth - 100}
+              itemWidth={itemWidth}
               firstItem={this.state.slideIndex}
               onSnapToItem={slideIndex => {
                 this.setState({ slideIndex, showFullDescription: false })

@@ -21,6 +21,7 @@
     "packagerOpts": {
       "projectRoots": "",
       "config": "rn-cli.config.js"
-    }
+    },
+    "orientation": "portrait"
   }
 }

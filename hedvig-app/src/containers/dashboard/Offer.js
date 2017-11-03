@@ -21,22 +21,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getInsurance: () => dispatch(insuranceActions.getInsurance()),
     checkout: () => {
       dispatch({
-        type: types.API,
-        payload: {
-          method: "POST",
-          url: "/hedvig/quoteAccepted",
-          body: null,
-          SUCCESS: "INITIATE_CHECKOUT"
-        }
+        type: types.CHECKOUT,
+        payload: {}
       })
       ownProps.navigation.goBack()
     },
     closeModal: () => {
       dispatch(
-        eventActions.event({
-          type: "MODAL_CLOSED",
-          value: "quote"
-        })
+        eventActions.event(
+          {
+            type: "MODAL_CLOSED",
+            value: "quote"
+          },
+          {
+            getMessagesAfter: true,
+            showLoadingIndicator: true
+          }
+        )
       )
       ownProps.navigation.goBack()
     },

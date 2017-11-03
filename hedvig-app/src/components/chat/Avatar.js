@@ -32,10 +32,8 @@ export default class Avatar extends React.Component {
           ref={() => this.play()}
           style={{
             // TODO: Load from avatar data when we get sane input
-            // height: this.props.avatar.height,
-            // width: this.props.avatar.width,
-            height: 100,
-            width: 300,
+            height: this.props.avatar.height,
+            width: this.props.avatar.width,
             backgroundColor: "transparent"
           }}
           source={this.props.avatar.data}

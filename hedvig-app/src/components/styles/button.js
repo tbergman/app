@@ -75,6 +75,6 @@ export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
 export const StyledFabButton = StyledButton.extend`
   position: absolute;
   bottom: 20;
-  right: 20;
+  right: 16;
   z-index: 10;
 `
