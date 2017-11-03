@@ -12,6 +12,7 @@ import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigat
 import * as Navigation from "./src/services/Navigation"
 import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
 import { tokenStorageSaga } from "./src/sagas/TokenStorage"
+import { logoutSaga } from "./src/sagas/logout"
 import { ThemeProvider } from "styled-components"
 import { theme } from "hedvig-style"
 import WithAssets from "./src/components/WithAssets"
@@ -42,7 +43,8 @@ export class App extends React.Component {
         appStateSaga,
         keyboardSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     window.store = this.store

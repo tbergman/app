@@ -92,10 +92,13 @@ export default class Dashboard extends React.Component {
         <StyledDashboardHeader>
           <StyledDashboardHeaderRow>
             <StyledHeading>Din hemförsäkring</StyledHeading>
-            <TextButton
-              title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
-              onPress={() => this.setState({ editMode: !this.state.editMode })}
-            />
+            {this.props.mode === "offer" ? null : (
+              <TextButton
+                title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
+                onPress={() =>
+                  this.setState({ editMode: !this.state.editMode })}
+              />
+            )}
           </StyledDashboardHeaderRow>
           <StyledDashboardHeaderRow>
             <StyledDashboardHeaderItem>
@@ -118,11 +121,11 @@ export default class Dashboard extends React.Component {
         </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
-          {this.props.extraScrollViewPadding ? (
+          {this.props.mode === "offer" ? (
             <View
               style={{
                 alignSelf: "stretch",
-                height: this.props.extraScrollViewPadding
+                height: this.props.extraScrollViewPadding || 250
               }}
             />
           ) : null}

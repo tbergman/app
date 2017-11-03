@@ -9,7 +9,7 @@ export const StyledButtonText = CircularFontText.extend`
   color: ${props => props.theme.button.textButton.color};
   font-size: ${props => props => props.theme.button.textButton.fontSize};
   background-color: transparent;
-  line-height: ${props => props.theme.button.textButton.fontSize};
+  line-height: ${props => props.theme.button.textButton.fontSize + 4};
 `
 
 export const StyledButtonTextInverted = CircularFontText.extend`
@@ -22,7 +22,7 @@ export const StyledButtonTextPrefix = StyledButtonText.extend`
 
 export const StyledRoundedButton = styled.TouchableOpacity`
   min-height: ${props => props.theme.input.option.height};
-  padding: 10px 16px;
+  padding: 8px 16px;
   background-color: ${props => props.theme.colors.white};
   border-color: ${props => props.theme.colors.primary};
   border-width: 1px;
@@ -74,7 +74,7 @@ export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
 
 export const StyledFabButton = StyledButton.extend`
   position: absolute;
-  bottom: 20;
+  bottom: 10;
   right: 16;
   z-index: 10;
 `

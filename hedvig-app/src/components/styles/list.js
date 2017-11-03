@@ -22,6 +22,15 @@ export const StyledListElement = styled.View`
   border-bottom-color: ${props => props.theme.colors.offWhite};
 `
 
+export const TouchableStyledListElement = styled.TouchableOpacity`
+  flex: 1;
+  flex-direction: row;
+  padding: 16px;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-color: ${props => props.theme.colors.offWhite};
+`
+
 export const StyledListElementImage = styled.Image`
   width: 40;
   height: 40;

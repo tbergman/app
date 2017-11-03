@@ -48,15 +48,15 @@ export const StyledCategoryHeader = styled.View`
 `
 
 export const StyledCategoryIcon = styled.Image`
-  width: 74px;
-  height: 74px;
-  border-radius: 37px;
+  width: 72px;
+  height: 72px;
 `
 
 export const StyledCategoryTextContainer = styled.View`
   margin-left: 16px;
-  justify-content: center;
+  justify-content: flex-start;
   align-self: stretch;
+  flex: 1;
 `
 
 export const StyledExpandButton = styled.View`

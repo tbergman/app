@@ -30,6 +30,7 @@ class Offer extends React.Component {
         />
         <Dashboard
           navigation={this.props.navigation}
+          mode="offer"
           extraScrollViewPadding={250}
         />
         <StyledCtaArea

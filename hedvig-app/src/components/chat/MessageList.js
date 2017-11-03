@@ -77,7 +77,9 @@ const DefaultUserMessage = ({ message, textAlign }) => {
     )
   }
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <View
+      style={{ flexDirection: "row", alignItems: "center", maxWidth: "88%" }}
+    >
       <StyledUserChatMessage>
         <StyledDefaultUserMessageText style={{ textAlign }}>
           {message.body.text}

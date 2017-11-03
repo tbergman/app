@@ -6,6 +6,7 @@ const typesList = [
   "UPLOAD_SUCCEEDED",
   "AUTHENTICATE",
   "RECEIVED_TOKEN",
+  "DELETE_TOKEN",
   "LOADED_MESSAGES",
   "LOADING_MESSAGES_START",
   "LOADING_MESSAGES_END",
@@ -47,7 +48,8 @@ const typesList = [
   "DIALOG_CONFIRM_PRESSED",
   "DIALOG_DISMISS_PRESSED",
   "CHECKOUT",
-  "EVENT"
+  "EVENT",
+  "LOGOUT"
 ]
 
 const typesMap = {}

@@ -4,7 +4,8 @@ import {
   cashbackActions,
   chatActions,
   userActions,
-  insuranceActions
+  insuranceActions,
+  types
 } from "hedvig-redux"
 
 const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
@@ -63,8 +64,7 @@ const mapDispatchToProps = dispatch => {
         "/hedvig/initiateUpdate?what=BANK_ACCOUNT",
         "REQUESTED_BANK_ACCOUNT_UPDATE"
       ),
-    logout: () =>
-      _apiAndNavigateToChat(dispatch, "/logout", "LOGOUT_REQUESTED"),
+    logout: () => dispatch({ type: types.LOGOUT, payload: {} }),
     sendPolicyEmail: () => dispatch(insuranceActions.sendPolicyEmail()),
     dispatch
   }

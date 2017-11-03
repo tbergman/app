@@ -1,27 +1,51 @@
-import {
-  LOADED_USER
-} from "../actions/types"
+import { LOADED_USER } from "../actions/types"
+import R from "ramda"
 
 const user = {
-  "name": "Anakin Skywalker",
-  "familyMembers": [
+  name: "Anakin Skywalker",
+  familyMembers: [
     "Anakin Skywalker",
     "Padmé Amidala",
     "Luke Skywalker",
     "Leia Organa"
   ],
-  "age": 26,
-  "email": "anakkin@skywalk.er",
-  "address": "Krukmakargatan 5",
-  "livingAreaSqm": "48",
-  "maskedBankAccountNumber": "XXXX XXXX 1234",
-  "selectedCashback": "Rädda Barnen"
+  age: 26,
+  email: "anakkin@skywalk.er",
+  address: "Krukmakargatan 5",
+  livingAreaSqm: "48",
+  maskedBankAccountNumber: "XXXX XXXX 1234",
+  selectedCashback: "Rädda Barnen"
 }
 
-const reducer = (state = { currentUser: {} }, action) => {
+const reducer = (
+  state = {
+    currentUser: {
+      address: null,
+      age: null,
+      email: null,
+      familyMembers: [],
+      firstName: null,
+      lastName: null,
+      livingAreaSqm: 0,
+      maskedBankAccountNumber: "",
+      name: "",
+      nextPaymentDate: "",
+      paymentStatus: "",
+      safetyIncreasers: [],
+      selectedCashback: "",
+      selectedCashbackSignature: "",
+      selectedCashbackParagraph: ""
+    }
+  },
+  action
+) => {
   switch (action.type) {
     case LOADED_USER:
-      return Object.assign({}, state, {currentUser: action.payload})
+      if (!R.isNil(action.payload)) {
+        return Object.assign({}, state, { currentUser: action.payload })
+      } else {
+        return state
+      }
     default:
       return state
   }

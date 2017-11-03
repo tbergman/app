@@ -15,6 +15,7 @@ import keyboardStateReducer from "../../src/reducers/keyboardState"
 import { apiAndNavigateToChatSaga } from "../../src/sagas/apiAndNavigate"
 import { tokenStorageSaga } from "../../src/sagas/TokenStorage"
 import { navigationSaga } from "../../src/sagas/navigation"
+import { logoutSaga } from "../../src/sagas/logout"
 import AssetList from "../../src/containers/asset-tracker/AssetList"
 import AddEditAsset from "../../src/containers/asset-tracker/AddEditAsset"
 import { AssetTracker } from "../../src/components/asset-tracker/AssetNavigator"
@@ -195,7 +196,8 @@ storiesOf("Navigation", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     window.tabBarStore = tabBarStore
@@ -231,11 +233,11 @@ const messages = {
       text: "Multiple select",
       choices: [
         {
-          text: "Jag vill ha en ny",
+          text: "Jag vill ha 1",
           selected: false
         },
         {
-          text: "Vill byta försäkring",
+          text: "Jag vill ha 2",
           selected: false
         },
         {
@@ -286,7 +288,11 @@ const messages = {
       choices: [
         {
           type: "selection",
-          text: "Jag vill ha en ny"
+          text: "Jag vill ha 1"
+        },
+        {
+          type: "selection",
+          text: "Jag vill ha 2"
         },
         {
           type: "link",
@@ -362,7 +368,8 @@ storiesOf("Chat input widgets", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     chatStore.dispatch({
@@ -434,7 +441,8 @@ storiesOf("Chat Backend IO", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     chatBackendIOStore.dispatch({
@@ -457,7 +465,8 @@ storiesOf("Asset Tracker", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     assetStore.dispatch({
@@ -500,7 +509,8 @@ storiesOf("Components", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     window.hedvigStore = hedvigStore
@@ -517,7 +527,8 @@ storiesOf("Dashboard", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     window.dashboardStore = dashboardStore
@@ -540,7 +551,8 @@ storiesOf("Profile", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     window.profileStore = profileStore
@@ -600,7 +612,8 @@ storiesOf("Carousel", module)
       additionalSagas: [
         apiAndNavigateToChatSaga,
         tokenStorageSaga,
-        navigationSaga
+        navigationSaga,
+        logoutSaga
       ]
     })
     return (

@@ -117,7 +117,7 @@ export class PerilsCategory extends React.Component {
               <StyledRow>
                 <StyledPassiveText>
                   {this.state.showCategory
-                    ? "Klicka på ikonerna för mer info"
+                    ? "Klicka för detaljer"
                     : this.props.description}
                 </StyledPassiveText>
               </StyledRow>

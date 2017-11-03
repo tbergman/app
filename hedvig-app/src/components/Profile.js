@@ -24,7 +24,8 @@ import {
   StyledListElementTexts,
   StyledListElementHeading,
   StyledListElementText,
-  StyledRowButton
+  StyledRowButton,
+  TouchableStyledListElement
 } from "./styles/list"
 import {
   ProfileHeartIcon,
@@ -56,8 +57,11 @@ export default class Profile extends React.Component {
   }
 
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
-    let content = (
-      <StyledListElement>
+    let ListElementComponent = onPress
+      ? TouchableStyledListElement
+      : StyledListElement
+    return (
+      <ListElementComponent onPress={onPress}>
         {icon}
         <StyledListElementTexts>
           <StyledListElementHeading>{title}</StyledListElementHeading>
@@ -69,13 +73,8 @@ export default class Profile extends React.Component {
         <StyledRowButton>
           <DisabledListNextButton />
         </StyledRowButton>
-      </StyledListElement>
+      </ListElementComponent>
     )
-    if (onPress) {
-      return <TouchableOpacity onPress={onPress}>{content}</TouchableOpacity>
-    } else {
-      return content
-    }
   }
 
   _maybeFamilyMembers() {

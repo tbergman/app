@@ -35,8 +35,9 @@ export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
 
 export const StyledChatMessage = styled.View`
   flex-direction: row;
-  padding: 12px 16px;
+  padding: 12px 14px;
   border-radius: 8px;
+  max-width: 88%;
   background: ${props => props.theme.colors.hedvigMessageBackground};
   margin-bottom: 8px;
 `
@@ -67,7 +68,8 @@ export const StyledAvatarContainer = styled.View`
 
 export const StyledMarginContainer = styled.View`
   margin: 0px 16px 40px 16px;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: flex-end;
   flex-wrap: wrap;
 `
 
@@ -82,7 +84,8 @@ export const StyledRightAlignedOptions = styled.View`
 
 export const StyledOptionsContainer = styled.View`
   margin-bottom: 8px;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: flex-end;
   flex-wrap: wrap;
 `
 

@@ -1,9 +1,6 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
 import { baseURL } from "../services/environment"
-import {
-  API,
-  API_ERROR
-} from "../actions/types"
+import { API, API_ERROR } from "../actions/types"
 import * as statusMessageActions from "../actions/statusMessage"
 
 const api = function*(action) {
@@ -18,7 +15,7 @@ const api = function*(action) {
 
   console.log(
     `${action.payload.method} ${baseURL}${action.payload.url} ${action.payload
-      .body}`
+      .body} [${token}]`
   )
   let data
   let response
@@ -41,13 +38,20 @@ const api = function*(action) {
       405: `Method Not Allowed (${url})`,
       500: `Internal server error (${url})`,
       502: `Bad gateway (${url})`,
-      503: `Service unavailable (${url})`,
+      503: `Service unavailable (${url})`
     }[response.status.toString()]
-    let unknownHttpError = !knownHttpError && response.status >= 400 && `Server error ${response.status} (${url})`
+    let unknownHttpError =
+      !knownHttpError &&
+      response.status >= 400 &&
+      `Server error ${response.status} (${url})`
     // Bad request
     // Unauthenticated
     if (knownHttpError || unknownHttpError) {
-      yield put(statusMessageActions.setStatusMessage({error: knownHttpError || unknownHttpError}))
+      yield put(
+        statusMessageActions.setStatusMessage({
+          error: knownHttpError || unknownHttpError
+        })
+      )
       data = null
     } else if (response.status !== 204) {
       data = yield response.json()
@@ -60,7 +64,7 @@ const api = function*(action) {
     }
   } catch (e) {
     console.log("API Error: ", e, response, data)
-    yield put(statusMessageActions.setStatusMessage({error: e.toString()}))
+    yield put(statusMessageActions.setStatusMessage({ error: e.toString() }))
     yield put({
       type: action.payload.ERROR || API_ERROR,
       payload: data || e.toString()
