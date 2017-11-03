@@ -83,7 +83,7 @@ const postItem = function*({ payload: item }) {
   if (action.type === ITEM_UPDATED) {
     yield put(
       statusMessageActions.setStatusMessage({
-        message: `${itemWithUploadedFields.title || "Pryl"} sparad i prylbanken`
+        message: `${itemWithUploadedFields.title || "Prylen"} är sparad!`
       })
     )
   } else if (action.type === API_ERROR) {

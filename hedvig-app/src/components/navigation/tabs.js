@@ -9,7 +9,11 @@ import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
 
 import { Placeholder } from "../Styles"
-import { StyledTabBarContainer, StyledTabBarButton, StyledTabBarButtonText } from "../styles/tabbar"
+import {
+  StyledTabBarContainer,
+  StyledTabBarButton,
+  StyledTabBarButtonText
+} from "../styles/tabbar"
 
 class AssetTrackerTab extends React.Component {
   render() {
@@ -33,7 +37,7 @@ const MyTabsContainer = styled.View`
   justify-content: space-between;
 `
 
-const TabBarButton = ({title, disabled, navigation, navigateTo}) => {
+const TabBarButton = ({ title, disabled, navigation, navigateTo }) => {
   return (
     <StyledTabBarButton
       disabled={disabled}
@@ -56,7 +60,7 @@ class MyTabs extends React.Component {
       <StyledTabBarContainer>
         <MyTabsContainer>
           <TabBarButton
-            title="Dashboard"
+            title="Försäkring"
             disabled={this.props.navigation.state.index === 0}
             navigation={this.props.navigation}
             navigateTo="DashboardTab"

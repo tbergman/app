@@ -42,13 +42,13 @@ class Offer extends React.Component {
           <StyledButtonContainer>
             <TurquoiseRoundedInvertedButton
               onPress={() => this.props.checkout()}
-              title="Byt till Hedvig"
+              title="Skaffa Hedvig"
             />
           </StyledButtonContainer>
           <StyledButtonContainer>
             <RoundedTransparentButton
               onPress={() => this.props.closeModal()}
-              title="Jag har en fråga"
+              title="Jag vill fundera"
             />
           </StyledButtonContainer>
         </StyledCtaArea>

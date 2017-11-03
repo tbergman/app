@@ -35,7 +35,7 @@ export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
 
 export const StyledChatMessage = styled.View`
   flex-direction: row;
-  padding: 12px 14px;
+  padding: 12px 12px;
   border-radius: 8px;
   max-width: 88%;
   background: ${props => props.theme.colors.hedvigMessageBackground};

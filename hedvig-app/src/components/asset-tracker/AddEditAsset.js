@@ -116,7 +116,7 @@ export default class AddEditAsset extends React.Component {
     } else if (this.state.item && this.state.item.id) {
       return (
         <RedRoundedInvertedButton
-          title="Anmäl skada"
+          title="Något har hänt"
           onPress={() => this.props.raiseAssetClaim(this.state.item)}
         />
       )
@@ -292,11 +292,11 @@ export default class AddEditAsset extends React.Component {
     return (
       <StyledInputContainer>
         <StyledInputTexts>
-          <StyledInputHeader>Pryl</StyledInputHeader>
+          <StyledInputHeader>Min pryl</StyledInputHeader>
           <StyledTextInput
             innerRef={ref => (this.nameInput = ref)}
             placeholderTextColor={theme.typography.passiveText.color}
-            placeholder="Namnge din pryl"
+            placeholder="Lägg till prylnamn"
             editable={this.state.editingTitle}
             value={this.state.item.title}
             returnKeyType="next"
@@ -317,11 +317,11 @@ export default class AddEditAsset extends React.Component {
       : InputEditButton
     let dateText = this.state.dateIsDirty
       ? moment(this.state.item.date).format("LL")
-      : "Ange inköpsdatum"
+      : "Lägg till inköpsdatum"
     return (
       <StyledInputContainer>
         <StyledInputTexts>
-          <StyledInputHeader>Inköpt</StyledInputHeader>
+          <StyledInputHeader>Köptes den</StyledInputHeader>
           <StyledInputText>{dateText}</StyledInputText>
         </StyledInputTexts>
         <ButtonComponent
@@ -345,12 +345,12 @@ export default class AddEditAsset extends React.Component {
     return (
       <StyledInputContainer>
         <StyledInputTexts>
-          <StyledInputHeader>Inköpspris</StyledInputHeader>
+          <StyledInputHeader>Köptes för</StyledInputHeader>
           <StyledTextInput
             keyboardType="numeric"
             placeholderTextColor={theme.typography.passiveText.color}
             innerRef={ref => (this.priceInput = ref)}
-            placeholder="Ange inköpspris"
+            placeholder="Lägg till inköpspris"
             editable={this.state.editingPrice}
             value={this.state.item.price}
             onChangeText={price => this._updatePrice(price)}
@@ -382,8 +382,8 @@ export default class AddEditAsset extends React.Component {
       }
     ]
     let message = this.state.item.receiptUrl
-      ? "Kvitto fotat"
-      : "Fota eller maila ditt kvitto"
+      ? "Kvitto tillagt"
+      : "Lägg till genom att fota eller maila in kvittot"
     return (
       <TouchableOpacity
         onPress={() => this._showActionSheet(actionSheetOptions)}
@@ -459,14 +459,14 @@ export default class AddEditAsset extends React.Component {
               onPress={() => this._takePhoto(onPhotoPickedOrTaken)}
             >
               <CameraCircleIcon size="huge" />
-              <StyledHeaderButtonText>Fota din pryl</StyledHeaderButtonText>
+              <StyledHeaderButtonText>Fota</StyledHeaderButtonText>
             </StyledHeaderButton>
 
             <StyledHeaderButton
               onPress={() => this._pickImage(onPhotoPickedOrTaken)}
             >
               <ChoosePhotoCircleIcon size="huge" />
-              <StyledHeaderButtonText>Välj en bild</StyledHeaderButtonText>
+              <StyledHeaderButtonText>Välj</StyledHeaderButtonText>
             </StyledHeaderButton>
           </StyledImageSelectionContainer>
         </View>

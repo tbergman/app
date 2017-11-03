@@ -13,6 +13,7 @@ export const StyledButtonText = CircularFontText.extend`
 `
 
 export const StyledButtonTextInverted = CircularFontText.extend`
+  font-size: ${props => props => props.theme.button.textButton.fontSize};
   color: ${props => props.theme.colors.white};
 `
 

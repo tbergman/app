@@ -104,7 +104,7 @@ export default class Profile extends React.Component {
 
     if (this.props.user.safetyIncreasers) {
       return this._userRow({
-        title: "Trygghetshöjare",
+        title: "Mina trygghetshöjare",
         icon: <ProfileLockIcon />,
         text: ucFirst(R.join(", ", this.props.user.safetyIncreasers)),
         onPress: () => this.props.editSafetyIncreasers()
@@ -124,7 +124,7 @@ export default class Profile extends React.Component {
         ).format("D/M")}`
       }
       return this._userRow({
-        title: "Bankkonto",
+        title: "Min betalning",
         icon: <ProfileBankAccountIcon />,
         text: this.props.user.maskedBankAccountNumber,
         secondText: `Autogiro ${paymentStatus}${nextPaymentText}`,
@@ -136,7 +136,7 @@ export default class Profile extends React.Component {
   _maybeSelectedCashback() {
     if (this.props.user.selectedCashback) {
       return this._userRow({
-        title: "Välgörenhet",
+        title: "Min välgörenhet",
         icon: <ProfileHeartIcon />,
         text: this.props.user.selectedCashback,
         onPress: () =>
@@ -208,7 +208,9 @@ export default class Profile extends React.Component {
       <StyledProfileContainer>
         <StyledListHeader>
           <StyledCharityParagraph>Överskottet går till</StyledCharityParagraph>
-          <StyledCharityImage source={{ uri: "https://unsplash.it/166/48" }} />
+          <StyledCharityImage
+            source={{ uri: this.props.user.selectedCashbackImageUrl }}
+          />
           <StyledCharityParagraph>
             {this.props.user.selectedCashbackParagraph}
           </StyledCharityParagraph>

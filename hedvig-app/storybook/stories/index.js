@@ -144,7 +144,9 @@ const images = [
 ]
 const states = [
   "CREATED",
+  "ADD_REQUESTED",
   "ADD_PENDING",
+  "REMOVE_REQUESTED",
   "REMOVE_PENDING",
   "WAITING_FOR_PAYMENT",
   "NOT_COVERED",
@@ -157,6 +159,7 @@ const perils = [...R.range(0, 20)].map(i => {
     key: i,
     id: i.toString(),
     state: state,
+    isRemovable: ["ADD_REQUESTED", "ADD_PENDING", "COVERED"].includes(state),
     imageUrl: images[i % images.length],
     description: description.substr(0, 600 + 10 * i)
   }
@@ -479,7 +482,7 @@ storiesOf("Asset Tracker", module)
         {
           id: "d38f4da4-8fb8-421d-bd1f-fd22ad7b1fd0",
           includedInBasePackage: false,
-          photoUrl: null,
+          photoUrl: "https://unsplash.it/40/40",
           receiptUrl: null,
           registrationDate: "2017-10-31",
           state: "PENDING",
@@ -488,7 +491,7 @@ storiesOf("Asset Tracker", module)
         {
           id: "b4b722d7-e837-4311-b37e-2167320f6402",
           includedInBasePackage: false,
-          photoUrl: null,
+          photoUrl: "https://unsplash.it/40/40",
           receiptUrl: null,
           registrationDate: "2017-10-31",
           state: "PENDING",

@@ -10,7 +10,8 @@ import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingV
 
 // List view
 
-export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
+// export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
+export const StyledAssetTrackerContainer = styled.View`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
 `

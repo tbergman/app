@@ -58,7 +58,7 @@ const addPeril = function*({ payload: { peril } }) {
     }
   })
   let success = yield take(PERIL_ADDED)
-  console.log("Peril removed - response payload:", success.payload)
+  console.log("Peril added - response payload:", success.payload)
   yield put(insuranceActions.getInsurance())
 }
 

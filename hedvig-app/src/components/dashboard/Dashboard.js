@@ -25,7 +25,8 @@ import {
   StyledDashboardHeaderItem,
   StyledDashboardHeaderIcon
 } from "../styles/dashboard"
-import { StyledText, StyledHeading } from "../styles/text"
+import { StyledText, StyledHeading, StyledPassiveText } from "../styles/text"
+import OfferDashboardHeaderIcons from "./OfferDashboardHeaderIcons"
 const R = require("ramda")
 
 export default class Dashboard extends React.Component {
@@ -34,7 +35,7 @@ export default class Dashboard extends React.Component {
   }
 
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: "Din Försäkring",
+    title: "Min Försäkring",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
@@ -86,6 +87,33 @@ export default class Dashboard extends React.Component {
     return <StyledDashboardHeaderIcon source={imageModule} />
   }
 
+  headerIcons() {
+    if (this.props.mode === "offer") {
+      return <OfferDashboardHeaderIcons />
+    } else {
+      return (
+        <StyledDashboardHeaderRow>
+          <StyledDashboardHeaderItem>
+            {this.statusIcon()}
+            <StyledText>Aktiv</StyledText>
+          </StyledDashboardHeaderItem>
+          <StyledDashboardHeaderItem>
+            <StyledDashboardHeaderIcon
+              source={require("../../../assets/icons/my_insurance/pris.png")}
+            />
+            <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
+          </StyledDashboardHeaderItem>
+          <StyledDashboardHeaderItem>
+            <StyledDashboardHeaderIcon
+              source={require("../../../assets/icons/my_insurance/worldwide.png")}
+            />
+            <StyledText>Gäller i hela världen</StyledText>
+          </StyledDashboardHeaderItem>
+        </StyledDashboardHeaderRow>
+      )
+    }
+  }
+
   render() {
     return (
       <StyledDashboardContainer style={{ flex: 1 }}>
@@ -100,34 +128,28 @@ export default class Dashboard extends React.Component {
               />
             )}
           </StyledDashboardHeaderRow>
-          <StyledDashboardHeaderRow>
-            <StyledDashboardHeaderItem>
-              {this.statusIcon()}
-              <StyledText>Aktiv</StyledText>
-            </StyledDashboardHeaderItem>
-            <StyledDashboardHeaderItem>
-              <StyledDashboardHeaderIcon
-                source={require("../../../assets/icons/my_insurance/pris.png")}
-              />
-              <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
-            </StyledDashboardHeaderItem>
-            <StyledDashboardHeaderItem>
-              <StyledDashboardHeaderIcon
-                source={require("../../../assets/icons/my_insurance/worldwide.png")}
-              />
-              <StyledText>Gäller i hela världen</StyledText>
-            </StyledDashboardHeaderItem>
-          </StyledDashboardHeaderRow>
+          {this.headerIcons()}
         </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
           {this.props.mode === "offer" ? (
-            <View
-              style={{
-                alignSelf: "stretch",
-                height: this.props.extraScrollViewPadding || 250
-              }}
-            />
+            <View>
+              <View style={{ marginLeft: 24 }}>
+                <StyledPassiveText>
+                  Min lägenhet är försäkrad till fullvärde
+                </StyledPassiveText>
+                <StyledPassiveText>
+                  Mina prylar är försäkrade upp till 1 000 000 kr
+                </StyledPassiveText>
+                <StyledPassiveText>Min självrisk: 1 500 kr</StyledPassiveText>
+              </View>
+              <View
+                style={{
+                  alignSelf: "stretch",
+                  height: this.props.extraScrollViewPadding || 250
+                }}
+              />
+            </View>
           ) : null}
         </ScrollView>
         {this.maybeCheckoutButton()}

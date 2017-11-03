@@ -59,9 +59,7 @@ export default class AssetList extends React.Component {
             })
           }}
         >
-          <StyledListElementImage
-            source={{ uri: "https://unsplash.it/40/40" }}
-          />
+          <StyledListElementImage source={{ uri: asset.photoUrl }} />
           <StyledListElementTexts>
             <StyledListElementHeading>
               {asset.title || `Namnlös pryl`}
