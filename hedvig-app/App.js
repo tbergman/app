@@ -27,6 +27,8 @@ import { keyboardSaga } from "./src/sagas/keyboard"
 import { navigationSaga } from "./src/sagas/navigation"
 import { getOrLoadToken } from "./src/services/TokenStorage"
 import EventEmitter from "./src/services/EventEmitter"
+import * as baseNavigationActions from "./src/actions/baseNavigation"
+window.baseNavigation = baseNavigationActions
 window.EventEmitter = EventEmitter()
 
 export class App extends React.Component {

@@ -57,14 +57,18 @@ const HeroMessage = ({ message, textAlign }) => {
 }
 
 const DefaultHedvigMessage = ({ message, textAlign }) => {
-  return (
-    <StyledChatMessage>
-      {renderImage(message)}
-      <StyledDefaultMessageText style={{ textAlign }}>
-        {message.body.text}
-      </StyledDefaultMessageText>
-    </StyledChatMessage>
-  )
+  if (message.body.text === "") {
+    return null
+  } else {
+    return (
+      <StyledChatMessage>
+        {renderImage(message)}
+        <StyledDefaultMessageText style={{ textAlign }}>
+          {message.body.text}
+        </StyledDefaultMessageText>
+      </StyledChatMessage>
+    )
+  }
 }
 
 const DefaultUserMessage = ({ message, textAlign }) => {

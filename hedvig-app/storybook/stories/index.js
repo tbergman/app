@@ -208,6 +208,7 @@ storiesOf("Navigation", module)
       type: "AUTHENTICATE",
       payload: { ssn: Math.floor(Math.random() * 100000).toString() }
     })
+    tabBarStore.dispatch(chatActions.getAvatars())
     return <StorybookProvider store={tabBarStore}>{story()}</StorybookProvider>
   })
   .add("TabBar", () => {
