@@ -41,11 +41,39 @@ class StorybookProvider extends React.Component {
   }
 }
 
+const mockMessages = {
+  "2154": {
+    globalId: 2154,
+    id: "message.begin",
+    header: {
+      messageId: 2154,
+      fromId: 1,
+      responsePath: "/response",
+      timeStamp: 1510063363225,
+      loadingIndicator: "loader",
+      avatarName: "h_symbol",
+      pollingInterval: 2000,
+      editAllowed: false
+    },
+    body: {
+      type: "bankid_collect",
+      referenceId: "1337",
+      id: 2154,
+      text: "BankID collect",
+      imageURL: null,
+      imageWidth: null,
+      imageHeight: null
+    },
+    timestamp: "2017-11-07T14:02:43.225Z"
+  }
+}
+
 storiesOf("Chat", module)
   .addDecorator(story => {
     let chatStore = configureStore({ additionalSagas: [tokenStorageSaga] })
     TokenStorage.getOrLoadToken(chatStore.dispatch)
     chatStore.dispatch(chatActions.getMessages())
+    // chatStore.dispatch({ type: "LOADED_MESSAGES", payload: mockMessages })
     return <StorybookProvider store={chatStore}>{story()}</StorybookProvider>
   })
   .add("Chat", () => <Chat />)

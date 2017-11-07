@@ -3,7 +3,10 @@ import React from "react"
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import { Permissions, ImagePicker } from "expo"
 import { SingleSelectOptionButton } from "../Button"
-import { StyledMarginContainer, StyledRightAlignedOptions } from "../styles/chat"
+import {
+  StyledMarginContainer,
+  StyledRightAlignedOptions
+} from "../styles/chat"
 
 const getPermissions = async () => {
   await Permissions.getAsync(Permissions.CAMERA)
@@ -13,11 +16,11 @@ const getAndUploadImage = async (mode, message, upload) => {
   let imageData
   if (mode === "camera") {
     imageData = await ImagePicker.launchCameraAsync({
-      allowsEditing: true
+      // allowsEditing: true
     })
   } else if (mode === "picker") {
     imageData = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true
+      // allowsEditing: true
     })
   }
   let { uri } = imageData

@@ -39,8 +39,8 @@ import { CameraCircleIcon, ChoosePhotoCircleIcon, InputAddIcon } from "../Icon"
 import {
   NavigateBackButton,
   DeleteButton,
-  InputEditButton,
-  InputDoneButton,
+  DisabledInputEditButton,
+  DisabledInputDoneButton,
   RoundedButton,
   RedRoundedInvertedButton,
   DisabledListNextButton
@@ -81,10 +81,26 @@ export default class AddEditAsset extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.keyboardWillHideListener = Keyboard.addListener(
+      "keyboardWillHide",
+      this.handleKeyboardWillHide.bind(this)
+    )
+    // TODO: Unregister this listener on componentWillUnmount
+  }
+
   static navigationOptions = ({ navigation, screenProps }) => ({
     title: "Lägg till / Ändra Värdeföremål",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
+
+  handleKeyboardWillHide() {
+    this.setState({
+      editingTitle: false,
+      editingDate: false,
+      editingPrice: false
+    })
+  }
 
   save() {
     this.props.updateItem(this.state.item)
@@ -240,7 +256,7 @@ export default class AddEditAsset extends React.Component {
       })
     } else {
       let result = await ImagePicker.launchCameraAsync({
-        allowsEditing: true,
+        // allowsEditing: true,
         aspect: [4, 3]
       })
 
@@ -287,10 +303,10 @@ export default class AddEditAsset extends React.Component {
 
   _nameInput() {
     let ButtonComponent = this.state.editingTitle
-      ? InputDoneButton
-      : InputEditButton
+      ? DisabledInputDoneButton
+      : DisabledInputEditButton
     return (
-      <StyledInputContainer>
+      <StyledInputContainer activeOpacity={1} onPress={() => this._editName()}>
         <StyledInputTexts>
           <StyledInputHeader>Min pryl</StyledInputHeader>
           <StyledTextInput
@@ -306,44 +322,45 @@ export default class AddEditAsset extends React.Component {
             }}
           />
         </StyledInputTexts>
-        <ButtonComponent onPress={() => this._editName()} />
+        <ButtonComponent />
       </StyledInputContainer>
     )
   }
 
   _purchaseDateInput() {
     let ButtonComponent = this.state.editingDate
-      ? InputDoneButton
-      : InputEditButton
+      ? DisabledInputDoneButton
+      : DisabledInputEditButton
     let dateText = this.state.dateIsDirty
       ? moment(this.state.item.date).format("LL")
       : "Lägg till inköpsdatum"
     return (
-      <StyledInputContainer>
+      <StyledInputContainer
+        activeOpacity={1}
+        onPress={() =>
+          this.setState({
+            editingDate: !this.state.editingDate,
+            editingTitle: false,
+            editingPrice: false,
+            dateIsDirty: true,
+            formIsDirty: true
+          })}
+      >
         <StyledInputTexts>
           <StyledInputHeader>Köptes den</StyledInputHeader>
           <StyledInputText>{dateText}</StyledInputText>
         </StyledInputTexts>
-        <ButtonComponent
-          onPress={() =>
-            this.setState({
-              editingDate: !this.state.editingDate,
-              editingTitle: false,
-              editingPrice: false,
-              dateIsDirty: true,
-              formIsDirty: true
-            })}
-        />
+        <ButtonComponent />
       </StyledInputContainer>
     )
   }
 
   _purchasePriceInput() {
     let ButtonComponent = this.state.editingPrice
-      ? InputDoneButton
-      : InputEditButton
+      ? DisabledInputDoneButton
+      : DisabledInputEditButton
     return (
-      <StyledInputContainer>
+      <StyledInputContainer activeOpacity={1} onPress={() => this._editPrice()}>
         <StyledInputTexts>
           <StyledInputHeader>Köptes för</StyledInputHeader>
           <StyledTextInput
@@ -356,7 +373,7 @@ export default class AddEditAsset extends React.Component {
             onChangeText={price => this._updatePrice(price)}
           />
         </StyledInputTexts>
-        <ButtonComponent onPress={() => this._editPrice()} />
+        <ButtonComponent />
       </StyledInputContainer>
     )
   }
@@ -492,12 +509,12 @@ export default class AddEditAsset extends React.Component {
   _maybeFooter() {
     if (this.props.keyboard.currentState.state !== "shown") {
       return (
-        <StyledFooter>
+        <StyledFooter isDatePicker={this.state.editingDate}>
           {this.state.editingDate ? this.datePicker() : this.cta()}
         </StyledFooter>
       )
     } else {
-      return <EmptyHeaderItem /> // So that the KeyboardAvoidingView actually pushes everything up
+      // return <EmptyHeaderItem /> // So that the KeyboardAvoidingView actually pushes everything up
     }
   }
 
@@ -509,10 +526,10 @@ export default class AddEditAsset extends React.Component {
         <StyledFormContainer>
           <View>
             {this._nameInput()}
-            {this._maybeCoverageInfo()}
             {this._purchaseDateInput()}
             {this._purchasePriceInput()}
             {this._receiptInput()}
+            {this._maybeCoverageInfo()}
           </View>
         </StyledFormContainer>
         {this._maybeFooter()}

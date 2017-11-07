@@ -46,11 +46,15 @@ export default class Dialog extends React.Component {
   }
 
   buttons() {
+    let title = this.props.message.dismissButtonTitle
+    if (
+      this.props.message.confirmButtonTitle &&
+      !this.props.message.dismissButtonTitle
+    ) {
+      title = "Ok"
+    }
     dismissButton = (
-      <DialogButton
-        title={this.props.message.dismissButtonTitle || "Ok"}
-        onPress={() => this.dismissButtonPressed()}
-      />
+      <DialogButton title={title} onPress={() => this.dismissButtonPressed()} />
     )
     let confirmButton
     if (this.props.message.confirmButtonTitle) {

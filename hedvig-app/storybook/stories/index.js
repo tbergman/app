@@ -152,7 +152,7 @@ const states = [
   "NOT_COVERED",
   "COVERED"
 ]
-const perils = [...R.range(0, 20)].map(i => {
+const perils = [...R.range(0, 50)].map(i => {
   let state = states[i % states.length]
   return {
     title: `${names[i % names.length]} ${i + 1} ${state}`,
@@ -168,7 +168,7 @@ const categories = [
   {
     title: "Du och din familj",
     description: "Brand, inbrott, vattenläcka ".repeat(3),
-    perils: perils.slice(0, 7),
+    perils: perils.slice(0, 15),
     iconUrl: "https://unsplash.it/70/70"
   },
   {

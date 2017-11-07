@@ -87,6 +87,15 @@ export default class Dashboard extends React.Component {
     return <StyledDashboardHeaderIcon source={imageModule} />
   }
 
+  statusText() {
+    return {
+      ACTIVE: "Aktiv",
+      PENDING: "På gång",
+      INACTIVE: "Inaktiv",
+      DENIED: "Nekad"
+    }[this.props.insurance.status]
+  }
+
   headerIcons() {
     if (this.props.mode === "offer") {
       return <OfferDashboardHeaderIcons />
@@ -95,7 +104,7 @@ export default class Dashboard extends React.Component {
         <StyledDashboardHeaderRow>
           <StyledDashboardHeaderItem>
             {this.statusIcon()}
-            <StyledText>Aktiv</StyledText>
+            <StyledText>{this.statusText()}</StyledText>
           </StyledDashboardHeaderItem>
           <StyledDashboardHeaderItem>
             <StyledDashboardHeaderIcon

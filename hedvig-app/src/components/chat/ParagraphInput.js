@@ -6,6 +6,10 @@ export default class ParagraphInput extends React.Component {
     this.props.startPolling(this.props.message.header.pollingInterval)
   }
 
+  componentDidUpdate() {
+    this.props.startPolling(this.props.message.header.pollingInterval)
+  }
+
   componentWillUnmount() {
     this.props.stopPolling()
   }

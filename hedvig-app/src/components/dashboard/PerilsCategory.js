@@ -19,7 +19,11 @@ import {
   StyledPerilsRow,
   StyledCategoryTextAndButton
 } from "../styles/dashboard"
-import { DisabledCollapseButton, DisabledExpandButton } from "../Button"
+import {
+  DisabledCollapseButton,
+  DisabledExpandButton,
+  HiddenDisabledButton
+} from "../Button"
 import { StyledRow, StyledWrappingRow } from "../styles/general"
 import { StyledHeading, StyledPassiveText } from "../styles/text"
 const R = require("ramda")
@@ -101,10 +105,17 @@ export class PerilsCategory extends React.Component {
   }
 
   render() {
+    let CollapseButton = this.state.showCategory
+      ? DisabledCollapseButton
+      : DisabledExpandButton
+    if (this.props.editMode) {
+      CollapseButton = HiddenDisabledButton
+    }
     return (
       <StyledCategoryContainer
         activeOpacity={1}
         onPress={() =>
+          !this.props.editMode &&
           this.setState({ showCategory: !this.state.showCategory })}
       >
         <StyledCategoryHeader>
@@ -123,11 +134,7 @@ export class PerilsCategory extends React.Component {
               </StyledRow>
             </StyledCategoryTextContainer>
             <StyledExpandButton>
-              {this.state.showCategory ? (
-                <DisabledCollapseButton />
-              ) : (
-                <DisabledExpandButton />
-              )}
+              <CollapseButton size="mediumBig" />
             </StyledExpandButton>
           </StyledCategoryTextAndButton>
         </StyledCategoryHeader>

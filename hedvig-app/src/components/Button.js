@@ -291,6 +291,20 @@ export const InputDoneButton = ({ onPress }) => (
   />
 )
 
+export const DisabledInputEditButton = () => (
+  <DisabledIconButton
+    iconModule={require("../../assets/icons/list_items/edit_list_item.png")}
+    size="mediumBig"
+  />
+)
+
+export const DisabledInputDoneButton = () => (
+  <DisabledIconButton
+    iconModule={require("../../assets/icons/list_items/done_edit_list_item.png")}
+    size="mediumBig"
+  />
+)
+
 export const NavigateBackButton = ({ onPress }) => (
   <IconButton
     iconModule={require("../../assets/icons/navigate_back.png")}
@@ -329,6 +343,10 @@ export const EditMessageButton = ({ onPress }) => (
     onPress={onPress}
     size="mediumBig"
   />
+)
+
+export const HiddenDisabledButton = ({ size = "medium" }) => (
+  <DisabledIconButton size={size} />
 )
 
 // Fabs

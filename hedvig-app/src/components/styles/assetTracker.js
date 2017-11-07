@@ -58,10 +58,9 @@ export const StyledImage = styled.Image`
 
 export const StyledFormContainer = styled.ScrollView`
   flex: 1;
-  margin-bottom: 32px;
 `
 
-export const StyledInputContainer = styled.View`
+export const StyledInputContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   padding: 16px 16px 16px 24px;
@@ -84,7 +83,8 @@ export const StyledTextInput = styled.TextInput`
 `
 
 export const StyledFooter = styled.View`
-  padding-bottom: 32px;
+  padding-top: ${({ isDatePicker }) => (isDatePicker ? 0 : "32")}px;
+  padding-bottom: ${({ isDatePicker }) => (isDatePicker ? 0 : "32")}px;
   z-index: 5;
 `
 

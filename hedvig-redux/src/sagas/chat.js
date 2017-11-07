@@ -91,17 +91,33 @@ const editLastResponseSaga = function*() {
 
 const DEFAULT_POLLING_INTERVAL = 1000
 const pollMessageHandler = function*(action) {
+  // Remember the last message
+  let state = yield select()
+  let [lastMessage] = state.chat.messages.slice(-1)
+
   if (action.type === START_POLLING_MESSAGES) {
     let pollingInterval =
       action.payload.pollingInterval || DEFAULT_POLLING_INTERVAL
     console.log("Polling for messages in ", pollingInterval, "ms")
     yield put({ type: LOADING_MESSAGES_START, payload: {} })
     yield call(delay, pollingInterval)
+
     yield put(chatActions.getMessages())
-    yield put({
-      type: START_POLLING_MESSAGES,
-      payload: { pollingInterval }
-    })
+    yield take(LOADED_MESSAGES)
+
+    // Decide whether to loop
+    let nextState = yield select()
+    let [nextLastMessage] = nextState.chat.messages.slice(-1)
+    // If we haven't received a new message in GET /messages, loop
+    if (nextLastMessage.globalId === lastMessage.globalId) {
+      yield put({
+        type: START_POLLING_MESSAGES,
+        payload: { pollingInterval }
+      })
+    }
+    // Else, we received a new message, don't loop here because the
+    // ParagraphInput componentDidMount / componentDidUpdate will have
+    // triggered a new START_POLLING_MESSAGES
   } else if (action.type === STOP_POLLING_MESSAGES) {
     console.log("Stopped polling for messages")
     yield put({ type: LOADING_MESSAGES_END, payload: {} })

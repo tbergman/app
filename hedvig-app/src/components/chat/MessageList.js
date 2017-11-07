@@ -75,7 +75,12 @@ const DefaultUserMessage = ({ message, textAlign }) => {
   let maybeEditMessageButton
   if (message.header.editAllowed) {
     maybeEditMessageButton = (
-      <View style={{ marginLeft: 10 }}>
+      <View
+        style={{
+          marginLeft: 10,
+          marginBottom: 10
+        }}
+      >
         <EditMessageButton />
       </View>
     )
