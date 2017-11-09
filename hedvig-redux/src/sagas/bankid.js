@@ -29,7 +29,7 @@ const collectHandler = function*(collectAction) {
     yield put({
       type: API,
       payload: {
-        url: `/member/bankid/collect?referenceToken=${state.bankid
+        url: `/hedvig/collect?referenceToken=${state.bankid
           .referenceId}`,
         method: "POST",
         body: null,
