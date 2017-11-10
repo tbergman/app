@@ -49,7 +49,9 @@ const typesList = [
   "DIALOG_DISMISS_PRESSED",
   "CHECKOUT",
   "EVENT",
-  "LOGOUT"
+  "LOGOUT",
+  "ADD_LISTENER",
+  "SHOW_ACTION_SHEET"
 ]
 
 const typesMap = {}

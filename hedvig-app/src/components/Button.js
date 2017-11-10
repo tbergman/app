@@ -42,8 +42,12 @@ export const TextButton = ({ title, onPress }) => {
   )
 }
 
-export const RoundedButtonWithChildren = ({ onPress, children }) => {
-  return <StyledRoundedButton onPress={onPress}>{children}</StyledRoundedButton>
+export const RoundedButtonWithChildren = ({ onPress, children, disabled }) => {
+  return (
+    <StyledRoundedButton disabled={disabled} onPress={onPress}>
+      {children}
+    </StyledRoundedButton>
+  )
 }
 
 export const RoundedInvertedButtonWithChildren = ({ onPress, children }) => {
@@ -101,12 +105,17 @@ export const RoundedButton = ({
   title,
   prefix,
   onPress,
+  disabled = false,
   selected = false,
   _ContainerComponent = RoundedButtonWithChildren,
   _TextComponent = StyledButtonText
 }) => {
   return (
-    <_ContainerComponent onPress={onPress} selected={selected}>
+    <_ContainerComponent
+      disabled={disabled}
+      onPress={onPress}
+      selected={selected}
+    >
       <_TextComponent>
         {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
         {title}
@@ -149,6 +158,7 @@ export const MultipleSelectOptionButton = ({
   onPress,
   selected
 }) => {
+  let TextComponent = selected ? StyledButtonTextInverted : StyledButtonText
   return (
     <StyledMultipleSelectOptionButton
       onPress={onPress}
@@ -156,10 +166,10 @@ export const MultipleSelectOptionButton = ({
       underlayColor="transparent"
       activeOpacity={0.5}
     >
-      <StyledButtonText>
+      <TextComponent>
         {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
         {title}
-      </StyledButtonText>
+      </TextComponent>
     </StyledMultipleSelectOptionButton>
   )
 }

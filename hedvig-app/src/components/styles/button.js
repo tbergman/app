@@ -44,7 +44,8 @@ export const StyledTransparentButton = StyledRoundedButton.extend`
 export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
   height: ${props => props.theme.input.default.height};
   padding: 10px 16px;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${props =>
+    props.selected ? props.theme.colors.primary : props.theme.colors.white};
   border-color: ${props => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
@@ -54,9 +55,6 @@ export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
 
   align-self: flex-end;
   margin-bottom: 8px;
-  opacity: ${props => {
-    return props.selected ? 0.3 : 1
-  }};
 `
 
 export const StyledRoundedButtonInverted = StyledRoundedButton.extend`

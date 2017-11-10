@@ -36,6 +36,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^1.0.1",
     "@expo/vector-icons": "^5.2.0",
     "expo": "^22.0.0",
     "metro-bundler": "^0.13.0",

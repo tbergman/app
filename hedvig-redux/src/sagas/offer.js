@@ -11,7 +11,7 @@ import { delay } from "redux-saga"
 import * as chatActions from "../actions/chat"
 
 const handleCheckout = function*(action) {
-  yield put({ type: LOADING_MESSAGES_START, payload: {} })
+  // yield put({ type: LOADING_MESSAGES_START, payload: {} })
   yield put({
     type: API,
     payload: {
@@ -28,7 +28,7 @@ const handleCheckout = function*(action) {
 
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
-  yield put({ type: LOADING_MESSAGES_END, payload: {} })
+  // yield put({ type: LOADING_MESSAGES_END, payload: {} })
 }
 
 const handleCheckoutSaga = function*() {

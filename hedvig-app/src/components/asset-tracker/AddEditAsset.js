@@ -49,6 +49,7 @@ import { theme } from "hedvig-style"
 import moment from "moment"
 import "moment/locale/sv"
 const R = require("ramda")
+import EventEmitter from "../../services/EventEmitter"
 
 export default class AddEditAsset extends React.Component {
   constructor(props) {
@@ -82,10 +83,17 @@ export default class AddEditAsset extends React.Component {
   }
 
   componentDidMount() {
-    this.keyboardWillHideListener = Keyboard.addListener(
-      "keyboardWillHide",
-      this.handleKeyboardWillHide.bind(this)
-    )
+    if (Platform.OS === "ios") {
+      this.keyboardHideListener = Keyboard.addListener(
+        "keyboardWillHide",
+        this.handleKeyboardHide.bind(this)
+      )
+    } else if (Platform.OS === "android") {
+      this.keyboardHideListener = Keyboard.addListener(
+        "keyboardDidHide",
+        this.handleKeyboardHide.bind(this)
+      )
+    }
     // TODO: Unregister this listener on componentWillUnmount
   }
 
@@ -94,7 +102,7 @@ export default class AddEditAsset extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
-  handleKeyboardWillHide() {
+  handleKeyboardHide() {
     this.setState({
       editingTitle: false,
       editingDate: false,
@@ -104,7 +112,6 @@ export default class AddEditAsset extends React.Component {
 
   save() {
     this.props.updateItem(this.state.item)
-    this.props.navigation.goBack()
   }
 
   editing() {
@@ -137,7 +144,11 @@ export default class AddEditAsset extends React.Component {
         />
       )
     } else {
-      return <RoundedButton title="Lägg till" onPress={() => this.save()} />
+      if (this.props.currentlyUploading) {
+        return <RoundedButton title="Sparar..." disabled={true} />
+      } else {
+        return <RoundedButton title="Lägg till" onPress={() => this.save()} />
+      }
     }
   }
 
@@ -316,6 +327,7 @@ export default class AddEditAsset extends React.Component {
             editable={this.state.editingTitle}
             value={this.state.item.title}
             returnKeyType="next"
+            underlineColorAndroid="transparent"
             onChangeText={text => this._updateTitle(text)}
             onSubmitEditing={event => {
               this.setState({ editingDate: true })
@@ -370,6 +382,7 @@ export default class AddEditAsset extends React.Component {
             placeholder="Lägg till inköpspris"
             editable={this.state.editingPrice}
             value={this.state.item.price}
+            underlineColorAndroid="transparent"
             onChangeText={price => this._updatePrice(price)}
           />
         </StyledInputTexts>
@@ -402,17 +415,16 @@ export default class AddEditAsset extends React.Component {
       ? "Kvitto tillagt"
       : "Lägg till genom att fota eller maila in kvittot"
     return (
-      <TouchableOpacity
+      <StyledInputContainer
+        activeOpacity={1}
         onPress={() => this._showActionSheet(actionSheetOptions)}
       >
-        <StyledInputContainer>
-          <StyledInputTexts>
-            <StyledInputHeader>Kvitto</StyledInputHeader>
-            <StyledInputText>{message}</StyledInputText>
-          </StyledInputTexts>
-          <InputAddIcon size="mediumBig" />
-        </StyledInputContainer>
-      </TouchableOpacity>
+        <StyledInputTexts>
+          <StyledInputHeader>Kvitto</StyledInputHeader>
+          <StyledInputText>{message}</StyledInputText>
+        </StyledInputTexts>
+        <InputAddIcon size="mediumBig" />
+      </StyledInputContainer>
     )
   }
 
@@ -435,7 +447,9 @@ export default class AddEditAsset extends React.Component {
       label: "Avbryt",
       onSelected: () => console.log("Action sheet cancelled")
     })
-    ActionSheetIOS.showActionSheetWithOptions(
+    // ActionSheetIOS.showActionSheetWithOptions(
+    // EventEmitter().emit("ACTION_SHEET", [
+    this.props.showActionSheet(
       {
         options: R.pluck("label", options),
         cancelButtonIndex: options.length - 1
@@ -520,7 +534,7 @@ export default class AddEditAsset extends React.Component {
 
   render() {
     return (
-      <StyledAssetTrackerContainer>
+      <StyledAssetTrackerContainer behavior="padding">
         {this._navbar()}
         {this._photoArea()}
         <StyledFormContainer>

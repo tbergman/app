@@ -65,8 +65,11 @@ const uploadUrlFields = function*(item) {
 
 // Create and update item
 
-const postItem = function*({ payload: item }) {
+const postItem = function*({ afterUploadCallback, payload: item }) {
   let itemWithUploadedFields = yield call(uploadUrlFields, item)
+  if (afterUploadCallback) {
+    yield call(afterUploadCallback)
+  }
 
   let id = itemWithUploadedFields.id || ""
   yield put({

@@ -11,7 +11,8 @@ import { Util } from "expo"
 import {
   StyledDatePickerResultRow,
   StyledFakeTextInput,
-  StyledFakeTextInputText
+  StyledFakeTextInputText,
+  TouchableStyledFakeTextInput
 } from "../styles/chat"
 import { SendIconButton } from "../Button"
 import moment from "moment"
@@ -27,7 +28,7 @@ class DateInput extends React.Component {
         date: new Date(1984, 8, 11)
       })
       if (action !== DatePickerAndroid.dismissedAction) {
-        onChange(message, moment(new Date(year, month, day + 1)).toISOString())
+        onChange(message, moment(new Date(year, month, day)).toISOString())
       }
       this.setState({ androidDatePickerVisible: false })
     } catch ({ code, message }) {
@@ -35,34 +36,7 @@ class DateInput extends React.Component {
     }
   }
 
-  datePicker(message, onChange) {
-    if (Platform.OS === "ios") {
-      return (
-        <DatePickerIOS
-          mode="date"
-          date={
-            message._inputValue === undefined
-              ? moment(message.body.date).toDate()
-              : moment(message._inputValue).toDate()
-          }
-          onDateChange={date => onChange(message, moment(date).toISOString())}
-          // TODO: Fix layout to not use hard coded height
-          style={{ height: 220 }}
-        />
-      )
-    } else if (Platform.OS === "android") {
-      return (
-        <TouchableOpacity
-          onPress={() => this.showAndroidDatePicker(message, onChange)}
-        >
-          <Text>Open date picker</Text>
-        </TouchableOpacity>
-      )
-      this.showAndroidDatePicker(message, onChange)
-    }
-  }
-
-  render() {
+  renderIos() {
     let { message, onChange, send } = this.props
     return (
       <View>
@@ -74,9 +48,45 @@ class DateInput extends React.Component {
           </StyledFakeTextInput>
           <SendIconButton onPress={() => send(message)} />
         </StyledDatePickerResultRow>
-        {this.datePicker(message, onChange)}
+        <DatePickerIOS
+          mode="date"
+          date={
+            message._inputValue === undefined
+              ? moment(message.body.date).toDate()
+              : moment(message._inputValue).toDate()
+          }
+          onDateChange={date => onChange(message, moment(date).toISOString())}
+          // TODO: Fix layout to not use hard coded height
+          style={{ height: 220 }}
+        />
       </View>
     )
+  }
+
+  renderAndroid() {
+    let { message, onChange, send } = this.props
+    return (
+      <View>
+        <StyledDatePickerResultRow>
+          <TouchableStyledFakeTextInput
+            onPress={() => this.showAndroidDatePicker(message, onChange)}
+          >
+            <StyledFakeTextInputText>
+              {moment(message._inputValue).format("LL")}
+            </StyledFakeTextInputText>
+          </TouchableStyledFakeTextInput>
+          <SendIconButton onPress={() => send(message)} />
+        </StyledDatePickerResultRow>
+      </View>
+    )
+  }
+
+  render() {
+    if (Platform.OS === "ios") {
+      return this.renderIos()
+    } else if (Platform.OS === "android") {
+      return <View>{this.renderAndroid()}</View>
+    }
   }
 }
 

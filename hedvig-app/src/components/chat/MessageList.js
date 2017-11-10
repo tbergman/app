@@ -87,14 +87,18 @@ const DefaultUserMessage = ({ message, textAlign }) => {
   }
   return (
     <View
-      style={{ flexDirection: "row", alignItems: "center", maxWidth: "88%" }}
+      style={{
+        flexDirection: "row-reverse",
+        alignItems: "center",
+        maxWidth: "88%"
+      }}
     >
+      {maybeEditMessageButton}
       <StyledUserChatMessage>
         <StyledDefaultUserMessageText style={{ textAlign }}>
           {message.body.text}
         </StyledDefaultUserMessageText>
       </StyledUserChatMessage>
-      {maybeEditMessageButton}
     </View>
   )
 }
@@ -183,7 +187,7 @@ export default class MessageList extends React.Component {
 
   handleKeyboardStateChange(event) {
     if (this.ref) {
-      this.ref.scrollToEnd()
+      setTimeout(this.ref.scrollToEnd, 0)
     }
   }
 

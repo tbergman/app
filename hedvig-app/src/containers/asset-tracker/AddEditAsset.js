@@ -6,13 +6,14 @@ import {
   chatActions,
   statusMessageActions,
   dialogActions,
-  uploadActions,
-  environment
+  listenerActions,
+  types
 } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   return {
     keyboard: state.keyboard,
+    currentlyUploading: state.upload.currentlyUploading,
     getItem: id => {
       return state.assetTracker.items.find(item => item.id === id)
     }
@@ -23,7 +24,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     showDialog: message => dispatch(dialogActions.showDialog(message)),
     updateItem: item => {
-      dispatch(assetActions.updateItem(item))
+      dispatch(
+        assetActions.updateItem(item, () => {
+          // afterUploadCallback
+          ownProps.navigation.goBack()
+        })
+      )
     },
     deleteItem: item => {
       dispatch(assetActions.deleteItem(item))
@@ -39,7 +45,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           body: null,
           SUCCESS: "ASSET_CLAIM_SUCCESS"
         })
-      )
+      ),
+    showActionSheet: (options, callback) =>
+      dispatch({
+        type: types.SHOW_ACTION_SHEET,
+        payload: { options, callback }
+      })
   }
 }
 

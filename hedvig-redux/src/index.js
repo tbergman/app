@@ -14,6 +14,7 @@ import * as userActions from "./actions/user"
 import * as pushNotificationActions from "./actions/pushNotification"
 import * as dialogActions from "./actions/dialog"
 import * as eventActions from "./actions/events"
+import * as listenerActions from "./actions/listener"
 import * as types from "./actions/types"
 import * as environment from "./services/environment"
 
@@ -73,5 +74,6 @@ export {
   userActions,
   pushNotificationActions,
   dialogActions,
-  eventActions
+  eventActions,
+  listenerActions
 }

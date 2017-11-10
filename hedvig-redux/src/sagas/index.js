@@ -37,6 +37,7 @@ import { handleDialogSaga } from "./dialog"
 import { collectSaga } from "./bankid"
 import { handleCheckoutSaga } from "./offer"
 import { handleEventSaga } from "./events"
+import { addListenerSaga } from "./listener"
 import runner from "./sagaRunner"
 
 // TODO: Move to actions
@@ -91,6 +92,7 @@ const root = (additionalSagas = []) =>
       handleDialogSaga,
       handleCheckoutSaga,
       handleEventSaga,
+      addListenerSaga,
       ...additionalSagas
     ])
   }

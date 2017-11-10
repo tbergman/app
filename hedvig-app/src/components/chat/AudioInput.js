@@ -195,7 +195,7 @@ export default class AudioInput extends React.Component {
             onPress={() => this.stopRecordingAudio(message)}
           />
           <StyledPassiveText style={{ marginRight: 16 }}>
-            Recording:{" "}
+            Spelar in:{" "}
             {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(0)} s
           </StyledPassiveText>
         </StyledRightAlignedOptions>
@@ -208,7 +208,7 @@ export default class AudioInput extends React.Component {
       if (this.state.playbackStatus) {
         maybePlaybackStatus = (
           <StyledPassiveText style={{ marginRight: 16 }}>
-            Playing:{" "}
+            Spelar:{" "}
             {(this.state.playbackStatus.positionMillis / 1000).toFixed(0)} /{" "}
             {(this.state.playbackStatus.durationMillis / 1000).toFixed(0)} s
           </StyledPassiveText>
@@ -233,19 +233,19 @@ export default class AudioInput extends React.Component {
         <View>
           <StyledRightAlignedOptions>
             <SingleSelectOptionButton
-              title="Re-record"
+              title="Gör om"
               onPress={() => this.startRecordingAudio()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
             <SingleSelectOptionButton
-              title="Start playback"
+              title="Spela upp"
               onPress={() => this.startPlayback()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
             <SingleSelectOptionButton
-              title="Upload"
+              title="Spara"
               onPress={this.upload.bind(this)}
             />
           </StyledRightAlignedOptions>

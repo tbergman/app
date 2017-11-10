@@ -68,7 +68,7 @@ export const StyledAvatarContainer = styled.View`
 
 export const StyledMarginContainer = styled.View`
   margin: 0px 16px 40px 16px;
-  flex-direction: row;
+  flex-direction: ${props => (props.wrap ? "row" : "column")};
   justify-content: flex-end;
   flex-wrap: wrap;
 `
@@ -84,7 +84,7 @@ export const StyledRightAlignedOptions = styled.View`
 
 export const StyledOptionsContainer = styled.View`
   margin-bottom: 8px;
-  flex-direction: row;
+  flex-direction: ${props => (props.wrap ? "row" : "column")};
   justify-content: flex-end;
   flex-wrap: wrap;
 `
@@ -121,6 +121,20 @@ export const StyledDatePickerResultRow = styled.View`
 export const StyledFakeTextInput = styled.View`
   flex: 1;
   align-self: stretch;
+  justify-content: center;
+  height: ${props => props.theme.input.default.height};
+  padding: 10px 16px;
+  margin-right: 8px;
+  background-color: ${props => props.theme.colors.white};
+  border-color: ${props => props.theme.colors.primary};
+  border-width: 1px;
+  border-radius: 24px;
+`
+
+export const TouchableStyledFakeTextInput = styled.TouchableOpacity`
+  flex: 1;
+  align-self: stretch;
+  justify-content: center;
   height: ${props => props.theme.input.default.height};
   padding: 10px 16px;
   margin-right: 8px;

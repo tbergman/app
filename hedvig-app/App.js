@@ -2,7 +2,7 @@
 import StorybookUI from "./storybook"
 
 import React from "react"
-import { AppState, Keyboard } from "react-native"
+import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
 
 const hedvigRedux = require("hedvig-redux")
@@ -30,6 +30,11 @@ import EventEmitter from "./src/services/EventEmitter"
 import * as baseNavigationActions from "./src/actions/baseNavigation"
 window.baseNavigation = baseNavigationActions
 window.EventEmitter = EventEmitter()
+
+import {
+  ActionSheetProvider,
+  connectActionSheet
+} from "@expo/react-native-action-sheet"
 
 export class App extends React.Component {
   constructor() {
@@ -69,14 +74,23 @@ export class App extends React.Component {
   componentDidMount() {
     AppState.addEventListener("change", this._handleAppStateChange)
     this.keyboardWillShowListener = Keyboard.addListener(
-      "keyboardWillShow",
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
       this._keyboardWillShow.bind(this)
     )
     this.keyboardWillHideListener = Keyboard.addListener(
-      "keyboardWillHide",
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
       this._keyboardWillHide.bind(this)
     )
     getOrLoadToken(this.store.dispatch)
+
+    this.store.dispatch(
+      hedvigRedux.listenerActions.addListener(
+        hedvigRedux.types.SHOW_ACTION_SHEET,
+        ({ payload: { options, callback } }) =>
+          this.props.showActionSheetWithOptions(options, callback)
+      )
+    )
+
     this.store.dispatch(hedvigRedux.chatActions.getMessages())
     this.store.dispatch(hedvigRedux.chatActions.getAvatars())
   }
@@ -104,4 +118,20 @@ export class App extends React.Component {
   }
 }
 
-module.exports = process.env.REACT_NATIVE_STORYBOOK_MODE ? StorybookUI : App
+export class AppWithActionSheet extends React.Component {
+  constructor() {
+    super()
+    this.WrappedComponent = connectActionSheet(App)
+  }
+  render() {
+    return (
+      <ActionSheetProvider>
+        <this.WrappedComponent />
+      </ActionSheetProvider>
+    )
+  }
+}
+
+module.exports = process.env.REACT_NATIVE_STORYBOOK_MODE
+  ? StorybookUI
+  : AppWithActionSheet

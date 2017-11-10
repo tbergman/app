@@ -35,9 +35,9 @@ const uploadHandler = function*(action) {
       }
     )
     console.log("Upload succeeded", response)
-    // debugger
     let uploadedUrl = response.target.responseHeaders.Location
-    yield delay(5000)
+    // DEBUG
+    // yield delay(5000)
     yield put({
       type: UPLOAD_SUCCEEDED,
       payload: Object.assign({}, action.payload, { uploadedUrl })

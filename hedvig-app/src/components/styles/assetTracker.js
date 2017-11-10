@@ -10,8 +10,9 @@ import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingV
 
 // List view
 
-// export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
-export const StyledAssetTrackerContainer = styled.View`
+// export const StyledAssetTrackerContainer = styled.View`
+// export const StyledAssetTrackerContainer = styled.KeyboardAvoidingView`
+export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
 `
@@ -32,7 +33,7 @@ export const StyledAddItemText = CircularFontText.extend`
 
 export const StyledImageSelectionContainer = styled.View`
   flex-direction: row;
-  height: 160px;
+  max-height: 160px;
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.colors.offWhite};

@@ -1,6 +1,8 @@
 const R = require("ramda")
 import React from "react"
 
+import { Keyboard, Platform } from "react-native"
+
 import { storiesOf } from "@storybook/react-native"
 import { action } from "@storybook/addon-actions"
 import { linkTo } from "@storybook/addon-links"
@@ -8,7 +10,12 @@ import { linkTo } from "@storybook/addon-links"
 import { App } from "../../App"
 
 import { Provider } from "react-redux"
-import { configureStore, chatActions, types } from "hedvig-redux"
+import {
+  configureStore,
+  chatActions,
+  types,
+  listenerActions
+} from "hedvig-redux"
 
 import nav from "../../src/reducers/nav"
 import keyboardStateReducer from "../../src/reducers/keyboardState"
@@ -36,6 +43,7 @@ import Offer from "../../src/containers/dashboard/Offer"
 import Profile from "../../src/containers/Profile"
 import { Carousel } from "../../src/components/Carousel"
 import { showChatAction } from "../../src/actions/baseNavigation"
+import { keyboardStateChange } from "../../src/actions/keyboardState"
 
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
 
@@ -43,12 +51,57 @@ import { theme } from "hedvig-style"
 import { ThemeProvider } from "styled-components"
 import WithAssets from "../../src/components/WithAssets"
 
+import ActionSheetExample from "../../src/components/ActionSheetExample"
+import {
+  ActionSheetProvider,
+  connectActionSheet
+} from "@expo/react-native-action-sheet"
+
 /*
 A Provider that doesn't re-render if you change the `store` prop.
 */
-class StorybookProvider extends React.Component {
+class _StorybookProvider extends React.Component {
   shouldComponentUpdate() {
     return false
+  }
+
+  _keyboardWillShow(event) {
+    console.log("Keyboard shown")
+    this.props.store.dispatch(keyboardStateChange({ ...event, state: "shown" }))
+  }
+
+  _keyboardWillHide(event) {
+    console.log("Keyboard hidden")
+    this.props.store.dispatch(
+      keyboardStateChange({ ...event, state: "hidden" })
+    )
+  }
+
+  componentDidMount() {
+    this.keyboardWillShowListener = Keyboard.addListener(
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
+      this._keyboardWillShow.bind(this)
+    )
+    this.keyboardWillHideListener = Keyboard.addListener(
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
+      this._keyboardWillHide.bind(this)
+    )
+    this.props.store.dispatch(
+      listenerActions.addListener(
+        types.SHOW_ACTION_SHEET,
+        ({ payload: { options, callback } }) =>
+          this.props.showActionSheetWithOptions(options, callback)
+      )
+    )
+  }
+
+  componentWillUnmount() {
+    if (this.keyboardWillShowListener) {
+      this.keyboardWillShowListener.remove()
+    }
+    if (this.keyboardWillHideListener) {
+      this.keyboardWillHideListener.remove()
+    }
   }
 
   render() {
@@ -58,6 +111,22 @@ class StorybookProvider extends React.Component {
           <Provider store={this.props.store}>{this.props.children}</Provider>
         </ThemeProvider>
       </WithAssets>
+    )
+  }
+}
+
+export class StorybookProvider extends React.Component {
+  constructor() {
+    super()
+    this.WrappedComponent = connectActionSheet(_StorybookProvider)
+  }
+  render() {
+    return (
+      <ActionSheetProvider>
+        <this.WrappedComponent store={this.props.store}>
+          {this.props.children}
+        </this.WrappedComponent>
+      </ActionSheetProvider>
     )
   }
 }
@@ -106,9 +175,22 @@ const MOCK_MESSAGES = {
       ]
     }
   },
-  // "2": {
+  "2": {
+    id: "message.hello",
+    timestamp: 1,
+    header: {
+      fromId: 2,
+      responsePath: "/response",
+      editAllowed: true
+    },
+    body: {
+      type: "text",
+      text: "Single select"
+    }
+  },
+  // "5": {
   //   id: "message.getname",
-  //   timestamp: 2,
+  //   timestamp: 5,
   //   header: {
   //     fromId: 1,
   //     responsePath: "/response"
@@ -117,7 +199,7 @@ const MOCK_MESSAGES = {
   //     type: "video",
   //     content: "Record a video"
   //   }
-  // }
+  // },
   "3": {
     id: "message.getname",
     timestamp: 3,
@@ -129,6 +211,30 @@ const MOCK_MESSAGES = {
       type: "hero",
       text: "I'm a hero",
       imageUri: "http://via.placeholder.com/300x150"
+    }
+  },
+  "4": {
+    id: "message.textinput",
+    timestamp: 4,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "text",
+      text: "Type something"
+    }
+  },
+  "5": {
+    id: "message.textinput",
+    timestamp: 5,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "text",
+      text: "Type something again"
     }
   }
 }
@@ -359,6 +465,48 @@ const messages = {
       type: "audio",
       content: "Upload audio"
     }
+  },
+  "9": {
+    id: "message.hello",
+    timestamp: 9,
+    header: {
+      fromId: 1,
+      responsePath: "/response"
+    },
+    body: {
+      type: "multiple_select",
+      text: "Multiple select that wraps",
+      choices: [
+        {
+          text: "Jag vill ha 1",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 2",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 3",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 4",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 5",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 6",
+          selected: false
+        },
+        {
+          text: "Jag vill ha 7",
+          selected: false
+        }
+      ]
+    }
   }
 }
 
@@ -431,7 +579,7 @@ const chatHistoryStoryBase = storiesOf(
   )
 })
 R.values(messages).forEach(m =>
-  chatHistoryStoryBase.add(`${m.body.type} message`, () => {
+  chatHistoryStoryBase.add(`${m.timestamp} ${m.body.type} message`, () => {
     chatHistoryStore.dispatch({ type: "LOADED_MESSAGES", payload: [m] })
     // chatHistoryStore.dispatch(showChatAction())
     return <ChatModalNavigator />
@@ -629,4 +777,23 @@ storiesOf("Carousel", module)
       state: { params: { title: "Carousel Demo", items: carouselItems } }
     }
     return <Carousel navigation={navigation} />
+  })
+
+storiesOf("ActionSheet", module)
+  .addDecorator(story => {
+    actionSheetStore = configureStore({
+      additionalReducers: { nav, keyboard: keyboardStateReducer },
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga,
+        logoutSaga
+      ]
+    })
+    return (
+      <StorybookProvider store={actionSheetStore}>{story()}</StorybookProvider>
+    )
+  })
+  .add("ActionSheetExample", () => {
+    return <ActionSheetExample />
   })

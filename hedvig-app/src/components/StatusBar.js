@@ -6,7 +6,7 @@ import R from "ramda"
 
 const UnStyledStatusBar = styled.View`
   background-color: transparent
-  height: 20
+  height: ${Constants.statusBarHeight || 20}
   justify-content: center
   align-items: center
 `
@@ -14,21 +14,21 @@ const UnStyledStatusBar = styled.View`
 
 const StyledMessageStatusBar = styled.View`
   background-color: ${props => props.theme.colors.white}
-  height: 20
+  height: ${Constants.statusBarHeight || 20}
   justify-content: center
   align-items: center
 `
 
 const StyledWarningStatusBar = styled.View`
   background-color: yellow
-  height: 20
+  height: ${Constants.statusBarHeight || 20}
   justify-content: center
   align-items: center
 `
 
 const StyledErrorStatusBar = styled.View`
   background-color: ${props => props.theme.colors.red}
-  height: 20
+  height: ${Constants.statusBarHeight || 20}
   justify-content: center
   align-items: center
 `

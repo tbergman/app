@@ -12,6 +12,8 @@ import {
   SendDisabledIconButton
 } from "../Button"
 
+const WRAP_NUM_OPTIONS = 6
+
 const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let anyOptionSelected = R.any(choice => choice.selected, message.body.choices)
   let sendButton = anyOptionSelected ? (
@@ -36,9 +38,10 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
       </StyledRightAlignedOptions>
     )
   })
+  let wrap = message.body.choices.length > WRAP_NUM_OPTIONS
   return (
-    <StyledMarginContainer>
-      <StyledOptionsContainer>{opts}</StyledOptionsContainer>
+    <StyledMarginContainer wrap={wrap}>
+      <StyledOptionsContainer wrap={wrap}>{opts}</StyledOptionsContainer>
       <StyledRightAlignedOptions>{sendButton}</StyledRightAlignedOptions>
     </StyledMarginContainer>
   )

@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, TextInput } from "react-native"
 import styled from "styled-components/native"
 import { Link } from "../containers/Link"
 
-const Name = styled.Text`font-size: 30px;`
+const Name = styled.Text`
+  font-size: 30px;
+`
 
 const Home = ({ state, sayHello }) => {
   return (
@@ -13,6 +15,7 @@ const Home = ({ state, sayHello }) => {
       </Text>
       <TextInput
         value={state.hello.name}
+        underlineColorAndroid="transparent"
         onChangeText={text => sayHello(text)}
         style={{
           height: 40,

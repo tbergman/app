@@ -33,7 +33,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   )
   let body = Object.assign(messageFromState.body, bodyOverride)
   messageFromState.body = body
-  yield put({ type: LOADING_MESSAGES_START, payload: {} })
+  // yield put({ type: LOADING_MESSAGES_START, payload: {} })
   yield put({
     type: API,
     payload: {
@@ -47,7 +47,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   let success = yield take("SEND_CHAT_RESPONSE_SUCCESS")
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
-  yield put({ type: LOADING_MESSAGES_END, payload: {} })
+  // yield put({ type: LOADING_MESSAGES_END, payload: {} })
 }
 
 const sendChatResponseSaga = function*() {

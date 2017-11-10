@@ -1,5 +1,6 @@
 import React from "react"
 import { Dimensions, View } from "react-native"
+import { Constants } from "expo"
 import { ChatModalNavigator, HomeBase, StatusBar } from "../base"
 
 const BaseNavigator = ({ nav: { currentTab } }) => {
@@ -11,15 +12,23 @@ const BaseNavigator = ({ nav: { currentTab } }) => {
   }
   let showHomeBaseStyle = Object.assign({}, position, {
     bottom: 0,
-    height: currentTab === "dashboard" ? Dimensions.get("window").height : 0
+    top: Constants.statusBarHeight,
+    height:
+      currentTab === "dashboard"
+        ? Dimensions.get("window").height - Constants.statusBarHeight
+        : 0
   })
   let showChatBaseStyle = Object.assign({}, position, {
     bottom: 0,
-    height: currentTab === "chat" ? Dimensions.get("window").height : 0
+    top: Constants.statusBarHeight,
+    height:
+      currentTab === "chat"
+        ? Dimensions.get("window").height - Constants.statusBarHeight
+        : 0
   })
   return (
     <View style={{ flex: 1, alignSelf: "stretch" }}>
-      <StatusBar />
+      <StatusBar style={{ backgroundColor: "red" }} />
       <View style={showChatBaseStyle}>
         <ChatModalNavigator />
       </View>

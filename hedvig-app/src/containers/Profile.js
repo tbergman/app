@@ -5,7 +5,8 @@ import {
   chatActions,
   userActions,
   insuranceActions,
-  types
+  types,
+  dialogActions
 } from "hedvig-redux"
 
 const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
@@ -64,7 +65,17 @@ const mapDispatchToProps = dispatch => {
         "/hedvig/initiateUpdate?what=BANK_ACCOUNT",
         "REQUESTED_BANK_ACCOUNT_UPDATE"
       ),
-    logout: () => dispatch({ type: types.LOGOUT, payload: {} }),
+    logout: () =>
+      dispatch(
+        dialogActions.showDialog({
+          title: "Vill du logga ut?",
+          paragraph: "Om du trycker ja loggas du ut.",
+          confirmButtonTitle: "Ja",
+          dismissButtonTitle: "Nej",
+          onConfirm: () => dispatch({ type: types.LOGOUT, payload: {} }),
+          onDismiss: () => console.log("User didn't want to logout.")
+        })
+      ),
     sendPolicyEmail: () => dispatch(insuranceActions.sendPolicyEmail()),
     dispatch
   }
