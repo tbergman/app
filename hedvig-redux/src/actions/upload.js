@@ -3,6 +3,7 @@ import { UPLOAD } from "./types"
 // TODO: Move url to the first argument when we start using it
 export function upload({
   body,
+  fileList,
   successActionCreator,
   url,
   headers = {},
@@ -13,6 +14,7 @@ export function upload({
     payload: {
       method: "POST",
       body,
+      fileList,
       headers,
       addToken,
       uploadUrl: url,

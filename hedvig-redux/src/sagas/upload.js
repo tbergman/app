@@ -12,15 +12,28 @@ const uploadHandler = function*(action) {
     const token = state.authentication.token
     action.payload.headers.Authorization = `Bearer ${token}`
   }
-
-  let { body: { uri, type, fileExtension = "jpg" } } = action.payload
-  let formData = new FormData()
-  formData.append("key", `${uuidv4()}.${fileExtension}`) // This has to come BEFORE `file` because xhr is lol
-  formData.append("file", {
-    uri,
-    type
-  })
-  action.payload.body = formData
+  if (action.payload.body) {
+    // REACT NATIVE
+    let { body: { uri, type, fileExtension = "jpg" } } = action.payload
+    let formData = new FormData()
+    formData.append("key", `${uuidv4()}.${fileExtension}`) // This has to come BEFORE `file` because xhr is lol
+    formData.append("file", {
+      uri,
+      type
+    })
+    action.payload.body = formData
+  } else if (action.payload.fileList) {
+    // REACT WEB
+    let fileExtension = action.payload.fileList[0].name.split(".")[1]
+    let formData = new FormData()
+    formData.append("key", `${uuidv4()}.${fileExtension}`) // This has to come BEFORE `file` because xhr is lol
+    formData.append("file", action.payload.fileList[0])
+    action.payload.body = formData
+  } else {
+    throw Error(
+      "Either action.payload.body or action.payload.fileList must be specified"
+    )
+  }
   try {
     yield put({ type: UPLOAD_STARTED, payload: action.payload })
     let response = yield upload(
@@ -35,7 +48,10 @@ const uploadHandler = function*(action) {
       }
     )
     console.log("Upload succeeded", response)
-    let uploadedUrl = response.target.responseHeaders.Location
+
+    // let uploadedUrl = response.target.responseHeaders.Location
+    let uploadedUrl = response.target.getResponseHeader("Location") // <-- This works on both Web and Native
+
     // DEBUG
     // yield delay(5000)
     yield put({

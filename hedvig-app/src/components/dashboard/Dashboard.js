@@ -129,13 +129,13 @@ export default class Dashboard extends React.Component {
         <StyledDashboardHeader>
           <StyledDashboardHeaderRow>
             <StyledHeading>Din hemförsäkring</StyledHeading>
-            {/* {this.props.mode === "offer" ? null : ( // Commented out on request
+            {this.props.mode === "offer" ? null : (
               <TextButton
                 title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
                 onPress={() =>
                   this.setState({ editMode: !this.state.editMode })}
               />
-            )} */}
+            )}
           </StyledDashboardHeaderRow>
           {this.headerIcons()}
         </StyledDashboardHeader>

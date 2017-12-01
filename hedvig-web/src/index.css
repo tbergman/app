@@ -13,3 +13,46 @@ body,
 #root > [data-reactroot] {
   height: 100%;
 }
+
+@font-face {
+  font-family: "Merriweather";
+  src: url("/assets/fonts/Merriweather-Light.eot");
+  src: url("/assets/fonts/Merriweather-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Merriweather-Light.woff") format("woff"),
+    url("/assets/fonts/Merriweather-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular Std Book";
+  src: url("/assets/fonts/CircularStd-Book.eot");
+  src: url("/assets/fonts/CircularStd-Book.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/CircularStd-Book.woff") format("woff"),
+    url("/assets/fonts/CircularStd-Book.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= "pure-u"] {
+  /* Set your content font stack here: */
+  font-family: "Circular Std Book", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+body {
+  color: #212121;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}

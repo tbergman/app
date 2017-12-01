@@ -1,11 +1,7 @@
-import {
-  API,
-  UPDATE_CASHBACK
-} from "../actions/types"
+import { API, UPDATE_CASHBACK } from "../actions/types"
 import * as cashbackActions from "../actions/cashback"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 import { baseURL } from "../services/environment"
-
 
 const updateCashback = function*({ payload: selectedItem }) {
   // Use this to return the whole cashbackAlternatives list with selected: true
@@ -26,7 +22,7 @@ const updateCashback = function*({ payload: selectedItem }) {
     }
   })
   let success = yield take("UPDATED_CASHBACK")
-  yield put(cashbackAlternatives.getCashbackAlternatives())
+  yield put(cashbackActions.getCashbackAlternatives())
 }
 
 const updateCashbackSaga = function*() {

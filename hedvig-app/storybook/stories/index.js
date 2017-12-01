@@ -727,6 +727,7 @@ storiesOf("Profile", module)
         paymentStatus: "ACTIVE",
         nextPaymentDate: 1507042098159,
         selectedCashback: "Rädda Barnen",
+        selectedCashbackImageUrl: "https://unsplash.it/400/400",
         selectedCashbackParagraph:
           '"Tack kära Lucas för att du bidrar till att rädda livet på fler cancerdrabbade barn"',
         selectedCashbackSignature: "Isabelle Ducellier, Generaldirektör"

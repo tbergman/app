@@ -11,7 +11,7 @@ const ChatTextInput = ({ message, onChange, send }) => {
   return (
     <StyledTextInputContainer>
       <StyledTextInput
-        placeholder="Type here..."
+        placeholder="Skriv här..."
         autoFocus={true}
         value={message._inputValue || ""}
         underlineColorAndroid="transparent"

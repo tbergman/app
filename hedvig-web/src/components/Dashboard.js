@@ -1,25 +1,48 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Placeholder } from "./Styles"
+import Modal from "react-modal"
 
-class Dashboard extends React.Component {
-  componentDidMount() {
-    this.props.load()
+import TabBar from "./TabBar"
+import Category from "../containers/dashboard/Category"
+import MyInsurance from "./dashboard/MyInsurance"
+import InsuranceLimits from "./dashboard/InsuranceLimits"
+import PerilDetails from "./dashboard/PerilDetails"
+import Footer from "../components/Footer"
+
+export default class Dashboard extends React.Component {
+  categories() {
+    return this.props.insurance.categories.map(c => {
+      return <Category key={c.title} data={c} />
+    })
   }
 
   render() {
     return (
-      <Placeholder>
-        Dashboard
-        {this.props.dashboard ? this.props.dashboard.data.foo : ":("}
-        <Link to="/profile">My Profile</Link>
-        <Link to="/inventory-list">Inventory List</Link>
-        <Link to="/insurance-list">Insurance List</Link>
-        <Link to="/claim">Claim</Link>
-        <Link to="/sign-bankid">Update insurance</Link>
-      </Placeholder>
+      <div>
+        <Modal
+          isOpen={!!this.props.peril.selectedCategory}
+          contentLabel="Peril Details"
+          onRequestClose={this.props.closePerilModal}
+        >
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => this.props.closePerilModal()}
+          >
+            Close
+          </div>
+          <PerilDetails
+            category={this.props.peril.selectedCategory}
+            initialPerilIndex={this.props.peril.selectedPerilIndex}
+          />
+        </Modal>
+        <TabBar />
+        <Link to="/chat">Chat</Link>
+        <MyInsurance />
+        {this.categories()}
+        <InsuranceLimits />
+        <MyInsurance showHeading={false} />
+        <Footer />
+      </div>
     )
   }
 }
-
-export default Dashboard

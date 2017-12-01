@@ -6,10 +6,6 @@ export default class BankIdCollectInput extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <p>Collecting...</p>
-      </div>
-    )
+    return null
   }
 }

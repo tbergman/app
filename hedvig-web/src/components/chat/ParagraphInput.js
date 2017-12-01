@@ -14,6 +14,6 @@ export default class ParagraphInput extends React.Component {
   }
 
   render() {
-    return <div>Polling messages...</div>
+    return null
   }
 }

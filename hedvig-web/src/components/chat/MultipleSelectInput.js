@@ -1,24 +1,52 @@
 import React from "react"
-import R from "ramda"
-import { StyledOption } from "../styles/chat"
+import {
+  StyledOptionContainer,
+  OptionsContainerStyled,
+  WrappedOptionsContainerStyled
+} from "../styles/chat"
+import {
+  WhiteRoundedButton,
+  PurpleRoundedButton,
+  SendIconButton,
+  InactiveSendIconButton
+} from "../Button"
+const R = require("ramda")
 
 const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let opts = message.body.choices.map(choice => {
+    let ButtonComponent = choice.selected
+      ? PurpleRoundedButton
+      : WhiteRoundedButton
     return (
-      <StyledOption
-        key={choice.text}
-        onClick={() => {
-          onChoiceSelected(message, choice)
-        }}
-      >
-        {choice.text} {choice.selected ? "✅" : "❌"}
-      </StyledOption>
+      <StyledOptionContainer>
+        <ButtonComponent
+          key={choice.text}
+          onClick={() => {
+            onChoiceSelected(message, choice)
+          }}
+        >
+          {choice.text}
+        </ButtonComponent>
+      </StyledOptionContainer>
     )
   })
+  let Container =
+    opts.length <= 4 ? OptionsContainerStyled : WrappedOptionsContainerStyled
+  let SendButton = R.any(choice => choice.selected, message.body.choices) ? (
+    <SendIconButton onClick={() => done(message)} />
+  ) : (
+    <InactiveSendIconButton />
+  )
   return (
-    <div>
-      {opts}
-      <button onClick={() => done(message)}>Send</button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end"
+      }}
+    >
+      <Container>{opts}</Container>
+      {SendButton}
     </div>
   )
 }

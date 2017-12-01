@@ -14,7 +14,8 @@ const colors = {
   activeText: "#414150",
   passiveText: "#9B9BAA",
   hedvigMessageText: "#0F007A",
-  hedvigMessageBackground: "#F9FAFC"
+  hedvigMessageBackground: "#F9FAFC",
+  webHeading: "#212121"
 }
 
 module.exports.theme = {
@@ -37,7 +38,10 @@ module.exports.theme = {
       fontSize: 14
     },
     hedvigMessage: {
-      fontSize: 16
+      fontSize: 16,
+      web: {
+        fontSize: 20
+      }
     },
     userMessage: {
       fontSize: 16

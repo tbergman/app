@@ -24,17 +24,16 @@ export async function saveToken(token) {
 }
 
 export async function getOrLoadToken(dispatch) {
-  // TODO: Re-enable loading token from local storage
-  // let token = await loadToken()
-  // if (token) {
-  //   dispatch({
-  //     type: types.RECEIVED_TOKEN,
-  //     payload: token
-  //   })
-  // } else {
-  dispatch({
-    type: types.AUTHENTICATE,
-    payload: { deviceInfo: getDeviceInfo() }
-  })
-  // }
+  let token = await loadToken()
+  if (token) {
+    dispatch({
+      type: types.VALIDATE_TOKEN,
+      payload: token
+    })
+  } else {
+    dispatch({
+      type: types.AUTHENTICATE,
+      payload: {}
+    })
+  }
 }

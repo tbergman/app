@@ -18,7 +18,7 @@ https://stackoverflow.com/questions/45155249/when-using-redux-saga-with-react-na
 */
 
 import { take, takeEvery, put, all } from "redux-saga/effects"
-import { authenticateSaga } from "./authenticate"
+import { authenticateSaga, validateTokenSaga } from "./authenticate"
 import { apiSaga } from "./api"
 import {
   sendChatResponseSaga,
@@ -73,6 +73,7 @@ const root = (additionalSagas = []) =>
       watchOnboarding,
       printMessageContent,
       authenticateSaga,
+      validateTokenSaga,
       apiSaga,
       sendChatResponseSaga,
       pollMessagesSaga,

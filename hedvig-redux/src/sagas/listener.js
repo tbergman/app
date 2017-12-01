@@ -11,7 +11,7 @@ const addListener = function*(action) {
 }
 
 const addListenerSaga = function*() {
-  yield takeEvery("ADD_LISTENER", addListener)
+  yield takeEvery(ADD_LISTENER, addListener)
 }
 
 export { addListenerSaga }

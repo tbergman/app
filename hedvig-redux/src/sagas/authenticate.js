@@ -1,6 +1,6 @@
 import R from "ramda"
 import { take, takeEvery, put } from "redux-saga/effects"
-import { AUTHENTICATE, RECEIVED_TOKEN } from "../actions/types"
+import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from "../actions/types"
 import { baseURL } from "../services/environment"
 
 const authenticate = function*(action) {
@@ -26,4 +26,25 @@ const authenticateSaga = function*() {
   yield takeEvery(AUTHENTICATE, authenticate)
 }
 
-export { authenticateSaga }
+const validateToken = function*(action) {
+  let token = action.payload
+  console.log(`Validating token via GET ${baseURL}/member/me`)
+  let validateResponse = yield fetch(`${baseURL}/member/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  if (validateResponse.status !== 401) {
+    console.log("Using stored token:", token)
+    yield put({ type: RECEIVED_TOKEN, payload: token })
+  } else {
+    console.log("Getting a new token:", token)
+    yield put({ type: AUTHENTICATE, payload: {} })
+  }
+}
+
+const validateTokenSaga = function*() {
+  yield takeEvery(VALIDATE_TOKEN, validateToken)
+}
+
+export { authenticateSaga, validateTokenSaga }

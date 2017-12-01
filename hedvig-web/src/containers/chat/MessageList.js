@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import MessageList from "../../components/chat/MessageList"
-import { chatActions } from "hedvig-redux"
+import { listenerActions, types } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -9,7 +9,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    onScrollToBottomEvent: callback =>
+      dispatch(listenerActions.addListener(types.LOADED_MESSAGES, callback))
+  }
 }
 
 const MessageListContainer = connect(mapStateToProps, mapDispatchToProps)(
