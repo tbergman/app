@@ -1,11 +1,11 @@
 import React from "react"
 
-import { LinkStyled, StaticHeading2 } from "../styles/static"
+import { LinkStyled, HeroStaticHeading2 } from "../styles/static"
 import { Heading, Paragraph, StaticPage } from "./common"
 
 const Legal = () => {
   return (
-    <StaticPage heroContent={<StaticHeading2>Press</StaticHeading2>}>
+    <StaticPage heroContent={<HeroStaticHeading2>Press</HeroStaticHeading2>}>
       <Heading>Nam porttitor</Heading>
       <Paragraph>
         Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget

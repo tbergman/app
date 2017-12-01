@@ -1,6 +1,8 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Header } from "../Header"
 import Footer from "../Footer"
+import { TurquoiseRoundedButton } from "../Button"
 import { Container, StaticHeading2, HeroContainer } from "../styles/static"
 
 export const Grid = ({ children }) => <div className="pure-g">{children}</div>
@@ -23,7 +25,13 @@ export const Paragraph = ({ children }) => (
 
 export const StaticPage = ({ heroContent = null, children }) => (
   <div>
-    <Header />
+    <Header
+      headerRight={
+        <Link to="/chat">
+          <TurquoiseRoundedButton>Säg hej till Hedvig!</TurquoiseRoundedButton>
+        </Link>
+      }
+    />
     <Grid>
       <Hero>{heroContent}</Hero>
       <Container>{children}</Container>
