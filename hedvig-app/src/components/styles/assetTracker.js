@@ -29,6 +29,12 @@ export const StyledAddItemText = CircularFontText.extend`
   font-size: ${props => props.theme.typography.heading.fontSize};
 `
 
+export const StyledEmptyListText = CircularFontText.extend`
+  margin: 20px;
+  color: ${props => props.theme.typography.activeText.color}
+  font-size: ${props => props.theme.typography.activeText.fontSize};
+`
+
 // Add / edit view
 
 export const StyledImageSelectionContainer = styled.View`

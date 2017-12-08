@@ -15,7 +15,8 @@ import {
   StyledAssetTrackerContainer,
   StyledAssetListHeaderContainer,
   StyledAddItemText,
-  StyledAssetListElement
+  StyledAssetListElement,
+  StyledEmptyListText
 } from "../styles/assetTracker"
 import {
   StyledListHeader,
@@ -26,7 +27,7 @@ import {
   StyledListElementText,
   StyledRowButton
 } from "../styles/list"
-import { AddButton, DisabledListNextButton } from "../Button"
+import { AddButton, DisabledListNextButton, RoundedButton } from "../Button"
 
 export default class AssetList extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
@@ -80,6 +81,20 @@ export default class AssetList extends React.Component {
   maybeList() {
     if (this.props.assets.length > 0) {
       return this._assetList()
+    } else {
+      return (
+        <View>
+          <StyledEmptyListText>
+            Hej! Om du vill kan du logga saker och deras kvitton här. Då får du
+            koll precis hur de är försäkrade, och kan anmäla en skada
+            superenkelt
+          </StyledEmptyListText>
+          <RoundedButton
+            title="Lägg till pryl"
+            onPress={() => this.props.navigation.navigate("AddEditAsset")}
+          />
+        </View>
+      )
     }
   }
 
