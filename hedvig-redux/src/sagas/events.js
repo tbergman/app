@@ -28,9 +28,6 @@ const handleEvent = function*(action) {
   yield take("POST_EVENT_SUCCESS")
 
   if (action.payload.getMessagesAfter) {
-    // HACK: delay 2s before calling GET /messages
-    yield call(delay, 2000)
-
     yield put(chatActions.getMessages())
     if (action.payload.showLoadingIndicator) {
       yield take(LOADED_MESSAGES)

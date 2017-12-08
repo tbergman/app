@@ -39,10 +39,6 @@ const collectHandler = function*(collectAction) {
     state = yield select()
     if (isDone(state.bankid.response, state.bankid.tryCount)) {
       yield put({ type: BANKID_COLLECT_COMPLETE })
-
-      // HACK: delay 2s before calling GET /messages
-      yield call(delay, 2000)
-
       yield put(chatActions.getMessages())
     } else {
       yield call(delay, COLLECT_DELAY_MS)
