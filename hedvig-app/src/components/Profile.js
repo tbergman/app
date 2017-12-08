@@ -60,6 +60,11 @@ export default class Profile extends React.Component {
     let ListElementComponent = onPress
       ? TouchableStyledListElement
       : StyledListElement
+    let maybeButton = onPress ? (
+      <StyledRowButton>
+        <DisabledListNextButton />
+      </StyledRowButton>
+    ) : null
     return (
       <ListElementComponent onPress={onPress}>
         {icon}
@@ -70,9 +75,7 @@ export default class Profile extends React.Component {
             <StyledListElementText>{secondText}</StyledListElementText>
           )}
         </StyledListElementTexts>
-        <StyledRowButton>
-          <DisabledListNextButton />
-        </StyledRowButton>
+        {maybeButton}
       </ListElementComponent>
     )
   }
@@ -81,8 +84,9 @@ export default class Profile extends React.Component {
     if (this.props.user.familyMembers) {
       return this._userRow({
         title: "Familjemedlemmar",
-        text: R.join(", ", this.props.user.familyMembers),
-        onPress: () => this.props.editFamilyMembers()
+        text: R.join(", ", this.props.user.familyMembers)
+        // Disabled profile actions
+        // onPress: () => this.props.editFamilyMembers()
       })
     }
   }
@@ -93,8 +97,9 @@ export default class Profile extends React.Component {
         title: "Personlig info",
         icon: <ProfileFamilyIcon />,
         text: `${this.props.user.age} år | ${this.props.user.address}`,
-        secondText: R.join(", ", this.props.user.familyMembers),
-        onPress: () => this.props.editPersonalInfo()
+        secondText: R.join(", ", this.props.user.familyMembers)
+        // Disabled profile actions
+        // onPress: () => this.props.editPersonalInfo()
       })
     }
   }
@@ -106,8 +111,9 @@ export default class Profile extends React.Component {
       return this._userRow({
         title: "Mina trygghetshöjare",
         icon: <ProfileLockIcon />,
-        text: ucFirst(R.join(", ", this.props.user.safetyIncreasers)),
-        onPress: () => this.props.editSafetyIncreasers()
+        text: ucFirst(R.join(", ", this.props.user.safetyIncreasers))
+        // Disabled profile actions
+        // onPress: () => this.props.editSafetyIncreasers()
       })
     }
   }
@@ -127,8 +133,9 @@ export default class Profile extends React.Component {
         title: "Min betalning",
         icon: <ProfileBankAccountIcon />,
         text: this.props.user.maskedBankAccountNumber,
-        secondText: `Autogiro ${paymentStatus}${nextPaymentText}`,
-        onPress: () => this.props.editBankAccount()
+        secondText: `Autogiro ${paymentStatus}${nextPaymentText}`
+        // Disabled profile actions
+        // onPress: () => this.props.editBankAccount()
       })
     }
   }
@@ -138,14 +145,15 @@ export default class Profile extends React.Component {
       return this._userRow({
         title: "Min välgörenhet",
         icon: <ProfileHeartIcon />,
-        text: this.props.user.selectedCashback,
-        onPress: () =>
-          this.props.navigation.navigate("Carousel", {
-            items: this.props.cashbackAlternatives,
-            title: "Cashback",
-            initialSlideIndex: 0,
-            renderCta: this._cashbackCarouselCta.bind(this)
-          })
+        text: this.props.user.selectedCashback
+        // Disabled profile actions
+        // onPress: () =>
+        //   this.props.navigation.navigate("Carousel", {
+        //     items: this.props.cashbackAlternatives,
+        //     title: "Cashback",
+        //     initialSlideIndex: 0,
+        //     renderCta: this._cashbackCarouselCta.bind(this)
+        //   })
       })
     }
   }
