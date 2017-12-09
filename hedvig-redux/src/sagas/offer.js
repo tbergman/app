@@ -22,10 +22,6 @@ const handleCheckout = function*(action) {
     }
   })
   yield take("INITIATE_CHECKOUT")
-
-  // HACK: delay 2s before calling GET /messages
-  yield call(delay, 2000)
-
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
   // yield put({ type: LOADING_MESSAGES_END, payload: {} })

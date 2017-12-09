@@ -1,5 +1,6 @@
 import React from "react"
 import { Text, View, TouchableOpacity } from "react-native"
+import { UploadingAnimation } from "../Animation"
 
 export default class BankIdCollectInput extends React.Component {
   componentDidMount() {
@@ -7,6 +8,12 @@ export default class BankIdCollectInput extends React.Component {
   }
 
   render() {
-    return <View />
+    return (
+      <View
+        style={{ height: 200, alignItems: "center", justifyContent: "center" }}
+      >
+        <UploadingAnimation />
+      </View>
+    )
   }
 }
