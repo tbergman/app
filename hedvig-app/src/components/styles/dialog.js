@@ -1,32 +1,31 @@
 import styled from "styled-components/native"
 import { MerriweatherFontText, CircularFontText } from "./typography"
 
-export const TextContainer = styled.View`
-  flex: 1;
+export const DialogContainer = styled.View`
   align-items: center;
-  justify-content: flex-start;
-  padding: 36px;
+  justify-content: center;
   background-color: ${props => props.theme.colors.white};
   border-radius: 8px;
 `
 
 export const Heading = MerriweatherFontText.extend`
   font-size: 24px;
+  margin-top: 24px;
   margin-bottom: 16px;
+  padding: 0 16px;
   text-align: center;
 `
 
 export const Paragraph = CircularFontText.extend`
   font-size: 16px;
   margin-bottom: 24px;
+  padding: 0 16px;
   text-align: center;
 `
 
 // bottom: 0 has a small goes slightly over the dialog bottom
 export const ButtonsContainer = styled.View`
   flex-direction: row;
-  position: absolute;
-  bottom: 1;
 `
 
 export const StyledDialogButton = styled.TouchableOpacity`

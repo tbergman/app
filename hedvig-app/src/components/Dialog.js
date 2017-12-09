@@ -6,7 +6,7 @@ import PopupDialog, {
 } from "react-native-popup-dialog"
 import { theme } from "hedvig-style"
 import {
-  TextContainer,
+  DialogContainer,
   Heading,
   Paragraph,
   ButtonsContainer
@@ -48,7 +48,11 @@ export default class Dialog extends React.Component {
   buttons() {
     let title = this.props.message.dismissButtonTitle || "Ok"
     dismissButton = (
-      <DialogButton title={title} onPress={() => this.dismissButtonPressed()} />
+      <DialogButton
+        title={title}
+        onPress={() => this.dismissButtonPressed()}
+        borderRight={this.props.message.confirmButtonTitle ? true : false}
+      />
     )
     let confirmButton
     if (this.props.message.confirmButtonTitle) {
@@ -56,7 +60,6 @@ export default class Dialog extends React.Component {
         <DialogButton
           title={this.props.message.confirmButtonTitle}
           onPress={() => this.confirmButtonPressed()}
-          borderRight={true}
         />
       )
     }
@@ -79,14 +82,20 @@ export default class Dialog extends React.Component {
         }}
         dismissOnTouchOutside={false}
         width={width}
-        height={0.4}
-        style={{ flex: 1 }}
+        height={1}
+        style={{ backgroundColor: "blue" }}
+        // overlayBackgroundColor="transparent"
+        dialogStyle={{
+          backgroundColor: "transparent",
+          justifyContent: "center"
+        }}
+        containerStyle={{ backgroundColor: "green" }}
       >
-        <TextContainer>
+        <DialogContainer>
           <Heading>{this.props.message.title}</Heading>
           <Paragraph>{this.props.message.paragraph}</Paragraph>
-        </TextContainer>
-        {this.buttons()}
+          {this.buttons()}
+        </DialogContainer>
       </PopupDialog>
     )
   }
