@@ -1,20 +1,9 @@
 import React from "react"
-import {
-  View,
-  ScrollView,
-  Button,
-  Text,
-  Image,
-  TouchableOpacity
-} from "react-native"
-import { Link, ClaimLink } from "../../containers/Link"
-import { Textplainer } from "../Placeholder"
+import { View, ScrollView } from "react-native"
+
 import { HeaderRightChat } from "../NavBar"
 import { PerilsCategory } from "./PerilsCategory"
-import { Placeholder as PlaceholderStyle } from "../Styles"
-import Placeholder from "rn-placeholder"
-import styled from "styled-components/native"
-import { CircularFontText } from "../../components/styles/typography"
+
 import { TextButton, RoundedButton } from "../Button"
 import {
   StyledDashboardContainer,
@@ -22,13 +11,12 @@ import {
   StyledDashboardHeaderRow,
   StyledCategoriesContainer,
   StyledCheckoutButton,
-  StyledDashboardHeaderItem,
   StyledDashboardHeaderIcon,
   StyledConditionRow
 } from "../styles/dashboard"
-import { StyledText, StyledHeading, StyledPassiveText } from "../styles/text"
+import { StyledHeading, StyledPassiveText } from "../styles/text"
+import DashboardHeader from "./DashboardHeader"
 import OfferDashboardHeaderIcons from "../../containers/dashboard/OfferDashboardHeaderIcons"
-const R = require("ramda")
 
 export default class Dashboard extends React.Component {
   state = {
@@ -103,24 +91,10 @@ export default class Dashboard extends React.Component {
       return <OfferDashboardHeaderIcons />
     } else {
       return (
-        <StyledDashboardHeaderRow>
-          <StyledDashboardHeaderItem>
-            {this.statusIcon()}
-            <StyledText>{this.statusText()}</StyledText>
-          </StyledDashboardHeaderItem>
-          <StyledDashboardHeaderItem>
-            <StyledDashboardHeaderIcon
-              source={require("../../../assets/icons/my_insurance/pris.png")}
-            />
-            <StyledText>{this.props.currentTotalPrice} kr/mån</StyledText>
-          </StyledDashboardHeaderItem>
-          <StyledDashboardHeaderItem>
-            <StyledDashboardHeaderIcon
-              source={require("../../../assets/icons/my_insurance/worldwide.png")}
-            />
-            <StyledText>Gäller i hela världen</StyledText>
-          </StyledDashboardHeaderItem>
-        </StyledDashboardHeaderRow>
+        <DashboardHeader
+          statusIcon={this.statusIcon.bind(this)}
+          statusText={this.statusText.bind(this)}
+        />
       )
     }
   }
