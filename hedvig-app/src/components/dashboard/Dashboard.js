@@ -143,42 +143,43 @@ export default class Dashboard extends React.Component {
         </StyledDashboardHeader>
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
-          {this.props.mode === "offer" ? (
-            <View>
-              <View style={{ marginLeft: 24 }}>
-                <StyledConditionRow>
-                  <StyledDashboardHeaderIcon
-                    source={require("../../../assets/icons/my_insurance/aktiv.png")}
-                  />
-                  <StyledPassiveText>
-                    Lägenheten försäkras till sitt fulla värde
-                  </StyledPassiveText>
-                </StyledConditionRow>
-                <StyledConditionRow>
-                  <StyledDashboardHeaderIcon
-                    source={require("../../../assets/icons/my_insurance/pris.png")}
-                  />
-                  <StyledPassiveText>
-                    Prylarna försäkras till totalt 1 000 000 kr
-                  </StyledPassiveText>
-                </StyledConditionRow>
-                <StyledConditionRow>
-                  <StyledDashboardHeaderIcon
-                    source={require("../../../assets/icons/my_insurance/worldwide.png")}
-                  />
-                  <StyledPassiveText>
-                    Gäller på resor varsomhelst i världen
-                  </StyledPassiveText>
-                </StyledConditionRow>
-              </View>
+
+          <View>
+            <View style={{ marginLeft: 24 }}>
+              <StyledConditionRow>
+                <StyledDashboardHeaderIcon
+                  source={require("../../../assets/icons/my_insurance/aktiv.png")}
+                />
+                <StyledPassiveText>
+                  Lägenheten försäkras till sitt fulla värde
+                </StyledPassiveText>
+              </StyledConditionRow>
+              <StyledConditionRow>
+                <StyledDashboardHeaderIcon
+                  source={require("../../../assets/icons/my_insurance/pris.png")}
+                />
+                <StyledPassiveText>
+                  Prylarna försäkras till totalt 1 000 000 kr
+                </StyledPassiveText>
+              </StyledConditionRow>
+              <StyledConditionRow>
+                <StyledDashboardHeaderIcon
+                  source={require("../../../assets/icons/my_insurance/worldwide.png")}
+                />
+                <StyledPassiveText>
+                  Gäller på resor varsomhelst i världen
+                </StyledPassiveText>
+              </StyledConditionRow>
+            </View>
+            {this.props.mode === "offer" ? (
               <View
                 style={{
                   alignSelf: "stretch",
                   height: this.props.extraScrollViewPadding || 250
                 }}
               />
-            </View>
-          ) : null}
+            ) : null}
+          </View>
         </ScrollView>
         {this.maybeCheckoutButton()}
       </StyledDashboardContainer>
