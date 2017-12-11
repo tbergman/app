@@ -16,7 +16,7 @@ const OfferDashboardHeaderIcons = ({ newTotalPrice }) => {
             source={require("../../../assets/icons/my_insurance/startdatum.png")}
           />
           <StyledPassiveText>
-            Startdatum: När din nuvarande avslutas
+            Startdatum: När din nuvarande kan avslutas
           </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>
