@@ -127,9 +127,8 @@ export class PerilsCategory extends React.Component {
               </StyledRow>
               <StyledRow>
                 <StyledPassiveText>
-                  {this.state.showCategory
-                    ? "Klicka för detaljer"
-                    : this.props.description}
+                  {this.props.offerMode ? "försäkras" : "är försäkrad"}
+                  {this.state.showCategory ? ":" : ""}
                 </StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>

@@ -52,6 +52,7 @@ export default class Dashboard extends React.Component {
             description={description}
             perils={perils}
             editMode={this.state.editMode}
+            offerMode={this.props.mode === "offer"}
             iconUrl={iconUrl}
             key={i}
             navigation={this.props.navigation}
