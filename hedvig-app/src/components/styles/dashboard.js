@@ -39,9 +39,9 @@ export const StyledCategoryContainer = styled.TouchableOpacity`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
   padding-top: 16px;
-  ${"" /* Drop shadow */} shadow-opacity: 0.1;
-  shadow-radius: 3;
-  shadow-offset: 0px 0px;
+  ${"" /* Drop shadow */} shadow-opacity: 0.2;
+  shadow-radius: 2;
+  shadow-offset: 0px 1px;
   shadow-color: black;
   elevation: 1;
 `
