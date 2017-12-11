@@ -16,7 +16,7 @@ import {
 } from "../styles/dashboard"
 import { StyledHeading, StyledPassiveText } from "../styles/text"
 import DashboardHeader from "./DashboardHeader"
-import OfferDashboardHeaderIcons from "../../containers/dashboard/OfferDashboardHeaderIcons"
+import OfferDashboardHeader from "../../containers/dashboard/OfferDashboardHeader"
 
 export default class Dashboard extends React.Component {
   state = {
@@ -86,12 +86,13 @@ export default class Dashboard extends React.Component {
     }[this.props.insurance.status]
   }
 
-  headerIcons() {
+  header() {
     if (this.props.mode === "offer") {
-      return <OfferDashboardHeaderIcons />
+      return <OfferDashboardHeader />
     } else {
       return (
         <DashboardHeader
+          editMode={this.state.editMode}
           statusIcon={this.statusIcon.bind(this)}
           statusText={this.statusText.bind(this)}
         />
@@ -102,19 +103,7 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <StyledDashboardContainer style={{ flex: 1 }}>
-        <StyledDashboardHeader>
-          <StyledDashboardHeaderRow>
-            <StyledHeading>Din hemförsäkring</StyledHeading>
-            {this.props.mode === "offer" ? null : (
-              <TextButton
-                title={this.state.editMode ? "Avbryt" : "Skräddarsy"}
-                onPress={() =>
-                  this.setState({ editMode: !this.state.editMode })}
-              />
-            )}
-          </StyledDashboardHeaderRow>
-          {this.headerIcons()}
-        </StyledDashboardHeader>
+        {this.header()}
         <ScrollView style={{ flex: 1 }}>
           {this.renderCategories()}
 

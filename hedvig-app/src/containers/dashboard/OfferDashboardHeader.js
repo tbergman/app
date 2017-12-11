@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import OfferDashboardHeaderIcons from "../../components/dashboard/OfferDashboardHeaderIcons"
+import OfferDashboardHeader from "../../components/dashboard/OfferDashboardHeader"
 
 const mapStateToProps = state => {
   return {
@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {}
 }
 
-const OfferDashboardHeaderIconsContainer = connect(
+const OfferDashboardHeaderContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(OfferDashboardHeaderIcons)
+)(OfferDashboardHeader)
 
-export default OfferDashboardHeaderIconsContainer
+export default OfferDashboardHeaderContainer

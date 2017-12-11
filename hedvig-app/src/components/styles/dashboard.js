@@ -20,6 +20,10 @@ export const StyledDashboardHeaderRow = styled.View`
   margin-bottom: 10;
 `
 
+export const StyledDashboardHeaderRowGray = StyledDashboardHeaderRow.extend`
+  background-color: ${props => props.theme.colors.offWhite};
+`
+
 export const StyledDashboardHeaderItem = styled.View`
   flex-direction: row;
 `

@@ -1,15 +1,18 @@
 import React from "react"
-import { View } from "react-native"
 import {
+  StyledDashboardHeader,
   StyledDashboardHeaderRow,
   StyledDashboardHeaderItem,
   StyledDashboardHeaderIcon
 } from "../styles/dashboard"
-import { StyledPassiveText } from "../styles/text"
+import { StyledHeading, StyledPassiveText } from "../styles/text"
 
-const OfferDashboardHeaderIcons = ({ newTotalPrice }) => {
+const OfferDashboardHeader = ({ newTotalPrice }) => {
   return (
-    <View>
+    <StyledDashboardHeader>
+      <StyledDashboardHeaderRow>
+        <StyledHeading>Din hemförsäkring</StyledHeading>
+      </StyledDashboardHeaderRow>
       <StyledDashboardHeaderRow>
         <StyledDashboardHeaderItem>
           <StyledDashboardHeaderIcon
@@ -30,8 +33,8 @@ const OfferDashboardHeaderIcons = ({ newTotalPrice }) => {
           </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>
-    </View>
+    </StyledDashboardHeader>
   )
 }
 
-export default OfferDashboardHeaderIcons
+export default OfferDashboardHeader
