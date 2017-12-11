@@ -8,7 +8,7 @@ export const StyledCtaArea = styled.Image`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 258px;
+  height: 176px;
   width: ${width};
   padding: 36px 0px 24px 0px;
   align-items: center;

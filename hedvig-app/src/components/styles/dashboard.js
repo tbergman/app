@@ -48,7 +48,7 @@ export const StyledCategoryContainer = styled.TouchableOpacity`
 
 export const StyledCategoryHeader = styled.View`
   flex-direction: row;
-  padding: 0px 16px 16px 16px;
+  padding: 0px 16px 14px 16px;
   flex: 1;
 `
 
@@ -117,4 +117,9 @@ export const StyledAddRemoveIcon = styled.Image`
   right: 0;
   width: 16px;
   height: 16px;
+`
+
+export const StyledConditionRow = styled.View`
+  flex-direction: row;
+  margin-bottom: 16px;
 `

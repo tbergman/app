@@ -23,7 +23,8 @@ import {
   StyledCategoriesContainer,
   StyledCheckoutButton,
   StyledDashboardHeaderItem,
-  StyledDashboardHeaderIcon
+  StyledDashboardHeaderIcon,
+  StyledConditionRow
 } from "../styles/dashboard"
 import { StyledText, StyledHeading, StyledPassiveText } from "../styles/text"
 import OfferDashboardHeaderIcons from "../../containers/dashboard/OfferDashboardHeaderIcons"
@@ -64,7 +65,7 @@ export default class Dashboard extends React.Component {
   }
 
   maybeCheckoutButton() {
-    if (this.props.newTotalPrice !== null) {
+    if (this.props.newTotalPrice !== null && this.props.mode !== "offer") {
       let prefix = `${this.props.newTotalPrice} kr`
       return (
         <StyledCheckoutButton>
@@ -145,13 +146,30 @@ export default class Dashboard extends React.Component {
           {this.props.mode === "offer" ? (
             <View>
               <View style={{ marginLeft: 24 }}>
-                <StyledPassiveText>
-                  Min lägenhet är försäkrad till fullvärde
-                </StyledPassiveText>
-                <StyledPassiveText>
-                  Mina prylar är försäkrade upp till 1 000 000 kr
-                </StyledPassiveText>
-                <StyledPassiveText>Min självrisk: 1 500 kr</StyledPassiveText>
+                <StyledConditionRow>
+                  <StyledDashboardHeaderIcon
+                    source={require("../../../assets/icons/my_insurance/aktiv.png")}
+                  />
+                  <StyledPassiveText>
+                    Lägenheten försäkras till sitt fulla värde
+                  </StyledPassiveText>
+                </StyledConditionRow>
+                <StyledConditionRow>
+                  <StyledDashboardHeaderIcon
+                    source={require("../../../assets/icons/my_insurance/pris.png")}
+                  />
+                  <StyledPassiveText>
+                    Prylarna försäkras till totalt 1 000 000 kr
+                  </StyledPassiveText>
+                </StyledConditionRow>
+                <StyledConditionRow>
+                  <StyledDashboardHeaderIcon
+                    source={require("../../../assets/icons/my_insurance/worldwide.png")}
+                  />
+                  <StyledPassiveText>
+                    Gäller på resor varsomhelst i världen
+                  </StyledPassiveText>
+                </StyledConditionRow>
               </View>
               <View
                 style={{

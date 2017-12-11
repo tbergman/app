@@ -11,7 +11,8 @@ import {
 import {
   TurquoiseRoundedInvertedButton,
   RoundedTransparentButton,
-  NavigateBackButton
+  NavigateBackButton,
+  TextButton
 } from "../Button"
 import { theme } from "hedvig-style"
 
@@ -31,24 +32,22 @@ class Offer extends React.Component {
         <Dashboard
           navigation={this.props.navigation}
           mode="offer"
-          extraScrollViewPadding={250}
+          extraScrollViewPadding={160}
         />
         <StyledCtaArea
           source={require("../../../assets/bgs/gradient-white-rectangle.png")}
           resizeMode="stretch"
         >
-          <StyledPriceText>{this.props.newTotalPrice} kr/mån</StyledPriceText>
-          <StyledPriceComment>Ingen bidningstid</StyledPriceComment>
           <StyledButtonContainer>
             <TurquoiseRoundedInvertedButton
               onPress={() => this.props.checkout()}
-              title="Skaffa Hedvig"
+              title="Byt till Hedvig"
             />
           </StyledButtonContainer>
           <StyledButtonContainer>
-            <RoundedTransparentButton
+            <TextButton
               onPress={() => this.props.closeModal()}
-              title="Jag vill fundera"
+              title="Jag har en fråga"
             />
           </StyledButtonContainer>
         </StyledCtaArea>
