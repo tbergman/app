@@ -134,14 +134,12 @@ export default class Dashboard extends React.Component {
                 </StyledPassiveText>
               </StyledConditionRow>
             </View>
-            {this.props.mode === "offer" ? (
-              <View
-                style={{
-                  alignSelf: "stretch",
-                  height: this.props.extraScrollViewPadding || 250
-                }}
-              />
-            ) : null}
+            <View
+              style={{
+                alignSelf: "stretch",
+                height: this.props.extraScrollViewPadding || 0
+              }}
+            />
           </View>
         </ScrollView>
         {this.maybeCheckoutButton()}

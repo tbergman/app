@@ -14,10 +14,18 @@ export const StyledDashboardHeader = styled.View`
   padding-left: 24;
 `
 
+export const StyledDashboardHeaderOffWhite = StyledDashboardHeader.extend`
+  background-color: ${props => props.theme.colors.offWhite};
+`
+
 export const StyledDashboardHeaderRow = styled.View`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10;
+`
+
+export const StyledDashboardHeaderRowLessMargin = StyledDashboardHeaderRow.extend`
+  margin-bottom: 5;
 `
 
 export const StyledDashboardHeaderRowGray = StyledDashboardHeaderRow.extend`

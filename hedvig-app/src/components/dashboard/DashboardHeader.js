@@ -1,42 +1,22 @@
 import React from "react"
 import {
-  StyledDashboardHeader,
-  StyledDashboardHeaderRow,
-  StyledDashboardHeaderItem,
-  StyledDashboardHeaderIcon
+  StyledDashboardHeaderOffWhite,
+  StyledDashboardHeaderRowLessMargin,
+  StyledDashboardHeaderItem
 } from "../styles/dashboard"
-import { StyledText, StyledHeading } from "../styles/text"
-import { TextButton } from "../Button"
+import { StyledPassiveText, StyledHeading } from "../styles/text"
 
-const DashboardHeader = ({ editMode, statusIcon, statusText }) => {
+const DashboardHeader = ({ statusIcon, statusText }) => {
   return (
-    <StyledDashboardHeader>
-      <StyledDashboardHeaderRow>
-        <StyledHeading>Din hemförsäkring</StyledHeading>
-        <TextButton
-          title={editMode ? "Avbryt" : "Skräddarsy"}
-          onPress={() => this.setState({ editMode: !editMode })}
-        />
-      </StyledDashboardHeaderRow>
-      <StyledDashboardHeaderRow>
+    <StyledDashboardHeaderOffWhite>
+      <StyledDashboardHeaderRowLessMargin>
+        <StyledHeading>Min hemförsäkring</StyledHeading>
         <StyledDashboardHeaderItem>
           {statusIcon()}
-          <StyledText>{statusText()}</StyledText>
+          <StyledPassiveText>{statusText()}</StyledPassiveText>
         </StyledDashboardHeaderItem>
-        <StyledDashboardHeaderItem>
-          <StyledDashboardHeaderIcon
-            source={require("../../../assets/icons/my_insurance/pris.png")}
-          />
-          <StyledText>kr/mån</StyledText>
-        </StyledDashboardHeaderItem>
-        <StyledDashboardHeaderItem>
-          <StyledDashboardHeaderIcon
-            source={require("../../../assets/icons/my_insurance/worldwide.png")}
-          />
-          <StyledText>Gäller i hela världen</StyledText>
-        </StyledDashboardHeaderItem>
-      </StyledDashboardHeaderRow>
-    </StyledDashboardHeader>
+      </StyledDashboardHeaderRowLessMargin>
+    </StyledDashboardHeaderOffWhite>
   )
 }
 

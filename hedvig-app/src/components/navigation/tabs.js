@@ -86,7 +86,7 @@ class MyTabs extends React.Component {
 const MyTabNavigator = TabNavigator(
   {
     DashboardTab: {
-      screen: Dashboard
+      screen: () => <Dashboard extraScrollViewPadding={80} />
     },
     AssetTrackerTab: {
       screen: AssetList

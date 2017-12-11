@@ -692,7 +692,7 @@ storiesOf("Dashboard", module)
       <StorybookProvider store={dashboardStore}>{story()}</StorybookProvider>
     )
   })
-  .add("Dashboard", () => <Dashboard />)
+  .add("Dashboard", () => <Dashboard extraScrollViewPadding={80} />)
   .add("Offer", () => <Offer />)
 
 let profileStore
