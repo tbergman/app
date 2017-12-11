@@ -59,7 +59,7 @@ export const StyledCategoryIcon = styled.Image`
 
 export const StyledCategoryTextContainer = styled.View`
   margin-left: 16px;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: stretch;
   flex: 1;
 `
