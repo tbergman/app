@@ -95,6 +95,14 @@ export const StyledPerilsContainer = styled.View`
   flex-wrap: wrap;
 `
 
+export const StyledPerilsHelpText = styled.View`
+  border-top-color: ${props => props.theme.colors.offWhite};
+  border-top-width: 1px;
+  height: 31px;
+  justify-content: center;
+  align-items: center;
+`
+
 export const StyledPerilsRow = styled.View`
   flex-direction: row;
   flex-wrap: wrap;

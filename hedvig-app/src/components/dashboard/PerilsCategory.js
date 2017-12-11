@@ -17,7 +17,8 @@ import {
   StyledExpandButton,
   StyledPerilsContainer,
   StyledPerilsRow,
-  StyledCategoryTextAndButton
+  StyledCategoryTextAndButton,
+  StyledPerilsHelpText
 } from "../styles/dashboard"
 import {
   DisabledCollapseButton,
@@ -25,7 +26,11 @@ import {
   HiddenDisabledButton
 } from "../Button"
 import { StyledRow, StyledWrappingRow } from "../styles/general"
-import { StyledHeading, StyledPassiveText } from "../styles/text"
+import {
+  StyledHeading,
+  StyledPassiveText,
+  StyledSmallPassiveText
+} from "../styles/text"
 const R = require("ramda")
 
 export class PerilsCategory extends React.Component {
@@ -97,9 +102,16 @@ export class PerilsCategory extends React.Component {
       )
     } else if (this.state.showCategory) {
       return (
-        <StyledPerilsContainer>
-          <StyledPerilsRow>{this.coveredPerils()}</StyledPerilsRow>
-        </StyledPerilsContainer>
+        <View>
+          <StyledPerilsContainer>
+            <StyledPerilsRow>{this.coveredPerils()}</StyledPerilsRow>
+          </StyledPerilsContainer>
+          <StyledPerilsHelpText>
+            <StyledSmallPassiveText>
+              Klicka på ikonerna för mer info
+            </StyledSmallPassiveText>
+          </StyledPerilsHelpText>
+        </View>
       )
     }
   }
