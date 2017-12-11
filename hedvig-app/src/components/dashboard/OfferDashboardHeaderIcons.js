@@ -5,9 +5,9 @@ import {
   StyledDashboardHeaderItem,
   StyledDashboardHeaderIcon
 } from "../styles/dashboard"
-import { StyledText, StyledHeading } from "../styles/text"
+import { StyledPassiveText } from "../styles/text"
 
-const OfferDashboardHeaderIcons = () => {
+const OfferDashboardHeaderIcons = ({ newTotalPrice }) => {
   return (
     <View>
       <StyledDashboardHeaderRow>
@@ -15,15 +15,19 @@ const OfferDashboardHeaderIcons = () => {
           <StyledDashboardHeaderIcon
             source={require("../../../assets/icons/my_insurance/startdatum.png")}
           />
-          <StyledText>Startdatum: När din nuvarande avslutas</StyledText>
+          <StyledPassiveText>
+            Startdatum: När din nuvarande avslutas
+          </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>
       <StyledDashboardHeaderRow>
         <StyledDashboardHeaderItem>
           <StyledDashboardHeaderIcon
-            source={require("../../../assets/icons/my_insurance/worldwide.png")}
+            source={require("../../../assets/icons/my_insurance/pris.png")}
           />
-          <StyledText>Gäller i hela världen</StyledText>
+          <StyledPassiveText>
+            {newTotalPrice}kr/mån, ingen bindningstid
+          </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>
     </View>

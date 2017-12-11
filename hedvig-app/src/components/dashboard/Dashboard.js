@@ -26,7 +26,7 @@ import {
   StyledDashboardHeaderIcon
 } from "../styles/dashboard"
 import { StyledText, StyledHeading, StyledPassiveText } from "../styles/text"
-import OfferDashboardHeaderIcons from "./OfferDashboardHeaderIcons"
+import OfferDashboardHeaderIcons from "../../containers/dashboard/OfferDashboardHeaderIcons"
 const R = require("ramda")
 
 export default class Dashboard extends React.Component {
