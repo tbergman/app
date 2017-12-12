@@ -44,6 +44,7 @@ import Profile from "../../src/containers/Profile"
 import { Carousel } from "../../src/components/Carousel"
 import { showChatAction } from "../../src/actions/baseNavigation"
 import { keyboardStateChange } from "../../src/actions/keyboardState"
+import MarketingCarousel from "../../src/components/MarketingCarousel"
 
 import { ConnectedReduxBaseNavigator } from "../../src/containers/navigation/navigation"
 
@@ -797,4 +798,25 @@ storiesOf("ActionSheet", module)
   })
   .add("ActionSheetExample", () => {
     return <ActionSheetExample />
+  })
+
+storiesOf("MarketingCarousel", module)
+  .addDecorator(story => {
+    let marketingCarouselStore = configureStore({
+      additionalReducers: { nav, keyboard: keyboardStateReducer },
+      additionalSagas: [
+        apiAndNavigateToChatSaga,
+        tokenStorageSaga,
+        navigationSaga,
+        logoutSaga
+      ]
+    })
+    return (
+      <StorybookProvider store={marketingCarouselStore}>
+        {story()}
+      </StorybookProvider>
+    )
+  })
+  .add("MarketingCarousel", () => {
+    return <MarketingCarousel />
   })
