@@ -34,7 +34,7 @@ const validateToken = function*(action) {
       Authorization: `Bearer ${token}`
     }
   })
-  if (validateResponse.status !== 401) {
+  if (validateResponse.status === 200 && token !== null) {
     console.log("Using stored token:", token)
     yield put({ type: RECEIVED_TOKEN, payload: token })
   } else {
