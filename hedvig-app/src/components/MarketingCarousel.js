@@ -131,7 +131,9 @@ export default class MarketingCarousel extends React.Component {
             />
           </DotsContainer>
           <LoginContainer>
-            <Text style={{ marginRight: 10 }}>Redan medlem?</Text>
+            <Text style={{ marginRight: 10 }}>
+              <StyledPassiveText>Redan medlem?</StyledPassiveText>
+            </Text>
             <TextButton title="Logga in" />
           </LoginContainer>
         </View>
