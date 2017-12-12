@@ -2,9 +2,10 @@ import { take, takeEvery, put, select } from "redux-saga/effects"
 import { delay } from "redux-saga"
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
 import { upload } from "../services/Upload"
+import { baseURL } from "../services/environment"
 const uuidv4 = require("uuid/v4")
 
-const UPLOAD_URL = "http://hedvig-upload-test.s3-eu-west-1.amazonaws.com"
+const UPLOAD_URL = baseURL + "/asset/fileupload/"
 
 const uploadHandler = function*(action) {
   if (action.payload.addToken) {

@@ -7,7 +7,7 @@ export function upload({
   successActionCreator,
   url,
   headers = {},
-  addToken = false
+  addToken = true
 }) {
   return {
     type: UPLOAD,
