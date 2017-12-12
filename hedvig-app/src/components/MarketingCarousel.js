@@ -1,6 +1,6 @@
 import React from "react"
 import { Image, View, Text, Dimensions } from "react-native"
-import Carousel from "react-native-snap-carousel"
+import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 
 import { StyledHeading, StyledPassiveText } from "./styles/text"
@@ -109,7 +109,7 @@ export default class MarketingCarousel extends React.Component {
               sliderWidth={Dimensions.get("window").width}
               itemWidth={300}
               inactiveSlideOpacity={0}
-              inactiveSlideScale={1}
+              inactiveSlideScale={0.9}
               onSnapToItem={slideIndex => this.setState({ index: slideIndex })}
             />
           </ImageContainer>
@@ -119,7 +119,13 @@ export default class MarketingCarousel extends React.Component {
             </CenteredText>
           </ParagraphContainer>
           <DotsContainer>
-            <Text>Dots go here</Text>
+            <Pagination
+              dotsLength={contents.length}
+              activeDotIndex={this.state.index}
+              dotColor="#651EFF"
+              inactiveDotColor="#D7D7DC"
+              inactiveDotScale={1}
+            />
           </DotsContainer>
           <LoginContainer>
             <Text style={{ marginRight: 10 }}>Redan medlem?</Text>
