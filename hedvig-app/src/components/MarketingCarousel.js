@@ -1,6 +1,8 @@
 import React from "react"
-import { Image, View, Text } from "react-native"
+import { Image, View, Text, Dimensions } from "react-native"
+import Carousel from "react-native-snap-carousel"
 import styled from "styled-components/native"
+
 import { StyledHeading, StyledPassiveText } from "./styles/text"
 import { TextButton } from "./Button"
 
@@ -73,42 +75,58 @@ const LoginContainer = styled.View`
   align-items: center;
 `
 
-const MarketingScreen = ({ data }) => {
-  return (
-    <FullScreen>
-      <Container>
-        <CenteredText>
-          <StyledHeading>{data.heading}</StyledHeading>
-        </CenteredText>
-        <ImageContainer>
-          <Image
-            source={{ uri: data.imageUrl }}
-            style={{ width: 300, height: 300 }}
-          />
-        </ImageContainer>
-        <ParagraphContainer>
+export default class MarketingCarousel extends React.Component {
+  state = {
+    index: 0
+  }
+
+  _renderItem({ item, index }) {
+    // TODO Render either an Image or a Lottie animation here, based on
+    // which of item.imageUrl and item.animationUrl is not null
+    return (
+      <Image
+        source={{ uri: item.imageUrl }}
+        style={{ width: 300, height: 300 }}
+      />
+    )
+  }
+
+  render() {
+    let data = contents[this.state.index]
+    return (
+      <FullScreen>
+        <Container>
           <CenteredText>
-            <StyledPassiveText>{data.paragraph}</StyledPassiveText>
+            <StyledHeading>{data.heading}</StyledHeading>
           </CenteredText>
-        </ParagraphContainer>
-        <DotsContainer>
-          <Text>Dots go here</Text>
-        </DotsContainer>
-        <LoginContainer>
-          <Text style={{ marginRight: 10 }}>Redan medlem?</Text>
-          <TextButton title="Logga in" />
-        </LoginContainer>
-      </Container>
-    </FullScreen>
-  )
+          <ImageContainer>
+            <Carousel
+              ref={c => {
+                this._carousel = c
+              }}
+              data={contents}
+              renderItem={this._renderItem}
+              sliderWidth={Dimensions.get("window").width}
+              itemWidth={300}
+              inactiveSlideOpacity={0}
+              inactiveSlideScale={1}
+              onSnapToItem={slideIndex => this.setState({ index: slideIndex })}
+            />
+          </ImageContainer>
+          <ParagraphContainer>
+            <CenteredText>
+              <StyledPassiveText>{data.paragraph}</StyledPassiveText>
+            </CenteredText>
+          </ParagraphContainer>
+          <DotsContainer>
+            <Text>Dots go here</Text>
+          </DotsContainer>
+          <LoginContainer>
+            <Text style={{ marginRight: 10 }}>Redan medlem?</Text>
+            <TextButton title="Logga in" />
+          </LoginContainer>
+        </Container>
+      </FullScreen>
+    )
+  }
 }
-
-const MarketingCarousel = () => {
-  return (
-    <FullScreen>
-      <MarketingScreen data={contents[0]} />
-    </FullScreen>
-  )
-}
-
-export default MarketingCarousel
