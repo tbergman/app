@@ -43,7 +43,7 @@ const FullScreen = styled.View`
 `
 
 const Container = FullScreen.extend`
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
 `
 
 const CenteredText = styled.Text`
@@ -61,6 +61,7 @@ const ParagraphContainer = styled.View`
   align-self: stretch;
   align-items: center;
   justify-content: center;
+  flex: 1;
 `
 
 const DotsContainer = styled.View`
@@ -118,6 +119,8 @@ export default class MarketingCarousel extends React.Component {
               <StyledPassiveText>{data.paragraph}</StyledPassiveText>
             </CenteredText>
           </ParagraphContainer>
+        </Container>
+        <View style={{ marginBottom: 20 }}>
           <DotsContainer>
             <Pagination
               dotsLength={contents.length}
@@ -131,7 +134,7 @@ export default class MarketingCarousel extends React.Component {
             <Text style={{ marginRight: 10 }}>Redan medlem?</Text>
             <TextButton title="Logga in" />
           </LoginContainer>
-        </Container>
+        </View>
       </FullScreen>
     )
   }
