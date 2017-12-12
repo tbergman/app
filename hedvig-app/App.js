@@ -8,7 +8,8 @@ import { Provider } from "react-redux"
 const hedvigRedux = require("hedvig-redux")
 window.hedvigRedux = hedvigRedux
 import nav from "./src/reducers/nav"
-import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
+// import { ConnectedReduxBaseNavigator } from "./src/containers/navigation/navigation"
+import { MarketingCarouselOrBaseNavigator } from "./src/components/MarketingCarousel"
 import * as Navigation from "./src/services/Navigation"
 import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
 import { tokenStorageSaga } from "./src/sagas/TokenStorage"
@@ -110,7 +111,7 @@ export class App extends React.Component {
       <WithAssets>
         <ThemeProvider theme={theme}>
           <Provider store={this.store}>
-            <ConnectedReduxBaseNavigator />
+            <MarketingCarouselOrBaseNavigator />
           </Provider>
         </ThemeProvider>
       </WithAssets>

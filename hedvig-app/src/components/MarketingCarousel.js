@@ -5,6 +5,7 @@ import styled from "styled-components/native"
 
 import { StyledHeading, StyledPassiveText } from "./styles/text"
 import { TextButton } from "./Button"
+import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 
 const contents = [
   {
@@ -134,10 +135,26 @@ export default class MarketingCarousel extends React.Component {
             <Text style={{ marginRight: 10 }}>
               <StyledPassiveText>Redan medlem?</StyledPassiveText>
             </Text>
-            <TextButton title="Logga in" />
+            <TextButton title="Logga in" onPress={() => this.props.dismiss()} />
           </LoginContainer>
         </View>
       </FullScreen>
     )
+  }
+}
+
+export class MarketingCarouselOrBaseNavigator extends React.Component {
+  state = {
+    dismissed: false
+  }
+
+  render() {
+    if (this.state.dismissed) {
+      return <ConnectedReduxBaseNavigator />
+    } else {
+      return (
+        <MarketingCarousel dismiss={() => this.setState({ dismissed: true })} />
+      )
+    }
   }
 }
