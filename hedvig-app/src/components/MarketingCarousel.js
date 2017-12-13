@@ -3,6 +3,7 @@ import { Image, View, Text, Dimensions } from "react-native"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 
+import StatusBar from "../containers/StatusBar"
 import { StyledHeading, StyledPassiveText } from "./styles/text"
 import { TextButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
@@ -38,13 +39,18 @@ const contents = [
   }
 ]
 
+const MyStyledHeading = StyledHeading.extend`
+  font-size: 24px;
+  color: ${props => props.theme.colors.blackPurple};
+`
+
 const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
 `
 
 const Container = FullScreen.extend`
-  padding: 20px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
 `
 
 const CenteredText = styled.Text`
@@ -97,9 +103,10 @@ export default class MarketingCarousel extends React.Component {
     let data = contents[this.state.index]
     return (
       <FullScreen>
+        <StatusBar />
         <Container>
           <CenteredText>
-            <StyledHeading>{data.heading}</StyledHeading>
+            <MyStyledHeading>{data.heading}</MyStyledHeading>
           </CenteredText>
           <ImageContainer>
             <Carousel
@@ -121,7 +128,7 @@ export default class MarketingCarousel extends React.Component {
             </CenteredText>
           </ParagraphContainer>
         </Container>
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ marginBottom: 40 }}>
           <DotsContainer>
             <Pagination
               dotsLength={contents.length}
