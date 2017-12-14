@@ -1,3 +1,8 @@
+branches:
+  only:
+  - deploy
+  - /^deploy-.*$/
+
 language: node_js
 sudo: true
 node_js:
