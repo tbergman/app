@@ -12,38 +12,40 @@ import {
 import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 
+import { UploadingAnimation } from "./Animation"
+
 const contents = [
   {
     heading: "Det ska vara lätt\n när det är svårt",
     imageUrl: "https://picsum.photos/300/300",
-    animationUrl: null,
+    animation: null,
     paragraph:
       "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
   },
   {
     heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
     imageUrl: "https://picsum.photos/300/300",
-    animationUrl: null,
+    animation: null,
     paragraph:
       "Chatta med Hedvig när som helst\n så får du svar & hjälp direkt."
   },
   {
     heading: "Se exakt hur dina prylar\n är försäkrade",
-    imageUrl: "https://picsum.photos/300/300",
-    animationUrl: null,
+    imageUrl: null,
+    animation: <UploadingAnimation />,
     paragraph: "Fota dina saker eller kvitton\n så håller Hedvig koll åt dig."
   },
   {
     heading: "Det som inte\n betalas ut i ersättning\n ges till välgörenhet",
     imageUrl: "https://picsum.photos/300/300",
-    animationUrl: null,
+    animation: null,
     paragraph:
       "Välj vilken organisation du vill stödja\n genom din Hedvig-försäkring."
   },
   {
     heading: null,
     imageUrl: "https://picsum.photos/300/300",
-    animationUrl: null,
+    animation: null,
     endButton: true,
     paragraph: "Klicka för att få ett skräddarsytt \nförsäkringsförslag."
   }
@@ -102,14 +104,27 @@ export default class MarketingCarousel extends React.Component {
   }
 
   _renderItem({ item, index }) {
-    // TODO Render either an Image or a Lottie animation here, based on
-    // which of item.imageUrl and item.animationUrl is not null
-    return (
-      <Image
-        source={{ uri: item.imageUrl }}
-        style={{ width: 300, height: 300 }}
-      />
-    )
+    if (item.imageUrl) {
+      return (
+        <Image
+          source={{ uri: item.imageUrl }}
+          style={{ width: 300, height: 300 }}
+        />
+      )
+    } else if (item.animation) {
+      return (
+        <View
+          style={{
+            width: 300,
+            height: 300,
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          {item.animation}
+        </View>
+      )
+    }
   }
 
   render() {
