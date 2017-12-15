@@ -268,7 +268,9 @@ const perils = [...R.range(0, 50)].map(i => {
     state: state,
     isRemovable: ["ADD_REQUESTED", "ADD_PENDING", "COVERED"].includes(state),
     imageUrl: images[i % images.length],
-    description: description.substr(0, 600 + 10 * i)
+    description: `${i} ${description.substr(0, 100)}`,
+    longText: description.substr(0, 600 + 10 * i),
+    policyUrl: "http://hedvig.com"
   }
 })
 const categories = [
@@ -740,23 +742,31 @@ storiesOf("Profile", module)
 const carouselItems = [
   {
     title: "Carousel Item 1",
-    description: "trololol ".repeat(100),
-    imageUrl: "https://unsplash.it/400/400"
+    description: "trololol ",
+    longText: "trololol ".repeat(100),
+    imageUrl: "https://unsplash.it/400/400",
+    policyUrl: "http://hedvig.com"
   },
   {
     title: "Carousel Item 2",
-    description: "omgomgomg ".repeat(100),
-    imageUrl: "https://unsplash.it/400/400"
+    description: "omgomgomg ",
+    longText: "omgomgomg ".repeat(100),
+    imageUrl: "https://unsplash.it/400/400",
+    policyUrl: "http://hedvig.com"
   },
   {
     title: "Carousel Item 3",
-    description: "whywhywhy ".repeat(100),
-    imageUrl: "https://unsplash.it/400/400"
+    description: "whywhywhy ",
+    longText: "whywhywhy ".repeat(100),
+    imageUrl: "https://unsplash.it/400/400",
+    policyUrl: "http://hedvig.com"
   },
   {
     title: "Carousel Item 4",
-    description: "readmeplz ".repeat(100),
-    imageUrl: "https://unsplash.it/400/400"
+    description: "readmeplz ",
+    longText: "readmeplz ".repeat(100),
+    imageUrl: "https://unsplash.it/400/400",
+    policyUrl: "http://hedvig.com"
   }
 ]
 storiesOf("Carousel", module)
