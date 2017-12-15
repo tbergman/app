@@ -4,44 +4,53 @@ import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 
 import StatusBar from "../containers/StatusBar"
-import { StyledHeading, StyledPassiveText } from "./styles/text"
-import { TextButton } from "./Button"
+import {
+  StyledHeading,
+  StyledSmallText,
+  StyledPassiveText
+} from "./styles/text"
+import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 
 const contents = [
   {
-    heading: "Heading 1",
+    heading: "Det ska vara lätt\n när det är svårt",
     imageUrl: "https://picsum.photos/300/300",
     animationUrl: null,
     paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices pellentesque placerat. Etiam quis vehicula libero. Fusce pretium blandit purus id placerat. Ut accumsan mattis elementum."
+      "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
   },
   {
-    heading: "Heading 2",
+    heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
     imageUrl: "https://picsum.photos/300/300",
     animationUrl: null,
     paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices pellentesque placerat. Etiam quis vehicula libero. Fusce pretium blandit purus id placerat. Ut accumsan mattis elementum."
+      "Chatta med Hedvig när som helst\n så får du svar & hjälp direkt."
   },
   {
-    heading: "Heading 3",
+    heading: "Se exakt hur dina prylar\n är försäkrade",
     imageUrl: "https://picsum.photos/300/300",
     animationUrl: null,
-    paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices pellentesque placerat. Etiam quis vehicula libero. Fusce pretium blandit purus id placerat. Ut accumsan mattis elementum."
+    paragraph: "Fota dina saker eller kvitton\n så håller Hedvig koll åt dig."
   },
   {
-    heading: "Heading 4",
+    heading: "Det som inte\n betalas ut i ersättning\n ges till välgörenhet",
     imageUrl: "https://picsum.photos/300/300",
     animationUrl: null,
     paragraph:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ultrices pellentesque placerat. Etiam quis vehicula libero. Fusce pretium blandit purus id placerat. Ut accumsan mattis elementum."
+      "Välj vilken organisation du vill stödja\n genom din Hedvig-försäkring."
+  },
+  {
+    heading: null,
+    imageUrl: "https://picsum.photos/300/300",
+    animationUrl: null,
+    endButton: true,
+    paragraph: "Klicka för att få ett skräddarsytt \nförsäkringsförslag."
   }
 ]
 
 const MyStyledHeading = StyledHeading.extend`
   font-size: 24px;
-  color: ${props => props.theme.colors.blackPurple};
 `
 
 const FullScreen = styled.View`
@@ -49,8 +58,10 @@ const FullScreen = styled.View`
   align-self: stretch;
 `
 
-const Container = FullScreen.extend`
-  padding: 0px 20px 0px 20px;
+const Container = FullScreen.extend``
+
+const MySmallText = StyledSmallText.extend`
+  font-size: 14px;
 `
 
 const CenteredText = styled.Text`
@@ -61,10 +72,12 @@ const ImageContainer = styled.View`
   margin-top: 20px;
   align-self: stretch;
   align-items: center;
+  height: 300px;
 `
 
 const ParagraphContainer = styled.View`
-  margin-top: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
   align-self: stretch;
   align-items: center;
   justify-content: center;
@@ -72,12 +85,12 @@ const ParagraphContainer = styled.View`
 `
 
 const DotsContainer = styled.View`
-  margin-top: 20px;
+  margin-top: 0px;
   align-items: center;
 `
 
 const LoginContainer = styled.View`
-  margin-top: 20px;
+  margin-top: 0px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -101,13 +114,26 @@ export default class MarketingCarousel extends React.Component {
 
   render() {
     let data = contents[this.state.index]
+    let maybeEndButton
+    if (data.endButton) {
+      maybeEndButton = (
+        <View style={{ marginTop: 20, marginBottom: 40 }}>
+          <TurquoiseRoundedInvertedButton
+            title="Säg hej till Hedvig!"
+            onPress={() => this.props.dismiss()}
+          />
+        </View>
+      )
+    }
     return (
       <FullScreen>
         <StatusBar />
         <Container>
-          <CenteredText>
-            <MyStyledHeading>{data.heading}</MyStyledHeading>
-          </CenteredText>
+          {data.heading ? (
+            <CenteredText>
+              <MyStyledHeading>{data.heading}</MyStyledHeading>
+            </CenteredText>
+          ) : null}
           <ImageContainer>
             <Carousel
               ref={c => {
@@ -123,8 +149,9 @@ export default class MarketingCarousel extends React.Component {
             />
           </ImageContainer>
           <ParagraphContainer>
+            {maybeEndButton}
             <CenteredText>
-              <StyledPassiveText>{data.paragraph}</StyledPassiveText>
+              <MySmallText>{data.paragraph}</MySmallText>
             </CenteredText>
           </ParagraphContainer>
         </Container>
