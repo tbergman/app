@@ -2,6 +2,7 @@ import React from "react"
 import { Image, View, Text, Dimensions } from "react-native"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
+import { connect } from "react-redux"
 
 import StatusBar from "../containers/StatusBar"
 import {
@@ -11,6 +12,7 @@ import {
 } from "./styles/text"
 import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
+import { types } from "hedvig-redux"
 
 import { UploadingAnimation } from "./Animation"
 
@@ -184,13 +186,37 @@ export default class MarketingCarousel extends React.Component {
             <Text style={{ marginRight: 10 }}>
               <StyledPassiveText>Redan medlem?</StyledPassiveText>
             </Text>
-            <TextButton title="Logga in" onPress={() => this.props.dismiss()} />
+            <TextButton title="Logga in" onPress={() => this.props.login()} />
           </LoginContainer>
         </View>
       </FullScreen>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    login: () => {
+      dispatch({
+        type: types.API,
+        payload: {
+          url: "/chat/login",
+          method: "POST",
+          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_LOGIN_SUCCESS"
+        }
+      })
+      ownProps.dismiss()
+    }
+  }
+}
+
+const ConnectedMarketingCarousel = connect(mapStateToProps, mapDispatchToProps)(
+  MarketingCarousel
+)
 
 export class MarketingCarouselOrBaseNavigator extends React.Component {
   state = {
@@ -202,7 +228,9 @@ export class MarketingCarouselOrBaseNavigator extends React.Component {
       return <ConnectedReduxBaseNavigator />
     } else {
       return (
-        <MarketingCarousel dismiss={() => this.setState({ dismissed: true })} />
+        <ConnectedMarketingCarousel
+          dismiss={() => this.setState({ dismissed: true })}
+        />
       )
     }
   }

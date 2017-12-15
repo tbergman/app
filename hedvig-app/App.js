@@ -111,8 +111,8 @@ export class App extends React.Component {
       <WithAssets>
         <ThemeProvider theme={theme}>
           <Provider store={this.store}>
-            {/* <MarketingCarouselOrBaseNavigator /> */}
-            <ConnectedReduxBaseNavigator />
+            <MarketingCarouselOrBaseNavigator />
+            {/* <ConnectedReduxBaseNavigator /> */}
           </Provider>
         </ThemeProvider>
       </WithAssets>
