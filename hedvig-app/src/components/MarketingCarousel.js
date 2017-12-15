@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, View, Text, Dimensions } from "react-native"
+import { Image, View, Text, Dimensions, AsyncStorage } from "react-native"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 import { connect } from "react-redux"
@@ -218,20 +218,39 @@ const ConnectedMarketingCarousel = connect(mapStateToProps, mapDispatchToProps)(
   MarketingCarousel
 )
 
+const SEEN_MARKETING_CAROUSEL_KEY = "@hedvig:alreadySeenMarketingCarousel"
+
 export class MarketingCarouselOrBaseNavigator extends React.Component {
   state = {
+    loading: true,
+    alreadySeenMarketingCarousel: false,
     dismissed: false
   }
 
+  async componentWillMount() {
+    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
+      SEEN_MARKETING_CAROUSEL_KEY
+    )
+    this.setState({ alreadySeenMarketingCarousel, loading: false })
+  }
+
+  async dismiss() {
+    await AsyncStorage.setItem(SEEN_MARKETING_CAROUSEL_KEY, "true")
+    this.setState({ dismissed: true })
+  }
+
   render() {
-    if (this.state.dismissed) {
-      return <ConnectedReduxBaseNavigator />
+    if (this.state.loading) {
+      return <View />
     } else {
-      return (
-        <ConnectedMarketingCarousel
-          dismiss={() => this.setState({ dismissed: true })}
-        />
-      )
+      if (
+        this.state.alreadySeenMarketingCarousel === "true" ||
+        this.state.dismissed
+      ) {
+        return <ConnectedReduxBaseNavigator />
+      } else {
+        return <ConnectedMarketingCarousel dismiss={this.dismiss.bind(this)} />
+      }
     }
   }
 }
