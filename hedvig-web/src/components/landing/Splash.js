@@ -59,10 +59,13 @@ const Splash = () => {
         options={{
           loop: true,
           autoplay: true,
-          animationData: require("../../bundledAssets/animations/water.json")
+          animationData: require("../../bundledAssets/animations/water.json"),
+          rendererSettings: {
+            preserveAspectRatio: "none"
+          }
         }}
         height={720}
-        width={1280}
+        width={window.innerWidth * 1.5}
       />
       <SplashText>
         <PurpleHeading>Det ska vara lätt när det är svårt</PurpleHeading>
