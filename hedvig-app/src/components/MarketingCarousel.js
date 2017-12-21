@@ -19,7 +19,7 @@ import { UploadingAnimation } from "./Animation"
 const contents = [
   {
     heading: "Det ska vara lätt\n när det är svårt",
-    imageUrl: "https://picsum.photos/300/300",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/marketing_1.png",
     animation: null,
     paragraph:
       "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
