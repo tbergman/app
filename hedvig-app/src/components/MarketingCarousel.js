@@ -18,31 +18,31 @@ import { UploadingAnimation } from "./Animation"
 
 const contents = [
   {
-    heading: "",
+    heading: "Det ska vara lätt\n när det är svårt",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
     animation: null,
     paragraph:
-      ""
+      "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
   },
   {
-    heading: "",
+    heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2.png",
     animation: null,
     paragraph:
-      ""
+      "Chatta med Hedvig när som helst\n så får du svar & hjälp direkt."
   },
   {
-    heading: "",
+    heading: "Se exakt hur dina prylar\n är försäkrade",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_3.png",
     animation: null,
-    paragraph: ""
+    paragraph: "Fota dina saker eller kvitton\n så håller Hedvig koll åt dig."
   },
   {
-    heading: "",
+    heading: "Det som inte\n betalas ut i ersättning\n ges till välgörenhet",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_4.png",
     animation: null,
     paragraph:
-      ""
+      "Välj vilken organisation du vill stödja\n genom din Hedvig-försäkring."
   },
   {
     heading: null,
@@ -60,6 +60,7 @@ const MyStyledHeading = StyledHeading.extend`
 const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
+  margin-top: 20px;
 `
 
 const Container = FullScreen.extend``
