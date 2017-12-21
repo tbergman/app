@@ -18,35 +18,35 @@ import { UploadingAnimation } from "./Animation"
 
 const contents = [
   {
-    heading: "Det ska vara lätt\n när det är svårt",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/marketing_1.png",
+    heading: "",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
     animation: null,
     paragraph:
-      "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
+      ""
   },
   {
-    heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
-    imageUrl: "https://picsum.photos/300/300",
+    heading: "",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2.png",
     animation: null,
     paragraph:
-      "Chatta med Hedvig när som helst\n så får du svar & hjälp direkt."
+      ""
   },
   {
-    heading: "Se exakt hur dina prylar\n är försäkrade",
-    imageUrl: null,
-    animation: <UploadingAnimation />,
-    paragraph: "Fota dina saker eller kvitton\n så håller Hedvig koll åt dig."
+    heading: "",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_3.png",
+    animation: null,
+    paragraph: ""
   },
   {
-    heading: "Det som inte\n betalas ut i ersättning\n ges till välgörenhet",
-    imageUrl: "https://picsum.photos/300/300",
+    heading: "",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_4.png",
     animation: null,
     paragraph:
-      "Välj vilken organisation du vill stödja\n genom din Hedvig-försäkring."
+      ""
   },
   {
     heading: null,
-    imageUrl: "https://picsum.photos/300/300",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_5.png",
     animation: null,
     endButton: true,
     paragraph: "Klicka för att få ett skräddarsytt \nförsäkringsförslag."
