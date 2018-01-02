@@ -85,14 +85,10 @@ export default class AssetList extends React.Component {
       return (
         <View>
           <StyledEmptyListText>
-            Hej! Om du vill kan du logga saker och deras kvitton här. Då får du
+            Om du vill kan du logga saker och deras kvitton här. Då får du
             koll precis hur de är försäkrade, och kan anmäla en skada
             superenkelt
           </StyledEmptyListText>
-          <RoundedButton
-            title="Lägg till pryl"
-            onPress={() => this.props.navigation.navigate("AddEditAsset")}
-          />
         </View>
       )
     }
