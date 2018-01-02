@@ -16,7 +16,8 @@ const ChatTextInput = ({ message, onChange, send }) => {
         value={message._inputValue || ""}
         underlineColorAndroid="transparent"
         onChangeText={text => onChange(message, text)}
-        underlineColorAndroid="transparent"
+        multiline={true}
+        autoGrow={true}
       />
       <ButtonComponent onPress={() => send(message)} title="Skip" />
     </StyledTextInputContainer>
