@@ -225,10 +225,6 @@ export default class Profile extends React.Component {
             {this.props.user.selectedCashbackSignature}
           </StyledCharitySignature>
         </StyledListHeader>
-        {/* <Button
-          title="Dina försäkringsvillkor"
-          onPress={() => this.props.sendPolicyEmail()}
-        /> */}
         <StyledList>
           {this._maybeUserInfo()}
           {this._shareRow()}
