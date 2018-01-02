@@ -404,11 +404,18 @@ export default class AddEditAsset extends React.Component {
         onSelected: () => this._takePhoto(onPhotoPickedOrTaken)
       },
       {
-        label: "Kopiera kvitton@hedvig.com",
-        onSelected: () => {
-          Clipboard.setString("kvitton@hedvig.com")
-          this.props.setStatusMessage("kvitton@hedvig.com kopierat")
-        }
+        label: "Mejla kvitto",
+        onSelected: () => this.props.showDialog({
+          title: "Mejla in kvitto",
+          paragraph: "Mejla dina kvitton till kvitton@hedvig.com så lägger Hedvig till informationen automatiskt",
+          confirmButtonTitle: "Kopiera mejladressen",
+          dismissButtonTitle: "Avbryt",
+          onConfirm: () => {
+            Clipboard.setString("kvitton@hedvig.com");
+            this.props.setStatusMessage("kvitton@hedvig.com kopierat")
+          },
+          onDismiss: () => console.log("Dismiss pressed")
+        })
       }
     ]
     let message = this.state.item.receiptUrl
