@@ -20,7 +20,7 @@ import {
 } from "./styles/chat"
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import { NavBar } from "./NavBar"
-import { ChatNavRestartButton, ChatNavDashboardButton } from "./Button"
+import { ChatNavRestartButton, NavigateBackButton } from "./Button"
 
 const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
@@ -63,13 +63,13 @@ export default class Chat extends React.Component {
 
   render() {
     let lastIndex = this.props.messages.length - 1
-    let headerRight
+    let headerLeft
     if (
       this.props.insurance.status === "INACTIVE" ||
       this.props.insurance.status === "ACTIVE"
     ) {
-      headerRight = (
-        <ChatNavDashboardButton onPress={() => this.props.showDashboard()} />
+      headerLeft = (
+        <NavigateBackButton onPress={() => this.props.showDashboard()} />
       )
     }
     return (
@@ -77,11 +77,13 @@ export default class Chat extends React.Component {
         <NavBar
           title="Chat"
           headerLeft={
+            headerLeft
+          }
+          headerRight={
             <ChatNavRestartButton
               onPress={() => this.props.resetConversation()}
             />
           }
-          headerRight={headerRight}
         />
         <StyledMessageAndResponseArea behavior="padding">
           <StyledMessageArea>
