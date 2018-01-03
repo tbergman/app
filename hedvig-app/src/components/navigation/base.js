@@ -38,21 +38,22 @@ NOTE: The order of the floating buttons vs the other components in the
 ChatBase and HomeBase below affects whether the floating buttons are visible
 on Android!
 */
-const HomeBase = () => {
+const HomeBase = ({navigation}) => {
   return (
     <View style={{ flex: 1 }}>
-      <HomeBaseNavigator />
+      <HomeBaseNavigator navigation={navigation}/>
       <FloatingChatButton />
       <Dialog />
     </View>
   )
 }
 
+HomeBase.router = HomeBaseNavigator.router
+
 const ChatBase = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <Chat navigation={navigation} />
-      {/* <FloatingHomeButton /> */}
       <Dialog />
     </View>
   )

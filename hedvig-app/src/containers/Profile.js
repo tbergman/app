@@ -33,8 +33,8 @@ const mapDispatchToProps = dispatch => {
     getUser: () => dispatch(userActions.getCurrentUser()),
     getCashbackAlternatives: () =>
       dispatch(cashbackActions.getCashbackAlternatives()),
-    updateCashback: selectedCashback =>
-      dispatch(cashbackActions.updateCashback(selectedCashback)),
+    updateCashback: (selectedCashback, continuation) =>
+      dispatch(cashbackActions.updateCashback(selectedCashback, continuation)),
     editPersonalInfo: () =>
       _apiAndNavigateToChat(
         dispatch,

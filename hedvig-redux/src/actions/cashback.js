@@ -11,9 +11,10 @@ export function getCashbackAlternatives() {
   }
 }
 
-export function updateCashback(selectedCashback) {
+export function updateCashback(selectedCashback, continuation) {
   return {
     type: UPDATE_CASHBACK,
-    payload: selectedCashback
+    payload: selectedCashback,
+    continuation
   }
 }

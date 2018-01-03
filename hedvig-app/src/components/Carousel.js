@@ -1,15 +1,9 @@
 import React from "react"
 import {
   View,
-  ScrollView,
-  Button,
-  Text,
-  Image,
-  TouchableOpacity,
   Dimensions
 } from "react-native"
 import { WebBrowser } from "expo"
-import Placeholder from "rn-placeholder"
 import { default as SnapCarousel } from "react-native-snap-carousel"
 import {
   StyledCarouselContainer,
@@ -21,7 +15,7 @@ import {
   StyledCarouselParagraph,
   StyledParagraphToggleContainer
 } from "./styles/carousel"
-import { RoundedButton, NavigateBackButton, TextButton } from "./Button"
+import { NavigateBackButton, TextButton } from "./Button"
 import { NavBar } from "./NavBar"
 const deviceWidth = Dimensions.get("window").width
 const itemWidth = 186
@@ -35,7 +29,7 @@ export class Carousel extends React.Component {
     showFullDescription: false
   }
 
-  _renderItem({ item, index }) {
+  _renderItem({ item }) {
     return (
       <StyledCarouselImage
         source={{ uri: item.imageUrl }}
@@ -58,22 +52,6 @@ export class Carousel extends React.Component {
     return this.state.showFullDescription
       ? this.getItem().longText
       : this.shortDescription()
-  }
-
-  maybeToggleButton() {
-    return (
-      <StyledParagraphToggleContainer>
-        <RoundedButton
-          title={
-            this.state.showFullDescription ? "Visa mindre" : "Mer information"
-          }
-          onPress={() =>
-            this.setState({
-              showFullDescription: !this.state.showFullDescription
-            })}
-        />
-      </StyledParagraphToggleContainer>
-    )
   }
 
   maybePolicyLink() {
@@ -139,7 +117,6 @@ export class Carousel extends React.Component {
             <StyledCarouselParagraph>
               {this.shownDescription()}
             </StyledCarouselParagraph>
-            {this.maybeToggleButton()}
             {this.maybePolicyLink()}
             {this.maybeCta()}
           </StyledCarouselTexts>

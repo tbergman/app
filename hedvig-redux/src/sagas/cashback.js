@@ -4,7 +4,7 @@ import * as userActions from "../actions/user"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 import { baseURL } from "../services/environment"
 
-const updateCashback = function*({ payload: selectedItem }) {
+const updateCashback = function*({ payload: selectedItem, continuation }) {
   // Use this to return the whole cashbackAlternatives list with selected: true
   // only one the selected item
   // let state = yield select()
@@ -26,6 +26,10 @@ const updateCashback = function*({ payload: selectedItem }) {
   yield put(cashbackActions.getCashbackAlternatives())
   // Also get user profile as this includes some selected cashback info
   yield put(userActions.getCurrentUser())
+  if (continuation) {
+    yield take("LOADED_USER")
+    yield put(continuation())
+  }
 }
 
 const updateCashbackSaga = function*() {

@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native"
+import { NavigationActions } from 'react-navigation'
 import { Link } from "../containers/Link"
 import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
@@ -174,7 +175,7 @@ export default class Profile extends React.Component {
       return (
         <RoundedButton
           title="Välj"
-          onPress={() => this.props.updateCashback(item)}
+          onPress={() => this.props.updateCashback(item, () => NavigationActions.navigate({ routeName: "ProfileTab" }))}
         />
       )
     }

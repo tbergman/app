@@ -47,7 +47,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
     "react-native-popup-dialog": "^0.9.36",
     "react-native-snap-carousel": "^3.2.3",
-    "react-navigation": "^1.0.0-beta.11",
+    "react-navigation": "^1.0.0-beta.22",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
