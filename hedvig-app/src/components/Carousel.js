@@ -1,10 +1,13 @@
 import React from "react"
 import {
   View,
-  Dimensions
+  Dimensions,
+  BackHandler
 } from "react-native"
 import { WebBrowser } from "expo"
 import { default as SnapCarousel } from "react-native-snap-carousel"
+import { connect } from "react-redux"
+import { NavigationActions } from "react-navigation"
 import {
   StyledCarouselContainer,
   StyledAlignedCarouselItems,
@@ -20,13 +23,26 @@ import { NavBar } from "./NavBar"
 const deviceWidth = Dimensions.get("window").width
 const itemWidth = 186
 
-export class Carousel extends React.Component {
+class Carousel extends React.Component {
   navParams = this.props.navigation.state.params
   items = this.navParams.items
   renderCta = this.navParams.renderCta
   state = {
     slideIndex: this.navParams.initialSlideIndex || 0,
     showFullDescription: false
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+  }
+
+  onBackPress = () => {
+    const { dispatch } = this.props;
+    return dispatch(NavigationActions.navigate({routeName: "ProfileTab"}))
   }
 
   _renderItem({ item }) {
@@ -125,3 +141,9 @@ export class Carousel extends React.Component {
     )
   }
 }
+
+const ConnectedCarousel = connect(
+  state => ({nav: state.nav})
+)(Carousel)
+
+export { ConnectedCarousel as Carousel }
