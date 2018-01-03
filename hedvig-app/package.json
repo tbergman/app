@@ -16,6 +16,7 @@
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
     "react-dom": "16.0.0-alpha.12",
+    "react-native-debugger-open": "^0.3.15",
     "react-native-scripts": "1.1.0",
     "react-test-renderer": "16.0.0-alpha.12"
   },
@@ -30,7 +31,8 @@
     "lint": "./node_modules/.bin/eslint src",
     "storybook": "storybook start -p 7007",
     "storybook-ios": "REACT_NATIVE_STORYBOOK_MODE=true yarn run ios",
-    "storybook-android": "REACT_NATIVE_STORYBOOK_MODE=true yarn run android"
+    "storybook-android": "REACT_NATIVE_STORYBOOK_MODE=true yarn run android",
+    "postinstall": "rndebugger-open"
   },
   "jest": {
     "preset": "jest-expo"
@@ -42,8 +44,7 @@
     "metro-bundler": "^0.13.0",
     "moment": "2.19.0",
     "react": "16.0.0-beta.5",
-    "react-native":
-      "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
     "react-native-popup-dialog": "^0.9.36",
     "react-native-snap-carousel": "^3.2.3",
     "react-navigation": "^1.0.0-beta.11",

@@ -3,6 +3,7 @@ import rootReducer from "./reducers/index"
 // import apiMiddleware from "./middleware/api"
 import loggingMiddleware from "./middleware/logging"
 import mockMiddleware from "./middleware/mock"
+import { composeWithDevTools } from 'redux-devtools-extension';
 import helloActions from "./actions/hello"
 import * as insuranceActions from "./actions/insurance"
 import * as chatActions from "./actions/chat"
@@ -32,18 +33,28 @@ function configureStore(
   } = {}
 ) {
   let sagaMiddleware = createSagaMiddleware()
-  let store = createStore(
-    rootReducer(additionalReducers),
-    initialState,
-    compose(
+  let middlewares
+  if (process.env.NODE_ENV == "development") {
+    middlewares = composeWithDevTools({})(applyMiddleware(
+      loggingMiddleware,
+      mockMiddleware,
+      sagaMiddleware,
+      ...additionalMiddleware
+    ))
+  } else {
+    middlewares = compose(
       applyMiddleware(
         loggingMiddleware,
-        // apiMiddleware,
         mockMiddleware,
         sagaMiddleware,
         ...additionalMiddleware
       )
     )
+  }
+  let store = createStore(
+    rootReducer(additionalReducers),
+    initialState,
+    middlewares
   )
   sagaMiddleware.run(rootSaga(additionalSagas))
   return store
