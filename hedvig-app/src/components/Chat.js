@@ -1,6 +1,4 @@
 import React from "react"
-import { Text, TouchableOpacity, KeyboardAvoidingView } from "react-native"
-import styled from "styled-components/native"
 
 import MessageList from "../containers/chat/MessageList"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
@@ -62,7 +60,6 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    let lastIndex = this.props.messages.length - 1
     let headerLeft
     if (
       this.props.insurance.status === "INACTIVE" ||

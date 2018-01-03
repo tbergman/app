@@ -14,7 +14,8 @@ import {
   StyledChatResponseButton,
   StyledTransparentButton,
   StyledMultipleSelectOptionButton,
-  StyledFabButton
+  StyledFabButton,
+  StyledHiddenChatResponseButton
 } from "./styles/button"
 import { StyledDialogButton, StyledDialogButtonText } from "./styles/dialog"
 const { Lottie } = DangerZone
@@ -107,6 +108,7 @@ export const RoundedButton = ({
   onPress,
   disabled = false,
   selected = false,
+  hidden = false,
   _ContainerComponent = RoundedButtonWithChildren,
   _TextComponent = StyledButtonText
 }) => {
@@ -142,14 +144,15 @@ export const SingleSelectOptionButton = ({
   title,
   prefix,
   onPress,
-  selected
+  selected,
+  hidden
 }) =>
   RoundedButton({
     title,
     prefix,
     onPress,
     selected,
-    _ContainerComponent: StyledChatResponseButton
+    _ContainerComponent: hidden ? StyledHiddenChatResponseButton : StyledChatResponseButton 
   })
 
 export const MultipleSelectOptionButton = ({

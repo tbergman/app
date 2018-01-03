@@ -1,6 +1,6 @@
 import R from "ramda"
 import React from "react"
-import { Text, View, TouchableOpacity, Linking } from "react-native"
+import { Linking } from "react-native"
 import { WebBrowser } from "expo"
 import { SingleSelectOptionButton } from "../Button"
 import {
@@ -15,10 +15,12 @@ const SingleSelectInput = ({
   goToDashboard,
   launchModal = R.identity
 }) => {
+  let anySelected = message.body.choices.some(choice => choice.selected)
   let opts = message.body.choices.map(choice => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
         <SingleSelectOptionButton
+          hidden={anySelected && !choice.selected}
           title={choice.text}
           onPress={() => {
             if (choice.type === "selection") {
