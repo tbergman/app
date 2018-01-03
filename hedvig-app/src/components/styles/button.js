@@ -1,5 +1,7 @@
+import React from "react";
+import { Animated } from "react-native";
 import styled from "styled-components/native"
-import { CircularFontText, MerriweatherFontText } from "./typography"
+import { CircularFontText } from "./typography"
 
 export const StyledButton = styled.TouchableOpacity``
 
@@ -36,6 +38,32 @@ export const StyledRoundedButton = styled.TouchableOpacity`
 export const StyledChatResponseButton = StyledRoundedButton.extend`
   margin-bottom: 8px;
 `
+
+const _animatedStyledChatResponseButton = Animated.createAnimatedComponent(StyledChatResponseButton)
+export class AnimatedStyledChatResponseButton extends React.Component {
+  state = {
+    slideAnim: new Animated.Value(100)
+  }
+
+  componentDidMount() {
+    Animated.spring(
+      this.state.slideAnim,
+      {
+        toValue: 0
+      }
+    ).start()
+  }
+
+  render() {
+    let { slideAnim } = this.state
+    // const comp = <_animatedStyledChatResponseButton />
+    return (
+      <_animatedStyledChatResponseButton style={{transform: [{translateX: this.state.slideAnim}]}} {...this.props}>
+        { this.props.children }
+      </_animatedStyledChatResponseButton>
+    )
+  }
+}
 
 export const StyledHiddenChatResponseButton = StyledChatResponseButton.extend`
   opacity: 0;

@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, TouchableOpacity, Image } from "react-native"
+import { TouchableOpacity, Image } from "react-native"
 import { DangerZone } from "expo"
 import {
   StyledButton,
@@ -11,7 +11,7 @@ import {
   StyledRoundedButtonInverted,
   StyledRedRoundedButtonInverted,
   StyledTurquoiseRoundedButtonInverted,
-  StyledChatResponseButton,
+  AnimatedStyledChatResponseButton,
   StyledTransparentButton,
   StyledMultipleSelectOptionButton,
   StyledFabButton,
@@ -152,7 +152,7 @@ export const SingleSelectOptionButton = ({
     prefix,
     onPress,
     selected,
-    _ContainerComponent: hidden ? StyledHiddenChatResponseButton : StyledChatResponseButton 
+    _ContainerComponent: hidden ? StyledHiddenChatResponseButton : AnimatedStyledChatResponseButton 
   })
 
 export const MultipleSelectOptionButton = ({
