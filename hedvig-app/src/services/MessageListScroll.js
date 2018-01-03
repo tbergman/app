@@ -7,9 +7,13 @@ export function emitScrollToEndEvent() {
   EventEmitter().emitEvent(MESSAGE_LIST_SCROLL_TO_END)
 }
 
-export function onScrollToEndEvent(callback) {
+export function registerOnScrollToEndEvent(callback) {
   EventEmitter().addListener(MESSAGE_LIST_SCROLL_TO_END, () => {
     console.log(`Received event: ${MESSAGE_LIST_SCROLL_TO_END}`)
     callback()
   })
+}
+
+export const unregisterOnScrollToEndEvent = (callback) => {
+  EventEmitter().removeListener(MESSAGE_LIST_SCROLL_TO_END, callback);
 }

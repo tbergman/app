@@ -13,7 +13,7 @@ import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 import { theme } from "hedvig-style"
-import { onScrollToEndEvent } from "../../services/MessageListScroll"
+import { registerOnScrollToEndEvent, unregisterOnScrollToEndEvent } from "../../services/MessageListScroll"
 
 const renderImage = message => {
   if (
@@ -169,12 +169,14 @@ export default class MessageList extends React.Component {
       this.handleKeyboardStateChange.bind(this)
     )
     // TODO: Unregister this listener on componentWillUnmount
-    onScrollToEndEvent(() => {
+    registerOnScrollToEndEvent(this._scrollToEnd)
+  }
+
+  _scrollToEnd = () => {
       if (this.ref) {
         this.ref.scrollToEnd()
       }
-    })
-  }
+    }
 
   componentWillUnmount() {
     if (this.keyboardDidShowListener) {
@@ -183,6 +185,7 @@ export default class MessageList extends React.Component {
     if (this.keyboardDidHideListener) {
       this.keyboardDidHideListener.remove()
     }
+    unregisterOnScrollToEndEvent(this.scrollToEnd)
   }
 
   handleKeyboardStateChange(event) {
