@@ -1,5 +1,5 @@
 import React from "react"
-import { Dimensions } from "react-native"
+import { Dimensions, BackHandler } from "react-native"
 import PopupDialog, {
 } from "react-native-popup-dialog"
 import { theme } from "hedvig-style"
@@ -20,6 +20,19 @@ import { DialogButton } from "./Button"
  * * `confirmButtonOnPress`, ex: () => console.log("Cancel pressed")
  */
 export default class Dialog extends React.Component {
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+  }
+
+  onBackPress = () => {
+    this.dismissButtonPressed()
+    return true
+  }
+
   componentDidUpdate() {
     if (this.props.message.title) {
       this.popupDialog.show()
@@ -87,11 +100,13 @@ export default class Dialog extends React.Component {
           justifyContent: "center"
         }}
       >
-        <DialogContainer>
-          <Heading>{this.props.message.title}</Heading>
-          <Paragraph>{this.props.message.paragraph}</Paragraph>
-          {this.buttons()}
-        </DialogContainer>
+        { this.props.message.title ? (
+          <DialogContainer>
+            <Heading>{this.props.message.title}</Heading>
+            <Paragraph>{this.props.message.paragraph}</Paragraph>
+            {this.buttons()}
+          </DialogContainer>
+        ) : null }
       </PopupDialog>
     )
   }
