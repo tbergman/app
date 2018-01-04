@@ -109,6 +109,7 @@ export const StyledTextInput = styled.TextInput`
   border-width: 1px;
   border-radius: 24px;
   font-size: ${props => props.theme.typography.input.fontSize};
+  overflow: hidden;
 `
 
 // Date input
