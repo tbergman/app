@@ -1,5 +1,5 @@
 import React from "react"
-import { Dimensions, BackHandler } from "react-native"
+import { Dimensions, BackHandler, Text } from "react-native"
 import PopupDialog, {
 } from "react-native-popup-dialog"
 import { theme } from "hedvig-style"
@@ -108,7 +108,7 @@ export default class Dialog extends React.Component {
             <Paragraph>{this.props.message.paragraph}</Paragraph>
             {this.buttons()}
           </DialogContainer>
-        ) : null }
+        ) : <Text></Text> }
       </PopupDialog>
     )
   }
