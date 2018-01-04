@@ -1,6 +1,6 @@
 import styled from "styled-components/native"
 import * as typography from "./typography"
-import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingView"
+import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
 
 export const StyledChatContainer = styled.View`
   flex: 1;

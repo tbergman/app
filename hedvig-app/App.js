@@ -62,12 +62,10 @@ export class App extends React.Component {
   }
 
   _keyboardWillShow(event) {
-    console.log("Keyboard shown")
     this.store.dispatch(keyboardStateChange({ ...event, state: "shown" }))
   }
 
   _keyboardWillHide(event) {
-    console.log("Keyboard hidden")
     this.store.dispatch(keyboardStateChange({ ...event, state: "hidden" }))
   }
 

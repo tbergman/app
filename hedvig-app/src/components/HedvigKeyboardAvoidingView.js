@@ -8,8 +8,8 @@ export default class HedvigKeyboardAvoidingView extends React.Component {
         behavior="padding"
         style={[
           this.props.style,
-          { marginBottom: this.props.keyboardState.state === "shown" ? 50 : 0 }
         ]}
+        keyboardVerticalOffset={32}
       >
         {this.props.children}
       </KeyboardAvoidingView>
