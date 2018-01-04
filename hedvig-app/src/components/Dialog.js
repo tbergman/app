@@ -29,8 +29,10 @@ export default class Dialog extends React.Component {
   }
 
   onBackPress = () => {
-    this.dismissButtonPressed()
-    return true
+    if (this.props.message.title) {
+      this.dismissButtonPressed()
+      return true
+    }
   }
 
   componentDidUpdate() {

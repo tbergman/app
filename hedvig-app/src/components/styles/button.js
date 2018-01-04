@@ -49,7 +49,8 @@ export class AnimatedStyledChatResponseButton extends React.Component {
     Animated.spring(
       this.state.slideAnim,
       {
-        toValue: 0
+        toValue: 0,
+        useNativeDriver: true
       }
     ).start()
   }

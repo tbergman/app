@@ -1,18 +1,31 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Animated } from "react-native"
 import { DangerZone } from "expo"
 const { Lottie } = DangerZone
 
 export default class LoadingIndicator extends React.Component {
+  state = {
+    fade: new Animated.Value(0)
+  }
+  componentDidMount() {
+    Animated.timing(
+      this.state.fade,
+      {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
+      }
+    ).start()
+  }
+
   render() {
     if (this.props.loadingMessages && this.props.avatar.data) {
       return (
-        <View
+        <Animated.View
           style={{
             height: this.props.avatar.height,
-            width: this.props.avatar.width
-            // borderWidth: 1,
-            // borderColor: "black"
+            width: this.props.avatar.width,
+            opacity: this.state.fade
           }}
         >
           <Lottie
@@ -25,11 +38,9 @@ export default class LoadingIndicator extends React.Component {
             loop={true}
             source={this.props.avatar.data}
           />
-        </View>
+        </Animated.View>
       )
     } else {
-      // TODO: Show a loader here if necessary?
-      // return <Text>Loading...</Text>
       return null
     }
   }
