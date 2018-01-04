@@ -3,18 +3,15 @@ import { View } from "react-native"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import { NavBar } from "../NavBar"
 import {
-  StyledCtaArea,
-  StyledPriceText,
-  StyledPriceComment,
-  StyledButtonContainer
+  StyledButtonContainer,
+  StyledBackgroundImage,
+  StyledCtaContainer
 } from "../styles/offer"
 import {
   TurquoiseRoundedInvertedButton,
-  RoundedTransparentButton,
   NavigateBackButton,
   TextButton
 } from "../Button"
-import { theme } from "hedvig-style"
 
 class Offer extends React.Component {
   componentWillMount() {
@@ -34,10 +31,11 @@ class Offer extends React.Component {
           mode="offer"
           extraScrollViewPadding={160}
         />
-        <StyledCtaArea
-          source={require("../../../assets/bgs/gradient-white-rectangle.png")}
-          resizeMode="stretch"
-        >
+        <StyledCtaContainer>
+          <StyledBackgroundImage
+            source={require("../../../assets/bgs/gradient-white-rectangle.png")}
+            resizeMode="stretch"
+          />
           <StyledButtonContainer>
             <TurquoiseRoundedInvertedButton
               onPress={() => this.props.checkout()}
@@ -50,7 +48,7 @@ class Offer extends React.Component {
               title="Jag har en fråga"
             />
           </StyledButtonContainer>
-        </StyledCtaArea>
+        </StyledCtaContainer>
       </View>
     )
   }

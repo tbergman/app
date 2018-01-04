@@ -3,13 +3,23 @@ import { CircularFontText } from "./typography"
 import { Dimensions } from "react-native"
 const { width } = Dimensions.get("window")
 
-export const StyledCtaArea = styled.Image`
+export const StyledBackgroundImage = styled.Image`
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 176px;
   width: ${width};
+  padding: 36px 0px 24px 0px;
+`
+
+export const StyledCtaContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 176px;
+  width: ${width}
   padding: 36px 0px 24px 0px;
   align-items: center;
 `

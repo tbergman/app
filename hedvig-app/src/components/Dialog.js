@@ -84,12 +84,10 @@ export default class Dialog extends React.Component {
         width={width}
         height={1}
         style={{ backgroundColor: "blue" }}
-        // overlayBackgroundColor="transparent"
         dialogStyle={{
           backgroundColor: "transparent",
           justifyContent: "center"
         }}
-        containerStyle={{ backgroundColor: "green" }}
       >
         <DialogContainer>
           <Heading>{this.props.message.title}</Heading>
