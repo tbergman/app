@@ -1,13 +1,12 @@
 import React from "react"
-import { Text, TouchableOpacity, View, TextInput } from "react-native"
 import { StyledTextInputContainer, StyledTextInput } from "../styles/chat"
-import { TextInputSubmitButton, SendIconButton } from "../Button"
+import { SendIconButton, SendDisabledIconButton } from "../Button"
 
 const ChatTextInput = ({ message, onChange, send }) => {
   let ButtonComponent =
     message._inputValue && message._inputValue.length > 0
       ? SendIconButton
-      : TextInputSubmitButton
+      : SendDisabledIconButton
   return (
     <StyledTextInputContainer>
       <StyledTextInput
@@ -19,7 +18,7 @@ const ChatTextInput = ({ message, onChange, send }) => {
         multiline={true}
         autoGrow={true}
       />
-      <ButtonComponent onPress={() => send(message)} title="Skip" />
+      <ButtonComponent onPress={() => send(message)} />
     </StyledTextInputContainer>
   )
 }
