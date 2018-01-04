@@ -42,7 +42,7 @@ class Carousel extends React.Component {
 
   onBackPress = () => {
     const { dispatch } = this.props;
-    return dispatch(NavigationActions.navigate({routeName: "ProfileTab"}))
+    return dispatch(NavigationActions.back())
   }
 
   _renderItem({ item }) {
