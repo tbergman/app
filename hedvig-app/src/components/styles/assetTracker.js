@@ -6,7 +6,7 @@ import {
   StyledHeading
 } from "./text"
 import { CircularFontText, MerriweatherFontText } from "./typography"
-import HedvigKeyboardAvoidingView from "../../containers/HedvigKeyboardAvoidingView"
+import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
 
 // List view
 
