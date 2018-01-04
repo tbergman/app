@@ -1,8 +1,6 @@
 import React from "react"
-import { View, Text, Dimensions } from "react-native"
+import { Dimensions } from "react-native"
 import PopupDialog, {
-  SlideAnimation,
-  DialogTitle
 } from "react-native-popup-dialog"
 import { theme } from "hedvig-style"
 import {
@@ -47,7 +45,7 @@ export default class Dialog extends React.Component {
 
   buttons() {
     let title = this.props.message.dismissButtonTitle || "Ok"
-    dismissButton = (
+    const dismissButton = (
       <DialogButton
         title={title}
         onPress={() => this.dismissButtonPressed()}
