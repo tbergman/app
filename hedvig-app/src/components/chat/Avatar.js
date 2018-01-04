@@ -8,14 +8,6 @@ export default class Avatar extends React.Component {
     progress: new Animated.Value(0)
   }
 
-  componentDidMount() {
-    this.state.progress.addListener(progress => {
-      if (progress.value === 1) {
-        this.props.animationEnded()
-      }
-    })
-  }
-
   play() {
     Animated.timing(this.state.progress, {
       toValue: 1,
