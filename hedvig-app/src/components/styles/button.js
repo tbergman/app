@@ -8,14 +8,14 @@ export const StyledButton = styled.TouchableOpacity``
 export const StyledDisabledButton = styled.View``
 
 export const StyledButtonText = CircularFontText.extend`
-  color: ${props => props.theme.button.textButton.color};
-  font-size: ${props => props => props.theme.button.textButton.fontSize};
+  color: ${props => props.selected ? props.theme.colors.white : props.theme.button.textButton.color};
+  font-size: ${props => props.theme.button.textButton.fontSize};
   background-color: transparent;
   line-height: ${props => props.theme.button.textButton.fontSize + 4};
 `
 
 export const StyledButtonTextInverted = CircularFontText.extend`
-  font-size: ${props => props => props.theme.button.textButton.fontSize};
+  font-size: ${props => props.theme.button.textButton.fontSize};
   color: ${props => props.theme.colors.white};
 `
 
@@ -39,23 +39,26 @@ export const StyledChatResponseButton = StyledRoundedButton.extend`
   margin-bottom: 8px;
 `
 
-const _animatedStyledChatResponseButton = Animated.createAnimatedComponent(StyledChatResponseButton)
 export class AnimatedStyledChatResponseButton extends React.Component {
   state = {
-    slideAnim: new Animated.Value(100)
+    slideAnim: new Animated.Value(250)
   }
 
   componentDidMount() {
-    Animated.spring(
-      this.state.slideAnim,
-      {
-        toValue: 0,
-        useNativeDriver: true
-      }
-    ).start()
+    Animated.sequence([
+      Animated.delay(100),
+      Animated.spring(
+        this.state.slideAnim,
+        {
+          toValue: 0,
+          useNativeDriver: true
+        }
+      )
+    ]).start()
   }
 
   render() {
+    this.props.selected & console.log("I am selected")
     return (
       <TouchableOpacity
         style={{
@@ -65,7 +68,7 @@ export class AnimatedStyledChatResponseButton extends React.Component {
           paddingRight: 16,
           paddingBottom: 8,
           paddingLeft: 16,
-          backgroundColor: "#ffffff",
+          backgroundColor: this.props.selected ? "#651eff" : "#ffffff",
           borderColor: "#651eff",
           borderWidth: 1,
           borderRadius: 24,

@@ -31,7 +31,7 @@ export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
 `
 
 export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
-  color: ${props => props.theme.colors.purple};
+  color: ${props => props.theme.colors.white};
   font-size: ${props => props.theme.typography.userMessage.fontSize};
 `
 
@@ -71,8 +71,8 @@ export class AnimatedStyledChatMessage extends React.Component {
 
 export const StyledUserChatMessage = styled.View`
   margin-bottom: 8px;
-  padding: 10px 16px;
-  background-color: ${props => props.theme.colors.white};
+  padding: 8px 16px;
+  background-color: ${props => props.theme.colors.primary};
   border-color: ${props => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;

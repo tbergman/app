@@ -118,7 +118,7 @@ export const RoundedButton = ({
       onPress={onPress}
       selected={selected}
     >
-      <_TextComponent>
+      <_TextComponent selected={selected}>
         {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
         {title}
       </_TextComponent>

@@ -22,6 +22,7 @@ const SingleSelectInput = ({
         <SingleSelectOptionButton
           hidden={anySelected && !choice.selected}
           title={choice.text}
+          selected={choice.selected}
           onPress={() => {
             if (choice.type === "selection") {
               selectChoice(message, choice)
