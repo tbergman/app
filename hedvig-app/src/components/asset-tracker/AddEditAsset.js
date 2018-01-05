@@ -222,7 +222,6 @@ export default class AddEditAsset extends React.Component {
   }
 
   _updateDate(date) {
-    console.log("Selected date" + date.toString())
     let item = this.state.item
     item.date = date
     this.setState({ item })
@@ -261,7 +260,6 @@ export default class AddEditAsset extends React.Component {
       })
 
       if (result.cancelled) {
-        console.log("launchCameraAsync cancelled")
         return
       }
 
@@ -277,7 +275,6 @@ export default class AddEditAsset extends React.Component {
     })
 
     if (result.cancelled) {
-      console.log("launchImageLibraryAsync cancelled")
       return
     }
 
@@ -383,7 +380,6 @@ export default class AddEditAsset extends React.Component {
   _receiptInput() {
     let onPhotoPickedOrTaken = result => {
       let item = this.state.item
-      console.log(result.uri)
       item.receiptUrl = result.uri
       this.setState({ item })
     }
@@ -403,7 +399,7 @@ export default class AddEditAsset extends React.Component {
             Clipboard.setString("kvitton@hedvig.com");
             this.props.setStatusMessage("kvitton@hedvig.com kopierat")
           },
-          onDismiss: () => console.log("Dismiss pressed")
+          onDismiss: () => {}
         })
       }
     ]

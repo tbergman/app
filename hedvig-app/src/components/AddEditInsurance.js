@@ -1,12 +1,12 @@
 import React from "react"
 import { Text } from "react-native"
-import { Link, ClaimLink } from "../containers/Link"
+import { ClaimLink } from "../containers/Link"
 import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class AddEditInsurance extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Lägg till / Ändra Försäkring",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
@@ -14,8 +14,7 @@ export default class AddEditInsurance extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Textplainer text="Här kommer du kunna lägga till, ändra eller se detaljer om något i din
-          försäkring." />
+        <Textplainer text="Här kommer du kunna lägga till, ändra eller se detaljer om något i din försäkring." />
         <Text>&nbsp;</Text>
         <Text>Har något hänt eller behöver du hjälp?</Text>
         <ClaimLink title="Rapportera ärende" />
