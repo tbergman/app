@@ -14,7 +14,6 @@
     "eslint-plugin-react": "^7.2.1",
     "jest-expo": "^24.0.0",
     "prop-types": "^15.5.10",
-    "ramda": "^0.25.0",
     "react-dom": "16.2.0",
     "react-native-debugger-open": "^0.3.15",
     "react-native-scripts": "1.8.1",
@@ -54,6 +53,7 @@
     "rn-placeholder": "^1.0.1",
     "sentry-expo": "~1.6.0",
     "styled-components": "^2.1.2",
-    "wolfy87-eventemitter": "^5.2.3"
+    "wolfy87-eventemitter": "^5.2.3",
+    "ramda": "^0.25.0"
   }
 }

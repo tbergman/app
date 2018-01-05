@@ -1,23 +1,16 @@
 import React from "react"
 import {
   View,
-  Text,
-  Button,
-  TextInput,
   DatePickerIOS,
   DatePickerAndroid,
   Image,
   TouchableOpacity,
   Platform,
   Keyboard,
-  ActionSheetIOS,
   Clipboard
 } from "react-native"
-import { Link, ClaimLink } from "../../containers/Link"
 import { HeaderRightChat } from "../NavBar"
 import { NavBar } from "../NavBar"
-import { Textplainer } from "../Placeholder"
-import { Placeholder } from "../Styles"
 import { ImagePicker, Permissions } from "expo"
 import {
   StyledAssetTrackerContainer,
@@ -30,11 +23,9 @@ import {
   StyledInputTexts,
   StyledInputHeader,
   StyledInputText,
-  StyledInputPlaceholderText,
   StyledTextInput,
   StyledFooter
 } from "../styles/assetTracker"
-import { EmptyHeaderItem } from "../styles/navbar"
 import { CameraCircleIcon, ChoosePhotoCircleIcon, InputAddIcon } from "../Icon"
 import {
   NavigateBackButton,
@@ -43,13 +34,11 @@ import {
   DisabledInputDoneButton,
   RoundedButton,
   RedRoundedInvertedButton,
-  DisabledListNextButton
 } from "../Button"
 import { theme } from "hedvig-style"
 import moment from "moment"
 import "moment/locale/sv"
-const R = require("ramda")
-import EventEmitter from "../../services/EventEmitter"
+import R from "ramda"
 
 export default class AddEditAsset extends React.Component {
   constructor(props) {
@@ -97,7 +86,7 @@ export default class AddEditAsset extends React.Component {
     // TODO: Unregister this listener on componentWillUnmount
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Lägg till / Ändra Värdeföremål",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
@@ -329,7 +318,7 @@ export default class AddEditAsset extends React.Component {
             returnKeyType="next"
             underlineColorAndroid="transparent"
             onChangeText={text => this._updateTitle(text)}
-            onSubmitEditing={event => {
+            onSubmitEditing={() => {
               this.setState({ editingDate: true })
             }}
           />

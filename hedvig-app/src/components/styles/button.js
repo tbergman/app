@@ -56,8 +56,6 @@ export class AnimatedStyledChatResponseButton extends React.Component {
   }
 
   render() {
-    let { slideAnim } = this.state
-    // const comp = <_animatedStyledChatResponseButton />
     return (
       <_animatedStyledChatResponseButton style={{transform: [{translateX: this.state.slideAnim}]}} {...this.props}>
         { this.props.children }

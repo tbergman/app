@@ -1,16 +1,14 @@
 import { connect } from "react-redux"
 import AddEditAsset from "../../components/asset-tracker/AddEditAsset"
-import * as Navigation from "../../services/Navigation"
 import {
   assetActions,
   chatActions,
   statusMessageActions,
   dialogActions,
-  listenerActions,
   types
 } from "hedvig-redux"
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     keyboard: state.keyboard,
     currentlyUploading: state.upload.currentlyUploading,
@@ -26,7 +24,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     updateItem: item => {
       dispatch(
         assetActions.updateItem(item, () => {
-          // afterUploadCallback
           ownProps.navigation.goBack()
         })
       )

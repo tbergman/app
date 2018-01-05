@@ -1,10 +1,10 @@
 import React from "react"
-import { Text, View, Image, Dimensions, Keyboard } from "react-native"
+import { View, Image, Dimensions, Keyboard } from "react-native"
 import { BaseScrollViewStyle } from "../Styles"
 import {
   StyledDefaultMessageText,
   StyledDefaultUserMessageText,
-  StyledChatMessage,
+  AnimatedStyledChatMessage,
   StyledUserChatMessage,
   StyledHeroMessage,
   StyledAvatarContainer
@@ -61,12 +61,12 @@ const DefaultHedvigMessage = ({ message, textAlign }) => {
     return null
   } else {
     return (
-      <StyledChatMessage>
+      <AnimatedStyledChatMessage>
         {renderImage(message)}
         <StyledDefaultMessageText style={{ textAlign }}>
           {message.body.text}
         </StyledDefaultMessageText>
-      </StyledChatMessage>
+      </AnimatedStyledChatMessage>
     )
   }
 }

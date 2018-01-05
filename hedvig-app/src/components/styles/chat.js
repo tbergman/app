@@ -1,4 +1,6 @@
+import React from "react"
 import styled from "styled-components/native"
+import { Animated } from "react-native"
 import * as typography from "./typography"
 import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
 
@@ -41,6 +43,31 @@ export const StyledChatMessage = styled.View`
   background: ${props => props.theme.colors.hedvigMessageBackground};
   margin-bottom: 8px;
 `
+
+const _animatableStyledChatMessage = Animated.createAnimatedComponent(StyledChatMessage);
+export class AnimatedStyledChatMessage extends React.Component {
+  state = {
+    slideAnim: new Animated.Value(-100)
+  }
+
+  componentDidMount() {
+    Animated.spring(
+      this.state.slideAnim,
+      {
+        toValue: 0,
+        useNativeDriver: true
+      }
+    ).start()
+  }
+
+  render() {
+    return (
+      <_animatableStyledChatMessage style={{transform: [{translateX: this.state.slideAnim}]}} {...this.props}>
+        { this.props.children }
+      </_animatableStyledChatMessage>
+    )
+  }
+}
 
 export const StyledUserChatMessage = styled.View`
   margin-bottom: 8px;
