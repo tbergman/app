@@ -17,6 +17,7 @@ const ChatTextInput = ({ message, onChange, send }) => {
         onChangeText={text => onChange(message, text)}
         multiline={true}
         autoGrow={true}
+        onSubmitEditing={() => send(message)}
       />
       <ButtonComponent onPress={() => send(message)} />
     </StyledTextInputContainer>

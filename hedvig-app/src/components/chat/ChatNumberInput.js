@@ -16,6 +16,7 @@ const ChatTextInput = ({ message, onChange, send }) => {
         value={message._inputValue || ""}
         underlineColorAndroid="transparent"
         onChangeText={text => onChange(message, text)}
+        onSubmitEditing={() => send(message)}
       />
       <ButtonComponent onPress={() => send(message)} />
     </StyledTextInputContainer>
