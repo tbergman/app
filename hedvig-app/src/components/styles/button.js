@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated } from "react-native";
+import { Animated, TouchableOpacity } from "react-native";
 import styled from "styled-components/native"
 import { CircularFontText } from "./typography"
 
@@ -57,9 +57,27 @@ export class AnimatedStyledChatResponseButton extends React.Component {
 
   render() {
     return (
-      <_animatedStyledChatResponseButton style={{transform: [{translateX: this.state.slideAnim}]}} {...this.props}>
+      <TouchableOpacity
+        style={{
+          transform: [{translateX: this.state.slideAnim}],
+          minHeight: 20,
+          paddingTop: 8,
+          paddingRight: 16,
+          paddingBottom: 8,
+          paddingLeft: 16,
+          backgroundColor: "#ffffff",
+          borderColor: "#651eff",
+          borderWidth: 1,
+          borderRadius: 24,
+          alignItems: "center",
+          justifyContent: "center",
+          alignSelf: "center",
+          marginBottom: 8
+        }}
+        {...this.props}
+      >
         { this.props.children }
-      </_animatedStyledChatResponseButton>
+      </TouchableOpacity>
     )
   }
 }
