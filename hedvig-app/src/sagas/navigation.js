@@ -5,7 +5,6 @@ const NAVIGATION_ACTIONS = [types.SWITCH_BASE, "Navigation/NAVIGATE"]
 
 const navigationHandler = function*(action) {
   // TODO: Choose what to do based on the action
-  console.log("Getting user profile data on base switch")
   yield put(userActions.getCurrentUser())
   yield put(assetActions.getAssets())
 }

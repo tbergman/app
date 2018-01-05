@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
+// This file is currently unused. If and when we want to use it, remove eslint-disables and fix issues.
 import { Permissions, Notifications } from 'expo';
-import { pushNotificationActions, dialogActions } from "hedvig-redux"
+import { pushNotificationActions } from "hedvig-redux"
 
-const PUSH_ENDPOINT = 'https://your-server.com/users/push-token';
+const PUSH_ENDPOINT = 'https://your-server.com/users/push-token'; // eslint-disable-line no-unused-vars
 
 export async function registerForPushNotificationsAsync(dispatch) {
   console.log("Will try to register for push notifications")

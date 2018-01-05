@@ -1,4 +1,4 @@
-import { takeEvery, put, select } from "redux-saga/effects"
+import { takeEvery } from "redux-saga/effects"
 import { Keyboard } from "react-native"
 import { types } from "hedvig-redux"
 
@@ -14,8 +14,7 @@ const KEYBOARD_HIDING_ACTIONS = [
   "Navigation/NAVIGATE"
 ]
 
-const hideKeyboard = function(action) {
-  console.log("Dismissing keyboard!")
+const hideKeyboard = function() {
   Keyboard.dismiss()
 }
 
