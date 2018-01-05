@@ -1,3 +1,4 @@
+/* global require */
 import React from "react"
 import { TouchableOpacity, Image } from "react-native"
 import { DangerZone } from "expo"
@@ -108,7 +109,6 @@ export const RoundedButton = ({
   onPress,
   disabled = false,
   selected = false,
-  hidden = false,
   _ContainerComponent = RoundedButtonWithChildren,
   _TextComponent = StyledButtonText
 }) => {

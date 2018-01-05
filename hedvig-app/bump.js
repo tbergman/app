@@ -21,4 +21,4 @@ appJson.expo.ios.buildNumber = stringify(
 )
 
 fs.writeFile("app.json", JSON.stringify(appJson, null, 2), () => {})
-console.log("Bumped app.json to version", appJson.expo.version)
+console.log("Bumped app.json to version", appJson.expo.version) // eslint-disable-line no-console
