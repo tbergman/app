@@ -1,29 +1,40 @@
+/* global require */
 import React from "react"
+import { Asset } from "expo"
 import { View, ScrollView } from "react-native"
 
 import { HeaderRightChat } from "../NavBar"
 import { PerilsCategory } from "./PerilsCategory"
 
-import { TextButton, RoundedButton } from "../Button"
+import { RoundedButton } from "../Button"
 import {
   StyledDashboardContainer,
-  StyledDashboardHeader,
-  StyledDashboardHeaderRow,
   StyledCategoriesContainer,
   StyledCheckoutButton,
   StyledDashboardHeaderIcon,
   StyledConditionRow
 } from "../styles/dashboard"
-import { StyledHeading, StyledPassiveText } from "../styles/text"
+import { StyledPassiveText } from "../styles/text"
 import DashboardHeader from "./DashboardHeader"
 import OfferDashboardHeader from "../../containers/dashboard/OfferDashboardHeader"
+
+// Precache images
+Asset.loadAsync([
+  require("../../../assets/icons/my_insurance/aktiv.png"),
+  require("../../../assets/icons/edit_perils/added_peril.png"),
+  require("../../../assets/icons/edit_perils/added_peril.png"),
+  require("../../../assets/icons/edit_perils/remove_peril.png"),
+  require("../../../assets/icons/my_insurance/aktiv.png"),
+  require("../../../assets/icons/my_insurance/pris.png"),
+  require("../../../assets/icons/my_insurance/worldwide.png")
+])
 
 export default class Dashboard extends React.Component {
   state = {
     editMode: false
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Min Försäkring",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
@@ -68,7 +79,7 @@ export default class Dashboard extends React.Component {
   }
 
   statusIcon() {
-    imageModule = {
+    const imageModule = {
       ACTIVE: require("../../../assets/icons/my_insurance/aktiv.png"),
       PENDING: require("../../../assets/icons/edit_perils/added_peril.png"),
       INACTIVE: require("../../../assets/icons/edit_perils/added_peril.png"),

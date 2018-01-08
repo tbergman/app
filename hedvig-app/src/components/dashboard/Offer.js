@@ -1,4 +1,6 @@
+/* global require */
 import React from "react"
+import { Asset } from "expo"
 import { View } from "react-native"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import { NavBar } from "../NavBar"
@@ -12,6 +14,11 @@ import {
   NavigateBackButton,
   TextButton
 } from "../Button"
+
+// Precache assets
+Asset.loadAsync([
+  require("../../../assets/bgs/gradient-white-rectangle.png")
+])
 
 class Offer extends React.Component {
   componentWillMount() {

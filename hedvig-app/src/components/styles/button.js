@@ -58,7 +58,6 @@ export class AnimatedStyledChatResponseButton extends React.Component {
   }
 
   render() {
-    this.props.selected & console.log("I am selected")
     return (
       <TouchableOpacity
         style={{
