@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, TouchableOpacity } from "react-native";
+import { Animated, TouchableOpacity, TouchableHighlight } from "react-native";
 import styled from "styled-components/native"
 import { CircularFontText } from "./typography"
 
@@ -84,6 +84,7 @@ export class AnimatedStyledChatResponseButton extends React.Component {
   }
 }
 
+
 export const StyledHiddenChatResponseButton = StyledChatResponseButton.extend`
   opacity: 0;
 `
@@ -107,6 +108,53 @@ export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
   align-self: flex-end;
   margin-bottom: 8px;
 `
+
+const AnimatableTouchableHighlight = Animated.createAnimatedComponent(TouchableHighlight)
+
+export class AnimatedStyledMultipleSelectOptionButton extends React.Component {
+  state = {
+    slideAnim: new Animated.Value(250)
+  }
+
+  componentDidMount() {
+    Animated.sequence([
+      Animated.delay(100),
+      Animated.spring(
+        this.state.slideAnim,
+        {
+          toValue: 0,
+          useNativeDriver: true
+        }
+      )
+    ]).start()
+  }
+
+  render() {
+    return (
+      <AnimatableTouchableHighlight
+        style={{
+          transform: [{translateX: this.state.slideAnim}],
+          minHeight: 20,
+          paddingTop: 8,
+          paddingRight: 16,
+          paddingBottom: 8,
+          paddingLeft: 16,
+          backgroundColor: this.props.selected ? "#651eff" : "#ffffff",
+          borderColor: "#651eff",
+          borderWidth: 1,
+          borderRadius: 24,
+          alignItems: "center",
+          justifyContent: "center",
+          alignSelf: "center",
+          marginBottom: 8
+        }}
+        {...this.props}
+      >
+      {this.props.children}
+      </AnimatableTouchableHighlight>
+    )
+  }
+}
 
 export const StyledRoundedButtonInverted = StyledRoundedButton.extend`
   background-color: ${props => props.theme.colors.primary};

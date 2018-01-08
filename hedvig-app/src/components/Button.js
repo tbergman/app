@@ -14,7 +14,7 @@ import {
   StyledTurquoiseRoundedButtonInverted,
   AnimatedStyledChatResponseButton,
   StyledTransparentButton,
-  StyledMultipleSelectOptionButton,
+  AnimatedStyledMultipleSelectOptionButton,
   StyledFabButton,
   StyledHiddenChatResponseButton
 } from "./styles/button"
@@ -184,7 +184,7 @@ export const MultipleSelectOptionButton = ({
 }) => {
   let TextComponent = selected ? StyledButtonTextInverted : StyledButtonText
   return (
-    <StyledMultipleSelectOptionButton
+    <AnimatedStyledMultipleSelectOptionButton
       onPress={onPress}
       selected={selected}
       underlayColor="transparent"
@@ -194,7 +194,7 @@ export const MultipleSelectOptionButton = ({
         {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
         {title}
       </TextComponent>
-    </StyledMultipleSelectOptionButton>
+    </AnimatedStyledMultipleSelectOptionButton>
   )
 }
 

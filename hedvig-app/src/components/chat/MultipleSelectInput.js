@@ -1,6 +1,5 @@
 import React from "react"
 import R from "ramda"
-import { Text, View, TouchableOpacity } from "react-native"
 import {
   StyledRightAlignedOptions,
   StyledOptionsContainer,
