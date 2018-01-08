@@ -1,14 +1,8 @@
 import React from "react"
 import {
   View,
-  ScrollView,
-  Button,
-  Text,
-  Image,
-  TouchableOpacity
 } from "react-native"
 import Peril from "../../containers/dashboard/Peril"
-import styled from "styled-components/native"
 import {
   StyledCategoryContainer,
   StyledCategoryHeader,
@@ -25,13 +19,13 @@ import {
   DisabledExpandButton,
   HiddenDisabledButton
 } from "../Button"
-import { StyledRow, StyledWrappingRow } from "../styles/general"
+import { StyledRow } from "../styles/general"
 import {
   StyledHeading,
   StyledPassiveText,
   StyledSmallPassiveText
 } from "../styles/text"
-const R = require("ramda")
+import R from "ramda"
 
 export class PerilsCategory extends React.Component {
   state = {

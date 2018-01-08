@@ -1,17 +1,10 @@
 import React from "react"
 import {
-  Text,
-  Button,
   View,
   Share,
-  ScrollView,
-  TouchableOpacity
 } from "react-native"
 import { NavigationActions } from 'react-navigation'
-import { Link } from "../containers/Link"
 import { HeaderRightChat } from "./NavBar"
-import { Textplainer } from "./Placeholder"
-import Placeholder from "rn-placeholder"
 import {
   StyledProfileContainer,
   StyledCharityImage,
@@ -36,17 +29,16 @@ import {
   ProfileShareIcon
 } from "./Icon"
 import {
-  ListNextButton,
   DisabledListNextButton,
   RoundedButton,
   TurquoiseRoundedInvertedButton
 } from "./Button"
 import moment from "moment"
 import "moment/locale/sv"
-const R = require("ramda")
+import R from "ramda"
 
 export default class Profile extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Min Profil",
     headerRight: <HeaderRightChat navigation={navigation} />
   })

@@ -1,11 +1,10 @@
-const R = require("ramda")
+/* global module */
+import R from "ramda"
 import React from "react"
 
 import { Keyboard, Platform } from "react-native"
 
 import { storiesOf } from "@storybook/react-native"
-import { action } from "@storybook/addon-actions"
-import { linkTo } from "@storybook/addon-links"
 
 import { App } from "../../App"
 
@@ -67,12 +66,10 @@ class _StorybookProvider extends React.Component {
   }
 
   _keyboardWillShow(event) {
-    console.log("Keyboard shown")
     this.props.store.dispatch(keyboardStateChange({ ...event, state: "shown" }))
   }
 
   _keyboardWillHide(event) {
-    console.log("Keyboard hidden")
     this.props.store.dispatch(
       keyboardStateChange({ ...event, state: "hidden" })
     )
@@ -133,8 +130,6 @@ export class StorybookProvider extends React.Component {
 }
 
 storiesOf("App", module).add("The whole app", () => <App />)
-
-let timestamp = 1507042098159
 
 const MOCK_MESSAGES = {
   "1": {
@@ -771,7 +766,7 @@ const carouselItems = [
 ]
 storiesOf("Carousel", module)
   .addDecorator(story => {
-    dashboardStore = configureStore({
+    const dashboardStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
       additionalSagas: [
         apiAndNavigateToChatSaga,
@@ -793,7 +788,7 @@ storiesOf("Carousel", module)
 
 storiesOf("ActionSheet", module)
   .addDecorator(story => {
-    actionSheetStore = configureStore({
+    const actionSheetStore = configureStore({
       additionalReducers: { nav, keyboard: keyboardStateReducer },
       additionalSagas: [
         apiAndNavigateToChatSaga,

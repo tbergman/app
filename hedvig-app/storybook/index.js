@@ -1,3 +1,4 @@
+/* global require, module */
 import { getStorybookUI, configure } from '@storybook/react-native';
 
 // import stories

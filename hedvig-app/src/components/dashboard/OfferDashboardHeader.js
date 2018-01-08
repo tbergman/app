@@ -1,4 +1,5 @@
 import React from "react"
+import { Asset } from "expo"
 import {
   StyledDashboardHeader,
   StyledDashboardHeaderRow,
@@ -6,6 +7,12 @@ import {
   StyledDashboardHeaderIcon
 } from "../styles/dashboard"
 import { StyledHeading, StyledPassiveText } from "../styles/text"
+
+// Precache assets
+Asset.loadAsync([
+  require("../../../assets/icons/my_insurance/startdatum.png"),
+  require("../../../assets/icons/my_insurance/pris.png")
+])
 
 const OfferDashboardHeader = ({ newTotalPrice }) => {
   return (

@@ -1,7 +1,7 @@
 /* global require */
 import React from "react"
 import { TouchableOpacity, Image } from "react-native"
-import { DangerZone } from "expo"
+import { DangerZone, Asset } from "expo"
 import {
   StyledButton,
   StyledDisabledButton,
@@ -20,6 +20,27 @@ import {
 } from "./styles/button"
 import { StyledDialogButton, StyledDialogButtonText } from "./styles/dialog"
 const { Lottie } = DangerZone
+
+// Precache assets
+Asset.loadAsync([
+  require("../../assets/icons/chat/send.png"),
+  require("../../assets/icons/chat/send_idle.png"),
+  require("../../assets/icons/chat/to_dashboard.png"),
+  require("../../assets/icons/chat/record_audio.png"),
+  require("../../assets/icons/chat/record_audio.png"),
+  require("../../assets/icons/chat/edit_last_message.png"),
+  require("../../assets/icons/list_items/edit_list_item.png"),
+  require("../../assets/icons/list_items/done_edit_list_item.png"),
+  require("../../assets/icons/list_items/delete_item.png"),
+  require("../../assets/icons/navigate_back.png"),
+  require("../../assets/icons/navigate_next.png"),
+  require("../../assets/icons/collapse.png"),
+  require("../../assets/icons/expand.png"),
+  require("../../assets/buttons/add_item.png"),
+  require("../../assets/buttons/fab/close_fab.png"),
+  require("../../assets/buttons/fab/open_fab.png"),
+])
+
 
 const hitSlop = {
   top: 20,

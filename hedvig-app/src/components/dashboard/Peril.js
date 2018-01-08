@@ -1,20 +1,23 @@
+/* global require */
 import React from "react"
+import { Asset } from "expo"
 import {
   View,
-  ScrollView,
   Button,
-  Text,
-  Image,
   TouchableOpacity
 } from "react-native"
-import Placeholder from "rn-placeholder"
 import {
   StyledPeril,
   StyledPerilIcon,
   StyledPerilTitle,
   StyledAddRemoveIcon
 } from "../styles/dashboard"
-import { StyledSmallPassiveText } from "../styles/text"
+
+// Precache assets
+Asset.loadAsync([
+  require("../../../assets/icons/edit_perils/add_peril.png"),
+  require("../../../assets/icons/edit_perils/remove_peril.png"),
+])
 
 export class Peril extends React.Component {
   _addPerilPressed() {

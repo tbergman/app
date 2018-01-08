@@ -1,11 +1,11 @@
-/* global module process require */
+/* global module process */
 import StorybookUI from "./storybook"
 
 import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
 
-const hedvigRedux = require("hedvig-redux")
+import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
 import nav from "./src/reducers/nav"
 import { MarketingCarouselOrBaseNavigator } from "./src/components/MarketingCarousel"
