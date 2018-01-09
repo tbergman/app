@@ -1,6 +1,6 @@
 import React from "react"
 import { Audio, Permissions } from "expo"
-import { Button } from "react-native"
+import { View } from "react-native"
 import {
   RecordButton,
   StopRecordingButton,
@@ -26,6 +26,12 @@ export default class AudioInput extends React.Component {
     isPlaying: false
   }
 
+  componentDidMount() {
+    Permissions
+      .getAsync(Permissions.AUDIO_RECORDING)
+      .then(status => this.setState({permissionGranted: status.status === "granted"}))
+  }
+
   componentDidUpdate() {
     setTimeout(() => emitScrollToEndEvent(), 200)
   }
@@ -34,9 +40,11 @@ export default class AudioInput extends React.Component {
     this.setState({ recordingStatus: status })
   }
 
-  async getPermissions() {
-    const { status } = await Permissions.getAsync(Permissions.AUDIO_RECORDING)
-    try {
+  async askPermissions() {
+    const askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING)
+    if (askResult.status !== "granted") {
+      this.props.showPermissionDialog()
+    } else {
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
         allowsRecordingIOS: true,
@@ -44,21 +52,20 @@ export default class AudioInput extends React.Component {
         shouldDuckAndroid: true,
         interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS
       })
-      this.setState({ permissionGranted: status === "granted" })
-    } catch (error) {
-      this.setState({ permissionGranted: false })
-    }
-  }
 
-  async askPermissions() {
-    let askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING)
-    if (askResult.status !== "granted") {
-      this.props.showPermissionDialog()
     }
     this.setState({ permissionGranted: askResult.status === "granted" })
+    return askResult.status === "granted"
   }
 
   async startRecordingAudio() {
+    if (!this.state.permissionGranted) {
+      const askResult = await this.askPermissions()
+      if (!askResult) {
+        this.setState({isRecording: false})
+        return
+      }
+    }
     try {
       const recordingInstance = new Audio.Recording()
       recordingInstance.setProgressUpdateInterval(100)
@@ -128,7 +135,6 @@ export default class AudioInput extends React.Component {
   }
 
   async stopPlayback() {
-    // Flip allowsRecordingIOS to true to allow recording
     await Audio.setAudioModeAsync({
       playsInSilentModeIOS: true,
       allowsRecordingIOS: true,
@@ -152,40 +158,22 @@ export default class AudioInput extends React.Component {
   }
 
   render() {
-    let message = this.props.message
-    if (this.state.permissionGranted === null) {
-      this.getPermissions()
-    }
-    let content
-    if (!this.state.permissionGranted) {
-      content = (
-        <Button
-          onPress={() => this.askPermissions()}
-          title="Ge Hedvig tillåtelse att spela in meddelande"
-        />
-      )
-    } else if (
-      !this.state.isRecording &&
-      !this.state.recordingStatus.isDoneRecording
-    ) {
-      content = (
-        <StyledRightAlignedOptions>
-          <RecordButton onPress={() => this.startRecordingAudio(message)} />
-        </StyledRightAlignedOptions>
-      )
-    } else if (this.state.isRecording) {
-      content = (
-        <StyledRightAlignedOptions>
-          <StopRecordingAnimationButton
-            onPress={() => this.stopRecordingAudio(message)}
-          />
-          <StyledPassiveText style={{ marginRight: 16 }}>
-            Spelar in:{" "}
-            {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(0)} s
-          </StyledPassiveText>
-        </StyledRightAlignedOptions>
-      )
-    }
+    // TODO Refactor this entire method
+    const content = (
+      <StyledRightAlignedOptions>
+        {!this.state.isRecording ? (
+          <RecordButton onPress={() => this.startRecordingAudio(this.props.message)}/>
+        ) : (
+          <View>
+            <StopRecordingAnimationButton onPress={() => this.stopRecordingAudio(this.props.message)} />
+            <StyledPassiveText>
+              Spelar in:{" "}
+              {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(0)} s
+            </StyledPassiveText>
+          </View>
+        )}
+      </StyledRightAlignedOptions>
+    )
 
     let playbackControls
     let maybePlaybackStatus

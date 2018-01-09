@@ -224,7 +224,8 @@ export const IconButton = ({
   onPress,
   width,
   size = "big",
-  _ButtonComponent = StyledButton
+  _ButtonComponent = StyledButton,
+  style = {}
 }) => {
   width =
     width ||
@@ -236,7 +237,7 @@ export const IconButton = ({
       huge: 56
     }[size]
   return (
-    <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
+    <_ButtonComponent onPress={onPress} hitSlop={hitSlop} style={style}>
       <Image source={iconModule} style={{ width: width, height: width }} />
     </_ButtonComponent>
   )
@@ -360,6 +361,9 @@ export const RecordButton = ({ onPress }) => (
     iconModule={require("../../assets/icons/chat/record_audio.png")}
     onPress={onPress}
     size="huge"
+    style={{
+      marginBottom: 8
+    }}
   />
 )
 
