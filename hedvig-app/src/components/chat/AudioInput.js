@@ -149,11 +149,12 @@ export default class AudioInput extends React.Component {
   }
 
   upload() {
-    // TODO: Send correct type and extension for Android
+    const uri = this.state.recordingInstance.getURI()
+    const extension = uri.split(".")[-1]
     this.props.upload(this.props.message, {
       uri: this.state.recordingInstance.getURI(),
-      type: "audio/caf",
-      fileExtension: "caf"
+      type: `audio/x-${extension}`,
+      fileExtension: extension
     })
   }
 
