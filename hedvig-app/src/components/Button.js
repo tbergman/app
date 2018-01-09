@@ -65,9 +65,9 @@ export const TextButton = ({ title, onPress }) => {
   )
 }
 
-export const RoundedButtonWithChildren = ({ onPress, children, disabled }) => {
+export const RoundedButtonWithChildren = ({ onPress, children, disabled, style = undefined }) => {
   return (
-    <StyledRoundedButton disabled={disabled} onPress={onPress}>
+    <StyledRoundedButton disabled={disabled} onPress={onPress} {...style ? {style: style} : {}}>
       {children}
     </StyledRoundedButton>
   )
@@ -131,13 +131,15 @@ export const RoundedButton = ({
   disabled = false,
   selected = false,
   _ContainerComponent = RoundedButtonWithChildren,
-  _TextComponent = StyledButtonText
+  _TextComponent = StyledButtonText,
+  style = undefined
 }) => {
   return (
     <_ContainerComponent
       disabled={disabled}
       onPress={onPress}
       selected={selected}
+      {...style ? {style: style} : {}}
     >
       <_TextComponent selected={selected}>
         {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
