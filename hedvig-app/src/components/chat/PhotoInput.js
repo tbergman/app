@@ -1,6 +1,4 @@
-import R from "ramda"
 import React from "react"
-import { View, Text, Image, TouchableOpacity } from "react-native"
 import { Permissions, ImagePicker } from "expo"
 import { SingleSelectOptionButton } from "../Button"
 import {

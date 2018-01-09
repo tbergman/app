@@ -5,7 +5,7 @@ import styled from "styled-components/native"
 
 const StyledView = styled.View`border: solid 1px black;`
 
-const VideoInput = ({ message, launchVideoRecorder = R.identity, send }) => {
+const VideoInput = ({ launchVideoRecorder = R.identity }) => {
   return (
     <StyledView>
       <TouchableOpacity onPress={launchVideoRecorder}>

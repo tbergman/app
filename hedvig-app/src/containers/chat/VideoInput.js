@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import VideoInput from "../../components/chat/VideoInput"
-import { chatActions } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   let message = state.chat.messages[ownProps.messageIndex]
@@ -9,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {}
 }
 

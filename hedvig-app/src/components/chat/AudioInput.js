@@ -1,7 +1,6 @@
-import R from "ramda"
 import React from "react"
-import { View, Text, Button } from "react-native"
 import { Audio, Permissions } from "expo"
+import { Button } from "react-native"
 import {
   RecordButton,
   StopRecordingButton,
@@ -27,20 +26,16 @@ export default class AudioInput extends React.Component {
     isPlaying: false
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log("State change", prevState, this.state)
+  componentDidUpdate() {
     setTimeout(() => emitScrollToEndEvent(), 200)
   }
 
   onRecordingStatusUpdate(status) {
-    console.log("Recording status update", status)
     this.setState({ recordingStatus: status })
   }
 
   async getPermissions() {
-    console.log("Getting audio recording permissions")
     const { status } = await Permissions.getAsync(Permissions.AUDIO_RECORDING)
-    console.log("Audio recording permissions:", status)
     try {
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
@@ -51,24 +46,20 @@ export default class AudioInput extends React.Component {
       })
       this.setState({ permissionGranted: status === "granted" })
     } catch (error) {
-      console.warn("Audio.setAudioModeAsync error", error)
       this.setState({ permissionGranted: false })
     }
   }
 
   async askPermissions() {
-    console.log("Asking for audio recording permissions")
     let askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING)
-    console.log("Audio recording permissions:", askResult)
     if (askResult.status !== "granted") {
       this.props.showPermissionDialog()
     }
     this.setState({ permissionGranted: askResult.status === "granted" })
   }
 
-  async startRecordingAudio(message) {
+  async startRecordingAudio() {
     try {
-      console.log("Creating and preparing recorder")
       const recordingInstance = new Audio.Recording()
       recordingInstance.setProgressUpdateInterval(100)
       recordingInstance.setOnRecordingStatusUpdate(
@@ -84,29 +75,23 @@ export default class AudioInput extends React.Component {
         playbackStatus: null,
         isPlaying: false
       })
-      let prepareResult = await this.state.recordingInstance.prepareToRecordAsync(
+      await this.state.recordingInstance.prepareToRecordAsync(
         Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
       )
-      console.log("Audio recording prepare result", prepareResult)
       this.setState({ isRecording: true })
-      console.log("Starting recording!")
       await this.state.recordingInstance.startAsync()
     } catch (error) {
       this.setState({ isRecording: false })
-      console.warn("Audio recording error:", error)
     }
   }
 
-  async stopRecordingAudio(message) {
-    let status = await this.state.recordingInstance.stopAndUnloadAsync()
-    console.log("Stopping status", status)
+  async stopRecordingAudio() {
+    await this.state.recordingInstance.stopAndUnloadAsync()
     this.setState({ isRecording: false })
-    console.log("Finished recording!", status)
   }
 
   async onPlaybackStatusUpdate(playbackStatus) {
     this.setState({ playbackStatus })
-    console.log("Playback status", playbackStatus)
     if (
       playbackStatus.isPlaying &&
       (playbackStatus.didJustFinish === true ||
@@ -176,7 +161,7 @@ export default class AudioInput extends React.Component {
       content = (
         <Button
           onPress={() => this.askPermissions()}
-          title="Give Hedvig permission to record"
+          title="Ge Hedvig tillåtelse att spela in meddelande"
         />
       )
     } else if (
