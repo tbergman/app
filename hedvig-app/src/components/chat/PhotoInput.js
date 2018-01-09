@@ -7,7 +7,7 @@ import {
 } from "../styles/chat"
 
 const getPermissions = async () => {
-  await Permissions.getAsync(Permissions.CAMERA)
+  await Permissions.askAsync(Permissions.CAMERA)
 }
 
 const getAndUploadImage = async (mode, message, upload) => {

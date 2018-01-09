@@ -246,7 +246,7 @@ export default class AddEditAsset extends React.Component {
   }
 
   _takePhoto = async onPhotoTaken => {
-    const { status } = await Permissions.getAsync(Permissions.CAMERA)
+    const { status } = await Permissions.askAsync(Permissions.CAMERA)
     if (status !== "granted") {
       this.props.showDialog({
         title: "Kamera",

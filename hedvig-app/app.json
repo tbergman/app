@@ -13,7 +13,7 @@
     "privacy": "unlisted",
     "ios": {
       "buildNumber": "1.0.7",
-      "bundleIdentifier": "com.hedvig.app",
+      "bundleIdentifier": "com.hedvig.app2",
       "infoPlist": {
         "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
         "NSMicrophoneUsageDescription": "Hedvig använder mikrofonen till att spela in meddelanden från dig"
@@ -21,7 +21,8 @@
     },
     "android": {
       "package": "com.hedvig.app",
-      "permissions": ["CAMERA", "RECORD_AUDIO"]
+      "permissions": ["CAMERA", "RECORD_AUDIO"],
+      "versionCode": 2
     },
     "packagerOpts": {
       "projectRoots": "",
