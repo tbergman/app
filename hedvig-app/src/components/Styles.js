@@ -1,5 +1,4 @@
 import styled from "styled-components/native"
-import * as typography from "./styles/typography"
 
 export const Placeholder = styled.View`
   flex: 1;

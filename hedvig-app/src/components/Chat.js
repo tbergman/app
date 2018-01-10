@@ -11,10 +11,10 @@ import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
 import AudioInput from "../containers/chat/AudioInput"
 import {
-  StyledChatContainer,
-  StyledMessageAndResponseArea,
   StyledMessageArea,
-  StyledResponseArea
+  StyledResponseArea,
+  StyledMessageAndResponseArea,
+  StyledChatContainer
 } from "./styles/chat"
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import { NavBar } from "./NavBar"
@@ -82,7 +82,7 @@ export default class Chat extends React.Component {
             />
           }
         />
-        <StyledMessageAndResponseArea behavior="padding">
+        <StyledMessageAndResponseArea behaviour="padding">
           <StyledMessageArea>
             <MessageList />
           </StyledMessageArea>

@@ -16,7 +16,7 @@ export const StyledMessageAndResponseArea = styled(HedvigKeyboardAvoidingView)`
 
 export const StyledMessageArea = styled.View`
   flex: auto;
-  padding: 16px;
+  padding: 0 16px 16px 16px
 `
 
 export const StyledResponseArea = styled.View`

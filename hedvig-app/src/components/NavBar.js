@@ -1,9 +1,8 @@
 import React from "react"
-import { TouchableHighlight, Text } from "react-native"
+import { TouchableHighlight } from "react-native"
 import * as Navigation from "../services/Navigation"
 import { FontAwesome } from "@expo/vector-icons"
-import { StyledNavBarContainer, EmptyHeaderItem } from "./styles/navbar"
-import { SendDisabledIconButton } from "./Button"
+import { EmptyHeaderItem, StyledNavBarContainer } from "./styles/navbar"
 import { HedvigLogoBlue } from "./Icon"
 import { StyledHeading } from "./styles/text"
 
