@@ -27,31 +27,30 @@ import {
 } from "../styles/text"
 import R from "ramda"
 
+const coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
+
+export const coveredPerils = (perils, title, navigation, enableRemove = false) => {
+  return perils
+    .filter(peril => coveredStates.includes(peril.state))
+    .map((peril, index) => (
+      <Peril
+        peril={peril}
+        key={index}
+        enableRemove={enableRemove}
+        navigation={navigation}
+        categoryPerils={perils}
+        categoryTitle={title}
+        perilIndex={perils.findIndex(p => p.id === peril.id)}
+      />
+    ))
+}
+
 export class PerilsCategory extends React.Component {
-  state = {
-    showCategory: false
-  }
-
-  coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
-
-  coveredPerils(enableRemove = false) {
-    return R.filter(
-      peril => this.coveredStates.includes(peril.state),
-      this.props.perils
-    ).map((peril, i) => {
-      let perilIndex = this.props.perils.findIndex(p => p.id === peril.id)
-      return (
-        <Peril
-          peril={peril}
-          key={i}
-          enableRemove={enableRemove}
-          navigation={this.props.navigation}
-          categoryPerils={this.props.perils}
-          categoryTitle={this.props.title}
-          perilIndex={perilIndex}
-        />
-      )
-    })
+  constructor(props) {
+    super(props)
+    this.state = {
+      showCategory: props.offerMode === true
+    }
   }
 
   uncoveredPerils() {
@@ -90,22 +89,15 @@ export class PerilsCategory extends React.Component {
     if (this.props.editMode) {
       return (
         <StyledPerilsContainer>
-          <StyledPerilsRow>{this.coveredPerils(true)}</StyledPerilsRow>
+          <StyledPerilsRow>{coveredPerils(this.props.perils, this.props.title, this.props.navigation, true)}</StyledPerilsRow>
           <StyledPerilsRow>{this.uncoveredPerils()}</StyledPerilsRow>
         </StyledPerilsContainer>
       )
     } else if (this.state.showCategory) {
       return (
-        <View>
-          <StyledPerilsContainer>
-            <StyledPerilsRow>{this.coveredPerils()}</StyledPerilsRow>
-          </StyledPerilsContainer>
-          <StyledPerilsHelpText>
-            <StyledSmallPassiveText>
-              Klicka på ikonerna för mer info
-            </StyledSmallPassiveText>
-          </StyledPerilsHelpText>
-        </View>
+        <ExpandedPerilsCategory>
+          {coveredPerils(this.props.perils, this.props.title, this.props.navigation)}
+        </ExpandedPerilsCategory>
       )
     }
   }
@@ -121,6 +113,7 @@ export class PerilsCategory extends React.Component {
       <StyledCategoryContainer
         activeOpacity={1}
         onPress={() =>
+          !this.props.offerMode &&
           !this.props.editMode &&
           this.setState({ showCategory: !this.state.showCategory })}
       >
@@ -138,9 +131,11 @@ export class PerilsCategory extends React.Component {
                 </StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
-            <StyledExpandButton>
-              <CollapseButton size="mediumBig" />
-            </StyledExpandButton>
+            { !this.props.offerMode ? (
+              <StyledExpandButton>
+                <CollapseButton size="mediumBig" />
+              </StyledExpandButton>
+            ) : null }
           </StyledCategoryTextAndButton>
         </StyledCategoryHeader>
         {this.perils()}
@@ -148,3 +143,16 @@ export class PerilsCategory extends React.Component {
     )
   }
 }
+
+export const ExpandedPerilsCategory = (props) => (
+  <View>
+    <StyledPerilsContainer>
+      <StyledPerilsRow>{props.children}</StyledPerilsRow>
+    </StyledPerilsContainer>
+    <StyledPerilsHelpText>
+      <StyledSmallPassiveText>
+        Klicka på ikonerna för mer info
+      </StyledSmallPassiveText>
+    </StyledPerilsHelpText>
+  </View>
+)

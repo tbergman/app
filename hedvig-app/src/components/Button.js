@@ -35,6 +35,7 @@ Asset.loadAsync([
   require("../../assets/icons/navigate_back.png"),
   require("../../assets/icons/navigate_next.png"),
   require("../../assets/icons/collapse.png"),
+  require("../../assets/icons/close/close_black.png"),
   require("../../assets/icons/expand.png"),
   require("../../assets/buttons/add_item.png"),
   require("../../assets/buttons/fab/close_fab.png"),
@@ -345,6 +346,14 @@ export const DisabledInputDoneButton = () => (
 export const NavigateBackButton = ({ onPress }) => (
   <IconButton
     iconModule={require("../../assets/icons/navigate_back.png")}
+    onPress={onPress}
+    size="mediumBig"
+  />
+)
+
+export const XNavigateBackButton = ({ onPress }) => (
+  <IconButton
+    iconModule={require("../../assets/icons/close/close_black.png")}
     onPress={onPress}
     size="mediumBig"
   />

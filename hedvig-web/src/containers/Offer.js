@@ -8,7 +8,6 @@ import { navigateTo } from "../services/Navigation"
 const mapStateToProps = state => {
   return {
     insurance: state.insurance,
-    peril: state.peril
   }
 }
 

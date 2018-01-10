@@ -7,7 +7,6 @@ export const StyledDashboardContainer = styled.View`
 `
 
 export const StyledDashboardHeader = styled.View`
-  background-color: ${props => props.theme.colors.white};
   padding-top: 22;
   padding-right: 24;
   padding-bottom: 12;

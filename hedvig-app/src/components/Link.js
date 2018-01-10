@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "react-native"
+import { Button, Text, Linking } from "react-native"
 
 export const Link = ({ to, title, navigateTo }) => {
   return (
@@ -11,6 +11,19 @@ export const Link = ({ to, title, navigateTo }) => {
     />
   )
 }
+
+export const TextLink = ({ to, children }) => (
+  <Text
+    style={{
+      color: "#555555",
+      textDecorationLine: "underline",
+      lineHeight: 24
+    }}
+    onPress={() => Linking.openURL(to)}
+  >
+    {children}
+  </Text>
+)
 
 export const ClaimLink = ({ title, createClaimAndNavigateToChat }) => {
   return (

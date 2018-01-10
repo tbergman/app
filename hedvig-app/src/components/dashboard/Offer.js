@@ -1,8 +1,7 @@
 /* global require */
 import React from "react"
-import { Asset } from "expo"
-import { View } from "react-native"
-import Dashboard from "../../containers/dashboard/Dashboard"
+import { Asset, Text } from "expo"
+import { View, ScrollView } from "react-native"
 import { NavBar } from "../NavBar"
 import {
   StyledButtonContainer,
@@ -11,14 +10,39 @@ import {
 } from "../styles/offer"
 import {
   TurquoiseRoundedInvertedButton,
-  NavigateBackButton,
-  TextButton
+  XNavigateBackButton
 } from "../Button"
+import { PerilsCategory } from "./PerilsCategory";
+import OfferDashboardHeader from "../dashboard/OfferDashboardHeader"
+import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderItem, StyledDashboardHeaderIcon } from "../styles/dashboard"
+import { StyledText, StyledPassiveText } from "../styles/text";
+import { TextLink } from "../Link"
+
+const HEDVIG_VILLKOR_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+F%C3%B6rs%C3%A4kringsvillkor+Bostadsr%C3%A4tt+(draft+v.6+171220)+.pdf"
 
 // Precache assets
 Asset.loadAsync([
-  require("../../../assets/bgs/gradient-white-rectangle.png")
+  require("../../../assets/bgs/gradient-white-rectangle.png"),
+  require("../../../assets/icons/my_insurance/pris.png"),
+  require("../../../assets/icons/my_insurance/aktiv.png")
 ])
+
+const OfferFooter = () => (
+  <StyledDashboardHeader style={{paddingTop: 8}}>
+    <StyledDashboardHeaderRow>
+      <StyledDashboardHeaderItem>
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
+        <StyledPassiveText>Lägenheten försäkras till sitt fulla värde</StyledPassiveText>
+      </StyledDashboardHeaderItem>
+    </StyledDashboardHeaderRow>
+    <StyledDashboardHeaderRow>
+      <StyledDashboardHeaderItem>
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/pris.png")} />
+        <StyledPassiveText>Prylarna försäkras till totalt 1 000 000 kr</StyledPassiveText>
+      </StyledDashboardHeaderItem>
+    </StyledDashboardHeaderRow>
+  </StyledDashboardHeader>
+)
 
 class Offer extends React.Component {
   componentWillMount() {
@@ -30,31 +54,48 @@ class Offer extends React.Component {
       <View style={{ flex: 1, alignSelf: "stretch" }}>
         <NavBar
           headerLeft={
-            <NavigateBackButton onPress={() => this.props.closeModal()} />
+            <XNavigateBackButton onPress={() => this.props.closeModal()} />
           }
         />
-        <Dashboard
-          navigation={this.props.navigation}
-          mode="offer"
-          extraScrollViewPadding={160}
-        />
+        <ScrollView style={{backgroundColor: "#F9FAFC"}}>
+          <OfferDashboardHeader newTotalPrice={this.props.insurance.newTotalPrice} />
+          <View style={{paddingHorizontal: 8, paddingBottom: 8}}>
+            {this.props.insurance.categories.map((category, index) => (
+              <PerilsCategory
+                offerMode
+                key={index}
+                perils={category.perils}
+                title={category.title}
+                description={category.description}
+                iconUrl={category.iconUrl}
+                navigation={this.props.navigation}
+              >
+              </PerilsCategory>
+            ))}
+          </View>
+          <OfferFooter />
+          <StyledPassiveText style={{paddingHorizontal: 12, paddingBottom: 125}}>
+            Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
+            <TextLink to="asdf">förköpsinformation</TextLink>,&nbsp;
+            <TextLink to={HEDVIG_VILLKOR_S3_LINK}>villkor</TextLink> och att mina personuppgifter&nbsp;
+            behandlas i enlighet med&nbsp;
+            <TextLink to="Personuppgiftslagen">Personuppgiftslagen</TextLink>.
+          </StyledPassiveText>
+        </ScrollView>
         <StyledCtaContainer>
           <StyledBackgroundImage
             source={require("../../../assets/bgs/gradient-white-rectangle.png")}
             resizeMode="stretch"
           />
-          <StyledButtonContainer>
+          <StyledButtonContainer style={{marginTop: 48}}>
             <TurquoiseRoundedInvertedButton
               onPress={() => this.props.checkout()}
-              title="Byt till Hedvig"
+              title="Bli medlem"
             />
           </StyledButtonContainer>
-          <StyledButtonContainer>
-            <TextButton
-              onPress={() => this.props.closeModal()}
-              title="Jag har en fråga"
-            />
-          </StyledButtonContainer>
+          <StyledText style={{marginTop: 8}}>
+            Ingen bindingstid, avsluta när du vill
+          </StyledText>
         </StyledCtaContainer>
       </View>
     )

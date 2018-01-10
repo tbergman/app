@@ -8,9 +8,9 @@ export const StyledBackgroundImage = styled.Image`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 176px;
+  height: 125px;
   width: ${width};
-  padding: 36px 0px 24px 0px;
+  padding: 36px 0px 0 0px;
 `
 
 export const StyledCtaContainer = styled.View`
@@ -20,7 +20,7 @@ export const StyledCtaContainer = styled.View`
   right: 0;
   height: 176px;
   width: ${width}
-  padding: 36px 0px 24px 0px;
+  padding: 36px 0 0 0;
   align-items: center;
 `
 

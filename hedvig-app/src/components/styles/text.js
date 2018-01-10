@@ -1,4 +1,3 @@
-import styled from "styled-components/native"
 import { CircularFontText, MerriweatherFontText } from "./typography"
 
 export const StyledText = CircularFontText.extend`

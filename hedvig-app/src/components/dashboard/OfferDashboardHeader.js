@@ -1,3 +1,4 @@
+/* global require */
 import React from "react"
 import { Asset } from "expo"
 import {
@@ -36,7 +37,7 @@ const OfferDashboardHeader = ({ newTotalPrice }) => {
             source={require("../../../assets/icons/my_insurance/pris.png")}
           />
           <StyledPassiveText>
-            {newTotalPrice}kr/mån, ingen bindningstid
+            {newTotalPrice}kr/mån
           </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>

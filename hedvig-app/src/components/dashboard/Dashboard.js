@@ -16,7 +16,6 @@ import {
 } from "../styles/dashboard"
 import { StyledPassiveText } from "../styles/text"
 import DashboardHeader from "./DashboardHeader"
-import OfferDashboardHeader from "../../containers/dashboard/OfferDashboardHeader"
 
 // Precache images
 Asset.loadAsync([
@@ -98,17 +97,13 @@ export default class Dashboard extends React.Component {
   }
 
   header() {
-    if (this.props.mode === "offer") {
-      return <OfferDashboardHeader />
-    } else {
-      return (
-        <DashboardHeader
-          editMode={this.state.editMode}
-          statusIcon={this.statusIcon.bind(this)}
-          statusText={this.statusText.bind(this)}
-        />
-      )
-    }
+    return (
+      <DashboardHeader
+        editMode={this.state.editMode}
+        statusIcon={this.statusIcon.bind(this)}
+        statusText={this.statusText.bind(this)}
+      />
+    )
   }
 
   render() {

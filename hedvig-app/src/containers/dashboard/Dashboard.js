@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import Dashboard from "../../components/dashboard/Dashboard"
-import { createClaimAndNavigateToChat } from "../../services/Insurance"
 import { insuranceActions, chatActions } from "hedvig-redux"
 
 const mapStateToProps = state => {

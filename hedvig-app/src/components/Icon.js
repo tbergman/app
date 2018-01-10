@@ -65,5 +65,6 @@ export const HedvigLogoBlue = () => (
     source={require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_blue.png")}
     width={94}
     height={30}
+    style={{justifyContent: "center"}}
   />
 )
