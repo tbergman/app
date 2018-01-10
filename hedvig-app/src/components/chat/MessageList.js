@@ -188,7 +188,7 @@ export default class MessageList extends React.Component {
     unregisterOnScrollToEndEvent(this.scrollToEnd)
   }
 
-  handleKeyboardStateChange(event) {
+  handleKeyboardStateChange() {
     if (this.ref) {
       setTimeout(this.ref.scrollToEnd, 0)
     }

@@ -1,16 +1,8 @@
 import React from "react"
 import {
-  Button,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
   View
 } from "react-native"
-import { Link } from "../../containers/Link"
 import { HeaderRightChat } from "../NavBar"
-import { Textplainer } from "../Placeholder"
-import { Placeholder } from "../Styles"
 import {
   StyledAssetTrackerContainer,
   StyledAssetListHeaderContainer,
@@ -27,10 +19,10 @@ import {
   StyledListElementText,
   StyledRowButton
 } from "../styles/list"
-import { AddButton, DisabledListNextButton, RoundedButton } from "../Button"
+import { AddButton, DisabledListNextButton } from "../Button"
 
 export default class AssetList extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Dina värdeföremål",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
@@ -50,7 +42,7 @@ export default class AssetList extends React.Component {
   }
 
   _assetList() {
-    let assets = this.props.assets.map((asset, i) => {
+    let assets = this.props.assets.map((asset) => {
       return (
         <StyledAssetListElement
           key={asset.id}
