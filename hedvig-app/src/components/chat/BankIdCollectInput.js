@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import { UploadingAnimation } from "../Animation"
 
 export default class BankIdCollectInput extends React.Component {

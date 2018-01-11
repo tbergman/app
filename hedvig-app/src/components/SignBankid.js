@@ -6,7 +6,7 @@ import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class SignBankid extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Skriv Under Försäkring",
     headerRight: <HeaderRightChat navigation={navigation} />
   })
@@ -14,8 +14,7 @@ export default class SignBankid extends React.Component {
   render() {
     return (
       <Placeholder>
-        <Textplainer text="Här kommer du kunna skriva under din försäkring med Hedvig med hjälp av
-        BankID" />
+        <Textplainer text="Här kommer du kunna skriva under din försäkring med Hedvig med hjälp av BankID" />
         <Text>&nbsp;</Text>
         <Text>Här kommer du kunna få fullständiga villkor via e-post</Text>
         <Link to="FullTerms" title="Skicka avtal till min e-post" />

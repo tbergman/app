@@ -36,7 +36,6 @@ export default class VideoCamera extends React.Component {
       recording: !this.state.recording
     })
     if (this.state.recording) {
-      console.log("Stopped recording")
       this.camera.stopRecording()
     } else {
       this.camera
@@ -45,8 +44,6 @@ export default class VideoCamera extends React.Component {
           mute: true
         })
         .then(data => {
-          console.log("Started recording")
-          console.log(data)
           this.props.onFinishedRecording(data)
         })
     }

@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import ChatModal from "../../components/navigation/ChatModal"
 import { eventActions } from "hedvig-redux"
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 

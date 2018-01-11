@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import BankIdCollectInput from "../../components/chat/BankIdCollectInput"
-import { chatActions } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -6,7 +6,7 @@ import {
 import * as Navigation from "../services/Navigation"
 import { createClaimAndNavigateToChat } from "../services/Insurance"
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 

@@ -1,5 +1,4 @@
 import React from "react"
-import { Text } from "react-native"
 import { Link } from "../containers/Link"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"

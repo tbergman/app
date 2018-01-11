@@ -3,7 +3,6 @@ import { Text } from "react-native"
 import { Link } from "../containers/Link"
 import { Placeholder as PlaceholderStyle } from "./Styles"
 import { Textplainer } from "./Placeholder"
-import Placeholder from "rn-placeholder"
 
 export default class InsuranceOffer extends React.Component {
   static navigationOptions = {

@@ -1,11 +1,10 @@
 import styled from "styled-components/native"
 import {
-  StyledText,
   StyledSmallPassiveText,
   StyledPassiveText,
   StyledHeading
 } from "./text"
-import { CircularFontText, MerriweatherFontText } from "./typography"
+import { CircularFontText } from "./typography"
 import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
 
 // List view

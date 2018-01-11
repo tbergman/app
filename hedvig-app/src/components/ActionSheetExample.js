@@ -1,5 +1,5 @@
 import React from "react"
-import { TouchableOpacity, Text, ActionSheetIOS } from "react-native"
+import { TouchableOpacity, Text } from "react-native"
 import {
   ActionSheetProvider,
   connectActionSheet
@@ -14,8 +14,7 @@ class ActionSheetExample extends React.Component {
         title: "Title",
         message: "Message"
       },
-      index => {
-        console.log("You selected index", index)
+      () => {
       }
     )
   }

@@ -3,7 +3,7 @@ import { View } from "react-native"
 import { StackNavigator } from "react-navigation"
 import Dialog from "../../containers/Dialog"
 
-import { FloatingHomeButton, FloatingChatButton } from "./floatingButtons"
+import { FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
 import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"

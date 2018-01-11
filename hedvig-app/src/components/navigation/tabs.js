@@ -1,9 +1,8 @@
 import React from "react"
-import { Button, Text, View } from "react-native"
+import { Button, Text } from "react-native"
 import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
-import { AssetNavigator } from "../asset-tracker/AssetNavigator"
 import AssetList from "../../containers/asset-tracker/AssetList"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
@@ -15,7 +14,7 @@ import {
   StyledTabBarButtonText
 } from "../styles/tabbar"
 
-class AssetTrackerTab extends React.Component {
+export class AssetTrackerTab extends React.Component {
   render() {
     return (
       <Placeholder>
@@ -55,7 +54,6 @@ const TabBarButton = ({ title, disabled, navigation, navigateTo }) => {
 
 class MyTabs extends React.Component {
   render() {
-    // console.log("TAB INDEX", this.props.navigation.state.index)
     return (
       <StyledTabBarContainer>
         <MyTabsContainer>

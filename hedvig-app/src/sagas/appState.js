@@ -2,7 +2,7 @@ import { takeEvery, put, select } from "redux-saga/effects"
 import { APP_STATE_CHANGE } from "../actions/appState"
 import { chatActions, types } from "hedvig-redux"
 
-const appStateChange = function*(action) {
+const appStateChange = function*() {
   let state = yield select()
 
   // {inactive, background} => active
@@ -10,7 +10,6 @@ const appStateChange = function*(action) {
     state.appState.lastState.match(/inactive|background/) &&
     state.appState.currentState === "active"
   ) {
-    console.log("App foregrounded!")
 
     // Get messages
     yield put(chatActions.getMessages())

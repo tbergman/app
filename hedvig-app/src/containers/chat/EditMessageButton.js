@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import { EditMessageButton } from "../../components/Button"
 import { chatActions, dialogActions } from "hedvig-redux"
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
           confirmButtonTitle: "Ja",
           dismissButtonTitle: "Nej",
           onConfirm: () => dispatch(chatActions.editLastResponse()),
-          onDismiss: () => console.log("User didn't want to edit conversation.")
+          onDismiss: () => {}
         })
       )
   }

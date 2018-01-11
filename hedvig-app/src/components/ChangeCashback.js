@@ -5,7 +5,7 @@ import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class ChangeCashback extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Ändra Cashback",
     headerRight: <HeaderRightChat navigation={navigation} />
   })

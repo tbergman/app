@@ -25,7 +25,7 @@ export default class WithAssets extends React.Component {
         <AppLoading
           startAsync={this.load}
           onFinish={() => this.setState({ loading: false })}
-          onError={console.warn}
+          onError={() => {throw new Error("Could not load the application")}}
         />
       )
     } else {

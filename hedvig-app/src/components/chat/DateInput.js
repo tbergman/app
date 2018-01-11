@@ -1,13 +1,10 @@
 import React from "react"
 import {
-  Text,
-  TouchableOpacity,
   DatePickerIOS,
   DatePickerAndroid,
   View,
   Platform
 } from "react-native"
-import { Util } from "expo"
 import {
   StyledDatePickerResultRow,
   StyledFakeTextInput,
@@ -32,7 +29,7 @@ class DateInput extends React.Component {
       }
       this.setState({ androidDatePickerVisible: false })
     } catch ({ code, message }) {
-      console.warn("Cannot open date picker", message)
+      throw new Error("Could not show datepicker")
     }
   }
 

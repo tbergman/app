@@ -1,4 +1,3 @@
-import R from "ramda"
 import { connect } from "react-redux"
 import LoadingIndicator from "../../components/chat/LoadingIndicator"
 
@@ -16,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {}
 }
 

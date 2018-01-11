@@ -1,8 +1,8 @@
 import { types, chatActions } from "hedvig-redux"
-import { take, takeEvery, put } from "redux-saga/effects"
+import { takeEvery, put } from "redux-saga/effects"
 import { showChatAction } from "../actions/baseNavigation"
 
-const handleLogout = function*(action) {
+const handleLogout = function*() {
   // Delete session from backend, then create a new one
   yield put({
     type: types.API,

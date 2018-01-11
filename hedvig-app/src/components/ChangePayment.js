@@ -1,11 +1,10 @@
 import React from "react"
-import { Text } from "react-native"
 import { HeaderRightChat } from "./NavBar"
 import { Textplainer } from "./Placeholder"
 import { Placeholder } from "./Styles"
 
 export default class ChangePayment extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: "Ändra Autogiro",
     headerRight: <HeaderRightChat navigation={navigation} />
   })

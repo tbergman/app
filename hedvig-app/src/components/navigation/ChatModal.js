@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Button } from "react-native"
+import { View } from "react-native"
 
 import Offer from "../../containers/dashboard/Offer"
 
@@ -14,7 +14,7 @@ const VIEW_MAPPING = {
   created using React.createElement below.
 */
 
-const ChatModal = ({ navigation, modalClosed }) => {
+const ChatModal = ({ navigation }) => {
   let content = React.createElement(
     VIEW_MAPPING[navigation.state.params.link.view],
     { navigation }

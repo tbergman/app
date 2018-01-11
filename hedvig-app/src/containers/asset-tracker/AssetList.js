@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import AssetList from "../../components/asset-tracker/AssetList"
-import * as Navigation from "../../services/Navigation"
 import { assetActions } from "hedvig-redux"
 
 const mapStateToProps = state => {

@@ -3,7 +3,7 @@ import { types, userActions, assetActions } from "hedvig-redux"
 
 const NAVIGATION_ACTIONS = [types.SWITCH_BASE, "Navigation/NAVIGATE"]
 
-const navigationHandler = function*(action) {
+const navigationHandler = function*() {
   // TODO: Choose what to do based on the action
   yield put(userActions.getCurrentUser())
   yield put(assetActions.getAssets())

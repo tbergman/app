@@ -1,14 +1,13 @@
 import { connect } from "react-redux"
 import MessageList from "../../components/chat/MessageList"
-import { chatActions } from "hedvig-redux"
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {}
 }
 

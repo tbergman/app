@@ -1,9 +1,7 @@
 import { connect } from "react-redux"
 import Offer from "../../components/dashboard/Offer"
-import { createClaimAndNavigateToChat } from "../../services/Insurance"
 import {
   insuranceActions,
-  chatActions,
   types,
   eventActions
 } from "hedvig-redux"

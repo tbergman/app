@@ -14,8 +14,6 @@ import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 import { types } from "hedvig-redux"
 
-import { UploadingAnimation } from "./Animation"
-
 const contents = [
   {
     heading: "Det ska vara lätt\n när det är svårt",
@@ -106,7 +104,7 @@ export default class MarketingCarousel extends React.Component {
     index: 0
   }
 
-  _renderItem({ item, index }) {
+  _renderItem({ item }) {
     if (item.imageUrl) {
       return (
         <Image
@@ -195,7 +193,7 @@ export default class MarketingCarousel extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {}
 }
 

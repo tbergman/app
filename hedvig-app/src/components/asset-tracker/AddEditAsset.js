@@ -153,7 +153,7 @@ export default class AddEditAsset extends React.Component {
         this._updateDate(new Date(year, month, day))
       }
     } catch ({ code, message }) {
-      console.warn("Cannot open date picker", message)
+      console.error("Cannot open date picker", message) // eslint-disable-line no-console
     }
   }
 
@@ -163,7 +163,7 @@ export default class AddEditAsset extends React.Component {
     if (Platform.OS === "ios") {
       return (
         <DatePickerIOS
-          ref="DatePickerIOS"
+          ref={DatePickerIOS}
           mode="date"
           date={this.state.item.date}
           maximumDate={new Date()}
@@ -437,10 +437,8 @@ export default class AddEditAsset extends React.Component {
     options = options.slice()
     options.push({
       label: "Avbryt",
-      onSelected: () => console.log("Action sheet cancelled")
+      onSelected: () => {}
     })
-    // ActionSheetIOS.showActionSheetWithOptions(
-    // EventEmitter().emit("ACTION_SHEET", [
     this.props.showActionSheet(
       {
         options: R.pluck("label", options),

@@ -1,9 +1,8 @@
 import React from "react"
-import { Text } from "react-native"
 import Placeholder from "rn-placeholder"
 import { TextplainerStyle } from "./Styles"
 
-export const ImageContentPlaceholder = props => {
+export const ImageContentPlaceholder = () => {
   return (
     <Placeholder.ImageContent
       position="left"

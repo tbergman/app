@@ -2,7 +2,6 @@ import React from "react"
 import { View, Text, StatusBar } from "react-native"
 import { Constants } from "expo"
 import styled from "styled-components/native"
-import R from "ramda"
 
 const UnStyledStatusBar = styled.View`
   background-color: transparent

@@ -18,7 +18,7 @@ class ModalCarousel extends React.Component {
     content: "-"
   }
 
-  _renderItem({ item, index }) {
+  _renderItem({ item }) {
     return (
       <Image
         source={{ uri: item }}

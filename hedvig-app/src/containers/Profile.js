@@ -73,7 +73,7 @@ const mapDispatchToProps = dispatch => {
           confirmButtonTitle: "Ja",
           dismissButtonTitle: "Nej",
           onConfirm: () => dispatch({ type: types.LOGOUT, payload: {} }),
-          onDismiss: () => console.log("User didn't want to logout.")
+          onDismiss: () => {}
         })
       ),
     sendPolicyEmail: () => dispatch(insuranceActions.sendPolicyEmail()),

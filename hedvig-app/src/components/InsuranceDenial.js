@@ -1,6 +1,5 @@
 import React from "react"
 import { Text } from "react-native"
-import { Link } from "../containers/Link"
 import { Placeholder } from "./Styles"
 
 export default class InsuranceDenial extends React.Component {
