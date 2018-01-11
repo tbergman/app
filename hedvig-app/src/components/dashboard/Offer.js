@@ -18,6 +18,8 @@ import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderI
 import { StyledText, StyledPassiveText } from "../styles/text";
 import { TextLink } from "../Link"
 
+const HEDVIG_FORKOP_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+F%C3%B6rk%C3%B6psinformation+Bostadsr%C3%A4tt.pdf"
+const HEDVIG_INTEGRITET_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+integritetspolicy.pdf"
 const HEDVIG_VILLKOR_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+F%C3%B6rs%C3%A4kringsvillkor+Bostadsr%C3%A4tt+(draft+v.6+171220)+.pdf"
 
 // Precache assets
@@ -90,10 +92,10 @@ class Offer extends React.Component {
           <OfferFooter />
           <StyledPassiveText style={{paddingHorizontal: 12, paddingBottom: 125}}>
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
-            <TextLink to="asdf">förköpsinformation</TextLink>,&nbsp;
+            <TextLink to={HEDVIG_FORKOP_S3_LINK}>förköpsinformation</TextLink>,&nbsp;
             <TextLink to={HEDVIG_VILLKOR_S3_LINK}>villkor</TextLink> och att mina personuppgifter&nbsp;
             behandlas i enlighet med&nbsp;
-            <TextLink to="Personuppgiftslagen">Personuppgiftslagen</TextLink>.
+            <TextLink to={HEDVIG_INTEGRITET_S3_LINK}>Personuppgiftslagen</TextLink>.
           </StyledPassiveText>
         </ScrollView>
         <StyledCtaContainer>
