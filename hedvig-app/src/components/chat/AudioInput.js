@@ -150,7 +150,8 @@ export default class AudioInput extends React.Component {
 
   upload() {
     const uri = this.state.recordingInstance.getURI()
-    const extension = uri.split(".")[-1]
+    const uriParts = uri.split(".")
+    const extension = uriParts[uriParts.length - 1]
     this.props.upload(this.props.message, {
       uri: this.state.recordingInstance.getURI(),
       type: `audio/x-${extension}`,
