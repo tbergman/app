@@ -64,9 +64,9 @@ export default class Profile extends React.Component {
         <StyledListElementTexts>
           <StyledListElementHeading>{title}</StyledListElementHeading>
           <StyledListElementText>{text}</StyledListElementText>
-          {secondText && (
+          {secondText ? (
             <StyledListElementText>{secondText}</StyledListElementText>
-          )}
+          ): null}
         </StyledListElementTexts>
         {maybeButton}
       </ListElementComponent>
@@ -91,8 +91,6 @@ export default class Profile extends React.Component {
         icon: <ProfileFamilyIcon />,
         text: `${this.props.user.age} år | ${this.props.user.address}`,
         secondText: R.join(", ", this.props.user.familyMembers)
-        // Disabled profile actions
-        // onPress: () => this.props.editPersonalInfo()
       })
     }
   }
