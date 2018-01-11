@@ -53,8 +53,6 @@ const uploadHandler = function*(action) {
     // let uploadedUrl = response.target.responseHeaders.Location
     let uploadedUrl = response.target.getResponseHeader("Location") // <-- This works on both Web and Native
 
-    // DEBUG
-    // yield delay(5000)
     yield put({
       type: UPLOAD_SUCCEEDED,
       payload: Object.assign({}, action.payload, { uploadedUrl })
