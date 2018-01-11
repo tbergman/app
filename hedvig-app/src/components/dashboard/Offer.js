@@ -1,6 +1,6 @@
 /* global require */
 import React from "react"
-import { Asset, Text } from "expo"
+import { Asset } from "expo"
 import { View, ScrollView } from "react-native"
 import { NavBar } from "../NavBar"
 import {
@@ -24,11 +24,19 @@ const HEDVIG_VILLKOR_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig
 Asset.loadAsync([
   require("../../../assets/bgs/gradient-white-rectangle.png"),
   require("../../../assets/icons/my_insurance/pris.png"),
-  require("../../../assets/icons/my_insurance/aktiv.png")
+  require("../../../assets/icons/my_insurance/aktiv.png"),
+  require("../../../assets/icons/my_insurance/worldwide.png"),
+  require("../../../assets/icons/info/info_green.png")
 ])
 
 const OfferFooter = () => (
   <StyledDashboardHeader style={{paddingTop: 8}}>
+    <StyledDashboardHeaderRow>
+      <StyledDashboardHeaderItem>
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/info/info_green.png")} />
+        <StyledPassiveText style={{flexWrap: "wrap", maxWidth: "100%"}}>Tryggat av en av världens största återförsäkringskoncerner</StyledPassiveText>
+      </StyledDashboardHeaderItem>
+    </StyledDashboardHeaderRow>
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>
         <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
@@ -39,6 +47,12 @@ const OfferFooter = () => (
       <StyledDashboardHeaderItem>
         <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/pris.png")} />
         <StyledPassiveText>Prylarna försäkras till totalt 1 000 000 kr</StyledPassiveText>
+      </StyledDashboardHeaderItem>
+    </StyledDashboardHeaderRow>
+    <StyledDashboardHeaderRow>
+      <StyledDashboardHeaderItem>
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/worldwide.png")} />
+        <StyledPassiveText>Gäller på resor varsomhelst i världen</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
   </StyledDashboardHeader>
