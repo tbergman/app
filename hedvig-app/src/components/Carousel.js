@@ -109,6 +109,10 @@ class Carousel extends React.Component {
 
   render() {
     let item = this.getItem()
+    let title = item.title
+    if (title.includes("-\n")) {
+      title = title.replace("-\n", "")
+    }
     return (
       <StyledCarouselContainer>
         {this.navbar()}
@@ -129,7 +133,7 @@ class Carousel extends React.Component {
             />
           </StyledImageCarouselContainer>
           <StyledCarouselTexts>
-            <StyledCarouselHeading>{item.title}</StyledCarouselHeading>
+            <StyledCarouselHeading>{title}</StyledCarouselHeading>
             <StyledCarouselParagraph>
               {this.shownDescription()}
             </StyledCarouselParagraph>
