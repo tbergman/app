@@ -19,11 +19,11 @@ const contents = [
     heading: "Det ska vara lätt\n när det är svårt",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
     animation: null,
-    paragraph: "Hedvig är försäkring för\ndig, ditt hem och dina\nprylar"
+    paragraph: "Hedvig är försäkring för\ndig, ditt hem och dina prylar"
   },
   {
     heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2.png",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2_bigger.png",
     animation: null,
     paragraph: null
   },
@@ -31,11 +31,11 @@ const contents = [
     heading: "Schysst för dig.\nSchysst för din omvärld",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_4.png",
     animation: null,
-    paragraph: "Pengarna som blir över när Hedvig ersatt\nalla skador går till organisationer som gör\nskillnad"
+    paragraph: "Pengarna som blir över när Hedvig ersatt\nalla skador går till organisationer som gör skillnad"
   },
   {
     heading: "Tryggat av en av världens\nstörsta återförsäkrings-\nkoncerner",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_6.png",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_6_smaller.png",
     animation: null,
     endButton: true,
     paragraph: null
