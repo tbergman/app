@@ -19,35 +19,26 @@ const contents = [
     heading: "Det ska vara lätt\n när det är svårt",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
     animation: null,
-    paragraph:
-      "Därför har vi gjort om försäkring från grunden, \nför dig, ditt hem & dina prylar. Dra till vänster för att\n upptäcka Sveriges första AI-hemförsäkring."
+    paragraph: "Hedvig är försäkring för\ndig, ditt hem och dina\nprylar"
   },
   {
     heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2.png",
     animation: null,
-    paragraph:
-      "Chatta med Hedvig när som helst\n så får du svar & hjälp direkt."
+    paragraph: null
   },
   {
-    heading: "Se exakt hur dina prylar\n är försäkrade",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_3.png",
-    animation: null,
-    paragraph: "Fota dina saker eller kvitton\n så håller Hedvig koll åt dig."
-  },
-  {
-    heading: "Det som inte\n betalas ut i ersättning\n ges till välgörenhet",
+    heading: "Schysst för dig.\nSchysst för din omvärld",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_4.png",
     animation: null,
-    paragraph:
-      "Välj vilken organisation du vill stödja\n genom din Hedvig-försäkring."
+    paragraph: "Pengarna som blir över när Hedvig ersatt\nalla skador går till organisationer som gör\nskillnad"
   },
   {
-    heading: null,
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_5.png",
+    heading: "Tryggat av en av världens\nstörsta återförsäkrings-\nkoncerner",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_6.png",
     animation: null,
     endButton: true,
-    paragraph: "Klicka för att få ett skräddarsytt \nförsäkringsförslag."
+    paragraph: null
   }
 ]
 
