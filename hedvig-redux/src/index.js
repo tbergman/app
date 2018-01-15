@@ -34,7 +34,7 @@ function configureStore(
 ) {
   let sagaMiddleware = createSagaMiddleware()
   let middlewares
-  if (process.env.NODE_ENV == "development") {
+  if (process.env.NODE_ENV === "development") {
     middlewares = composeWithDevTools({})(applyMiddleware(
       mockMiddleware,
       sagaMiddleware,
@@ -47,7 +47,6 @@ function configureStore(
         mockMiddleware,
         sagaMiddleware,
         ...additionalMiddleware,
-        logger
       )
     )
   }
