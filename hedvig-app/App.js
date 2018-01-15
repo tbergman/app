@@ -4,6 +4,7 @@ import StorybookUI from "./storybook"
 import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
+import Sentry from "sentry-expo"
 
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
@@ -35,6 +36,8 @@ import {
   ActionSheetProvider,
   connectActionSheet
 } from "@expo/react-native-action-sheet"
+
+Sentry.config("https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600").install()
 
 export class App extends React.Component {
   constructor() {
