@@ -56,11 +56,12 @@ export const InactiveWhiteRoundedButton = ({ onClick, children }) => (
 
 // Icon buttons
 
-const IconButton = ({ onClick, iconUrl, size }) => (
+const IconButton = ({ onClick, iconUrl, size, ...props }) => (
   <IconButtonStyled
     iconUrl={iconUrl}
     size={size}
     onClick={onClick || defaultOnClick}
+    {...props}
   />
 )
 
@@ -68,17 +69,17 @@ const InactiveIconButton = ({ onClick, iconUrl, size }) => (
   <InactiveIconButtonStyled iconUrl={iconUrl} size={size} />
 )
 
-export const SendIconButton = ({ onClick }) =>
-  IconButton({ iconUrl: "/assets/icons/chat/send.svg", onClick })
+export const SendIconButton = ({ onClick, ...props }) =>
+  IconButton({ iconUrl: "/assets/icons/chat/send.svg", onClick, ...props})
 
 export const InactiveSendIconButton = ({ onClick }) =>
   InactiveIconButton({ iconUrl: "/assets/icons/chat/send_idle.svg", onClick })
 
-export const ExitIconButton = ({ onClick }) =>
-  IconButton({ iconUrl: "/assets/icons/chat/exit.svg", onClick })
+export const ExitIconButton = ({ onClick, ...props }) =>
+  IconButton({ iconUrl: "/assets/icons/chat/exit.svg", onClick, ...props })
 
-export const ResetIconButton = ({ onClick }) =>
-  IconButton({ iconUrl: "/assets/icons/chat/restart.svg", onClick })
+export const ResetIconButton = ({ onClick, ...props }) =>
+  IconButton({ iconUrl: "/assets/icons/chat/restart.svg", onClick, ...props})
 
 export const EditIconButton = ({ onClick }) =>
   IconButton({

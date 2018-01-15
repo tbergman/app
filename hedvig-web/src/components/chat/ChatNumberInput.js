@@ -6,7 +6,7 @@ const ChatNumberInput = ({ message, onChange, send }) => (
     message={message}
     onChange={onChange}
     send={send}
-    type="number"
+    type="tel"
   />
 )
 

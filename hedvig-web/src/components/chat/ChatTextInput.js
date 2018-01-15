@@ -24,15 +24,19 @@ export default class ChatTextInput extends React.Component {
     const { message, onChange, send, type = "text" } = this.props
 
     let SendButton = message._inputValue ? (
-      <SendIconButton onClick={() => send(message)} />
+      <SendIconButton type="submit" onClick={() => send(message)} />
     ) : (
       <InactiveSendIconButton />
     )
     let maybeCancelButton = message._inputValue ? (
-      <ExitIconButton onClick={() => onChange(message, "")} />
+      <ExitIconButton type="button" onClick={() => onChange(message, "")} />
     ) : null
     return (
-      <div
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          send(message)
+        }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -44,14 +48,17 @@ export default class ChatTextInput extends React.Component {
           placeholder="Skriv här..."
           innerRef={input => (this.input = input)}
           value={message._inputValue || ""}
-          onChange={event => onChange(message, event.target.value)}
+          onChange={event => {
+            console.log("Stop propagation is: ", event.isPropagationStopped)
+            onChange(message, event.target.value)
+          }}
           style={{ marginBottom: "10px" }}
         />
         <div style={{ display: "flex" }}>
           <div style={{ marginRight: 10 }}>{maybeCancelButton}</div>
           {SendButton}
         </div>
-      </div>
+      </form>
     )
   }
 }

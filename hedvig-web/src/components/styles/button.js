@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const ButtonStyled = styled.div`
+export const ButtonStyled = styled.button`
   font-family: "Circular Std Book";
   font-size: 18px;
   line-height: 22px;
