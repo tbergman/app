@@ -22,8 +22,8 @@ const Collaboration = () => {
       <div className="pure-g">
         <CenteredColumn className="first-centered-column pure-u-md-1-2 pure-u-sm-1-1 pure-u-1-1">
           <img
-            style={{ borderRadius: "100%" }}
-            src="https://unsplash.it/166/166"
+            style={{ height: 166, width: 166 }}
+            src="assets/web/Images/handshake.png"
             alt="samarbete"
           />
           <ImageDescription>
@@ -33,8 +33,8 @@ const Collaboration = () => {
 
         <CenteredColumn className="pure-u-md-1-2 pure-u-sm-1-1 pure-u-1-1">
           <img
-            style={{ borderRadius: "100%" }}
-            src="https://unsplash.it/166/166"
+            style={{ height: 166, width: 166 }}
+            src="assets/web/Images/AA.png"
             alt="samarbete"
           />
           <ImageDescription>
