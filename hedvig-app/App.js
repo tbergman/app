@@ -36,7 +36,9 @@ import {
   ActionSheetProvider,
   connectActionSheet
 } from "@expo/react-native-action-sheet"
+import { sentryMiddleware } from "./src/middleware/sentry";
 
+Sentry.enableInExpoDevelopment = true;
 Sentry.config("https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600").install()
 
 export class App extends React.Component {
@@ -55,6 +57,9 @@ export class App extends React.Component {
         tokenStorageSaga,
         navigationSaga,
         logoutSaga
+      ],
+      additionalMiddleware: [
+        sentryMiddleware,
       ]
     })
     window.store = this.store
