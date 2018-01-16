@@ -83,7 +83,10 @@ export default class AddEditAsset extends React.Component {
         this.handleKeyboardHide.bind(this)
       )
     }
-    // TODO: Unregister this listener on componentWillUnmount
+  }
+
+  componentWillUnmount() {
+    this.keyboardHideListener.remove()
   }
 
   static navigationOptions = ({ navigation }) => ({
