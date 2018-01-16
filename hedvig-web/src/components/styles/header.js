@@ -4,8 +4,9 @@ export const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   position: -webkit-sticky;
+  width: 100%;
   top: 0;
   z-index: 1;
   height: 72px;
