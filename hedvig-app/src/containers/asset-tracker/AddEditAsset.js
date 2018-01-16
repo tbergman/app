@@ -12,7 +12,7 @@ const mapStateToProps = state => {
   return {
     keyboard: state.keyboard,
     currentlyUploading: state.upload.currentlyUploading,
-    getItem: id => {
+    getItem: id => { // TODO: Make this load properly from the state instead of deferred retrieval
       return state.assetTracker.items.find(item => item.id === id)
     }
   }

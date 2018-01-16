@@ -112,8 +112,8 @@ const deleteItem = function*({ payload: item }) {
       SUCCESS: ITEM_DELETED
     }
   })
-  let action = yield take([ITEM_UPDATED, API_ERROR])
-  if (action.type === ITEM_UPDATED) {
+  let action = yield take([ITEM_DELETED, API_ERROR])
+  if (action.type === ITEM_DELETED) {
     yield put(
       statusMessageActions.setStatusMessage({
         message: `${item.title || "Pryl"} borttagen ur prylbanken`
