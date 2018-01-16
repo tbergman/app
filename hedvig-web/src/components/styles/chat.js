@@ -100,7 +100,6 @@ export const ChatAreaStyled = styled.div`
 
 export const MessageAreaStyled = styled.div`
   min-height: 100px;
-  overflow-y: scroll;
   flex: 1;
   /* Enable momentum scrolling on iOS */
   -webkit-overflow-scrolling: touch;

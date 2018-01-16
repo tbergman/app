@@ -105,7 +105,7 @@ export default class MessageList extends React.Component {
   render() {
     let messages = this.props.messages
     return (
-      <div>
+      <React.Fragment>
         {renderMessages(messages)}
         <MessageContainerStyled>
           <LoadingIndicator messageIndex={messages.length - 1} />
@@ -117,7 +117,7 @@ export default class MessageList extends React.Component {
             this.messagesEnd = el
           }}
         />
-      </div>
+      </React.Fragment>
     )
   }
 }

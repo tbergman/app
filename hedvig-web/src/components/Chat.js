@@ -45,16 +45,18 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <FullHeight style={{ overflow: "hidden" }}>
+      <FullHeight>
         <Header
           headerRight={
             <ResetIconButton onClick={() => this.props.resetConversation()} />
           }
         />
         <ChatAreaStyled>
-          <MessageAreaStyled>
-            <MessageList />
-          </MessageAreaStyled>
+          <div style={{overflow: "hidden", height: "100%", minHeight: 0}}>
+            <MessageAreaStyled style={{overflow: "auto", width: "100%", height: "100%"}}>
+              <MessageList />
+            </MessageAreaStyled>
+          </div>
 
           <InputAreaStyled>
             {getInputComponent(this.props.messages)}
