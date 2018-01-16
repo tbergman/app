@@ -56,3 +56,19 @@ body {
 a {
   text-decoration: none;
 }
+
+.__react_modal {
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 1200px) {
+  .__react_modal {
+    min-width: 80%;
+  }
+}
+
