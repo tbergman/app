@@ -61,10 +61,9 @@ const renderMessage = function(message, idx, isLastMessage) {
 
   if (message.body.text !== "") {
     return (
-      <div>
+      <div key={message.globalId || idx}>
         {isLastMessage ? <Avatar messageIndex={idx} /> : null}
         <div
-          key={message.globalId || idx}
           style={{
             display: "flex",
             marginBottom: 20,
