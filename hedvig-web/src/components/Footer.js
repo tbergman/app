@@ -84,6 +84,7 @@ export default class Footer extends React.Component {
               <img
                 src="/assets/web/appstores/appstore-button.svg"
                 style={{ width: 152 }}
+                alt="Ladda ner på App Store"
               />
             </a>
           </SocialContainer>
@@ -96,6 +97,7 @@ export default class Footer extends React.Component {
               <img
                 src="/assets/web/appstores/google-play-button.svg"
                 style={{ width: 152 }}
+                alt="Ladda ner på Google Play"
               />
             </a>
           </SocialContainer>

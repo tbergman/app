@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 import MessageList from "../containers/chat/MessageList"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
@@ -18,7 +17,6 @@ import {
   InputAreaStyled
 } from "./styles/chat"
 import { ResetIconButton } from "./Button"
-import { NavStyled } from "./styles/nav"
 import { FullHeight } from "./styles/general"
 
 const getInputComponent = function(messages) {

@@ -1,7 +1,6 @@
 import React from "react"
 import Lottie from "react-lottie"
 import styled from "styled-components"
-import { Heading2 } from "../styles/typography"
 import {
   PurpleHeading,
   CenteredColumn,

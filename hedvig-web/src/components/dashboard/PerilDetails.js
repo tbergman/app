@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { Divider, PassiveText } from "../styles/offer"
 
 const Container = styled.div`
   border-bottom: solid 1px ${props => props.theme.colors.lightGray};

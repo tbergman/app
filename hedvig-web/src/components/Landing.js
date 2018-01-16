@@ -1,6 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
 import SayHi from "./landing/SayHi"
 import Collaboration from "./landing/Collaboration"
 import Splash from "./landing/Splash"
@@ -9,7 +7,6 @@ import AssetTrackerDemo from "./landing/AssetTrackerDemo"
 import Footer from "./Footer"
 import { Header } from "../components/Header"
 import ModelExplanation from "./landing/ModelExplanation"
-import { TurquoiseRoundedButton, PurpleRoundedButton } from "./Button"
 import HeaderRight from "./landing/HeaderRight"
 require("purecss/build/base.css")
 require("purecss/build/grids.css")

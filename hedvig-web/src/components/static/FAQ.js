@@ -2,7 +2,6 @@ import React from "react"
 
 import {
   LinkStyled,
-  StaticHeading2,
   HeroStaticHeading2
 } from "../styles/static"
 import { Heading, Paragraph, StaticPage } from "./common"

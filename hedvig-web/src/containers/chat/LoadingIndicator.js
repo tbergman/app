@@ -1,4 +1,3 @@
-import R from "ramda"
 import { connect } from "react-redux"
 import LoadingIndicator from "../../components/chat/LoadingIndicator"
 

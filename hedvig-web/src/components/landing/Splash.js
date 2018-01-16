@@ -1,11 +1,9 @@
 import React from "react"
-import styled from "styled-components"
 import { Link } from "react-router-dom"
 import Lottie from "react-lottie"
 import {
   SplashStyled,
   SplashText,
-  AnimationStyled,
   AnimationsContainer
 } from "../styles/landing"
 import { TurquoiseRoundedButtonStyled } from "../styles/button"

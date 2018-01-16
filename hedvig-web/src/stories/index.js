@@ -2,10 +2,9 @@ import React from "react"
 
 import { storiesOf } from "@storybook/react"
 import { action } from "@storybook/addon-actions"
-import { linkTo } from "@storybook/addon-links"
 
 import { Provider } from "react-redux"
-import { configureStore, chatActions, types, dialogActions } from "hedvig-redux"
+import { configureStore, chatActions, dialogActions } from "hedvig-redux"
 
 import { MemoryRouter } from "react-router"
 
@@ -29,7 +28,6 @@ import scrollPositionReducer from "../reducers/scrollPosition"
 import { scrollY } from "../actions/scroll"
 
 import perilReducer from "../reducers/peril"
-import { perilSelected } from "../actions/peril"
 
 import Avatar from "../components/chat/Avatar"
 

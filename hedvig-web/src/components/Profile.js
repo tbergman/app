@@ -30,7 +30,7 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    let { user, cashbackAlternatives } = this.props
+    let { user } = this.props
     return (
       <div>
         <Modal

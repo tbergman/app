@@ -6,7 +6,7 @@ import {
   OfferComponentSection,
   OfferHeading2,
   PassiveText,
-  Divider
+
 } from "../styles/offer"
 
 const Col = styled.td`

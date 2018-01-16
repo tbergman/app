@@ -1,5 +1,5 @@
-import { types, chatActions } from "hedvig-redux"
-import { take, takeEvery, put } from "redux-saga/effects"
+import { types } from "hedvig-redux"
+import { takeEvery, put } from "redux-saga/effects"
 import { delay } from "redux-saga"
 import { push } from "react-router-redux"
 

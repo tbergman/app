@@ -4,7 +4,6 @@ import {
   ClaimDemoStyled,
   ClaimDemoTextContainer,
   ClaimDemoPhoneContainer,
-  ClaimDemoPhone,
   CenteredColumn
 } from "../styles/landing"
 import { WhiteHeading2 } from "../styles/typography"
