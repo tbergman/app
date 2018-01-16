@@ -11,15 +11,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectChoice: (message, choice) => {
-      return dispatch(chatActions.selectChoice(message, choice))
-    },
-    done: message => {
-      return dispatch(chatActions.sendChatResponse(message))
-    },
-    goToDashboard: () => {
-      return dispatch(showDashboardAction())
-    }
+    selectChoice: (message, choice) => dispatch(chatActions.selectChoice(message, choice)),
+    done: message => dispatch(chatActions.sendChatResponse(message)),
+    goToDashboard: () => dispatch(showDashboardAction()),
   }
 }
 

@@ -9,12 +9,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    startCollecting: referenceId =>
-      dispatch({ type: types.BANKID_COLLECT, payload: { referenceId } })
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  startCollecting: referenceId =>
+    dispatch({ type: types.BANKID_COLLECT, payload: { referenceId } })
+})
 
 const BankIdCollectInputContainer = connect(
   mapStateToProps,
