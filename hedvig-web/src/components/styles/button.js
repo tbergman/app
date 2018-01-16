@@ -22,6 +22,7 @@ export const ButtonStyled = styled.button`
   text-align: center;
   cursor: pointer;
   border: 1px solid transparent;
+  outline: none;
 
   > a {
     color: inherit;

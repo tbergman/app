@@ -9,6 +9,8 @@ import {
   DialogButtonStyle
 } from "./styles/dialog"
 
+Modal.setAppElement("#root")
+
 export default class Dialog extends React.Component {
   close() {
     this.props.emptyDialog()

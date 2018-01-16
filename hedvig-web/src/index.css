@@ -66,6 +66,10 @@ a {
   transform: translate(-50%, -50%);
 }
 
+.__react_modal:focus {
+  outline: none;
+}
+
 @media only screen and (max-width: 1200px) {
   .__react_modal {
     min-width: 80%;
