@@ -409,7 +409,7 @@ export default class AddEditAsset extends React.Component {
         <StyledInputContainer>
           <StyledInputTexts>
             <StyledInputHeader>Försäkrad för</StyledInputHeader>
-            <StyledInputText>Stäld, skadegörelse, olycka</StyledInputText>
+            <StyledInputText>Stöld, skadegörelse, olycka</StyledInputText>
           </StyledInputTexts>
         </StyledInputContainer>
       )
