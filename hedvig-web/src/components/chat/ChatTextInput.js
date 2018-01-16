@@ -24,7 +24,7 @@ export default class ChatTextInput extends React.Component {
     const { message, onChange, send, type = "text" } = this.props
 
     let SendButton = message._inputValue ? (
-      <SendIconButton type="submit" onClick={() => send(message)} />
+      <SendIconButton type="submit" />
     ) : (
       <InactiveSendIconButton />
     )
