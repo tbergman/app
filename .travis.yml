@@ -10,6 +10,7 @@ node_js:
 before_install:
 - npm install exp --global
 - exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+- ./stamp_configs.sh
 install:
 - cd hedvig-redux
 - yarn install

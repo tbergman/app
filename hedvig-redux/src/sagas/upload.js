@@ -4,9 +4,9 @@ import uuidv4 from "uuid/v4"
 
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
 import { upload } from "../services/Upload"
-import { baseURL } from "../services/environment"
+import config from "../../config.json"
 
-const UPLOAD_URL = baseURL + "/asset/fileupload/"
+const UPLOAD_URL = config.s3_bucket_url
 
 const uploadHandler = function*(action) {
   if (action.payload.addToken) {
@@ -18,10 +18,10 @@ const uploadHandler = function*(action) {
     // REACT NATIVE
     let { body: { uri, type, fileExtension = "jpg" } } = action.payload
     let formData = new FormData()
+    formData.append("key", `${uuidv4()}.${fileExtension}`)
     formData.append("file", {
       uri,
       type,
-      name: `${uuidv4()}.${fileExtension}`
     })
     action.payload.body = formData
   } else if (action.payload.fileList) {
