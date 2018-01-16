@@ -13,7 +13,6 @@ export const StyledMessage = styled.div`
 `
 
 export const MessageContainerStyled = styled.div`
-  background-image: url("/assets/identity/hedvig_symbol/hedvig_symbol.svg");
   background-size: 16px 22px;
   background-position: bottom 15px left;
   background-repeat: no-repeat;
