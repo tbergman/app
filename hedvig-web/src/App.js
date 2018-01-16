@@ -10,8 +10,6 @@ import * as hedvigRedux from "hedvig-redux"
 import moment from "moment"
 import { tokenStorageSaga } from "./sagas/TokenStorage"
 import { logoutSaga } from "./sagas/logout"
-import scrollPositionReducer from "./reducers/scrollPosition"
-import { scrollY } from "./actions/scroll"
 import perilReducer from "./reducers/peril"
 
 window.hedvigRedux = hedvigRedux
@@ -24,11 +22,9 @@ class App extends Component {
     this.store = hedvigRedux.configureStore({
       additionalReducers: {
         router: routerReducer,
-        scroll: scrollPositionReducer,
         peril: perilReducer
       },
-      // TODO IMPORTANT: Remove the mock middleware!!
-      additionalMiddleware: [routerMiddleware /*, mockMiddleware*/],
+      additionalMiddleware: [routerMiddleware],
       additionalSagas: [tokenStorageSaga, logoutSaga]
     })
     window.store = this.store
@@ -38,10 +34,6 @@ class App extends Component {
   componentWillMount() {
     // this.store.dispatch(hedvigRedux.chatActions.getMessages())
     this.store.dispatch(hedvigRedux.chatActions.getAvatars())
-    window.addEventListener("scroll", evt => {
-      // console.log("Scroll position", window.scrollY)
-      this.store.dispatch(scrollY(window.scrollY))
-    })
   }
 
   render() {
