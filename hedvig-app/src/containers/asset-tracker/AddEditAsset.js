@@ -29,8 +29,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       )
     },
     deleteItem: item => {
-      dispatch(assetActions.deleteItem(item))
-      ownProps.navigation.goBack()
+      dispatch(dialogActions.showDialog({
+        title: "Vill du ta bort den här prylen?",
+        paragraph: "Tryck Ja för att ta bort den här prylen.",
+        confirmButtonTitle: "Ja",
+        dismissButtonTitle: "Nej",
+        onConfirm: () => {
+          dispatch(assetActions.deleteItem(item))
+          ownProps.navigation.goBack()
+        },
+        onDismiss: () => {}
+      }))
     },
     setStatusMessage: message =>
       dispatch(statusMessageActions.setStatusMessage({ message })),
