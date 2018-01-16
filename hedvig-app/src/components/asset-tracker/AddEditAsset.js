@@ -142,7 +142,6 @@ export default class AddEditAsset extends React.Component {
   }
 
   async showAndroidDatePicker() {
-    this.setState({ editingDate: false })
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
         // Use `new Date()` for current date.
@@ -224,7 +223,7 @@ export default class AddEditAsset extends React.Component {
   _updateDate(date) {
     let item = this.state.item
     item.date = date
-    this.setState({ item })
+    this.setState({ item, editingDate: false })
   }
 
   _updatePrice(price) {
@@ -277,22 +276,6 @@ export default class AddEditAsset extends React.Component {
     if (result.cancelled) {
       return
     }
-
-    // let resizedUri = await new Promise((resolve, reject) => {
-    //   ImageEditor.cropImage(result.uri,
-    //     {
-    //       offset: { x: 0, y: 0 },
-    //       size: { width: result.width, height: result.height },
-    //       displaySize: { width: 50, height: 50 },
-    //       resizeMode: 'contain',
-    //     },
-    //     (uri) => resolve(uri),
-    //     () => reject(),
-    //   );
-    // });
-
-    // this gives you a rct-image-store URI or a base64 image tag that
-    // you can use from ImageStore
 
     this.setState({ formIsDirty: true })
     onPhotoPicked(result)
