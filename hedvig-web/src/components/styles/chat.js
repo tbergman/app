@@ -1,4 +1,27 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
+const slideFromLeft = keyframes`
+  from {
+    transform: translate(-100px, 0px);
+    animation-timing-function: ease;
+  }
+
+  to {
+    transform: translate(0px, 0px)
+  }
+`
+
+export const StyledUserMessage = styled.div`
+  font-family: "Circular Std Book";
+  background-color: ${props => props.theme.colors.purple};
+  color: ${props => props.theme.colors.white};
+  border-radius: 24px;
+  padding: 12px 15px;
+  font-size: ${props => props.theme.typography.hedvigMessage.web.fontSize}px;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+`
 
 export const StyledMessage = styled.div`
   font-family: "Merriweather";
@@ -10,6 +33,7 @@ export const StyledMessage = styled.div`
   display: flex;
   align-items: center;
   word-break: break-word;
+  animation: 0.5s ${slideFromLeft} 1;
 `
 
 export const MessageContainerStyled = styled.div`

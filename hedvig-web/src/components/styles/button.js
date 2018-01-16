@@ -1,4 +1,15 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
+const slideFromRight = keyframes`
+  from {
+    transform: translate(100px, 0px);
+    animation-timing-function: ease;
+  }
+
+  to {
+    transform: translate(0px, 0px);
+  }
+`
 
 export const ButtonStyled = styled.button`
   font-family: "Circular Std Book";
@@ -54,6 +65,7 @@ export const WhiteRoundedButtonStyled = RoundedButtonStyled.extend`
   background-color: white;
   color: ${props => props.theme.colors.purple};
   border-color: ${props => props.theme.colors.purple};
+  animation: 0.5s ${slideFromRight} 1;
 `
 
 export const InactiveWhiteRoundedButtonStyled = WhiteRoundedButtonStyled.extend`
