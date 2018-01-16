@@ -27,10 +27,7 @@ const assets = [
 const reducer = (state = { items: [] }, action) => {
   switch (action.type) {
     case LOADED_ASSETS:
-      return {
-        ...state,
-        items: action.payload,
-      }
+      return Object.assign({}, state, { items: action.payload })
     default:
       return state
   }
