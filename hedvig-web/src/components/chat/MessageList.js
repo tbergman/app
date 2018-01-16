@@ -1,7 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { StyledMessage, MessageContainerStyled } from "../styles/chat"
-import { WhiteRoundedButtonStyled } from "../styles/button"
+import { StyledMessage, MessageContainerStyled, StyledUserMessage } from "../styles/chat"
 import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
@@ -14,8 +13,7 @@ const DefaultHedvigMessage = ({ message, textAlign }) => {
   )
 }
 
-const DefaultUserMessageStyle = WhiteRoundedButtonStyled.extend`
-  cursor: default;
+const DefaultUserMessageStyle = StyledUserMessage.extend`
   margin-right: ${props => (props.editAllowed ? "10px" : "0px")};
 `
 
