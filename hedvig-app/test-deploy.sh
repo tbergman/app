@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 if [ -z "${TRAVIS_PULL_REQUEST}"] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     if [ "${TRAVIS_BRANCH}" == "master" ]; then
         exp login -u ${EXPO_DEV_USERNAME} -p ${EXPO_DEV_PASSWORD}
