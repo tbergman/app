@@ -72,6 +72,8 @@ export const ChatAreaStyled = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: flex-end;
+  max-width: 1200px;
+  align-self: center;
 
   margin-top: 82px;
   padding-top: 20px;
