@@ -6,9 +6,9 @@ node_js:
 jobs:
   include:
     - stage: test-deploy
-      script: ./test_deploy.sh
+      script: bash ./test_deploy.sh
     - stage: production-deploy
-      script: ./production-deploy.sh
+      script: bash ./production-deploy.sh
 
 stages:
  - name: test-deploy
