@@ -3,19 +3,6 @@ sudo: true
 node_js:
 - '8'
 
-jobs:
-  include:
-    - stage: test-deploy
-      script: bash ./test_deploy.sh
-    - stage: production-deploy
-      script: bash ./production-deploy.sh
-
-stages:
- - name: test-deploy
-   if: branch = master
- - name: production-deploy
-   if: branch = deploy
-
 before_install:
 - npm install exp --global
 install:
@@ -28,6 +15,8 @@ install:
 
 script:
 - yarn lint
+- ./test-deploy.sh
+- ./production-deploy.sh
 
 notifications:
   email: false
