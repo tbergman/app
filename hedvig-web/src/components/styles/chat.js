@@ -40,7 +40,6 @@ export const MessageContainerStyled = styled.div`
   background-size: 16px 22px;
   background-position: bottom 15px left;
   background-repeat: no-repeat;
-  padding-left: 34px;
 `
 
 export const OptionsContainerStyled = styled.div`
@@ -73,6 +72,7 @@ export const ChatAreaStyled = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   max-width: 1200px;
+  width: 100%;
   align-self: center;
 
   margin-top: 82px;
@@ -103,6 +103,10 @@ export const ChatAreaStyled = styled.div`
 
 export const MessageAreaStyled = styled.div`
   min-height: 100px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   flex: 1;
   /* Enable momentum scrolling on iOS */
   -webkit-overflow-scrolling: touch;

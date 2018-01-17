@@ -53,7 +53,7 @@ export default class Chat extends React.Component {
         />
         <ChatAreaStyled>
           <div style={{overflow: "hidden", height: "100%", minHeight: 0}}>
-            <MessageAreaStyled style={{overflow: "auto", width: "100%", height: "100%"}}>
+            <MessageAreaStyled style={{width: "100%", height: "100%"}}>
               <MessageList />
             </MessageAreaStyled>
           </div>
