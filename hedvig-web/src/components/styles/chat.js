@@ -73,6 +73,7 @@ export const ChatAreaStyled = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
+  margin-top: 82px;
   padding-top: 20px;
   padding-bottom: 30px;
   @media (min-width: 992px) {
