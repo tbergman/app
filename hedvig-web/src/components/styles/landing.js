@@ -228,7 +228,7 @@ export const AssetTrackerDemoPhoneContainer = styled.div`
 export const AssetTrackerDemoPhone = styled.div`
   width: 440px;
   height: 521px;
-  background-image: url("/assets/Web/Images/Hedvig_Prylbanken_01@3x.png");
+  background-image: url("/assets/web/Images/Hedvig_Prylbanken_01@3x.png");
   background-repeat: no-repeat;
   background-size: contain;
   margin-bottom: 84px;
