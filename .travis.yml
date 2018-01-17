@@ -1,37 +1,45 @@
-branches:
-  only:
-  - deploy
-  - /^deploy-.*$/
-
+stages:
+ - name: test-deploy
+   if: branch = master
+ - name: production-deploy
+   if: branch = deploy
 language: node_js
 sudo: true
 node_js:
 - '8'
 before_install:
 - npm install exp --global
-- exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-- ./stamp_configs.sh
 install:
+- ./stamp_configs.sh
 - cd hedvig-redux
 - yarn install
 - cd ..
 - cd hedvig-app
 - yarn install
-- echo "Some magic to make exp publish work on Travis..."
+
+script:
+- yarn lint
+
+test-deploy:
+- exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
 - sudo sysctl fs.inotify.max_user_watches=524288
 - sudo sysctl fs.inotify.max_queued_events=524288
 - sudo sysctl -p
 - yarn deploy
 - exp logout
 
-- exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
+prod-deploy:
+- exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+- sudo sysctl fs.inotify.max_user_watches=524288
+- sudo sysctl fs.inotify.max_queued_events=524288
+- sudo sysctl -p
 - cd ../hedvig-redux
-- sed -i -e 's/gateway.hedvig.com/hedvig.ngrok.io/g' src/services/environment.js
+- sed -i -e 's/gateway.test.hedvig.com/gateway.hedvig.com/g'
 - cd ../hedvig-app
-- exp publish
+- sed -i -e 's/com.hedvig.test.app/com.hedvig.app/g' app.json
+- yarn deploy
+- exp logout
 
-script:
-- echo "Done"
 notifications:
   email: false
   slack:
