@@ -1,4 +1,5 @@
 /* global store hedvigRedux moment */
+/* eslint-disable no-unused-vars */
 
 /*
 Paste these into the Chrome console. They rely on `store` and `hedvigRedux` being global.

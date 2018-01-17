@@ -1,5 +1,4 @@
-import { take, takeEvery, put, select } from "redux-saga/effects"
-import { delay } from "redux-saga"
+import { takeEvery, put, select } from "redux-saga/effects"
 import uuidv4 from "uuid/v4"
 
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from "../actions/types"
@@ -41,17 +40,9 @@ const uploadHandler = function*(action) {
     let response = yield upload(
       action.payload.uploadUrl || UPLOAD_URL,
       action.payload,
-      progress => {
-        console.log(
-          "Upload progress",
-          Math.round(progress.loaded / progress.total * 100),
-          "%"
-        )
-      }
+      () => {} // Upload progress report function
     )
-    console.log("Upload succeeded", response)
 
-    // let uploadedUrl = response.target.responseHeaders.Location
     let uploadedUrl = response.target.getResponseHeader("Location") // <-- This works on both Web and Native
 
     yield put({
@@ -62,7 +53,8 @@ const uploadHandler = function*(action) {
       yield put(action.payload.successActionCreator(uploadedUrl))
     }
   } catch (e) {
-    console.error("Upload failed", e)
+    // TODO: Make this report an error to the user and to Sentry
+    console.error("Upload failed", e)  // eslint-disable-line no-console
   }
 }
 

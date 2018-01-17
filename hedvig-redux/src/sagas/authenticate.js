@@ -1,5 +1,5 @@
 import R from "ramda"
-import { take, takeEvery, put } from "redux-saga/effects"
+import { takeEvery, put } from "redux-saga/effects"
 import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from "../actions/types"
 import { baseURL } from "../services/environment"
 
@@ -11,14 +11,13 @@ const authenticate = function*(action) {
     requestOpts.body = JSON.stringify(action.payload)
     requestOpts.headers = { "Content-Type": "application/json" }
   }
-  console.log(`POST ${baseURL}/helloHedvig`, requestOpts)
   let authResponse = yield fetch(`${baseURL}/helloHedvig`, requestOpts)
   if (authResponse.status === 200) {
     let token = yield authResponse.text()
-    console.log("Got token", token)
     yield put({ type: RECEIVED_TOKEN, payload: token })
   } else {
-    console.warn("Failed to receive token", authResponse)
+    // TODO: Report this error to the user and to Sentry
+    console.warn("Failed to receive token", authResponse) // eslint-disable-line no-console
   }
 }
 
@@ -28,17 +27,14 @@ const authenticateSaga = function*() {
 
 const validateToken = function*(action) {
   let token = action.payload
-  console.log(`Validating token via GET ${baseURL}/member/me`)
   let validateResponse = yield fetch(`${baseURL}/member/me`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
   })
   if (validateResponse.status === 200 && token !== null) {
-    console.log("Using stored token:", token)
     yield put({ type: RECEIVED_TOKEN, payload: token })
   } else {
-    console.log("Getting a new token:", token)
     yield put({ type: AUTHENTICATE, payload: {} })
   }
 }

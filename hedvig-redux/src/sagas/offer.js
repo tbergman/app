@@ -1,16 +1,12 @@
 import {
   API,
-  API_ERROR,
   CHECKOUT,
-  LOADING_MESSAGES_START,
   LOADED_MESSAGES,
-  LOADING_MESSAGES_END
 } from "../actions/types"
-import { take, takeEvery, put, select, call } from "redux-saga/effects"
-import { delay } from "redux-saga"
+import { take, takeEvery, put } from "redux-saga/effects"
 import * as chatActions from "../actions/chat"
 
-const handleCheckout = function*(action) {
+const handleCheckout = function*() {
   // yield put({ type: LOADING_MESSAGES_START, payload: {} })
   yield put({
     type: API,

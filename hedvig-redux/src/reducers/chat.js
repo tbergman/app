@@ -1,6 +1,5 @@
 const R = require("ramda")
 const dotProp = require("dot-prop-immutable")
-const moment = require("moment")
 import {
   LOADED_ONBOARDING,
   LOADED_MESSAGES,

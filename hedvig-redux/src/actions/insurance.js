@@ -1,4 +1,4 @@
-import { API, LOADED_INSURANCE, CREATED_CLAIM, REMOVE_PERIL, ADD_PERIL } from "./types"
+import { API, LOADED_INSURANCE, CREATED_CLAIM, REMOVE_PERIL, ADD_PERIL, CREATED_QUOTE } from "./types"
 
 export function getInsurance() {
   return {

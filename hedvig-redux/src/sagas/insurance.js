@@ -1,13 +1,10 @@
 import {
   API,
-  GET_INSURANCE,
-  LOADED_INSURANCE,
   REMOVE_PERIL,
   PERIL_REMOVED,
   ADD_PERIL,
   PERIL_ADDED
 } from "../actions/types"
-import { baseURL } from "../services/environment"
 import * as insuranceActions from "../actions/insurance"
 import { take, takeEvery, put, select } from "redux-saga/effects"
 
@@ -37,8 +34,7 @@ const removePeril = function*({ payload: { peril } }) {
       SUCCESS: PERIL_REMOVED
     }
   })
-  let success = yield take(PERIL_REMOVED)
-  console.log("Peril removed - response payload:", success.payload)
+  yield take(PERIL_REMOVED)
   yield put(insuranceActions.getInsurance())
 }
 
@@ -57,8 +53,7 @@ const addPeril = function*({ payload: { peril } }) {
       SUCCESS: PERIL_ADDED
     }
   })
-  let success = yield take(PERIL_ADDED)
-  console.log("Peril added - response payload:", success.payload)
+  yield take(PERIL_ADDED)
   yield put(insuranceActions.getInsurance())
 }
 

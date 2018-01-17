@@ -12,7 +12,6 @@ const COLLECT_DELAY_MS = 1000
 
 const MAX_TRIES = 60
 const isDone = (collectResponseBody, tryCount) => {
-  console.log(`Collect try ${tryCount} out of ${MAX_TRIES}`)
   if (
     collectResponseBody.bankIdStatus === "COMPLETE" ||
     tryCount >= MAX_TRIES
@@ -23,7 +22,7 @@ const isDone = (collectResponseBody, tryCount) => {
   }
 }
 
-const collectHandler = function*(collectAction) {
+const collectHandler = function*() {
   let state = yield select()
   if (state.bankid.referenceId) {
     yield put({
@@ -35,7 +34,7 @@ const collectHandler = function*(collectAction) {
         SUCCESS: BANKID_COLLECT_RESPONSE
       }
     })
-    let collectResponse = yield take(BANKID_COLLECT_RESPONSE)
+    yield take(BANKID_COLLECT_RESPONSE)
     state = yield select()
     if (isDone(state.bankid.response, state.bankid.tryCount)) {
       yield put({ type: BANKID_COLLECT_COMPLETE })
@@ -48,7 +47,8 @@ const collectHandler = function*(collectAction) {
       })
     }
   } else {
-    console.warn("No referenceId found in `state.bankid.referenceId`")
+    // TODO: Report this error to the user and Sentry
+    console.warn("No referenceId found in `state.bankid.referenceId`") // eslint-disable-line no-console
   }
 }
 

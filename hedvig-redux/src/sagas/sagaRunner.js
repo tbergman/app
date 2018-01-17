@@ -10,7 +10,6 @@ const _runner = function*(sagas) {
           isSyncError = true
           try {
             setTimeout(() => (isSyncError = false))
-            console.log("Starting saga", saga.name)
             yield call(saga)
             break
           } catch (e) {
@@ -20,7 +19,8 @@ const _runner = function*(sagas) {
                   " was terminated because it threw an exception on startup."
               )
             } else {
-              console.warn("Caught async error in", saga.name, e)
+              // TODO: Make this report an error to the user and to Sentry
+              console.warn("Caught async error in", saga.name, e) // eslint-disable-line no-console
             }
           }
         }

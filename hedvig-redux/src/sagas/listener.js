@@ -1,6 +1,5 @@
 import { ADD_LISTENER } from "../actions/types"
-import { take, takeEvery, put, select, call } from "redux-saga/effects"
-import { delay } from "redux-saga"
+import { take, takeEvery, call } from "redux-saga/effects"
 
 const addListener = function*(action) {
   while (true) {

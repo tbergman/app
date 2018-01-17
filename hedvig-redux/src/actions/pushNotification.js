@@ -1,4 +1,4 @@
-import { API, LOADED_USER } from "./types"
+import { API } from "./types"
 
 export function registerPushToken(pushToken) {
   let body = {

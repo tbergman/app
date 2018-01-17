@@ -6,17 +6,11 @@ import * as statusMessageActions from "../actions/statusMessage"
 const api = function*(action) {
   let state = yield select()
   if (!state.authentication.token) {
-    console.log("Waiting for token")
     yield take("RECEIVED_TOKEN")
     state = yield select()
-    console.log("Token received, continuing...")
   }
   let token = state.authentication.token
 
-  console.log(
-    `${action.payload.method} ${baseURL}${action.payload.url} ${action.payload
-      .body} [${token}]`
-  )
   let data
   let response
   try {
@@ -63,7 +57,6 @@ const api = function*(action) {
       yield put(statusMessageActions.setStatusMessage(action.statusMessage))
     }
   } catch (e) {
-    console.log("API Error: ", e, response, data)
     yield put(statusMessageActions.setStatusMessage({ error: e.toString() }))
     yield put({
       type: action.payload.ERROR || API_ERROR,

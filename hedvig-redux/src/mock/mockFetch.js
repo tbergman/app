@@ -23,7 +23,7 @@ import { fetch } from "./src/mock/mockFetch"
 
 const MOCK_TIMEOUT_MS = 200
 
-export function fetch(url, { method = "GET", headers = {}, body } = {}) {
+export function fetch(url, { method = "GET" } = {}) {
   return new Promise((resolve, reject) => {
     if (
       mockData.hasOwnProperty(method) &&

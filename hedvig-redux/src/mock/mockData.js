@@ -20,7 +20,7 @@ const messages = [
   "Sedan...",
   "Nu vet du vet jag är, för att jag ska veta vem du är behöver du logga in med BankID."
 ]
-  .map((message, i) => makeMockTextMessage(false, message))
+  .map((message) => makeMockTextMessage(false, message))
   .concat(makeMockLinkMessage("Login", "Logga in"))
 
 const onboardingMessages = [
@@ -28,7 +28,7 @@ const onboardingMessages = [
   "För att kunna föreslå den bästa försäkringen för dig är så kommer jag ställa några frågor",
   "Bor du i hyresrätt eller äger du din bostad?"
 ]
-  .map((message, i) => makeMockTextMessage(false, message))
+  .map((message) => makeMockTextMessage(false, message))
   .concat(
     [
       "Jag äger min bostad",

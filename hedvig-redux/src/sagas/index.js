@@ -17,7 +17,7 @@ https://github.com/expo/expo/issues/519
 https://stackoverflow.com/questions/45155249/when-using-redux-saga-with-react-native-web-we-get-an-error-cannot-read-propert
 */
 
-import { take, takeEvery, put, all } from "redux-saga/effects"
+import { take, takeEvery, put } from "redux-saga/effects"
 import { authenticateSaga, validateTokenSaga } from "./authenticate"
 import { apiSaga } from "./api"
 import {
@@ -60,18 +60,10 @@ const watchOnboarding = function*() {
   yield takeEvery("START_ONBOARDING", onboardingSaga)
 }
 
-const printMessageContent = function*() {
-  yield takeEvery("MESSAGE", function*(messageAction) {
-    const { payload: { content } } = messageAction
-    console.log("Message:", content)
-  })
-}
-
 const root = (additionalSagas = []) =>
   function* rootSaga() {
     yield runner([
       watchOnboarding,
-      printMessageContent,
       authenticateSaga,
       validateTokenSaga,
       apiSaga,

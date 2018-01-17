@@ -60,9 +60,7 @@ function configureStore(
 }
 
 function main() {
-  let store = configureStore()
   // store.dispatch(insuranceActions.getDashboard())
-  console.log(JSON.stringify(store.getState(), null, 4))
 }
 
 if (require.main === module) {

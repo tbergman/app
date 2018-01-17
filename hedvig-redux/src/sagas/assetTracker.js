@@ -13,7 +13,7 @@ window.baseURL = baseURL
 import * as assetActions from "../actions/assetTracker"
 import * as uploadActions from "../actions/upload"
 import * as statusMessageActions from "../actions/statusMessage"
-import { take, takeEvery, put, select, call } from "redux-saga/effects"
+import { take, takeEvery, put, call } from "redux-saga/effects"
 import R from "ramda"
 
 // Upload files for an item
@@ -21,11 +21,9 @@ import R from "ramda"
 const isLocalUrl = uri => !R.isNil(uri) && uri.startsWith("file://")
 
 const uploadUrlFields = function*(item) {
-  console.log("Uploading url fields in", item)
 
   let photoUrlUploadedAction
   if (isLocalUrl(item.photoUrl)) {
-    console.log("Uploading local photo URL", item.photoUrl)
     yield put(
       uploadActions.upload({
         body: { uri: item.photoUrl, type: "image/jpeg" },
@@ -40,7 +38,6 @@ const uploadUrlFields = function*(item) {
 
   let receiptUrlUploadedAction
   if (isLocalUrl(item.receiptUrl)) {
-    console.log("Uploading local receipt URL", item.photoUrl)
     yield put(
       uploadActions.upload({
         body: { uri: item.receiptUrl, type: "image/jpeg" },
@@ -96,7 +93,6 @@ const postItem = function*({ afterUploadCallback, payload: item }) {
       })
     )
   }
-  console.log("Item updated response payload:", action.payload)
   yield put(assetActions.getAssets())
 }
 
@@ -126,7 +122,6 @@ const deleteItem = function*({ payload: item }) {
       })
     )
   }
-  console.log("Item updated response payload:", action.payload)
   yield put(assetActions.getAssets())
 }
 

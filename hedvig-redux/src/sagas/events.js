@@ -1,12 +1,9 @@
 import {
   API,
   EVENT,
-  LOADING_MESSAGES_START,
   LOADED_MESSAGES,
-  LOADING_MESSAGES_END
 } from "../actions/types"
-import { take, takeEvery, put, select, call } from "redux-saga/effects"
-import { delay } from "redux-saga"
+import { take, takeEvery, put } from "redux-saga/effects"
 import * as chatActions from "../actions/chat"
 
 const handleEvent = function*(action) {

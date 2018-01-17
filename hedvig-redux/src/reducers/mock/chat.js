@@ -1,6 +1,5 @@
 import { CREATED_CLAIM, LOADED_ONBOARDING } from "../../actions/types"
 import { MOCK_NEXT_CHAT_MESSAGE_VISIBLE } from "../../actions/mock/types"
-import mockData from "../../mock/mockData"
 
 const reducer = (state = { numVisibleMessages: 1 }, action) => {
   switch (action.type) {

@@ -1,4 +1,3 @@
-const R = require("ramda")
 import {
   API,
   SEND_CHAT_RESPONSE,
@@ -44,7 +43,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
       SUCCESS: "SEND_CHAT_RESPONSE_SUCCESS"
     }
   })
-  let success = yield take("SEND_CHAT_RESPONSE_SUCCESS")
+  yield take("SEND_CHAT_RESPONSE_SUCCESS")
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
   // yield put({ type: LOADING_MESSAGES_END, payload: {} })
@@ -54,7 +53,7 @@ const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
 
-const resetConversation = function*(action) {
+const resetConversation = function*() {
   yield put({
     type: API,
     payload: {
@@ -63,7 +62,7 @@ const resetConversation = function*(action) {
       SUCCESS: "CHAT_RESET_REQUESTED"
     }
   })
-  let success = yield take("CHAT_RESET_REQUESTED")
+  yield take("CHAT_RESET_REQUESTED")
   yield put(chatActions.getMessages())
 }
 
@@ -71,7 +70,7 @@ const resetConversationSaga = function*() {
   yield takeEvery(RESET_CONVERSATION, resetConversation)
 }
 
-const editLastResponse = function*(action) {
+const editLastResponse = function*() {
   yield put({
     type: API,
     payload: {
@@ -81,7 +80,7 @@ const editLastResponse = function*(action) {
       SUCCESS: "EDITED_LAST_RESPONSE"
     }
   })
-  let success = yield take("EDITED_LAST_RESPONSE")
+  yield take("EDITED_LAST_RESPONSE") // TODO: No hardcoded action types
   yield put(chatActions.getMessages())
 }
 
@@ -98,7 +97,6 @@ const pollMessageHandler = function*(action) {
   if (action.type === START_POLLING_MESSAGES) {
     let pollingInterval =
       action.payload.pollingInterval || DEFAULT_POLLING_INTERVAL
-    console.log("Polling for messages in ", pollingInterval, "ms")
     yield put({ type: LOADING_MESSAGES_START, payload: {} })
     yield call(delay, pollingInterval)
 
@@ -119,7 +117,6 @@ const pollMessageHandler = function*(action) {
     // ParagraphInput componentDidMount / componentDidUpdate will have
     // triggered a new START_POLLING_MESSAGES
   } else if (action.type === STOP_POLLING_MESSAGES) {
-    console.log("Stopped polling for messages")
     yield put({ type: LOADING_MESSAGES_END, payload: {} })
   }
 }
@@ -140,14 +137,11 @@ yield fork(...)
 See redux-saga docs for `fork`
 */
 const downloadAvatarData = function*(action) {
-  console.log("Going to download avatar data")
   yield all(
     action.payload.map(avatar => {
       return fork(function*() {
-        console.log("Going to download avatar", avatar)
         let response = yield fetch(avatar.URL)
         let json = yield response.json()
-        console.log("Downloaded avatar", avatar)
         yield put({
           type: LOADED_AVATAR_DATA,
           payload: {
@@ -164,8 +158,7 @@ const downloadAvatarSaga = function*() {
   yield takeEvery(LOADED_AVATARS, downloadAvatarData)
 }
 
-const getInsuranceWithMessages = function*(action) {
-  console.log("Getting insurance together with messages")
+const getInsuranceWithMessages = function*() {
   yield put(insuranceActions.getInsurance())
 }
 

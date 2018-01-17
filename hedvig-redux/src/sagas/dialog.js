@@ -3,7 +3,7 @@ import {
   DIALOG_CONFIRM_PRESSED,
   DIALOG_DISMISS_PRESSED
 } from "../actions/types"
-import { take, takeEvery, put, select } from "redux-saga/effects"
+import { take, takeEvery } from "redux-saga/effects"
 
 
 const handleDialog = function*(action) {
