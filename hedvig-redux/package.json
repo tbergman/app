@@ -7,7 +7,7 @@
     "build": "rm -rf build; babel src -d build",
     "run-babel": "./node_modules/babel-cli/bin/babel-node.js src/index.js",
     "repl": "./node_modules/babel-cli/bin/babel-node.js",
-    "lint": "./node_modules/.bin/eslint src",
+    "lint": "eslint src",
     "test": "jest"
   },
   "dependencies": {
