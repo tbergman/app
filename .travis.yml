@@ -1,12 +1,21 @@
+language: node_js
+sudo: true
+node_js:
+- '8'
+
+jobs:
+  include:
+    - stage: test-deploy
+      script: ./test_deploy.sh
+    - stage: production-deploy
+      script: ./production-deploy.sh
+
 stages:
  - name: test-deploy
    if: branch = master
  - name: production-deploy
    if: branch = deploy
-language: node_js
-sudo: true
-node_js:
-- '8'
+
 before_install:
 - npm install exp --global
 install:
@@ -19,26 +28,6 @@ install:
 
 script:
 - yarn lint
-
-test-deploy:
-- exp login -u $EXPO_DEV_USERNAME -p $EXPO_DEV_PASSWORD
-- sudo sysctl fs.inotify.max_user_watches=524288
-- sudo sysctl fs.inotify.max_queued_events=524288
-- sudo sysctl -p
-- yarn deploy
-- exp logout
-
-prod-deploy:
-- exp login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-- sudo sysctl fs.inotify.max_user_watches=524288
-- sudo sysctl fs.inotify.max_queued_events=524288
-- sudo sysctl -p
-- cd ../hedvig-redux
-- sed -i -e 's/gateway.test.hedvig.com/gateway.hedvig.com/g'
-- cd ../hedvig-app
-- sed -i -e 's/com.hedvig.test.app/com.hedvig.app/g' app.json
-- yarn deploy
-- exp logout
 
 notifications:
   email: false
