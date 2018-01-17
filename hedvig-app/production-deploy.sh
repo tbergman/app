@@ -8,6 +8,8 @@ if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; t
         sed -i -e 's/gateway.test.hedvig.com/gateway.hedvig.com/g' src/services/environment.js
         cd ../hedvig-app
         sed -i -e 's/com.hedvig.test.app/com.hedvig.app/g' app.json
+        sed -i -e 's/hedvig-test/hedvig/g' app.json
+        sed -i -e 's/"name": "Hedvig Test"/"name": "Hedvig"/g' app.json
         yarn deploy
         exp logout
     else

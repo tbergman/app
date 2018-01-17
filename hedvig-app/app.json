@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Hedvig",
+    "name": "Hedvig Test",
     "icon": "./assets/app_icon.png",
     "splash": {
       "image": "./assets/splash_screen.png",
@@ -8,7 +8,7 @@
     },
     "version": "1.0.8",
     "slug": "hedvig-app",
-    "scheme": "hedvig",
+    "scheme": "hedvig-test",
     "sdkVersion": "22.0.0",
     "privacy": "unlisted",
     "ios": {
