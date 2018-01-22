@@ -12,6 +12,7 @@ import {
   StyledMarginContainer,
   StyledRightAlignedOptions
 } from "../styles/chat"
+import { StyledSmallText } from "../styles/text"
 import { StyledPassiveText } from "../styles/text"
 import { emitScrollToEndEvent } from "../../services/MessageListScroll"
 
@@ -23,7 +24,8 @@ export default class AudioInput extends React.Component {
     recordingStatus: { isDoneRecording: false },
     sound: null,
     playbackStatus: null,
-    isPlaying: false
+    isPlaying: false,
+    hasSentUpload: false
   }
 
   componentDidMount() {
@@ -67,6 +69,9 @@ export default class AudioInput extends React.Component {
       }
     }
     try {
+      await this.setState({
+        recordingStatus: {...this.state.recordingStatus, durationMillis: 0}
+      })
       const recordingInstance = new Audio.Recording()
       recordingInstance.setProgressUpdateInterval(100)
       recordingInstance.setOnRecordingStatusUpdate(
@@ -157,6 +162,7 @@ export default class AudioInput extends React.Component {
       type: `audio/x-${extension}`,
       fileExtension: extension
     })
+    this.setState({hasSentUpload: true})
   }
 
   render() {
@@ -164,7 +170,20 @@ export default class AudioInput extends React.Component {
     const content = (
       <StyledRightAlignedOptions>
         {!this.state.isRecording ? (
-          <RecordButton onPress={() => this.startRecordingAudio(this.props.message)}/>
+          <View style={{flexDirection: "row"}}>
+            { !this.state.recordingStatus.isDoneRecording ? (
+              <StyledSmallText
+                style={{
+                  alignSelf: "center",
+                  paddingRight: 12,
+                  paddingBottom: 8
+                }}
+              >
+                {this.props.message.body.text}
+              </StyledSmallText>
+            ) : null }
+            <RecordButton onPress={() => this.startRecordingAudio(this.props.message)}/>
+          </View>
         ) : (
           <View>
             <StopRecordingAnimationButton onPress={() => this.stopRecordingAudio(this.props.message)} />
@@ -202,7 +221,8 @@ export default class AudioInput extends React.Component {
       this.state.recordingInstance &&
       this.state.recordingStatus.isDoneRecording &&
       !this.state.isPlaying &&
-      !this.props.currentlyUploading
+      !this.props.currentlyUploading &&
+      !this.state.hasSentUpload
     ) {
       maybePlayback = (
         <View>
@@ -229,7 +249,7 @@ export default class AudioInput extends React.Component {
     }
 
     let maybeUploading
-    if (this.props.currentlyUploading) {
+    if (this.props.currentlyUploading || this.state.hasSentUpload) {
       // TODO: Replace with animation
       maybeUploading = (
         <StyledRightAlignedOptions>
