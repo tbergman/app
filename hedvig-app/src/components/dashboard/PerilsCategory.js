@@ -127,7 +127,6 @@ export class PerilsCategory extends React.Component {
               <StyledRow>
                 <StyledPassiveText>
                   {this.props.description}
-                  {this.state.showCategory ? ":" : ""}
                 </StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
