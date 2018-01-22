@@ -41,7 +41,7 @@ export const StyledChatResponseButton = StyledRoundedButton.extend`
 
 export class AnimatedStyledChatResponseButton extends React.Component {
   state = {
-    slideAnim: new Animated.Value(250)
+    slideAnim: new Animated.Value(300)
   }
 
   componentDidMount() {
