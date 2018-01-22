@@ -16,8 +16,9 @@ const BaseNavigator = TabNavigator(
     tabBarPosition: "top",
     swipeEnabled: false,
     animationEnabled: false,
-    initialRouteName: "HomeBase"
-  }
+    initialRouteName: "HomeBase",
+    lazy: true
+  },
 )
 
 export default BaseNavigator

@@ -46,7 +46,6 @@ export default class Profile extends React.Component {
   componentWillMount() {
     this.props.getUser()
     this.props.getCashbackAlternatives()
-    this.props.dispatch({ type: "LOADED_CASHBACK_ALTERNATIVES" })
   }
 
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
