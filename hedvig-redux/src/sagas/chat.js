@@ -43,7 +43,12 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
       SUCCESS: "SEND_CHAT_RESPONSE_SUCCESS"
     }
   })
-  yield take("SEND_CHAT_RESPONSE_SUCCESS")
+  const res = yield take(["SEND_CHAT_RESPONSE_SUCCESS", "API/UNAUTHORIZED"])
+  if (res.type === "API/UNAUTHORIZED") {
+    yield put({type: "AUTHENTICATE"})
+    yield take("RECEIVED_TOKEN")
+    return yield put(chatActions.getMessages())
+  }
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
   // yield put({ type: LOADING_MESSAGES_END, payload: {} })

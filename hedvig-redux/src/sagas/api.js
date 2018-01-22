@@ -25,7 +25,6 @@ const api = function*(action) {
     })
     let knownHttpError = {
       400: `Bad request (${url})`,
-      401: `Unauthorized (${url})`,
       402: `Payment required (${url})`,
       403: `Forbidden (${url})`,
       404: `Not found (${url})`,
@@ -36,7 +35,7 @@ const api = function*(action) {
     }[response.status.toString()]
     let unknownHttpError =
       !knownHttpError &&
-      response.status >= 400 &&
+      response.status >= 402 &&
       `Server error ${response.status} (${url})`
     // Bad request
     // Unauthenticated
@@ -47,6 +46,10 @@ const api = function*(action) {
         })
       )
       data = null
+    } else if (response.status === 401) {
+      yield put({
+        type: "API/UNAUTHORIZED"
+      })
     } else if (response.status !== 204) {
       data = yield response.json()
     } else {
