@@ -117,6 +117,14 @@ export default class Dashboard extends React.Component {
             <View style={{ marginLeft: 24 }}>
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
+                  source={require("../../../assets/icons/my_insurance/pris.png")}
+                />
+                <StyledPassiveText>
+                  Din självrisk är 1500 kr
+                </StyledPassiveText>
+              </StyledConditionRow>
+              <StyledConditionRow>
+                <StyledDashboardHeaderIcon
                   source={require("../../../assets/icons/my_insurance/aktiv.png")}
                 />
                 <StyledPassiveText>
