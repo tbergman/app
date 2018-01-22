@@ -10,7 +10,7 @@ import * as chatActions from "../actions/chat"
 
 const COLLECT_DELAY_MS = 1000
 
-const MAX_TRIES = 60
+const MAX_TRIES = 100000000
 const isDone = (collectResponseBody, tryCount) => {
   if (
     collectResponseBody.bankIdStatus === "COMPLETE" ||
@@ -31,7 +31,8 @@ const collectHandler = function*() {
         url: `/hedvig/collect?referenceToken=${state.bankid.referenceId}`,
         method: "POST",
         body: null,
-        SUCCESS: BANKID_COLLECT_RESPONSE
+        SUCCESS: BANKID_COLLECT_RESPONSE,
+        ERROR: BANKID_COLLECT_RESPONSE
       }
     })
     yield take(BANKID_COLLECT_RESPONSE)
