@@ -3,11 +3,11 @@ import { StyledTextInputContainer, StyledTextInput } from "../styles/chat"
 import { SendIconButton, SendDisabledIconButton } from "../Button"
 
 class ChatTextInput extends React.Component {
-  buttonPressed = false
+  lastSentFor = undefined
 
   _send = () => {
-    if (!this.buttonPressed) {
-      this.buttonPressed = true
+    if (!this.lastSentFor || this.lastSentFor !== this.props.message.globalId) {
+      this.lastSentFor = this.props.message.globalId
       this.props.send(this.props.message)
     }
   }
