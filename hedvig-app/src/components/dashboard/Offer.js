@@ -106,11 +106,11 @@ class Offer extends React.Component {
             style={{
               position: "absolute",
               width: width,
-              height: 125,
+              height: 135,
               paddingTop: 36,
               bottom: 0,
               left: 0,
-              right: 0
+              right: 0,
             }}
           >
             <StyledButtonContainer>
@@ -119,7 +119,7 @@ class Offer extends React.Component {
                 title="Bli medlem"
               />
             </StyledButtonContainer>
-            <StyledText style={{marginTop: 8, alignSelf: "center", color: "#651EFF"}}>
+            <StyledText style={{marginTop: 8, alignSelf: "center", color: "#651EFF", backgroundColor: "rgba(0,0,0,0)"}}>
               Ingen bindingstid, avsluta när du vill ✌
             </StyledText>
           </ImageBackground>
