@@ -44,10 +44,10 @@ const OfferDashboardHeader = ({ newTotalPrice }) => {
       <StyledDashboardHeaderRow>
         <StyledDashboardHeaderItem>
           <StyledDashboardHeaderIcon
-            source={require("../../../assets/icons/my_insurance/pris.png")}
+            source={require("../../../assets/icons/my_insurance/worldwide.png")}
           />
           <StyledPassiveText>
-            Din självrisk är 1500 kr
+            Gäller på dina resor varsomhelst i världen
           </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>

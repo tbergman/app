@@ -1,11 +1,10 @@
 /* global require */
 import React from "react"
 import { Asset } from "expo"
-import { View, ScrollView } from "react-native"
+import { View, ScrollView, ImageBackground, Dimensions } from "react-native"
 import { NavBar } from "../NavBar"
 import {
   StyledButtonContainer,
-  StyledBackgroundImage,
   StyledCtaContainer
 } from "../styles/offer"
 import {
@@ -17,6 +16,8 @@ import OfferDashboardHeader from "../dashboard/OfferDashboardHeader"
 import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderItem, StyledDashboardHeaderIcon } from "../styles/dashboard"
 import { StyledText, StyledPassiveText } from "../styles/text";
 import { TextLink } from "../Link"
+
+const { width } = Dimensions.get("window")
 
 const HEDVIG_FORKOP_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+F%C3%B6rk%C3%B6psinformation+Bostadsr%C3%A4tt.pdf"
 const HEDVIG_INTEGRITET_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+integritetspolicy.pdf"
@@ -32,11 +33,11 @@ Asset.loadAsync([
 ])
 
 const OfferFooter = () => (
-  <StyledDashboardHeader style={{paddingTop: 8}}>
-    <StyledDashboardHeaderRow>
+  <StyledDashboardHeader style={{paddingTop: 8, paddingBottom: 8}}>
+    <StyledDashboardHeaderRow style={{marginBottom: 4}}>
       <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/info/info_green.png")} />
-        <StyledPassiveText style={{flexWrap: "wrap", maxWidth: "100%"}}>Tryggat av en av världens största återförsäkringskoncerner</StyledPassiveText>
+        <StyledDashboardHeaderIcon style={{marginTop: 8}} source={require("../../../assets/icons/my_insurance/aktiv.png")} />
+        <StyledPassiveText>Tryggas av en av världens{"\n"}största återförsäkringskoncerner</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
     <StyledDashboardHeaderRow>
@@ -47,14 +48,14 @@ const OfferFooter = () => (
     </StyledDashboardHeaderRow>
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/pris.png")} />
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
         <StyledPassiveText>Prylarna försäkras till totalt 1 000 000 kr</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/worldwide.png")} />
-        <StyledPassiveText>Gäller på resor varsomhelst i världen</StyledPassiveText>
+        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
+        <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
   </StyledDashboardHeader>
@@ -90,7 +91,7 @@ class Offer extends React.Component {
             ))}
           </View>
           <OfferFooter />
-          <StyledPassiveText style={{paddingHorizontal: 12, paddingBottom: 125}}>
+          <StyledPassiveText style={{paddingLeft: 24, paddingRight: 18, paddingBottom: 125}}>
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
             <TextLink to={HEDVIG_FORKOP_S3_LINK}>förköpsinformation</TextLink>,&nbsp;
             <TextLink to={HEDVIG_VILLKOR_S3_LINK}>villkor</TextLink> och att mina personuppgifter&nbsp;
@@ -99,19 +100,29 @@ class Offer extends React.Component {
           </StyledPassiveText>
         </ScrollView>
         <StyledCtaContainer>
-          <StyledBackgroundImage
+          <ImageBackground
             source={require("../../../assets/bgs/gradient-white-rectangle.png")}
-            resizeMode="stretch"
-          />
-          <StyledButtonContainer style={{marginTop: 48}}>
-            <TurquoiseRoundedInvertedButton
-              onPress={() => this.props.checkout()}
-              title="Bli medlem"
-            />
-          </StyledButtonContainer>
-          <StyledText style={{marginTop: 8}}>
-            Ingen bindingstid, avsluta när du vill
-          </StyledText>
+            resizeMode="stretch"            
+            style={{
+              position: "absolute",
+              width: width,
+              height: 125,
+              paddingTop: 36,
+              bottom: 0,
+              left: 0,
+              right: 0
+            }}
+          >
+            <StyledButtonContainer>
+              <TurquoiseRoundedInvertedButton
+                onPress={() => this.props.checkout()}
+                title="Bli medlem"
+              />
+            </StyledButtonContainer>
+            <StyledText style={{marginTop: 8, alignSelf: "center", color: "#651EFF"}}>
+              Ingen bindingstid, avsluta när du vill ✌
+            </StyledText>
+          </ImageBackground>
         </StyledCtaContainer>
       </View>
     )
