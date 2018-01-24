@@ -127,7 +127,7 @@ export default class MarketingCarousel extends React.Component {
         <View style={{ marginTop: 20, marginBottom: 40 }}>
           <TurquoiseRoundedInvertedButton
             title="Säg hej till Hedvig!"
-            onPress={() => this.props.dismiss()}
+            onPress={() => this.props.startChat()}
           />
         </View>
       )
@@ -196,9 +196,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: {
           url: "/chat/login",
           method: "POST",
-          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_LOGIN_SUCCESS"
+          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_LOGIN_SUCCESS" // TODO No hardcoded actions
         }
       })
+      ownProps.dismiss()
+    },
+    startChat: () => {
+      dispatch({
+        type: types.API,
+        payload: {
+          url: "/chat/start",
+          method: "POST",
+          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_CHAT_START_SUCCESS" // TODO No hardcoded actions
+        }
+      })
+      debugger
       ownProps.dismiss()
     }
   }
