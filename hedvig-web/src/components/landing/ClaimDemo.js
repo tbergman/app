@@ -1,24 +1,57 @@
 import React from "react"
+import styled from "styled-components"
 import Lottie from "react-lottie"
 import {
-  ClaimDemoStyled,
-  ClaimDemoTextContainer,
-  ClaimDemoPhoneContainer,
   CenteredColumn
 } from "../styles/landing"
 import { WhiteHeading2 } from "../styles/typography"
 import { BlackPurpleRoundedButtonWhiteBorder } from "../Button"
 
-const MyWhiteHeading2 = WhiteHeading2.extend`
-  text-align: center;
-  @media (min-width: 1024px) {
-    text-align: left;
-  }
-`
-
 const MyCenteredColumn = CenteredColumn.extend`
   @media (min-width: 992px) {
     align-items: flex-start;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  background-color: ${props => props.theme.colors.blackPurple};
+  color: white;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  padding: 2em 0 0;
+  
+  @media (min-width: 800px) {
+    flex-direction: row;
+    justify-content:  space-around;
+  }
+`
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5em;
+
+  @media (min-width: 800px) {
+    align-items: left;
+    text-align: left;
+    max-width: 700px;
+    padding: 0 4em;
+  }
+`
+
+const PhoneContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  @media (min-width: 800px) {
+    justify-content: flex-start;
+    padding
   }
 `
 
@@ -68,14 +101,14 @@ export default class ClaimDemo extends React.Component {
 
   render() {
     return (
-      <ClaimDemoStyled className="pure-g">
-        <ClaimDemoTextContainer className="pure-u-lg-2-3 pure-u-sm-1-1 pure-u-1-1">
-          <MyWhiteHeading2>
+      <Container>
+        <TextContainer>
+          <WhiteHeading2>
             Anmäl skador på sekunder, få ersättning på minuter.
-          </MyWhiteHeading2>
+          </WhiteHeading2>
           {this.maybeExpanded()}
-        </ClaimDemoTextContainer>
-        <ClaimDemoPhoneContainer className="pure-u-lg-1-3 pure-u-sm-1-1 pure-u-1-1">
+        </TextContainer>
+        <PhoneContainer>
           <Lottie
             options={{
               loop: true,
@@ -85,8 +118,8 @@ export default class ClaimDemo extends React.Component {
             height={715}
             width={352}
           />
-        </ClaimDemoPhoneContainer>
-      </ClaimDemoStyled>
+        </PhoneContainer>
+      </Container>
     )
   }
 }

@@ -53,9 +53,9 @@ export default class Footer extends React.Component {
           <Link to="/contact">
             <div>Kontakt</div>
           </Link>
-          <Link to="/press">
+          {/*<Link to="/press">
             <div>Press</div>
-          </Link>
+            </Link>*/}
           <Link to="/FAQ" className="show-on-mobile">
             <div>FAQ</div>
           </Link>
