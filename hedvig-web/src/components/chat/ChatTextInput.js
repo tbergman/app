@@ -3,7 +3,6 @@ import React from "react"
 import {
   SendIconButton,
   InactiveSendIconButton,
-  ExitIconButton
 } from "../Button"
 import { TextInputStyled } from "../styles/chat"
 
@@ -28,9 +27,6 @@ export default class ChatTextInput extends React.Component {
     ) : (
       <InactiveSendIconButton />
     )
-    let maybeCancelButton = message._inputValue ? (
-      <ExitIconButton type="button" onClick={() => onChange(message, "")} />
-    ) : null
     return (
       <form
         onSubmit={e => {
@@ -39,7 +35,7 @@ export default class ChatTextInput extends React.Component {
         }}
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "flex-end"
         }}
       >
@@ -54,8 +50,7 @@ export default class ChatTextInput extends React.Component {
           }}
           style={{ marginBottom: "10px" }}
         />
-        <div style={{ display: "flex" }}>
-          <div style={{ marginRight: 10 }}>{maybeCancelButton}</div>
+        <div style={{ display: "flex", marginBottom: "10px", marginLeft: "10px" }}>
           {SendButton}
         </div>
       </form>

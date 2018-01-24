@@ -66,6 +66,11 @@ export const WhiteRoundedButtonStyled = RoundedButtonStyled.extend`
   color: ${props => props.theme.colors.purple};
   border-color: ${props => props.theme.colors.purple};
   animation: 0.5s ${slideFromRight} 1;
+  
+  :active,:focus {
+    background-color: ${props => props.theme.colors.purple};
+    color: white;
+  }
 `
 
 export const InactiveWhiteRoundedButtonStyled = WhiteRoundedButtonStyled.extend`
