@@ -9,6 +9,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border-top: 1px solid ${props => props.theme.colors.lightGray};
+
+  @media (min-width: 800px) {
+    height: 800px;
+  }
 `
 
 const CustomSubItem = SubItem.extend`

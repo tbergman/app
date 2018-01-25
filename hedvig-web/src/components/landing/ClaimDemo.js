@@ -21,11 +21,12 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   flex-direction: column;
-  padding: 2em 0 0;
+  padding: 10em 0 0;
   
   @media (min-width: 800px) {
     flex-direction: row;
     justify-content:  space-around;
+    max-height: 800px;
   }
 `
 
@@ -52,7 +53,6 @@ const PhoneContainer = styled.div`
 
   @media (min-width: 800px) {
     justify-content: flex-start;
-    padding
   }
 `
 
@@ -99,7 +99,7 @@ export default class ClaimDemo extends React.Component {
               autoplay: true,
               animationData: require("../../bundledAssets/animations/claims_demo.json")
             }}
-            height={715}
+            height={610}
             width={352}
           />
         </PhoneContainer>

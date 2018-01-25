@@ -18,6 +18,7 @@ const Container = LandingComponentSection.extend`
 
   @media (min-width: 800px) {
     padding: 5em 0;
+    height: 800px;
   }
 `
 
