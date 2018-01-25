@@ -4,44 +4,42 @@ import {
   LandingComponentSection,
   SubItemContainer,
   SubItem,
-  HeadingContainer,
-  SubItemText
+  HeadingContainer,  SubItemText,
+  HeadingSubText
 } from "../styles/landing"
 
 const Container = LandingComponentSection.extend`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  @media (min-width: 1024px) {
-    text-align: left;
-  }
-  height: 800px;
+  border-top: 1px solid ${props => props.theme.colors.lightGray};
+  padding: 3em 0;
 
-  border-top: solid 1px ${props => props.theme.colors.lightGray};
-  padding-top: 46px;
-  padding-bottom: 46px;
-  @media (min-width: 768px) {
-    padding-top: 56px;
-    padding-bottom: 56px;
+  @media (min-width: 800px) {
+    padding: 5em 0;
   }
-  @media (min-width: 992px) {
-    padding-top: 142px;
-    padding-bottom: 142px;
-  }
-  @media (min-width: 1200px) {
-    padding-top: 160px;
-    padding-bottom: 160px;
+`
+
+const CustomHeadingSubText = HeadingSubText.extend`
+  max-width: 650px;
+  text-align: center;
+  margin: auto;
+
+  @media (min-width: 800px) {
+    text-align: center;
   }
 `
 
 export const ModelExplanation = () => (
   <Container>
     <HeadingContainer>
-      <PurpleHeading style={{display: "block", paddingBottom: "12px"}}>
+      <PurpleHeading>
         Schysst för dig, och världen runtomkring
       </PurpleHeading>
-      <p style={{maxWidth: "600px", margin: "auto"}}>
+      <CustomHeadingSubText>
         Hedvig fungerar inte som ett vanligt försäkringsbolag. Vi tar en låg fast avgift, betalar blixtsnabbt och skänker överskottet till ett gott ändamål
-      </p>
+      </CustomHeadingSubText>
     </HeadingContainer>
     <SubItemContainer>
       <SubItem>

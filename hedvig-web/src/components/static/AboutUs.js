@@ -1,36 +1,20 @@
 import React from "react"
 
-import { LinkStyled, HeroStaticHeading2 } from "../styles/static"
-import { Heading, Paragraph, StaticPage } from "./common"
+import {
+  Container,
+  Hero,
+  Heading,
+  SayHi
+} from "./common"
+import { Header } from "../Header"
 
-const Legal = () => {
-  return (
-    <StaticPage
-      heroContent={<HeroStaticHeading2>Om Hedvig</HeroStaticHeading2>}
-    >
-      <Heading>Nam porttitor</Heading>
-      <Paragraph>
-        Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget
-        libero posuere vulputate. Etiam elit elit, elementum sed varius at,
-        adipiscing vitae est. Sed nec felis pellentesque, lacinia dui sed,
-        ultricies sapien. Pellentesque orci lectus, consectetur vel posuere
-        posuere, rutrum eu ipsum. Aliquam eget odio sed ligula iaculis
-        consequat.
-        <LinkStyled href="/">Link</LinkStyled>
-      </Paragraph>
+export const AboutUs = () => (
+  <Container>
+    <Header headerRight={<SayHi />}/> 
+    <Hero imageUrl="/assets/web/Images/Norrsken-4.jpg">
+      <Heading>Om Hedvig</Heading>
+    </Hero>
+  </Container>
+)
 
-      <Heading>Nam porttitor</Heading>
-      <Paragraph>
-        Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget
-        libero posuere vulputate. Etiam elit elit, elementum sed varius at,
-        adipiscing vitae est. Sed nec felis pellentesque, lacinia dui sed,
-        ultricies sapien. Pellentesque orci lectus, consectetur vel posuere
-        posuere, rutrum eu ipsum. Aliquam eget odio sed ligula iaculis
-        consequat.
-        <LinkStyled href="/">Link</LinkStyled>
-      </Paragraph>
-    </StaticPage>
-  )
-}
-
-export default Legal
+export default AboutUs

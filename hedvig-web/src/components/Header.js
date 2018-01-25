@@ -5,18 +5,57 @@ import { HeaderStyled, HeaderIconStyled } from "./styles/header"
 import { TurquoiseRoundedButtonStyled } from "./styles/button"
 import { ResetIconButton } from "./Button"
 
+const HeaderLinkContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  @media (min-width: 800px) {
+    min-width: 300px;
+  }
+`
+
+const HeaderNavigationLinksContainer = styled.div`
+  display: none;
+  
+  > a {
+    &:visited {
+      color: ${props => props.theme.colors.purple};
+    }
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 200px;
+  }
+`
+
 export class Header extends React.Component {
   render() {
     return (
       <HeaderStyled>
-        <Link to="/">
-          <HeaderIconStyled />
-        </Link>
-        {this.props.headerRight || (
-          <Link to="/chat">
-            <ResetIconButton />
-          </Link>
-        )}
+        <HeaderLinkContainer>
+          <div>
+            <Link to="/">
+              <HeaderIconStyled />
+            </Link>
+          </div>
+          <HeaderNavigationLinksContainer>
+            <Link to="/about-us">
+              Om Hedvig
+            </Link>
+            <Link to="/faq">
+              FAQ
+            </Link>
+          </HeaderNavigationLinksContainer>
+        </HeaderLinkContainer>
+        <div>
+          {this.props.headerRight || (
+            <Link to="/chat">
+              <ResetIconButton />
+            </Link>
+          )}
+        </div>
       </HeaderStyled>
     )
   }

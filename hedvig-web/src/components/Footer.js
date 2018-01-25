@@ -4,24 +4,22 @@ import styled from "styled-components"
 import { FooterIconStyled } from "./styles/footer"
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #0f007a;
-  padding: 20px;
   color: white;
   a {
     color: white;
   }
-  @media (min-width: 1200px) {
-    padding: 80px 112px;
-  }
 
-  .show-on-mobile {
-    display: none;
+  padding: 1.5em;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3em 1.5em;
   }
-  @media (max-width: 460px) {
-    .show-on-mobile {
-      display: block;
-    }
-  }
+  
 `
 
 const SocialContainer = styled.div`
@@ -36,35 +34,60 @@ const SocialContainer = styled.div`
   }
 `
 
+const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    min-width: 500px;
+    justify-content: space-around;
+  }
+`
+
+const RouteLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const RightContainer = styled.div`
+  padding: 1.5em 0 0;
+
+  @media (min-width: 800px) {
+    padding: 0;
+  }
+`
+
 export default class Footer extends React.Component {
   render() {
     return (
-      <Container className="pure-g">
-        <div className="pure-u-md-1-4 pure-u-sm-1-1 pure-u-1-1">
+      <Container>
+        <LeftContainer>
           <FooterIconStyled />
-        </div>
-        <div className="pure-u-md-1-4 pure-u-sm-1-1 pure-u-1-1">
-          <Link to="/about-us" className="show-on-mobile">
-            <div>Om Hedvig</div>
-          </Link>
-          {/* <Link to="/jobs">
-            <div>Karriär</div>
-          </Link> */}
-          <Link to="/contact">
-            <div>Kontakt</div>
-          </Link>
-          {/*<Link to="/press">
-            <div>Press</div>
-            </Link>*/}
-          <Link to="/FAQ" className="show-on-mobile">
-            <div>FAQ</div>
-          </Link>
-          <Link to="/legal">
-            <div>Villkor</div>
-          </Link>
-        </div>
-        <div className="pure-u-md-1-4 pure-u-sm-1-1 pure-u-1-1">&nbsp;</div>
-        <div className="pure-u-md-1-4 pure-u-sm-1-1 pure-u-1-1">
+          <RouteLinkContainer>
+            <div>
+              <Link to="/contact">
+                Kontakt
+              </Link>
+            </div>
+            <div>
+              <Link to="/careers">
+                Karriär
+              </Link>
+            </div>
+            <div>
+              <Link to="/terms">
+                Försäkringsvillkor
+              </Link>
+            </div>
+            <div>
+              <Link to="/legal">
+                Legal information
+              </Link>
+            </div>
+          </RouteLinkContainer>
+        </LeftContainer>
+        <RightContainer>
           <SocialContainer>
             <div>
               <img alt="fb" src="/assets/web/Social icons/Facebook.svg" />
@@ -79,7 +102,7 @@ export default class Footer extends React.Component {
               <img alt="twitter" src="/assets/web/Social icons/Twitter.svg" />
             </div>
           </SocialContainer>
-          <SocialContainer style={{ marginBottom: 12, marginTop: 6 }}>
+          <SocialContainer>
             <a href="https://itunes.apple.com/se/app/hedvig/id123123">
               <img
                 src="/assets/web/appstores/appstore-button.svg"
@@ -88,11 +111,7 @@ export default class Footer extends React.Component {
               />
             </a>
           </SocialContainer>
-          <SocialContainer
-            style={{
-              marginBottom: 12
-            }}
-          >
+          <SocialContainer>
             <a href="https://play.google.com/store/apps/details?id=com.hedvig.app">
               <img
                 src="/assets/web/appstores/google-play-button.svg"
@@ -101,7 +120,7 @@ export default class Footer extends React.Component {
               />
             </a>
           </SocialContainer>
-        </div>
+        </RightContainer>
       </Container>
     )
   }

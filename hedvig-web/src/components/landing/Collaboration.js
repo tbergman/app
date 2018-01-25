@@ -3,17 +3,12 @@ import styled from "styled-components"
 import { HeadingContainer, PurpleHeading, SubItemContainer, SubItem, SubItemText } from "../styles/landing"
 
 const Container = styled.div`
-  padding-top: 72px;
-  padding-bottom: 72px;
-  justify-content: center;
   display: flex;
+  padding: 72px 0;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  ${"" /* border: solid 1px black; */} @media screen and (max-width: 768px) {
-    .first-centered-column {
-      margin-bottom: 64px;
-    }
-  }
+  border-top: 1px solid ${props => props.theme.colors.lightGray};
 `
 
 const CustomSubItem = SubItem.extend`

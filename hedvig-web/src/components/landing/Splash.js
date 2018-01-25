@@ -16,7 +16,7 @@ const Container = styled.div`
 
   @media (min-width: 800px) {
     padding: 3em 0 0;
-    height: 1000px;
+    height: 900px;
   }
 `
 
