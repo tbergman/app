@@ -2,7 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
 import {
-  CenteredColumn
+  CenteredColumn,
+  AbsoluteFadeInParagraph,
 } from "../styles/landing"
 import { WhiteHeading2 } from "../styles/typography"
 import { BlackPurpleRoundedButtonWhiteBorder } from "../Button"
@@ -60,52 +61,35 @@ export default class ClaimDemo extends React.Component {
     expanded: false
   }
 
-  unexpanded() {
+  maybeExpanded() {
     return (
-      <MyCenteredColumn>
-        <BlackPurpleRoundedButtonWhiteBorder
-          onClick={() => this.setState({ expanded: true })}
-        >
-          Mer om appen
-        </BlackPurpleRoundedButtonWhiteBorder>
-      </MyCenteredColumn>
-    )
-  }
-
-  expanded() {
-    return (
-      <div>
-        <p style={{ marginTop: -20, marginRight: 20 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+      <div style={{ padding: "2em 0 0"}}>
         <MyCenteredColumn>
           <BlackPurpleRoundedButtonWhiteBorder
-            onClick={() => this.setState({ expanded: false })}
+            onClick={() => this.setState({ expanded: !this.state.expanded })}
           >
-            Mindre om appen
+            { this.state.expanded ? "Förminska" : "Mer om appen" }
           </BlackPurpleRoundedButtonWhiteBorder>
         </MyCenteredColumn>
+        { this.state.expanded ? (
+          <AbsoluteFadeInParagraph>
+            När din dator blir stulen behöver du en ny snabbt. Det förstår Hedvig.
+            Det sista du vill är att lägga veckor på att krångla med försäkringsbolaget.
+            Med Hedvig pratar du in ett kort röstmeddelande och berättar vad som hänt.
+            Behöver vi något mer för att kunna betala ersättning så löser vi det enkelt i chatten.
+            Om din lägenhet blir vattenskadad behöver du mer än snabb ersättning.
+            Då behöver du hjälp. Tryck på en knapp så ringer vi upp dig på direkten.
+          </AbsoluteFadeInParagraph>
+        ) : null }
       </div>
     )
-  }
-
-  maybeExpanded() {
-    return this.state.expanded ? this.expanded() : this.unexpanded()
   }
 
   render() {
     return (
       <Container>
         <TextContainer>
-          <WhiteHeading2>
-            Anmäl skador på sekunder, få ersättning på minuter.
-          </WhiteHeading2>
+          <WhiteHeading2>Anmäl en skada på sekunder, få ersättning på minuter</WhiteHeading2>
           {this.maybeExpanded()}
         </TextContainer>
         <PhoneContainer>
@@ -113,7 +97,7 @@ export default class ClaimDemo extends React.Component {
             options={{
               loop: true,
               autoplay: true,
-              animationData: require("../../bundledAssets/animations/claim_demo.json")
+              animationData: require("../../bundledAssets/animations/claims_demo.json")
             }}
             height={715}
             width={352}

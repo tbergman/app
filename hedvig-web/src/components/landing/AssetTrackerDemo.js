@@ -2,7 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import {
   CenteredColumn,
-  HeadingSubText
+  HeadingSubText,
+  AbsoluteFadeInParagraph
 } from "../styles/landing"
 import { BlackPurpleHeading2 } from "../styles/typography"
 import { WhiteRoundedButton } from "../Button"
@@ -71,51 +72,33 @@ export default class AssetTrackerDemo extends React.Component {
     expanded: false
   }
 
-  unexpanded() {
-    return (
-      <MyCenteredColumn>
-        <WhiteRoundedButton onClick={() => this.setState({ expanded: true })}>
-          Mer om prylbanken
-        </WhiteRoundedButton>
-      </MyCenteredColumn>
-    )
-  }
-
-  expanded() {
+  maybeExpanded() {
     return (
       <div>
-        <p style={{ marginTop: -20 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
         <MyCenteredColumn>
           <WhiteRoundedButton
-            onClick={() => this.setState({ expanded: false })}
+            onClick={() => this.setState({ expanded: !this.state.expanded })}
           >
-            Mindre om prylbanken
+            { this.state.expanded ? "Förminska" : "Mer om prylbanken" }
           </WhiteRoundedButton>
         </MyCenteredColumn>
+        { this.state.expanded ? (
+          <AbsoluteFadeInParagraph>
+            Med prylbanken blir det enkelt att hålla ordning på sakerna du bryr dig om.
+            Kvitton och viktiga papper är säkrare hos Hedvig än i en låda under sängen,
+            och du ser hur försäkringen gäller för varenda pryl.
+            Om olyckan är framme anmäler du skadan med ett knapptryck.
+          </AbsoluteFadeInParagraph>
+        ) : null }
       </div>
     )
-  }
-
-  maybeExpanded() {
-    return this.state.expanded ? this.expanded() : this.unexpanded()
   }
 
   render() {
     return (
       <Container>
         <TextContainer>
-          <MyBlackPurpleHeading2>
-            Låt Hedvig hålla koll på dina prylar, och se exakt hur de är
-            försäkrade.
-          </MyBlackPurpleHeading2>
+          <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade</MyBlackPurpleHeading2>
           <HeadingSubText>
             Drulle ingår för alla prylar värda under 50 000 kr
           </HeadingSubText>

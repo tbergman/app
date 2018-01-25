@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Heading2 } from "./typography"
 import Lottie from "react-lottie"
 
@@ -170,4 +170,21 @@ export const HeadingSubText = styled.p`
   @media (min-width: 800px) {
     text-align: left;
   }
+`
+
+const FadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+export const AbsoluteFadeInParagraph = styled.p`
+  position: absolute;
+  max-width: 600px;
+
+  animation: ${FadeInAnimation} 0.15s linear;
 `

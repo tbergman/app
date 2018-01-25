@@ -5,14 +5,11 @@ import {
   HeadingSubText
 } from "../styles/landing"
 import { TurquoiseRoundedButtonStyled } from "../styles/button"
-import { Heading1 } from "../styles/typography"
 
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
   height: 600px;
-  background-image: url("/assets/web/splash/backdrop.svg");
-  background-size: cover;
 
   @media (min-width: 800px) {
     padding: 3em 0 0;
@@ -30,21 +27,22 @@ const TextContainer = styled.div`
   width: 100%;
   
   @media (min-width: 800px) {
-    padding: 0 0 0 4em;
+    padding: 0 0 0 8em;
     align-items: left;
   }
 `
 
-const CustomHeading = Heading1.extend`
-  padding: 0,
-  font-weight: 800
+const Heading = styled.h1`
+  font-family: "Merriweather";
+  font-weight: 400;
+  font-size: 72px;
 `
 
 const Splash = () => {
   return (
     <Container>
       <TextContainer>
-        <CustomHeading>Gör det lätt när det är svårt</CustomHeading>
+        <Heading>Gör det lätt när det är svårt</Heading>
           <HeadingSubText>
             Hedvig är försäkring som du aldrig upplevt det tidigare
           </HeadingSubText>
