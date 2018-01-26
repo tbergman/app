@@ -7,6 +7,7 @@ if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; t
         exp publish
         sed -i -e 's/gateway.test.hedvig.com/hedvig.ngrok.io/g' ../hedvig-redux/src/services/environment.js
         sed -i -e 's/"slug": "hedvig-app"/"slug": "hedvig-ngrok-app"/g' app.json
+        exp logout
         exp login -u ${EXPO_DEV_USERNAME} -p ${EXPO_DEV_PASSWORD}
         exp publish
         exp logout
