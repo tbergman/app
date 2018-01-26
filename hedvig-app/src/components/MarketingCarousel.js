@@ -48,15 +48,16 @@ const MyStyledHeading = StyledHeading.extend`
 const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
-  margin-top: 40px;
+  margin-top: 35px;
 `
 
 const Container = FullScreen.extend`
-  justify-content: space-between;
+  justify-content: center;
 `
 
 const MySmallText = StyledSmallText.extend`
   font-size: 14px;
+  background-color: rgba(0,0,0,0);
 `
 
 const CenteredText = styled.Text`
@@ -64,19 +65,14 @@ const CenteredText = styled.Text`
 `
 
 const ImageContainer = styled.View`
-  padding-top: 30px;
   align-self: stretch;
   align-items: center;
-  height: 300px;
+  height: ${props => props.height}
 `
 
 const ParagraphContainer = styled.View`
   padding-left: 16px;
   padding-right: 16px;
-  align-self: stretch;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
 `
 
 const DotsContainer = styled.View`
@@ -138,13 +134,13 @@ export default class MarketingCarousel extends React.Component {
     }
     return (
       <FullScreen>
-        {data.heading ? (
-          <CenteredText>
-            <MyStyledHeading>{data.heading}</MyStyledHeading>
-          </CenteredText>
-        ) : null}
         <Container>
-          <ImageContainer>
+          {data.heading ? (
+            <CenteredText>
+              <MyStyledHeading>{data.heading}</MyStyledHeading>
+            </CenteredText>
+          ) : null}
+          <ImageContainer height={itemWidth}>
             <Carousel
               ref={c => {
                 this._carousel = c
