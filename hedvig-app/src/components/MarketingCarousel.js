@@ -4,7 +4,6 @@ import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 import { connect } from "react-redux"
 
-import StatusBar from "../containers/StatusBar"
 import {
   StyledHeading,
   StyledSmallText,
