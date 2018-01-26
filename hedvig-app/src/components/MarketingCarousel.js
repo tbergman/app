@@ -209,9 +209,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           url: "/chat/start",
           method: "POST",
           SUCCESS: "MARKETING_CAROUSEL_TRIGGER_CHAT_START_SUCCESS" // TODO No hardcoded actions
-        }
+        },
+        canary: true
       })
-      debugger
       ownProps.dismiss()
     }
   }
