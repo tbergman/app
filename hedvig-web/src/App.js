@@ -11,6 +11,7 @@ import moment from "moment"
 import { tokenStorageSaga } from "./sagas/TokenStorage"
 import { logoutSaga } from "./sagas/logout"
 import perilReducer from "./reducers/peril"
+import landingReducer from "./reducers/landing"
 
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
@@ -22,7 +23,8 @@ class App extends Component {
     this.store = hedvigRedux.configureStore({
       additionalReducers: {
         router: routerReducer,
-        peril: perilReducer
+        peril: perilReducer,
+        landing: landingReducer,
       },
       additionalMiddleware: [routerMiddleware],
       additionalSagas: [tokenStorageSaga, logoutSaga]

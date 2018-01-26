@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import VisibilitySensor from "react-visibility-sensor"
+
 import { TurquoiseRoundedButtonStyled } from "../styles/button"
 
 const Container = styled.div`
@@ -35,19 +38,32 @@ const Heading = styled.h1`
   font-size: 72px;
 `
 
-const Splash = () => {
-  return (
-    <Container>
-      <TextContainer>
-        <Heading>Säg hej till din nya bästa vän</Heading>
-        <Link to="/chat">
-          <TurquoiseRoundedButtonStyled>
-            Hej, Hedvig!
-          </TurquoiseRoundedButtonStyled>
-        </Link>
-      </TextContainer>
-    </Container>
-  )
+class Splash extends React.Component {
+  _change = isVisible => {
+    this.props.ctaVisibilityChanged(isVisible)
+  }
+
+  render() {
+    return (
+      <Container>
+        <TextContainer>
+          <Heading>Säg hej till din nya bästa vän</Heading>
+          <Link to="/chat">
+            <VisibilitySensor onChange={this._change}>
+              <TurquoiseRoundedButtonStyled>
+                Hej, Hedvig!
+              </TurquoiseRoundedButtonStyled>
+            </VisibilitySensor>
+          </Link>
+        </TextContainer>
+      </Container>
+    )
+  }
 }
 
-export default Splash
+export default connect(
+  undefined,
+  dispatch => ({
+    ctaVisibilityChanged: isVisible => dispatch({type: "LANDING/CTA_VISIBILITY_CHANGED", payload: {status: isVisible}}),
+  })
+)(Splash)
