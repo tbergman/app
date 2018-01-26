@@ -139,6 +139,7 @@ export const SubItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 70%;
+  max-width: 1100px;
 
   @media (max-width: 786px) {
     flex-direction: column;
@@ -156,6 +157,7 @@ export const SubItem = styled.div`
 
 export const SubItemText = styled.p`
   padding: 12px 0;
+  font-size: 18px;
 `
 
 export const HeadingContainer = styled.div`

@@ -45,7 +45,7 @@ export class Header extends React.Component {
               Om Hedvig
             </Link>
             <Link to="/faq">
-              FAQ
+              Vanliga frågor
             </Link>
           </HeaderNavigationLinksContainer>
         </HeaderLinkContainer>

@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import {
-  HeadingSubText
-} from "../styles/landing"
 import { TurquoiseRoundedButtonStyled } from "../styles/button"
 
 const Container = styled.div`
@@ -42,13 +39,10 @@ const Splash = () => {
   return (
     <Container>
       <TextContainer>
-        <Heading>Gör det lätt när det är svårt</Heading>
-          <HeadingSubText>
-            Hedvig är försäkring som du aldrig upplevt det tidigare
-          </HeadingSubText>
+        <Heading>Säg hej till din nya bästa vän</Heading>
         <Link to="/chat">
           <TurquoiseRoundedButtonStyled>
-            Säg hej till Hedvig!
+            Hej, Hedvig!
           </TurquoiseRoundedButtonStyled>
         </Link>
       </TextContainer>

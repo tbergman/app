@@ -4,7 +4,7 @@ import { HeadingContainer, PurpleHeading, SubItemContainer, SubItem, SubItemText
 
 const Container = styled.div`
   display: flex;
-  padding: 72px 0;
+  padding: 50px 0;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -30,8 +30,8 @@ const Collaboration = () => {
       <SubItemContainer>
         <CustomSubItem>
           <img
-            width={100}
-            height={100}
+            width={166}
+            height={166}
             src="assets/web/Images/handshake.png"
             alt="Samarbete"
           />
@@ -39,8 +39,8 @@ const Collaboration = () => {
         </CustomSubItem>
         <CustomSubItem>
           <img
-            width={100}
-            height={100}
+            width={166}
+            height={166}
             src="assets/web/Images/AA.png"
             alt="Samarbete"
           />
@@ -49,8 +49,8 @@ const Collaboration = () => {
 
         <CustomSubItem>
           <img
-            width={100}
-            height={100}
+            width={166}
+            height={166}
             src="assets/icons/authorized.svg"
             alt="samarbete"
           />

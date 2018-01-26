@@ -39,6 +39,7 @@ export const TextRow = styled.div`
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
+    min-height: max-content;
   }
 `
 
