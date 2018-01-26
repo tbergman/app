@@ -43,16 +43,18 @@ const contents = [
 ]
 
 const MyStyledHeading = StyledHeading.extend`
-  font-size: 24px;
+  font-size: 22px;
 `
 
 const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
-  margin-top: 20px;
+  margin-top: 40px;
 `
 
-const Container = FullScreen.extend``
+const Container = FullScreen.extend`
+  justify-content: space-between;
+`
 
 const MySmallText = StyledSmallText.extend`
   font-size: 14px;
@@ -63,7 +65,7 @@ const CenteredText = styled.Text`
 `
 
 const ImageContainer = styled.View`
-  margin-top: 20px;
+  padding-top: 30px;
   align-self: stretch;
   align-items: center;
   height: 300px;
@@ -74,7 +76,7 @@ const ParagraphContainer = styled.View`
   padding-right: 16px;
   align-self: stretch;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex: 1;
 `
 
@@ -90,6 +92,9 @@ const LoginContainer = styled.View`
   align-items: center;
 `
 
+const { width } = Dimensions.get("window")
+const itemWidth = width < 375 ? width - 100 : 275
+
 export default class MarketingCarousel extends React.Component {
   state = {
     index: 0
@@ -100,7 +105,7 @@ export default class MarketingCarousel extends React.Component {
       return (
         <Image
           source={{ uri: item.imageUrl }}
-          style={{ width: 300, height: 300 }}
+          style={{ width: itemWidth, height: itemWidth }}
         />
       )
     } else if (item.animation) {
@@ -124,7 +129,7 @@ export default class MarketingCarousel extends React.Component {
     let maybeEndButton
     if (data.endButton) {
       maybeEndButton = (
-        <View style={{ marginTop: 20, marginBottom: 40 }}>
+        <View>
           <TurquoiseRoundedInvertedButton
             title="Säg hej till Hedvig!"
             onPress={() => this.props.startChat()}
@@ -134,35 +139,36 @@ export default class MarketingCarousel extends React.Component {
     }
     return (
       <FullScreen>
-        <StatusBar />
+        {data.heading ? (
+          <CenteredText>
+            <MyStyledHeading>{data.heading}</MyStyledHeading>
+          </CenteredText>
+        ) : null}
         <Container>
-          {data.heading ? (
-            <CenteredText>
-              <MyStyledHeading>{data.heading}</MyStyledHeading>
-            </CenteredText>
-          ) : null}
           <ImageContainer>
             <Carousel
               ref={c => {
                 this._carousel = c
-              }}
+              }}s
               data={contents}
               renderItem={this._renderItem}
               sliderWidth={Dimensions.get("window").width}
-              itemWidth={300}
+              itemWidth={itemWidth}
               inactiveSlideOpacity={0}
               inactiveSlideScale={0.9}
               onSnapToItem={slideIndex => this.setState({ index: slideIndex })}
             />
           </ImageContainer>
-          <ParagraphContainer>
-            {maybeEndButton}
-            <CenteredText>
-              <MySmallText>{data.paragraph}</MySmallText>
-            </CenteredText>
-          </ParagraphContainer>
+          {maybeEndButton}
+          { data.paragraph ? (
+            <ParagraphContainer>
+              <CenteredText>
+                <MySmallText>{data.paragraph}</MySmallText>
+              </CenteredText>
+            </ParagraphContainer>
+          ) : null }
         </Container>
-        <View style={{ marginBottom: 40 }}>
+        <View style={{ marginBottom: 20 }}>
           <DotsContainer>
             <Pagination
               dotsLength={contents.length}
