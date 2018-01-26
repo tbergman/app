@@ -33,13 +33,13 @@ export const TextRow = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1em;
+  min-height: max-content;
 
   @media (min-width: 800px) {
     flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
-    min-height: max-content;
   }
 `
 
