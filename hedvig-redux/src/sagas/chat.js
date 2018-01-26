@@ -68,6 +68,14 @@ const resetConversation = function*() {
     }
   })
   yield take("CHAT_RESET_REQUESTED")
+  yield put({
+    type: API,
+    payload: {
+      url: "/chat/start",
+      method: "POST",
+      SUCCESS: "CHAT_STARTED" // TODO No hardcoded actions
+    }
+  })
   yield put(chatActions.getMessages())
 }
 
