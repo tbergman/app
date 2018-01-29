@@ -26,6 +26,7 @@ import keyboardStateChangeReducer from "./src/reducers/keyboardState"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
 import { navigationSaga } from "./src/sagas/navigation"
+import { chatStartSaga, chatLoginSaga } from "./src/sagas/marketingCarousel"
 import { getOrLoadToken } from "./src/services/TokenStorage"
 import EventEmitter from "./src/services/EventEmitter"
 import * as baseNavigationActions from "./src/actions/baseNavigation"
@@ -56,7 +57,9 @@ export class App extends React.Component {
         keyboardSaga,
         tokenStorageSaga,
         navigationSaga,
-        logoutSaga
+        logoutSaga,
+        chatStartSaga,
+        chatLoginSaga
       ],
       additionalMiddleware: [
         sentryMiddleware,

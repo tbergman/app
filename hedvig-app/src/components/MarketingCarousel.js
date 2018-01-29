@@ -193,25 +193,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     login: () => {
       dispatch({
-        type: types.API,
+        type: "MARKETING_CAROUSEL/CHAT_LOGIN",
         payload: {
-          url: "/chat/login",
-          method: "POST",
-          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_LOGIN_SUCCESS" // TODO No hardcoded actions
+          onSuccess: ownProps.dismiss
         }
       })
-      ownProps.dismiss()
     },
     startChat: () => {
       dispatch({
-        type: types.API,
+        type: "MARKETING_CAROUSEL/CHAT_START",
         payload: {
-          url: "/chat/start",
-          method: "POST",
-          SUCCESS: "MARKETING_CAROUSEL_TRIGGER_CHAT_START_SUCCESS" // TODO No hardcoded actions
-        },
+          onSuccess: ownProps.dismiss
+        }
       })
-      ownProps.dismiss()
     }
   }
 }
