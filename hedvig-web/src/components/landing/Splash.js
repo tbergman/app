@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import VisibilitySensor from "react-visibility-sensor"
 
 import { TurquoiseRoundedButtonStyled } from "../styles/button"
+import { HeadingSubText } from "../styles/landing";
 
 const Container = styled.div`
   display: flex;
@@ -35,7 +36,13 @@ const TextContainer = styled.div`
 const Heading = styled.h1`
   font-family: "Merriweather";
   font-weight: 400;
-  font-size: 72px;
+  font-size: 48px;
+  line-height: normal;
+  margin: 0;
+
+  @media (min-width: 800px) {
+    font-size: 72px;
+  }
 `
 
 class Splash extends React.Component {
@@ -47,11 +54,12 @@ class Splash extends React.Component {
     return (
       <Container>
         <TextContainer>
-          <Heading>Säg hej till din nya bästa vän</Heading>
+          <Heading>Livet är enklare med Hedvig</Heading>
+          <HeadingSubText>Försäkring som du aldrig tidigare har upplevt det</HeadingSubText>
           <Link to="/chat">
             <VisibilitySensor onChange={this._change}>
               <TurquoiseRoundedButtonStyled>
-                Hej, Hedvig!
+                Säg hej till Hedvig
               </TurquoiseRoundedButtonStyled>
             </VisibilitySensor>
           </Link>

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { HeadingContainer, PurpleHeading, SubItemContainer, SubItem, SubItemText } from "../styles/landing"
+import { SubItemContainer, SubItem, SubItemText } from "../styles/landing"
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
   border-top: 1px solid ${props => props.theme.colors.lightGray};
 
   @media (min-width: 800px) {
-    height: 800px;
+    height: 600px;
   }
 `
 
@@ -22,11 +22,6 @@ const CustomSubItem = SubItem.extend`
 const Collaboration = () => {
   return (
     <Container>
-      <HeadingContainer>
-        <PurpleHeading>
-          Tryggas av en global försäkringsjätte
-        </PurpleHeading>
-      </HeadingContainer>
       <SubItemContainer>
         <CustomSubItem>
           <img

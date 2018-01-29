@@ -29,7 +29,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   min-height: 100%;
-  padding: 0 0 8em;
+  margin: 3em 0;
 
   @media (min-width: 800px) {
     flex-direction: row;
@@ -79,7 +79,7 @@ export default class AssetTrackerDemo extends React.Component {
           <WhiteRoundedButton
             onClick={() => this.setState({ expanded: !this.state.expanded })}
           >
-            { this.state.expanded ? "Förminska" : "Mer om prylbanken" }
+            { this.state.expanded ? "Mindre om prylbanken" : "Mer om prylbanken" }
           </WhiteRoundedButton>
         </MyCenteredColumn>
         { this.state.expanded ? (
@@ -97,6 +97,12 @@ export default class AssetTrackerDemo extends React.Component {
   render() {
     return (
       <Container>
+        <PhoneContainer>
+          <Phone
+            src="/assets/web/Images/Hedvig_Prylbanken_01@3x.png"
+            alt="Hedvigs prylbank"
+          />
+        </PhoneContainer>
         <TextContainer>
           <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade</MyBlackPurpleHeading2>
           <HeadingSubText>
@@ -104,12 +110,6 @@ export default class AssetTrackerDemo extends React.Component {
           </HeadingSubText>
           {this.maybeExpanded()}
         </TextContainer>
-        <PhoneContainer>
-          <Phone
-            src="/assets/web/Images/Hedvig_Prylbanken_01@3x.png"
-            alt="Hedvigs prylbank"
-          />
-        </PhoneContainer>
       </Container>
     )
   }

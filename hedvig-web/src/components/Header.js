@@ -6,11 +6,13 @@ import { TurquoiseRoundedButtonStyled } from "./styles/button"
 import { ResetIconButton } from "./Button"
 
 const HeaderLinkContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: none;
+  justify-content: flex-start;
+  flex: 1;
 
   @media (min-width: 800px) {
     min-width: 300px;
+    display: flex;
   }
 `
 
@@ -26,7 +28,7 @@ const HeaderNavigationLinksContainer = styled.div`
   @media (min-width: 800px) {
     display: flex;
     justify-content: space-evenly;
-    min-width: 200px;
+    min-width: 300px;
   }
 `
 
@@ -35,11 +37,6 @@ export class Header extends React.Component {
     return (
       <HeaderStyled>
         <HeaderLinkContainer>
-          <div>
-            <Link to="/">
-              <HeaderIconStyled />
-            </Link>
-          </div>
           <HeaderNavigationLinksContainer>
             <Link to="/about-us">
               Om Hedvig
@@ -49,7 +46,12 @@ export class Header extends React.Component {
             </Link>
           </HeaderNavigationLinksContainer>
         </HeaderLinkContainer>
-        <div>
+        <div style={{flex: 1}}>
+            <Link to="/">
+              <HeaderIconStyled />
+            </Link>
+          </div>
+        <div style={{flex: 1, textAlign: "right"}}>
           {this.props.headerRight || (
             <Link to="/chat">
               <ResetIconButton />

@@ -68,7 +68,7 @@ export default class ClaimDemo extends React.Component {
           <BlackPurpleRoundedButtonWhiteBorder
             onClick={() => this.setState({ expanded: !this.state.expanded })}
           >
-            { this.state.expanded ? "Förminska" : "Mer om appen" }
+            { this.state.expanded ? "Mindre om appen" : "Mer om appen" }
           </BlackPurpleRoundedButtonWhiteBorder>
         </MyCenteredColumn>
         { this.state.expanded ? (

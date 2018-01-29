@@ -1,7 +1,7 @@
 import React from "react"
 import Lottie from "react-lottie"
 
-import { SplashStyled, SplashText, AnimationsContainer, HeadingSubText } from "../styles/landing";
+import { SplashStyled, SplashText, AnimationsContainer } from "../styles/landing";
 import { Heading1 } from "../styles/typography";
 
 
@@ -27,7 +27,7 @@ const getAnimationDimensions = () => {
 const animationDimensions = getAnimationDimensions()
 
 const WaterDamagePage = () => (
-    <SplashStyled style={{paddingTop: "150px"}}>
+    <SplashStyled style={{paddingTop: "60px"}}>
       <AnimationsContainer style={{position: "absolute"}}>
         <Lottie
           options={{
@@ -61,8 +61,7 @@ const WaterDamagePage = () => (
         width={window.innerWidth * 1.5}
       />
         <SplashText style={{position: "absolute", alignItems: "center", bottom: "50px"}}>
-            <PurpleHeading>Försäkring som du aldrig upplevt det tidigare</PurpleHeading>
-            <HeadingSubText>För dig, ditt hem och dina prylar</HeadingSubText>
+            <PurpleHeading>För dig, ditt hem och dina prylar</PurpleHeading>
         </SplashText>
     </SplashStyled>
 )

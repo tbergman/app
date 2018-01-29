@@ -28,12 +28,15 @@ const SlideDownAnimation = keyframes`
 const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
   overflow-y: hidden;
   animation: ${SlideDownAnimation} 0.1s linear;
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 16px;
 `
 
 const HidingCtaButton = ({isVisible}) => (
   !isVisible ? (
     <AnimatedCtaButton>Säg hej till Hedvig</AnimatedCtaButton>
-  ) : null
+  ) : (<div></div>)
 )
 
 const ConnectedHidingCtaButton = connect(
@@ -47,8 +50,8 @@ const Landing = () => { // Fragment is used as a quick hack to render nothing in
     <div>
       <Header headerRight={<ConnectedHidingCtaButton />}/>
       <Splash />
-      <ClaimDemo />
       <WaterDamagePage />
+      <ClaimDemo />
       <AssetTrackerDemo />
       <ModelExplanation />
       <Collaboration />

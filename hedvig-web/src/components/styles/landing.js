@@ -47,7 +47,7 @@ export const SplashStyled = styled.div`
   padding-bottom: 75px;
   background-image: url("/assets/web/splash/backdrop.svg");
   background-size: cover;
-  height: 1000px;
+  height: 700px;
   padding-top: 3em;
   @media (min-width: 576px) {
     padding-bottom: 75px;
@@ -89,7 +89,10 @@ export const SplashText = styled.div`
   text-align: center;
   height: 100%;
   width: 100%;
-  padding: 0 0 0 4em;
+
+  @media (min-width: 800px) {
+    padding: 0 0 0 4em;
+  }
 `
 
 export const AnimationStyled = styled(Lottie)`
@@ -168,9 +171,11 @@ export const HeadingContainer = styled.div`
 export const HeadingSubText = styled.p`
   text-align: center;
   font-size: 1.2em;
+  margin: 0.5em;
 
   @media (min-width: 800px) {
     text-align: left;
+    margin: 0 0 1em;
   }
 `
 
@@ -187,6 +192,17 @@ const FadeInAnimation = keyframes`
 export const AbsoluteFadeInParagraph = styled.p`
   position: absolute;
   max-width: 600px;
+  
+  @media (max-width: 800px) {
+    left: 0;
+    background-color: #eeeeee;
+    border-radius: 20px;
+    border: 1px rgba(0,0,0,0) solid;
+    margin: 1em 0.5em;
+    padding: 0.2em;
+    color: black;
+    text-align: center;
+  }
 
   animation: ${FadeInAnimation} 0.15s linear;
 `
