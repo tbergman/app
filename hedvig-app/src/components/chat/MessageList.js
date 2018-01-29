@@ -109,6 +109,7 @@ const HedvigMessageMapping = {
   hero: HeroMessage,
   bankid_collect: () => null, // <-- This is how to not render certain types of messages from Hedvig
   audio: () => null,
+  polling: () => null
 }
 
 const renderMessage = function(message, idx, lastIndex = false) {

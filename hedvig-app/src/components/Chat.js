@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 
 import MessageList from "../containers/chat/MessageList"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
@@ -19,15 +20,9 @@ import {
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import { NavBar } from "./NavBar"
 import { ChatNavRestartButton, NavigateBackButton } from "./Button"
+import { types }  from "hedvig-redux"
 
-const getInputComponent = function(messages, navigation) {
-  if (messages.length === 0) {
-    return null
-  }
-  let lastIndex = messages.length - 1
-  let lastMessage = messages[lastIndex]
-  let lastMessageType = lastMessage.body.type
-  return {
+const inputComponentMap = (lastIndex, navigation) => ({
     multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
     text: <ChatTextInput messageIndex={lastIndex} />,
     number: <ChatNumberInput messageIndex={lastIndex} />,
@@ -51,7 +46,51 @@ const getInputComponent = function(messages, navigation) {
     bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
     paragraph: <ParagraphInput messageIndex={lastIndex} />,
     audio: <AudioInput messageIndex={lastIndex} />
-  }[lastMessageType]
+  })
+
+class UnconnectedPollingMessage extends React.Component {
+  componentDidMount() {
+    this.props.startPolling()
+  }
+
+  componentWillUnmount() {
+    this.props.stopPolling()
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.props.children}
+      </React.Fragment>
+    )
+  }
+}
+
+const PollingMessage = connect(
+  undefined,
+  dispatch => ({
+    startPolling: () => dispatch({type: types.START_POLLING_MESSAGES}),
+    stopPolling: () => dispatch({type: types.STOP_POLLING_MESSAGES}),
+  })
+)(UnconnectedPollingMessage)
+
+const getInputComponent = function(messages, navigation) {
+  if (messages.length === 0) {
+    return null
+  }
+  let lastIndex = messages.length - 1
+  let lastMessage = messages[lastIndex]
+  let lastMessageType = lastMessage.body.type
+  if (lastMessageType === "polling") {
+    lastMessage = messages[lastIndex - 2]
+    lastMessageType = lastMessage.body.type
+    return (
+      <PollingMessage>
+        {inputComponentMap(lastIndex - 1, navigation)[lastMessageType]}
+      </PollingMessage>
+    )
+  }
+  return inputComponentMap(lastIndex, navigation)[lastMessageType]
 }
 
 export default class Chat extends React.Component {
