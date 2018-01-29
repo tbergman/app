@@ -68,10 +68,16 @@ export const TextBody = styled.div`
   }
 `
 
+const CustomButton = TurquoiseRoundedButtonStyled.extend`
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 16px;
+`
+
 export const SayHi = () => (
   <Link to="/chat">
-    <TurquoiseRoundedButtonStyled>
+    <CustomButton>
       Säg hej till Hedvig!
-    </TurquoiseRoundedButtonStyled>
+    </CustomButton>
   </Link>
 )
