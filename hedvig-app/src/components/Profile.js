@@ -123,7 +123,7 @@ export default class Profile extends React.Component {
         title: "Min betalning",
         icon: <ProfileBankAccountIcon />,
         text: this.props.user.maskedBankAccountNumber,
-        secondText: `Autogiro ${paymentStatus}${nextPaymentText}`
+        secondText: this.props.user.paymentStatus !== "INACTIVE" ? `Autogiro ${paymentStatus}${nextPaymentText}` : ""
         // Disabled profile actions
         // onPress: () => this.props.editBankAccount()
       })
