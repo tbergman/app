@@ -11,7 +11,6 @@ import {
 } from "./styles/text"
 import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
-import { types } from "hedvig-redux"
 
 const contents = [
   {
