@@ -11,6 +11,11 @@ export default (state = {}, action) => {
         animation: true,
         hideOnPress: true,
         delay: 0,
+        backgroundColor: "#1be9b6",
+        textColor: "#ffffff",
+        textStyle: {
+          fontFamily: "circular"
+        },
       })
       return state
     default:
