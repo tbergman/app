@@ -6,7 +6,13 @@ import { Header } from "./Header";
 import { WhiteRoundedButton, TurquoiseRoundedButton } from "./Button";
 
 const Container = styled.div`
-  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 800px) {
+    height: 100%;
+  }
 `
 
 const ContentContainer = styled.div`
@@ -43,9 +49,14 @@ const GreenSeparatorLine = styled.hr`
 
 const ContentHeader = styled.h1`
   font-family: "Merriweather";
-  font-size: 72px;
+  font-size: 48px;
   font-weight: 400;
+  line-height: normal;
   color: ${props => props.theme.colors.blackPurple};
+  
+  @media (min-width: 800px) {
+    font-size: 72px;
+  }
 `
 
 const InstagramIcon = styled.img`
