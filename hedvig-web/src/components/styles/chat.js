@@ -40,6 +40,7 @@ export const MessageContainerStyled = styled.div`
   background-size: 16px 22px;
   background-position: bottom 15px left;
   background-repeat: no-repeat;
+  max-width: 80%;
 `
 
 export const OptionsContainerStyled = styled.div`
