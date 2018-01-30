@@ -24,7 +24,7 @@ const chatStart = function*(action){
       }
     }
 
-    yield put(chatActions.getMessages())
+    return yield put(chatActions.getMessages())
   }
 }
 
@@ -51,7 +51,7 @@ const chatLogin = function*(action) {
       }
     }
 
-    yield put(chatActions.getMessages())
+    return yield put(chatActions.getMessages())
   }
 }
 
