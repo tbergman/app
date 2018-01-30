@@ -110,22 +110,11 @@ export default class Profile extends React.Component {
 
   _maybeBankAccount() {
     if (this.props.user.maskedBankAccountNumber) {
-      let paymentStatus = {
-        ACTIVE: "aktiv"
-      }[this.props.user.paymentStatus]
-      let nextPaymentText
-      if (this.props.user.paymentStatus === "ACTIVE") {
-        nextPaymentText = ` | Nästa dragning ${moment(
-          this.props.user.nextPaymentDate
-        ).format("D/M")}`
-      }
       return this._userRow({
         title: "Min betalning",
         icon: <ProfileBankAccountIcon />,
         text: this.props.user.maskedBankAccountNumber,
-        secondText: this.props.user.paymentStatus !== "INACTIVE" ? `Autogiro ${paymentStatus}${nextPaymentText}` : ""
-        // Disabled profile actions
-        // onPress: () => this.props.editBankAccount()
+        secondText: ""
       })
     }
   }
