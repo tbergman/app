@@ -152,7 +152,7 @@ export default class AddEditAsset extends React.Component {
         date: this.state.item.date
       })
       if (action !== DatePickerAndroid.dismissedAction) {
-        this._updateDate(new Date(year, month, day))
+        this._updateDate(new Date(year, month, day), true)
       }
     } catch ({ code, message }) {
       console.error("Cannot open date picker", message) // eslint-disable-line no-console
@@ -165,8 +165,8 @@ export default class AddEditAsset extends React.Component {
     if (Platform.OS === "ios") {
       return (
         <DatePickerIOS
-          ref={DatePickerIOS}
           mode="date"
+          ref={ref => this._datePickerIOS = ref}
           date={this.state.item.date}
           maximumDate={new Date()}
           onDateChange={date => {
@@ -218,19 +218,23 @@ export default class AddEditAsset extends React.Component {
   }
 
   _updateTitle(title) {
-    let item = this.state.item
+    let item = { ...this.state.item }
     item.title = title
     this.setState({ item })
   }
 
-  _updateDate(date) {
-    let item = this.state.item
+  _updateDate(date, shouldClose) {
+    let item = { ...this.state.item }
     item.date = date
-    this.setState({ item, editingDate: false })
+    if (shouldClose) {
+      this.setState({ item, editingDate: false })
+      return
+    }
+    this.setState({ item })
   }
 
   _updatePrice(price) {
-    let item = this.state.item
+    let item = { ...this.state.item }
     item.price = price
     this.setState({ item })
   }
