@@ -7,7 +7,6 @@ import authenticationReducer from "./authentication"
 import assetTrackerReducer from "./assetTracker"
 import userReducer from "./user"
 import cashbackReducer from "./cashback"
-import statusMessageReducer from "./statusMessage"
 import dialogReducer from "./dialog"
 import bankIdReducer from "./bankid"
 import uploadReducer from "./upload"
@@ -24,7 +23,6 @@ const rootReducer = (additionalReducers = {}) =>
         assetTracker: assetTrackerReducer,
         user: userReducer,
         cashback: cashbackReducer,
-        statusMessage: statusMessageReducer,
         dialog: dialogReducer,
         bankid: bankIdReducer,
         upload: uploadReducer

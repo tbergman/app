@@ -1,7 +1,6 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
 import { baseURL } from "../services/environment"
-import { API, API_ERROR } from "../actions/types"
-import * as statusMessageActions from "../actions/statusMessage"
+import { API, API_ERROR, STATUS_MESSAGE } from "../actions/types"
 
 const api = function*(action) {
   let state = yield select()
@@ -57,10 +56,10 @@ const api = function*(action) {
     }
     yield put({ type: action.payload.SUCCESS, payload: data })
     if (action.statusMessage) {
-      yield put(statusMessageActions.setStatusMessage(action.statusMessage))
+      yield put({type: STATUS_MESSAGE, message: action.statusMessage})
     }
   } catch (e) {
-    yield put(statusMessageActions.setStatusMessage({ error: e.toString() }))
+    yield put({type: STATUS_MESSAGE, message: "Something went wrong :("})
     yield put({
       type: action.payload.ERROR || API_ERROR,
       payload: data || e.toString()

@@ -31,7 +31,6 @@ import {
 import { updateItemSaga, deleteItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { addInsuranceSaga, removeInsuranceSaga } from "./insurance"
-import { handleStatusMessage } from "./statusMessage"
 import { updateCashbackSaga } from "./cashback"
 import { handleDialogSaga } from "./dialog"
 import { collectSaga } from "./bankid"
@@ -79,7 +78,6 @@ const root = (additionalSagas = []) =>
       uploadSaga,
       addInsuranceSaga,
       removeInsuranceSaga,
-      handleStatusMessage,
       updateCashbackSaga,
       collectSaga,
       handleDialogSaga,

@@ -23,6 +23,7 @@ import { appStateChange } from "./src/actions/appState"
 import { keyboardStateChange } from "./src/actions/keyboardState"
 import appStateChangeReducer from "./src/reducers/appState"
 import keyboardStateChangeReducer from "./src/reducers/keyboardState"
+import statusMessageReducer from "./src/reducers/statusMessage"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
 import { navigationSaga } from "./src/sagas/navigation"
@@ -49,7 +50,8 @@ export class App extends React.Component {
       additionalReducers: {
         nav,
         appState: appStateChangeReducer,
-        keyboard: keyboardStateChangeReducer
+        keyboard: keyboardStateChangeReducer,
+        status: statusMessageReducer
       },
       additionalSagas: [
         apiAndNavigateToChatSaga,

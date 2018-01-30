@@ -42,9 +42,11 @@
     "expo": "^22.0.0",
     "metro-bundler": "^0.13.0",
     "moment": "2.20.1",
+    "ramda": "^0.25.0",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.0.tar.gz",
     "react-native-popup-dialog": "^0.9.36",
+    "react-native-root-toast": "^3.0.0",
     "react-native-snap-carousel": "^3.2.3",
     "react-navigation": "^1.0.0-beta.22",
     "react-redux": "^5.0.6",
@@ -53,7 +55,6 @@
     "rn-placeholder": "^1.0.1",
     "sentry-expo": "~1.6.0",
     "styled-components": "^2.1.2",
-    "wolfy87-eventemitter": "^5.2.3",
-    "ramda": "^0.25.0"
+    "wolfy87-eventemitter": "^5.2.3"
   }
 }

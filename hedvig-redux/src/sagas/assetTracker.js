@@ -6,13 +6,13 @@ import {
   DELETE_ITEM,
   ITEM_DELETED,
   GET_ASSETS,
-  LOADED_ASSETS
+  LOADED_ASSETS,
+  STATUS_MESSAGE
 } from "../actions/types"
 import { baseURL } from "../services/environment"
 window.baseURL = baseURL
 import * as assetActions from "../actions/assetTracker"
 import * as uploadActions from "../actions/upload"
-import * as statusMessageActions from "../actions/statusMessage"
 import { take, takeEvery, put, call } from "redux-saga/effects"
 import R from "ramda"
 
@@ -81,17 +81,9 @@ const postItem = function*({ afterUploadCallback, payload: item }) {
   })
   let action = yield take([ITEM_UPDATED, API_ERROR])
   if (action.type === ITEM_UPDATED) {
-    yield put(
-      statusMessageActions.setStatusMessage({
-        message: `${itemWithUploadedFields.title || "Prylen"} är sparad!`
-      })
-    )
+    yield put({type: STATUS_MESSAGE, message: `${itemWithUploadedFields.title || "Prylen"} är sparad!`})
   } else if (action.type === API_ERROR) {
-    yield put(
-      statusMessageActions.setStatusMessage({
-        error: `Misslyckades att spara i prylbanken`
-      })
-    )
+    yield put({type: STATUS_MESSAGE, message: `Misslyckades att spara i prylbanken`})
   }
   yield put(assetActions.getAssets())
 }
@@ -110,17 +102,9 @@ const deleteItem = function*({ payload: item }) {
   })
   let action = yield take([ITEM_DELETED, API_ERROR])
   if (action.type === ITEM_DELETED) {
-    yield put(
-      statusMessageActions.setStatusMessage({
-        message: `${item.title || "Pryl"} borttagen ur prylbanken`
-      })
-    )
+    yield put({type: STATUS_MESSAGE, message: `${item.title || "Pryl"} borttagen ur prylbanken`})
   } else if (action.type === API_ERROR) {
-    yield put(
-      statusMessageActions.setStatusMessage({
-        error: `Misslyckades att ta bort pryl`
-      })
-    )
+    yield put({type: STATUS_MESSAGE, message: "Misslyckades att ta bort pryl"})
   }
   yield put(assetActions.getAssets())
 }

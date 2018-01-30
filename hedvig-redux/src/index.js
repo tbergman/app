@@ -9,7 +9,6 @@ import * as insuranceActions from "./actions/insurance"
 import * as chatActions from "./actions/chat"
 import * as assetActions from "./actions/assetTracker"
 import * as uploadActions from "./actions/upload"
-import * as statusMessageActions from "./actions/statusMessage"
 import * as cashbackActions from "./actions/cashback"
 import * as userActions from "./actions/user"
 import * as pushNotificationActions from "./actions/pushNotification"
@@ -77,7 +76,6 @@ export {
   assetActions,
   mockChatActions,
   uploadActions,
-  statusMessageActions,
   cashbackActions,
   userActions,
   pushNotificationActions,
