@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
@@ -54,6 +53,12 @@ const InstagramIcon = styled.img`
   height: 50px;
 `
 
+const InstagramLink = styled.a`
+  &:focus {
+    outline: none;
+  }
+`
+
 const CodeText = styled.p`
   font-size: 24px;
   font-family: "Merriweather";
@@ -69,7 +74,7 @@ const STATUSES = {
 class WaitListPage extends React.Component {
   static defaultProps = {
     before: 93,
-    status: STATUSES.GRANTED_ACCESS,
+    status: STATUSES.IN_QUEUE,
     code: "APPLE123",
   }
 
@@ -134,9 +139,9 @@ class WaitListPage extends React.Component {
           </ContentContainer>
           {this.props.status !== STATUSES.GRANTED_ACCESS ? (
             <Footer>
-              <Link to="https://www.instagram.com/hedvigers">
+              <InstagramLink target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/hedvigers">
                 <InstagramIcon src="/assets/web/Social icons/Instagram-purple.svg" alt="instagram"/>
-              </Link>
+              </InstagramLink>
               <p>Följ Hedvig på Instagram så länge</p>
             </Footer>
           ) : null}
