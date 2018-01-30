@@ -3,6 +3,7 @@ import { types, chatActions } from "hedvig-redux"
 
 const chatStart = function*(action){
   let tries = 0
+  action.payload.onSuccess()
   while (true) {
     yield put({
       type: types.API,
@@ -24,12 +25,12 @@ const chatStart = function*(action){
     }
 
     yield put(chatActions.getMessages())
-    action.payload.onSuccess()
   }
 }
 
 const chatLogin = function*(action) {
   let tries = 0
+  action.payload.onSuccess()
   while (true) {
     yield put({
       type: types.API,
@@ -51,7 +52,6 @@ const chatLogin = function*(action) {
     }
 
     yield put(chatActions.getMessages())
-    action.payload.onSuccess()
   }
 }
 

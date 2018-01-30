@@ -1,5 +1,5 @@
 import { types, chatActions } from "hedvig-redux"
-import { takeEvery, put } from "redux-saga/effects"
+import { takeEvery, put, take } from "redux-saga/effects"
 import { showChatAction } from "../actions/baseNavigation"
 
 const handleLogout = function*() {
@@ -22,7 +22,20 @@ const handleLogout = function*() {
   yield put({ type: types.AUTHENTICATE, payload: {} })
 
   // Switch to the chat
+
   yield put(showChatAction())
+
+  yield put({
+    type: types.API,
+    payload: {
+      method: "POST",
+      url: "/chat/start",
+      body: null,
+      SUCCESS: "LOGOUT/CHAT_START_SUCCESS"
+    }
+  })
+
+  yield take("LOGOUT/CHAT_START_SUCCESS")
 
   // GET /messages
   yield put(chatActions.getMessages())
