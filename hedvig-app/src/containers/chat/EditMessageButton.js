@@ -11,8 +11,8 @@ const mapDispatchToProps = dispatch => {
     onPress: () =>
       dispatch(
         dialogActions.showDialog({
-          title: "Är du säker?",
-          paragraph: "Om du trycker ja så tas detta meddelande bort.",
+          title: "Vill du ändra ditt svar?",
+          paragraph: "Tryck ja för att ändra ditt svar på förra frågan",
           confirmButtonTitle: "Ja",
           dismissButtonTitle: "Nej",
           onConfirm: () => dispatch(chatActions.editLastResponse()),
