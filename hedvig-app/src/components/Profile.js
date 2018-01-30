@@ -193,7 +193,7 @@ export default class Profile extends React.Component {
     return (
       <StyledProfileContainer>
         <StyledListHeader>
-          <StyledCharityParagraph>Överskottet går till</StyledCharityParagraph>
+          <StyledCharityParagraph>Du stödjer</StyledCharityParagraph>
           <StyledCharityImage
             source={{ uri: this.props.user.selectedCashbackImageUrl }}
           />
