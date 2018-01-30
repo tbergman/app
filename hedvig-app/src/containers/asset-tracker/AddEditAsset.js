@@ -4,7 +4,6 @@ import AddEditAsset from "../../components/asset-tracker/AddEditAsset"
 import {
   assetActions,
   chatActions,
-  statusMessageActions,
   dialogActions,
   types
 } from "hedvig-redux"
@@ -43,7 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }))
     },
     setStatusMessage: message =>
-      dispatch(statusMessageActions.setStatusMessage({ message })),
+      dispatch({type: types.STATUS_MESSAGE, message }),
     raiseAssetClaim: asset =>
       dispatch(
         chatActions.apiAndNavigateToChat({

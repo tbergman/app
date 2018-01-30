@@ -39,11 +39,7 @@ const api = function*(action) {
     // Bad request
     // Unauthenticated
     if (knownHttpError || unknownHttpError) {
-      yield put(
-        statusMessageActions.setStatusMessage({
-          error: knownHttpError || unknownHttpError
-        })
-      )
+      yield put({type: STATUS_MESSAGE, message: knownHttpError || unknownHttpError})
       data = null
     } else if (response.status === 401) {
       yield put({
