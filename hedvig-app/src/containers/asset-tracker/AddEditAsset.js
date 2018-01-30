@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import { NavigationActions } from "react-navigation";
 import AddEditAsset from "../../components/asset-tracker/AddEditAsset"
 import {
   assetActions,
@@ -56,7 +57,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch({
         type: types.SHOW_ACTION_SHEET,
         payload: { options, callback }
-      })
+      }),
+    goBack: () => dispatch(NavigationActions.back())
   }
 }
 

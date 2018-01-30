@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Platform,
   Keyboard,
-  Clipboard
+  Clipboard,
+  BackHandler
 } from "react-native"
 import { HeaderRightChat } from "../NavBar"
 import { NavBar } from "../NavBar"
@@ -82,11 +83,18 @@ export default class AddEditAsset extends React.Component {
         "keyboardDidHide",
         this.handleKeyboardHide.bind(this)
       )
+      BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
     }
   }
 
   componentWillUnmount() {
     this.keyboardHideListener.remove()
+    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+  }
+  
+  onBackPress = () => {
+    this.props.goBack()
+    return true
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -147,8 +155,6 @@ export default class AddEditAsset extends React.Component {
   async showAndroidDatePicker() {
     try {
       const { action, year, month, day } = await DatePickerAndroid.open({
-        // Use `new Date()` for current date.
-        // May 25 2020. Month 0 is January.
         date: this.state.item.date
       })
       if (action !== DatePickerAndroid.dismissedAction) {
