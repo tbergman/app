@@ -88,6 +88,7 @@ export const IconButtonStyled = RoundedButtonStyled.extend`
   width: ${props => iconSizes[props.size || "big"]}px;
   height: ${props => iconSizes[props.size || "big"]}px;
   background-image: url(${props => props.iconUrl});
+  margin-left: auto;
 `
 
 export const InactiveIconButtonStyled = IconButtonStyled.extend`
