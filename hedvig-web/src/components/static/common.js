@@ -8,7 +8,7 @@ export const Container = styled.div`
 `
 
 export const Hero = styled.div`
-  height: 900px;
+  height: 400px;
   display: flex;
   background-image: 
     linear-gradient(
@@ -20,6 +20,7 @@ export const Hero = styled.div`
   justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 `
 
 export const Heading = styled.h1`
