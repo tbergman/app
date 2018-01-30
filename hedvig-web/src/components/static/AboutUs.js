@@ -11,6 +11,7 @@ import {
   TextBody
 } from "./common"
 import { Header } from "../Header"
+import Footer from "../Footer"
 
 const TextContainer = styled.div`
   display: flex;
@@ -81,6 +82,7 @@ export const AboutUs = () => (
         </TextBody>
       </TextRow>
     </TextContainer>
+    <Footer />
   </Container>
 )
 
