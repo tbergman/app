@@ -45,6 +45,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   })
   const res = yield take(["SEND_CHAT_RESPONSE_SUCCESS", "API/UNAUTHORIZED"])
   if (res.type === "API/UNAUTHORIZED") {
+    yield put({type: "STATUS_MESSAGE", message: "Oj, något verkar ha gått fel! 😳"})
     yield put({type: "AUTHENTICATE"})
     yield take("RECEIVED_TOKEN")
     return yield put(chatActions.getMessages())
