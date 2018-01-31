@@ -73,7 +73,10 @@ class Offer extends React.Component {
           }
         />
         <ScrollView style={{backgroundColor: "#F9FAFC"}}>
-          <OfferDashboardHeader newTotalPrice={this.props.insurance.newTotalPrice} />
+          <OfferDashboardHeader
+            newTotalPrice={this.props.insurance.newTotalPrice}
+            isCurrentlyInsured={this.props.insurance.insuredAtOtherCompany}
+          />
           <View style={{paddingHorizontal: 8, paddingBottom: 8}}>
             {this.props.insurance.categories.map((category, index) => (
               <PerilsCategory

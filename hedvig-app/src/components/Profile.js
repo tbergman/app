@@ -128,7 +128,7 @@ export default class Profile extends React.Component {
         onPress: () =>
           this.props.navigation.navigate("Carousel", {
             items: this.props.cashbackAlternatives,
-            title: "Cashback",
+            title: "Välgörenhet",
             initialSlideIndex: 0,
             renderCta: this._cashbackCarouselCta.bind(this)
           })

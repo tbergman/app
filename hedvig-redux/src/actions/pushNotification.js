@@ -7,7 +7,7 @@ export function registerPushToken(pushToken) {
   return {
     type: API,
     payload: {
-      url: "/push-token",
+      url: "/hedvig/push-token",
       method: "POST",
       body: JSON.stringify(body, null, 4),
       SUCCESS: "REGISTERED_PUSH_TOKEN"

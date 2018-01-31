@@ -15,7 +15,7 @@ Asset.loadAsync([
   require("../../../assets/icons/my_insurance/pris.png")
 ])
 
-const OfferDashboardHeader = ({ newTotalPrice }) => {
+const OfferDashboardHeader = ({ newTotalPrice, isCurrentlyInsured }) => {
   return (
     <StyledDashboardHeader>
       <StyledDashboardHeaderRow>
@@ -27,7 +27,7 @@ const OfferDashboardHeader = ({ newTotalPrice }) => {
             source={require("../../../assets/icons/my_insurance/startdatum.png")}
           />
           <StyledPassiveText>
-            Startdatum: När din nuvarande kan avslutas
+            { isCurrentlyInsured ? "Startdatum: När din nuvarande kan avslutas" : "Idag"}
           </StyledPassiveText>
         </StyledDashboardHeaderItem>
       </StyledDashboardHeaderRow>

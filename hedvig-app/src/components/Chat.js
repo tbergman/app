@@ -112,7 +112,7 @@ export default class Chat extends React.Component {
     return (
       <StyledChatContainer>
         <NavBar
-          title="Chat"
+          title="Hedvig"
           headerLeft={
             headerLeft
           }

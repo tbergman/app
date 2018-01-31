@@ -37,6 +37,7 @@ export const StyledCarouselParagraph = CircularFontText.extend`
   color: ${props => props.theme.typography.passiveText.color}
   text-align: center;
   margin: 0px 40px 40px 40px;
+  line-height: 20px;
 `
 
 export const StyledParagraphToggleContainer = styled.View`
