@@ -22,7 +22,7 @@ const Container = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 10em 0 0;
-  
+
   @media (min-width: 800px) {
     flex-direction: row;
     justify-content:  space-around;
@@ -67,6 +67,7 @@ export default class ClaimDemo extends React.Component {
         <MyCenteredColumn>
           <BlackPurpleRoundedButtonWhiteBorder
             onClick={() => this.setState({ expanded: !this.state.expanded })}
+            style={{minWidth: "200px"}}
           >
             { this.state.expanded ? "Mindre om appen" : "Mer om appen" }
           </BlackPurpleRoundedButtonWhiteBorder>

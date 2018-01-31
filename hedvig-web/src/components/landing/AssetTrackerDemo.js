@@ -78,6 +78,7 @@ export default class AssetTrackerDemo extends React.Component {
         <MyCenteredColumn>
           <WhiteRoundedButton
             onClick={() => this.setState({ expanded: !this.state.expanded })}
+            style={{minWidth: "240px"}}
           >
             { this.state.expanded ? "Mindre om prylbanken" : "Mer om prylbanken" }
           </WhiteRoundedButton>

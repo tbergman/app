@@ -29,9 +29,10 @@ export const BlackPurpleRoundedButton = ({ onClick, children }) => (
   </BlackPurpleRoundedButtonStyled>
 )
 
-export const BlackPurpleRoundedButtonWhiteBorder = ({ onClick, children }) => (
+export const BlackPurpleRoundedButtonWhiteBorder = ({ onClick, children, ...props }) => (
   <BlackPurpleRoundedButtonWhiteBorderStyled
     onClick={onClick || defaultOnClick}
+    {...props}
   >
     {children || "No Content"}
   </BlackPurpleRoundedButtonWhiteBorderStyled>
@@ -43,8 +44,11 @@ export const PurpleRoundedButton = ({ onClick, children }) => (
   </PurpleRoundedButtonStyled>
 )
 
-export const WhiteRoundedButton = ({ onClick, children }) => (
-  <WhiteRoundedButtonStyled onClick={onClick || defaultOnClick}>
+export const WhiteRoundedButton = ({ onClick, children, ...props }) => (
+  <WhiteRoundedButtonStyled
+    onClick={onClick || defaultOnClick}
+    {...props}
+  >
     {children || "No Content"}
   </WhiteRoundedButtonStyled>
 )
