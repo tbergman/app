@@ -68,7 +68,12 @@ export default class AssetList extends React.Component {
         </StyledAssetListElement>
       )
     })
-    return <StyledList>{assets}</StyledList>
+    return (
+      <StyledList>
+        {assets}
+        <StyledEmptyListText>Logga om du vill, dina prylar täcks ändå ✌️</StyledEmptyListText>
+      </StyledList>
+    )
   }
 
   maybeList() {
