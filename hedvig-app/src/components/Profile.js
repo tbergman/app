@@ -152,7 +152,7 @@ export default class Profile extends React.Component {
     } else {
       return (
         <RoundedButton
-          title="Välj"
+          title={`Stöd ${item.name}`}
           onPress={() => this.props.updateCashback(item, () => NavigationActions.navigate({ routeName: "ProfileTab" }))}
         />
       )
@@ -163,8 +163,7 @@ export default class Profile extends React.Component {
     Share.share(
       {
         message:
-          "Hedvig är ett modernt försäkringsbolag. Ladda ned Hedvig på AppStore eller Google Play. Läs mer på https://hedvig.com",
-        // url: 'https://hedvig.com',
+          "Hedvig är ett modernt försäkringsbolag. Ladda ned Hedvig på AppStore eller Google Play. Läs mer på https://www.hedvig.com",
         title: "Hedvig - ett modernt försäkringsbolag"
       },
       {
