@@ -39,8 +39,8 @@ const api = function*(action) {
     // Bad request
     // Unauthenticated
     if (knownHttpError || unknownHttpError) {
-      yield put({type: STATUS_MESSAGE, message: knownHttpError || unknownHttpError})
-      data = null
+      yield put({type: STATUS_MESSAGE, message: "Något gick fel 😞"})
+      return yield put({type: action.payload.ERROR || API_ERROR})
     } else if (response.status === 401) {
       yield put({
         type: "API/UNAUTHORIZED"
@@ -55,7 +55,7 @@ const api = function*(action) {
       yield put({type: STATUS_MESSAGE, message: action.statusMessage})
     }
   } catch (e) {
-    yield put({type: STATUS_MESSAGE, message: "Something went wrong :("})
+    yield put({type: STATUS_MESSAGE, message: "Något gick fel 😞"})
     yield put({
       type: action.payload.ERROR || API_ERROR,
       payload: data || e.toString()
