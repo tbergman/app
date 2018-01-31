@@ -6,13 +6,13 @@
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"
     },
-    "version": "1.0.9",
+    "version": "1.0.10",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
     "sdkVersion": "22.0.0",
     "privacy": "unlisted",
     "ios": {
-      "buildNumber": "1.0.9",
+      "buildNumber": "1.0.10",
       "bundleIdentifier": "com.hedvig.test.app",
       "infoPlist": {
         "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
@@ -22,7 +22,7 @@
     "android": {
       "package": "com.hedvig.test.app",
       "permissions": ["CAMERA", "RECORD_AUDIO", "READ_INTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
-      "versionCode": 4
+      "versionCode": 5
     },
     "packagerOpts": {
       "projectRoots": "",
