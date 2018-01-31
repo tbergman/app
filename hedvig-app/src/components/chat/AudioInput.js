@@ -46,16 +46,7 @@ export default class AudioInput extends React.Component {
     const askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING)
     if (askResult.status !== "granted") {
       this.props.showPermissionDialog()
-    } else {
-      await Audio.setAudioModeAsync({
-        playsInSilentModeIOS: true,
-        allowsRecordingIOS: true,
-        interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
-        shouldDuckAndroid: true,
-        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS
-      })
-
-    }
+    } 
     this.setState({ permissionGranted: askResult.status === "granted" })
     return askResult.status === "granted"
   }
@@ -69,6 +60,13 @@ export default class AudioInput extends React.Component {
       }
     }
     try {
+      await Audio.setAudioModeAsync({
+        playsInSilentModeIOS: true,
+        allowsRecordingIOS: true,
+        interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS
+      })
       await this.setState({
         recordingStatus: {...this.state.recordingStatus, durationMillis: 0}
       })
@@ -87,26 +85,7 @@ export default class AudioInput extends React.Component {
         playbackStatus: null,
         isPlaying: false
       })
-      await this.state.recordingInstance.prepareToRecordAsync({
-        android: {
-          extension: '.m4a',
-          outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
-          audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
-          sampleRate: 44100,
-          numberOfChannels: 2,
-          bitRate: 128000,
-        },
-        ios: {
-          extension: '.m4a',
-          audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
-          outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC,
-          numberOfChannels: 2,
-          bitRate: 128000,
-          linearPCMBitDepth: 16,
-          linearPCMIsBigEndian: false,
-          linearPCMIsFloat: false,
-        }
-      })
+      await this.state.recordingInstance.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY)
       this.setState({ isRecording: true })
       await this.state.recordingInstance.startAsync()
     } catch (error) {
