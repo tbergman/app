@@ -385,11 +385,11 @@ export default class AddEditAsset extends React.Component {
         onSelected: () => this._takePhoto(onPhotoPickedOrTaken)
       },
       {
-        label: "Mejla kvitto",
+        label: "Maila kvitto",
         onSelected: () => this.props.showDialog({
-          title: "Mejla in kvitto",
-          paragraph: "Mejla dina kvitton till kvitton@hedvig.com så lägger Hedvig till informationen automatiskt",
-          confirmButtonTitle: "Kopiera mejladressen",
+          title: "Maila in kvitto",
+          paragraph: "Maila dina kvitton till kvitton@hedvig.com så lägger Hedvig till informationen automatiskt",
+          confirmButtonTitle: "Kopiera Mailadressen",
           dismissButtonTitle: "Avbryt",
           onConfirm: () => {
             Clipboard.setString("kvitton@hedvig.com");
