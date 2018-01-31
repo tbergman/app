@@ -14,7 +14,7 @@ import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation
 
 const contents = [
   {
-    heading: "Det ska vara lätt\n när det är svårt",
+    heading: "Livet är enklare\nmed Hedvig",
     imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
     animation: null,
     paragraph: "Hedvig är försäkring för\ndig, ditt hem och dina prylar"
