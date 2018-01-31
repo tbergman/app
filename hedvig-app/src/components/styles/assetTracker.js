@@ -29,9 +29,12 @@ export const StyledAddItemText = CircularFontText.extend`
 `
 
 export const StyledEmptyListText = CircularFontText.extend`
-  margin: 20px;
-  color: ${props => props.theme.typography.activeText.color}
-  font-size: ${props => props.theme.typography.activeText.fontSize};
+  margin: 20px 40px;
+  color: ${props => props.theme.colors.darkGray};
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  padding: 0 0 40px;
 `
 
 // Add / edit view

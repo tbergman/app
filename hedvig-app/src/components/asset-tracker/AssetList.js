@@ -1,6 +1,7 @@
+/* global require */
 import React from "react"
 import {
-  View
+  View, Image
 } from "react-native"
 import { HeaderRightChat } from "../NavBar"
 import {
@@ -75,11 +76,21 @@ export default class AssetList extends React.Component {
       return this._assetList()
     } else {
       return (
-        <View>
+        <View style={{justifyContent: "center", height: "auto", flex: 1}}>
+          <View style={{justifyContent: "center", alignItems: "center"}}>
+            <Image
+              source={require("../../../assets/asset-tracker-bicycle.png")}
+              style={{
+                width: 219,
+                height: 150,
+              }}
+            />
+          </View>
           <StyledEmptyListText>
-            Om du vill kan du logga saker och deras kvitton här. Då får du
-            koll precis hur de är försäkrade, och kan anmäla en skada
-            superenkelt
+            Här kan du logga dina prylar och kvitton. Då ser du exakt hur de täcks
+            av försäkringen och kan anmäla en skada superenkelt{"\n\n"}
+
+            Det är inget måste, men kan vara{"\n"}skönt att ha koll ✌️
           </StyledEmptyListText>
         </View>
       )
