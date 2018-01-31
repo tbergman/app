@@ -162,8 +162,8 @@ export default class Profile extends React.Component {
     Share.share(
       {
         message:
-          "Hedvig är ett modernt försäkringsbolag. Ladda ned Hedvig på AppStore eller Google Play. Läs mer på https://www.hedvig.com",
-        title: "Hedvig - ett modernt försäkringsbolag"
+          "Livet är enklare med Hedvig. Ladda ner appen på AppStore eller Google Play. Läs mer på https://www.hedvig.com",
+        title: "Hedvig är försäkring som du aldrig tidigare har upplevt det"
       },
       {
         // Android only:
