@@ -33,7 +33,6 @@ import {
   RoundedButton,
   TurquoiseRoundedInvertedButton
 } from "./Button"
-import moment from "moment"
 import "moment/locale/sv"
 import R from "ramda"
 
