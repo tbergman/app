@@ -44,23 +44,10 @@ export const SplashStyled = styled.div`
   overflow: hidden;
   align-items: flex-start;
   justify-content: center;
-  padding-bottom: 75px;
   background-image: url("/assets/web/splash/backdrop.svg");
   background-size: cover;
-  height: 700px;
+  height: 600px;
   padding-top: 3em;
-  @media (min-width: 576px) {
-    padding-bottom: 75px;
-  }
-  @media (min-width: 768px) {
-    padding-bottom: 84px;
-  }
-  @media (min-width: 992px) {
-    padding-bottom: 84px;
-  }
-  @media (min-width: 1200px) {
-    padding-bottom: 84px;
-  }
 `
 
 export const AnimationsContainer = styled.div`
@@ -89,6 +76,7 @@ export const SplashText = styled.div`
   text-align: center;
   height: 100%;
   width: 100%;
+  line-height: 32px;
 
   @media (min-width: 800px) {
     padding: 0 0 0 4em;
@@ -192,7 +180,7 @@ const FadeInAnimation = keyframes`
 export const AbsoluteFadeInParagraph = styled.p`
   position: absolute;
   max-width: 600px;
-  
+
   @media (max-width: 800px) {
     left: 0;
     background-color: #eeeeee;

@@ -10,6 +10,8 @@ const PurpleHeading = Heading1.extend`
   margin-bottom: 0;
 `
 
+const width = window.innerHeight
+
 const getAnimationDimensions = () => {
   let width = window.innerWidth
   if (width < 576) {
@@ -27,7 +29,7 @@ const getAnimationDimensions = () => {
 const animationDimensions = getAnimationDimensions()
 
 const WaterDamagePage = () => (
-    <SplashStyled style={{paddingTop: "60px"}}>
+    <SplashStyled style={{paddingTop: "0px"}}>
       <AnimationsContainer style={{position: "absolute"}}>
         <Lottie
           options={{
@@ -48,20 +50,8 @@ const WaterDamagePage = () => (
           width={animationDimensions.width}
         />
       </AnimationsContainer>
-      <Lottie
-        options={{
-          loop: true,
-          autoplay: true,
-          animationData: require("../../bundledAssets/animations/water.json"),
-          rendererSettings: {
-            preserveAspectRatio: "none"
-          }
-        }}
-        height={720}
-        width={window.innerWidth * 1.5}
-      />
-        <SplashText style={{position: "absolute", alignItems: "center", bottom: "50px"}}>
-            <PurpleHeading>För dig, ditt hem och dina prylar</PurpleHeading>
+        <SplashText style={{position: "absolute", alignItems: "center", bottom: "70px"}}>
+          <PurpleHeading>För dig, ditt hem{ width > 414 ? (<br/>) : null} och dina prylar</PurpleHeading>
         </SplashText>
     </SplashStyled>
 )

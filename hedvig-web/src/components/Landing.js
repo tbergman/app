@@ -19,7 +19,7 @@ const SlideDownAnimation = keyframes`
   from {
     margin-bottom: 20px;
   }
-  
+
   to {
     margin-bottom: 0px;
   }

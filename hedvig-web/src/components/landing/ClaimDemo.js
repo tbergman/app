@@ -56,6 +56,8 @@ const PhoneContainer = styled.div`
   }
 `
 
+const width = window.innerWidth
+
 export default class ClaimDemo extends React.Component {
   state = {
     expanded: false
@@ -100,8 +102,8 @@ export default class ClaimDemo extends React.Component {
               autoplay: true,
               animationData: require("../../bundledAssets/animations/claims_demo.json")
             }}
-            height={610}
-            width={352}
+            height={width > 414 ? 610 : 450}
+            width={width > 414 ? 352 : 260}
           />
         </PhoneContainer>
       </Container>

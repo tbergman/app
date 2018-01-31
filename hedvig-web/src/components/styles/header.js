@@ -9,7 +9,7 @@ export const HeaderStyled = styled.div`
   width: 100%;
   top: 0;
   z-index: 1;
-  height: 72px;
+  height: 62px;
   background-color: white;
   border-bottom: solid 1px ${props => props.theme.colors.lightGray};
 

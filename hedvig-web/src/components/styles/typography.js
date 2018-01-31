@@ -6,7 +6,7 @@ export const Heading1 = styled.span`
 
   @media screen and (max-width: 576px) {
     font-size: 32px;
-    line-height: 48px;
+    line-height: 40px;
   }
 
   @media screen and (min-width: 577px) {
@@ -26,7 +26,7 @@ export const Heading2 = styled.span`
 
   @media screen and (min-width: 577px) and (max-width: 992px) {
     font-size: 32px;
-    line-height: 48px;
+    line-height: 40px;
   }
 
   @media screen and (min-width: 993px) {
