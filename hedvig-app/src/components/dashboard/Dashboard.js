@@ -38,8 +38,8 @@ export default class Dashboard extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
-  componentWillMount() {
-    // this.props.getInsurance()
+  componentDidMount() {
+    this.props.registerForPushNotifications()
   }
 
   renderCategories() {

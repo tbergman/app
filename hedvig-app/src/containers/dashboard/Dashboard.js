@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import Dashboard from "../../components/dashboard/Dashboard"
 import { insuranceActions, chatActions } from "hedvig-redux"
+import { registerForPushNotificationsAsync } from "../../services/PushNotification";
 
 const mapStateToProps = state => {
   return {
@@ -23,6 +24,8 @@ const mapDispatchToProps = dispatch => {
           SUCCESS: "INITIATE_CHECKOUT"
         })
       ),
+    registerForPushNotifications: () =>
+      registerForPushNotificationsAsync(dispatch),
     dispatch
   }
 }

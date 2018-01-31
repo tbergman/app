@@ -96,7 +96,6 @@ const getInputComponent = function(messages, navigation) {
 export default class Chat extends React.Component {
   componentDidMount() {
     this.props.getMessages()
-    this.props.registerForPushNotifications()
   }
 
   render() {
