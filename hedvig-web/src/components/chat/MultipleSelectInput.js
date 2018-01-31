@@ -5,10 +5,10 @@ import {
   WrappedOptionsContainerStyled
 } from "../styles/chat"
 import {
-  WhiteRoundedButton,
   PurpleRoundedButton,
   SendIconButton,
-  InactiveSendIconButton
+  InactiveSendIconButton,
+  AnimatedWhiteRoundedButton
 } from "../Button"
 const R = require("ramda")
 
@@ -16,7 +16,7 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let opts = message.body.choices.map(choice => {
     let ButtonComponent = choice.selected
       ? PurpleRoundedButton
-      : WhiteRoundedButton
+      : AnimatedWhiteRoundedButton
     return (
       <StyledOptionContainer>
         <ButtonComponent

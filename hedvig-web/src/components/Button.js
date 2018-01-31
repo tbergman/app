@@ -7,7 +7,8 @@ import {
   WhiteRoundedButtonStyled,
   InactiveWhiteRoundedButtonStyled,
   IconButtonStyled,
-  InactiveIconButtonStyled
+  InactiveIconButtonStyled,
+  AnimatedWhiteRoundedButtonStyled
 } from "./styles/button"
 
 const defaultOnClick = () => {
@@ -46,6 +47,12 @@ export const WhiteRoundedButton = ({ onClick, children }) => (
   <WhiteRoundedButtonStyled onClick={onClick || defaultOnClick}>
     {children || "No Content"}
   </WhiteRoundedButtonStyled>
+)
+
+export const AnimatedWhiteRoundedButton = ({ onClick, children }) => (
+  <AnimatedWhiteRoundedButtonStyled onClick={onClick || defaultOnClick}>
+    {children || "No content"}
+  </AnimatedWhiteRoundedButtonStyled>
 )
 
 export const InactiveWhiteRoundedButton = ({ onClick, children }) => (
