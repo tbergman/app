@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, View, Text, Dimensions, AsyncStorage } from "react-native"
+import { Image, View, Text, Dimensions, AsyncStorage, TouchableOpacity } from "react-native"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 import { connect } from "react-redux"
@@ -9,31 +9,32 @@ import {
   StyledSmallText,
   StyledPassiveText
 } from "./styles/text"
-import { TextButton, TurquoiseRoundedInvertedButton } from "./Button"
+import { TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
+import { StyledButtonText } from "./styles/button";
 
 const contents = [
   {
-    heading: "Livet är enklare\nmed Hedvig",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_1.png",
+    heading: "Det ska vara lätt\nnär det är svårt",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-1.png",
     animation: null,
-    paragraph: "Hedvig är försäkring för\ndig, ditt hem och dina prylar"
+    paragraph: "Hedvig är försäkring för dig,\nditt hem och dina prylar"
   },
   {
     heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_2_bigger.png",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-2.png",
     animation: null,
     paragraph: null
   },
   {
-    heading: "Schysst för dig.\nSchysst för din omvärld",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_4.png",
+    heading: "Schysst för dig,\noch världen runtomkring",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-3.png",
     animation: null,
-    paragraph: "Pengarna som blir över när Hedvig ersatt\nalla skador går till organisationer som gör skillnad"
+    paragraph: "Hedvig är inget vanligt försäkringsbolag.\nVi tar en låg fast avgift, betalar blixtsnabbt\noch skänker överskottet till ett gott ändamål"
   },
   {
     heading: "Tryggat av en av världens\nstörsta återförsäkrings-\nkoncerner",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig_Marketing_Screens_6_smaller.png",
+    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-4.png",
     animation: null,
     endButton: true,
     paragraph: null
@@ -41,7 +42,8 @@ const contents = [
 ]
 
 const MyStyledHeading = StyledHeading.extend`
-  font-size: 22px;
+  font-size: 24px;
+  color: ${props => props.theme.colors.blackPurple};
 `
 
 const FullScreen = styled.View`
@@ -57,6 +59,8 @@ const Container = FullScreen.extend`
 const MySmallText = StyledSmallText.extend`
   font-size: 14px;
   background-color: rgba(0,0,0,0);
+  color: ${props => props.theme.colors.darkGray};
+  line-height: 20px;
 `
 
 const CenteredText = styled.Text`
@@ -72,6 +76,8 @@ const ImageContainer = styled.View`
 const ParagraphContainer = styled.View`
   padding-left: 16px;
   padding-right: 16px;
+  height: 28px;
+  margin: 24px 0 0;
 `
 
 const DotsContainer = styled.View`
@@ -84,6 +90,11 @@ const LoginContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+`
+
+const CustomButtonText = StyledButtonText.extend`
+  font-size: 14px;
+  line-height: 14px;
 `
 
 const { width } = Dimensions.get("window")
@@ -123,21 +134,25 @@ export default class MarketingCarousel extends React.Component {
     let maybeEndButton
     if (data.endButton) {
       maybeEndButton = (
-        <View>
+        <View style={{height: 40}}>
           <TurquoiseRoundedInvertedButton
             title="Säg hej till Hedvig!"
             onPress={() => this.props.startChat()}
           />
         </View>
       )
+    } else {
+      maybeEndButton = (<View style={{height: 40}} />)
     }
     return (
       <FullScreen>
         <Container>
           {data.heading ? (
-            <CenteredText>
-              <MyStyledHeading>{data.heading}</MyStyledHeading>
-            </CenteredText>
+              <View style={{height: 100}}>
+                <CenteredText>
+                  <MyStyledHeading>{data.heading}</MyStyledHeading>
+                </CenteredText>
+              </View>
           ) : null}
           <ImageContainer height={itemWidth}>
             <Carousel
@@ -153,14 +168,14 @@ export default class MarketingCarousel extends React.Component {
               onSnapToItem={slideIndex => this.setState({ index: slideIndex })}
             />
           </ImageContainer>
-          {maybeEndButton}
           { data.paragraph ? (
             <ParagraphContainer>
               <CenteredText>
                 <MySmallText>{data.paragraph}</MySmallText>
               </CenteredText>
             </ParagraphContainer>
-          ) : null }
+          ) : <View style={{height: 52}} /> }
+          {maybeEndButton}
         </Container>
         <View style={{ marginBottom: 20 }}>
           <DotsContainer>
@@ -176,7 +191,9 @@ export default class MarketingCarousel extends React.Component {
             <Text style={{ marginRight: 10 }}>
               <StyledPassiveText>Redan medlem?</StyledPassiveText>
             </Text>
-            <TextButton title="Logga in" onPress={() => this.props.login()} />
+            <TouchableOpacity onPress={() => this.props.login()}>
+              <CustomButtonText>Logga in</CustomButtonText>
+            </TouchableOpacity>
           </LoginContainer>
         </View>
       </FullScreen>
