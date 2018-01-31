@@ -120,7 +120,7 @@ export default class Dashboard extends React.Component {
                   source={require("../../../assets/icons/my_insurance/pris.png")}
                 />
                 <StyledPassiveText>
-                  Din självrisk är 1500 kr
+                  Din självrisk är 1 500 kr
                 </StyledPassiveText>
               </StyledConditionRow>
               <StyledConditionRow>
