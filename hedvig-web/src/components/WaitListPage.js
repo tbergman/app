@@ -125,9 +125,11 @@ class WaitListPage extends React.Component {
                 <WhiteRoundedButton>Kopiera koden</WhiteRoundedButton>
               </CopyToClipboard>
               <p>och gå sedan</p>
-              <TurquoiseRoundedButton>
-                Till appen
-              </TurquoiseRoundedButton>
+              <a href="hedvig://" target="_blank" rel="noopener noreferrer">
+            <TurquoiseRoundedButton>
+              Till appen
+            </TurquoiseRoundedButton>
+              </a>
             </ContentSection>
           </React.Fragment>
         )
