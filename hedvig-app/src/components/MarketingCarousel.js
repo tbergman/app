@@ -13,6 +13,11 @@ import { TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 import { StyledButtonText } from "./styles/button";
 
+const { width } = Dimensions.get("window")
+const headingFontSize = width <= 320 ? 16 : 24
+const paragraphFontSize = width <= 320 ? 10 : 14
+const buttonHeight = width <= 320 ? 20 : 40
+
 const contents = [
   {
     heading: "Det ska vara lätt\nnär det är svårt",
@@ -42,7 +47,7 @@ const contents = [
 ]
 
 const MyStyledHeading = StyledHeading.extend`
-  font-size: 24px;
+  font-size: ${headingFontSize};
   color: ${props => props.theme.colors.blackPurple};
 `
 
@@ -57,10 +62,10 @@ const Container = FullScreen.extend`
 `
 
 const MySmallText = StyledSmallText.extend`
-  font-size: 14px;
+  font-size: ${paragraphFontSize};
   background-color: rgba(0,0,0,0);
   color: ${props => props.theme.colors.darkGray};
-  line-height: 20px;
+  line-height: ${paragraphFontSize + 6};
 `
 
 const CenteredText = styled.Text`
@@ -76,7 +81,7 @@ const ImageContainer = styled.View`
 const ParagraphContainer = styled.View`
   padding-left: 16px;
   padding-right: 16px;
-  height: 28px;
+  height: ${paragraphFontSize * 3.5}
   margin: 24px 0 0;
 `
 
@@ -97,8 +102,7 @@ const CustomButtonText = StyledButtonText.extend`
   line-height: 14px;
 `
 
-const { width } = Dimensions.get("window")
-const itemWidth = width < 375 ? width - 100 : 275
+const itemWidth = width <= 320 ? width - 130 : 275
 
 export default class MarketingCarousel extends React.Component {
   state = {
@@ -134,7 +138,7 @@ export default class MarketingCarousel extends React.Component {
     let maybeEndButton
     if (data.endButton) {
       maybeEndButton = (
-        <View style={{height: 40}}>
+        <View style={{height: buttonHeight}}>
           <TurquoiseRoundedInvertedButton
             title="Säg hej till Hedvig!"
             onPress={() => this.props.startChat()}
@@ -142,14 +146,14 @@ export default class MarketingCarousel extends React.Component {
         </View>
       )
     } else {
-      maybeEndButton = (<View style={{height: 40}} />)
+      maybeEndButton = (<View style={{height: buttonHeight}} />)
     }
     return (
       <FullScreen>
         <Container>
           {data.heading ? (
-              <View style={{height: 100}}>
-                <CenteredText>
+              <View style={{minHeight: headingFontSize * 4}}>
+                <CenteredText style={{height: headingFontSize * 4}}>
                   <MyStyledHeading>{data.heading}</MyStyledHeading>
                 </CenteredText>
               </View>
@@ -174,7 +178,7 @@ export default class MarketingCarousel extends React.Component {
                 <MySmallText>{data.paragraph}</MySmallText>
               </CenteredText>
             </ParagraphContainer>
-          ) : <View style={{height: 52}} /> }
+          ) : <View style={{height: paragraphFontSize * 3.5, marginTop: 24}} /> }
           {maybeEndButton}
         </Container>
         <View style={{ marginBottom: 20 }}>
