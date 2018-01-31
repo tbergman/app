@@ -77,6 +77,7 @@ const resetConversation = function*() {
       SUCCESS: "CHAT_STARTED" // TODO No hardcoded actions
     }
   })
+  yield take("CHAT_STARTED")
   yield put(chatActions.getMessages())
 }
 
