@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
 import { Header } from "./Header";
@@ -77,20 +78,20 @@ const CodeText = styled.p`
 `
 
 const STATUSES = {
-  IN_QUEUE: "IN_QUEUE",
-  GRANTED_ACCESS: "GRANTED_ACCESS",
-  UNKNOWN: "UNKNOWN"
+  IN_QUEUE: "WAITLIST",
+  GRANTED_ACCESS: "ACCESS",
+  UNKNOWN: "NOT_FOUND",
+  LOADING: "LOADING"
 }
 
 class WaitListPage extends React.Component {
   static defaultProps = {
-    before: 93,
     status: STATUSES.IN_QUEUE,
-    code: "APPLE123",
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.id)
+    console.log()
+    this.props.fetchWaitlistPosition(this.props.match.params.id)
   }
   
   render() {
@@ -101,7 +102,7 @@ class WaitListPage extends React.Component {
           <React.Fragment>
             <ContentSection>
               <p>Före dig på väntelistan står</p>
-              <ContentHeader>{ this.props.before || 93 } personer</ContentHeader>
+              <ContentHeader>{ this.props.position } personer</ContentHeader>
             </ContentSection>
             <GreenSeparatorLine />
             <ContentSection>
@@ -136,6 +137,11 @@ class WaitListPage extends React.Component {
           <div>Sign up for wait list for Hedvig here!</div>
         )
         break
+      case STATUSES.LOADING:
+        content = (
+          <div>Loading ...</div>
+        )
+        break
       default:
         content = (
           <div>error</div>
@@ -161,4 +167,21 @@ class WaitListPage extends React.Component {
   }
 }
 
-export default WaitListPage
+export default connect(
+  state => ({
+    position: state.waitlist.position,
+    status: state.waitlist.status,
+    code: state.waitlist.code
+  }),
+  dispatch => ({
+    fetchWaitlistPosition: token => dispatch({
+      type: "API",
+      payload: {
+        url: "/hedvig/waitlist",
+        method: "POST",
+        body: token,
+        SUCCESS: "WAITLIST/RETRIEVED_WAITLIST_STATUS",
+      }
+    })
+  })
+)(WaitListPage)

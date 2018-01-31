@@ -12,6 +12,7 @@ import { tokenStorageSaga } from "./sagas/TokenStorage"
 import { logoutSaga } from "./sagas/logout"
 import perilReducer from "./reducers/peril"
 import landingReducer from "./reducers/landing"
+import waitlistReducer from "./reducers/waitlist"
 
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
@@ -25,6 +26,7 @@ class App extends Component {
         router: routerReducer,
         peril: perilReducer,
         landing: landingReducer,
+        waitlist: waitlistReducer
       },
       additionalMiddleware: [routerMiddleware],
       additionalSagas: [tokenStorageSaga, logoutSaga]
