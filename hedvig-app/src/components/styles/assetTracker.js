@@ -29,10 +29,10 @@ export const StyledAddItemText = CircularFontText.extend`
 `
 
 export const StyledEmptyListText = CircularFontText.extend`
-  margin: 20px 40px;
+  margin: 20px 30px;
   color: ${props => props.theme.colors.darkGray};
   font-size: 16px;
-  line-height: 32px;
+  line-height: 20px;
   text-align: center;
   padding: 0 0 40px;
 `

@@ -90,7 +90,7 @@ const DefaultUserMessage = ({ message, textAlign }) => {
       style={{
         flexDirection: "row-reverse",
         alignItems: "center",
-        maxWidth: "88%"
+        maxWidth: "88%",
       }}
     >
       {maybeEditMessageButton}
@@ -116,7 +116,7 @@ const renderMessage = function(message, idx, lastIndex = false) {
   let fromMe = message.header.fromId !== 1
   let flexDirection = fromMe ? "row-reverse" : "row"
   let alignSelf = fromMe ? "flex-end" : "flex-start"
-  let textAlign = fromMe ? "right" : "left"
+  let textAlign = "left"
 
   let MessageRenderComponent
   if (!fromMe) {

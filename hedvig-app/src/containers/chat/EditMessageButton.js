@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         dialogActions.showDialog({
           title: "Vill du ändra ditt svar?",
-          paragraph: "Tryck ja för att ändra ditt svar på förra frågan",
+          paragraph: "Tryck ja för att ändra ditt\nsvar på förra frågan",
           confirmButtonTitle: "Ja",
           dismissButtonTitle: "Nej",
           onConfirm: () => dispatch(chatActions.editLastResponse()),

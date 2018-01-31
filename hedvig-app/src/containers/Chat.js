@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
         dialogActions.showDialog({
           title: "Vill du börja om?",
           paragraph:
-            "Om du trycker ja så raderas konversationen och chatten börjar om från början.",
+            "Om du trycker ja så börjar\nkonversationen om från början",
           confirmButtonTitle: "Ja",
           dismissButtonTitle: "Nej",
           onConfirm: () => dispatch(chatActions.resetConversation()),
