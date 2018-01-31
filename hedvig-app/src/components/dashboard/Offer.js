@@ -19,9 +19,7 @@ import { TextLink } from "../Link"
 
 const { width } = Dimensions.get("window")
 
-const HEDVIG_FORKOP_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+F%C3%B6rk%C3%B6psinformation+Bostadsr%C3%A4tt.pdf"
 const HEDVIG_INTEGRITET_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+integritetspolicy.pdf"
-const HEDVIG_VILLKOR_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+F%C3%B6rs%C3%A4kringsvillkor+Bostadsr%C3%A4tt+(draft+v.6+171220)+.pdf"
 
 // Precache assets
 Asset.loadAsync([
@@ -93,8 +91,8 @@ class Offer extends React.Component {
           <OfferFooter />
           <StyledPassiveText style={{paddingLeft: 24, paddingRight: 18, paddingBottom: 125}}>
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
-            <TextLink to={HEDVIG_FORKOP_S3_LINK}>förköpsinformation</TextLink>,&nbsp;
-            <TextLink to={HEDVIG_VILLKOR_S3_LINK}>villkor</TextLink> och att mina personuppgifter&nbsp;
+            <TextLink to={this.props.insurance.presaleInformationUrl}>förköpsinformation</TextLink>,&nbsp;
+            <TextLink to={this.props.insurance.policyUrl}>villkor</TextLink> och att mina personuppgifter&nbsp;
             behandlas i enlighet med&nbsp;
             <TextLink to={HEDVIG_INTEGRITET_S3_LINK}>Personuppgiftslagen</TextLink>.
           </StyledPassiveText>
