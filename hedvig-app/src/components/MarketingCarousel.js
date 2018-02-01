@@ -55,6 +55,7 @@ const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
   margin-top: 35px;
+  background-color: white;
 `
 
 const Container = FullScreen.extend`
