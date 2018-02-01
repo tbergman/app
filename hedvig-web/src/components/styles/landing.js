@@ -43,7 +43,6 @@ export const SplashStyled = styled.div`
   position: relative;
   overflow: hidden;
   align-items: flex-start;
-  justify-content: center;
   background-image: url("/assets/web/splash/backdrop.svg");
   background-size: cover;
   height: 600px;
@@ -53,33 +52,25 @@ export const SplashStyled = styled.div`
 export const AnimationsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  > * {
-    margin-left: 380px !important;
-    &:first-child {
-      margin-left: 0px !important;
-    }
-
-    @media (max-width: 768px) {
-      &:last-child {
-        display: none;
-      }
-    }
-  }
+  justify-content: space-between;
+  width: 100%;
 `
 
 export const SplashText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
   text-align: center;
   height: 100%;
   width: 100%;
   line-height: 32px;
+  position: absolute;
+  align-items: center;
+  bottom: 70px;
 
   @media (min-width: 800px) {
     padding: 0 0 0 4em;
+    bottom: -10px;
   }
 `
 
@@ -160,6 +151,12 @@ export const SubItemText = styled.p`
 export const HeadingContainer = styled.div`
   text-align: center;
   padding: 0 0 36px;
+
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const HeadingSubText = styled.p`

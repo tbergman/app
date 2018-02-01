@@ -12,6 +12,7 @@ const MyCenteredColumn = CenteredColumn.extend`
   display: none;
 
   @media (min-width: 800px) {
+    display: flex;
     align-items: flex-start;
 `
 
@@ -44,7 +45,6 @@ const TextContainer = styled.div`
   @media (min-width: 800px) {
     align-items: left;
     text-align: left;
-    max-width: 700px;
     padding: 0 4em;
   }
 `
@@ -80,6 +80,13 @@ const PreferredBreak = styled.br`
   }
 `
 
+const PreferredBreakOnLarge = styled.br`
+  display: none;
+  @media (min-width: 800px) {
+    display: inline;
+  }
+`
+
 const width = window.innerWidth
 
 export default class ClaimDemo extends React.Component {
@@ -93,7 +100,7 @@ export default class ClaimDemo extends React.Component {
         <MyCenteredColumn>
           <BlackPurpleRoundedButtonWhiteBorder
             onClick={() => this.setState({ expanded: !this.state.expanded })}
-            style={{minWidth: "200px"}}
+            style={{minWidth: "200px", color: this.state.expanded ? "#0F007A" : "white", backgroundColor: this.state.expanded ? "white" : "#0F007A"}}
           >
             { this.state.expanded ? "Mindre om appen" : "Mer om appen" }
           </BlackPurpleRoundedButtonWhiteBorder>
@@ -117,7 +124,7 @@ export default class ClaimDemo extends React.Component {
       <OuterContainer>
         <Container>
           <TextContainer>
-            <WhiteHeading2>Anmäl en skada på<PreferredBreak /> sekunder, få ersättning<PreferredBreak/> på minuter</WhiteHeading2>
+            <WhiteHeading2>Anmäl en skada på<PreferredBreak /> sekunder,<PreferredBreakOnLarge /> få ersättning<PreferredBreak/> på minuter</WhiteHeading2>
             {this.maybeExpanded()}
           </TextContainer>
           <PhoneContainer>

@@ -17,8 +17,8 @@ const defaultOnClick = () => {
 
 // Regular rounded buttons
 
-export const TurquoiseRoundedButton = ({ onClick, children }) => (
-  <TurquoiseRoundedButtonStyled onClick={onClick || defaultOnClick}>
+export const TurquoiseRoundedButton = ({ onClick, children, ...props }) => (
+  <TurquoiseRoundedButtonStyled onClick={onClick || defaultOnClick} {...props}>
     {children || "No Content"}
   </TurquoiseRoundedButtonStyled>
 )

@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 import Lottie from "react-lottie"
 
 import { SplashStyled, SplashText, AnimationsContainer } from "../styles/landing";
@@ -9,8 +10,6 @@ const PurpleHeading = Heading1.extend`
   color: ${props => props.theme.colors.blackPurple};
   margin-bottom: 0;
 `
-
-const width = window.innerHeight
 
 const getAnimationDimensions = () => {
   let width = window.innerWidth
@@ -27,6 +26,20 @@ const getAnimationDimensions = () => {
   }
 }
 const animationDimensions = getAnimationDimensions()
+
+// const PreferredBreak = styled.br`
+//   @media (min-width: 800px) {
+//     display: none;
+//   }
+// `
+
+const PreferredBreakOnLarge = styled.br`
+  display: none;
+
+  @media (min-width: 800px) {
+    display: inline;
+  }
+`
 
 const WaterDamagePage = () => (
     <SplashStyled style={{paddingTop: "0px"}}>
@@ -50,8 +63,9 @@ const WaterDamagePage = () => (
           width={animationDimensions.width}
         />
       </AnimationsContainer>
-        <SplashText style={{position: "absolute", alignItems: "center", bottom: "70px"}}>
-          <PurpleHeading>För dig, ditt hem{ width > 414 ? (<br/>) : null} och dina prylar</PurpleHeading>
+        <SplashText>
+          <PurpleHeading>Hemförsäkring för dig<PreferredBreakOnLarge/> som bor i lägenhet</PurpleHeading>
+          <p style={{padding: "0.5em 0 0", margin: "0", lineHeight: "24px"}}>Omdesignat från grunden. Så ditt liv blir enklare,<PreferredBreakOnLarge /> och försäkring äntligen känns schysst</p>
         </SplashText>
     </SplashStyled>
 )

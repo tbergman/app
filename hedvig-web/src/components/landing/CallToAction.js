@@ -16,11 +16,11 @@ const Container = styled.div`
 
 const Heading = styled.h1`
   color: ${props => props.theme.colors.blackPurple};
-  font-size: 28px;
-  line-height: 38px;
+  font-size: 40px;
+  line-height: 56px;
   font-family: "Merriweather";
   font-weight: 400;
-  padding: 0 0 0.5em;
+  padding: 0 0 0;
 `
 
 const PreferredBreak = styled.br`
@@ -31,6 +31,10 @@ const PreferredBreak = styled.br`
 
 const SubText = styled.p`
   padding: 1em 0 0;
+  @media (min-width: 800px) {
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
 `
 
 
@@ -44,10 +48,10 @@ class CallToAction extends React.Component {
   render() {
     return (
       <Container>
-        <Heading>Skaffa Hedvig<PreferredBreak /> före alla andra</Heading>
+        <Heading>Säg hej till Hedvig</Heading>
         <VisibilitySensor onChange={this._change}>
-          <TurquoiseRoundedButton>
-            Säg hej till Hedvig!
+          <TurquoiseRoundedButton style={{minWidth: "120px"}}>
+            Hej <span role="img" aria-label="vink">👋</span>
           </TurquoiseRoundedButton>
         </VisibilitySensor>
         <SubText>

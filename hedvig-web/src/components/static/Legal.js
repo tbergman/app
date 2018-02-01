@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, SayHi, Heading, TextRow, TextHeading, TextBody } from "./common";
+import { Container, SayHi, TextRow, TextHeading, TextBody } from "./common";
 import { Header } from "../Header";
 
 const CustomContainer = Container.extend`
@@ -9,18 +9,14 @@ const CustomContainer = Container.extend`
   padding: 5em 0 0;
 `
 
-const CustomHeading = Heading.extend`
-  color: black;
-  font-size: 36px;
+const CustomTextRow = TextRow.extend`
+  margin-top: 2em;
 `
 
 const Legal = () => (
   <CustomContainer>
     <Header headerRight={<SayHi />} />
-    <CustomHeading>
-      Legal information
-    </CustomHeading>
-    <TextRow>
+    <CustomTextRow>
       <TextHeading>Förmedling av försäkringar</TextHeading>
       <TextBody>
         <p>
@@ -41,7 +37,7 @@ const Legal = () => (
           Finansinspektionen, Bolagsverket och QBE.
         </p>
       </TextBody>
-    </TextRow>
+    </CustomTextRow>
     <TextRow>
       <TextHeading>Om du inte är nöjd</TextHeading>
       <TextBody>

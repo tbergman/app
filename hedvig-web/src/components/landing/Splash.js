@@ -11,10 +11,11 @@ import { HeadingSubText } from "../styles/landing";
 const Container = styled.div`
   margin: 96px 0 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
 
   @media (min-width: 800px) {
+    justify-content: center;
     padding: 3em 0 0;
     flex-direction: row;
   }
@@ -27,7 +28,6 @@ const TextContainer = styled.div`
   align-items: center;
   text-align: center;
   height: 100%;
-  width: 100%;
 
   @media (min-width: 800px) {
     padding: 0 0 0 8em;
@@ -44,12 +44,15 @@ const Heading = styled.h1`
   padding: 0 0 0.2em;
 
   @media (min-width: 800px) {
-    font-size: 72px;
+    font-size: 60px;
+    text-align: left;
+    white-space: nowrap;
   }
 `
 
 const CustomHeadingSubText = HeadingSubText.extend`
   padding: 0 0 0.8em;
+  white-space: nowrap;
 `
 
 const width = window.innerWidth
@@ -73,7 +76,7 @@ const animation = width < 800 ? (
 )
 
 const AnimationContainer = styled.div`
-  padding: 1em 1em 6em 1em;
+  padding: 1em 1em 7em 1em;
 `
 
 

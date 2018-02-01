@@ -18,7 +18,7 @@ const HeaderLinkContainer = styled.div`
 
 const HeaderNavigationLinksContainer = styled.div`
   display: none;
-  
+
   > a {
     &:visited {
       color: ${props => props.theme.colors.purple};
@@ -40,9 +40,6 @@ export class Header extends React.Component {
           <HeaderNavigationLinksContainer>
             <Link to="/about-us">
               Om Hedvig
-            </Link>
-            <Link to="/faq">
-              Vanliga frågor
             </Link>
           </HeaderNavigationLinksContainer>
         </HeaderLinkContainer>

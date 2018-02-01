@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Hero = styled.div`
   height: 400px;
   display: flex;
-  background-image: 
+  background-image:
     linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
@@ -41,13 +41,20 @@ export const TextRow = styled.div`
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
+    padding: 0 1em 2em 1em;
+
+    &:last-child {
+      padding: 0 1em 4em 1em;
+    }
   }
 `
 
 export const TextHeading = styled.h3`
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 400;
   font-family: "Merriweather";
+  color: ${props => props.theme.colors.blackPurple};
 
   @media (min-width: 800px) {
     width: 20%;
@@ -58,7 +65,7 @@ export const TextHeading = styled.h3`
 export const TextBody = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  font-size: 18px;
 
   @media (min-width: 800px) {
     width: 70%;
@@ -66,6 +73,10 @@ export const TextBody = styled.div`
 
   h5 {
     font-family: "Merriweather";
+  }
+
+  p {
+    margin: 0.5em;
   }
 `
 

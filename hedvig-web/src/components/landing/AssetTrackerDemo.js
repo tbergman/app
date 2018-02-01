@@ -15,7 +15,9 @@ const MyBlackPurpleHeading2 = BlackPurpleHeading2.extend`
   line-height: 38px;
   @media (min-width: 800px) {
     text-align: left;
-    padding: 1em 0 0;
+    padding: 1em 0 0.3em;
+    font-size: 40px;
+    line-height: 56px;
   }
 `
 
@@ -81,6 +83,13 @@ const PreferredBreak = styled.br`
   }
 `
 
+const PreferredBreakOnLarge = styled.br`
+  display: none;
+  @media (min-width: 800px) {
+    display: inline;
+  }
+`
+
 export default class AssetTrackerDemo extends React.Component {
   state = {
     expanded: false
@@ -92,7 +101,7 @@ export default class AssetTrackerDemo extends React.Component {
         <MyCenteredColumn>
           <WhiteRoundedButton
             onClick={() => this.setState({ expanded: !this.state.expanded })}
-            style={{minWidth: "240px"}}
+            style={{minWidth: "240px", color: this.state.expanded ? "white" : "#651EFF" , backgroundColor: this.state.expanded ? "#651EFF" : "white" }}
           >
             { this.state.expanded ? "Mindre om prylbanken" : "Mer om prylbanken" }
           </WhiteRoundedButton>
@@ -113,7 +122,7 @@ export default class AssetTrackerDemo extends React.Component {
     return (
       <Container>
         <TextContainer>
-          <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade</MyBlackPurpleHeading2>
+          <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker,<PreferredBreakOnLarge /> se exakt hur de är försäkrade</MyBlackPurpleHeading2>
           <HeadingSubText>
             Drulle ingår för alla<PreferredBreak/> prylar värda under 50 000 kr
           </HeadingSubText>

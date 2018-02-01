@@ -2,12 +2,12 @@ import styled, { keyframes } from "styled-components"
 
 const slideFromRight = keyframes`
   from {
-    transform: translate(100px, 0px);
-    animation-timing-function: ease;
+    transform: translateX(100px);
+    animation-timing-function: ease-in;
   }
 
   to {
-    transform: translate(0px, 0px);
+    transform: translateX(0px);
   }
 `
 
@@ -67,15 +67,10 @@ export const WhiteRoundedButtonStyled = RoundedButtonStyled.extend`
   background-color: white;
   color: ${props => props.theme.colors.purple};
   border-color: ${props => props.theme.colors.purple};
-
-  :active {
-    background-color: ${props => props.theme.colors.purple};
-    color: white;
-  }
 `
 
 export const AnimatedWhiteRoundedButtonStyled = WhiteRoundedButtonStyled.extend`
-  animation: 0.5s ${slideFromRight} 1;
+  animation: 0.3s ${slideFromRight} 1;
 
   :active,:focus {
     background-color: ${props => props.theme.colors.purple};

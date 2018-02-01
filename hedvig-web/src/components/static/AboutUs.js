@@ -4,7 +4,6 @@ import styled from "styled-components"
 import {
   Container,
   Hero,
-  Heading,
   SayHi,
   TextRow,
   TextHeading,
@@ -22,9 +21,8 @@ const TextContainer = styled.div`
 
 export const AboutUs = () => (
   <Container>
-    <Header headerRight={<SayHi />}/> 
+    <Header headerRight={<SayHi />}/>
     <Hero imageUrl="/assets/web/Images/Norrsken-4.jpg">
-      <Heading>Om Hedvig</Heading>
     </Hero>
     <TextContainer>
       <TextRow>

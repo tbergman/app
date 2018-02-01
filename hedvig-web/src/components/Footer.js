@@ -71,11 +71,6 @@ export default class Footer extends React.Component {
               </Link>
             </div>
             <div>
-              <Link to="/careers">
-                Karriär
-              </Link>
-            </div>
-            <div>
               <Link to="/terms">
                 Försäkringsvillkor
               </Link>
