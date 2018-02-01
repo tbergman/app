@@ -48,7 +48,7 @@ const Collaboration = () => {
             src="assets/icons/authorized.svg"
             alt="samarbete"
           />
-            <SubItemText>Auktoriserade av Finansinspektionen</SubItemText>
+            <SubItemText>Hedvig är auktoriserat av Finansinspektionen</SubItemText>
         </CustomSubItem>
       </SubItemContainer>
     </Container>
