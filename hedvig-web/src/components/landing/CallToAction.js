@@ -49,11 +49,11 @@ class CallToAction extends React.Component {
     return (
       <Container>
         <Heading>Säg hej till Hedvig</Heading>
-        <VisibilitySensor onChange={this._change}>
+        {/* <VisibilitySensor onChange={this._change}> */}
           <TurquoiseRoundedButton style={{minWidth: "120px"}}>
             Hej, Hedvig! <span role="img" aria-label="vink">👋</span>
           </TurquoiseRoundedButton>
-        </VisibilitySensor>
+        {/* </VisibilitySensor> */}
         <SubText>
           Har du redan en hemförsäkring? <PreferredBreak />
           Inga problem, vi tar hand om bytet
