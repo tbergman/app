@@ -48,7 +48,7 @@ const Terms = () => (
       </p>
     </IntroParagraph>
     <CustomTextRow>
-      <TextHeading>Våra försäkringsvillkor</TextHeading>
+      <TextHeading>Försäkringsvillkor</TextHeading>
       <TextBody>
         <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a>
         <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a>
