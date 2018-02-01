@@ -150,7 +150,7 @@ const Legal = () => (
           bolagsverket@bolagsverket.se<br/>
           T: 0771-670 670
         </p>
-        <h5>International Insurance Company of Hannover SE, Scandinavian branch</h5>
+        <h5>International Insurance Company of Hannover SE, Sverige filial</h5>
         <p>
           Box 22085<br/>
           Hantverkargatan 25<br/>
