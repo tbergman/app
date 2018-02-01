@@ -50,19 +50,20 @@ const Terms = () => (
     <CustomTextRow>
       <TextHeading>Våra försäkringsvillkor</TextHeading>
       <TextBody>
-        <a href="">För dig som äger bostadsrätt</a>
-        <a href="">För dig som hyr hyresrätt</a>
-        <span><a href="">För dig som hyr hyresrätt i andra hand</a> och vill att din
+        <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a>
+        <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a>
+        <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din
         hyresvärds saker ska täckas av försäkringen</span>
+        <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span>
       </TextBody>
     </CustomTextRow>
     <TextRow>
       <TextHeading>Förköpsinformation</TextHeading>
       <TextBody>
-        <a href="">För dig som äger bostadsrätt</a>
-        <a href="">För dig som hyr hyresrätt</a>
-        <span><a href="">För dig som hyr hyresrätt i andra hand</a> och vill att din hyresvärds saker ska täckas av försäkringen</span>
-        <span><a href="">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span>
+        <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a>
+        <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a>
+        <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din hyresvärds saker ska täckas av försäkringen</span>
+        <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span>
       </TextBody>
     </TextRow>
     <Footer />
