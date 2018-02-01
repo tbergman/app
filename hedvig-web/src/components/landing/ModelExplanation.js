@@ -62,7 +62,7 @@ export const ModelExplanation = () => (
       </SubItem>
       <SubItem>
         <img width={166} height={166} src="/assets/icons/profil/valgorenhet.svg" alt="Hjärta" />
-        <SubItemText>Ett bra år med lite skador blir det<PreferredBreak />pengar över, det skänker vi till<PreferredBreak /> ett gott ändamål</SubItemText>
+        <SubItemText>Ett bra år med lite skador blir det<PreferredBreak /> pengar över, det skänker vi till<PreferredBreak /> ett gott ändamål</SubItemText>
       </SubItem>
     </SubItemContainer>
   </Container>

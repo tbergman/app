@@ -51,7 +51,7 @@ class CallToAction extends React.Component {
         <Heading>Säg hej till Hedvig</Heading>
         <VisibilitySensor onChange={this._change}>
           <TurquoiseRoundedButton style={{minWidth: "120px"}}>
-            Hej <span role="img" aria-label="vink">👋</span>
+            Hej, Hedvig! <span role="img" aria-label="vink">👋</span>
           </TurquoiseRoundedButton>
         </VisibilitySensor>
         <SubText>
