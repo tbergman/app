@@ -14,6 +14,8 @@ import Logout from "../components/Logout"
 import FAQ from "./static/FAQ";
 import Legal from "./static/Legal";
 import WaitListPage from "./WaitListPage"
+import Contact from "./static/Contact"
+import Terms from "./static/Terms"
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -55,6 +57,8 @@ const Navigator = () => (
         <Route path="/about-us" component={AboutUs} />
         <Route path="/FAQ" component={FAQ} />
         <Route path="/legal" component={Legal} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/terms" component={Terms} />
 
         <Route path="/waitlist/:id" component={WaitListPage} />
 

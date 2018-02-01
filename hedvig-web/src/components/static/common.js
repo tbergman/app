@@ -5,6 +5,7 @@ import { TurquoiseRoundedButtonStyled } from "../styles/button";
 
 export const Container = styled.div`
   height: 100%;
+  width: 100%;
 `
 
 export const Hero = styled.div`
@@ -30,6 +31,13 @@ export const Heading = styled.h1`
   font-weight: 400;
 `
 
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5em 0 0;
+`
+
 export const TextRow = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,6 +58,7 @@ export const TextRow = styled.div`
 `
 
 export const TextHeading = styled.h3`
+  margin: 0;
   font-size: 28px;
   line-height: 32px;
   font-weight: 400;
@@ -76,7 +85,7 @@ export const TextBody = styled.div`
   }
 
   p {
-    margin: 0.5em;
+    margin: 0 0.5em 0.5em 0.5em;
   }
 `
 
