@@ -1,6 +1,7 @@
 import React from "react"
 import { keyframes } from "styled-components"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 
 import Collaboration from "./landing/Collaboration"
 import Splash from "./landing/Splash"
@@ -36,7 +37,7 @@ const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
 
 const HidingCtaButton = ({isVisible}) => (
   !isVisible ? (
-    <AnimatedCtaButton>Säg hej till Hedvig</AnimatedCtaButton>
+    <Link to="/chat"><AnimatedCtaButton>Säg hej till Hedvig</AnimatedCtaButton></Link>
   ) : (<div></div>)
 )
 

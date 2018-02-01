@@ -40,7 +40,7 @@ const getInputComponent = function(messages) {
 
 export default class Chat extends React.Component {
   componentDidMount() {
-    this.props.getMessages()
+    this.props.startWebChat()
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class Chat extends React.Component {
       <FullHeight>
         <Header
           headerRight={
-            <ResetIconButton onClick={() => this.props.resetConversation()} />
+            <React.Fragment/>
           }
         />
         <ChatAreaStyled>

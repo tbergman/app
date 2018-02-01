@@ -26,7 +26,8 @@ import {
   downloadAvatarSaga,
   resetConversationSaga,
   editLastResponseSaga,
-  getInsuranceWithMessagesSaga
+  getInsuranceWithMessagesSaga,
+  startWebChatSaga
 } from "./chat"
 import { updateItemSaga, deleteItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
@@ -84,6 +85,7 @@ const root = (additionalSagas = []) =>
       handleCheckoutSaga,
       handleEventSaga,
       addListenerSaga,
+      startWebChatSaga,
       ...additionalSagas
     ])
   }

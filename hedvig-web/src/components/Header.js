@@ -49,11 +49,7 @@ export class Header extends React.Component {
             </Link>
           </div>
         <div style={{flex: 1, textAlign: "right"}}>
-          {this.props.headerRight || (
-            <Link to="/chat">
-              <ResetIconButton />
-            </Link>
-          )}
+          {this.props.headerRight || (<React.Fragment/>)}
         </div>
       </HeaderStyled>
     )

@@ -59,6 +59,24 @@ const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
 
+
+const startWebChat = function*() {
+  yield put({
+    type: API,
+    payload: {
+      url: "/chat/startweb",
+      method: "POST",
+      SUCCESS: "CHAT/WEB_START_SUCCESS"
+    }
+  })
+  yield take("CHAT/WEB_START_SUCCESS")
+  yield put(chatActions.getMessages())
+}
+
+export const startWebChatSaga = function*() {
+  yield takeEvery("CHAT/START_WEB_CHAT", startWebChat)
+}
+
 const resetConversation = function*() {
   yield put({
     type: API,

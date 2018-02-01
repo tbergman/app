@@ -10,6 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    startWebChat: () => dispatch({type: "CHAT/START_WEB_CHAT"}),
     getMessages: () => dispatch(chatActions.getMessages()),
     resetConversation: () =>
       dispatch(
