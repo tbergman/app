@@ -8,7 +8,6 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border-top: 1px solid ${props => props.theme.colors.lightGray};
 
   @media (min-width: 800px) {
     height: 600px;
@@ -16,7 +15,7 @@ const Container = styled.div`
 `
 
 const CustomSubItem = SubItem.extend`
-  max-width: 300px;
+  max-width: 400px;
 `
 
 const Collaboration = () => {
@@ -49,7 +48,7 @@ const Collaboration = () => {
             src="assets/icons/authorized.svg"
             alt="samarbete"
           />
-            <SubItemText>Hedvig auktoriseras av Finansinspektionen</SubItemText>
+            <SubItemText>Auktoriserade av Finansinspektionen</SubItemText>
         </CustomSubItem>
       </SubItemContainer>
     </Container>

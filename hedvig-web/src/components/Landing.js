@@ -10,6 +10,7 @@ import Footer from "./Footer"
 import { Header } from "../components/Header"
 import ModelExplanation from "./landing/ModelExplanation"
 import WaterDamagePage from "./landing/WaterDamagePage";
+import CallToAction from "./landing/CallToAction"
 import { TurquoiseRoundedButtonStyled } from "./styles/button";
 require("purecss/build/base.css")
 require("purecss/build/grids.css")
@@ -54,6 +55,7 @@ const Landing = () => { // Fragment is used as a quick hack to render nothing in
       <ClaimDemo />
       <AssetTrackerDemo />
       <ModelExplanation />
+      <CallToAction />
       <Collaboration />
       <Footer />
     </div>

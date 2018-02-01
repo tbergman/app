@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 import {
   PurpleHeading,
   LandingComponentSection,
@@ -26,10 +27,17 @@ const CustomHeadingSubText = HeadingSubText.extend`
   max-width: 650px;
   text-align: center;
   margin: auto;
-  padding: 0.5em 0 0;
+  padding: 1em 1em 0 1em;
 
   @media (min-width: 800px) {
+    padding: 1em 0 0;
     text-align: center;
+  }
+`
+
+const PreferredBreak = styled.br`
+  @media (min-width: 800px) {
+    display: none;
   }
 `
 
@@ -46,15 +54,15 @@ export const ModelExplanation = () => (
     <SubItemContainer>
       <SubItem>
         <img width={166} height={166} src="/assets/icons/profil/personlig_info.svg" alt="Hedvig Logo" />
-        <SubItemText>Hedvig tar en fast avgift för att ge dig blixtsnabb service</SubItemText>
+        <SubItemText>Hedvig tar en fast avgift för<PreferredBreak /> att ge dig blixtsnabb service</SubItemText>
       </SubItem>
       <SubItem>
         <img width={166} height={166} src="/assets/icons/perils/mina_prylar/drulle.svg" alt="Skadad telefon" />
-        <SubItemText>Resten av din månadskostnad går till att täcka skador</SubItemText>
+        <SubItemText>Resten av din månadskostnad<PreferredBreak /> går till att täcka skador</SubItemText>
       </SubItem>
       <SubItem>
         <img width={166} height={166} src="/assets/icons/profil/valgorenhet.svg" alt="Hjärta" />
-        <SubItemText>Ett bra år med lite skador blir det pengar över, det skänker vi till ett gott ändamål</SubItemText>
+        <SubItemText>Ett bra år med lite skador blir det<PreferredBreak />pengar över, det skänker vi till<PreferredBreak /> ett gott ändamål</SubItemText>
       </SubItem>
     </SubItemContainer>
   </Container>

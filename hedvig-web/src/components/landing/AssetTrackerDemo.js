@@ -10,14 +10,20 @@ import { WhiteRoundedButton } from "../Button"
 
 const MyBlackPurpleHeading2 = BlackPurpleHeading2.extend`
   text-align: center;
-  padding: 1em 0 0;
-  @media (min-width: 1024px) {
+  padding: 1em 1em 0;
+  font-size: 28px;
+  line-height: 38px;
+  @media (min-width: 800px) {
     text-align: left;
+    padding: 1em 0 0;
   }
 `
 
 const MyCenteredColumn = CenteredColumn.extend`
-  @media (min-width: 992px) {
+  display: none;
+
+  @media (min-width: 800px) {
+    display: flex;
     align-items: flex-start;
   }
 `
@@ -32,7 +38,7 @@ const Container = styled.div`
   margin: 3em 0;
 
   @media (min-width: 800px) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-around;
   }
 `
@@ -67,6 +73,14 @@ const Phone = styled.img`
   }
 `
 
+const PreferredBreak = styled.br`
+  display: none;
+
+  @media (max-width: 320px) {
+    display: inline;
+  }
+`
+
 export default class AssetTrackerDemo extends React.Component {
   state = {
     expanded: false
@@ -98,19 +112,19 @@ export default class AssetTrackerDemo extends React.Component {
   render() {
     return (
       <Container>
+        <TextContainer>
+          <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade</MyBlackPurpleHeading2>
+          <HeadingSubText>
+            Drulle ingår för alla<PreferredBreak/> prylar värda under 50 000 kr
+          </HeadingSubText>
+          {this.maybeExpanded()}
+        </TextContainer>
         <PhoneContainer>
           <Phone
             src="/assets/web/Images/Hedvig_Prylbanken_01@3x.png"
             alt="Hedvigs prylbank"
           />
         </PhoneContainer>
-        <TextContainer>
-          <MyBlackPurpleHeading2>Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade</MyBlackPurpleHeading2>
-          <HeadingSubText>
-            Drulle ingår för alla prylar värda under 50 000 kr
-          </HeadingSubText>
-          {this.maybeExpanded()}
-        </TextContainer>
       </Container>
     )
   }

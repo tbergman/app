@@ -43,6 +43,8 @@ export const RoundedButtonStyled = ButtonStyled.extend`
 export const TurquoiseRoundedButtonStyled = RoundedButtonStyled.extend`
   background-color: ${props => props.theme.colors.turquoise};
   color: white;
+  font-size: 14px;
+  padding: 8px 18px;
 `
 
 export const PurpleRoundedButtonStyled = RoundedButtonStyled.extend`

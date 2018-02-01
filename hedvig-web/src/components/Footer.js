@@ -19,7 +19,7 @@ const Container = styled.div`
     justify-content: space-between;
     padding: 3em 1.5em;
   }
-  
+
 `
 
 const SocialContainer = styled.div`
@@ -90,16 +90,14 @@ export default class Footer extends React.Component {
         <RightContainer>
           <SocialContainer>
             <div>
-              <img alt="fb" src="/assets/web/Social icons/Facebook.svg" />
-            </div>
-            <div>
-              <img
-                alt="instagram"
-                src="/assets/web/Social icons/Instagram.svg"
-              />
-            </div>
-            <div>
-              <img alt="twitter" src="/assets/web/Social icons/Twitter.svg" />
+              <a href="https://www.instagram.com/hedvigers" target="_blank" rel="noopener noreferrer">
+                <img
+                  alt="instagram"
+                  src="/assets/web/Social icons/Instagram.svg"
+                  width={40}
+                  height={40}
+                />
+              </a>
             </div>
           </SocialContainer>
           <SocialContainer>

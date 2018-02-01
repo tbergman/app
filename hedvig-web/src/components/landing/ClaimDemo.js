@@ -9,9 +9,10 @@ import { WhiteHeading2 } from "../styles/typography"
 import { BlackPurpleRoundedButtonWhiteBorder } from "../Button"
 
 const MyCenteredColumn = CenteredColumn.extend`
-  @media (min-width: 992px) {
+  display: none;
+
+  @media (min-width: 800px) {
     align-items: flex-start;
-  }
 `
 
 const Container = styled.div`
@@ -21,7 +22,9 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   flex-direction: column;
-  padding: 10em 0 0;
+  padding: 3em 0 0;
+  box-shadow: inset 0px -1.5px 0px 0px white;
+  overflow: hidden;
 
   @media (min-width: 800px) {
     flex-direction: row;
@@ -53,6 +56,27 @@ const PhoneContainer = styled.div`
 
   @media (min-width: 800px) {
     justify-content: flex-start;
+  }
+`
+
+const OuterContainer = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+`
+
+const WhiteBorder = styled.div`
+  position: relative;
+  background-color: white;
+  margin: -7px 0 0;
+  height: 7px;
+  width: 100%;
+`
+
+const PreferredBreak = styled.br`
+  display: none;
+  @media (min-width: 414px) and (max-width: 800px) {
+    display: inline;
   }
 `
 
@@ -90,23 +114,26 @@ export default class ClaimDemo extends React.Component {
 
   render() {
     return (
-      <Container>
-        <TextContainer>
-          <WhiteHeading2>Anmäl en skada på sekunder, få ersättning på minuter</WhiteHeading2>
-          {this.maybeExpanded()}
-        </TextContainer>
-        <PhoneContainer>
-          <Lottie
-            options={{
-              loop: true,
-              autoplay: true,
-              animationData: require("../../bundledAssets/animations/claims_demo.json")
-            }}
-            height={width > 414 ? 610 : 450}
-            width={width > 414 ? 352 : 260}
-          />
-        </PhoneContainer>
-      </Container>
+      <OuterContainer>
+        <Container>
+          <TextContainer>
+            <WhiteHeading2>Anmäl en skada på<PreferredBreak /> sekunder, få ersättning<PreferredBreak/> på minuter</WhiteHeading2>
+            {this.maybeExpanded()}
+          </TextContainer>
+          <PhoneContainer>
+            <Lottie
+              options={{
+                loop: true,
+                autoplay: true,
+                animationData: require("../../bundledAssets/animations/claims_demo.json")
+              }}
+              height={width > 414 ? 610 : 450}
+              width={width > 414 ? 352 : 260}
+            />
+          </PhoneContainer>
+        </Container>
+        <WhiteBorder />
+      </OuterContainer>
     )
   }
 }

@@ -5,7 +5,7 @@ import Lottie from "react-lottie"
 // General
 
 export const CenteredColumn = styled.div`
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -148,7 +148,13 @@ export const SubItem = styled.div`
 
 export const SubItemText = styled.p`
   padding: 12px 0;
-  font-size: 18px;
+  font-size: 14px;
+  line-height: 20px;
+
+  @media (min-width: 800px) {
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
 `
 
 export const HeadingContainer = styled.div`
@@ -158,12 +164,13 @@ export const HeadingContainer = styled.div`
 
 export const HeadingSubText = styled.p`
   text-align: center;
-  font-size: 1.2em;
+  font-size: 14px;
   margin: 0.5em;
 
   @media (min-width: 800px) {
     text-align: left;
     margin: 0 0 1em;
+    font-size: 1.2em;
   }
 `
 
