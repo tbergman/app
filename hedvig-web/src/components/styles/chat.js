@@ -77,7 +77,7 @@ export const ChatAreaStyled = styled.div`
   align-self: center;
 
   margin: 62px 0 0;
-  padding: 0 0 30px;
+  padding: 5px 5px 30px 5px;
 
   @media (min-width: 800px) {
     margin: 72px 0 0;
