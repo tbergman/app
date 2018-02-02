@@ -10,11 +10,12 @@ import { HeadingSubText } from "../styles/landing";
 
 const Container = styled.div`
   margin: 96px 0 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  width: 100%;
 
   @media (min-width: 800px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
     padding: 3em 0 0;
     flex-direction: row;
@@ -28,6 +29,7 @@ const TextContainer = styled.div`
   align-items: center;
   text-align: center;
   height: 100%;
+  flex-shrink: 0;
 
   @media (min-width: 800px) {
     padding: 0 0 0 8em;
@@ -42,6 +44,7 @@ const Heading = styled.h1`
   line-height: normal;
   margin: 0;
   padding: 0 0 0.2em;
+  flex-shrink: 0;
 
   @media (min-width: 800px) {
     font-size: 60px;
@@ -53,6 +56,7 @@ const Heading = styled.h1`
 const CustomHeadingSubText = HeadingSubText.extend`
   padding: 0 0 0.8em;
   white-space: nowrap;
+  flex-shrink: 0;
 `
 
 const width = window.innerWidth
@@ -91,13 +95,15 @@ class Splash extends React.Component {
         <TextContainer>
           <Heading>Livet är enklare<br /> med Hedvig</Heading>
           <CustomHeadingSubText>Försäkring som du aldrig upplevt det tidigare</CustomHeadingSubText>
-          <Link to="/chat">
-            <VisibilitySensor onChange={this._change}>
-              <TurquoiseRoundedButtonStyled>
-                Säg hej till Hedvig
-              </TurquoiseRoundedButtonStyled>
-            </VisibilitySensor>
-          </Link>
+          <div style={{flexShrink: 0}}>
+            <Link to="/chat">
+              <VisibilitySensor onChange={this._change}>
+                <TurquoiseRoundedButtonStyled>
+                  Säg hej till Hedvig
+                </TurquoiseRoundedButtonStyled>
+              </VisibilitySensor>
+            </Link>
+          </div>
         </TextContainer>
         <AnimationContainer>
           {animation}

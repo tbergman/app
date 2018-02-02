@@ -47,6 +47,7 @@ export const SplashStyled = styled.div`
   background-size: cover;
   height: 600px;
   padding-top: 3em;
+  width: 100%;
 `
 
 export const AnimationsContainer = styled.div`

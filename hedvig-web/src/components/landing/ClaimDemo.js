@@ -17,17 +17,17 @@ const MyCenteredColumn = CenteredColumn.extend`
 `
 
 const Container = styled.div`
-  display: flex;
   background-color: ${props => props.theme.colors.blackPurple};
   color: white;
   height: 100%;
   width: 100%;
-  flex-direction: column;
   padding: 3em 0 0;
   box-shadow: inset 0px -1.5px 0px 0px white;
   overflow: hidden;
 
   @media (min-width: 800px) {
+    flex-direction: column;
+    display: flex;
     flex-direction: row;
     justify-content:  space-around;
     max-height: 800px;
@@ -41,6 +41,7 @@ const TextContainer = styled.div`
   align-items: center;
   text-align: center;
   padding: 0 0.5em;
+  flex-shrink: 0;
 
   @media (min-width: 800px) {
     align-items: left;
@@ -61,8 +62,6 @@ const PhoneContainer = styled.div`
 
 const OuterContainer = styled.div`
   background-color: white;
-  display: flex;
-  flex-direction: column;
 `
 
 const WhiteBorder = styled.div`

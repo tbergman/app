@@ -42,7 +42,8 @@ export const TextRow = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1em;
-  min-height: max-content;
+  flex-shrink: 0;
+  justify-content: center;
 
   @media (min-width: 800px) {
     flex-direction: row;
@@ -72,11 +73,13 @@ export const TextHeading = styled.h3`
 `
 
 export const TextBody = styled.div`
+  font-size: 18px;
   display: flex;
   flex-direction: column;
-  font-size: 18px;
+  align-items: center;
 
   @media (min-width: 800px) {
+    align-items: flex-start;
     width: 70%;
   }
 
