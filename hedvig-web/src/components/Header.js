@@ -43,7 +43,7 @@ export class Header extends React.Component {
             </Link>
           </HeaderNavigationLinksContainer>
         </HeaderLinkContainer>
-        <div style={{flex: 1}}>
+        <div>
             <Link to="/">
               <HeaderIconStyled />
             </Link>
