@@ -33,12 +33,12 @@ const ContentSection = styled.div`
   align-items: center;
 `
 
-const Footer = styled.div`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
+// const Footer = styled.div`
+//   text-align: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+// `
 
 const GreenSeparatorLine = styled.hr`
   display: block;
@@ -54,22 +54,22 @@ const ContentHeader = styled.h1`
   font-weight: 400;
   line-height: normal;
   color: ${props => props.theme.colors.blackPurple};
-  
+
   @media (min-width: 800px) {
     font-size: 72px;
   }
 `
 
-const InstagramIcon = styled.img`
-  width: 50px;
-  height: 50px;
-`
-
-const InstagramLink = styled.a`
-  &:focus {
-    outline: none;
-  }
-`
+// const InstagramIcon = styled.img`
+//   width: 50px;
+//   height: 50px;
+// `
+//
+// const InstagramLink = styled.a`
+//   &:focus {
+//     outline: none;
+//   }
+// `
 
 const CodeText = styled.p`
   font-size: 24px;
@@ -93,7 +93,7 @@ class WaitListPage extends React.Component {
     console.log()
     this.props.fetchWaitlistPosition(this.props.match.params.id)
   }
-  
+
   render() {
     let content
     switch (this.props.status) {
@@ -156,14 +156,14 @@ class WaitListPage extends React.Component {
           <ContentContainer>
             {content}
           </ContentContainer>
-          {this.props.status !== STATUSES.GRANTED_ACCESS ? (
+          {/*this.props.status !== STATUSES.GRANTED_ACCESS ? (
             <Footer>
               <InstagramLink target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/hedvigers">
                 <InstagramIcon src="/assets/web/Social icons/Instagram-purple.svg" alt="instagram"/>
               </InstagramLink>
               <p>Följ Hedvig på Instagram så länge</p>
             </Footer>
-          ) : null}
+          ) : null*/}
       </Container>
     )
   }

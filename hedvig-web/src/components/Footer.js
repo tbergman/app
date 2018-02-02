@@ -84,7 +84,7 @@ export default class Footer extends React.Component {
           </RouteLinkContainer>
         </LeftContainer>
         <RightContainer>
-          <SocialContainer>
+          {/*<SocialContainer>
             <div>
               <a href="https://www.instagram.com/hedvigers" target="_blank" rel="noopener noreferrer">
                 <img
@@ -95,7 +95,7 @@ export default class Footer extends React.Component {
                 />
               </a>
             </div>
-          </SocialContainer>
+          </SocialContainer>*/}
           {/* <SocialContainer>
             <img
               src="/assets/web/appstores/appstore-button.svg"
