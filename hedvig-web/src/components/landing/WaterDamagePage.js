@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
 
-import { SplashStyled, SplashText, AnimationsContainer } from "../styles/landing";
+import { SplashStyled, SplashText, AnimationsContainer, HeadingSubText } from "../styles/landing";
 import { Heading1 } from "../styles/typography";
 
 
@@ -27,12 +27,6 @@ const getAnimationDimensions = () => {
 }
 const animationDimensions = getAnimationDimensions()
 
-// const PreferredBreak = styled.br`
-//   @media (min-width: 800px) {
-//     display: none;
-//   }
-// `
-
 const PreferredBreakOnLarge = styled.br`
   display: none;
 
@@ -41,10 +35,20 @@ const PreferredBreakOnLarge = styled.br`
   }
 `
 
+const CustomHeadingSubText = HeadingSubText.extend`
+  display: none;
+
+  @media (min-width: 800px) {
+    display: block;
+  }
+`
+
+const width = window.innerWidth
+
 const WaterDamagePage = () => (
     <SplashStyled style={{paddingTop: "0px"}}>
       <AnimationsContainer style={{position: "absolute"}}>
-        <Lottie
+        { width > 800 ? <Lottie
           options={{
             loop: true,
             autoplay: true,
@@ -52,7 +56,7 @@ const WaterDamagePage = () => (
           }}
           height={animationDimensions.height}
           width={animationDimensions.width}
-        />
+        /> : null }
         <Lottie
           options={{
             loop: true,
@@ -64,8 +68,9 @@ const WaterDamagePage = () => (
         />
       </AnimationsContainer>
         <SplashText>
-          <PurpleHeading>Hemförsäkring för dig<PreferredBreakOnLarge/> som bor i lägenhet</PurpleHeading>
-          <p style={{padding: "0.5em 0 0", margin: "0", lineHeight: "24px"}}>Omdesignat från grunden. Så ditt liv blir enklare,<PreferredBreakOnLarge /> och försäkring äntligen känns schysst</p>
+          <PurpleHeading>Hemförsäkring för dig<br/> som bor i lägenhet</PurpleHeading>
+          {/*<p style={{padding: "0.5em 0 0", margin: "0", lineHeight: "24px"}}></p>*/}
+          <CustomHeadingSubText>Omdesignat från grunden. Så ditt liv blir enklare,<PreferredBreakOnLarge /> och försäkring äntligen känns schysst</CustomHeadingSubText>
         </SplashText>
     </SplashStyled>
 )
