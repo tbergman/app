@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
-import VisibilitySensor from "react-visibility-sensor"
+import { Link } from "react-router-dom"
 import { TurquoiseRoundedButton } from "../Button";
 
 const Container = styled.div`
@@ -50,9 +50,11 @@ class CallToAction extends React.Component {
       <Container>
         <Heading>Säg hej till Hedvig</Heading>
         {/* <VisibilitySensor onChange={this._change}> */}
+        <Link to="/chat">
           <TurquoiseRoundedButton style={{minWidth: "120px"}}>
             Hej, Hedvig! <span role="img" aria-label="vink">👋</span>
           </TurquoiseRoundedButton>
+          </Link>
         {/* </VisibilitySensor> */}
         <SubText>
           Har du redan en hemförsäkring? <PreferredBreak />
