@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
 
-import { SplashStyled, SplashText, AnimationsContainer, HeadingSubText } from "../styles/landing";
+import { SplashStyled, SplashText, AnimationsContainer } from "../styles/landing";
 import { Heading1 } from "../styles/typography";
 
 
