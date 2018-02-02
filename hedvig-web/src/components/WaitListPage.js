@@ -86,7 +86,7 @@ const STATUSES = {
 
 class WaitListPage extends React.Component {
   static defaultProps = {
-    status: STATUSES.IN_QUEUE,
+    status: STATUSES.LOADING,
   }
 
   componentDidMount() {
