@@ -96,13 +96,15 @@ export default class Footer extends React.Component {
               </a>
             </div>
           </SocialContainer>*/}
-          {/* <SocialContainer>
-            <img
-              src="/assets/web/appstores/appstore-button.svg"
-              style={{ width: 152 }}
-              alt="Ladda ner på App Store"
-            />
-          </SocialContainer> */}
+          <SocialContainer>
+            <a href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8">
+              <img
+                src="/assets/web/appstores/appstore-button.svg"
+                style={{ width: 152 }}
+                alt="Ladda ner på App Store"
+              />
+            </a>
+          </SocialContainer>
           <SocialContainer>
             <a href="https://play.google.com/store/apps/details?id=com.hedvig.app">
               <img
