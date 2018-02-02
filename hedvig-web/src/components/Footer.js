@@ -97,7 +97,7 @@ export default class Footer extends React.Component {
             </div>
           </SocialContainer>*/}
           <SocialContainer>
-            <a href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8">
+            <a href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8" target="_blank" rel="noopener noreferrer">
               <img
                 src="/assets/web/appstores/appstore-button.svg"
                 style={{ width: 152 }}
@@ -106,7 +106,7 @@ export default class Footer extends React.Component {
             </a>
           </SocialContainer>
           <SocialContainer>
-            <a href="https://play.google.com/store/apps/details?id=com.hedvig.app">
+            <a href="https://play.google.com/store/apps/details?id=com.hedvig.app" target="_blank" rel="noopener noreferrer">
               <img
                 src="/assets/web/appstores/google-play-button.svg"
                 style={{ width: 152 }}
