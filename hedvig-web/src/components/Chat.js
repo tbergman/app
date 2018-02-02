@@ -16,7 +16,6 @@ import {
   MessageAreaStyled,
   InputAreaStyled
 } from "./styles/chat"
-import { ResetIconButton } from "./Button"
 import { FullHeight } from "./styles/general"
 
 const getInputComponent = function(messages) {
