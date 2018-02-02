@@ -35,8 +35,11 @@ const PreferredBreakOnLarge = styled.br`
   }
 `
 
-const CustomHeadingSubText = HeadingSubText.extend`
+const CustomHeadingSubText = styled.p`
   display: none;
+  padding: 0.5em 0 0;
+  margin: 0;
+  line-height: 24px;
 
   @media (min-width: 800px) {
     display: block;
