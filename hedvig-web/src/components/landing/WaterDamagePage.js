@@ -51,7 +51,7 @@ const width = window.innerWidth
 const WaterDamagePage = () => (
     <SplashStyled style={{paddingTop: "0px"}}>
       <AnimationsContainer style={{position: "absolute"}}>
-        { width > 800 ? <Lottie
+        <Lottie
           options={{
             loop: true,
             autoplay: true,
@@ -59,16 +59,18 @@ const WaterDamagePage = () => (
           }}
           height={animationDimensions.height}
           width={animationDimensions.width}
-        /> : null }
-        <Lottie
-          options={{
-            loop: true,
-            autoplay: true,
-            animationData: require("../../bundledAssets/animations/drawer.json")
-          }}
-          height={animationDimensions.height}
-          width={animationDimensions.width}
         />
+        { width > 800 ? (
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: require("../../bundledAssets/animations/drawer.json")
+            }}
+            height={animationDimensions.height}
+            width={animationDimensions.width}
+          />
+        ) : null }
       </AnimationsContainer>
         <SplashText>
           <PurpleHeading>Hemförsäkring för dig<br/> som bor i lägenhet</PurpleHeading>

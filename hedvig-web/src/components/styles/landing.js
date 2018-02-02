@@ -66,7 +66,7 @@ export const SplashText = styled.div`
   line-height: 32px;
   position: absolute;
   align-items: center;
-  bottom: 20px;
+  bottom: 50px;
 
   @media (min-width: 800px) {
     padding: 0 0 0 4em;
