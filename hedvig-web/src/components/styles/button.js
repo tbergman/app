@@ -45,6 +45,11 @@ export const TurquoiseRoundedButtonStyled = RoundedButtonStyled.extend`
   color: white;
   font-size: 14px;
   padding: 8px 18px;
+
+  @media (min-width: 800px) {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
 `
 
 export const PurpleRoundedButtonStyled = RoundedButtonStyled.extend`
