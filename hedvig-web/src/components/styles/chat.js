@@ -102,6 +102,11 @@ export const MessageAreaStyled = styled.div`
   flex: 1;
   /* Enable momentum scrolling on iOS */
   -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `
 
 export const InputAreaStyled = styled.div`
