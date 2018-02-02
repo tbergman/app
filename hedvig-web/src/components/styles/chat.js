@@ -17,10 +17,14 @@ export const StyledUserMessage = styled.div`
   color: ${props => props.theme.colors.white};
   border-radius: 24px;
   padding: 12px 15px;
-  font-size: ${props => props.theme.typography.hedvigMessage.web.fontSize}px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   word-break: break-word;
+
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
 `
 
 export const StyledMessage = styled.div`
@@ -29,11 +33,15 @@ export const StyledMessage = styled.div`
   color: ${props => props.theme.colors.blackPurple};
   border-radius: 8px;
   padding: 12px 15px;
-  font-size: ${props => props.theme.typography.hedvigMessage.web.fontSize}px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   word-break: break-word;
   animation: 0.5s ${slideFromLeft} 1;
+
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
 `
 
 export const MessageContainerStyled = styled.div`
@@ -75,9 +83,10 @@ export const ChatAreaStyled = styled.div`
   max-width: 1200px;
   width: 100%;
   align-self: center;
+  overscroll-behaviour-y: none;
+  overflow: hidden;
 
-  margin: 62px 0 0;
-  padding: 5px 5px 30px 5px;
+  padding: 5px;
 
   @media (min-width: 800px) {
     margin: 72px 0 0;
