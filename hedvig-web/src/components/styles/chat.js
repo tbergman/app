@@ -87,6 +87,7 @@ export const ChatAreaStyled = styled.div`
   overflow: hidden;
 
   padding: 5px;
+  margin: 62px 0 0;
 
   @media (min-width: 800px) {
     margin: 72px 0 0;
