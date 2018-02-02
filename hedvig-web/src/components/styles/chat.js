@@ -76,29 +76,11 @@ export const ChatAreaStyled = styled.div`
   width: 100%;
   align-self: center;
 
-  margin-top: 82px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  @media (min-width: 992px) {
-    padding-bottom: 117px;
-  }
-  padding-left: 15px;
-  padding-right: 15px;
-  @media (min-width: 576px) {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-  @media (min-width: 768px) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  @media (min-width: 992px) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-  @media (min-width: 1200px) {
-    padding-left: 114px;
-    padding-right: 114px;
+  margin: 62px 0 0;
+  padding: 0 0 30px;
+
+  @media (min-width: 800px) {
+    margin: 72px 0 0;
   }
 `
 
