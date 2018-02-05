@@ -13,6 +13,7 @@ import { logoutSaga } from "./sagas/logout"
 import perilReducer from "./reducers/peril"
 import landingReducer from "./reducers/landing"
 import waitlistReducer from "./reducers/waitlist"
+import analyticsMiddleware from "./middleware/analytics";
 
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
@@ -28,7 +29,7 @@ class App extends Component {
         landing: landingReducer,
         waitlist: waitlistReducer
       },
-      additionalMiddleware: [routerMiddleware],
+      additionalMiddleware: [routerMiddleware, analyticsMiddleware],
       additionalSagas: [tokenStorageSaga, logoutSaga]
     })
     window.store = this.store
