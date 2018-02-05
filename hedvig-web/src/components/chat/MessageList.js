@@ -1,9 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import styled from "styled-components"
 import { StyledMessage, MessageContainerStyled, StyledUserMessage } from "../styles/chat"
 import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
+
+const MessageContainer = styled.div`
+  margin: 0 0 8px;
+
+  @media (min-width: 800px) {
+    margin: 0 0 20px;
+  }
+`
 
 const DefaultHedvigMessage = ({ message, textAlign }) => {
   return (
@@ -63,16 +72,15 @@ const renderMessage = function(message, idx, isLastMessage) {
     return (
       <div key={message.globalId || idx}>
         {isLastMessage ? <Avatar messageIndex={idx} /> : null}
-        <div
+        <MessageContainer
           style={{
             display: "flex",
-            marginBottom: 20,
             flexDirection: flexDirection,
             alignSelf: alignSelf
           }}
         >
           <MessageRenderComponent message={message} textAlign={textAlign} />
-        </div>
+        </MessageContainer>
       </div>
     )
   } else {

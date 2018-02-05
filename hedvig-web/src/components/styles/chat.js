@@ -16,13 +16,12 @@ export const StyledUserMessage = styled.div`
   background-color: ${props => props.theme.colors.purple};
   color: ${props => props.theme.colors.white};
   border-radius: 24px;
-  padding: 12px 15px;
+  padding: 8px 12px;
   font-size: 16px;
-  display: flex;
-  align-items: center;
   word-break: break-word;
 
   @media (min-width: 800px) {
+    padding: 12px 15px;
     font-size: 20px;
   }
 `
@@ -32,14 +31,13 @@ export const StyledMessage = styled.div`
   background-color: ${props => props.theme.colors.hedvigMessageBackground};
   color: ${props => props.theme.colors.blackPurple};
   border-radius: 8px;
-  padding: 12px 15px;
+  padding: 8px 12px;
   font-size: 16px;
-  display: flex;
-  align-items: center;
   word-break: break-word;
   animation: 0.5s ${slideFromLeft} 1;
 
   @media (min-width: 800px) {
+    padding: 12px 15px;
     font-size: 20px;
   }
 `
