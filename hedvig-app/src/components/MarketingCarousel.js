@@ -54,11 +54,8 @@ const MyStyledHeading = StyledHeading.extend`
 const FullScreen = styled.View`
   flex: 1;
   align-self: stretch;
-  margin-top: 35px;
+  margin-top: 40px;
   background-color: white;
-`
-
-const Container = FullScreen.extend`
   justify-content: center;
 `
 
@@ -136,22 +133,9 @@ export default class MarketingCarousel extends React.Component {
 
   render() {
     let data = contents[this.state.index]
-    let maybeEndButton
-    if (data.endButton) {
-      maybeEndButton = (
-        <View style={{height: buttonHeight}}>
-          <TurquoiseRoundedInvertedButton
-            title="Säg hej till Hedvig!"
-            onPress={() => this.props.startChat()}
-          />
-        </View>
-      )
-    } else {
-      maybeEndButton = (<View style={{height: buttonHeight}} />)
-    }
     return (
       <FullScreen>
-        <Container>
+        <View>
           {data.heading ? (
               <View style={{minHeight: headingFontSize * 4}}>
                 <CenteredText style={{height: headingFontSize * 4}}>
@@ -179,9 +163,15 @@ export default class MarketingCarousel extends React.Component {
                 <MySmallText>{data.paragraph}</MySmallText>
               </CenteredText>
             </ParagraphContainer>
-          ) : <View style={{height: paragraphFontSize * 3.5, marginTop: 24}} /> }
-          {maybeEndButton}
-        </Container>
+          ) : data.endButton ? (
+            <View style={{height: paragraphFontSize * 3.5, marginTop: 24}}>
+              <TurquoiseRoundedInvertedButton
+                title="Säg hej till Hedvig!"
+                onPress={() => this.props.startChat()}
+              />
+            </View>
+          ) :<View style={{height: paragraphFontSize * 3.5, marginTop: 24}} /> }
+        </View>
         <View style={{ marginBottom: 20 }}>
           <DotsContainer>
             <Pagination
