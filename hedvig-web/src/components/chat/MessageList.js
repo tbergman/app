@@ -11,7 +11,7 @@ const MessageContainer = styled.div`
   display: flex;
 
   @media (min-width: 800px) {
-    margin: 0 0 20px;
+    margin: 0 0 12px;
   }
 `
 
