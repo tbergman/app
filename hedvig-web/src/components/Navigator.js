@@ -1,5 +1,4 @@
 import React from "react"
-import styled from "styled-components"
 import { Route, Switch } from "react-router-dom"
 import { ConnectedRouter, routerMiddleware } from "react-router-redux"
 import createHistory from "history/createBrowserHistory"
@@ -14,6 +13,7 @@ import Logout from "../components/Logout"
 import FAQ from "./static/FAQ";
 import Legal from "./static/Legal";
 import WaitListPage from "./WaitListPage"
+import NotFound from "./NotFound"
 import Contact from "./static/Contact"
 import Terms from "./static/Terms"
 
@@ -25,22 +25,6 @@ history.listen((location, action) => {
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history)
-
-const NotFoundPage = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 72px;
-  font-family: "Merriweather";
-  color: ${props => props.theme.colors.purple};
-`
-
-const NotFound = () => (
-  <NotFoundPage>
-    Not found <span role="img" aria-label="sad face"> 😞</span>
-  </NotFoundPage>
-)
 
 const Navigator = () => (
   <ConnectedRouter history={history}>
