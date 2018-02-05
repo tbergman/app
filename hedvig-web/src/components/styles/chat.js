@@ -74,11 +74,6 @@ export const StyledOptionContainer = styled.div`
 `
 
 export const ChatAreaStyled = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-end;
-  max-width: 1200px;
   width: 100%;
   align-self: center;
   overscroll-behaviour-y: none;
@@ -89,6 +84,11 @@ export const ChatAreaStyled = styled.div`
 
   @media (min-width: 800px) {
     margin: 72px 0 0;
+    max-width: 1200px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 `
 

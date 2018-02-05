@@ -8,6 +8,7 @@ import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 
 const MessageContainer = styled.div`
   margin: 0 0 8px;
+  display: flex;
 
   @media (min-width: 800px) {
     margin: 0 0 20px;
@@ -70,18 +71,17 @@ const renderMessage = function(message, idx, isLastMessage) {
 
   if (message.body.text !== "") {
     return (
-      <div key={message.globalId || idx}>
+      <React.Fragment key={message.globalId || idx}>
         {isLastMessage ? <Avatar messageIndex={idx} /> : null}
         <MessageContainer
           style={{
-            display: "flex",
             flexDirection: flexDirection,
             alignSelf: alignSelf
           }}
         >
           <MessageRenderComponent message={message} textAlign={textAlign} />
         </MessageContainer>
-      </div>
+      </React.Fragment>
     )
   } else {
     return null
