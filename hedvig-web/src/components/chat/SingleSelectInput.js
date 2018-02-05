@@ -28,7 +28,7 @@ const SingleSelectInput = ({ message, selectChoice, done }) => {
       content = choice.text
     }
     return (
-      <StyledOptionContainer>
+      <StyledOptionContainer key={choice.value}>
         <WhiteRoundedButton
           key={choice.text}
           style={{ cursor: "pointer" }}

@@ -18,7 +18,7 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
       ? PurpleRoundedButton
       : AnimatedWhiteRoundedButton
     return (
-      <StyledOptionContainer>
+      <StyledOptionContainer key={choice.value}>
         <ButtonComponent
           key={choice.text}
           onClick={() => {
