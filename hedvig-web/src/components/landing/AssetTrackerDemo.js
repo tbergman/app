@@ -130,7 +130,7 @@ export default class AssetTrackerDemo extends React.Component {
         </TextContainer>
         <PhoneContainer>
           <Phone
-            src="/assets/web/Images/Hedvig_Prylbanken_01@3x.png"
+            src="/assets/web/Images/Hedvig_Prylbanken.png"
             alt="Hedvigs prylbank"
           />
         </PhoneContainer>
