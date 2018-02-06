@@ -26,7 +26,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "deploy": "exp publish",
+    "deploy": "exp publish --non-interactive",
     "lint": "eslint src",
     "storybook": "storybook start -p 7007",
     "storybook-ios": "REACT_NATIVE_STORYBOOK_MODE=true yarn run ios",
