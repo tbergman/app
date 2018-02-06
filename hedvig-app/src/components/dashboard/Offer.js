@@ -16,6 +16,7 @@ import OfferDashboardHeader from "../dashboard/OfferDashboardHeader"
 import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderItem, StyledDashboardHeaderIcon } from "../styles/dashboard"
 import { StyledText, StyledPassiveText } from "../styles/text";
 import { TextLink } from "../Link"
+import { INSURANCE_TYPES } from "../../constants"
 
 const { width } = Dimensions.get("window")
 
@@ -30,7 +31,7 @@ Asset.loadAsync([
   require("../../../assets/icons/info/info_green.png")
 ])
 
-const OfferFooter = () => (
+const OfferFooter = ({insuranceType}) => (
   <StyledDashboardHeader style={{paddingTop: 8, paddingBottom: 8}}>
     <StyledDashboardHeaderRow style={{marginBottom: 4}}>
       <StyledDashboardHeaderItem>
@@ -38,12 +39,14 @@ const OfferFooter = () => (
         <StyledPassiveText>Tryggas av en av världens{"\n"}största återförsäkringskoncerner</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
-    <StyledDashboardHeaderRow>
-      <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Lägenheten försäkras till sitt fulla värde</StyledPassiveText>
-      </StyledDashboardHeaderItem>
-    </StyledDashboardHeaderRow>
+    { insuranceType === INSURANCE_TYPES.BRF || insuranceType === INSURANCE_TYPES.SUBLET_BRF ? (
+      <StyledDashboardHeaderRow>
+        <StyledDashboardHeaderItem>
+          <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
+          <StyledPassiveText>Lägenheten försäkras till sitt fulla värde</StyledPassiveText>
+        </StyledDashboardHeaderItem>
+      </StyledDashboardHeaderRow>
+    ) : null }
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>
         <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
@@ -91,7 +94,7 @@ class Offer extends React.Component {
               </PerilsCategory>
             ))}
           </View>
-          <OfferFooter />
+          <OfferFooter insuranceType={this.props.insurance.insuranceType} />
           <StyledPassiveText style={{paddingLeft: 24, paddingRight: 18, paddingBottom: 160}}>
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
             <TextLink to={this.props.insurance.presaleInformationUrl}>förköpsinformation</TextLink>,
@@ -103,7 +106,7 @@ class Offer extends React.Component {
         <StyledCtaContainer>
           <ImageBackground
             source={require("../../../assets/bgs/gradient-white-rectangle.png")}
-            resizeMode="stretch"            
+            resizeMode="stretch"
             style={{
               position: "absolute",
               width: width,

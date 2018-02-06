@@ -16,6 +16,7 @@ import {
 } from "../styles/dashboard"
 import { StyledPassiveText } from "../styles/text"
 import DashboardHeader from "./DashboardHeader"
+import { INSURANCE_TYPES } from "../../constants"
 
 // Precache images
 Asset.loadAsync([
@@ -123,14 +124,16 @@ export default class Dashboard extends React.Component {
                   Din självrisk är 1 500 kr
                 </StyledPassiveText>
               </StyledConditionRow>
-              <StyledConditionRow>
-                <StyledDashboardHeaderIcon
-                  source={require("../../../assets/icons/my_insurance/aktiv.png")}
-                />
-                <StyledPassiveText>
-                  Lägenheten försäkras till sitt fulla värde
-                </StyledPassiveText>
-              </StyledConditionRow>
+              { this.props.insurance.insuranceType === INSURANCE_TYPES.BRF || this.props.insurance.insuranceType === INSURANCE_TYPES.SUBLET_BRF ? (
+                <StyledConditionRow>
+                  <StyledDashboardHeaderIcon
+                    source={require("../../../assets/icons/my_insurance/aktiv.png")}
+                  />
+                  <StyledPassiveText>
+                    Lägenheten försäkras till sitt fulla värde
+                  </StyledPassiveText>
+                </StyledConditionRow>
+              ) : null }
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
                   source={require("../../../assets/icons/my_insurance/pris.png")}
