@@ -24,13 +24,14 @@ const mapStateToProps = state => {
   return {
     user: state.user.currentUser,
     cashbackAlternatives: state.cashback.alternatives,
-    state
+    insurance: state.insurance
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(userActions.getCurrentUser()),
+    getInsurance: () => dispatch(insuranceActions.getInsurance()),
     getCashbackAlternatives: () =>
       dispatch(cashbackActions.getCashbackAlternatives()),
     updateCashback: (selectedCashback, continuation) =>

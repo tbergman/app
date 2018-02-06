@@ -45,6 +45,7 @@ export default class Profile extends React.Component {
   componentWillMount() {
     this.props.getUser()
     this.props.getCashbackAlternatives()
+    this.props.getInsurance()
   }
 
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
@@ -112,7 +113,7 @@ export default class Profile extends React.Component {
       return this._userRow({
         title: "Min betalning",
         icon: <ProfileBankAccountIcon />,
-        text: this.props.user.maskedBankAccountNumber,
+        text: `${this.props.insurance.currentTotalPrice} kr/månad. ${this.props.user.maskedBankAccountNumber}`,
         secondText: ""
       })
     }
