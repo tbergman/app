@@ -99,7 +99,7 @@ class Splash extends React.Component {
             <Link to="/chat">
               <VisibilitySensor onChange={this._change}>
                 <TurquoiseRoundedButtonStyled>
-                  Säg hej till Hedvig
+                  Sätt upp mig på väntelistan
                 </TurquoiseRoundedButtonStyled>
               </VisibilitySensor>
             </Link>

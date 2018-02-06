@@ -48,11 +48,11 @@ class CallToAction extends React.Component {
   render() {
     return (
       <Container>
-        <Heading>Säg hej till Hedvig</Heading>
+        <Heading>Skaffa Hedvig innan alla andra</Heading>
         {/* <VisibilitySensor onChange={this._change}> */}
         <Link to="/chat">
           <TurquoiseRoundedButton style={{minWidth: "120px"}}>
-            Hej, Hedvig! <span role="img" aria-label="vink">👋</span>
+            Sätt upp mig på väntelistan
           </TurquoiseRoundedButton>
           </Link>
         {/* </VisibilitySensor> */}

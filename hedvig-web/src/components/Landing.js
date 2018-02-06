@@ -37,7 +37,7 @@ const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
 
 const HidingCtaButton = ({isVisible}) => (
   !isVisible ? (
-    <Link to="/chat"><AnimatedCtaButton>Säg hej till Hedvig</AnimatedCtaButton></Link>
+    <Link to="/chat"><AnimatedCtaButton>Sätt upp mig väntelistan</AnimatedCtaButton></Link>
   ) : (<div></div>)
 )
 
