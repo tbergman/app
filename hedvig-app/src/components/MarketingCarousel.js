@@ -3,6 +3,7 @@ import { Image, View, Text, Dimensions, AsyncStorage, TouchableOpacity } from "r
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import styled from "styled-components/native"
 import { connect } from "react-redux"
+import { createReduxBoundAddListener } from "react-navigation-redux-helpers"
 
 import {
   StyledHeading,
@@ -233,6 +234,12 @@ export class MarketingCarouselOrBaseNavigator extends React.Component {
     dismissed: false
   }
 
+  constructor(props) {
+    super(props)
+
+    this.addListener = createReduxBoundAddListener("root")
+  }
+
   async componentWillMount() {
     let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
       SEEN_MARKETING_CAROUSEL_KEY
@@ -253,7 +260,7 @@ export class MarketingCarouselOrBaseNavigator extends React.Component {
         this.state.alreadySeenMarketingCarousel === "true" ||
         this.state.dismissed
       ) {
-        return <ConnectedReduxBaseNavigator />
+        return <ConnectedReduxBaseNavigator addListener={this.addListener} />
       } else {
         return <ConnectedMarketingCarousel dismiss={this.dismiss.bind(this)} />
       }

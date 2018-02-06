@@ -3,19 +3,21 @@ import { addNavigationHelpers } from "react-navigation"
 import { connect } from "react-redux"
 import BaseNavigator from "../../components/navigation/base-navigator/BaseNavigator"
 
-const ReduxBaseNavigator = ({ dispatch, nav }) => {
+const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
   return (
     <BaseNavigator
       navigation={addNavigationHelpers({
         dispatch: dispatch,
-        state: nav
+        state: nav,
+        addListener,
       })}
     />
   )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    ...ownProps,
     nav: state.nav
   }
 }

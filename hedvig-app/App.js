@@ -5,6 +5,10 @@ import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
 import Sentry from "sentry-expo"
+import {
+  ActionSheetProvider,
+  connectActionSheet
+} from "@expo/react-native-action-sheet"
 
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
@@ -34,13 +38,9 @@ import * as baseNavigationActions from "./src/actions/baseNavigation"
 window.baseNavigation = baseNavigationActions
 window.EventEmitter = EventEmitter()
 
-import {
-  ActionSheetProvider,
-  connectActionSheet
-} from "@expo/react-native-action-sheet"
 import { sentryMiddleware } from "./src/middleware/sentry";
+import navigationMiddleware from "./src/middleware/navigation"
 
-Sentry.enableInExpoDevelopment = true;
 Sentry.config("https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600").install()
 
 export class App extends React.Component {
@@ -65,6 +65,7 @@ export class App extends React.Component {
       ],
       additionalMiddleware: [
         sentryMiddleware,
+        navigationMiddleware
       ]
     })
     window.store = this.store
