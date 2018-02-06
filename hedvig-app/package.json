@@ -38,16 +38,16 @@
     "ramda": "^0.25.0",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
-    "react-native-popup-dialog": "^0.9.36",
+    "react-native-popup-dialog": "^0.10.46",
     "react-native-root-toast": "^3.0.1",
-    "react-native-snap-carousel": "^3.2.3",
+    "react-native-snap-carousel": "^3.6.0",
     "react-navigation": "^1.0.0-beta.27",
     "react-navigation-redux-helpers": "^1.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "sentry-expo": "~1.7.0",
-    "styled-components": "^2.1.2",
+    "styled-components": "^3.1.6",
     "wolfy87-eventemitter": "^5.2.3"
   }
 }
