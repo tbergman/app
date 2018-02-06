@@ -6,7 +6,6 @@ node_js:
 before_install:
 - npm install exp --global
 install:
-- ./stamp_configs.sh
 - cd hedvig-redux
 - yarn install
 - cd ..

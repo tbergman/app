@@ -3,6 +3,7 @@ if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; t
         sudo sysctl fs.inotify.max_user_watches=524288
         sudo sysctl fs.inotify.max_queued_events=52488
         sudo sysctl -p
+        echo "{\"s3_bucket_url\":\"${PROD_S3_BUCKET_URL}\"}" > ../hedvig-redux/config.json
         cd ../hedvig-redux
         sed -i -e 's/gateway.test.hedvig.com/gateway.hedvig.com/g' src/services/environment.js
         cd ../hedvig-app

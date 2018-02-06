@@ -1,5 +1,6 @@
 if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     if [ "${TRAVIS_BRANCH}" == "master" ]; then
+        echo "{\"s3_bucket_url\":\"${TEST_S3_BUCKET_URL}\"}" > ../hedvig-redux/config.json
         sudo sysctl fs.inotify.max_user_watches=524288
         sudo sysctl fs.inotify.max_queued_events=524288
         sudo sysctl -p
