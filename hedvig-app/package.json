@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.6",
-    "@storybook/addon-links": "^3.2.6",
-    "@storybook/react-native": "^3.2.8",
     "babel-eslint": "^8.2.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react-native": "^4.0.0",
@@ -28,9 +25,6 @@
     "test": "node node_modules/jest/bin/jest.js --watch",
     "deploy": "exp publish --non-interactive",
     "lint": "eslint src",
-    "storybook": "storybook start -p 7007",
-    "storybook-ios": "REACT_NATIVE_STORYBOOK_MODE=true yarn run ios",
-    "storybook-android": "REACT_NATIVE_STORYBOOK_MODE=true yarn run android",
     "postinstall": "rndebugger-open"
   },
   "jest": {

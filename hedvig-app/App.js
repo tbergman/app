@@ -1,6 +1,3 @@
-/* global module process */
-import StorybookUI from "./storybook"
-
 import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
@@ -144,6 +141,4 @@ export class AppWithActionSheet extends React.Component {
   }
 }
 
-module.exports = process.env.REACT_NATIVE_STORYBOOK_MODE
-  ? StorybookUI
-  : AppWithActionSheet
+export default AppWithActionSheet
