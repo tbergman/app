@@ -16,7 +16,6 @@ import { StyledButtonText } from "./styles/button";
 const { width } = Dimensions.get("window")
 const headingFontSize = width <= 320 ? 16 : 24
 const paragraphFontSize = width <= 320 ? 10 : 14
-const buttonHeight = width <= 320 ? 20 : 40
 
 const contents = [
   {
