@@ -35,15 +35,20 @@ const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
   font-size: 16px;
 `
 
-const HidingCtaButton = ({isVisible}) => (
+const HidingCtaButton = ({isVisible, registerCtaClick}) => (
   !isVisible ? (
-    <Link to="/chat"><AnimatedCtaButton>Sätt upp mig väntelistan</AnimatedCtaButton></Link>
+    <Link to="/chat" onClick={registerCtaClick}>
+      <AnimatedCtaButton>Sätt upp mig väntelistan</AnimatedCtaButton>
+    </Link>
   ) : (<div></div>)
 )
 
 const ConnectedHidingCtaButton = connect(
   state => ({
     isVisible: state.landing.visible
+  }),
+  dispatch => ({
+    registerCtaClick: () => dispatch({type: "ANALYTICS/CTA_CLICK", payload: {location: "header"}})
   })
 )(HidingCtaButton)
 

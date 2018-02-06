@@ -8,8 +8,18 @@ const pageView = action => {
   }
 }
 
+const ctaClick = action => {
+  return {
+    hitType: 'event',
+    eventCategory: 'cta button',
+    eventAction: 'click',
+    eventLabel: action.payload.location
+  }
+}
+
 const eventsMap = {
-  "@@router/LOCATION_CHANGE": pageView
+  "@@router/LOCATION_CHANGE": pageView,
+  "ANALYTICS/CTA_CLICK": ctaClick
 }
 
 const middleware = createMiddleware(eventsMap, GoogleAnalytics)

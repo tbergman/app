@@ -41,7 +41,6 @@ const SubText = styled.p`
 class CallToAction extends React.Component {
 
   _change = isVisible => {
-    console.log("I was called with: ", isVisible)
     this.props.ctaVisibilityChanged(isVisible)
   }
 
@@ -50,7 +49,7 @@ class CallToAction extends React.Component {
       <Container>
         <Heading>Skaffa Hedvig innan alla andra</Heading>
         {/* <VisibilitySensor onChange={this._change}> */}
-        <Link to="/chat">
+        <Link to="/chat" onClick={this.props.registerCtaClick}>
           <TurquoiseRoundedButton style={{minWidth: "120px"}}>
             Sätt upp mig på väntelistan
           </TurquoiseRoundedButton>
@@ -68,6 +67,7 @@ class CallToAction extends React.Component {
 export default connect(
   undefined,
   dispatch => ({
-    ctaVisibilityChanged: isVisible => dispatch({type: "LANDING/CTA_VISIBILITY_CHANGED", payload: { status: isVisible}})
+    ctaVisibilityChanged: isVisible => dispatch({type: "LANDING/CTA_VISIBILITY_CHANGED", payload: { status: isVisible}}),
+    registerCtaClick: () => dispatch({type: "ANALYTICS/CTA_CLICK", payload: {location: "cta section"}})
   })
 )(CallToAction)

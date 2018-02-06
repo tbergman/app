@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 import styled from "styled-components"
 import { Link } from "react-router-dom";
 import { TurquoiseRoundedButtonStyled } from "../styles/button";
@@ -98,10 +99,15 @@ const CustomButton = TurquoiseRoundedButtonStyled.extend`
   font-size: 16px;
 `
 
-export const SayHi = () => (
-  <Link to="/chat">
+export const SayHi = connect(
+  undefined,
+  dispatch => ({
+    registerCtaClick: () => dispatch({type: "ANALYTICS/CTA_CLICK", payload: {location: "header"}})
+  })
+)(({registerCtaClick}) => (
+  <Link to="/chat" onClick={registerCtaClick}>
     <CustomButton>
       Säg hej till Hedvig!
     </CustomButton>
   </Link>
-)
+))

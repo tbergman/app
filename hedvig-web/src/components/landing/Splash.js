@@ -96,7 +96,7 @@ class Splash extends React.Component {
           <Heading>Livet är enklare<br /> med Hedvig</Heading>
           <CustomHeadingSubText>Försäkring som du aldrig upplevt det tidigare</CustomHeadingSubText>
           <div style={{flexShrink: 0}}>
-            <Link to="/chat">
+            <Link to="/chat" onClick={this.props.registerCtaClick}>
               <VisibilitySensor onChange={this._change}>
                 <TurquoiseRoundedButtonStyled>
                   Sätt upp mig på väntelistan
@@ -117,5 +117,6 @@ export default connect(
   undefined,
   dispatch => ({
     ctaVisibilityChanged: isVisible => dispatch({type: "LANDING/CTA_VISIBILITY_CHANGED", payload: {status: isVisible}}),
+    registerCtaClick: () => dispatch({type: "ANALYTICS/CTA_CLICK", payload: {location: "splash"}})
   })
 )(Splash)
