@@ -1,3 +1,6 @@
+#!/bin/bash
+set -uex
+
 if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     if [ "${TRAVIS_BRANCH}" == "deploy" ]; then
         sudo sysctl fs.inotify.max_user_watches=524288
