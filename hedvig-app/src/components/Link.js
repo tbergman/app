@@ -1,18 +1,8 @@
 import React from "react"
-import { Button, Text, Linking } from "react-native"
+import PropTypes from "prop-types"
+import { Text, Linking } from "react-native"
 
-export const Link = ({ to, title, navigateTo }) => {
-  return (
-    <Button
-      title={title}
-      onPress={() => {
-        navigateTo(to)
-      }}
-    />
-  )
-}
-
-export const TextLink = ({ to, children }) => (
+const TextLink = ({ to, children }) => (
   <Text
     style={{
       color: "#555555",
@@ -26,13 +16,9 @@ export const TextLink = ({ to, children }) => (
   </Text>
 )
 
-export const ClaimLink = ({ title, createClaimAndNavigateToChat }) => {
-  return (
-    <Button
-      title={title}
-      onPress={() => {
-        createClaimAndNavigateToChat()
-      }}
-    />
-  )
+TextLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
 }
+
+export { TextLink }

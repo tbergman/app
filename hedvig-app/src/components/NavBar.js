@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { TouchableHighlight } from "react-native"
 import * as Navigation from "../services/Navigation"
 import { FontAwesome } from "@expo/vector-icons"
@@ -6,26 +7,28 @@ import { EmptyHeaderItem, StyledNavBarContainer } from "./styles/navbar"
 import { HedvigLogoBlue } from "./Icon"
 import { StyledHeading } from "./styles/text"
 
-export const NavBar = ({ title, headerLeft, headerRight }) => {
-  let TitleComponent
-  if (title) {
-    TitleComponent = <StyledHeading>{title}</StyledHeading>
-  } else {
-    TitleComponent = <HedvigLogoBlue />
-  }
-  headerLeft = headerLeft || <EmptyHeaderItem />
-  headerRight = headerRight || <EmptyHeaderItem />
+const NavBar = ({ title, headerLeft, headerRight }) => (
+  <StyledNavBarContainer>
+    {headerLeft}
+    {title ? <StyledHeading>{title}</StyledHeading> : <HedvigLogoBlue />}
+    {headerRight}
+  </StyledNavBarContainer>
+)
 
-  return (
-    <StyledNavBarContainer>
-      {headerLeft}
-      {TitleComponent}
-      {headerRight}
-    </StyledNavBarContainer>
-  )
+NavBar.propTypes = {
+  title: PropTypes.string,
+  headerLeft: PropTypes.element,
+  headerRight: PropTypes.element
 }
 
-export const HeaderRightChat = ({ navigation }) => {
+NavBar.defaultProps = {
+  title: undefined,
+  headerLeft: <EmptyHeaderItem />,
+  headerRight: <EmptyHeaderItem />,
+}
+
+// TODO Proptypes
+const HeaderRightChat = ({ navigation }) => {
   return (
     <TouchableHighlight
       onPress={() => {
@@ -40,3 +43,5 @@ export const HeaderRightChat = ({ navigation }) => {
     </TouchableHighlight>
   )
 }
+
+export { NavBar, HeaderRightChat }

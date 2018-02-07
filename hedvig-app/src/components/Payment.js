@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { WebView, BackHandler, View, Text } from "react-native";
 import { NavigationActions } from "react-navigation"
@@ -6,6 +7,15 @@ import { NavBar } from "./NavBar";
 import { NavigateBackButton } from "./Button";
 
 class Payment extends React.Component {
+  static propTypes = {
+    url: PropTypes.string,
+    requestPaymentRegistration: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    url: undefined
+  }
+
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
     this.props.requestPaymentRegistration()
