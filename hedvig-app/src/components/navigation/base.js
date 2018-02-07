@@ -9,7 +9,6 @@ import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
-import StatusBar from "../../containers/StatusBar"
 import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
 
 const HomeBaseNavigator = StackNavigator(
@@ -25,7 +24,10 @@ const HomeBaseNavigator = StackNavigator(
     },
     AddEditAsset: {
       screen: AddEditAsset
-    }
+    },
+    //Payment: {
+    //  screen: Payment
+    //}
   },
   {
     mode: "modal",
@@ -79,4 +81,4 @@ const ChatModalNavigator = StackNavigator(
   }
 )
 
-export { HomeBase, ChatModalNavigator, StatusBar }
+export { HomeBase, ChatModalNavigator }
