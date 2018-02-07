@@ -4,7 +4,7 @@ import { KeyboardAvoidingView, ViewPropTypes } from "react-native"
 
 export default class HedvigKeyboardAvoidingView extends React.Component {
   static propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     style: ViewPropTypes.style
   }
 
