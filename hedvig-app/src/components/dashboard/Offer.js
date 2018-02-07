@@ -13,10 +13,9 @@ import {
 } from "../Button"
 import { PerilsCategory } from "./PerilsCategory";
 import OfferDashboardHeader from "../dashboard/OfferDashboardHeader"
-import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderItem, StyledDashboardHeaderIcon } from "../styles/dashboard"
 import { StyledText, StyledPassiveText } from "../styles/text";
 import { TextLink } from "../Link"
-import { INSURANCE_TYPES } from "../../constants"
+import OfferFooter from "./OfferFooter"
 
 const { width } = Dimensions.get("window")
 
@@ -25,42 +24,7 @@ const HEDVIG_INTEGRITET_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hed
 // Precache assets
 Asset.loadAsync([
   require("../../../assets/bgs/gradient-white-rectangle.png"),
-  require("../../../assets/icons/my_insurance/pris.png"),
-  require("../../../assets/icons/my_insurance/aktiv.png"),
-  require("../../../assets/icons/my_insurance/worldwide.png"),
-  require("../../../assets/icons/info/info_green.png")
 ])
-
-const OfferFooter = ({insuranceType}) => (
-  <StyledDashboardHeader style={{paddingTop: 8, paddingBottom: 8}}>
-    <StyledDashboardHeaderRow style={{marginBottom: 4}}>
-      <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon style={{marginTop: 8}} source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Tryggas av en av världens{"\n"}största återförsäkringskoncerner</StyledPassiveText>
-      </StyledDashboardHeaderItem>
-    </StyledDashboardHeaderRow>
-    { insuranceType === INSURANCE_TYPES.BRF || insuranceType === INSURANCE_TYPES.SUBLET_BRF ? (
-      <StyledDashboardHeaderRow>
-        <StyledDashboardHeaderItem>
-          <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-          <StyledPassiveText>Lägenheten försäkras till sitt fulla värde</StyledPassiveText>
-        </StyledDashboardHeaderItem>
-      </StyledDashboardHeaderRow>
-    ) : null }
-    <StyledDashboardHeaderRow>
-      <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Prylarna försäkras till totalt 1 000 000 kr</StyledPassiveText>
-      </StyledDashboardHeaderItem>
-    </StyledDashboardHeaderRow>
-    <StyledDashboardHeaderRow>
-      <StyledDashboardHeaderItem>
-        <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
-      </StyledDashboardHeaderItem>
-    </StyledDashboardHeaderRow>
-  </StyledDashboardHeader>
-)
 
 class Offer extends React.Component {
   componentWillMount() {

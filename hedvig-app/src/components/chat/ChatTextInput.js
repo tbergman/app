@@ -1,9 +1,15 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { StyledTextInputContainer, StyledTextInput } from "../styles/chat"
 import { SendIconButton, SendDisabledIconButton } from "../Button"
 
 class ChatTextInput extends React.Component {
-  lastSentFor = undefined
+  static propTypes = {
+    message: PropTypes.object, // TODO Better definition for the shape of a message - should be reusable
+    onChange: PropTypes.func.isRequired
+  }
+
+  lastSentFor = undefined // TODO Fix this hack
 
   _send = () => {
     if (!this.lastSentFor || this.lastSentFor !== this.props.message.globalId) {
