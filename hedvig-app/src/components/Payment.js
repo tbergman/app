@@ -10,6 +10,7 @@ class Payment extends React.Component {
   static propTypes = {
     url: PropTypes.string,
     requestPaymentRegistration: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -26,29 +27,30 @@ class Payment extends React.Component {
   }
 
   onBackPress = () => {
-    const { dispatch } = this.props;
-    dispatch(NavigationActions.back())
+    this.props.goBack()
     return true
   }
 
   goBack = () => {
-    const { dispatch } = this.props
-    dispatch(NavigationActions.back())
+    this.props.goBack()
   }
 
   render() {
-    if (!this.props.url) {
-      return (<View><Text>Loading...</Text></View>)
-    }
     return (
       <View style={{flex: 1}}>
         <NavBar
           title="Betalning"
           headerLeft={<NavigateBackButton onPress={this.goBack} />}
         />
-        <WebView
-          source={{uri: "https://www.hedvig.com"}}
-        />
+        { this.props.url ? (
+          <WebView
+            source={{uri: this.props.url}}
+          />
+        ) : (
+          <View>
+            <Text>Loading...</Text>
+          </View>
+        )}
       </View>
     )
   }
@@ -59,6 +61,7 @@ export default connect(
     url: state.payment.url
   }),
   dispatch => ({
-    requestPaymentRegistration: () => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION"})
+    requestPaymentRegistration: () => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION"}),
+    goBack: () => dispatch(NavigationActions.goBack())
   })
 )(Payment)

@@ -10,7 +10,7 @@ const startPayment = function*(action) {
     SUCCESS: "PAYMENT/START_PAYMENT_SUCCESS"
   }})
   const res = yield take(["PAYMENT/START_PAYMENT_SUCCESS", "API_ERROR"])
-  yield put({type: "PAYMENT/RECEIVED_IFRAME_URL", payload: {url: res.url}})
+  yield put({type: "PAYMENT/RECEIVED_IFRAME_URL", payload: {url: res.payload.url}})
 }
 
 export const startPaymentSaga = function* (){
