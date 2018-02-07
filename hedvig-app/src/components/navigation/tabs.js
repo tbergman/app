@@ -1,5 +1,4 @@
 import React from "react"
-import { Button, Text } from "react-native"
 import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
@@ -7,29 +6,11 @@ import AssetList from "../../containers/asset-tracker/AssetList"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
 
-import { Placeholder } from "../Styles"
 import {
   StyledTabBarContainer,
   StyledTabBarButton,
   StyledTabBarButtonText
 } from "../styles/tabbar"
-
-export class AssetTrackerTab extends React.Component {
-  render() {
-    return (
-      <Placeholder>
-        <Text>Asset Tracker</Text>
-        <Button
-          title="Launch modal on 3"
-          onPress={() =>
-            this.props.navigation.navigate("MyModal", {
-              initialRouteName: "C"
-            })}
-        />
-      </Placeholder>
-    )
-  }
-}
 
 const MyTabsContainer = styled.View`
   flex-direction: row;

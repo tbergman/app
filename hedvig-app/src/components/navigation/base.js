@@ -10,6 +10,7 @@ import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import { MyModalNavigator } from "./modal"
 import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
+import Payment from "../Payment"
 
 const HomeBaseNavigator = StackNavigator(
   {
@@ -25,9 +26,9 @@ const HomeBaseNavigator = StackNavigator(
     AddEditAsset: {
       screen: AddEditAsset
     },
-    //Payment: {
-    //  screen: Payment
-    //}
+    Payment: {
+      screen: Payment
+    }
   },
   {
     mode: "modal",
