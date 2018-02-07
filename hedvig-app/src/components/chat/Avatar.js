@@ -3,6 +3,7 @@ import { Animated } from "react-native"
 import { DangerZone } from "expo"
 const { Lottie } = DangerZone
 
+// TODO PropType validation
 export default class Avatar extends React.Component {
   state = {
     progress: new Animated.Value(0)
