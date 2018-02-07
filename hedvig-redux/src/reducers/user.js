@@ -1,5 +1,5 @@
 import { LOADED_USER } from "../actions/types"
-import R from "ramda"
+import * as R from "ramda"
 
 const reducer = (
   state = {

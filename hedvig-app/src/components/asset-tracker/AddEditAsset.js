@@ -39,7 +39,7 @@ import {
 import { theme } from "hedvig-style"
 import moment from "moment"
 import "moment/locale/sv"
-import R from "ramda"
+import * R from "ramda"
 
 export default class AddEditAsset extends React.Component {
   constructor(props) {
@@ -91,7 +91,7 @@ export default class AddEditAsset extends React.Component {
     this.keyboardHideListener.remove()
     BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
   }
-  
+
   onBackPress = () => {
     this.props.goBack()
     return true

@@ -1,4 +1,4 @@
-import R from "ramda"
+import * as R from "ramda"
 import React from "react"
 import { TouchableOpacity, Text } from "react-native"
 import styled from "styled-components/native"

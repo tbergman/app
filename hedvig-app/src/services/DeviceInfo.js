@@ -1,4 +1,4 @@
-import R from "ramda"
+import * as R from "ramda"
 import { Constants } from "expo"
 import { Dimensions } from "react-native"
 

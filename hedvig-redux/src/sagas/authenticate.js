@@ -1,4 +1,4 @@
-import R from "ramda"
+import * as R from "ramda"
 import { takeEvery, put } from "redux-saga/effects"
 import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from "../actions/types"
 import { baseURL } from "../services/environment"

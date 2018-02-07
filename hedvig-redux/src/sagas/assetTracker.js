@@ -14,7 +14,7 @@ window.baseURL = baseURL
 import * as assetActions from "../actions/assetTracker"
 import * as uploadActions from "../actions/upload"
 import { take, takeEvery, put, call } from "redux-saga/effects"
-import R from "ramda"
+import * as R from "ramda"
 
 // Upload files for an item
 

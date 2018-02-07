@@ -34,7 +34,7 @@ import {
   TurquoiseRoundedInvertedButton
 } from "./Button"
 import "moment/locale/sv"
-import R from "ramda"
+import * as R from "ramda"
 
 export default class Profile extends React.Component {
   static navigationOptions = ({ navigation }) => ({

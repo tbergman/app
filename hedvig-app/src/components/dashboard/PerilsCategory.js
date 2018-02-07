@@ -25,7 +25,7 @@ import {
   StyledPassiveText,
   StyledSmallPassiveText
 } from "../styles/text"
-import R from "ramda"
+import * as R from "ramda"
 
 const coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
 
