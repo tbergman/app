@@ -1,5 +1,6 @@
 import { AsyncStorage } from "react-native"
 import { types } from "hedvig-redux"
+import { getDeviceInfo } from "./DeviceInfo"
 
 const TOKEN_KEY = "@hedvig:token"
 
@@ -30,7 +31,7 @@ export async function getOrLoadToken(dispatch) {
   } else {
     dispatch({
       type: types.AUTHENTICATE,
-      payload: {}
+      payload: {deviceInfo: getDeviceInfo()}
     })
   }
 }
