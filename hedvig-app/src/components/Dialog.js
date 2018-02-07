@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Dimensions, BackHandler, Text } from "react-native"
 import PopupDialog, {
 } from "react-native-popup-dialog"
@@ -20,6 +21,10 @@ import { DialogButton } from "./Button"
  * * `confirmButtonOnPress`, ex: () => console.log("Cancel pressed")
  */
 export default class Dialog extends React.Component {
+  static propTypes = {
+    message: PropTypes.object.isRequired, // TODO Better definition of message type
+  }
+
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
   }

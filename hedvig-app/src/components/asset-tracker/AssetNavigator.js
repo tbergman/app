@@ -23,7 +23,6 @@ const AssetNavigator = StackNavigator(
 const AssetTracker = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      {/* <FloatingChatButton navigation={navigation} /> */}
       <AssetNavigator navigation={navigation} />
     </View>
   )
