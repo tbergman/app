@@ -8,7 +8,6 @@ import Chat from "../../containers/Chat"
 import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
-import { MyModalNavigator } from "./modal"
 import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
 import Payment from "../Payment"
 
@@ -16,9 +15,6 @@ const HomeBaseNavigator = StackNavigator(
   {
     MyTabNavigator: {
       screen: MyTabNavigator
-    },
-    MyModal: {
-      screen: MyModalNavigator
     },
     Carousel: {
       screen: Carousel
