@@ -21,7 +21,8 @@ class Payment extends React.Component {
   }
 
   goBack = () => {
-    this.props.navigation.goBack()
+    const { dispatch } = this.props
+    dispatch(NavigationActions.back())
   }
 
   render() {
@@ -29,7 +30,7 @@ class Payment extends React.Component {
       <View style={{flex: 1}}>
         <NavBar
           title="Betalning"
-          headerLeft={<NavigateBackButton onPress={this._goBack} />}
+          headerLeft={<NavigateBackButton onPress={this.goBack} />}
         />
         <WebView
           source={{uri: "https://www.hedvig.com"}}
