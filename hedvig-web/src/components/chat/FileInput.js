@@ -4,7 +4,6 @@ import { WhiteRoundedButton } from "../Button"
 
 export default class FileInput extends React.Component {
   handleFiles(file) {
-    console.log("File:", file)
     this.props.upload(this.props.message, file)
   }
 

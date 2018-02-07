@@ -90,7 +90,6 @@ class WaitListPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log()
     this.props.fetchWaitlistPosition(this.props.match.params.id)
   }
 

@@ -11,9 +11,7 @@ import {
   AnimatedWhiteRoundedButtonStyled
 } from "./styles/button"
 
-const defaultOnClick = () => {
-  console.log("Button clicked")
-}
+const defaultOnClick = () => {}
 
 // Regular rounded buttons
 

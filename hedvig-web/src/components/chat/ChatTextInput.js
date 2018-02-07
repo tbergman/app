@@ -45,7 +45,6 @@ export default class ChatTextInput extends React.Component {
           innerRef={input => (this.input = input)}
           value={message._inputValue || ""}
           onChange={event => {
-            console.log("Stop propagation is: ", event.isPropagationStopped)
             onChange(message, event.target.value)
           }}
           style={{ marginBottom: "10px" }}
