@@ -4,9 +4,9 @@ const startPayment = function*(action) {
   yield put({type: "API", payload: {
     url: "/hedvig/startPayment",
     method: "POST",
-    body: {
+    body: JSON.stringify({
       id: action.payload || 1
-    },
+    }),
     SUCCESS: "PAYMENT/START_PAYMENT_SUCCESS"
   }})
   const res = yield take(["PAYMENT/START_PAYMENT_SUCCESS", "API_ERROR"])
