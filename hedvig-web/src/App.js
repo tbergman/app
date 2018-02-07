@@ -1,3 +1,4 @@
+/* global Raven, process */
 import React, { Component } from "react"
 import { Provider } from "react-redux"
 import { routerReducer } from "react-router-redux"
@@ -18,6 +19,10 @@ import analyticsMiddleware from "./middleware/analytics";
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
 window.moment = moment
+
+if (process.env.NODE_ENV === "production") {
+  Raven.config('https://f3942dffb4a14ed0ab23aa38b6ae73f0@sentry.io/284598').install()
+}
 
 class App extends Component {
   constructor() {
