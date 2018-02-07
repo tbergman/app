@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { WebView, BackHandler, View } from "react-native";
+import { WebView, BackHandler, View, Text } from "react-native";
 import { NavigationActions } from "react-navigation"
 import { NavBar } from "./NavBar";
 import { NavigateBackButton } from "./Button";
@@ -8,6 +8,7 @@ import { NavigateBackButton } from "./Button";
 class Payment extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
+    this.props.requestPaymentRegistration()
   }
 
   componentWillUnmount() {
@@ -26,6 +27,9 @@ class Payment extends React.Component {
   }
 
   render() {
+    if (!this.props.url) {
+      return (<View><Text>Loading...</Text></View>)
+    }
     return (
       <View style={{flex: 1}}>
         <NavBar
@@ -40,4 +44,11 @@ class Payment extends React.Component {
   }
 }
 
-export default connect()(Payment)
+export default connect(
+  state => ({
+    url: state.payment.url
+  }),
+  dispatch => ({
+    requestPaymentRegistration: () => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION"})
+  })
+)(Payment)

@@ -10,6 +10,7 @@ import cashbackReducer from "./cashback"
 import dialogReducer from "./dialog"
 import bankIdReducer from "./bankid"
 import uploadReducer from "./upload"
+import paymentReducer from "./payment"
 
 const rootReducer = (additionalReducers = {}) =>
   combineReducers(
@@ -25,7 +26,8 @@ const rootReducer = (additionalReducers = {}) =>
         cashback: cashbackReducer,
         dialog: dialogReducer,
         bankid: bankIdReducer,
-        upload: uploadReducer
+        upload: uploadReducer,
+        payment: paymentReducer
       },
       additionalReducers
     )
