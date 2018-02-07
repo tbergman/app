@@ -13,9 +13,6 @@ import ModelExplanation from "./landing/ModelExplanation"
 import WaterDamagePage from "./landing/WaterDamagePage";
 import CallToAction from "./landing/CallToAction"
 import { TurquoiseRoundedButtonStyled } from "./styles/button";
-require("purecss/build/base.css")
-require("purecss/build/grids.css")
-require("purecss/build/grids-responsive.css")
 
 const SlideDownAnimation = keyframes`
   from {
@@ -32,7 +29,6 @@ const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
   animation: ${SlideDownAnimation} 0.1s linear;
   margin-left: auto;
   white-space: nowrap;
-  font-size: 16px;
 `
 
 const HidingCtaButton = ({isVisible, registerCtaClick}) => (
