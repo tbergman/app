@@ -1,7 +1,12 @@
 import React from "react"
-import { View } from "react-native"
+import PropTypes from "prop-types"
 
 export default class ParagraphInput extends React.Component {
+  static propTypes = {
+    startPolling: PropTypes.func.isRequired,
+    stopPolling: PropTypes.func.isRequired
+  }
+
   componentDidMount() {
     this.props.startPolling(this.props.message.header.pollingInterval)
   }
@@ -15,6 +20,6 @@ export default class ParagraphInput extends React.Component {
   }
 
   render() {
-    return <View />
+    return null
   }
 }
