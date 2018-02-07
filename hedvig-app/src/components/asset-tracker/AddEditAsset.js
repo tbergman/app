@@ -39,7 +39,7 @@ import {
 import { theme } from "hedvig-style"
 import moment from "moment"
 import "moment/locale/sv"
-import * R from "ramda"
+import * as R from "ramda"
 
 export default class AddEditAsset extends React.Component {
   constructor(props) {
