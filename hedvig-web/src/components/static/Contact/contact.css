@@ -21,3 +21,9 @@
   width: 100%;
   text-align: center;
 }
+
+@media screen and (min-width: 768px) {
+  .Contact__article {
+    padding: 5em 0;
+  }
+}

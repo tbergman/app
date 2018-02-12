@@ -56,6 +56,10 @@ a {
   text-decoration: none;
 }
 
+.max-height {
+  height: 100%;
+}
+
 .__react_modal {
   top: 50%;
   left: 50%;
