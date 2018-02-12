@@ -500,7 +500,7 @@ simply POST this to /response:
   {"name":"loader",
   "URL":"https://www.lottiefiles.com/storage/datafiles/qm9uaAEoe13l3eQ/data.json","width":500,
   "height":500,
-  "duration":1000},   
+  "duration":1000},
   {"name":"bike",
   "URL":"https://www.lottiefiles.com/storage/datafiles/dlzGwlfS0fkCJcq/data.json",
   "width":500,
@@ -815,3 +815,9 @@ SUCCESS
 FAILIURE
 .
 .
+
+# Thanks to BrowserStack
+Big thanks to BrowserStack for letting us use their service to test our website in multiple browsers and environments.
+
+
+<a href="https://www.browserstack.com/"><img alt="BrowserStack Logo" src="https://raw.github.com/hedviginsurance/hedvig-frontend/master/media/BrowserStack.png"/></a>
