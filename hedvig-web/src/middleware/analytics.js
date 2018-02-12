@@ -1,5 +1,5 @@
 import { createMiddleware } from "redux-beacon"
-import { GoogleAnalytics } from "redux-beacon/targets/google-analytics"
+import { GoogleTagManager } from "redux-beacon/targets/google-tag-manager"
 
 const pageView = action => {
   return {
@@ -22,6 +22,6 @@ const eventsMap = {
   "ANALYTICS/CTA_CLICK": ctaClick
 }
 
-const middleware = createMiddleware(eventsMap, GoogleAnalytics)
+const middleware = createMiddleware(eventsMap, GoogleTagManager())
 
 export default middleware
