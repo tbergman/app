@@ -1,6 +1,6 @@
 import React from "react"
 import { Container, SayHi, TextRow, TextHeading, TextBody } from "./common";
-import { Header } from "../Header";
+import Header from "../Header";
 import Footer from "../Footer"
 
 const CustomContainer = Container.extend`

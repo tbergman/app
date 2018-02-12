@@ -1,7 +1,7 @@
 import React from "react"
 
 import { Container, Hero, Heading, SayHi } from "./common"
-import { Header } from "../Header";
+import Header from "../Header";
 import Footer from "../Footer"
 
 const FAQ = () => (

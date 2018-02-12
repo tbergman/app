@@ -1,6 +1,9 @@
 import { UPDATE_ITEM, DELETE_ITEM, GET_ASSETS } from "./types"
 
-export function updateItem(item, afterUploadCallback = null) {
+export function updateItem(item, afterUploadCallback) {
+  if (afterUploadCallback === undefined) {
+    afterUploadCallback = null;
+  }
   return {
     type: UPDATE_ITEM,
     payload: item,

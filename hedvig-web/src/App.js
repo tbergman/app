@@ -16,6 +16,10 @@ import landingReducer from "./reducers/landing"
 import waitlistReducer from "./reducers/waitlist"
 import analyticsMiddleware from "./middleware/analytics";
 
+import "purecss/build/base.css"
+import "purecss/build/grids.css"
+import "purecss/build/grids-responsive.css"
+
 window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
 window.moment = moment

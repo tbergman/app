@@ -10,7 +10,7 @@ import {
   PassiveText
 } from "./styles/offer"
 
-import HeaderWithScroll from "../containers/HeaderWithScroll"
+import Header from "./Header"
 import Category from "../containers/dashboard/Category"
 import MyInsurance from "../containers/dashboard/MyInsurance"
 import InsuranceLimits from "./dashboard/InsuranceLimits"
@@ -86,7 +86,7 @@ export default class Offer extends React.Component {
     return (
       <Container>
         {/* {this.modal()} */}
-        <HeaderWithScroll
+        <Header
           headerRight={
             <ResetIconButton onClick={() => this.props.closeModal()} />
           }

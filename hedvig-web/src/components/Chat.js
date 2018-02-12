@@ -9,7 +9,7 @@ import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import FileInput from "../containers/chat/FileInput"
-import { Header } from "../components/Header"
+import Header from "../components/Header"
 
 import {
   ChatAreaStyled,

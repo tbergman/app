@@ -9,7 +9,7 @@ import {
   TextHeading,
   TextBody
 } from "./common"
-import { Header } from "../Header"
+import Header from "../Header"
 import Footer from "../Footer"
 
 const TextContainer = styled.div`

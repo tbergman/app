@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Container, SayHi, TextRow, TextHeading, TextBody } from "./common";
-import { Header } from "../Header";
+import Header from "../Header";
 import Footer from "../Footer"
 
 const CustomContainer = Container.extend`
@@ -16,7 +16,7 @@ const CustomTextRow = TextRow.extend`
   margin: 4em 0;
 `
 
-const IntroParagraph = styled.p`
+const IntroParagraph = styled.div`
   margin-top: 3em;
   max-width: 1200px;
 `

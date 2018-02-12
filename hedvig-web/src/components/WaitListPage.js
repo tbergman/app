@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import { Header } from "./Header";
+import Header from "./Header";
 import { WhiteRoundedButton, TurquoiseRoundedButton } from "./Button";
 
 const Container = styled.div`
