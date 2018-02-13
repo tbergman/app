@@ -1,0 +1,46 @@
+.WaterDamage {
+  height: auto;
+}
+
+.WaterDamage__relative-container {
+  position: relative;
+  height: 100%;
+}
+
+.WaterDamage__animations {
+  display: flex;
+  background-image: url("/assets/web/splash/backdrop.svg");
+  background-size: cover;
+  width: 100%;
+  float: left;
+}
+
+.WaterDamage__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.WaterDamage__heading {
+  font-family: "Merriweather";
+  font-weight: 400;
+  line-height: normal;
+  font-size: 28px;
+  white-space: nowrap;
+}
+
+.WaterDamage__subtext {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .WaterDamage__subtext {
+    display: block;
+  }
+
+  .WaterDamage__heading {
+    font-size: 40px;
+  }
+}
