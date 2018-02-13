@@ -1,11 +1,7 @@
 .Splash {
   margin: 62px 0 0;
   width: 100%;
-  height: 85vh;
-}
-
-.Splash__full-height {
-  height: 100%;
+  height: auto;
 }
 
 .Splash__text {
@@ -25,11 +21,19 @@
 }
 
 @media screen and (min-width: 768px) {
+  .Splash {
+    height: 85vh;
+  }
+
   .Splash__text {
     text-align: start;
   }
 
   .Splash__heading {
     font-size: 60px;
+  }
+
+  .Splash__full-height {
+    height: 100%;
   }
 }
