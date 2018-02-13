@@ -40,10 +40,11 @@ body,
 button,
 input,
 select,
-textarea {
+textarea,
+.pure-g [class *= "pure-u"] {
   /* Set your content font stack here: */
   font-family: "Circular Std Book", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 
