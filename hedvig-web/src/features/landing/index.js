@@ -1,5 +1,4 @@
 import React from "react"
-import { keyframes } from "styled-components"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 
@@ -33,7 +32,7 @@ const ConnectedHidingCtaButton = connect(
 
 const Landing = () => { // Fragment is used as a quick hack to render nothing in place of a better solution right now
   return (
-    <div>
+    <main>
       <Header headerRight={<ConnectedHidingCtaButton />}/>
       <Splash />
       <WaterDamagePage />
@@ -43,7 +42,7 @@ const Landing = () => { // Fragment is used as a quick hack to render nothing in
       <CallToAction />
       <Collaboration />
       <Footer />
-    </div>
+    </main>
   )
 }
 
