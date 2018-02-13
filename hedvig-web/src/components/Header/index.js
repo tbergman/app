@@ -6,7 +6,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <header className="Header pure-g">
-        <div className="pure-u-md-1-3 Header__child">
+        <div className="pure-hidden-sm pure-u-md-1-3 Header__child">
           <nav className="Header__links">
             <Link to="/about-us">
               Om Hedvig
