@@ -1,65 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
-import styled from "styled-components"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
 import Header from "../../components/Header";
 import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button";
 import "./waitlist.css"
-
-const Container = styled.div`
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 800px) {
-    height: 100%;
-  }
-`
-
-const ContentContainer = styled.div`
-  display: flex;
-  height: calc(100vh - 20%);
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 4em 0 0;
-`
-
-const ContentSection = styled.div`
-  margin: 2em;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const GreenSeparatorLine = styled.hr`
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid ${props => props.theme.colors.turquoise};
-  width: 100vw;
-`
-
-const ContentHeader = styled.h1`
-  font-family: "Merriweather";
-  font-size: 48px;
-  font-weight: 400;
-  line-height: normal;
-  color: ${props => props.theme.colors.blackPurple};
-
-  @media (min-width: 800px) {
-    font-size: 72px;
-  }
-`
-
-const CodeText = styled.p`
-  font-size: 24px;
-  font-family: "Merriweather";
-  color: ${props => props.theme.colors.blackPurple};
-`
 
 const STATUSES = {
   IN_QUEUE: "WAITLIST",
@@ -68,7 +14,7 @@ const STATUSES = {
   LOADING: "LOADING"
 }
 
-class WaitListPage extends React.Component {
+class WaitList extends React.Component {
   static defaultProps = {
     status: STATUSES.LOADING,
     position: undefined,
@@ -82,7 +28,8 @@ class WaitListPage extends React.Component {
     }).isRequired,
     status: PropTypes.oneOf(Object.values(STATUSES)),
     position: PropTypes.number,
-    code: PropTypes.string
+    code: PropTypes.string,
+    fetchWaitlistPosition: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -95,63 +42,65 @@ class WaitListPage extends React.Component {
       case STATUSES.IN_QUEUE:
         content = (
           <React.Fragment>
-            <ContentSection>
+            <div>
               <p>Före dig på väntelistan står</p>
-              <ContentHeader>{ this.props.position } personer</ContentHeader>
-            </ContentSection>
-            <GreenSeparatorLine />
-            <ContentSection>
+              <h1 className="WaitList__header WaitList__spaced-top">{ this.props.position } personer</h1>
+            </div>
+            <hr className="WaitList__separator" />
+            <div className="WaitList__spaced-bottom">
               <p>Du får en aktiveringskod på mailen så fort det är din tur!</p>
-            </ContentSection>
+            </div>
           </React.Fragment>
         )
         break
       case STATUSES.GRANTED_ACCESS:
         content = (
           <React.Fragment>
-            <ContentSection>
+            <div>
               <p>Väntan är över</p>
-              <ContentHeader>Välkommen till Hedvig!</ContentHeader>
-            </ContentSection>
-            <ContentSection>
-              <p>Din aktveringskod är</p>
-              <CodeText>{this.props.code}</CodeText>
+              <h1 className="WaitList__header">Välkommen till Hedvig!</h1>
+            </div>
+            <div>
+              <p>Din aktiveringskod är</p>
+              <p className="WaitList__code">{this.props.code}</p>
               <CopyToClipboard text={this.props.code}>
                 <WhiteRoundedButton>Kopiera koden</WhiteRoundedButton>
               </CopyToClipboard>
               <p>och gå sedan</p>
               <a href="hedvig://" target="_blank" rel="noopener noreferrer">
-            <TurquoiseRoundedButton>
-              Till appen
-            </TurquoiseRoundedButton>
+                <TurquoiseRoundedButton>
+                  Till appen
+                </TurquoiseRoundedButton>
               </a>
-            </ContentSection>
+            </div>
           </React.Fragment>
         )
         break
       case STATUSES.UNKNOWN:
         content = (
-          <div>Sign up for wait list for Hedvig here!</div>
+          <React.Fragment>Sign up for wait list for Hedvig here!</React.Fragment>
         )
         break
       case STATUSES.LOADING:
         content = (
-          <div>Loading ...</div>
+          <React.Fragment>Loading ...</React.Fragment>
         )
         break
       default:
         content = (
-          <div>error</div>
+          <React.Fragment>error</React.Fragment>
         )
         break
     }
     return (
-      <Container>
+      <main className="WaitList">
         <Header headerRight={<React.Fragment></React.Fragment>} />
-          <ContentContainer>
+        <article className="pure-g pure-centered">
+          <div className="pure-u-1-1 pure-u-md-3-5 WaitList__content">
             {content}
-          </ContentContainer>
-      </Container>
+          </div>
+        </article>
+      </main>
     )
   }
 }
@@ -173,4 +122,4 @@ export default connect(
       }
     })
   })
-)(WaitListPage)
+)(WaitList)

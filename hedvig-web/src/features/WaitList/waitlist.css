@@ -1,0 +1,48 @@
+.WaitList {
+  margin: 62px 0 0;
+  height: 100%;
+}
+
+.WaitList__content {
+  text-align: center;
+  justify-content: center;
+}
+
+.WaitList__header {
+  font-size: 48px;
+  line-height: normal;
+  font-weight: 400;
+  color: #0F007A;
+}
+
+.WaitList__separator {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #1BE9B6;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+}
+
+.WaitList__spaced-top {
+  margin: 2em 0 0;
+}
+
+.WaitList__spaced-bottom {
+  margin: 8em 0 0;
+}
+
+.WaitList__code {
+  font-size: 24px;
+  font-family: "Merriweather";
+  color: #0F007A;
+}
+
+@media screen and (min-width: 768px) {
+  .WaitList__header {
+    font-size: 72px;
+  }
+}

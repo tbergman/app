@@ -12,29 +12,12 @@ import Header from "../../components/Header"
 import ModelExplanation from "./sections/ModelExplanation"
 import WaterDamagePage from "./sections/WaterDamage";
 import CallToAction from "./sections/CallToAction"
-import { TurquoiseRoundedButtonStyled } from "../../components/styles/button"
-
-const SlideDownAnimation = keyframes`
-  from {
-    margin-bottom: 20px;
-  }
-
-  to {
-    margin-bottom: 0px;
-  }
-`
-
-const AnimatedCtaButton = TurquoiseRoundedButtonStyled.extend`
-  overflow-y: hidden;
-  animation: ${SlideDownAnimation} 0.1s linear;
-  margin-left: auto;
-  white-space: nowrap;
-`
+import { SlideDownCtaButton } from "../../components/styles/button"
 
 const HidingCtaButton = ({isVisible, registerCtaClick}) => (
   !isVisible ? (
     <Link to="/chat" onClick={registerCtaClick}>
-      <AnimatedCtaButton>Sätt upp mig på väntelistan</AnimatedCtaButton>
+      <SlideDownCtaButton>Sätt upp mig på väntelistan</SlideDownCtaButton>
     </Link>
   ) : (<div></div>)
 )

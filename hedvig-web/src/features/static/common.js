@@ -1,13 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom";
-import { TurquoiseRoundedButtonStyled } from "../../components/styles/button"
+import { SlideDownCtaButton } from "../../components/styles/button"
 
-const CustomButton = TurquoiseRoundedButtonStyled.extend`
-  margin-left: auto;
-  white-space: nowrap;
-  font-size: 16px;
-`
 
 export const SayHi = connect(
   undefined,
@@ -16,8 +11,8 @@ export const SayHi = connect(
   })
 )(({registerCtaClick}) => (
   <Link to="/chat" onClick={registerCtaClick}>
-    <CustomButton>
+    <SlideDownCtaButton>
       Säg hej till Hedvig!
-    </CustomButton>
+    </SlideDownCtaButton>
   </Link>
 ))

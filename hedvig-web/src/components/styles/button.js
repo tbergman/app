@@ -1,15 +1,7 @@
-import styled, { keyframes } from "styled-components"
+import React from "react"
+import styled from "styled-components"
+import "./button.css"
 
-const slideFromRight = keyframes`
-  from {
-    transform: translateX(100px);
-    animation-timing-function: ease-in;
-  }
-
-  to {
-    transform: translateX(0px);
-  }
-`
 
 export const ButtonStyled = styled.button`
   font-family: "Circular Std Book";
@@ -40,17 +32,14 @@ export const RoundedButtonStyled = ButtonStyled.extend`
   border-radius: 24px;
 `
 
-export const TurquoiseRoundedButtonStyled = RoundedButtonStyled.extend`
-  background-color: ${props => props.theme.colors.turquoise};
-  color: white;
-  font-size: 14px;
-  padding: 8px 18px;
-
-  @media (min-width: 800px) {
-    font-size: 18px;
-    padding: 12px 24px;
-  }
-`
+export const TurquoiseRoundedButtonStyled = ({children, ...props}) => (
+  <button
+    className="Button__turquoise-round"
+    {...props}
+  >
+    {children}
+  </button>
+)
 
 export const PurpleRoundedButtonStyled = RoundedButtonStyled.extend`
   background-color: ${props => props.theme.colors.purple};
@@ -68,25 +57,40 @@ export const BlackPurpleRoundedButtonWhiteBorderStyled = RoundedButtonStyled.ext
   border-color: white;
 `
 
-export const WhiteRoundedButtonStyled = RoundedButtonStyled.extend`
-  background-color: white;
-  color: ${props => props.theme.colors.purple};
-  border-color: ${props => props.theme.colors.purple};
-`
+export const WhiteRoundedButtonStyled = ({children, ...props}) => (
+  <button
+    className="Button__white-round"
+    {...props}
+  >
+    {children}
+  </button>
+)
 
-export const AnimatedWhiteRoundedButtonStyled = WhiteRoundedButtonStyled.extend`
-  animation: 0.3s ${slideFromRight} 1;
+export const AnimatedWhiteRoundedButtonStyled = ({children, ...props}) => (
+  <button
+    className="Button__white-round Button__slideFromRight"
+    {...props}
+  >
+    {children}
+  </button>
+)
 
-  :active,:focus {
-    background-color: ${props => props.theme.colors.purple};
-    color: white;
-  }
-`
+export const InactiveWhiteRoundedButtonStyled = ({children, ...props}) => (
+  <button
+    className="Button__white-round Button__inactive"
+    {...props}
+  >
+    {children}
+  </button>
+)
 
-export const InactiveWhiteRoundedButtonStyled = WhiteRoundedButtonStyled.extend`
-  opacity: 0.3;
-  cursor: default;
-`
+export const SlideDownCtaButton = ({children, ...props}) => (
+  <button
+    className="Button__turquoise-round Button__slideDown"
+  >
+    {children}
+  </button>
+)
 
 const iconSizes = {
   medium: 24,
