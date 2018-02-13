@@ -56,8 +56,8 @@ a {
   text-decoration: none;
 }
 
-.max-height {
-  height: 100%;
+.pure-centered {
+  justify-content: center;
 }
 
 .__react_modal {

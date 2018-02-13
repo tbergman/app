@@ -7,11 +7,11 @@ export default class Header extends React.Component {
     return (
       <header className="Header pure-g">
         <div className="pure-u-md-1-3 Header__child">
-          <div className="Header__links">
+          <nav className="Header__links">
             <Link to="/about-us">
               Om Hedvig
             </Link>
-          </div>
+          </nav>
         </div>
         <div className="pure-u-1-3 pure-u-md-1-3 Header__child">
           <div className="Header__logo">
