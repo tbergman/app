@@ -1,0 +1,39 @@
+.AssetTrackerDemo {
+  height: auto;
+}
+
+
+.AssetTrackerDemo__text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.AssetTrackerDemo__heading {
+  font-size: 28px;
+  font-family: "Merriweather";
+  font-weight: 400;
+  line-height: normal;
+}
+
+.AssetTrackerDemo__phone {
+  width: 320px;
+  height: 379px;
+}
+
+@media screen and (min-width: 768px) {
+  .pure-g.AssetTrackerDemo__column-order {
+    flex-direction: row-reverse;
+  }
+
+  .AssetTrackerDemo__text {
+    text-align: start;
+  }
+
+  .AssetTrackerDemo__phone {
+    width: 440px;
+    height: 521px;
+  }
+}
