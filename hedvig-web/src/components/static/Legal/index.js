@@ -9,7 +9,7 @@ const Legal = () => (
     <Header headerRight={<SayHi />} />
     <article className="pure-g pure-centered Legal__text">
       <div className="pure-u-1-1 pure-u-md-3-5">
-        <section>
+        <section className="pure-g">
           <div className="pure-u-1-1 pure-u-md-1-2">
             <h1 className="Legal__heading">Förmedling av försäkringar</h1>
           </div>
@@ -33,7 +33,7 @@ const Legal = () => (
             </p>
           </div>
         </section>
-        <section>
+        <section className="pure-g">
           <div className="pure-u-1-1 pure-u-md-1-2">
             <h1 className="Legal__heading">Om du inte är nöjd</h1>
           </div>
@@ -51,7 +51,7 @@ const Legal = () => (
             </p>
           </div>
         </section>
-        <section>
+        <section className="pure-g">
           <div className="pure-u-1-1 pure-u-md-1-2">
             <h1 className="Legal__heading">Dataskydd</h1>
           </div>
@@ -73,7 +73,7 @@ const Legal = () => (
             </p>
           </div>
         </section>
-        <section>
+        <section className="pure-g">
           <div className="pure-u-1-1 pure-u-md-1-2">
             <h1 className="Legal__heading">Cookies</h1>
           </div>
@@ -131,7 +131,7 @@ const Legal = () => (
             </p>
           </div>
         </section>
-        <section>
+        <section className="pure-g">
           <div className="pure-u-1-1 pure-u-md-1-2">
             <h1 className="Legal__heading">Kontaktuppgifter</h1>
           </div>
