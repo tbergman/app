@@ -7,7 +7,7 @@ import {
   SubItem,
   HeadingContainer,  SubItemText,
   HeadingSubText
-} from "../styles/landing"
+} from "../../../components/styles/landing"
 
 const Container = LandingComponentSection.extend`
   display: flex;

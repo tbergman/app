@@ -3,16 +3,16 @@ import { keyframes } from "styled-components"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 
-import Collaboration from "./landing/Collaboration"
-import Splash from "./landing/Splash"
-import ClaimDemo from "./landing/ClaimDemo"
-import AssetTrackerDemo from "./landing/AssetTrackerDemo"
-import Footer from "./Footer"
-import Header from "../components/Header"
-import ModelExplanation from "./landing/ModelExplanation"
-import WaterDamagePage from "./landing/WaterDamagePage";
-import CallToAction from "./landing/CallToAction"
-import { TurquoiseRoundedButtonStyled } from "./styles/button";
+import Collaboration from "./sections/Collaboration"
+import Splash from "./sections/Splash"
+import ClaimDemo from "./sections/ClaimDemo"
+import AssetTrackerDemo from "./sections/AssetTrackerDemo"
+import Footer from "../../components/Footer"
+import Header from "../../components/Header"
+import ModelExplanation from "./sections/ModelExplanation"
+import WaterDamagePage from "./sections/WaterDamage";
+import CallToAction from "./sections/CallToAction"
+import { TurquoiseRoundedButtonStyled } from "../../components/styles/button"
 
 const SlideDownAnimation = keyframes`
   from {

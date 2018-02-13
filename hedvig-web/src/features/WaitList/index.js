@@ -1,10 +1,12 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import Header from "./Header";
-import { WhiteRoundedButton, TurquoiseRoundedButton } from "./Button";
+import Header from "../../components/Header";
+import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button";
+import "./waitlist.css"
 
 const Container = styled.div`
   min-height: 100%;
@@ -33,13 +35,6 @@ const ContentSection = styled.div`
   align-items: center;
 `
 
-// const Footer = styled.div`
-//   text-align: center;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-// `
-
 const GreenSeparatorLine = styled.hr`
   display: block;
   height: 1px;
@@ -60,17 +55,6 @@ const ContentHeader = styled.h1`
   }
 `
 
-// const InstagramIcon = styled.img`
-//   width: 50px;
-//   height: 50px;
-// `
-//
-// const InstagramLink = styled.a`
-//   &:focus {
-//     outline: none;
-//   }
-// `
-
 const CodeText = styled.p`
   font-size: 24px;
   font-family: "Merriweather";
@@ -87,6 +71,18 @@ const STATUSES = {
 class WaitListPage extends React.Component {
   static defaultProps = {
     status: STATUSES.LOADING,
+    position: undefined,
+    code: undefined,
+  }
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string
+      })
+    }).isRequired,
+    status: PropTypes.oneOf(Object.values(STATUSES)),
+    position: PropTypes.number,
+    code: PropTypes.string
   }
 
   componentDidMount() {
@@ -155,14 +151,6 @@ class WaitListPage extends React.Component {
           <ContentContainer>
             {content}
           </ContentContainer>
-          {/*this.props.status !== STATUSES.GRANTED_ACCESS ? (
-            <Footer>
-              <InstagramLink target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/hedvigers">
-                <InstagramIcon src="/assets/web/Social icons/Instagram-purple.svg" alt="instagram"/>
-              </InstagramLink>
-              <p>Följ Hedvig på Instagram så länge</p>
-            </Footer>
-          ) : null*/}
       </Container>
     )
   }

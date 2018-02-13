@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import { TurquoiseRoundedButton } from "../Button";
+import { TurquoiseRoundedButton } from "../../../components/Button";
 
 const Container = styled.div`
   display: flex;

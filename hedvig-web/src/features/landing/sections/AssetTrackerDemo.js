@@ -4,9 +4,9 @@ import {
   CenteredColumn,
   HeadingSubText,
   AbsoluteFadeInParagraph
-} from "../styles/landing"
-import { BlackPurpleHeading2 } from "../styles/typography"
-import { WhiteRoundedButton } from "../Button"
+} from "../../../components/styles/landing"
+import { BlackPurpleHeading2 } from "../../../components/styles/typography"
+import { WhiteRoundedButton } from "../../../components/Button"
 
 const MyBlackPurpleHeading2 = BlackPurpleHeading2.extend`
   text-align: center;

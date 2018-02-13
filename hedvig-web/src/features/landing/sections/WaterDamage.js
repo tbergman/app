@@ -2,8 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
 
-import { SplashStyled, SplashText, AnimationsContainer } from "../styles/landing";
-import { Heading1 } from "../styles/typography";
+import { SplashStyled, SplashText, AnimationsContainer } from "../../../components/styles/landing";
+import { Heading1 } from "../../../components/styles/typography";
 
 
 const PurpleHeading = Heading1.extend`
@@ -55,7 +55,7 @@ const WaterDamagePage = () => (
           options={{
             loop: true,
             autoplay: true,
-            animationData: require("../../bundledAssets/animations/desktop.json")
+            animationData: require("../../../bundledAssets/animations/desktop.json")
           }}
           height={animationDimensions.height}
           width={animationDimensions.width}
@@ -65,7 +65,7 @@ const WaterDamagePage = () => (
             options={{
               loop: true,
               autoplay: true,
-              animationData: require("../../bundledAssets/animations/drawer.json")
+              animationData: require("../../../bundledAssets/animations/drawer.json")
             }}
             height={animationDimensions.height}
             width={animationDimensions.width}

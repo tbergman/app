@@ -5,17 +5,16 @@ import createHistory from "history/createBrowserHistory"
 
 import Dialog from "../containers/Dialog"
 
-import Landing from "./Landing"
+import Landing from "../features/landing"
 import Chat from "../containers/Chat"
 import Offer from "../containers/Offer"
-import AboutUs from "../components/static/AboutUs"
+import AboutUs from "../features/static/AboutUs"
 import Logout from "../components/Logout"
-import FAQ from "./static/FAQ";
-import Legal from "./static/Legal";
-import WaitListPage from "./WaitListPage"
+import Legal from "../features/static/Legal";
+import Contact from "../features/static/Contact"
+import Terms from "../features/static/Terms"
+import WaitListPage from "../features/WaitList"
 import NotFound from "./NotFound"
-import Contact from "./static/Contact"
-import Terms from "./static/Terms"
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -39,7 +38,6 @@ const Navigator = () => (
         <Route path="/chat" component={Chat} />
         <Route path="/offer" component={Offer} />
         <Route path="/about-us" component={AboutUs} />
-        <Route path="/FAQ" component={FAQ} />
         <Route path="/legal" component={Legal} />
         <Route path="/contact" component={Contact} />
         <Route path="/terms" component={Terms} />

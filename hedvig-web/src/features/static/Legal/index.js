@@ -1,7 +1,7 @@
 import React from "react"
-import { SayHi } from "../common";
-import Header from "../../Header";
-import Footer from "../../Footer"
+import { SayHi } from "../common"
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer"
 import "./legal.css"
 
 const Legal = () => (

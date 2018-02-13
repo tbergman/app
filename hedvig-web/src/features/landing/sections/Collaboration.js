@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { SubItemContainer, SubItem, SubItemText } from "../styles/landing"
+import { SubItemContainer, SubItem, SubItemText } from "../../../components/styles/landing"
 
 const Container = styled.div`
   display: flex;

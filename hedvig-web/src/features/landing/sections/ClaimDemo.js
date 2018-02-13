@@ -4,9 +4,9 @@ import Lottie from "react-lottie"
 import {
   CenteredColumn,
   AbsoluteFadeInParagraph,
-} from "../styles/landing"
-import { WhiteHeading2 } from "../styles/typography"
-import { BlackPurpleRoundedButtonWhiteBorder } from "../Button"
+} from "../../../components/styles/landing"
+import { WhiteHeading2 } from "../../../components/styles/typography"
+import { BlackPurpleRoundedButtonWhiteBorder } from "../../../components/Button"
 
 const MyCenteredColumn = CenteredColumn.extend`
   display: none;
@@ -131,7 +131,7 @@ export default class ClaimDemo extends React.Component {
               options={{
                 loop: true,
                 autoplay: true,
-                animationData: require("../../bundledAssets/animations/claims_demo.json")
+                animationData: require("../../../bundledAssets/animations/claims_demo.json")
               }}
               height={width > 414 ? 610 : 450}
               width={width > 414 ? 352 : 260}

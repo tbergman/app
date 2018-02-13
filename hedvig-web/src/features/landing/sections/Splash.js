@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import VisibilitySensor from "react-visibility-sensor"
 
-import { TurquoiseRoundedButtonStyled } from "../styles/button"
-import { HeadingSubText } from "../styles/landing";
+import { TurquoiseRoundedButtonStyled } from "../../../components/styles/button"
+import { HeadingSubText } from "../../../components/styles/landing";
 
 const Container = styled.div`
   margin: 96px 0 0;
@@ -66,7 +66,7 @@ const animation = width < 800 ? (
     options={{
       loop: true,
       autoplay: true,
-      animationData: require("../../bundledAssets/animations/hedvig_top-statement_animation_mobile_01.json")
+      animationData: require("../../../bundledAssets/animations/hedvig_top-statement_animation_mobile_01.json")
     }}
   />
 ) : (
@@ -74,7 +74,7 @@ const animation = width < 800 ? (
     options={{
       loop: true,
       autoplay: true,
-      animationData: require("../../bundledAssets/animations/hedvig_top-statement_animation_desktop_02.json")
+      animationData: require("../../../bundledAssets/animations/hedvig_top-statement_animation_desktop_02.json")
     }}
   />
 )

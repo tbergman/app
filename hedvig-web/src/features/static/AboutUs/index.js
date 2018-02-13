@@ -1,11 +1,11 @@
 import React from "react"
 
 import {
-  Hero,
   SayHi,
 } from "../common"
-import Header from "../../Header"
-import Footer from "../../Footer"
+import Hero from "../../../components/Hero"
+import Header from "../../../components/Header"
+import Footer from "../../../components/Footer"
 import "./aboutus.css"
 
 const AboutUs = () => (
