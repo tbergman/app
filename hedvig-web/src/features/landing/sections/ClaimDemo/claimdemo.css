@@ -15,12 +15,12 @@
   font-weight: 400;
   font-size: 28px;
   line-height: normal;
+  text-align: center;
 }
 
 .ClaimDemo__phone {
   display: flex;
-  justify-content: flex-end;
-  margin: 4em 0 0;
+  justify-content: center;
 }
 
 .ClaimDemo__expandable {
@@ -53,6 +53,15 @@
 }
 
 @media screen and (min-width: 768px) {
+  .ClaimDemo__heading {
+    text-align: start;
+  }
+
+  .ClaimDemo__phone {
+    justify-content: flex-end;
+    margin: 4em 0 0;
+  }
+
   .ClaimDemo__expandable {
     display: block;
   }
