@@ -23,6 +23,25 @@
   height: 379px;
 }
 
+.AssetTrackerDemo__expandable {
+  display: none;
+}
+
+@keyframes AssetTrackerDemo__FadeInParagraph {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.AssetTrackerDemo__fade-in-paragraph {
+  position: absolute;
+  max-width: 600px;
+  animation: AssetTrackerDemo__FadeInParagraph 0.15s linear;
+}
+
 @media screen and (min-width: 768px) {
   .pure-g.AssetTrackerDemo__column-order {
     flex-direction: row-reverse;
@@ -35,5 +54,10 @@
   .AssetTrackerDemo__phone {
     width: 440px;
     height: 521px;
+  }
+
+  .AssetTrackerDemo__expandable {
+    display: block;
+    top: 0;
   }
 }

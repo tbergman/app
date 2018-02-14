@@ -1,20 +1,7 @@
 import React from "react"
-import {
-  CenteredColumn,
-  AbsoluteFadeInParagraph
-} from "../../../../components/styles/landing"
 import { WhiteRoundedButton } from "../../../../components/Button"
 
 import "./assettrackerdemo.css"
-
-const MyCenteredColumn = CenteredColumn.extend`
-  display: none;
-
-  @media (min-width: 800px) {
-    display: flex;
-    align-items: flex-start;
-  }
-`
 
 export default class AssetTrackerDemo extends React.Component {
   state = {
@@ -24,21 +11,21 @@ export default class AssetTrackerDemo extends React.Component {
   maybeExpanded() {
     return (
       <div>
-        <MyCenteredColumn>
+        <div className="AssetTrackerDemo__expandable">
           <WhiteRoundedButton
             onClick={() => this.setState({ expanded: !this.state.expanded })}
             style={{minWidth: "240px", color: this.state.expanded ? "white" : "#651EFF" , backgroundColor: this.state.expanded ? "#651EFF" : "white" }}
           >
             { this.state.expanded ? "Mindre om prylbanken" : "Mer om prylbanken" }
           </WhiteRoundedButton>
-        </MyCenteredColumn>
+        </div>
         { this.state.expanded ? (
-          <AbsoluteFadeInParagraph>
+          <p className="AssetTrackerDemo__fade-in-paragraph">
             Med prylbanken blir det enkelt att hålla ordning på sakerna du bryr dig om.
             Kvitton och viktiga papper är säkrare hos Hedvig än i en låda under sängen,
             och du ser hur försäkringen gäller för varenda pryl.
             Om olyckan är framme anmäler du skadan med ett knapptryck.
-          </AbsoluteFadeInParagraph>
+          </p>
         ) : null }
       </div>
     )
