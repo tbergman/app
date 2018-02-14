@@ -1,0 +1,59 @@
+.ClaimDemo {
+  background-color: #0F007A;
+}
+
+.ClaimDemo__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.ClaimDemo__heading {
+  color: white;
+  font-family: "Merriweather";
+  font-weight: 400;
+  font-size: 28px;
+  line-height: normal;
+}
+
+.ClaimDemo__phone {
+  display: flex;
+  justify-content: flex-end;
+  margin: 4em 0 0;
+}
+
+.ClaimDemo__expandable {
+  display: none;
+}
+
+@keyframes ClaimDemo__FadeInParagraph {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.ClaimDemo__fade-in-paragraph {
+  color: white;
+  position: absolute;
+  max-width: 600px;
+  animation: ClaimDemo__FadeInParagraph 0.15s linear;
+}
+
+.ClaimDemo__white-border {
+  position: relative;
+  background-color: white;
+  margin: -7px 0 0;
+  height: 7px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .ClaimDemo__expandable {
+    display: block;
+  }
+}

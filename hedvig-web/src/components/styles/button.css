@@ -63,6 +63,18 @@
   white-space: nowrap;
 }
 
+.Button__black-purple-round {
+  background-color: #0F007A;
+  font-family: "Circular Std Book";
+  font-size: 18px;
+  line-height: 22px;
+  padding: 12px 24px;
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  border-radius: 24px;
+}
+
 @media screen and (min-width: 768px) {
   .Button__turquoise-round {
     font-size: 18px;

@@ -51,11 +51,14 @@ export const BlackPurpleRoundedButtonStyled = RoundedButtonStyled.extend`
   color: white;
 `
 
-export const BlackPurpleRoundedButtonWhiteBorderStyled = RoundedButtonStyled.extend`
-  background-color: ${props => props.theme.colors.blackPurple};
-  color: white;
-  border-color: white;
-`
+export const BlackPurpleRoundedButtonWhiteBorderStyled = ({children, ...props}) => (
+  <button
+    className="Button__black-purple-round"
+    {...props}
+  >
+    {children}
+  </button>
+)
 
 export const WhiteRoundedButtonStyled = ({children, ...props}) => (
   <button
