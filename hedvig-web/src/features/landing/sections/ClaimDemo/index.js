@@ -1,19 +1,8 @@
 import React from "react"
 import Lottie from "react-lottie"
-import {
-  CenteredColumn,
-} from "../../../../components/styles/landing"
 import { BlackPurpleRoundedButtonWhiteBorder } from "../../../../components/Button"
 
 import "./claimdemo.css"
-
-const MyCenteredColumn = CenteredColumn.extend`
-  display: none;
-
-  @media (min-width: 800px) {
-    display: flex;
-    align-items: flex-start;
-`
 
 const width = window.innerWidth
 
