@@ -5,16 +5,8 @@ import createHistory from "history/createBrowserHistory"
 
 import Dialog from "../containers/Dialog"
 
-import Landing from "../features/landing"
-import Chat from "../containers/Chat"
-import Offer from "../containers/Offer"
-import AboutUs from "../features/static/AboutUs"
-import Logout from "../components/Logout"
-import Legal from "../features/static/Legal";
-import Contact from "../features/static/Contact"
-import Terms from "../features/static/Terms"
-import WaitListPage from "../features/WaitList"
-import NotFound from "./NotFound"
+// import Offer from "../containers/Offer"
+import { Landing, Chat, AboutUs, Logout, Legal, Contact, Terms, WaitList, NotFound } from "../features/loadables"
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -36,13 +28,12 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/chat" component={Chat} />
-        <Route path="/offer" component={Offer} />
         <Route path="/about-us" component={AboutUs} />
         <Route path="/legal" component={Legal} />
         <Route path="/contact" component={Contact} />
         <Route path="/terms" component={Terms} />
 
-        <Route path="/waitlist/:id" component={WaitListPage} />
+        <Route path="/waitlist/:id" component={WaitList} />
 
         <Route path="/logout" component={Logout} />
 
