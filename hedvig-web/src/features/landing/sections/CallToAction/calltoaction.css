@@ -1,0 +1,11 @@
+.CallToAction {
+  text-align: center;
+  background-color: #F9FAFC;
+}
+
+.CallToAction__heading {
+  font-size: 24px;
+  font-family: "Merriweather";
+  font-weight: 400;
+  line-height: normal;
+}
