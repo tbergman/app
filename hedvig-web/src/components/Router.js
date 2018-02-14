@@ -25,7 +25,7 @@ history.listen((location, action) => {
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history)
 
-const Navigator = () => (
+const Router = () => (
   <ConnectedRouter history={history}>
     <div
       style={{
@@ -52,4 +52,4 @@ const Navigator = () => (
   </ConnectedRouter>
 )
 
-export { Navigator, middleware as routerMiddleware }
+export { Router, middleware as routerMiddleware }

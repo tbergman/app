@@ -2,7 +2,7 @@
 import React, { Component } from "react"
 import { Provider } from "react-redux"
 import { routerReducer } from "react-router-redux"
-import { Navigator, routerMiddleware } from "./components/Navigator"
+import { Router, routerMiddleware } from "./components/Router"
 import * as Navigation from "./services/Navigation"
 import { theme } from "hedvig-style"
 import { ThemeProvider } from "styled-components"
@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Provider store={this.store}>
-          <Navigator />
+          <Router />
         </Provider>
       </ThemeProvider>
     )
