@@ -5,7 +5,7 @@ import "./collaboration.css"
 const Collaboration = () => {
   return (
     <section className="pure-g pure-centered Collaboration">
-      <div className="pure-u-1-1 pure-u-md-2-3">
+      <div className="pure-u-1-1 pure-u-lg-2-3">
         <div className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-md-1-3">
             <img

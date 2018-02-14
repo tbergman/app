@@ -35,7 +35,7 @@ const WaterDamage = () => (
               height={animationDimensions.height}
               width={animationDimensions.width}
             />
-            { width > 800 ? (
+            { width > 1024 ? (
               <Lottie
                 options={{
                   loop: true,

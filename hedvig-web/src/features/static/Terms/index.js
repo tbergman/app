@@ -4,6 +4,8 @@ import { SayHi } from "../common";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer"
 
+import "./terms.css"
+
 
 const Terms = () => (
   <main className="Terms">

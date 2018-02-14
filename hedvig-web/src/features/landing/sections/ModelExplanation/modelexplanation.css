@@ -1,9 +1,15 @@
 .ModelExplanation {
-  height: auto;
+  margin: 2em 0 0;
 }
 
 .ModelExplanation__text {
   text-align: center;
+}
+
+.ModelExplanation__text p {
+  font-size: 14px;
+  line-height: normal;
+  white-space: pre-line;
 }
 
 .ModelExplanation__heading {
@@ -15,4 +21,10 @@
 
 .ModelExplanation__icons {
   text-align: center;
+}
+
+@media screen and (min-width: 786px) {
+  .ModelExplanation__text p {
+    font-size: 18px;
+  }
 }

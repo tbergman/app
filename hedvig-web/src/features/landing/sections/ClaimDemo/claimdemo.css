@@ -52,9 +52,14 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+.ClaimDemo__sm-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
   .ClaimDemo__heading {
     text-align: start;
+    font-size: 40px;
   }
 
   .ClaimDemo__phone {
@@ -64,5 +69,9 @@
 
   .ClaimDemo__expandable {
     display: block;
+  }
+
+  .ClaimDemo__sm-hidden {
+    display: inline;
   }
 }

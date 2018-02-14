@@ -7,12 +7,14 @@ export const ModelExplanation = () => (
   <section className="pure-g pure-centered ModelExplanation">
     <div className="pure-u-1-1 pure-u-md-5-6">
       <div className="pure-g pure-centered ModelExplanation__text">
-        <div className="pure-u-1-1 pure-u-md-1-3">
+        <div className="pure-u-1-1 pure-u-lg-1-3">
           <h1 className="ModelExplanation__heading">
             Schysst för dig, och världen runtomkring
           </h1>
           <p>
-            Hedvig fungerar inte som ett vanligt försäkringsbolag. Vi tar en låg fast avgift, betalar blixtsnabbt och skänker överskottet till ett gott ändamål
+            Hedvig fungerar inte som ett vanligt försäkringsbolag.
+            Vi tar en låg fast avgift,
+            betalar blixtsnabbt och skänker överskottet till ett gott&nbsp;ändamål
           </p>
         </div>
       </div>

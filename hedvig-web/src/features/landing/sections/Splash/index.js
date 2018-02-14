@@ -9,7 +9,7 @@ import "./splash.css"
 
 const width = window.innerWidth
 
-const animation = width < 800 ? (
+const animation = width < 768 ? (
   <Lottie
     options={{
       loop: true,
@@ -35,9 +35,9 @@ class Splash extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered Splash">
-        <div className="pure-u-1-1 pure-u-md-2-3 Splash__full-height">
+        <div className="pure-u-1-1 pure-u-lg-2-3 Splash__full-height">
           <div className="pure-g pure-centered Splash__full-height">
-            <div className="pure-u-1-1 pure-u-md-2-5 Splash__full-height">
+            <div className="pure-u-1-1 pure-u-lg-2-5 Splash__full-height">
               <div className="Splash__text Splash__full-height">
                 <h1 className="Splash__heading">Livet är enklare<br /> med Hedvig</h1>
                 <p>Försäkring som du aldrig upplevt det tidigare</p>
@@ -50,7 +50,7 @@ class Splash extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="pure-u-1-1 pure-u-md-3-5 Splash__full-height">
+            <div className="pure-u-1-1 pure-u-lg-3-5 Splash__full-height">
               {animation}
             </div>
           </div>

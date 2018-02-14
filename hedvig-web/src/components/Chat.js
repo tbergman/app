@@ -3,7 +3,7 @@ import React from "react"
 import MessageList from "../containers/chat/MessageList"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
 import ChatTextInput from "../containers/chat/ChatTextInput"
-import DateInput from "../containers/chat/DateInput"
+//import DateInput from "../containers/chat/DateInput"
 import MultipleSelectInput from "../containers/chat/MultipleSelectInput"
 import SingleSelectInput from "../containers/chat/SingleSelectInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
@@ -30,7 +30,7 @@ const getInputComponent = function(messages) {
     text: <ChatTextInput messageIndex={lastIndex} />,
     number: <ChatNumberInput messageIndex={lastIndex} />,
     single_select: <SingleSelectInput messageIndex={lastIndex} />,
-    date_picker: <DateInput messageIndex={lastIndex} />,
+    //date_picker: <DateInput messageIndex={lastIndex} />,
     bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
     paragraph: <ParagraphInput messageIndex={lastIndex} />,
     file: <FileInput messageIndex={lastIndex} />

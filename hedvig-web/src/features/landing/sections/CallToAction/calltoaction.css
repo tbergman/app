@@ -1,6 +1,7 @@
 .CallToAction {
   text-align: center;
   background-color: #F9FAFC;
+  padding: 2em 0;
 }
 
 .CallToAction__heading {

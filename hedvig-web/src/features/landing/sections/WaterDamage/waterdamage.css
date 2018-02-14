@@ -36,7 +36,7 @@
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024) {
   .WaterDamage__subtext {
     display: block;
   }

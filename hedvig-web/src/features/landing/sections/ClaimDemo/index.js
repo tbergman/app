@@ -39,15 +39,15 @@ export default class ClaimDemo extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered ClaimDemo">
-        <div className="pure-u-1-1 pure-u-md-4-5">
-          <div className="pure-g">
-            <div className="pure-u-1-1 pure-u-md-1-3">
+        <div className="pure-u-1-1 pure-u-lg-3-4">
+          <div className="pure-g pure-centered">
+            <div className="pure-u-1-1 pure-u-md-1-2 pure-u-lg-1-2">
               <div className="ClaimDemo__text">
                 <h1 className="ClaimDemo__heading">Anmäl en skada på sekunder, få ersättning på minuter</h1>
                 {this.maybeExpanded()}
               </div>
             </div>
-            <div className="pure-u-1-1 pure-u-md-2-3">
+            <div className="pure-u-1-1 pure-u-lg-1-2">
               <div className="ClaimDemo__phone">
                 <div>
                   <Lottie

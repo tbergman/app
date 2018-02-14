@@ -15,7 +15,7 @@ class CallToAction extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered CallToAction">
-        <div className="pure-u-1-1 pure-u-md-2-3">
+        <div className="pure-u-1-1 pure-u-lg-2-3">
           <h1 className="CallToAction__heading">Skaffa Hedvig innan alla andra</h1>
           <Link to="/chat" onClick={this.props.registerCtaClick}>
             <TurquoiseRoundedButton style={{minWidth: "120px"}}>
@@ -23,7 +23,7 @@ class CallToAction extends React.Component {
             </TurquoiseRoundedButton>
             </Link>
           <div className="pure-g pure-centered">
-            <div className="pure-u-1-1 pure-u-md-1-4">
+            <div className="pure-u-1-1 pure-u-md-1-2 pure-u-lg-1-4">
               <p>
                 Har du redan en hemförsäkring?
                 Inga problem, vi tar hand om bytet

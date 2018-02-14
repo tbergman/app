@@ -8,12 +8,12 @@ const Legal = () => (
   <main className="Legal">
     <Header headerRight={<SayHi />} />
     <article className="pure-g pure-centered Legal__text">
-      <div className="pure-u-1-1 pure-u-md-3-5">
+      <div className="pure-u-1-1 pure-u-lg-3-5">
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
             <h1 className="Legal__heading">Förmedling av försäkringar</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
             <p>
               Hedvig står under Finansinspektionens tillsyn som förmedlare av
               försäkringar och på våra försäkringsavtal tillämpas
@@ -34,10 +34,10 @@ const Legal = () => (
           </div>
         </section>
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
             <h1 className="Legal__heading">Om du inte är nöjd</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
             <p>
               Om du har ett allmänt klagomål eller är missnöjd med någonting
               i ett skadeärende, kontakta Hedvig direkt via din app eller
@@ -52,10 +52,10 @@ const Legal = () => (
           </div>
         </section>
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
             <h1 className="Legal__heading">Dataskydd</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
             <p>
             Hedvig, och i förekommande fall International Insurance
             Company of Hannover SE, använder personuppgifter i
@@ -74,10 +74,10 @@ const Legal = () => (
           </div>
         </section>
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
             <h1 className="Legal__heading">Cookies</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
             <p>
               En cookie är en liten datafil som lagras i din dator. Hedvig värnar
               om din integritet och ditt förtroende är vår mest värdefulla
@@ -132,10 +132,10 @@ const Legal = () => (
           </div>
         </section>
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
             <h1 className="Legal__heading">Kontaktuppgifter</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
             <h5>Finansinspektionen</h5>
             <address>
               Box 7821<br/>
