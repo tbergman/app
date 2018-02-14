@@ -138,10 +138,11 @@ export default class AddEditAsset extends React.Component {
       return <RoundedButton title="Spara" onPress={() => this.save()} />
     } else if (this.state.item && this.state.item.id) {
       return (
-        <RedRoundedInvertedButton
-          title="Något har hänt"
-          onPress={() => this.props.raiseAssetClaim(this.state.item)}
-        />
+        // <RedRoundedInvertedButton
+        //   title="Något har hänt"
+        //   onPress={() => this.props.raiseAssetClaim(this.state.item)}
+        // />
+        null
       )
     } else {
       if (this.props.currentlyUploading) {
