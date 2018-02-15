@@ -1,4 +1,5 @@
 import React from "react"
+import Lazyload from "react-lazyload"
 
 import "./collaboration.css"
 
@@ -8,34 +9,49 @@ const Collaboration = () => {
       <div className="pure-u-1-1 pure-u-lg-2-3">
         <div className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-md-1-3">
-            <img
-              width={166}
+            <Lazyload
               height={166}
-              src="assets/web/Images/handshake.png"
-              alt="Samarbete"
-            />
+              offset={200}
+            >
+              <img
+                width={166}
+                height={166}
+                src="assets/web/Images/handshake.png"
+                alt="Samarbete"
+              />
+            </Lazyload>
             <div className="pure-g pure-centered">
               <p className="pure-u-1-1 pure-u-md-3-4">Hedvig är tryggat av InterHannover, del av en av världens största återförsäkringskoncerner</p>
             </div>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-3">
-            <img
-              width={166}
+            <Lazyload
               height={166}
-              src="assets/web/Images/AA.png"
-              alt="Samarbete"
-            />
+              offset={200}
+            >
+              <img
+                width={166}
+                height={166}
+                src="assets/web/Images/AA.png"
+                alt="Samarbete"
+              />
+            </Lazyload>
             <div className="pure-g pure-centered">
               <p className="pure-u-1-1 pure-u-md-3-4">AA-rating från Standard &amp; Poor's</p>
             </div>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-3">
-            <img
-              width={166}
+            <Lazyload
               height={166}
-              src="assets/icons/authorized.svg"
-              alt="samarbete"
-            />
+              offset={200}
+            >
+              <img
+                width={166}
+                height={166}
+                src="assets/icons/authorized.svg"
+                alt="samarbete"
+              />
+            </Lazyload>
             <div className="pure-g pure-centered">
               <p className="pure-u-1-1 pure-u-md-3-4">Hedvig är auktoriserat av Finansinspektionen</p>
             </div>
