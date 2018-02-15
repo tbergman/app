@@ -11,7 +11,7 @@ export default class Footer extends React.Component {
             <div className="pure-u-1-2">
               <div role="img" className="Footer__icon" aria-label="Hedvig logo" />
             </div>
-            <div className="pure-u-1-2">
+            <nav className="pure-u-1-2">
               <Link className="Footer__link" to="/contact">
                 Kontakt
               </Link>
@@ -21,7 +21,7 @@ export default class Footer extends React.Component {
               <Link className="Footer__link" to="/legal">
                 Legal information
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-2-3 Footer__social">
