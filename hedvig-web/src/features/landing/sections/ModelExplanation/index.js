@@ -1,4 +1,5 @@
 import React from "react"
+import Lazyload from "react-lazyload"
 
 import "./modelexplanation.css"
 
@@ -20,15 +21,30 @@ export const ModelExplanation = () => (
       </div>
       <div className="pure-g pure-centered ModelExplanation__icons">
         <div className="pure-u-1-1 pure-u-md-1-3">
-          <img width={166} height={166} src="/assets/icons/profil/personlig_info.svg" alt="Hedvig Logo" />
+          <Lazyload
+            height={166}
+            offset={200}
+          >
+            <img width={166} height={166} src="/assets/icons/profil/personlig_info.svg" alt="Hedvig Logo" />
+          </Lazyload>
           <p>Hedvig tar en fast avgift för<br /> att ge dig blixtsnabb service</p>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-3">
-          <img width={166} height={166} src="/assets/icons/perils/mina_prylar/drulle.svg" alt="Skadad telefon" />
+          <Lazyload
+            height={166}
+            offset={200}
+          >
+            <img width={166} height={166} src="/assets/icons/perils/mina_prylar/drulle.svg" alt="Skadad telefon" />
+          </Lazyload>
           <p>Resten av din månadskostnad<br /> går till att täcka skador</p>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-3">
-          <img width={166} height={166} src="/assets/icons/profil/valgorenhet.svg" alt="Hjärta" />
+          <Lazyload
+            height={166}
+            offset={200}
+          >
+            <img width={166} height={166} src="/assets/icons/profil/valgorenhet.svg" alt="Hjärta" />
+          </Lazyload>
           <p>Ett bra år med lite skador blir det<br /> pengar över, det skänker vi till<br /> ett gott ändamål</p>
         </div>
       </div>

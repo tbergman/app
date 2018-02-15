@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AssetTrackerDemo /> Should render correctly 1`] = `
+<section
+  className="pure-g pure-centered AssetTrackerDemo"
+>
+  <div
+    className="pure-u-1-1 pure-u-lg-7-8"
+  >
+    <div
+      className="pure-g AssetTrackerDemo__column-order"
+    >
+      <div
+        className="pure-u-1-1 pure-u-lg-3-5"
+      >
+        <div
+          className="AssetTrackerDemo__text"
+        >
+          <h1
+            className="AssetTrackerDemo__heading"
+          >
+            Låt Hedvig hålla koll på dina saker, se exakt hur de är försäkrade
+          </h1>
+          <p>
+            Drulle ingår för alla
+            <br />
+             prylar värda under 50 000 kr
+          </p>
+          <div>
+            <div
+              className="AssetTrackerDemo__expandable"
+            >
+              <WhiteRoundedButton
+                onClick={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "white",
+                    "color": "#651EFF",
+                    "minWidth": "240px",
+                  }
+                }
+              >
+                Mer om prylbanken
+              </WhiteRoundedButton>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="pure-u-1-1 pure-u-lg-2-5 AssetTrackerDemo__phone-container"
+      >
+        <img
+          alt="Hedvigs prylbank"
+          className="AssetTrackerDemo__phone"
+          src="/assets/web/Images/Hedvig_Prylbanken.png"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+`;
