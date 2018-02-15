@@ -36,12 +36,13 @@
   display: none;
 }
 
-@media screen and (min-width: 1024) {
-  .WaterDamage__subtext {
-    display: block;
-  }
-
+@media screen and (min-width: 1024px) {
   .WaterDamage__heading {
     font-size: 40px;
+  }
+
+  .WaterDamage__subtext {
+    display: block;
+    font-size: 16px;
   }
 }

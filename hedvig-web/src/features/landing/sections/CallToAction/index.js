@@ -15,7 +15,7 @@ class CallToAction extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered CallToAction">
-        <div className="pure-u-1-1 pure-u-lg-2-3">
+        <div className="pure-u-1-1 pure-u-lg-7-8">
           <h1 className="CallToAction__heading">Skaffa Hedvig innan alla andra</h1>
           <Link to="/chat" onClick={this.props.registerCtaClick}>
             <TurquoiseRoundedButton style={{minWidth: "120px"}}>

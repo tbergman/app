@@ -56,6 +56,11 @@
   .AssetTrackerDemo__text {
     text-align: start;
     font-size: 18px;
+    margin: 0 0 0 2em;
+  }
+
+  .AssetTrackerDemo__heading {
+    font-size: 40px;
   }
 
   .AssetTrackerDemo__phone {

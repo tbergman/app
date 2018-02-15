@@ -9,4 +9,11 @@
   font-family: "Merriweather";
   font-weight: 400;
   line-height: normal;
+  color: #0F007A;
+}
+
+@media screen and (min-width: 1024px) {
+  .CallToAction__heading {
+    font-size: 40px;
+  }
 }

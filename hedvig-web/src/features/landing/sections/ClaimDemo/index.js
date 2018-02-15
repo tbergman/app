@@ -39,7 +39,7 @@ export default class ClaimDemo extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered ClaimDemo">
-        <div className="pure-u-1-1 pure-u-lg-3-4">
+        <div className="pure-u-1-1 pure-u-lg-7-8">
           <div className="pure-g pure-centered">
             <div className="pure-u-1-1 pure-u-md-1-2 pure-u-lg-1-2">
               <div className="ClaimDemo__text">

@@ -35,7 +35,7 @@ class Splash extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered Splash">
-        <div className="pure-u-1-1 pure-u-lg-2-3 Splash__full-height">
+        <div className="pure-u-1-1 pure-u-lg-7-8 Splash__full-height">
           <div className="pure-g pure-centered Splash__full-height">
             <div className="pure-u-1-1 pure-u-lg-2-5 Splash__full-height">
               <div className="Splash__text Splash__full-height">

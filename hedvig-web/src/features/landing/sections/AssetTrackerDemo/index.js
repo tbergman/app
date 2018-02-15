@@ -34,11 +34,11 @@ export default class AssetTrackerDemo extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered AssetTrackerDemo">
-        <div className="pure-u-1-1 pure-u-lg-2-3">
+        <div className="pure-u-1-1 pure-u-lg-7-8">
           <div className="pure-g AssetTrackerDemo__column-order">
             <div className="pure-u-1-1 pure-u-lg-3-5">
               <div className="AssetTrackerDemo__text">
-                <h1 className="AssetTrackerDemo__heading">Låt Hedvig hålla koll på dina saker,<br/> se exakt hur de är försäkrade</h1>
+                <h1 className="AssetTrackerDemo__heading">Låt Hedvig hålla koll på dina saker, se exakt hur de är&nbsp;försäkrade</h1>
                 <p>
                   Drulle ingår för alla<br/> prylar värda under 50 000 kr
                 </p>
