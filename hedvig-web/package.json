@@ -33,7 +33,7 @@
   "scripts": {
     "start": "make link && react-scripts start",
     "build": "make prepare-build && react-scripts build && make link",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "yarn build && s3cmd sync build/* $HEDVIG_S3_BUCKET",
     "lint": "./node_modules/.bin/eslint src"
@@ -41,12 +41,16 @@
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "dotenv-webpack": "^1.5.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "eslint": "^4.17.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.42.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1"
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.3.0"
   }
 }
