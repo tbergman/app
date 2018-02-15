@@ -11,7 +11,10 @@ import "./aboutus.css"
 const AboutUs = () => (
   <main className="AboutUs">
     <Header headerRight={<SayHi />}/>
-    <Hero imageUrl="/assets/web/Images/Norrsken-4.jpg" />
+    <Hero
+      imageUrl="/assets/web/Images/Norrsken-4.jpg"
+      alt="Hedvig office at Norrsken"
+    />
     <article className="pure-g pure-centered AboutUs__text">
       <div className="pure-u-1-1 pure-u-lg-3-5">
         <section className="pure-g">
