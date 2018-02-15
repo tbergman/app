@@ -15,9 +15,6 @@ export default class Footer extends React.Component {
               <Link className="Footer__link" to="/contact">
                 Kontakt
               </Link>
-              <Link className="Footer__link" to="/terms">
-                Försäkringsvillkor
-              </Link>
               <Link className="Footer__link" to="/legal">
                 Legal information
               </Link>
