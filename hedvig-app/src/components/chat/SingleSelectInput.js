@@ -13,6 +13,7 @@ const SingleSelectInput = ({
   selectChoice,
   done,
   goToDashboard,
+  startTrustly,
   launchModal = R.identity
 }) => {
   let anySelected = message.body.choices.some(choice => choice.selected)
@@ -43,6 +44,8 @@ const SingleSelectInput = ({
               selectChoice(message, choice)
               done(message)
               WebBrowser.openBrowserAsync(choice.webUrl)
+            } else if (choice.type === "trustly") {
+              startTrustly(choice.id)
             }
           }}
         />

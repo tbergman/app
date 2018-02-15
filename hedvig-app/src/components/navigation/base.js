@@ -66,6 +66,9 @@ const ChatModalNavigator = StackNavigator(
     },
     Carousel: {
       screen: Carousel
+    },
+    Payment: {
+      screen: Payment
     }
   },
   {

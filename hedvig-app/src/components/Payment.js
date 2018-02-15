@@ -19,7 +19,7 @@ class Payment extends React.Component {
 
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
-    this.props.requestPaymentRegistration()
+    this.props.requestPaymentRegistration(this.props.navigation.state.params.id)
   }
 
   componentWillUnmount() {
@@ -61,7 +61,7 @@ export default connect(
     url: state.payment.url
   }),
   dispatch => ({
-    requestPaymentRegistration: () => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION"}),
-    goBack: () => dispatch(NavigationActions.goBack())
+    requestPaymentRegistration: id => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION", payload: { id }}),
+    goBack: () => dispatch(NavigationActions.back())
   })
 )(Payment)

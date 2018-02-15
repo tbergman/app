@@ -115,7 +115,7 @@ export default class Profile extends React.Component {
         icon: <ProfileBankAccountIcon />,
         text: `${this.props.insurance.currentTotalPrice} kr/månad. ${this.props.user.maskedBankAccountNumber}`,
         secondText: "",
-        // onPress: () => this.props.navigation.navigate("Payment")
+        onPress: () => this.props.navigation.navigate("Payment")
       })
     }
   }

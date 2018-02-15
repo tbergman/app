@@ -15,7 +15,7 @@ import {
   StyledMessageArea,
   StyledResponseArea,
   StyledMessageAndResponseArea,
-  StyledChatContainer
+  StyledChatContainer,
 } from "./styles/chat"
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import { NavBar } from "./NavBar"
@@ -45,7 +45,7 @@ const inputComponentMap = (lastIndex, navigation) => ({
     photo_upload: <PhotoInput messageIndex={lastIndex} />,
     bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
     paragraph: <ParagraphInput messageIndex={lastIndex} />,
-    audio: <AudioInput messageIndex={lastIndex} />
+    audio: <AudioInput messageIndex={lastIndex} />,
   })
 
 class UnconnectedPollingMessage extends React.Component {
