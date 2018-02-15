@@ -78,8 +78,8 @@ const Terms = () => (
   <LoadableTerms />
 )
 
-const WaitList = () => (
-  <LoadableWaitList />
+const WaitList = (props) => (
+  <LoadableWaitList {...props} />
 )
 
 const NotFound = () => (
