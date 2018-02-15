@@ -15,6 +15,7 @@
 
 .Contact__article {
   justify-content: center;
+  padding: 0 0 2em;
 }
 
 .Contact__text {
@@ -22,7 +23,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .Contact__article {
     padding: 5em 0;
   }
