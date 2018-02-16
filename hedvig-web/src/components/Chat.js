@@ -11,8 +11,6 @@ import ParagraphInput from "../containers/chat/ParagraphInput"
 import FileInput from "../containers/chat/FileInput"
 import Header from "../components/Header"
 
-import { FullHeight } from "./styles/general"
-
 import "./chat.css"
 
 const getInputComponent = function(messages) {
