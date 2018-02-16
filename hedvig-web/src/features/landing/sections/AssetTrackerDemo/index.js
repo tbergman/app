@@ -34,7 +34,7 @@ export default class AssetTrackerDemo extends React.Component {
   render() {
     return (
       <section className="pure-g pure-centered AssetTrackerDemo">
-        <div className="pure-u-1-1 pure-u-lg-7-8">
+        <div className="pure-u-1-1 pure-u-lg-22-24">
           <div className="pure-g AssetTrackerDemo__column-order">
             <div className="pure-u-1-1 pure-u-lg-3-5">
               <div className="AssetTrackerDemo__text">

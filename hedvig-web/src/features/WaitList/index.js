@@ -46,8 +46,8 @@ class WaitList extends React.Component {
             <div className="pure-g pure-centered">
               <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-5-8 pure-u-xl-1-2">
                 <div className="WaitList__position-box">
-                  <p className="WaitList__paragraph">Före dig på väntelistan står</p>
-                  <h1 className="WaitList__header">{ this.props.position } <span className="WaitList__person-label">personer</span></h1>
+                  <p className="WaitList__paragraph WaitList__paragraph--marginless">Före dig på väntelistan står</p>
+                  <h3 className="WaitList__header WaitList__heading--position">{ this.props.position } <span className="WaitList__person-label">personer</span></h3>
                 </div>
               </div>
             </div>

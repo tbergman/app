@@ -23,10 +23,9 @@ class CallToAction extends React.Component {
             </TurquoiseRoundedButton>
             </Link>
           <div className="pure-g pure-centered">
-            <div className="pure-u-1-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <div className="pure-u-1-1">
               <p>
-                Har du redan en hemförsäkring?
-                Inga problem, vi tar hand om bytet
+                Har du redan en hemförsäkring? Inga problem, vi tar hand om bytet
               </p>
             </div>
           </div>

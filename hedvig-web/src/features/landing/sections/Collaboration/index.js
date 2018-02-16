@@ -6,7 +6,7 @@ import "./collaboration.css"
 const Collaboration = () => {
   return (
     <section className="pure-g pure-centered Collaboration">
-      <div className="pure-u-1-1 pure-u-lg-2-3">
+      <div className="pure-u-1-1 pure-u-lg-5-6">
         <div className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-md-1-3">
             <Lazyload
@@ -21,7 +21,7 @@ const Collaboration = () => {
               />
             </Lazyload>
             <div className="pure-g pure-centered">
-              <p className="pure-u-1-1 pure-u-md-3-4">Hedvig är tryggat av InterHannover, del av en av världens största återförsäkringskoncerner</p>
+              <p className="pure-u-1-1 pure-u-lg-5-6">Hedvig är tryggat av InterHannover, del av en av världens största återförsäkringskoncerner</p>
             </div>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-3">
@@ -37,7 +37,7 @@ const Collaboration = () => {
               />
             </Lazyload>
             <div className="pure-g pure-centered">
-              <p className="pure-u-1-1 pure-u-md-3-4">AA-rating från Standard &amp; Poor's</p>
+              <p className="pure-u-1-1 pure-u-lg-5-6">AA-rating från<br/>Standard &amp; Poor's</p>
             </div>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-3">
@@ -53,7 +53,7 @@ const Collaboration = () => {
               />
             </Lazyload>
             <div className="pure-g pure-centered">
-              <p className="pure-u-1-1 pure-u-md-3-4">Hedvig är auktoriserat av Finansinspektionen</p>
+              <p className="pure-u-1-1 pure-u-lg-5-6">Hedvig är auktoriserat av Finansinspektionen</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 .ModelExplanation {
   margin: 2em 0 0;
+  padding: 4em 0 0;
+  border-top: 1px solid #E9ECEF;
 }
 
 .ModelExplanation__text {
@@ -17,6 +19,8 @@
   font-family: "Merriweather";
   font-weight: 400;
   line-height: normal;
+  color: #0F007A;
+  margin: 0;
 }
 
 .ModelExplanation__icons {
