@@ -12,5 +12,6 @@
 .Legal__heading {
   font-family: "Merriweather";
   font-size: 28px;
-  line-height: 32px;
+  font-weight: 400;
+  line-height: normal;
 }

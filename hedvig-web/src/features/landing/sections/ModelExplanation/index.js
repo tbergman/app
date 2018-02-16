@@ -8,9 +8,9 @@ export const ModelExplanation = () => (
   <section className="pure-g pure-centered ModelExplanation">
     <div className="pure-u-1-1 pure-u-md-5-6">
       <div className="pure-g pure-centered ModelExplanation__text">
-        <div className="pure-u-1-1 pure-u-lg-1-3">
+        <div className="pure-u-1-1 pure-u-lg-2-5">
           <h1 className="ModelExplanation__heading">
-            Schysst för dig, och världen runtomkring
+            Schysst för dig, och världen&nbsp;runtomkring
           </h1>
           <p>
             Hedvig fungerar inte som ett vanligt försäkringsbolag.

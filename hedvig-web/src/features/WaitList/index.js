@@ -41,39 +41,38 @@ class WaitList extends React.Component {
     switch (this.props.status) {
       case STATUSES.IN_QUEUE:
         content = (
-          <React.Fragment>
-            <div>
-              <p>Före dig på väntelistan står</p>
-              <h1 className="WaitList__header WaitList__spaced-top">{ this.props.position } personer</h1>
+          <div>
+            <h1 className="WaitList__header">Snart är det&nbsp;dags!</h1>
+            <div className="pure-g pure-centered">
+              <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-5-8 pure-u-xl-1-2">
+                <div className="WaitList__position-box">
+                  <p className="WaitList__paragraph">Före dig på väntelistan står</p>
+                  <h1 className="WaitList__header">{ this.props.position } <span className="WaitList__person-label">personer</span></h1>
+                </div>
+              </div>
             </div>
-            <hr className="WaitList__separator" />
-            <div className="WaitList__spaced-bottom">
-              <p>Du får en aktiveringskod på mailen så fort det är din tur!</p>
-            </div>
-          </React.Fragment>
+            <p className="WaitList__paragraph">Du får en aktiveringskod på mailen så fort det är din tur!</p>
+            <p className="WaitList__paragraph">Vi ses snart!</p>
+          </div>
         )
         break
       case STATUSES.GRANTED_ACCESS:
         content = (
-          <React.Fragment>
-            <div>
-              <p>Väntan är över</p>
-              <h1 className="WaitList__header">Välkommen till Hedvig!</h1>
-            </div>
-            <div>
-              <p>Din aktiveringskod är</p>
-              <p className="WaitList__code">{this.props.code}</p>
-              <CopyToClipboard text={this.props.code}>
-                <WhiteRoundedButton>Kopiera koden</WhiteRoundedButton>
-              </CopyToClipboard>
-              <p>och gå sedan</p>
-              <a href="hedvig://" target="_blank" rel="noopener noreferrer">
-                <TurquoiseRoundedButton>
-                  Till appen
-                </TurquoiseRoundedButton>
-              </a>
-            </div>
-          </React.Fragment>
+          <div>
+            <p className="WaitList__paragraph">Väntan är över</p>
+            <h1 className="WaitList__header">Välkommen till Hedvig</h1>
+            <p className="WaitList__paragraph">Din aktiveringskod är</p>
+            <p className="WaitList__code">{this.props.code}</p>
+            <CopyToClipboard text={this.props.code}>
+              <WhiteRoundedButton style={{width: "200px"}}>Kopiera koden</WhiteRoundedButton>
+            </CopyToClipboard>
+            <p className="WaitList__paragraph">och gå sedan</p>
+            <a href="hedvig://" target="_blank" rel="noopener noreferrer">
+              <TurquoiseRoundedButton style={{width: "200px", fontSize: "18px", marginBottom: "4em"}}>
+                Till appen
+              </TurquoiseRoundedButton>
+            </a>
+          </div>
         )
         break
       case STATUSES.UNKNOWN:
@@ -94,9 +93,9 @@ class WaitList extends React.Component {
     }
     return (
       <main className="WaitList">
-        <Header headerRight={<React.Fragment></React.Fragment>} />
+        <Header static headerRight={<React.Fragment></React.Fragment>} />
         <article className="pure-g pure-centered">
-          <div className="pure-u-1-1 pure-u-md-3-5 WaitList__content">
+          <div className="pure-u-1-1 pure-u-lg-4-5 WaitList__content">
             {content}
           </div>
         </article>

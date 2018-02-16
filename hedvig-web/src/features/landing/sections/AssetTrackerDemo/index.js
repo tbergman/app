@@ -40,7 +40,7 @@ export default class AssetTrackerDemo extends React.Component {
               <div className="AssetTrackerDemo__text">
                 <h1 className="AssetTrackerDemo__heading">Låt Hedvig hålla koll på dina saker, se exakt hur de är&nbsp;försäkrade</h1>
                 <p>
-                  Drulle ingår för alla<br/> prylar värda under 50 000 kr
+                  Drulle ingår för alla prylar värda under 50 000 kr
                 </p>
                 {this.maybeExpanded()}
               </div>

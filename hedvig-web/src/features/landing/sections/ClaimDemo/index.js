@@ -23,14 +23,18 @@ export default class ClaimDemo extends React.Component {
           </BlackPurpleRoundedButtonWhiteBorder>
         </div>
         { this.state.expanded ? (
-          <p className="ClaimDemo__fade-in-paragraph">
-            När din dator blir stulen behöver du en ny snabbt. Det förstår Hedvig.
-            Det sista du vill är att lägga veckor på att krångla med försäkringsbolaget.
-            Med Hedvig pratar du in ett kort röstmeddelande och berättar vad som hänt.
-            Behöver vi något mer för att kunna betala ersättning så löser vi det enkelt i chatten.
-            Om din lägenhet blir vattenskadad behöver du mer än snabb ersättning.
-            Då behöver du hjälp. Tryck på en knapp så ringer vi upp dig på direkten.
-          </p>
+          <div className="ClaimDemo__fade-in-paragraph">
+            <p>
+              När din dator blir stulen behöver du en ny snabbt. Det förstår Hedvig.
+              Det sista du vill är att lägga veckor på att krångla med försäkringsbolaget.
+              Med Hedvig pratar du in ett kort röstmeddelande och berättar vad som hänt.
+              Behöver vi något mer för att kunna betala ersättning så löser vi det enkelt i chatten.
+            </p>
+            <p>
+              Om din lägenhet blir vattenskadad behöver du mer än snabb ersättning.
+              Då behöver du hjälp. Tryck på en knapp så ringer vi upp dig på direkten.
+            </p>
+          </div>
         ) : null }
       </div>
     )
