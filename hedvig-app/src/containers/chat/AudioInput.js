@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
           successActionCreator: url =>
             chatActions.sendChatResponse(message, {
               type: "audio",
-              text: url
+              url
             })
         })
       )

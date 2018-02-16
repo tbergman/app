@@ -23,7 +23,6 @@ Asset.loadAsync([
   require("../../../assets/icons/my_insurance/aktiv.png"),
   require("../../../assets/icons/edit_perils/added_peril.png"),
   require("../../../assets/icons/edit_perils/added_peril.png"),
-  require("../../../assets/icons/edit_perils/remove_peril.png"),
   require("../../../assets/icons/my_insurance/aktiv.png"),
   require("../../../assets/icons/my_insurance/pris.png"),
   require("../../../assets/icons/my_insurance/worldwide.png")
@@ -83,7 +82,6 @@ export default class Dashboard extends React.Component {
       ACTIVE: require("../../../assets/icons/my_insurance/aktiv.png"),
       PENDING: require("../../../assets/icons/edit_perils/added_peril.png"),
       INACTIVE: require("../../../assets/icons/edit_perils/added_peril.png"),
-      DENIED: require("../../../assets/icons/edit_perils/remove_peril.png")
     }[this.props.insurance.status]
     return <StyledDashboardHeaderIcon source={imageModule} />
   }
@@ -93,7 +91,6 @@ export default class Dashboard extends React.Component {
       ACTIVE: "Aktiv",
       PENDING: "På gång",
       INACTIVE: "Inaktiv",
-      DENIED: "Nekad"
     }[this.props.insurance.status]
   }
 
