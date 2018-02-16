@@ -1,0 +1,22 @@
+.Chat {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.Chat__chat-area {
+  margin: 1em 0 0;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Chat__chat-area::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.Chat__input-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -11,12 +11,9 @@ import ParagraphInput from "../containers/chat/ParagraphInput"
 import FileInput from "../containers/chat/FileInput"
 import Header from "../components/Header"
 
-import {
-  ChatAreaStyled,
-  MessageAreaStyled,
-  InputAreaStyled
-} from "./styles/chat"
 import { FullHeight } from "./styles/general"
+
+import "./chat.css"
 
 const getInputComponent = function(messages) {
   if (messages.length === 0) {
@@ -44,24 +41,27 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <FullHeight>
+      <main className="Chat">
         <Header
+          static
           headerRight={
             <React.Fragment/>
           }
         />
-        <ChatAreaStyled>
-          <div style={{overflow: "hidden", height: "100%"}}>
-            <MessageAreaStyled>
+        <div className="pure-g pure-centered">
+          <div className="pure-u-1-1 pure-u-lg-2-3">
+            <div className="Chat__chat-area" style={{overflow: "hidden", height: "100%"}}>
               <MessageList />
-            </MessageAreaStyled>
-          </div>
+            </div>
 
-          <InputAreaStyled>
-            {getInputComponent(this.props.messages)}
-          </InputAreaStyled>
-        </ChatAreaStyled>
-      </FullHeight>
+            <div className="pure-u-1-1">
+              <div className="Chat__input-container">
+                {getInputComponent(this.props.messages)}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     )
   }
 }
