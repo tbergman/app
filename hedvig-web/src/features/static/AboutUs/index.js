@@ -18,10 +18,10 @@ const AboutUs = () => (
     <article className="pure-g pure-centered AboutUs__text">
       <div className="pure-u-1-1 pure-u-lg-3-5">
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-2-5">
             <h1 className="AboutUs__heading">Vår historia</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-3-5">
             <p>
               Hedvig grundades i Stockholm i början av 2016. När vi satte igång kunde vi ungefär lika mycket om försäkring som du, vilket var toppen.
               Det betydde nämligen att vi ställde oss en massa frågor och utmanade alla gamla sanningar som finns i branschen.
@@ -34,10 +34,10 @@ const AboutUs = () => (
           </div>
         </section>
         <section className="pure-g">
-          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-1-2">
+          <div className="pure-u-1-1 pure-u-md-1-3 pure-u-lg-2-5">
             <h1 className="AboutUs__heading">Varför vi finns</h1>
           </div>
-          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-1-2">
+          <div className="pure-u-1-1 pure-u-md-2-3 pure-u-lg-3-5">
             <p>
               Om sanningen ska fram är det få som gillar att betala sin försäkring. Fullt förståeligt, om man tänker på hur försäkringar fungerar idag.
               Du betalar dina räkningar år efter år, utan att veta riktigt vart pengarna tar vägen.

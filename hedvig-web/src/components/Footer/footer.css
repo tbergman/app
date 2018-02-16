@@ -40,4 +40,8 @@
     flex-direction: row;
     padding: 2em 0;
   }
+
+  .Footer__links {
+    padding: 0 0 0 2em;
+  }
 }

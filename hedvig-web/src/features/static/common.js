@@ -12,7 +12,7 @@ export const SayHi = connect(
 )(({registerCtaClick}) => (
   <Link to="/chat" onClick={registerCtaClick}>
     <SlideDownCtaButton>
-      Säg hej till Hedvig!
+      Sätt upp mig på väntelistan
     </SlideDownCtaButton>
   </Link>
 ))
