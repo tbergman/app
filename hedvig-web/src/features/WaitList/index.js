@@ -104,6 +104,8 @@ class WaitList extends React.Component {
   }
 }
 
+export { WaitList as WaitListComponent }
+
 export default connect(
   state => ({
     position: state.waitlist.position,
