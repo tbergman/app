@@ -58,7 +58,7 @@
 
 @media screen and (min-width: 1024px) {
   .ClaimDemo__heading {
-    text-align: start;
+    text-align: left;
     font-size: 40px;
   }
 
