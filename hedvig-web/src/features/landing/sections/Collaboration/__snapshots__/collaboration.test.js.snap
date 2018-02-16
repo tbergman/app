@@ -5,7 +5,7 @@ exports[`<Collaboration /> Should render correctly 1`] = `
   className="pure-g pure-centered Collaboration"
 >
   <div
-    className="pure-u-1-1 pure-u-lg-2-3"
+    className="pure-u-1-1 pure-u-lg-5-6"
   >
     <div
       className="pure-g pure-centered"
@@ -33,7 +33,7 @@ exports[`<Collaboration /> Should render correctly 1`] = `
           className="pure-g pure-centered"
         >
           <p
-            className="pure-u-1-1 pure-u-md-3-4"
+            className="pure-u-1-1 pure-u-lg-5-6"
           >
             Hedvig är tryggat av InterHannover, del av en av världens största återförsäkringskoncerner
           </p>
@@ -62,9 +62,11 @@ exports[`<Collaboration /> Should render correctly 1`] = `
           className="pure-g pure-centered"
         >
           <p
-            className="pure-u-1-1 pure-u-md-3-4"
+            className="pure-u-1-1 pure-u-lg-5-6"
           >
-            AA-rating från Standard & Poor's
+            AA-rating från
+            <br />
+            Standard & Poor's
           </p>
         </div>
       </div>
@@ -91,7 +93,7 @@ exports[`<Collaboration /> Should render correctly 1`] = `
           className="pure-g pure-centered"
         >
           <p
-            className="pure-u-1-1 pure-u-md-3-4"
+            className="pure-u-1-1 pure-u-lg-5-6"
           >
             Hedvig är auktoriserat av Finansinspektionen
           </p>

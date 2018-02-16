@@ -6,6 +6,7 @@ exports[`<Legal /> Should render correctly 1`] = `
 >
   <Header
     headerRight={<Connect(Component) />}
+    static={false}
   />
   <article
     className="pure-g pure-centered Legal__text"
