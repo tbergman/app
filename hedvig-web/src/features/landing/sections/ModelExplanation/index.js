@@ -12,7 +12,7 @@ export const ModelExplanation = () => (
           <h1 className="ModelExplanation__heading">
             Schysst för dig, och världen&nbsp;runtomkring
           </h1>
-          <p className="pure-u-1-1 pure-u-lg-3-5 pure-u-xl-2-5">
+          <p className="pure-u-1-1 pure-u-lg-3-5 ModelExplanation__paragraph">
             Hedvig fungerar inte som ett vanligt försäkringsbolag.
             Vi tar en låg fast avgift,
             betalar blixtsnabbt och skänker överskottet till ett gott&nbsp;ändamål

@@ -23,6 +23,10 @@
   margin: 0;
 }
 
+.ModelExplanation__paragraph {
+  margin-bottom: 3em;
+}
+
 .ModelExplanation__icons {
   text-align: center;
 }

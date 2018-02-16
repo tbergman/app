@@ -24,7 +24,7 @@ class CallToAction extends React.Component {
             </Link>
           <div className="pure-g pure-centered">
             <div className="pure-u-1-1">
-              <p>
+              <p className="CallToAction__paragraph">
                 Har du redan en hemförsäkring? Inga problem, vi tar hand om bytet
               </p>
             </div>
