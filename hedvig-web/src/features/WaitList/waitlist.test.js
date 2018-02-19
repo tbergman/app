@@ -43,12 +43,24 @@ describe('<WaitList />', () => {
 
     expect(toJson(component)).toMatchSnapshot()
   })
+
   it('Should render correctly in status ACCESS', () => {
     const component = shallow(
       <WaitList
         {...defaultProps}
         status="ACCESS"
         code="APPLE123"
+      />
+    )
+
+    expect(toJson(component)).toMatchSnapshot()
+  })
+
+  it('Should render correctly in status NOT_FOUND', () => {
+    const component = shallow(
+      <WaitList
+        {...defaultProps}
+        status="NOT_FOUND"
       />
     )
 

@@ -76,6 +76,26 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
 </main>
 `;
 
+exports[`<WaitList /> Should render correctly in status NOT_FOUND 1`] = `
+<main
+  className="WaitList"
+>
+  <Header
+    headerRight={<UNDEFINED />}
+    static={true}
+  />
+  <article
+    className="pure-g pure-centered"
+  >
+    <div
+      className="pure-u-1-1 pure-u-lg-4-5 WaitList__content"
+    >
+      <WaitListError />
+    </div>
+  </article>
+</main>
+`;
+
 exports[`<WaitList /> Should render correctly in status WAITLIST 1`] = `
 <main
   className="WaitList"
