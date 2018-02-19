@@ -4,8 +4,9 @@
 }
 
 .Chat__chat-area {
-  margin: 1em 0 0;
+  margin: 0.5em;
   overflow: hidden;
+  height: 100%;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
