@@ -2,7 +2,7 @@
 set -uex
 
 if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
-    if [ "${TRAVIS_BRANCH}" == "master" ]; then
+    if [ "${TRAVIS_BRANCH}" == "develop" ]; then
         echo "{\"s3_bucket_url\":\"${TEST_S3_BUCKET_URL}\"}" > ../hedvig-redux/config.json
         sudo sysctl fs.inotify.max_user_watches=524288
         sudo sysctl fs.inotify.max_queued_events=524288
@@ -16,8 +16,8 @@ if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; t
         exp publish --non-interactive
         exp logout
     else
-        echo "Not on master, will not deploy to test"
+        echo "Not on develop, will not deploy to test"
     fi
 else
-    echo "Not on master, will not deploy to test"
+    echo "Not on develop, will not deploy to test"
 fi

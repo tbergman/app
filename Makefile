@@ -8,3 +8,21 @@ install:
 	cd hedvig-redux; yarn install
 	cd hedvig-app; yarn install
 	cd hedvig-web; yarn install
+
+lint:
+	cd hedvig-redux; yarn lint
+	cd hedvig-app; yarn lint
+	cd hedvig-web; yarn lint
+
+test:
+	cd hedvig-redux; yarn test
+	cd hedvig-app; yarn test
+	cd hedvig-web; yarn test
+
+test-deploy:
+	cd hedvig-app; ./test-deploy.sh
+	cd hedvig-web; ./test-deploy.sh
+
+production-deploy:
+	cd hedvig-app; ./test-deploy.sh
+	cd hedvig-web; ./production.deploy.sh
