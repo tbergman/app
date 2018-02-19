@@ -48,7 +48,7 @@ export default class Chat extends React.Component {
         />
         <div className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-lg-2-3">
-            <div className="Chat__chat-area" style={{overflow: "hidden", height: "100%"}}>
+            <div className="Chat__chat-area">
               <MessageList />
             </div>
 
