@@ -197,7 +197,7 @@ const getInsuranceWithMessages = function*() {
 
 const getInsuranceWithMessagesSaga = function*() {
   yield takeEvery(API, function*(apiAction) {
-    if (apiAction.payload.url === chatActions.GET_MESSAGES_URL) {
+    if (apiAction.payload.url.includes(chatActions.GET_MESSAGES_URL)) {
       yield getInsuranceWithMessages(apiAction)
     }
   })
