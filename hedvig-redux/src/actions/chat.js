@@ -17,7 +17,7 @@ export function getMessages() {
   return {
     type: API,
     payload: {
-      url: GET_MESSAGES_URL,
+      url: `${GET_MESSAGES_URL}?${Date.now()}`,
       method: "GET",
       SUCCESS: LOADED_MESSAGES
     }

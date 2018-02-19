@@ -4,7 +4,7 @@ export function getInsurance() {
   return {
     type: API,
     payload: {
-      url: "/insurance",
+      url: `/insurance?${Date.now()}`,
       method: "GET",
       SUCCESS: LOADED_INSURANCE
     }
