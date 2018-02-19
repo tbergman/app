@@ -15,6 +15,8 @@ if [ -z "${TRAVIS_PULL_REQUEST}" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; t
         exp login -u ${EXPO_DEV_USERNAME} -p ${EXPO_DEV_PASSWORD}
         exp publish --non-interactive
         exp logout
+        sed -i -e 's/https:\/\/hedvig.ngrok.io/http:\/\/gateway.test.hedvig.com/g' ../hedvig-redux/src/services/environment.js
+        sed -i -e 's/"slug": "hedvig-ngrok-app"/"slug": "hedvig-app"/g' app.json
     else
         echo "Not on develop, will not deploy to test"
     fi
