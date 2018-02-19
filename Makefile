@@ -24,5 +24,5 @@ test-deploy:
 	cd hedvig-web; ./test-deploy.sh
 
 production-deploy:
-	cd hedvig-app; ./test-deploy.sh
-	cd hedvig-web; ./production.deploy.sh
+	cd hedvig-app; ./production-deploy.sh
+	cd hedvig-web; ./production-deploy.sh
