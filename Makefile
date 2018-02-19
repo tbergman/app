@@ -16,7 +16,7 @@ lint:
 
 test:
 	cd hedvig-redux; yarn test
-	cd hedvig-app; yarn test
+	# cd hedvig-app; yarn test # we dont have any tests here yet :(
 	cd hedvig-web; yarn test
 
 test-deploy:
