@@ -17,9 +17,18 @@ const ctaClick = action => {
   }
 }
 
+const appMounted = action => {
+  return {
+    hitType: 'event',
+    eventCategory: 'app',
+    eventAction: 'mounted'
+  }
+}
+
 const eventsMap = {
   "@@router/LOCATION_CHANGE": pageView,
-  "ANALYTICS/CTA_CLICK": ctaClick
+  "ANALYTICS/CTA_CLICK": ctaClick,
+  "ANALYTICS/APP_MOUNTED": appMounted
 }
 
 const middleware = createMiddleware(eventsMap, GoogleTagManager())

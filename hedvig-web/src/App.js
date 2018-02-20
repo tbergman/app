@@ -24,7 +24,7 @@ window.hedvigRedux = hedvigRedux
 window.Navigation = Navigation
 window.moment = moment
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   Raven.config('https://f3942dffb4a14ed0ab23aa38b6ae73f0@sentry.io/284598').install()
 }
 
@@ -48,6 +48,10 @@ class App extends Component {
   componentWillMount() {
     // this.store.dispatch(hedvigRedux.chatActions.getMessages())
     this.store.dispatch(hedvigRedux.chatActions.getAvatars())
+  }
+
+  componentDidMount() {
+    this.store.dispatch({type: "ANALYTICS/APP_MOUNTED"})
   }
 
   render() {
