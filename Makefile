@@ -20,7 +20,7 @@ test:
 	cd hedvig-web; yarn test
 
 test-deploy:
-	cd hedvig-app; ./test-deploy.sh
+	# cd hedvig-app; ./test-deploy.sh
 	cd hedvig-web; ./test-deploy.sh
 
 production-deploy:
