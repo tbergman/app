@@ -1,15 +1,10 @@
 /* global require */
 import React from "react"
 import PropTypes from "prop-types"
-import { Asset } from "expo"
 
 import { StyledDashboardHeader, StyledDashboardHeaderRow, StyledDashboardHeaderItem, StyledDashboardHeaderIcon } from "../styles/dashboard"
 import { StyledPassiveText } from "../styles/text";
 import { INSURANCE_TYPES } from "../../constants"
-
-Asset.loadAsync([
-  require("../../../assets/icons/my_insurance/aktiv.png"),
-])
 
 const OfferFooter = ({insuranceType}) => (
   <StyledDashboardHeader style={{paddingTop: 8, paddingBottom: 8}}>

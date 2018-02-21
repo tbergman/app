@@ -6,6 +6,9 @@
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"
     },
+    "assetBundlePatterns": [
+      "assets/**"
+    ],
     "version": "1.1.0",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
