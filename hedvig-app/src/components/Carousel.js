@@ -48,7 +48,7 @@ class Carousel extends React.Component {
   _renderItem({ item }) {
     return (
       <StyledCarouselImage
-        source={{ uri: item.imageUrl }}
+        source={item.imageUrl ? { uri: item.imageUrl } : item.itemSrc }
         width={itemWidth}
         height={itemWidth}
         resizeMode="contain"
