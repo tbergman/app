@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 import Header from "../../components/Header";
 import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button"
@@ -103,6 +104,9 @@ class WaitList extends React.Component {
     }
     return (
       <main className="WaitList">
+        <Helmet>
+          <title>Hedvig</title>
+        </Helmet>
         <Header static headerRight={<React.Fragment></React.Fragment>} />
         <article className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-lg-4-5 WaitList__content">

@@ -1,4 +1,6 @@
 import React from "react"
+import { Helmet } from "react-helmet"
+
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer"
 import Hero from "../../../components/Hero"
@@ -8,6 +10,9 @@ import "./contact.css"
 
 export default () => (
   <main className="Contact">
+    <Helmet>
+      <title>Kontakt | Hedvig</title>
+    </Helmet>
     <Header headerRight={<SayHi/>}/>
     <Hero
       imageUrl="/assets/web/Images/map.png"

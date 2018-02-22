@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 
 import {
   SayHi,
@@ -10,6 +11,9 @@ import "./aboutus.css"
 
 const AboutUs = () => (
   <main className="AboutUs">
+    <Helmet>
+      <title>Om Hedvig | Hedvig</title>
+    </Helmet>
     <Header headerRight={<SayHi />}/>
     <Hero
       imageUrl="/assets/web/Images/Norrsken-4.jpg"

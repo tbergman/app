@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet";
 
 import Collaboration from "./sections/Collaboration"
 import Splash from "./sections/Splash"
@@ -33,6 +34,9 @@ const ConnectedHidingCtaButton = connect(
 const Landing = () => { // Fragment is used as a quick hack to render nothing in place of a better solution right now
   return (
     <main>
+      <Helmet>
+        <title>Hedvig</title>
+      </Helmet>
       <Header headerRight={<ConnectedHidingCtaButton />}/>
       <Splash />
       <WaterDamagePage />
