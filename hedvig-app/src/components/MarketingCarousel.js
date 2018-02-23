@@ -1,197 +1,288 @@
+/* global require */
 import React from "react"
-import { Image, View, Text, Dimensions, AsyncStorage, TouchableOpacity } from "react-native"
-import Carousel, { Pagination } from "react-native-snap-carousel"
-import styled from "styled-components/native"
+import PropTypes from "prop-types"
+import {
+  View,
+  Image,
+  Text,
+  Dimensions,
+  AsyncStorage,
+  TouchableOpacity,
+  StatusBar
+} from "react-native"
+import Swiper from "react-native-swiper";
+import { Asset } from "expo"
 import { connect } from "react-redux"
 import { createReduxBoundAddListener } from "react-navigation-redux-helpers"
 
-import {
-  StyledHeading,
-  StyledSmallText,
-  StyledPassiveText
-} from "./styles/text"
-import { TurquoiseRoundedInvertedButton } from "./Button"
 import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
-import { StyledButtonText } from "./styles/button";
 
-const { width } = Dimensions.get("window")
-const headingFontSize = width <= 320 ? 16 : 24
-const paragraphFontSize = width <= 320 ? 10 : 14
+// Precache images
+Asset.loadAsync([
+  // require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png")
+  require("../../assets/onboarding/app-marketing-screen1.png"),
+  require("../../assets/onboarding/app-marketing-screen2.png"),
+  require("../../assets/onboarding/app-marketing-screen3.png"),
+  require("../../assets/onboarding/heart.png"),
+  require("../../assets/onboarding/hedvig_gang.png"),
+])
 
-const contents = [
-  {
-    heading: "Det ska vara lätt\nnär det är svårt",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-1.png",
-    animation: null,
-    paragraph: "Hedvig är försäkring för dig,\nditt hem och dina prylar"
-  },
-  {
-    heading: "Anmäl en skada på\n sekunder, få ersättning\n på minuter",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-2.png",
-    animation: null,
-    paragraph: null
-  },
-  {
-    heading: "Schysst för dig,\noch världen runtomkring",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-3.png",
-    animation: null,
-    paragraph: "Hedvig är inget vanligt försäkringsbolag.\nVi tar en låg fast avgift, betalar blixtsnabbt\noch skänker överskottet till ett gott ändamål"
-  },
-  {
-    heading: "Tryggat av en av världens\nstörsta återförsäkrings-\nkoncerner",
-    imageUrl: "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/hedvig-marketing-4.png",
-    animation: null,
-    endButton: true,
-    paragraph: null
-  }
-]
+const fonts = {
+  CIRCULAR: "circular",
+  MERRIWEATHER: "merriweather",
+}
 
-const MyStyledHeading = StyledHeading.extend`
-  font-size: ${headingFontSize};
-  color: ${props => props.theme.colors.blackPurple};
-`
+const colors = {
+  PRIMARY_GREEN: "#1BE9B6",
+  PRIMARY_BLUE: "#0F007A",
+  PRIMARY_PURPLE: "#651EFF",
+  TEXT: "#686E7E",
+}
 
-const FullScreen = styled.View`
-  flex: 1;
-  align-self: stretch;
-  margin-top: 40px;
-  background-color: white;
-  justify-content: center;
-`
+// Handling different screen sizes with three cases:
+// hasTallViewport || hasSmallViewport || (!hasSmallViewport && !hasTallViewport)
+//
+// iPhone 5 - 8 aspect ratio: 0.56
+// Pixel 2 XL aspect ratio: 0.5
+// Galaxy S8 aspect ratio: 0.48
+// iPhone X aspect ratio: 0.46
+//
+// Reference
+// - https://material.io/devices/
+// - https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get("window")
+const hasTallViewport = viewportHeight > 750 // > ~5.5" Screens and above (e.g. iPhone X)
+const hasSmallViewport = viewportHeight < 600 // < ~4" Screens and below (e.g. iPhone 5)
 
-const MySmallText = StyledSmallText.extend`
-  font-size: ${paragraphFontSize};
-  background-color: rgba(0,0,0,0);
-  color: ${props => props.theme.colors.darkGray};
-  line-height: ${paragraphFontSize + 6};
-`
+const Slide = ({ title, children }) => (
+  <View style={{
+    overflow: "hidden",
+    flex: 1,
+  }}>
+    <View style={{
+      flex: 1,
+      width: viewportWidth,
+      alignItems: "center",
+    }}>
+      {children}
+    </View>
+    <Text numberOfLines={2}
+      style={{
+        fontFamily: fonts.MERRIWEATHER,
+        fontSize: viewportWidth <= 320 ? 18 : 20,
+        lineHeight: 33,
+        textAlign: "center",
+        color: "black",
+        width: viewportWidth,
+        paddingTop: hasTallViewport ? 30 : 20,
+        paddingBottom: hasTallViewport ? 55 : 40,
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 20,
+      }}>
+      {title}
+    </Text>
+  </View>
+)
 
-const CenteredText = styled.Text`
-  text-align: center;
-`
+Slide.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+}
 
-const ImageContainer = styled.View`
-  align-self: stretch;
-  align-items: center;
-  height: ${props => props.height}
-`
+const SlideImage = ({imageSource}) => {
+  const slideWidth = viewportWidth - 60
+  return (
+    <View style={{
+      flex: 1,
+      width: slideWidth,
+      position: "relative",
+      top: hasTallViewport ? 90 : (viewportHeight > 700 ? 40 : 18),
+      overflow: "hidden",
+    }}>
+      <Image source={imageSource}
+        style={{
+          position: "absolute",
+          top: hasSmallViewport ? -30 : 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: slideWidth,
+          resizeMode: Image.resizeMode.contain,
+        }}
+        resizeMethod={"scale"}
+      />
+    </View>
+  )
+}
 
-const ParagraphContainer = styled.View`
-  padding-left: 16px;
-  padding-right: 16px;
-  height: ${paragraphFontSize * 3.5}
-  margin: 24px 0 0;
-`
-
-const DotsContainer = styled.View`
-  margin-top: 0px;
-  align-items: center;
-`
-
-const LoginContainer = styled.View`
-  margin-top: 0px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
-
-const CustomButtonText = StyledButtonText.extend`
-  font-size: 14px;
-  line-height: 14px;
-`
-
-const itemWidth = width <= 320 ? width - 130 : 275
+SlideImage.propTypes = {
+  imageSource: PropTypes.number.isRequired,
+}
 
 export default class MarketingCarousel extends React.Component {
-  state = {
-    index: 0
-  }
-
-  _renderItem({ item }) {
-    if (item.imageUrl) {
-      return (
-        <Image
-          source={{ uri: item.imageUrl }}
-          style={{ width: itemWidth, height: itemWidth }}
-        />
-      )
-    } else if (item.animation) {
-      return (
-        <View
-          style={{
-            width: 300,
-            height: 300,
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          {item.animation}
-        </View>
-      )
-    }
-  }
+  state = {}
 
   render() {
-    let data = contents[this.state.index]
     return (
-      <FullScreen>
-        <View>
-          {data.heading ? (
-              <View style={{minHeight: headingFontSize * 4}}>
-                <CenteredText style={{height: headingFontSize * 4}}>
-                  <MyStyledHeading>{data.heading}</MyStyledHeading>
-                </CenteredText>
-              </View>
-          ) : null}
-          <ImageContainer height={itemWidth}>
-            <Carousel
-              ref={c => {
-                this._carousel = c
-              }}s
-              data={contents}
-              renderItem={this._renderItem}
-              sliderWidth={Dimensions.get("window").width}
-              itemWidth={itemWidth}
-              inactiveSlideOpacity={0}
-              inactiveSlideScale={0.9}
-              onSnapToItem={slideIndex => this.setState({ index: slideIndex })}
-            />
-          </ImageContainer>
-          { data.paragraph ? (
-            <ParagraphContainer>
-              <CenteredText>
-                <MySmallText>{data.paragraph}</MySmallText>
-              </CenteredText>
-            </ParagraphContainer>
-          ) : data.endButton ? (
-            <View style={{height: paragraphFontSize * 3.5, marginTop: 24}}>
-              <TurquoiseRoundedInvertedButton
-                title="Säg hej till Hedvig!"
-                onPress={() => this.props.startChat()}
-              />
+      <View style={{
+        flex: 1,
+        alignSelf: "stretch",
+        marginTop: 0,
+        backgroundColor: "white",
+        justifyContent: "center",
+      }}>
+        <StatusBar hidden/>
+        <View style={{flex: 1}}>
+          <Swiper style={{}}
+            dot={<View style={{
+              backgroundColor: "#dcdbdc",
+              width: 7,
+              height: 7,
+              borderRadius: 7,
+              marginLeft: 5,
+              marginRight: 5
+            }} />}
+            activeDot={<View style={{
+              backgroundColor: colors.PRIMARY_GREEN,
+              width: 7,
+              height: 7,
+              borderRadius: 7,
+              marginLeft: 5,
+              marginRight: 5
+            }} />}
+            paginationStyle={{
+              bottom: 18
+            }}
+            loop={false}>
+            <View style={{
+              flex: 1,
+              alignItems: "center"
+            }}>
+              <Text style={{
+                marginTop: hasTallViewport ? 100 : hasSmallViewport ? 40 : 60,
+                marginBottom: hasSmallViewport ? 10 : 15,
+                fontSize: hasSmallViewport ? 35 : 40,
+                lineHeight: hasSmallViewport ? 47 : 55,
+                textAlign: "center",
+                fontFamily: fonts.MERRIWEATHER,
+                color: colors.PRIMARY_BLUE,
+              }}>
+                Livet blir{"\n"}enklare med{"\n"}Hedvig
+              </Text>
+              <Text style={{
+                fontSize: 20,
+                lineHeight: hasSmallViewport ? 27 : 30,
+                textAlign: "center",
+                fontFamily: fonts.CIRCULAR,
+                color: colors.TEXT,
+              }}>
+                Försäkring som du aldrig{"\n"}tidigare har upplevt det
+              </Text>
+                <Image source={require("../../assets/onboarding/hedvig_gang.png")}
+                  style={{
+                    flex: 1,
+                    width: viewportWidth * (hasTallViewport ? 0.85 : hasSmallViewport ? 0.65 : 0.70),
+                    marginTop: -40,
+                    position: "relative"
+                  }}
+                  resizeMode="contain"
+                />
             </View>
-          ) :<View style={{height: paragraphFontSize * 3.5, marginTop: 24}} /> }
+            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_BLUE }}>
+              <Slide title={"Hedvig är hemförsäkring\nskapad för\u00A0dig"}>
+                <SlideImage
+                  imageSource={require("../../assets/onboarding/app-marketing-screen1.png")}/>
+              </Slide>
+            </View>
+            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_PURPLE }}>
+              <Slide title={"Om något hänt får du\nhjälp på\u00A0sekunder"}>
+                <SlideImage
+                  imageSource={require("../../assets/onboarding/app-marketing-screen2.png")}/>
+              </Slide>
+            </View>
+            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_GREEN }}>
+              <Slide title={"Logga dina prylar och se\nexakt hur de är\u00A0försäkrade"}>
+                <SlideImage
+                  imageSource={require("../../assets/onboarding/app-marketing-screen3.png")}/>
+              </Slide>
+            </View>
+            <View style={{ flex: 1, backgroundColor: "#FF8A80" }}>
+              <Slide title={"Det som blir över när alla skador\när betalda går till välgörenhet"}>
+                <View style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  <Image source={require("../../assets/onboarding/heart.png")}
+                    style={{
+                      width: 132,
+                      height: 129,
+                      resizeMode: Image.resizeMode.contain,
+                    }}
+                    resizeMethod={"scale"}
+                  />
+                </View>
+              </Slide>
+            </View>
+          </Swiper>
         </View>
-        <View style={{ marginBottom: 20 }}>
-          <DotsContainer>
-            <Pagination
-              dotsLength={contents.length}
-              activeDotIndex={this.state.index}
-              dotColor="#651EFF"
-              inactiveDotColor="#D7D7DC"
-              inactiveDotScale={1}
-            />
-          </DotsContainer>
-          <LoginContainer>
-            <Text style={{ marginRight: 10 }}>
-              <StyledPassiveText>Redan medlem?</StyledPassiveText>
-            </Text>
+
+        <View style={{ paddingBottom: hasTallViewport ? 30 : 18 }}>
+          <TouchableOpacity onPress={() => this.props.startChat()}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              alignSelf: "center",
+              maxWidth: viewportWidth * 0.7,
+              minWidth: 250,
+              minHeight: 50,
+              marginBottom: 18,
+              padding: 0,
+              backgroundColor: colors.PRIMARY_GREEN,
+              borderWidth: 0,
+              borderRadius: 27,
+            }}>
+            <Text numberOfLines={1}
+            style={{
+              fontSize: 21,
+              fontFamily: fonts.CIRCULAR,
+              textAlignVertical: "center",
+              textAlign: "center",
+              color: "white"
+            }}>Kolla ditt pris</Text>
+          </TouchableOpacity>
+          <View style={{
+            marginTop: 0,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}>
+            <View>
+              <Text style={{
+                fontFamily: fonts.CIRCULAR,
+                fontSize: 18,
+                lineHeight: 20,
+                height: 20,
+                color: colors.TEXT,
+                marginRight: 8,
+              }}>Redan medlem?</Text>
+            </View>
             <TouchableOpacity onPress={() => this.props.login()}>
-              <CustomButtonText>Logga in</CustomButtonText>
+              <Text style={{
+                fontFamily: fonts.CIRCULAR,
+                fontSize: 18,
+                lineHeight: 20,
+                height: 20,
+                color: colors.PRIMARY_PURPLE,
+              }}>Logga in</Text>
             </TouchableOpacity>
-          </LoginContainer>
+          </View>
         </View>
-      </FullScreen>
+      </View>
     )
   }
 }
