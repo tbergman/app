@@ -1,20 +1,6 @@
 /* global require */
 import React from "react"
-import { Asset } from "expo"
 import { StyledIcon } from "./styles/general"
-
-// Precache assets
-Asset.loadAsync([
-  require("../../assets/icons/profil/valgorenhet.png"),
-  require("../../assets/icons/profil/personlig_info.png"),
-  require("../../assets/icons/profil/trygghetshojare.png"),
-  require("../../assets/icons/profil/bankkonto.png"),
-  require("../../assets/icons/profil/share.png"),
-  require("../../assets/icons/take_picture.png"),
-  require("../../assets/icons/choose_picture.png"),
-  require("../../assets/icons/list_items/add_list_item.png"),
-  require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_blue.png")
-])
 
 export const Icon = ({ source, size = "big" }) => {
   let width = {

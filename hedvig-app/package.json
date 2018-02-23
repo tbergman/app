@@ -1,6 +1,6 @@
 {
   "name": "hedvig-app",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -23,7 +23,8 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
+    "test": "node node_modules/jest/bin/jest.js",
+    "test:watch": "yarn run test -- --watch",
     "deploy": "exp publish --non-interactive",
     "lint": "eslint src",
     "postinstall": "rndebugger-open"
@@ -43,6 +44,7 @@
     "react-native-popup-dialog": "^0.10.46",
     "react-native-root-toast": "^3.0.1",
     "react-native-snap-carousel": "^3.6.0",
+    "react-native-swiper": "^1.5.13",
     "react-navigation": "^1.0.0-beta.27",
     "react-navigation-redux-helpers": "^1.0.0",
     "react-redux": "^5.0.6",

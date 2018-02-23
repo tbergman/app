@@ -38,7 +38,7 @@ import { handleCheckoutSaga } from "./offer"
 import { handleEventSaga } from "./events"
 import { addListenerSaga } from "./listener"
 import runner from "./sagaRunner"
-import { startPaymentSaga } from "./payment";
+import { startPaymentSaga, finalizePaymentSaga } from "./payment";
 
 const root = (additionalSagas = []) =>
   function* rootSaga() {
@@ -66,6 +66,7 @@ const root = (additionalSagas = []) =>
       addListenerSaga,
       startWebChatSaga,
       startPaymentSaga,
+      finalizePaymentSaga,
       ...additionalSagas
     ])
   }

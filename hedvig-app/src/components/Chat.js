@@ -100,6 +100,7 @@ export default class Chat extends React.Component {
 
   render() {
     let headerLeft
+    let headerRight
     if (
       this.props.insurance.status === "INACTIVE" ||
       this.props.insurance.status === "ACTIVE"
@@ -107,19 +108,19 @@ export default class Chat extends React.Component {
       headerLeft = (
         <NavigateBackButton onPress={() => this.props.showDashboard()} />
       )
+    } else {
+      headerRight = (
+        <ChatNavRestartButton
+          onPress={() => this.props.resetConversation()}
+        />
+      )
     }
     return (
       <StyledChatContainer>
         <NavBar
           title="Hedvig"
-          headerLeft={
-            headerLeft
-          }
-          headerRight={
-            <ChatNavRestartButton
-              onPress={() => this.props.resetConversation()}
-            />
-          }
+          headerLeft={headerLeft}
+          headerRight={headerRight}
         />
         <StyledMessageAndResponseArea behaviour="padding">
           <StyledMessageArea>

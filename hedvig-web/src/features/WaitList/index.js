@@ -2,9 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 import Header from "../../components/Header";
-import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button";
+import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button"
+import { TurquoiseRoundedButtonStyled } from "../../components/styles/button"
 import "./waitlist.css"
 
 const STATUSES = {
@@ -13,6 +16,16 @@ const STATUSES = {
   UNKNOWN: "NOT_FOUND",
   LOADING: "LOADING"
 }
+
+const WaitListError = () => (
+  <div>
+    <h1 className="WaitList__status-header">Hittade inte din plats...</h1>
+
+    <Link to="/chat">
+      <TurquoiseRoundedButtonStyled>Sätt upp mig på väntelistan</TurquoiseRoundedButtonStyled>
+    </Link>
+  </div>
+)
 
 class WaitList extends React.Component {
   static defaultProps = {
@@ -76,23 +89,24 @@ class WaitList extends React.Component {
         )
         break
       case STATUSES.UNKNOWN:
-        content = (
-          <React.Fragment>Sign up for wait list for Hedvig here!</React.Fragment>
-        )
+        content = <WaitListError/>
         break
       case STATUSES.LOADING:
         content = (
-          <React.Fragment>Loading ...</React.Fragment>
+          <div>
+            <p className="WaitList__paragraph">Laddar...</p>
+          </div>
         )
         break
       default:
-        content = (
-          <React.Fragment>error</React.Fragment>
-        )
+        content = <WaitListError/>
         break
     }
     return (
       <main className="WaitList">
+        <Helmet>
+          <title>Hedvig</title>
+        </Helmet>
         <Header static headerRight={<React.Fragment></React.Fragment>} />
         <article className="pure-g pure-centered">
           <div className="pure-u-1-1 pure-u-lg-4-5 WaitList__content">

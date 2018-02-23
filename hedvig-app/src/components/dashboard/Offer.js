@@ -1,6 +1,5 @@
 /* global require */
 import React from "react"
-import { Asset } from "expo"
 import { View, ScrollView, ImageBackground, Dimensions } from "react-native"
 import { NavBar } from "../NavBar"
 import {
@@ -20,11 +19,6 @@ import OfferFooter from "./OfferFooter"
 const { width } = Dimensions.get("window")
 
 const HEDVIG_INTEGRITET_S3_LINK = "https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+integritetspolicy.pdf"
-
-// Precache assets
-Asset.loadAsync([
-  require("../../../assets/bgs/gradient-white-rectangle.png"),
-])
 
 class Offer extends React.Component {
   componentWillMount() {

@@ -1,16 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { WebView, BackHandler, View, Text } from "react-native";
+import { WebView, BackHandler, View, Text, Linking } from "react-native"
 import { NavigationActions } from "react-navigation"
-import { NavBar } from "./NavBar";
-import { NavigateBackButton } from "./Button";
+
+import { NavBar } from "../../components/NavBar"
+import { NavigateBackButton } from "../../components/Button"
 
 class Payment extends React.Component {
   static propTypes = {
     url: PropTypes.string,
     requestPaymentRegistration: PropTypes.func.isRequired,
-    goBack: PropTypes.func.isRequired
+    goBack: PropTypes.func.isRequired,
+    onPaymentSuccess: PropTypes.func.isRequired,
+    onPaymentFailure: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -20,10 +23,12 @@ class Payment extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
     this.props.requestPaymentRegistration(this.props.navigation.state.params.id)
+    Linking.addEventListener("url", this.handleAllDeepLinks)
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+    Linking.removeEventListener("url", this.handleAllDeepLinks)
   }
 
   onBackPress = () => {
@@ -33,6 +38,14 @@ class Payment extends React.Component {
 
   goBack = () => {
     this.props.goBack()
+  }
+
+  handleAllDeepLinks = (event) => {
+    if (event.url.match("trustly/payment-success")) {
+      this.props.onPaymentSuccess()
+    } else if (event.url.match("trustly/payment-failure")) {
+      this.props.onPaymentFailure()
+    }
   }
 
   render() {
@@ -62,6 +75,8 @@ export default connect(
   }),
   dispatch => ({
     requestPaymentRegistration: id => dispatch({type: "PAYMENT/REQUEST_PAYMENT_REGISTRATION", payload: { id }}),
-    goBack: () => dispatch(NavigationActions.back())
+    onPaymentSuccess: () => dispatch({type: "PAYMENT/ON_PAYMENT_SUCCESS", payload: {onFinish: () => dispatch(NavigationActions.back())}}),
+    onPaymentFailure: () => dispatch({type: "PAYMENT/ON_PAYMENT_FAILURE", payload: {onFinish: () => dispatch(NavigationActions.back())}}),
+    goBack: () => dispatch({type: "PAYMENT/CANCEL_PAYMENT", payload: {onFinish: () => dispatch(NavigationActions.back())}})
   })
 )(Payment)

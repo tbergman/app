@@ -1,6 +1,5 @@
 /* global require */
 import React from "react"
-import { Asset } from "expo"
 import { View, ScrollView } from "react-native"
 
 import { HeaderRightChat } from "../NavBar"
@@ -17,16 +16,6 @@ import {
 import { StyledPassiveText } from "../styles/text"
 import DashboardHeader from "./DashboardHeader"
 import { INSURANCE_TYPES } from "../../constants"
-
-// Precache images
-Asset.loadAsync([
-  require("../../../assets/icons/my_insurance/aktiv.png"),
-  require("../../../assets/icons/edit_perils/added_peril.png"),
-  require("../../../assets/icons/edit_perils/added_peril.png"),
-  require("../../../assets/icons/my_insurance/aktiv.png"),
-  require("../../../assets/icons/my_insurance/pris.png"),
-  require("../../../assets/icons/my_insurance/worldwide.png")
-])
 
 export default class Dashboard extends React.Component {
   state = {
@@ -90,7 +79,7 @@ export default class Dashboard extends React.Component {
     return {
       ACTIVE: "Aktiv",
       PENDING: "På gång",
-      INACTIVE: "Inaktiv",
+      INACTIVE: "Aktiveras snart",
     }[this.props.insurance.status]
   }
 

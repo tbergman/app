@@ -5,17 +5,15 @@ node_js:
 
 before_install:
 - npm install exp --global
+- pip install --user awscli
 install:
-- cd hedvig-redux
-- yarn install
-- cd ..
-- cd hedvig-app
-- yarn install
+- make install
 
 script:
-- yarn lint
-- ./test-deploy.sh
-- ./production-deploy.sh
+- make lint
+- make test
+- make test-deploy
+- make production-deploy
 
 notifications:
   email: false
