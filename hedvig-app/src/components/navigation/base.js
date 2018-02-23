@@ -9,7 +9,7 @@ import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
-import Payment from "../Payment"
+import Payment from "../../features/payment"
 
 const HomeBaseNavigator = StackNavigator(
   {
