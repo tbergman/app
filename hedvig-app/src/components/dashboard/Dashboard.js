@@ -79,7 +79,7 @@ export default class Dashboard extends React.Component {
     return {
       ACTIVE: "Aktiv",
       PENDING: "På gång",
-      INACTIVE: "Inaktiv",
+      INACTIVE: "Aktiveras snart",
     }[this.props.insurance.status]
   }
 
