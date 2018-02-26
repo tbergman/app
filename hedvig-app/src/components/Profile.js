@@ -126,13 +126,14 @@ export default class Profile extends React.Component {
         title: "Min välgörenhet",
         icon: <ProfileHeartIcon />,
         text: this.props.user.selectedCashback,
-        onPress: () =>
-          this.props.navigation.navigate("Carousel", {
-            items: this.props.cashbackAlternatives,
-            title: "Välgörenhet",
-            initialSlideIndex: 0,
-            renderCta: this._cashbackCarouselCta.bind(this)
-          })
+        // Cashback click removed for now as we only have one cashback. Will be re-added later
+        // onPress: () =>
+        //   this.props.navigation.navigate("Carousel", {
+        //     items: this.props.cashbackAlternatives,
+        //     title: "Välgörenhet",
+        //     initialSlideIndex: 0,
+        //     renderCta: this._cashbackCarouselCta.bind(this)
+        //   })
       })
     }
   }
