@@ -126,13 +126,13 @@ export default class Profile extends React.Component {
         title: "Min välgörenhet",
         icon: <ProfileHeartIcon />,
         text: this.props.user.selectedCashback,
-        onPress: () =>
-          this.props.navigation.navigate("Carousel", {
-            items: this.props.cashbackAlternatives,
-            title: "Välgörenhet",
-            initialSlideIndex: 0,
-            renderCta: this._cashbackCarouselCta.bind(this)
-          })
+        // onPress: () =>
+        //   this.props.navigation.navigate("Carousel", {
+        //     items: this.props.cashbackAlternatives,
+        //     title: "Välgörenhet",
+        //     initialSlideIndex: 0,
+        //     renderCta: this._cashbackCarouselCta.bind(this)
+        //   })
       })
     }
   }
