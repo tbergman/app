@@ -39,7 +39,8 @@ class App extends Component {
         waitlist: waitlistReducer
       },
       additionalMiddleware: [routerMiddleware, analyticsMiddleware],
-      additionalSagas: [tokenStorageSaga, logoutSaga]
+      additionalSagas: [tokenStorageSaga, logoutSaga],
+      raven: Raven,
     })
     window.store = this.store
     getOrLoadToken(this.store.dispatch)

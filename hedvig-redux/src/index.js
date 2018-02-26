@@ -28,7 +28,8 @@ function configureStore(
     initialState,
     additionalReducers,
     additionalMiddleware = [],
-    additionalSagas
+    additionalSagas,
+    raven = null,
   } = {}
 ) {
   let sagaMiddleware = createSagaMiddleware()
@@ -54,16 +55,8 @@ function configureStore(
     initialState,
     middlewares
   )
-  sagaMiddleware.run(rootSaga(additionalSagas))
+  sagaMiddleware.run(rootSaga(additionalSagas, raven))
   return store
-}
-
-function main() {
-  // store.dispatch(insuranceActions.getDashboard())
-}
-
-if (require.main === module) {
-  main()
 }
 
 export {

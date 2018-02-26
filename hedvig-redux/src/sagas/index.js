@@ -40,7 +40,7 @@ import { addListenerSaga } from "./listener"
 import runner from "./sagaRunner"
 import { startPaymentSaga, finalizePaymentSaga } from "./payment";
 
-const root = (additionalSagas = []) =>
+const root = (additionalSagas = [], raven) =>
   function* rootSaga() {
     yield runner([
       authenticateSaga,
@@ -68,7 +68,8 @@ const root = (additionalSagas = []) =>
       startPaymentSaga,
       finalizePaymentSaga,
       ...additionalSagas
-    ])
+    ],
+    raven)
   }
 
 export const rootSaga = root

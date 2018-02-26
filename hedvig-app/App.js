@@ -64,7 +64,8 @@ export class App extends React.Component {
       additionalMiddleware: [
         sentryMiddleware,
         navigationMiddleware
-      ]
+      ],
+      raven: Sentry
     })
     window.store = this.store
   }
