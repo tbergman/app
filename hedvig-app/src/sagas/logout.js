@@ -1,6 +1,9 @@
-import { types, chatActions } from "hedvig-redux"
-import { takeEvery, put, take } from "redux-saga/effects"
-import { showChatAction } from "../actions/baseNavigation"
+import { types } from "hedvig-redux"
+import { AsyncStorage } from "react-native"
+import { takeEvery, put, call } from "redux-saga/effects"
+import { NavigationActions } from "react-navigation"
+
+import { SEEN_MARKETING_CAROUSEL_KEY } from "../constants"
 
 const handleLogout = function*() {
   // Delete session from backend, then create a new one
@@ -21,24 +24,10 @@ const handleLogout = function*() {
   // Get a new token
   yield put({ type: types.AUTHENTICATE, payload: {} })
 
-  // Switch to the chat
+  // Make sure the onboarding/marketing screens show after you restart app
+  yield call(AsyncStorage.removeItem, SEEN_MARKETING_CAROUSEL_KEY)
 
-  yield put(showChatAction())
-
-  yield put({
-    type: types.API,
-    payload: {
-      method: "POST",
-      url: "/chat/start",
-      body: null,
-      SUCCESS: "LOGOUT/CHAT_START_SUCCESS"
-    }
-  })
-
-  yield take("LOGOUT/CHAT_START_SUCCESS")
-
-  // GET /messages
-  yield put(chatActions.getMessages())
+  yield put(NavigationActions.navigate({ routeName: "Marketing" }))
 }
 
 const logoutSaga = function*() {

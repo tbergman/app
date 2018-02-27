@@ -7,17 +7,17 @@ import {
   ActionSheetProvider,
   connectActionSheet
 } from "@expo/react-native-action-sheet"
-
 import * as hedvigRedux from "hedvig-redux"
 window.hedvigRedux = hedvigRedux
+
+import { theme } from "hedvig-style"
 import nav from "./src/reducers/nav"
-import { MarketingCarouselOrBaseNavigator } from "./src/components/MarketingCarousel"
 import * as Navigation from "./src/services/Navigation"
 import { apiAndNavigateToChatSaga } from "./src/sagas/apiAndNavigate"
 import { tokenStorageSaga } from "./src/sagas/TokenStorage"
 import { logoutSaga } from "./src/sagas/logout"
 import { ThemeProvider } from "styled-components"
-import { theme } from "hedvig-style"
+import { Router } from "./src/components/navigation/Router"
 import WithAssets from "./src/components/WithAssets"
 window.Navigation = Navigation
 
@@ -26,6 +26,7 @@ import { keyboardStateChange } from "./src/actions/keyboardState"
 import appStateChangeReducer from "./src/reducers/appState"
 import keyboardStateChangeReducer from "./src/reducers/keyboardState"
 import statusMessageReducer from "./src/reducers/statusMessage"
+import routerReducer from "./src/reducers/router"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
 import { navigationSaga } from "./src/sagas/navigation"
@@ -49,7 +50,8 @@ export class App extends React.Component {
         nav,
         appState: appStateChangeReducer,
         keyboard: keyboardStateChangeReducer,
-        status: statusMessageReducer
+        status: statusMessageReducer,
+        router: routerReducer,
       },
       additionalSagas: [
         apiAndNavigateToChatSaga,
@@ -121,7 +123,7 @@ export class App extends React.Component {
       <WithAssets>
         <ThemeProvider theme={theme}>
           <Provider store={this.store}>
-            <MarketingCarouselOrBaseNavigator />
+            <Router />
           </Provider>
         </ThemeProvider>
       </WithAssets>

@@ -1,7 +1,7 @@
 import BaseNavigator from "../components/navigation/base-navigator/BaseNavigator"
 
 const initialState = BaseNavigator.router.getStateForAction(
-  BaseNavigator.router.getActionForPathAndParams("ChatBase")
+  BaseNavigator.router.getActionForPathAndParams("Loading")
 )
 
 const navReducer = (state = initialState, action) => {

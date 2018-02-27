@@ -1,8 +1,8 @@
 import React from "react"
-import { View } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { StackNavigator } from "react-navigation"
-import Dialog from "../../containers/Dialog"
 
+import Dialog from "../../containers/Dialog"
 import { FloatingChatButton } from "./floatingButtons"
 import Chat from "../../containers/Chat"
 import ChatModal from "../../containers/navigation/ChatModal"
@@ -10,6 +10,12 @@ import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
 import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
 import Payment from "../../features/payment"
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
 
 const HomeBaseNavigator = StackNavigator(
   {
@@ -39,7 +45,7 @@ on Android!
 */
 const HomeBase = ({navigation}) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <HomeBaseNavigator navigation={navigation}/>
       <FloatingChatButton />
       <Dialog />
@@ -51,7 +57,7 @@ HomeBase.router = HomeBaseNavigator.router
 
 const ChatBase = ({ navigation }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Chat navigation={navigation} />
       <Dialog />
     </View>
@@ -60,7 +66,9 @@ const ChatBase = ({ navigation }) => {
 
 const ChatModalNavigator = StackNavigator(
   {
-    Chat: { screen: ChatBase },
+    Chat: {
+      screen: ChatBase
+    },
     ChatModal: {
       screen: ChatModal
     },
