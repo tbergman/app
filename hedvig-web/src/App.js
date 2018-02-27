@@ -40,7 +40,7 @@ class App extends Component {
       },
       additionalMiddleware: [routerMiddleware, analyticsMiddleware],
       additionalSagas: [tokenStorageSaga, logoutSaga],
-      raven: Raven,
+      raven: window.Raven,
     })
     window.store = this.store
     getOrLoadToken(this.store.dispatch)
