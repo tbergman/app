@@ -4,6 +4,14 @@ exports[`<Contact /> Should render correctly 1`] = `
 <main
   className="Contact"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Kontakt | Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<Connect(Component) />}
     static={false}

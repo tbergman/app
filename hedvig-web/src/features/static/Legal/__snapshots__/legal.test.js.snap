@@ -4,6 +4,14 @@ exports[`<Legal /> Should render correctly 1`] = `
 <main
   className="Legal"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Legal information | Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<Connect(Component) />}
     static={false}

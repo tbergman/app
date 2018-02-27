@@ -4,6 +4,14 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
 <main
   className="WaitList"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<UNDEFINED />}
     static={true}
@@ -80,6 +88,14 @@ exports[`<WaitList /> Should render correctly in status NOT_FOUND 1`] = `
 <main
   className="WaitList"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<UNDEFINED />}
     static={true}
@@ -100,6 +116,14 @@ exports[`<WaitList /> Should render correctly in status WAITLIST 1`] = `
 <main
   className="WaitList"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<UNDEFINED />}
     static={true}
