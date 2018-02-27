@@ -40,7 +40,7 @@ class Splash extends React.Component {
             <div className="pure-u-1-1 pure-u-lg-2-5 Splash__full-height">
               <div className="Splash__text Splash__full-height">
                 <h1 className="Splash__heading">Livet är enklare<br /> med Hedvig</h1>
-                <p>Försäkring som du aldrig upplevt det tidigare</p>
+                <p>Försäkring som du aldrig upplevt det&nbsp;tidigare</p>
                 <Link to="/chat" onClick={this.props.registerCtaClick}>
                   <VisibilitySensor onChange={this._change}>
                     <TurquoiseRoundedButtonStyled>

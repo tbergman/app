@@ -10,9 +10,9 @@ export const ModelExplanation = () => (
       <div className="pure-g pure-centered ModelExplanation__text">
         <div className="pure-u-1-1">
           <h1 className="ModelExplanation__heading">
-            Schysst för dig, och världen&nbsp;runtomkring
+            Överskottet doneras till ett gott&nbsp;ändamål
           </h1>
-          <p className="pure-u-1-1 pure-u-lg-3-5 ModelExplanation__paragraph">
+          <p className="pure-u-5-6 pure-u-lg-3-5 ModelExplanation__paragraph">
             Hedvig fungerar inte som ett vanligt försäkringsbolag.
             Vi tar en låg fast avgift,
             betalar blixtsnabbt och skänker överskottet till ett gott&nbsp;ändamål

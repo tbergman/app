@@ -38,9 +38,9 @@ export default class AssetTrackerDemo extends React.Component {
           <div className="pure-g AssetTrackerDemo__column-order">
             <div className="pure-u-1-1 pure-u-lg-3-5">
               <div className="AssetTrackerDemo__text">
-                <h1 className="AssetTrackerDemo__heading">Låt Hedvig hålla koll på dina saker, se exakt hur de är&nbsp;försäkrade</h1>
+                <h1 className="AssetTrackerDemo__heading">Logga dina prylar och se exakt hur de är&nbsp;försäkrade</h1>
                 <p>
-                  Drulle ingår för alla prylar värda under 50 000 kr
+                  Drulle ingår för alla prylar värda under&nbsp;50&nbsp;000&nbsp;kr
                 </p>
                 {this.maybeExpanded()}
               </div>
