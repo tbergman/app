@@ -8,7 +8,8 @@ import {
   Dimensions,
   AsyncStorage,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  StyleSheet
 } from "react-native"
 import Swiper from "react-native-swiper";
 import { Asset } from "expo"
@@ -54,35 +55,40 @@ const { width: viewportWidth, height: viewportHeight } = Dimensions.get("window"
 const hasTallViewport = viewportHeight > 750 // > ~5.5" Screens and above (e.g. iPhone X)
 const hasSmallViewport = viewportHeight < 600 // < ~4" Screens and below (e.g. iPhone 5)
 
-const Slide = ({ title, children }) => (
-  <View style={{
+const slideStyles = StyleSheet.create({
+  container: {
     overflow: "hidden",
     flex: 1,
-  }}>
-    <View style={{
-      flex: 1,
-      width: viewportWidth,
-      alignItems: "center",
-    }}>
+  },
+  figure: {
+    flex: 1,
+    width: viewportWidth,
+    alignItems: "center",
+  },
+  caption: {
+    fontFamily: fonts.MERRIWEATHER,
+    fontSize: viewportWidth <= 320 ? 18 : 20,
+    lineHeight: 33,
+    textAlign: "center",
+    color: "black",
+    width: viewportWidth,
+    paddingTop: hasTallViewport ? 30 : 20,
+    paddingBottom: hasTallViewport ? 55 : 40,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+  },
+});
+
+const Slide = ({ title, children }) => (
+  <View style={slideStyles.container}>
+    <View style={slideStyles.figure}>
       {children}
     </View>
-    <Text numberOfLines={2}
-      style={{
-        fontFamily: fonts.MERRIWEATHER,
-        fontSize: viewportWidth <= 320 ? 18 : 20,
-        lineHeight: 33,
-        textAlign: "center",
-        color: "black",
-        width: viewportWidth,
-        paddingTop: hasTallViewport ? 30 : 20,
-        paddingBottom: hasTallViewport ? 55 : 40,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: "white",
-        shadowColor: "#000",
-        shadowOpacity: 0.25,
-        shadowRadius: 20,
-      }}>
+    <Text numberOfLines={2} style={slideStyles.caption}>
       {title}
     </Text>
   </View>
@@ -93,26 +99,32 @@ Slide.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
+const slideImageWidth = viewportWidth - 60
+
+const slideImageStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: slideImageWidth,
+    position: "relative",
+    top: hasTallViewport ? 90 : (viewportHeight > 700 ? 40 : 18),
+    overflow: "hidden",
+  },
+  image: {
+    position: "absolute",
+    top: hasSmallViewport ? -30 : 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: slideImageWidth,
+    resizeMode: Image.resizeMode.contain,
+  }
+})
+
 const SlideImage = ({imageSource}) => {
-  const slideWidth = viewportWidth - 60
   return (
-    <View style={{
-      flex: 1,
-      width: slideWidth,
-      position: "relative",
-      top: hasTallViewport ? 90 : (viewportHeight > 700 ? 40 : 18),
-      overflow: "hidden",
-    }}>
+    <View style={slideImageStyles.container}>
       <Image source={imageSource}
-        style={{
-          position: "absolute",
-          top: hasSmallViewport ? -30 : 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: slideWidth,
-          resizeMode: Image.resizeMode.contain,
-        }}
+        style={slideImageStyles.image}
         resizeMethod={"scale"}
       />
     </View>
@@ -123,55 +135,117 @@ SlideImage.propTypes = {
   imageSource: PropTypes.number.isRequired,
 }
 
-export default class MarketingCarousel extends React.Component {
-  state = {}
+const marketingCarouselStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignSelf: "stretch",
+    marginTop: 0,
+    backgroundColor: "white",
+    justifyContent: "center",
+  },
+  swiperDot: {
+    backgroundColor: "#dcdbdc",
+    width: 7,
+    height: 7,
+    borderRadius: 7,
+    marginLeft: 5,
+    marginRight: 5
+  },
+  swiperDotIsActive: {
+    backgroundColor: colors.PRIMARY_GREEN,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
+    marginLeft: 5,
+    marginRight: 5
+  },
+  swiperPagination: {
+    bottom: 18
+  },
+  slideOneContainer: {
+    flex: 1,
+    alignItems: "center"
+  },
+  slideTwoContainer: {
+    flex: 1, backgroundColor: colors.PRIMARY_BLUE
+  },
+  slideThreeContainer: {
+    flex: 1, backgroundColor: colors.PRIMARY_PURPLE
+  },
+  slideFourContainer: {
+    flex: 1, backgroundColor: colors.PRIMARY_GREEN
+  },
+  slideFiveContainer: {
+    flex: 1, backgroundColor: "#FF8A80"
+  },
+  footerContainer: {
+    paddingBottom: hasTallViewport ? 30 : 18
+  },
+  footerCtaButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    maxWidth: viewportWidth * 0.7,
+    minWidth: 250,
+    minHeight: 50,
+    marginBottom: 18,
+    padding: 0,
+    backgroundColor: colors.PRIMARY_GREEN,
+    borderWidth: 0,
+    borderRadius: 27,
+  },
+  footerCtaButtonText: {
+    fontSize: 21,
+    fontFamily: fonts.CIRCULAR,
+    textAlignVertical: "center",
+    textAlign: "center",
+    color: "white"
+  },
+  footerLoginContainer: {
+    marginTop: 0,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  footerLoginText: {
+    fontFamily: fonts.CIRCULAR,
+    fontSize: 18,
+    lineHeight: 20,
+    height: 20,
+    color: colors.TEXT,
+    marginRight: 8,
+  },
+  footerLoginCta: {
+    fontFamily: fonts.CIRCULAR,
+    fontSize: 18,
+    lineHeight: 20,
+    height: 20,
+    color: colors.PRIMARY_PURPLE,
+  }
+})
 
+export default class MarketingCarousel extends React.Component {
   render() {
     return (
-      <View style={{
-        flex: 1,
-        alignSelf: "stretch",
-        marginTop: 0,
-        backgroundColor: "white",
-        justifyContent: "center",
-      }}>
+      <View style={marketingCarouselStyles.container}>
         <StatusBar hidden/>
         <View style={{flex: 1}}>
           <Swiper style={{}}
-            dot={<View style={{
-              backgroundColor: "#dcdbdc",
-              width: 7,
-              height: 7,
-              borderRadius: 7,
-              marginLeft: 5,
-              marginRight: 5
-            }} />}
-            activeDot={<View style={{
-              backgroundColor: colors.PRIMARY_GREEN,
-              width: 7,
-              height: 7,
-              borderRadius: 7,
-              marginLeft: 5,
-              marginRight: 5
-            }} />}
-            paginationStyle={{
-              bottom: 18
-            }}
+            dot={<View style={marketingCarouselStyles.swiperDot} />}
+            activeDot={<View style={marketingCarouselStyles.swiperDotIsActive} />}
+            paginationStyle={marketingCarouselStyles.swiperPagination}
             loop={false}>
-            <View style={{
-              flex: 1,
-              alignItems: "center"
-            }}>
+            <View style={marketingCarouselStyles.slideOneContainer}>
               <Text style={{
-                marginTop: hasTallViewport ? 100 : hasSmallViewport ? 40 : 60,
-                marginBottom: hasSmallViewport ? 10 : 15,
+                marginTop: hasTallViewport ? 100 : 50,
+                marginBottom: 10,
                 fontSize: hasSmallViewport ? 35 : 40,
                 lineHeight: hasSmallViewport ? 47 : 55,
                 textAlign: "center",
                 fontFamily: fonts.MERRIWEATHER,
                 color: colors.PRIMARY_BLUE,
               }}>
-                Livet blir{"\n"}enklare med{"\n"}Hedvig
+                Livet är{"\n"}enklare med{"\n"}Hedvig
               </Text>
               <Text style={{
                 fontSize: 20,
@@ -180,7 +254,7 @@ export default class MarketingCarousel extends React.Component {
                 fontFamily: fonts.CIRCULAR,
                 color: colors.TEXT,
               }}>
-                Försäkring som du aldrig{"\n"}tidigare har upplevt det
+                Försäkring som du aldrig{"\n"}upplevt det tidigare
               </Text>
                 <Image source={require("../../assets/onboarding/hedvig_gang.png")}
                   style={{
@@ -192,26 +266,26 @@ export default class MarketingCarousel extends React.Component {
                   resizeMode="contain"
                 />
             </View>
-            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_BLUE }}>
-              <Slide title={"Hedvig är hemförsäkring\nskapad för\u00A0dig"}>
+            <View style={marketingCarouselStyles.slideTwoContainer}>
+              <Slide title={"Försäkring för dig, ditt hem\noch dina\u00A0prylar"}>
                 <SlideImage
                   imageSource={require("../../assets/onboarding/app-marketing-screen1.png")}/>
               </Slide>
             </View>
-            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_PURPLE }}>
-              <Slide title={"Om något hänt får du\nhjälp på\u00A0sekunder"}>
+            <View style={marketingCarouselStyles.slideThreeContainer}>
+              <Slide title={"Anmäl en skada på sekunder,\nfå ersättning på\u00A0minuter"}>
                 <SlideImage
                   imageSource={require("../../assets/onboarding/app-marketing-screen2.png")}/>
               </Slide>
             </View>
-            <View style={{ flex: 1, backgroundColor: colors.PRIMARY_GREEN }}>
+            <View style={marketingCarouselStyles.slideFourContainer}>
               <Slide title={"Logga dina prylar och se\nexakt hur de är\u00A0försäkrade"}>
                 <SlideImage
                   imageSource={require("../../assets/onboarding/app-marketing-screen3.png")}/>
               </Slide>
             </View>
-            <View style={{ flex: 1, backgroundColor: "#FF8A80" }}>
-              <Slide title={"Det som blir över när alla skador\när betalda går till välgörenhet"}>
+            <View style={marketingCarouselStyles.slideFiveContainer}>
+              <Slide title={"Överskottet doneras\ntill ett gott\u00A0ändamål"}>
                 <View style={{
                   flex: 1,
                   alignItems: "center",
@@ -231,64 +305,24 @@ export default class MarketingCarousel extends React.Component {
           </Swiper>
         </View>
 
-        <View style={{ paddingBottom: hasTallViewport ? 30 : 18 }}>
+        <View style={marketingCarouselStyles.footerContainer}>
           <TouchableOpacity onPress={() => this.props.startChat()}
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              alignSelf: "center",
-              maxWidth: viewportWidth * 0.7,
-              minWidth: 250,
-              minHeight: 50,
-              marginBottom: 18,
-              padding: 0,
-              backgroundColor: colors.PRIMARY_GREEN,
-              borderWidth: 0,
-              borderRadius: 27,
-            }}>
+            style={marketingCarouselStyles.footerCtaButton}>
             <Text numberOfLines={1}
-            style={{
-              fontSize: 21,
-              fontFamily: fonts.CIRCULAR,
-              textAlignVertical: "center",
-              textAlign: "center",
-              color: "white"
-            }}>Kolla ditt pris</Text>
+            style={marketingCarouselStyles.footerCtaButtonText}>Säg hej till Hedvig</Text>
           </TouchableOpacity>
-          <View style={{
-            marginTop: 0,
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "flex-start",
-          }}>
+          <View style={marketingCarouselStyles.footerLoginContainer}>
             <View>
-              <Text style={{
-                fontFamily: fonts.CIRCULAR,
-                fontSize: 18,
-                lineHeight: 20,
-                height: 20,
-                color: colors.TEXT,
-                marginRight: 8,
-              }}>Redan medlem?</Text>
+              <Text style={marketingCarouselStyles.footerLoginText}>Redan medlem?</Text>
             </View>
             <TouchableOpacity onPress={() => this.props.login()}>
-              <Text style={{
-                fontFamily: fonts.CIRCULAR,
-                fontSize: 18,
-                lineHeight: 20,
-                height: 20,
-                color: colors.PRIMARY_PURPLE,
-              }}>Logga in</Text>
+              <Text style={marketingCarouselStyles.footerLoginCta}>Logga in</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
     )
   }
-}
-
-const mapStateToProps = () => {
-  return {}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -312,7 +346,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const ConnectedMarketingCarousel = connect(mapStateToProps, mapDispatchToProps)(
+const ConnectedMarketingCarousel = connect(undefined, mapDispatchToProps)(
   MarketingCarousel
 )
 
