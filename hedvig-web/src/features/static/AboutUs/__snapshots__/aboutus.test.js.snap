@@ -4,6 +4,14 @@ exports[`<AboutUs /> Should render correctly 1`] = `
 <main
   className="AboutUs"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Om Hedvig | Hedvig
+    </title>
+  </HelmetWrapper>
   <Header
     headerRight={<Connect(Component) />}
     static={false}
