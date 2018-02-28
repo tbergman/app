@@ -1,9 +1,24 @@
-import { put, takeLatest, take } from "redux-saga/effects"
+import { AsyncStorage } from "react-native"
+import { put, takeLatest, take, call } from "redux-saga/effects"
 import { types, chatActions } from "hedvig-redux"
+import { NavigationActions } from "react-navigation"
 
-const chatStart = function*(action){
+import { SEEN_MARKETING_CAROUSEL_KEY } from "../constants"
+
+const redirectToChat = function*(){
+  yield call(AsyncStorage.setItem, SEEN_MARKETING_CAROUSEL_KEY, "true")
+
+  yield put(NavigationActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: "ChatBase" })],
+  }))
+}
+
+const chatStart = function*(){
   let tries = 0
-  action.payload.onSuccess()
+
+  yield* redirectToChat()
+
   while (true) {
     yield put({
       type: types.API,
@@ -28,9 +43,11 @@ const chatStart = function*(action){
   }
 }
 
-const chatLogin = function*(action) {
+const chatLogin = function*() {
   let tries = 0
-  action.payload.onSuccess()
+
+  yield* redirectToChat()
+
   while (true) {
     yield put({
       type: types.API,

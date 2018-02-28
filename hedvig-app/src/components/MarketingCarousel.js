@@ -6,7 +6,6 @@ import {
   Image,
   Text,
   Dimensions,
-  AsyncStorage,
   TouchableOpacity,
   StatusBar,
   StyleSheet
@@ -14,9 +13,6 @@ import {
 import Swiper from "react-native-swiper";
 import { Asset } from "expo"
 import { connect } from "react-redux"
-import { createReduxBoundAddListener } from "react-navigation-redux-helpers"
-
-import { ConnectedReduxBaseNavigator } from "../containers/navigation/navigation"
 
 // Precache images
 Asset.loadAsync([
@@ -325,70 +321,19 @@ export default class MarketingCarousel extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     login: () => {
       dispatch({
-        type: "MARKETING_CAROUSEL/CHAT_LOGIN",
-        payload: {
-          onSuccess: ownProps.dismiss
-        }
+        type: "MARKETING_CAROUSEL/CHAT_LOGIN"
       })
     },
     startChat: () => {
       dispatch({
-        type: "MARKETING_CAROUSEL/CHAT_START",
-        payload: {
-          onSuccess: ownProps.dismiss
-        }
+        type: "MARKETING_CAROUSEL/CHAT_START"
       })
     }
   }
 }
 
-const ConnectedMarketingCarousel = connect(undefined, mapDispatchToProps)(
-  MarketingCarousel
-)
-
-const SEEN_MARKETING_CAROUSEL_KEY = "@hedvig:alreadySeenMarketingCarousel"
-
-export class MarketingCarouselOrBaseNavigator extends React.Component {
-  state = {
-    loading: true,
-    alreadySeenMarketingCarousel: false,
-    dismissed: false
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.addListener = createReduxBoundAddListener("root")
-  }
-
-  async componentWillMount() {
-    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
-      SEEN_MARKETING_CAROUSEL_KEY
-    )
-    this.setState({ alreadySeenMarketingCarousel, loading: false })
-  }
-
-  async dismiss() {
-    await AsyncStorage.setItem(SEEN_MARKETING_CAROUSEL_KEY, "true")
-    this.setState({ dismissed: true })
-  }
-
-  render() {
-    if (this.state.loading) {
-      return <View />
-    } else {
-      if (
-        this.state.alreadySeenMarketingCarousel === "true" ||
-        this.state.dismissed
-      ) {
-        return <ConnectedReduxBaseNavigator addListener={this.addListener} />
-      } else {
-        return <ConnectedMarketingCarousel dismiss={this.dismiss.bind(this)} />
-      }
-    }
-  }
-}
+export const ConnectedMarketingCarousel = connect(undefined, mapDispatchToProps)(MarketingCarousel)

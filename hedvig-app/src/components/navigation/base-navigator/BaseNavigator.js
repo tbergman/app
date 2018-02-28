@@ -1,33 +1,86 @@
 import React from "react"
-import styled from "styled-components/native"
+import {
+  View,
+  StyleSheet,
+  StatusBar
+} from "react-native"
+import { StackNavigator } from "react-navigation"
 import { Constants } from "expo"
-import { TabNavigator } from "react-navigation"
+
 import { ChatModalNavigator, HomeBase } from "../base"
+import { ConnectedMarketingCarousel } from "../../MarketingCarousel"
 
-const UnStyledStatusBar = styled.View`
-  background-color: transparent
-  height: ${Constants.statusBarHeight || 20}
-  justify-content: center
-  align-items: center
-`
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    backgroundColor: "white"
+  },
+  appContainer: {
+    flex: 1,
+  },
+  tabBar: {
+    height: Constants.statusBarHeight || 20,
+    backgroundColor: "white",
+    zIndex: 1,
+  },
+});
 
-const BaseNavigator = TabNavigator(
+const Loading = () => {
+  return (
+    <View style={styles.loading}>
+      <StatusBar hidden />
+    </View>
+  )
+}
+
+const AppContainer = ({children}) => {
+  return (
+    <View style={styles.appContainer}>
+      <View style={styles.tabBar} />
+      {children}
+    </View>
+  )
+}
+
+const ChatContainer = () => {
+  return (
+    <AppContainer>
+      <ChatModalNavigator />
+    </AppContainer>
+  )
+}
+
+const HomeContainer = () => {
+  return (
+    <AppContainer>
+      <HomeBase />
+    </AppContainer>
+  )
+}
+
+const BaseNavigator = StackNavigator(
   {
+    Loading: {
+      screen: Loading,
+    },
+    Marketing: {
+      screen: ConnectedMarketingCarousel,
+    },
     ChatBase: {
-      screen: ChatModalNavigator
+      screen: ChatContainer,
     },
     HomeBase: {
-      screen: HomeBase
+      screen: HomeContainer,
     }
   },
   {
-    tabBarComponent: () => <UnStyledStatusBar />,
-    tabBarPosition: "top",
-    swipeEnabled: false,
-    animationEnabled: false,
-    initialRouteName: "HomeBase",
-    lazy: true
-  },
+    mode: "modal",
+    headerMode: "none",
+    initialRouteName: "Loading",
+    navigationOptions: {
+      gesturesEnabled: false
+    }
+  }
 )
 
 export default BaseNavigator
