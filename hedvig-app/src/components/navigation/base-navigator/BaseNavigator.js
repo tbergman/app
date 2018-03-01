@@ -42,13 +42,15 @@ const AppContainer = ({children}) => {
   )
 }
 
-const ChatContainer = () => {
+const ChatContainer = ({navigation}) => {
   return (
     <AppContainer>
-      <ChatModalNavigator />
+      <ChatModalNavigator navigation={navigation}/>
     </AppContainer>
   )
 }
+
+ChatContainer.router = ChatModalNavigator.router
 
 const HomeContainer = () => {
   return (

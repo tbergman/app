@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     startTrustly: id => dispatch(
       NavigationActions.navigate({
         routeName: "Payment",
-        params: { id }
+        params: { id },
       })
     )
   }
