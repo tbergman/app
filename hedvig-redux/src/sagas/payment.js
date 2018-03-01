@@ -3,6 +3,9 @@ import { getMessages } from "../actions/chat"
 
 const startPayment = function*(action) {
   yield put({
+    type: "PAYMENT/RESET_PAYMENT_STATE"
+  })
+  yield put({
     type: "API",
     payload: {
       url: `/hedvig/trigger/${action.payload.id}`,
