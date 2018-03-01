@@ -12,7 +12,7 @@ import { StyledHeading, StyledPassiveText } from "../styles/text"
 const OfferDashboardHeader = ({ newTotalPrice, isCurrentlyInsured }) => (
   <StyledDashboardHeader>
     <StyledDashboardHeaderRow>
-      <StyledHeading>Din hemförsäkring</StyledHeading>
+      <StyledHeading>Min hemförsäkring</StyledHeading>
     </StyledDashboardHeaderRow>
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>

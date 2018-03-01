@@ -31,7 +31,7 @@ const OfferFooter = ({insuranceType}) => (
     <StyledDashboardHeaderRow>
       <StyledDashboardHeaderItem>
         <StyledDashboardHeaderIcon source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
+        <StyledPassiveText>Självrisken är 1 500 kr</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
   </StyledDashboardHeader>
