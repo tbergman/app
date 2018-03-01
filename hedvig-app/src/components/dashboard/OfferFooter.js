@@ -11,7 +11,7 @@ const OfferFooter = ({insuranceType}) => (
     <StyledDashboardHeaderRow style={{marginBottom: 4}}>
       <StyledDashboardHeaderItem>
         <StyledDashboardHeaderIcon style={{marginTop: 8}} source={require("../../../assets/icons/my_insurance/aktiv.png")} />
-        <StyledPassiveText>Tryggas av en av världens{"\n"}största återförsäkringskoncerner</StyledPassiveText>
+        <StyledPassiveText>Tryggas av en av världens{"\n"}största återförsäkrare</StyledPassiveText>
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRow>
     { insuranceType === INSURANCE_TYPES.BRF || insuranceType === INSURANCE_TYPES.SUBLET_BRF ? (
