@@ -5,6 +5,11 @@ export default (state = { status: "LOADING" }, action) => {
         ...state,
         ...action.payload
       }
+    case "WAITLIST/TOGGLE_COPY_STATUS":
+      return {
+        ...state,
+        copyClicked: true,
+      }
     default:
       return state
   }

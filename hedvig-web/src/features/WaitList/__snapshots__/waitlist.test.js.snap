@@ -42,8 +42,11 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
           text="APPLE123"
         >
           <WhiteRoundedButton
+            onClick={[Function]}
             style={
               Object {
+                "backgroundColor": "white",
+                "color": "#651EFF",
                 "width": "200px",
               }
             }

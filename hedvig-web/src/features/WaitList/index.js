@@ -32,6 +32,7 @@ class WaitList extends React.Component {
     status: STATUSES.LOADING,
     position: undefined,
     code: undefined,
+    copyClicked: false
   }
   static propTypes = {
     match: PropTypes.shape({
@@ -43,6 +44,8 @@ class WaitList extends React.Component {
     position: PropTypes.number,
     code: PropTypes.string,
     fetchWaitlistPosition: PropTypes.func.isRequired,
+    copyClicked: PropTypes.bool,
+    toggleCopyStatus: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -76,7 +79,16 @@ class WaitList extends React.Component {
             <p className="WaitList__paragraph">Din aktiveringskod är</p>
             <p className="WaitList__code">{this.props.code}</p>
             <CopyToClipboard text={this.props.code}>
-              <WhiteRoundedButton style={{width: "200px"}}>Kopiera koden</WhiteRoundedButton>
+              <WhiteRoundedButton
+                onClick={this.props.toggleCopyStatus}
+                style={{
+                  width: "200px",
+                  backgroundColor: this.props.copyClicked ? "#651EFF" : "white",
+                  color: this.props.copyClicked ? "white" : "#651EFF",
+                }}
+              >
+                {this.props.copyClicked ? 'Kopierad' : 'Kopiera koden'}
+              </WhiteRoundedButton>
             </CopyToClipboard>
             <p className="WaitList__paragraph">och installera sedan appen</p>
             <div>
@@ -136,7 +148,8 @@ export default connect(
   state => ({
     position: state.waitlist.position,
     status: state.waitlist.status,
-    code: state.waitlist.code
+    code: state.waitlist.code,
+    copyClicked: state.waitlist.copyClicked
   }),
   dispatch => ({
     fetchWaitlistPosition: token => dispatch({
@@ -147,6 +160,7 @@ export default connect(
         body: token,
         SUCCESS: "WAITLIST/RETRIEVED_WAITLIST_STATUS",
       }
-    })
+    }),
+    toggleCopyStatus: () => dispatch({type: "WAITLIST/TOGGLE_COPY_STATUS"})
   })
 )(WaitList)

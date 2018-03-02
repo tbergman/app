@@ -13,7 +13,8 @@ const defaultProps = {
       id: "test-uuid"
     }
   },
-  fetchWaitlistPosition: NOOP
+  fetchWaitlistPosition: NOOP,
+  toggleCopyStatus: NOOP,
 }
 
 
