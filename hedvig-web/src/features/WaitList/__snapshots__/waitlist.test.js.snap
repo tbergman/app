@@ -23,15 +23,10 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
       className="pure-u-1-1 pure-u-lg-4-5 WaitList__content"
     >
       <div>
-        <p
-          className="WaitList__paragraph"
-        >
-          Väntan är över
-        </p>
         <h1
           className="WaitList__header"
         >
-          Välkommen till Hedvig
+          Välkommen till Hedvig
         </h1>
         <p
           className="WaitList__paragraph"
@@ -59,25 +54,34 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
         <p
           className="WaitList__paragraph"
         >
-          och gå sedan
+          och installera sedan appen
         </p>
-        <a
-          href="hedvig://"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <TurquoiseRoundedButton
-            style={
-              Object {
-                "fontSize": "18px",
-                "marginBottom": "4em",
-                "width": "200px",
-              }
-            }
+        <div>
+          <a
+            href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Till appen
-          </TurquoiseRoundedButton>
-        </a>
+            <img
+              alt="Ladda ner på App Store"
+              src="/assets/web/appstores/appstore-button.svg"
+              width={152}
+            />
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.hedvig.app"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Ladda ner på Google Play"
+              src="/assets/web/appstores/google-play-button.svg"
+              width={152}
+            />
+          </a>
+        </div>
       </div>
     </div>
   </article>

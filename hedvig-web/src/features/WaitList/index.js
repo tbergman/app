@@ -72,8 +72,7 @@ class WaitList extends React.Component {
       case STATUSES.GRANTED_ACCESS:
         content = (
           <div>
-            <p className="WaitList__paragraph">Väntan är över</p>
-            <h1 className="WaitList__header">Välkommen till Hedvig</h1>
+            <h1 className="WaitList__header">Välkommen till&nbsp;Hedvig</h1>
             <p className="WaitList__paragraph">Din aktiveringskod är</p>
             <p className="WaitList__code">{this.props.code}</p>
             <CopyToClipboard text={this.props.code}>
