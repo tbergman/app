@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet"
 
 import Header from "../../components/Header";
-import { WhiteRoundedButton, TurquoiseRoundedButton } from "../../components/Button"
+import { WhiteRoundedButton } from "../../components/Button"
 import { TurquoiseRoundedButtonStyled } from "../../components/styles/button"
 import "./waitlist.css"
 
@@ -79,12 +79,25 @@ class WaitList extends React.Component {
             <CopyToClipboard text={this.props.code}>
               <WhiteRoundedButton style={{width: "200px"}}>Kopiera koden</WhiteRoundedButton>
             </CopyToClipboard>
-            <p className="WaitList__paragraph">och gå sedan</p>
-            <a href="hedvig://" target="_blank" rel="noopener noreferrer">
-              <TurquoiseRoundedButton style={{width: "200px", fontSize: "18px", marginBottom: "4em"}}>
-                Till appen
-              </TurquoiseRoundedButton>
-            </a>
+            <p className="WaitList__paragraph">och installera sedan appen</p>
+            <div>
+              <a href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="/assets/web/appstores/appstore-button.svg"
+                  alt="Ladda ner på App Store"
+                  width={152}
+                />
+              </a>
+            </div>
+            <div>
+              <a href="https://play.google.com/store/apps/details?id=com.hedvig.app" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="/assets/web/appstores/google-play-button.svg"
+                  alt="Ladda ner på Google Play"
+                  width={152}
+                />
+              </a>
+            </div>
           </div>
         )
         break
