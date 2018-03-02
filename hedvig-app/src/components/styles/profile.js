@@ -7,10 +7,10 @@ export const StyledProfileContainer = styled.View`
 `
 
 export const StyledCharityImage = styled.Image`
-  width: 166px;
-  height: 48px;
+  height: 50px;
   margin-top: 16px;
   margin-bottom: 16px;
+  width: 80%;
 `
 
 export const StyledCharityParagraph = StyledPassiveText.extend`
