@@ -9,14 +9,13 @@
     "assetBundlePatterns": [
       "assets/**"
     ],
-    "version": "1.2.1",
+    "version": "1.2.2",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
     "sdkVersion": "25.0.0",
     "privacy": "unlisted",
     "ios": {
-      "buildNumber": "1.2.1",
-      "bundleIdentifier": "com.hedvig.test.app",
+      "buildNumber": "1.2.2",
       "infoPlist": {
         "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
         "NSMicrophoneUsageDescription": "Hedvig använder mikrofonen till att spela in meddelanden från dig"
@@ -25,7 +24,7 @@
     "android": {
       "package": "com.hedvig.test.app",
       "permissions": ["CAMERA", "RECORD_AUDIO", "READ_INTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
-      "versionCode": 9
+      "versionCode": 10
     },
     "packagerOpts": {
       "projectRoots": "",
