@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Platform,
   Keyboard,
-  Clipboard,
   BackHandler
 } from "react-native"
 import { HeaderRightChat } from "../NavBar"
@@ -34,7 +33,6 @@ import {
   DisabledInputEditButton,
   DisabledInputDoneButton,
   RoundedButton,
-  RedRoundedInvertedButton,
 } from "../Button"
 import { theme } from "hedvig-style"
 import moment from "moment"
