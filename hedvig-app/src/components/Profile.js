@@ -207,7 +207,6 @@ export default class Profile extends React.Component {
         </StyledListHeader>
         <StyledList>
           {this._maybeUserInfo()}
-          {this._shareRow()}
           <RoundedButton title="Logga ut" onPress={() => this.props.logout()} style={{marginTop: 8, marginBottom: 24}}/>
         </StyledList>
       </StyledProfileContainer>
