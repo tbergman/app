@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Platform,
   Keyboard,
-  Clipboard,
   BackHandler
 } from "react-native"
 import { HeaderRightChat } from "../NavBar"
@@ -34,7 +33,6 @@ import {
   DisabledInputEditButton,
   DisabledInputDoneButton,
   RoundedButton,
-  RedRoundedInvertedButton,
 } from "../Button"
 import { theme } from "hedvig-style"
 import moment from "moment"
@@ -380,33 +378,13 @@ export default class AddEditAsset extends React.Component {
       item.receiptUrl = result.uri
       this.setState({ item })
     }
-    let actionSheetOptions = [
-      {
-        label: "Fota kvitto",
-        onSelected: () => this._takePhoto(onPhotoPickedOrTaken)
-      },
-      {
-        label: "Maila kvitto",
-        onSelected: () => this.props.showDialog({
-          title: "Maila in kvitto",
-          paragraph: "Maila dina kvitton till kvitton@hedvig.com så lägger Hedvig till informationen automatiskt",
-          confirmButtonTitle: "Kopiera Mailadressen",
-          dismissButtonTitle: "Avbryt",
-          onConfirm: () => {
-            Clipboard.setString("kvitton@hedvig.com");
-            this.props.setStatusMessage("kvitton@hedvig.com kopierat")
-          },
-          onDismiss: () => {}
-        })
-      }
-    ]
     let message = this.state.item.receiptUrl
       ? "Kvitto tillagt"
-      : "Lägg till genom att fota eller maila in kvittot"
+      : "Fota kvittot för prylen"
     return (
       <StyledInputContainer
         activeOpacity={1}
-        onPress={() => this._showActionSheet(actionSheetOptions)}
+        onPress={() => this._takePhoto(onPhotoPickedOrTaken)}
       >
         <StyledInputTexts>
           <StyledInputHeader>Kvitto</StyledInputHeader>
