@@ -24,7 +24,7 @@
     "android": {
       "package": "com.hedvig.test.app",
       "permissions": ["CAMERA", "RECORD_AUDIO", "READ_INTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
-      "versionCode": 10
+      "versionCode": 11
     },
     "packagerOpts": {
       "projectRoots": "",
