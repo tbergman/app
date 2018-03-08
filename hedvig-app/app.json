@@ -16,6 +16,7 @@
     "privacy": "unlisted",
     "ios": {
       "buildNumber": "1.2.3",
+      "bundleIdentifier": "com.hedvig.test.app",
       "infoPlist": {
         "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
         "NSMicrophoneUsageDescription": "Hedvig använder mikrofonen till att spela in meddelanden från dig"
