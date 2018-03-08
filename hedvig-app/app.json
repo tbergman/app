@@ -9,13 +9,13 @@
     "assetBundlePatterns": [
       "assets/**"
     ],
-    "version": "1.2.2",
+    "version": "1.2.3",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
     "sdkVersion": "25.0.0",
     "privacy": "unlisted",
     "ios": {
-      "buildNumber": "1.2.2",
+      "buildNumber": "1.2.3",
       "infoPlist": {
         "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
         "NSMicrophoneUsageDescription": "Hedvig använder mikrofonen till att spela in meddelanden från dig"
