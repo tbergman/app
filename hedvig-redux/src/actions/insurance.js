@@ -1,4 +1,4 @@
-import { API, LOADED_INSURANCE, CREATED_CLAIM, REMOVE_PERIL, ADD_PERIL, CREATED_QUOTE } from "./types"
+import { API, LOADED_INSURANCE, CREATED_CLAIM, CREATED_QUOTE } from "./types"
 
 export function getInsurance() {
   return {
@@ -18,24 +18,6 @@ export function createClaim() {
       url: "/claim",
       method: "POST",
       SUCCESS: CREATED_CLAIM
-    }
-  }
-}
-
-export function removePeril(peril) {
-  return {
-    type: REMOVE_PERIL,
-    payload: {
-      peril
-    }
-  }
-}
-
-export function addPeril(peril) {
-  return {
-    type: ADD_PERIL,
-    payload: {
-      peril
     }
   }
 }

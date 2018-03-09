@@ -130,14 +130,6 @@ export const StyledPerilIcon = styled.Image`
   height: 40px;
 `
 
-export const StyledAddRemoveIcon = styled.Image`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
-`
-
 export const StyledConditionRow = styled.View`
   flex-direction: row;
   margin-bottom: 16px;

@@ -1,8 +1,6 @@
 import React from "react"
-import {
-  View,
-} from "react-native"
-import Peril from "../../containers/dashboard/Peril"
+import { View } from "react-native"
+import { Peril } from "../../components/dashboard/Peril"
 import {
   StyledCategoryContainer,
   StyledCategoryHeader,
@@ -17,7 +15,6 @@ import {
 import {
   DisabledCollapseButton,
   DisabledExpandButton,
-  HiddenDisabledButton
 } from "../Button"
 import { StyledRow } from "../styles/general"
 import {
@@ -25,18 +22,16 @@ import {
   StyledPassiveText,
   StyledSmallPassiveText
 } from "../styles/text"
-import * as R from "ramda"
 
 const coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
 
-export const coveredPerils = (perils, title, navigation, enableRemove = false) => {
+export const coveredPerils = (perils, title, navigation) => {
   return perils
     .filter(peril => coveredStates.includes(peril.state))
     .map((peril, index) => (
       <Peril
         peril={peril}
         key={index}
-        enableRemove={enableRemove}
         navigation={navigation}
         categoryPerils={perils}
         categoryTitle={title}
@@ -53,68 +48,15 @@ export class PerilsCategory extends React.Component {
     }
   }
 
-  uncoveredPerils() {
-    return R.filter(
-      peril => !this.coveredStates.includes(peril.state),
-      this.props.perils
-    ).map((peril, i) => {
-      return (
-        <Peril
-          peril={peril}
-          key={i}
-          enableAdd={true}
-          navigation={this.props.navigation}
-          categoryPerils={this.props.perils}
-          perilIndex={i}
-        />
-      )
-    })
-  }
-
-  allPerils() {
-    return this.props.perils.map((peril, i) => {
-      return (
-        <Peril
-          peril={peril}
-          key={i}
-          navigation={this.props.navigation}
-          categoryPerils={this.props.perils}
-          perilIndex={i}
-        />
-      )
-    })
-  }
-
-  perils() {
-    if (this.props.editMode) {
-      return (
-        <StyledPerilsContainer>
-          <StyledPerilsRow>{coveredPerils(this.props.perils, this.props.title, this.props.navigation, true)}</StyledPerilsRow>
-          <StyledPerilsRow>{this.uncoveredPerils()}</StyledPerilsRow>
-        </StyledPerilsContainer>
-      )
-    } else if (this.state.showCategory) {
-      return (
-        <ExpandedPerilsCategory>
-          {coveredPerils(this.props.perils, this.props.title, this.props.navigation)}
-        </ExpandedPerilsCategory>
-      )
-    }
-  }
-
   render() {
     let CollapseButton = this.state.showCategory
       ? DisabledCollapseButton
       : DisabledExpandButton
-    if (this.props.editMode) {
-      CollapseButton = HiddenDisabledButton
-    }
     return (
       <StyledCategoryContainer
         activeOpacity={1}
         onPress={() =>
           !this.props.offerMode &&
-          !this.props.editMode &&
           this.setState({ showCategory: !this.state.showCategory })}
       >
         <StyledCategoryHeader>
@@ -137,7 +79,13 @@ export class PerilsCategory extends React.Component {
             ) : null }
           </StyledCategoryTextAndButton>
         </StyledCategoryHeader>
-        {this.perils()}
+        {
+          this.state.showCategory && (
+            <ExpandedPerilsCategory>
+              {coveredPerils(this.props.perils, this.props.title, this.props.navigation)}
+            </ExpandedPerilsCategory>
+          )
+        }
       </StyledCategoryContainer>
     )
   }
