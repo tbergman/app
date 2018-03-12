@@ -37,7 +37,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
     type: API,
     payload: {
       method: "POST",
-      url: messageFromState.header.responsePath,
+      url: "/response",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(messageFromState, null, 4),
       SUCCESS: "SEND_CHAT_RESPONSE_SUCCESS"
@@ -58,7 +58,6 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
 const sendChatResponseSaga = function*() {
   yield takeEvery(SEND_CHAT_RESPONSE, sendChatResponse)
 }
-
 
 const startWebChat = function*() {
   yield put({
@@ -197,7 +196,7 @@ const getInsuranceWithMessages = function*() {
 
 const getInsuranceWithMessagesSaga = function*() {
   yield takeEvery(API, function*(apiAction) {
-    if (apiAction.payload.url.includes(chatActions.GET_MESSAGES_URL)) {
+    if (apiAction.payload && apiAction.payload.url.includes(chatActions.GET_MESSAGES_URL)) {
       yield getInsuranceWithMessages(apiAction)
     }
   })
