@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PerilsCategory /> Should render correctly 1`] = `
+<Styled(TouchableOpacity)
+  activeOpacity={1}
+  onPress={[Function]}
+>
+  <Styled(View)>
+    <Styled(Image)
+      source={
+        Object {
+          "uri": "",
+        }
+      }
+    />
+    <Styled(View)>
+      <Styled(View)>
+        <Styled(View)>
+          <Styled(Text)>
+            Jag och min familj
+          </Styled(Text)>
+        </Styled(View)>
+        <Styled(View)>
+          <Styled(Text)>
+            Försäkras för
+          </Styled(Text)>
+        </Styled(View)>
+      </Styled(View)>
+      <Styled(View)>
+        <DisabledExpandButton
+          size="mediumBig"
+        />
+      </Styled(View)>
+    </Styled(View)>
+  </Styled(View)>
+</Styled(TouchableOpacity)>
+`;

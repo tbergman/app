@@ -18,10 +18,6 @@ import DashboardHeader from "./DashboardHeader"
 import { INSURANCE_TYPES } from "../../constants"
 
 export default class Dashboard extends React.Component {
-  state = {
-    editMode: false
-  }
-
   static navigationOptions = ({ navigation }) => ({
     title: "Min Försäkring",
     headerRight: <HeaderRightChat navigation={navigation} />
@@ -39,7 +35,6 @@ export default class Dashboard extends React.Component {
             title={title}
             description={description}
             perils={perils}
-            editMode={this.state.editMode}
             offerMode={this.props.mode === "offer"}
             iconUrl={iconUrl}
             key={i}
@@ -86,7 +81,6 @@ export default class Dashboard extends React.Component {
   header() {
     return (
       <DashboardHeader
-        editMode={this.state.editMode}
         statusIcon={this.statusIcon.bind(this)}
         statusText={this.statusText.bind(this)}
       />
