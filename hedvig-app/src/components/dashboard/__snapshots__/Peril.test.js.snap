@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Peril /> Should render correctly 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
+  <Styled(View)>
+    <Styled(Image)
+      source={1}
+    />
+    <Styled(Text)>
+      Juridisk tvist
+    </Styled(Text)>
+  </Styled(View)>
+</TouchableOpacity>
+`;
