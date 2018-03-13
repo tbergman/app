@@ -18,6 +18,7 @@ import { tokenStorageSaga } from "./src/sagas/TokenStorage"
 import { logoutSaga } from "./src/sagas/logout"
 import { ThemeProvider } from "styled-components"
 import { Router } from "./src/components/navigation/Router"
+import { ErrorBoundary } from "./src/components/ErrorBoundary"
 import WithAssets from "./src/components/WithAssets"
 window.Navigation = Navigation
 
@@ -120,13 +121,15 @@ export class App extends React.Component {
 
   render() {
     return (
-      <WithAssets>
-        <ThemeProvider theme={theme}>
-          <Provider store={this.store}>
-            <Router />
-          </Provider>
-        </ThemeProvider>
-      </WithAssets>
+      <ErrorBoundary raven={Sentry}>
+        <WithAssets>
+          <ThemeProvider theme={theme}>
+            <Provider store={this.store}>
+              <Router />
+            </Provider>
+          </ThemeProvider>
+        </WithAssets>
+      </ErrorBoundary>
     )
   }
 }
