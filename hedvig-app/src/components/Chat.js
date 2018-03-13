@@ -1,5 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
+import { View, StyleSheet  } from "react-native"
+
+import { types }  from "hedvig-redux"
 
 import MessageList from "../containers/chat/MessageList"
 import ChatNumberInput from "../containers/chat/ChatNumberInput"
@@ -11,42 +14,36 @@ import VideoInput from "../containers/chat/VideoInput"
 import PhotoInput from "../containers/chat/PhotoInput"
 import BankIdCollectInput from "../containers/chat/BankIdCollectInput"
 import AudioInput from "../containers/chat/AudioInput"
-import {
-  StyledMessageArea,
-  StyledResponseArea,
-  StyledMessageAndResponseArea,
-  StyledChatContainer,
-} from "./styles/chat"
 import ParagraphInput from "../containers/chat/ParagraphInput"
 import { NavBar } from "./NavBar"
 import { ChatNavRestartButton, NavigateBackButton } from "./Button"
-import { types }  from "hedvig-redux"
+import { KeyboardAwareView } from "./KeyboardAwareView"
 
 const inputComponentMap = (lastIndex, navigation) => ({
-    multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
-    text: <ChatTextInput messageIndex={lastIndex} />,
-    number: <ChatNumberInput messageIndex={lastIndex} />,
-    single_select: (
-      <SingleSelectInput
-        messageIndex={lastIndex}
-        launchModal={choice =>
-          navigation.navigate("ChatModal", { link: choice })}
-      />
-    ),
-    date_picker: <DateInput messageIndex={lastIndex} />,
-    video: (
-      <VideoInput
-        messageIndex={lastIndex}
-        launchVideoRecorder={() => {
-          navigation.navigate("ChatModal", { link: { view: "VideoExample" } })
-        }}
-      />
-    ),
-    photo_upload: <PhotoInput messageIndex={lastIndex} />,
-    bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
-    paragraph: <ParagraphInput messageIndex={lastIndex} />,
-    audio: <AudioInput messageIndex={lastIndex} />,
-  })
+  multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
+  text: <ChatTextInput messageIndex={lastIndex} />,
+  number: <ChatNumberInput messageIndex={lastIndex} />,
+  single_select: (
+    <SingleSelectInput
+      messageIndex={lastIndex}
+      launchModal={choice =>
+        navigation.navigate("ChatModal", { link: choice })}
+    />
+  ),
+  date_picker: <DateInput messageIndex={lastIndex} />,
+  video: (
+    <VideoInput
+      messageIndex={lastIndex}
+      launchVideoRecorder={() => {
+        navigation.navigate("ChatModal", { link: { view: "VideoExample" } })
+      }}
+    />
+  ),
+  photo_upload: <PhotoInput messageIndex={lastIndex} />,
+  bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
+  paragraph: <ParagraphInput messageIndex={lastIndex} />,
+  audio: <AudioInput messageIndex={lastIndex} />,
+})
 
 class UnconnectedPollingMessage extends React.Component {
   componentDidMount() {
@@ -93,6 +90,23 @@ const getInputComponent = function(messages, navigation) {
   return inputComponentMap(lastIndex, navigation)[lastMessageType]
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  messages: {
+    flex: 1,
+    alignSelf: "stretch",
+    paddingTop: 0,
+    paddingLeft: 16,
+    paddingBottom: 8,
+    paddingRight: 16,
+  },
+  response: {
+    alignItems: "stretch",
+  },
+})
+
 export default class Chat extends React.Component {
   componentDidMount() {
     this.props.getMessages()
@@ -116,21 +130,21 @@ export default class Chat extends React.Component {
       )
     }
     return (
-      <StyledChatContainer>
+      <View style={styles.container}>
         <NavBar
           title="Hedvig"
           headerLeft={headerLeft}
           headerRight={headerRight}
         />
-        <StyledMessageAndResponseArea behaviour="padding">
-          <StyledMessageArea>
+        <KeyboardAwareView>
+          <View style={styles.messages}>
             <MessageList />
-          </StyledMessageArea>
-          <StyledResponseArea>
+          </View>
+          <View style={styles.response}>
             {getInputComponent(this.props.messages, this.props.navigation)}
-          </StyledResponseArea>
-        </StyledMessageAndResponseArea>
-      </StyledChatContainer>
+          </View>
+        </KeyboardAwareView>
+      </View>
     )
   }
 }

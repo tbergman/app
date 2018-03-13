@@ -1,6 +1,5 @@
 import React from "react"
-import { View, Image, Dimensions, Keyboard } from "react-native"
-import { BaseScrollViewStyle } from "../Styles"
+import { View, ScrollView, Image, Dimensions, Keyboard, StyleSheet, Platform } from "react-native"
 import {
   StyledDefaultMessageText,
   StyledDefaultUserMessageText,
@@ -13,7 +12,6 @@ import EditMessageButton from "../../containers/chat/EditMessageButton"
 import Avatar from "../../containers/chat/Avatar"
 import LoadingIndicator from "../../containers/chat/LoadingIndicator"
 import { theme } from "hedvig-style"
-import { registerOnScrollToEndEvent, unregisterOnScrollToEndEvent } from "../../services/MessageListScroll"
 
 const renderImage = message => {
   if (
@@ -160,51 +158,68 @@ const renderMessages = function(messages) {
   })
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+})
+
 export default class MessageList extends React.Component {
   componentDidMount() {
-    this.keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      this.handleKeyboardStateChange.bind(this)
-    )
-    this.keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      this.handleKeyboardStateChange.bind(this)
-    )
-    // TODO: Unregister this listener on componentWillUnmount
-    registerOnScrollToEndEvent(this._scrollToEnd)
+    if (Platform.OS === "ios") {
+      this.keyboardWillShowListener = Keyboard.addListener(
+        "keyboardWillShow",
+        this._onKeyboardShow.bind(this)
+      )
+      this.keyboardWillHideListener = Keyboard.addListener(
+        "keyboardWillHide",
+        this._onKeyboardHide.bind(this)
+      )
+    } else {
+      this.keyboardDidShowListener = Keyboard.addListener(
+        "keyboardDidShow",
+        this._onKeyboardShow.bind(this)
+      )
+      this.keyboardDidHideListener = Keyboard.addListener(
+        "keyboardDidHide",
+        this._onKeyboardHide.bind(this)
+      )
+    }
   }
 
-  _scrollToEnd = () => {
-      if (this.ref) {
-        this.ref.scrollToEnd()
-      }
-    }
-
   componentWillUnmount() {
+    if (this.keyboardWillShowListener) {
+      this.keyboardWillShowListener.remove()
+    }
+    if (this.keyboardWillHideListener) {
+      this.keyboardWillHideListener.remove()
+    }
     if (this.keyboardDidShowListener) {
       this.keyboardDidShowListener.remove()
     }
     if (this.keyboardDidHideListener) {
       this.keyboardDidHideListener.remove()
     }
-    unregisterOnScrollToEndEvent(this.scrollToEnd)
+  }
+  _onKeyboardShow() {
+    setTimeout(this.ref.scrollToEnd, 0)
   }
 
-  handleKeyboardStateChange() {
-    if (this.ref) {
-      setTimeout(this.ref.scrollToEnd, 0)
-    }
+  _onKeyboardHide() {
+    setTimeout(this.ref.scrollToEnd, 200) // ~200ms to scroll down after sending messages
   }
 
   render() {
     return (
-      <BaseScrollViewStyle
+      <ScrollView
+        styles={styles.container}
         showsVerticalScrollIndicator={false}
-        innerRef={x => (this.ref = x)}
+        ref={view => (this.ref = view)}
         onContentSizeChange={() => this.ref.scrollToEnd()}
       >
         {renderMessages(this.props.messages)}
-      </BaseScrollViewStyle>
+      </ScrollView>
     )
   }
 }

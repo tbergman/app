@@ -5,37 +5,6 @@ import {
   StyledHeading
 } from "./text"
 import { CircularFontText } from "./typography"
-import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
-
-// List view
-
-// export const StyledAssetTrackerContainer = styled.View`
-// export const StyledAssetTrackerContainer = styled.KeyboardAvoidingView`
-export const StyledAssetTrackerContainer = styled(HedvigKeyboardAvoidingView)`
-  flex: 1;
-  background-color: ${props => props.theme.colors.white};
-`
-
-export const StyledAssetListHeaderContainer = styled.View`
-  align-self: stretch;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const StyledAddItemText = CircularFontText.extend`
-  color: ${props => props.theme.typography.passiveText.color}
-  font-size: ${props => props.theme.typography.heading.fontSize};
-`
-
-export const StyledEmptyListText = CircularFontText.extend`
-  margin: 20px 30px;
-  color: ${props => props.theme.colors.darkGray};
-  font-size: 16px;
-  line-height: 20px;
-  text-align: center;
-  padding: 0 0 40px;
-`
 
 // Add / edit view
 
@@ -95,13 +64,4 @@ export const StyledFooter = styled.View`
   padding-top: ${({ isDatePicker }) => (isDatePicker ? 0 : "32")}px;
   padding-bottom: ${({ isDatePicker }) => (isDatePicker ? 0 : "32")}px;
   z-index: 5;
-`
-
-export const StyledAssetListElement = styled.TouchableOpacity`
-  flex: 1;
-  flex-direction: row;
-  padding: 16px;
-  align-items: center;
-  border-bottom-width: 1px;
-  border-bottom-color: ${props => props.theme.colors.offWhite};
 `

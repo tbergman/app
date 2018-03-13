@@ -27,13 +27,15 @@ class ChatTextInput extends React.Component {
     return (
       <StyledTextInputContainer>
         <StyledTextInput
+          autoFocus
           placeholder="Skriv här..."
-          autoFocus={true}
           value={message._inputValue || ""}
           underlineColorAndroid="transparent"
           onChangeText={text => onChange(message, text)}
-          multiline={true}
-          autoGrow={true}
+          autoGrow
+          returnKeyType="send"
+          enablesReturnKeyAutomatically
+          blurOnSubmit
           onSubmitEditing={this._send}
         />
         <ButtonComponent onPress={this._send} />

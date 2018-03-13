@@ -1,16 +1,9 @@
 /* global require */
 import React from "react"
 import {
-  View, Image
+  View, Text, Image, StyleSheet, TouchableOpacity
 } from "react-native"
 import { HeaderRightChat } from "../NavBar"
-import {
-  StyledAssetTrackerContainer,
-  StyledAssetListHeaderContainer,
-  StyledAddItemText,
-  StyledAssetListElement,
-  StyledEmptyListText
-} from "../styles/assetTracker"
 import {
   StyledListHeader,
   StyledList,
@@ -21,6 +14,43 @@ import {
   StyledRowButton
 } from "../styles/list"
 import { AddButton, DisabledListNextButton } from "../Button"
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  headerContainer: {
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  assetListElement: {
+    flex: 1,
+    flexDirection: "row",
+    padding: 16,
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#F9FAFC",
+  },
+  addItemText: {
+    fontFamily: "circular",
+    color: "#9B9BAA",
+    fontSize: 16,
+  },
+  emptyListText: {
+    fontFamily: "circular",
+    marginTop: 20,
+    marginRight: 30,
+    marginBottom: 30,
+    marginLeft: 20,
+    color: "#9B9BAA",
+    fontSize: 16,
+    lineHeight: 20,
+    textAlign: "center",
+    paddingBottom: 40,
+  }
+})
 
 export default class AssetList extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -45,14 +75,13 @@ export default class AssetList extends React.Component {
   _assetList() {
     let assets = this.props.assets.map((asset) => {
       return (
-        <StyledAssetListElement
+        <TouchableOpacity style={styles.assetListElement}
           key={asset.id}
           onPress={() => {
             this.props.navigation.navigate("AddEditAsset", {
               itemId: asset.id
             })
-          }}
-        >
+          }}>
           <StyledListElementImage source={{ uri: asset.photoUrl }} />
           <StyledListElementTexts>
             <StyledListElementHeading>
@@ -65,13 +94,13 @@ export default class AssetList extends React.Component {
           <StyledRowButton>
             <DisabledListNextButton />
           </StyledRowButton>
-        </StyledAssetListElement>
+        </TouchableOpacity>
       )
     })
     return (
       <StyledList>
         {assets}
-        <StyledEmptyListText>Logga om du vill, dina prylar täcks ändå ✌️</StyledEmptyListText>
+        <Text style={styles.emptyListText}>Logga om du vill, dina prylar täcks ändå ✌️</Text>
       </StyledList>
     )
   }
@@ -91,12 +120,12 @@ export default class AssetList extends React.Component {
               }}
             />
           </View>
-          <StyledEmptyListText>
+          <Text style={styles.emptyListText}>
             Här kan du logga dina prylar och kvitton. Då ser du exakt hur de täcks
             av försäkringen och kan anmäla en skada superenkelt{"\n\n"}
 
             Det är inget måste, men kan vara{"\n"}skönt att ha koll ✌️
-          </StyledEmptyListText>
+          </Text>
         </View>
       )
     }
@@ -104,17 +133,17 @@ export default class AssetList extends React.Component {
 
   render() {
     return (
-      <StyledAssetTrackerContainer>
+      <View style={styles.container}>
         <StyledListHeader>
-          <StyledAssetListHeaderContainer>
-            <StyledAddItemText>Lägg till pryl</StyledAddItemText>
+          <View style={styles.headerContainer}>
+            <Text style={styles.addItemText}>Lägg till pryl</Text>
             <AddButton
               onPress={() => this.props.navigation.navigate("AddEditAsset")}
             />
-          </StyledAssetListHeaderContainer>
+          </View>
         </StyledListHeader>
         {this.maybeList()}
-      </StyledAssetTrackerContainer>
+      </View>
     )
   }
 }
