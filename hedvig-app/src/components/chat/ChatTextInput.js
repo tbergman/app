@@ -13,9 +13,9 @@ class ChatTextInput extends React.Component {
   lastSentFor = undefined // TODO Fix this hack
 
   _send = async () => {
-    if (this.props.message.header.shouldRequestPushNotifications) { // eslint-disable-line no-constant-condition
+    if (this.props.message.header.shouldRequestPushNotifications) {
       const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
-      if (status !== "granted") { // eslint-disable-line no-constant-condition
+      if (status !== "granted") {
         this.props.requestPushNotifications();
       }
     }
