@@ -3,6 +3,7 @@ import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
 import Sentry from "sentry-expo"
+import createRavenMiddleware from "raven-for-redux"
 import {
   ActionSheetProvider,
   connectActionSheet
@@ -38,10 +39,11 @@ import * as baseNavigationActions from "./src/actions/baseNavigation"
 window.baseNavigation = baseNavigationActions
 window.EventEmitter = EventEmitter()
 
-import { sentryMiddleware } from "./src/middleware/sentry";
 import navigationMiddleware from "./src/middleware/navigation"
 
 Sentry.config("https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600").install()
+
+const ravenMiddleware = createRavenMiddleware(Sentry, {stateTransformer: state => ({user: state.user})})
 
 export class App extends React.Component {
   constructor() {
@@ -65,8 +67,8 @@ export class App extends React.Component {
         chatLoginSaga
       ],
       additionalMiddleware: [
-        sentryMiddleware,
-        navigationMiddleware
+        navigationMiddleware,
+        ravenMiddleware
       ],
       raven: Sentry
     })

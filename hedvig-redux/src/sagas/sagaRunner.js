@@ -1,4 +1,4 @@
-import { call, spawn, all, select } from "redux-saga/effects"
+import { call, spawn, all } from "redux-saga/effects"
 
 // See https://github.com/redux-saga/redux-saga/pull/644#issuecomment-272236599
 const _runner = function*(sagas, raven) {
@@ -14,8 +14,8 @@ const _runner = function*(sagas, raven) {
             break
           } catch (e) {
             if (raven) {
-              const state = yield select()
-              raven.captureException(e, {extra: {user: state.user}})
+              raven.captureException(e)
+              console.error(e) // eslint-disable-line no-console
             }
           }
         }
