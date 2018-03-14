@@ -32,6 +32,7 @@ import routerReducer from "./src/reducers/router"
 import { appStateSaga } from "./src/sagas/appState"
 import { keyboardSaga } from "./src/sagas/keyboard"
 import { navigationSaga } from "./src/sagas/navigation"
+import { requestPushSaga, registerPushSaga } from "./src/sagas/pushNotifications"
 import { chatStartSaga, chatLoginSaga } from "./src/sagas/marketingCarousel"
 import { getOrLoadToken } from "./src/services/TokenStorage"
 import EventEmitter from "./src/services/EventEmitter"
@@ -64,7 +65,9 @@ export class App extends React.Component {
         navigationSaga,
         logoutSaga,
         chatStartSaga,
-        chatLoginSaga
+        chatLoginSaga,
+        requestPushSaga,
+        registerPushSaga
       ],
       additionalMiddleware: [
         navigationMiddleware,
@@ -88,6 +91,10 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
+    if (Platform.OS === "android") {
+      this.store.dispatch({type: "PUSH_NOTIFICATIONS/REGISTER_PUSH"})
+    }
+
     AppState.addEventListener("change", this._handleAppStateChange)
     this.keyboardWillShowListener = Keyboard.addListener(
       Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",

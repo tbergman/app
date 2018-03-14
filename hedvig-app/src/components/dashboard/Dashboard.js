@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component {
   })
 
   componentDidMount() {
-    this.props.registerForPushNotifications()
+    // this.props.registerForPushNotifications()
   }
 
   renderCategories() {
