@@ -477,7 +477,7 @@ export default class AddEditAsset extends React.Component {
     ) : null
     return (
       <NavBar
-        title={this.state.item.title || "Ny pryl"}
+        title={this.state.item.title || " "} // hide hedvig logo when no title
         headerLeft={
           <NavigateBackButton onPress={() => this.props.navigation.goBack()} />
         }
