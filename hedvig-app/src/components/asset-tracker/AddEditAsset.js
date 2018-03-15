@@ -9,11 +9,15 @@ import {
   Keyboard,
   BackHandler
 } from "react-native"
+import { theme } from "hedvig-style"
+import moment from "moment"
+import "moment/locale/sv"
+import * as R from "ramda"
+
 import { HeaderRightChat } from "../NavBar"
 import { NavBar } from "../NavBar"
 import { ImagePicker, Permissions } from "expo"
 import {
-  StyledAssetTrackerContainer,
   StyledImageSelectionContainer,
   StyledHeaderButton,
   StyledHeaderButtonText,
@@ -34,10 +38,7 @@ import {
   DisabledInputDoneButton,
   RoundedButton,
 } from "../Button"
-import { theme } from "hedvig-style"
-import moment from "moment"
-import "moment/locale/sv"
-import * as R from "ramda"
+import { KeyboardAwareView } from "../KeyboardAwareView"
 
 export default class AddEditAsset extends React.Component {
   constructor(props) {
@@ -476,7 +477,7 @@ export default class AddEditAsset extends React.Component {
     ) : null
     return (
       <NavBar
-        title={this.state.item.title || "Ny pryl"}
+        title={this.state.item.title || " "} // hide hedvig logo when no title
         headerLeft={
           <NavigateBackButton onPress={() => this.props.navigation.goBack()} />
         }
@@ -493,13 +494,13 @@ export default class AddEditAsset extends React.Component {
         </StyledFooter>
       )
     } else {
-      // return <EmptyHeaderItem /> // So that the KeyboardAvoidingView actually pushes everything up
+      return null
     }
   }
 
   render() {
     return (
-      <StyledAssetTrackerContainer behavior="padding">
+      <KeyboardAwareView>
         {this._navbar()}
         {this._photoArea()}
         <StyledFormContainer>
@@ -512,7 +513,7 @@ export default class AddEditAsset extends React.Component {
           </View>
         </StyledFormContainer>
         {this._maybeFooter()}
-      </StyledAssetTrackerContainer>
+      </KeyboardAwareView>
     )
   }
 }

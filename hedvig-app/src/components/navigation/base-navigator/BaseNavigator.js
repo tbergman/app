@@ -2,7 +2,8 @@ import React from "react"
 import {
   View,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  Platform,
 } from "react-native"
 import { StackNavigator } from "react-navigation"
 import { Constants } from "expo"
@@ -15,13 +16,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white"
   },
-  appContainer: {
+  view: {
     flex: 1,
+    overflow: "hidden" // hide drop shadow from header
   },
-  tabBar: {
-    height: Constants.statusBarHeight || 20,
+  container: {
+    flex: 1,
     backgroundColor: "white",
-    zIndex: 1,
+    paddingTop: Platform.OS === "ios" ? 20 : Constants.statusBarHeight,
   },
 });
 
@@ -35,9 +37,11 @@ const Loading = () => {
 
 const AppContainer = ({children}) => {
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.tabBar} />
-      {children}
+    <View style={styles.container}>
+      <StatusBar />
+      <View style={styles.view}>
+        {children}
+      </View>
     </View>
   )
 }

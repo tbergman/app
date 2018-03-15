@@ -2,26 +2,6 @@ import React from "react"
 import styled from "styled-components/native"
 import { Animated } from "react-native"
 import * as typography from "./typography"
-import HedvigKeyboardAvoidingView from "../../components/HedvigKeyboardAvoidingView"
-
-export const StyledChatContainer = styled.View`
-  flex: 1;
-  align-self: stretch;
-  background: ${props => props.theme.colors.white};
-`
-
-export const StyledMessageAndResponseArea = styled(HedvigKeyboardAvoidingView)`
-  flex: 1;
-`
-
-export const StyledMessageArea = styled.View`
-  flex: auto;
-  padding: 0 16px 16px 16px
-`
-
-export const StyledResponseArea = styled.View`
-  align-self: stretch;
-`
 
 // Regular text messages
 
