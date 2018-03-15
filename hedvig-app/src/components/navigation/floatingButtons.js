@@ -1,8 +1,34 @@
+/* global require */
 import React from "react"
-import { chatActions } from "hedvig-redux"
+import { Image, TouchableOpacity, StyleSheet } from "react-native"
 import { connect } from "react-redux"
-import { showDashboardAction } from "../../actions/baseNavigation"
-import { DashboardFabButton, ChatFabButton } from "../Button"
+import { chatActions } from "hedvig-redux"
+
+const styles = StyleSheet.create({
+  button: {
+    width: 56,
+    height: 56,
+    borderRadius: 56,
+    backgroundColor: "#651EFF",
+    shadowColor: "#000",
+    shadowOpacity: 0.37,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 6,
+    },
+    position: "absolute",
+    right: 25,
+    bottom: 25,
+    zIndex: 10,
+  },
+  icon: {
+    position: "absolute",
+    top: 15,
+    left: 20,
+    width: 18,
+    height: 24,
+  }
+})
 
 const FloatingChatButtonComponent = ({
   dispatch,
@@ -10,7 +36,8 @@ const FloatingChatButtonComponent = ({
 }) => {
   if (insurance.status !== "PENDING") {
     return (
-      <ChatFabButton
+      <TouchableOpacity
+        style={styles.button}
         onPress={() =>
           dispatch(
             chatActions.apiAndNavigateToChat({
@@ -20,23 +47,16 @@ const FloatingChatButtonComponent = ({
               SUCCESS: "INITIATED_CHAT_MAIN"
             })
           )}
-      />
+      >
+        <Image
+          source={require("../../../assets/buttons/fab/fab-icon.png")}
+          style={styles.icon}
+        />
+      </TouchableOpacity>
     )
   } else {
     return null
   }
 }
 
-const FloatingChatButton = connect(state => {
-  return {
-    insurance: state.insurance
-  }
-})(FloatingChatButtonComponent)
-
-const FloatingHomeButtonComponent = ({ dispatch }) => (
-  <DashboardFabButton onPress={() => dispatch(showDashboardAction())} />
-)
-
-const FloatingHomeButton = connect()(FloatingHomeButtonComponent)
-
-export { FloatingHomeButton, FloatingChatButton }
+export const FloatingChatButton = connect(state => ({ insurance: state.insurance }))(FloatingChatButtonComponent)

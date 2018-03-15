@@ -15,7 +15,6 @@ import {
   AnimatedStyledChatResponseButton,
   StyledTransparentButton,
   AnimatedStyledMultipleSelectOptionButton,
-  StyledFabButton,
   StyledHiddenChatResponseButton
 } from "./styles/button"
 import { StyledDialogButton, StyledDialogButtonText } from "./styles/dialog"
@@ -374,30 +373,6 @@ export const EditMessageButton = ({ onPress }) => (
 
 export const HiddenDisabledButton = ({ size = "medium" }) => (
   <DisabledIconButton size={size} />
-)
-
-// Fabs
-
-const FabButton = ({ iconModule, onPress }) =>
-  IconButton({
-    iconModule,
-    onPress,
-    _ButtonComponent: StyledFabButton,
-    width: 62
-  })
-
-export const DashboardFabButton = ({ onPress }) => (
-  <FabButton
-    iconModule={require("../../assets/buttons/fab/close_fab.png")}
-    onPress={onPress}
-  />
-)
-
-export const ChatFabButton = ({ onPress }) => (
-  <FabButton
-    iconModule={require("../../assets/buttons/fab/open_fab.png")}
-    onPress={onPress}
-  />
 )
 
 // Animation buttons

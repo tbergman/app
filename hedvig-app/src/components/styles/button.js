@@ -169,10 +169,3 @@ export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
   background-color: ${props => props.theme.colors.turquoise};
   border-color: ${props => props.theme.colors.turquoise};
 `
-
-export const StyledFabButton = StyledButton.extend`
-  position: absolute;
-  bottom: 10;
-  right: 16;
-  z-index: 10;
-`
