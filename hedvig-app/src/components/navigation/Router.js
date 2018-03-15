@@ -35,6 +35,17 @@ class BaseRouter extends React.Component {
     redirectToRoute(routeName)
   }
 
+  _doRedirection = () => {
+    if (this.props.hasRedirected || !this.props.insurance || !this.props.insurance.status) return
+
+    if (["ACTIVE", "INACTIVE"].includes(this.props.insurance.status)) {
+      this._redirectToRouteHelper("HomeBase")
+    } else {
+      this._redirectToRouteHelper("ChatBase")
+    }
+
+  }
+
   async componentDidMount() {
     if (this.props.hasRedirected) return
 
@@ -45,16 +56,12 @@ class BaseRouter extends React.Component {
     if (!alreadySeenMarketingCarousel) {
       this._redirectToRouteHelper("Marketing")
     }
+
+    this._doRedirection()
   }
 
   componentDidUpdate() {
-    if (this.props.hasRedirected) return
-
-    if (["ACTIVE", "INACTIVE"].includes(this.props.insurance.status)) {
-      this._redirectToRouteHelper("HomeBase")
-    } else {
-      this._redirectToRouteHelper("ChatBase")
-    }
+    this._doRedirection()
   }
 
   render() {
