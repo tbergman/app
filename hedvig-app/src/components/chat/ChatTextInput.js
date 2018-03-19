@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Permissions } from "expo"
 import { StyledTextInputContainer, StyledTextInput } from "../styles/chat"
 import { SendIconButton, SendDisabledIconButton } from "../Button"
 
@@ -11,7 +12,13 @@ class ChatTextInput extends React.Component {
 
   lastSentFor = undefined // TODO Fix this hack
 
-  _send = () => {
+  _send = async () => {
+    if (this.props.message.header.shouldRequestPushNotifications) {
+      const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
+      if (status !== "granted") {
+        this.props.requestPushNotifications();
+      }
+    }
     if (!this.lastSentFor || this.lastSentFor !== this.props.message.globalId) {
       this.lastSentFor = this.props.message.globalId
       this.props.send(this.props.message)

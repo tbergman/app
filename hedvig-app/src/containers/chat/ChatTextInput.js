@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import ChatTextInput from "../../components/chat/ChatTextInput"
-import { chatActions } from "hedvig-redux"
+import { chatActions, dialogActions } from "hedvig-redux"
 
 const mapStateToProps = (state, ownProps) => {
   let message = state.chat.messages[ownProps.messageIndex]
@@ -18,7 +18,19 @@ const mapDispatchToProps = dispatch => {
         chatActions.sendChatResponse(message, {
           text: message._inputValue
         })
-      )
+      ),
+    requestPushNotifications: () => {
+        dispatch(dialogActions.showDialog({
+          title: "Notifikationer",
+          paragraph: "Slå på pushnotifikationer för att inte missa svar från Hedvig",
+          confirmButtonTitle: "Slå på",
+          dismissButtonTitle: "Inte nu",
+          onConfirm: () => dispatch({
+            type: "PUSH_NOTIFICATIONS/REQUEST_PUSH"
+          }),
+          onDismiss: () => {}
+      }))
+    }
   }
 }
 
