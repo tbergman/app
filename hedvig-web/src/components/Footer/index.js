@@ -27,7 +27,7 @@ const Footer = () => (
           src="/assets/web/Social icons/Instagram.svg"
           alt="Instagram"
           width={40}
-          height={40}
+          height={54}
         />
       </a>*/}
       <a
@@ -41,9 +41,9 @@ const Footer = () => (
           offset={200}
         >
           <img
-            src="/assets/web/appstores/appstore-button.svg"
+            src="/assets/web/appstores/app-store-badge@2x.png"
             alt="Ladda ner på App Store"
-            width={152}
+            height={54}
           />
         </Lazyload>
       </a>
@@ -58,9 +58,9 @@ const Footer = () => (
           offset={200}
         >
           <img
-            src="/assets/web/appstores/google-play-button.svg"
+            src="/assets/web/appstores/google-play-badge@2x.png"
             alt="Ladda ner på Google Play"
-            width={152}
+            height={54}
           />
         </Lazyload>
       </a>

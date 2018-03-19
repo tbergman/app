@@ -1,0 +1,23 @@
+.FAQ {
+  padding: 90px 15px 2em 15px;
+}
+
+.FAQ__hero-header {
+  font-family: "Merriweather";
+  font-size: 27px;
+  line-height: normal;
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
+  color: #000;
+}
+
+.FAQ__heading {
+  margin: 1em 0 0;
+  padding-right: 20px;
+  font-family: "Merriweather";
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #0F007A;
+}

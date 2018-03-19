@@ -94,18 +94,18 @@ class WaitList extends React.Component {
             <div>
               <a href="https://itunes.apple.com/se/app/hedvig/id1303668531?mt=8" target="_blank" rel="noopener noreferrer">
                 <img
-                  src="/assets/web/appstores/appstore-button.svg"
+                  src="/assets/web/appstores/app-store-badge@2x.png"
                   alt="Ladda ner på App Store"
-                  width={152}
+                  height={54}
                 />
               </a>
             </div>
             <div>
               <a href="https://play.google.com/store/apps/details?id=com.hedvig.app" target="_blank" rel="noopener noreferrer">
                 <img
-                  src="/assets/web/appstores/google-play-button.svg"
+                  src="/assets/web/appstores/google-play-badge@2x.png"
                   alt="Ladda ner på Google Play"
-                  width={152}
+                  height={54}
                 />
               </a>
             </div>

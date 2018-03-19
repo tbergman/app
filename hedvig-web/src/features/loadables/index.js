@@ -15,6 +15,11 @@ const LoadableAboutUs = Loadable({
   loading: Loading
 })
 
+const LoadableFAQ = Loadable({
+  loader: () => import("../static/FAQ"),
+  loading: Loading
+})
+
 const LoadableChat = Loadable({
   loader: () => import("../../containers/Chat"),
   loading: () => Loading
@@ -62,6 +67,10 @@ const AboutUs = () => (
   <LoadableAboutUs />
 )
 
+const FAQ = () => (
+  <LoadableFAQ />
+)
+
 const Logout = () => (
   <LoadableLogout />
 )
@@ -86,4 +95,4 @@ const NotFound = () => (
   <LoadableNotFound />
 )
 
-export { Landing, Chat, AboutUs, Logout, Legal, Contact, Terms, WaitList, NotFound }
+export { Landing, Chat, AboutUs, FAQ, Logout, Legal, Contact, Terms, WaitList, NotFound }

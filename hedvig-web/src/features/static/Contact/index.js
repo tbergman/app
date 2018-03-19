@@ -7,7 +7,6 @@ import Hero from "../../../components/Hero"
 import { SayHi } from "../common"
 import "./contact.css"
 
-
 export default () => (
   <main className="Contact">
     <Helmet>

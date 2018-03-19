@@ -12,7 +12,10 @@ const Header = props => (
           Hem
         </Link>
         <Link to="/about-us">
-          Om Hedvig
+          Om&nbsp;Hedvig
+        </Link>
+        <Link to="/faq">
+          FAQ
         </Link>
       </nav>
     </div>
