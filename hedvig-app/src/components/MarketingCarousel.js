@@ -19,7 +19,6 @@ Asset.loadAsync([
   // require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png")
   require("../../assets/onboarding/app-marketing-screen1.png"),
   require("../../assets/onboarding/app-marketing-screen2.png"),
-  require("../../assets/onboarding/app-marketing-screen3.png"),
   require("../../assets/onboarding/heart.png"),
   require("../../assets/onboarding/hedvig_gang.png"),
 ])
@@ -169,9 +168,6 @@ const marketingCarouselStyles = StyleSheet.create({
     flex: 1, backgroundColor: colors.PRIMARY_PURPLE
   },
   slideFourContainer: {
-    flex: 1, backgroundColor: colors.PRIMARY_GREEN
-  },
-  slideFiveContainer: {
     flex: 1, backgroundColor: "#FF8A80"
   },
   footerContainer: {
@@ -275,12 +271,6 @@ export default class MarketingCarousel extends React.Component {
               </Slide>
             </View>
             <View style={marketingCarouselStyles.slideFourContainer}>
-              <Slide title={"Logga dina prylar och se\nexakt hur de är\u00A0försäkrade"}>
-                <SlideImage
-                  imageSource={require("../../assets/onboarding/app-marketing-screen3.png")}/>
-              </Slide>
-            </View>
-            <View style={marketingCarouselStyles.slideFiveContainer}>
               <Slide title={"Överskottet doneras\ntill ett gott\u00A0ändamål"}>
                 <View style={{
                   flex: 1,
