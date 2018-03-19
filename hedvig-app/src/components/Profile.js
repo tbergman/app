@@ -197,6 +197,7 @@ export default class Profile extends React.Component {
           <StyledCharityParagraph>Du stödjer</StyledCharityParagraph>
           <StyledCharityImage
             source={{ uri: this.props.user.selectedCashbackImageUrl }}
+            resizeMode="center"
           />
           <StyledCharityParagraph>
             {this.props.user.selectedCashbackParagraph}
