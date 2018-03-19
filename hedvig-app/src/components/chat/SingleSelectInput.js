@@ -45,7 +45,9 @@ const SingleSelectInput = ({
               done(message)
               WebBrowser.openBrowserAsync(choice.webUrl)
             } else if (choice.type === "trustly") {
-              startTrustly(choice.id)
+              startTrustly(choice.id) 
+              selectChoice(message, choice)
+              done(message)
             }
           }}
         />
