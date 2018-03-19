@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 56,
     backgroundColor: "#651EFF",
+    elevation: 1,
     shadowColor: "#000",
     shadowOpacity: 0.37,
     shadowRadius: 5,
@@ -17,8 +18,8 @@ const styles = StyleSheet.create({
       height: 6,
     },
     position: "absolute",
-    right: 25,
-    bottom: 25,
+    right: 16,
+    bottom: 16,
     zIndex: 10,
   },
   icon: {
