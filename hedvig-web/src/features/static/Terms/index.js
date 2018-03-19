@@ -42,11 +42,11 @@ const Terms = () => (
             <h1>Försäkringsvillkor</h1>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-2">
-            <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a>
-            <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a>
-            <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din
-            hyresvärds saker ska täckas av försäkringen</span>
-            <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span>
+            <p><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a></p>
+            <p><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a></p>
+            <p><span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din
+            hyresvärds saker ska täckas av försäkringen</span></p>
+            <p><span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rs%C3%A4kringsvillkor+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span></p>
           </div>
         </section>
         <section className="pure-g">
@@ -54,10 +54,10 @@ const Terms = () => (
             <h1>Förköpsinformation</h1>
           </div>
           <div className="pure-u-1-1 pure-u-md-1-2">
-            <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a>
-            <a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a>
-            <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din hyresvärds saker ska täckas av försäkringen</span>
-            <span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span>
+            <p><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Bostadsr%C3%A4tt+(Februari+2018).pdf">För dig som äger bostadsrätt</a></p>
+            <p><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Hyresr%C3%A4tt+(Februari+2018).pdf">För dig som hyr hyresrätt</a></p>
+            <p><span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr hyresrätt i andra hand</a> och vill att din hyresvärds saker ska täckas av försäkringen</span></p>
+            <p><span><a href="https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/F%C3%B6rk%C3%B6psinformation+-+Andrahandshyrare+(Februari+2018).pdf">För dig som hyr bostadsrätt i andra hand</a> och vill att din hyresvärds saker och lägenhet ska täckas av försäkringen</span></p>
           </div>
         </section>
       </div>

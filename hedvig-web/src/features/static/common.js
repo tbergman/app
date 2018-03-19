@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import { SlideDownCtaButton } from "../../components/styles/button"
 
-
 export const SayHi = connect(
   undefined,
   dispatch => ({
