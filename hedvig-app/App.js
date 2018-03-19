@@ -35,10 +35,8 @@ import { navigationSaga } from "./src/sagas/navigation"
 import { requestPushSaga, registerPushSaga } from "./src/sagas/pushNotifications"
 import { chatStartSaga, chatLoginSaga } from "./src/sagas/marketingCarousel"
 import { getOrLoadToken } from "./src/services/TokenStorage"
-import EventEmitter from "./src/services/EventEmitter"
 import * as baseNavigationActions from "./src/actions/baseNavigation"
 window.baseNavigation = baseNavigationActions
-window.EventEmitter = EventEmitter()
 
 import navigationMiddleware from "./src/middleware/navigation"
 

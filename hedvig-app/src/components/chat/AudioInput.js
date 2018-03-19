@@ -14,7 +14,6 @@ import {
 } from "../styles/chat"
 import { StyledSmallText } from "../styles/text"
 import { StyledPassiveText } from "../styles/text"
-import { emitScrollToEndEvent } from "../../services/MessageListScroll"
 
 export default class AudioInput extends React.Component {
   state = {
@@ -34,10 +33,6 @@ export default class AudioInput extends React.Component {
       .then(status => this.setState({permissionGranted: status.status === "granted"}))
   }
 
-  componentDidUpdate() {
-    setTimeout(() => emitScrollToEndEvent(), 200)
-  }
-
   onRecordingStatusUpdate(status) {
     this.setState({ recordingStatus: status })
   }
@@ -46,7 +41,7 @@ export default class AudioInput extends React.Component {
     const askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING)
     if (askResult.status !== "granted") {
       this.props.showPermissionDialog()
-    } 
+    }
     this.setState({ permissionGranted: askResult.status === "granted" })
     return askResult.status === "granted"
   }
