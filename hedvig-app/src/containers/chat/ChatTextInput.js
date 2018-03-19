@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     requestPushNotifications: () => {
         dispatch(dialogActions.showDialog({
           title: "Notifikationer",
-          paragraph: "Slå på pushnotifikationer för att inte missa svar från Hedvig",
+          paragraph: "Slå på push-notiser så att du inte missar när Hedvig svarar!",
           confirmButtonTitle: "Slå på",
           dismissButtonTitle: "Inte nu",
           onConfirm: () => dispatch({
