@@ -7,7 +7,7 @@ const requestPush = function*() {
   const { status } = yield call(Permissions.askAsync, Permissions.NOTIFICATIONS)
   if (status !== 'granted') {
     return yield put({
-      type: "PUSH_NOTIFICATIONS/REQUEST_NOT_GRANTED" // TODO This should produce user feedback, maybe a Toast?
+      type: "PUSH_NOTIFICATIONS/REQUEST_NOT_GRANTED"
     })
   }
   return yield call(registerPush)
