@@ -23,10 +23,6 @@ export default class Dashboard extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />
   })
 
-  componentDidMount() {
-    // this.props.registerForPushNotifications()
-  }
-
   renderCategories() {
     let categories = this.props.categories.map(
       ({ title, description, perils, iconUrl }, i) => {
