@@ -59,8 +59,8 @@ exports[`<Footer /> Should render correctly 1`] = `
       >
         <img
           alt="Ladda ner på App Store"
-          src="/assets/web/appstores/appstore-button.svg"
-          width={152}
+          src="/assets/web/appstores/app-store-badge@2x.png"
+          height={54}
         />
       </LazyLoad>
     </a>
@@ -81,8 +81,8 @@ exports[`<Footer /> Should render correctly 1`] = `
       >
         <img
           alt="Ladda ner på Google Play"
-          src="/assets/web/appstores/google-play-button.svg"
-          width={152}
+          src="/assets/web/appstores/google-play-badge@2x.png"
+          height={54}
         />
       </LazyLoad>
     </a>
