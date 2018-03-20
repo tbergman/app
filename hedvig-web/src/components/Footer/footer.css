@@ -22,19 +22,6 @@
   background-repeat: no-repeat;
 }
 
-.Footer__social {
-  text-align: right;
-  padding: 24px 24px 0;
-}
-
-.Footer__social-icon {
-  display: block;
-}
-
-.Footer__social-icon:focus {
-  outline: none;
-}
-
 @media screen and (min-width: 768px) {
   .Footer {
     flex-direction: row;
