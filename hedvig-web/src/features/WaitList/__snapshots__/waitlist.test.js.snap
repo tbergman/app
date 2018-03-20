@@ -67,8 +67,8 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
           >
             <img
               alt="Ladda ner på App Store"
-              src="/assets/web/appstores/app-store-badge@2x.png"
               height={54}
+              src="/assets/web/appstores/app-store-badge@2x.png"
             />
           </a>
         </div>
@@ -80,8 +80,8 @@ exports[`<WaitList /> Should render correctly in status ACCESS 1`] = `
           >
             <img
               alt="Ladda ner på Google Play"
-              src="/assets/web/appstores/google-play-badge@2x.png"
               height={54}
+              src="/assets/web/appstores/google-play-badge@2x.png"
             />
           </a>
         </div>
@@ -165,7 +165,7 @@ exports[`<WaitList /> Should render correctly in status WAITLIST 1`] = `
                 className="WaitList__header WaitList__heading--position"
               >
                 1
-
+                 
                 <span
                   className="WaitList__person-label"
                 >
