@@ -1,23 +1,26 @@
 .FAQ {
-  padding: 90px 15px 2em 15px;
+  padding: 90px 15px 30px 15px;
+  max-width: 650px;
+  display: block;
+  margin: 0 auto;
 }
 
-.FAQ__hero-header {
+.FAQ__page-header {
   font-family: "Merriweather";
-  font-size: 27px;
-  line-height: normal;
   font-size: 36px;
+  line-height: normal;
   font-weight: 400;
-  text-align: center;
+  margin-bottom: 0;
   color: #000;
 }
 
-.FAQ__heading {
-  margin: 1em 0 0;
-  padding-right: 20px;
+.FAQ__section-header {
+  margin: 1.6em 0 0;
   font-family: "Merriweather";
-  font-size: 17px;
-  line-height: 24px;
+  font-size: 23px;
+  line-height: 34px;
   font-weight: 400;
   color: #0F007A;
+  hyphens: manual;
+  -webkit-hyphens: manual;
 }
