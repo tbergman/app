@@ -229,43 +229,34 @@ export default class MarketingCarousel extends React.Component {
             loop={false}>
             <View style={marketingCarouselStyles.slideOneContainer}>
               <Text style={{
-                marginTop: hasTallViewport ? 100 : 50,
+                marginTop: hasTallViewport ? 120 : 80,
                 marginBottom: 10,
-                fontSize: hasSmallViewport ? 35 : 40,
-                lineHeight: hasSmallViewport ? 47 : 55,
+                fontSize: hasSmallViewport ? 35 : 45,
+                lineHeight: hasSmallViewport ? 55 : 63,
                 textAlign: "center",
                 fontFamily: fonts.MERRIWEATHER,
                 color: colors.PRIMARY_BLUE,
               }}>
-                Livet är{"\n"}enklare med{"\n"}Hedvig
+                Livet är{"\n"}lättare med{"\n"}Hedvig
               </Text>
-              <Text style={{
-                fontSize: 20,
-                lineHeight: hasSmallViewport ? 27 : 30,
-                textAlign: "center",
-                fontFamily: fonts.CIRCULAR,
-                color: colors.TEXT,
-              }}>
-                Försäkring som du aldrig{"\n"}upplevt det tidigare
-              </Text>
-                <Image source={require("../../assets/onboarding/hedvig_gang.png")}
-                  style={{
-                    flex: 1,
-                    width: viewportWidth * (hasTallViewport ? 0.85 : hasSmallViewport ? 0.65 : 0.70),
-                    marginTop: -40,
-                    position: "relative"
-                  }}
-                  resizeMode="contain"
-                />
+              <Image source={require("../../assets/onboarding/hedvig_gang.png")}
+                style={{
+                  flex: 1,
+                  width: viewportWidth * (hasTallViewport ? 0.85 : hasSmallViewport ? 0.65 : 0.70),
+                  marginTop: -40,
+                  position: "relative"
+                }}
+                resizeMode="contain"
+              />
             </View>
             <View style={marketingCarouselStyles.slideTwoContainer}>
-              <Slide title={"Försäkring för dig, ditt hem\noch dina\u00A0prylar"}>
+              <Slide title={"Hemförsäkring för dig\nsom bor i\u00A0lägenhet"}>
                 <SlideImage
                   imageSource={require("../../assets/onboarding/app-marketing-screen1.png")}/>
               </Slide>
             </View>
             <View style={marketingCarouselStyles.slideThreeContainer}>
-              <Slide title={"Anmäl en skada på sekunder,\nfå ersättning på\u00A0minuter"}>
+              <Slide title={"Anmäl en skada på sekunder,\nfå betalt på\u00A0minuter"}>
                 <SlideImage
                   imageSource={require("../../assets/onboarding/app-marketing-screen2.png")}/>
               </Slide>
