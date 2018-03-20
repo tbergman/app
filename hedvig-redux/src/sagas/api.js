@@ -1,4 +1,5 @@
 import { take, takeEvery, put, select } from "redux-saga/effects"
+import { delay } from "redux-saga"
 import { baseURL } from "../services/environment"
 import { API, API_ERROR, STATUS_MESSAGE } from "../actions/types"
 
@@ -68,6 +69,7 @@ const api = function*(action) {
         throw e
       } else {
         console.error("Was forced to retry request, tries: ", tries) // eslint-disable-line no-console
+        yield delay(500)
       }
     }
   }
