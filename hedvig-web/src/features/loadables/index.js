@@ -45,6 +45,11 @@ const LoadableTerms = Loadable({
   loading: Loading
 })
 
+const LoadableDownload = Loadable({
+  loader: () => import("../static/Download"),
+  loading: Loading
+})
+
 const LoadableWaitList = Loadable({
   loader: () => import("../WaitList"),
   loading: Loading
@@ -87,6 +92,10 @@ const Terms = () => (
   <LoadableTerms />
 )
 
+const Download = () => (
+  <LoadableDownload />
+)
+
 const WaitList = (props) => (
   <LoadableWaitList {...props} />
 )
@@ -95,4 +104,4 @@ const NotFound = () => (
   <LoadableNotFound />
 )
 
-export { Landing, Chat, AboutUs, FAQ, Logout, Legal, Contact, Terms, WaitList, NotFound }
+export { Landing, Chat, AboutUs, FAQ, Logout, Legal, Contact, Terms, Download, WaitList, NotFound }
