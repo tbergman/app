@@ -49,7 +49,7 @@ const WaterDamage = () => (
           </div>
           <div className="WaterDamage__text">
             <h1 className="WaterDamage__heading">Hemförsäkring för dig<br/> som bor i lägenhet</h1>
-            <p className="WaterDamage__subtext">Omdesignat från grunden. Så ditt liv blir enklare,<br/> och försäkring äntligen känns schysst</p>
+            <p className="WaterDamage__subtext">Självklart utan bindningstid och uppsägningstid</p>
           </div>
         </div>
       </div>

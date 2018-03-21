@@ -5,11 +5,12 @@
 }
 
 .Splash__text {
-  margin: 2em 0 0;
+  margin-top: 3em;
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 0 30px;
 }
 
 .Splash__heading {
@@ -17,7 +18,11 @@
   font-weight: 400;
   font-size: 36px;
   line-height: normal;
-  margin: 0;
+  margin: 0 0 20px;
+}
+
+.Splash__hero-animation {
+  padding: 20px 30px 30px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -26,7 +31,9 @@
   }
 
   .Splash__text {
+    margin-top: 0;
     text-align: left;
+    padding: 0;
   }
 
   .Splash__heading {

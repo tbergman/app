@@ -36,10 +36,10 @@
 }
 
 .Button__turquoise-round {
+  font-size: 18px;
+  padding: 12px 24px;
   background-color: #1BE9B6;
   color: white;
-  font-size: 14px;
-  padding: 8px 12px;
   border-radius: 24px;
   font-family: "Circular Std Book";
   text-align: center;
@@ -73,11 +73,4 @@
   color: white;
   border: 1px solid white;
   border-radius: 24px;
-}
-
-@media screen and (min-width: 768px) {
-  .Button__turquoise-round {
-    font-size: 18px;
-    padding: 12px 24px;
-  }
 }

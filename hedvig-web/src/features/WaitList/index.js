@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet"
 
 import Header from "../../components/Header";
@@ -21,9 +20,9 @@ const WaitListError = () => (
   <div>
     <h1 className="WaitList__status-header">Hittade inte din plats...</h1>
 
-    <Link to="/chat">
-      <TurquoiseRoundedButtonStyled>Sätt upp mig på väntelistan</TurquoiseRoundedButtonStyled>
-    </Link>
+    <a href="https://hedvig.app.link">
+      <TurquoiseRoundedButtonStyled>Ladda ner appen</TurquoiseRoundedButtonStyled>
+    </a>
   </div>
 )
 

@@ -1,12 +1,10 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet";
 
 import Collaboration from "./sections/Collaboration"
 import Splash from "./sections/Splash"
 import ClaimDemo from "./sections/ClaimDemo"
-import AssetTrackerDemo from "./sections/AssetTrackerDemo"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import ModelExplanation from "./sections/ModelExplanation"
@@ -16,9 +14,9 @@ import { SlideDownCtaButton } from "../../components/styles/button"
 
 const HidingCtaButton = ({isVisible, registerCtaClick}) => (
   !isVisible ? (
-    <Link to="/chat" onClick={registerCtaClick}>
-      <SlideDownCtaButton>Sätt upp mig på väntelistan</SlideDownCtaButton>
-    </Link>
+    <a href="https://hedvig.app.link" onClick={registerCtaClick}>
+      <SlideDownCtaButton>Ladda ner appen</SlideDownCtaButton>
+    </a>
   ) : (<div></div>)
 )
 
@@ -41,7 +39,6 @@ const Landing = () => { // Fragment is used as a quick hack to render nothing in
       <Splash />
       <WaterDamagePage />
       <ClaimDemo />
-      <AssetTrackerDemo />
       <ModelExplanation />
       <CallToAction />
       <Collaboration />

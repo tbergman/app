@@ -47,7 +47,7 @@ export default class ClaimDemo extends React.Component {
           <div className="pure-g pure-centered">
             <div className="pure-u-1-1 pure-u-md-1-2 pure-u-lg-1-2">
               <div className="ClaimDemo__text">
-                <h1 className="ClaimDemo__heading">Anmäl en skada på sekunder, få ersättning på minuter</h1>
+                <h1 className="ClaimDemo__heading">Anmäl en skada på sekunder, få betalt på&nbsp;minuter</h1>
                 {this.maybeExpanded()}
               </div>
             </div>
@@ -68,7 +68,6 @@ export default class ClaimDemo extends React.Component {
             </div>
           </div>
         </div>
-        <div className="ClaimDemo__white-border" />
       </section>
     )
   }
