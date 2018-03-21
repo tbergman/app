@@ -57,11 +57,6 @@ export default class Download extends React.Component {
                 </Lazyload>
               </a>
             </section>
-            <p>
-              <p>
-                Just nu finns Hedvig bara till iOS&nbsp;eller&nbsp;Android.
-              </p>
-            </p>
           </div>
         </article>
         <Footer />
