@@ -20,6 +20,11 @@
   display: none;
 }
 
+.Header__links a,
+.Header__links a:visited {
+  color: #0F007A;
+}
+
 .Header__logo {
   display: flex;
   padding: 12px 0 0;
