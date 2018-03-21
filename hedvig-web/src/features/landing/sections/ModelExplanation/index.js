@@ -13,10 +13,7 @@ export const ModelExplanation = () => (
             För ett gott ändamål
           </h1>
           <p className="pure-u-5-6 ModelExplanation__paragraph">
-            Hedvig ser försäkring som en tjänst. Därför tar vi en transparent fast avgift på 20%.
-            Aldrig mer eller mindre.
-            Hedvig betalar blixtsnabbt och har inget intresse av att
-            säga nej, eftersom allt överskott skänks till ett gott ändamål. Du väljer&nbsp;vilket!
+            Hedvig betalar dig blixtsnabbt och har inget intresse av att säga nej, eftersom allt överskott skänks till ett gott ändamål. Du&nbsp;väljer&nbsp;vilket!
           </p>
         </div>
       </div>
