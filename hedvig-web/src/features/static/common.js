@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Link } from "react-router-dom";
 import { SlideDownCtaButton } from "../../components/styles/button"
 
 export const SayHi = connect(
@@ -9,9 +8,9 @@ export const SayHi = connect(
     registerCtaClick: () => dispatch({type: "ANALYTICS/CTA_CLICK", payload: {location: "header"}})
   })
 )(({registerCtaClick}) => (
-  <Link to="/chat" onClick={registerCtaClick}>
+  <a href="https://hedvig.app.link" onClick={registerCtaClick}>
     <SlideDownCtaButton>
-      Sätt upp mig på väntelistan
+      Ladda ner appen
     </SlideDownCtaButton>
-  </Link>
+  </a>
 ))

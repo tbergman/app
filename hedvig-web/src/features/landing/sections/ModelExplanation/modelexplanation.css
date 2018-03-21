@@ -1,7 +1,6 @@
 .ModelExplanation {
-  margin: 2em 0 0;
+  margin-bottom: 2em;
   padding: 4em 0 0;
-  border-top: 1px solid #E9ECEF;
 }
 
 .ModelExplanation__text {
@@ -25,10 +24,15 @@
 
 .ModelExplanation__paragraph {
   margin-bottom: 3em;
+  max-width: 700px;
 }
 
 .ModelExplanation__icons {
   text-align: center;
+}
+
+.ModelExplanation__icon {
+  padding: 15px 15px 0;
 }
 
 @media screen and (min-width: 1024px) {
