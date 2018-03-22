@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Hedvig Test",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"
@@ -14,7 +15,6 @@
     "sdkVersion": "25.0.0",
     "privacy": "unlisted",
     "ios": {
-      "icon": "./assets/ios_icon.png",
       "buildNumber": "1.2.4",
       "bundleIdentifier": "com.hedvig.test.app",
       "infoPlist": {
@@ -23,7 +23,6 @@
       }
     },
     "android": {
-      "icon": "./assets/android_icon.png",
       "package": "com.hedvig.test.app",
       "permissions": ["CAMERA", "RECORD_AUDIO", "READ_INTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
       "versionCode": 12
