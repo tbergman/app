@@ -7,9 +7,8 @@ const TextLink = ({ to, children }) => (
     style={{
       color: "#555555",
       textDecorationLine: "underline",
-      lineHeight: 24
+      lineHeight: 24,
     }}
-    hitSlop={{top: 20, bottom: 20, left: 14, right: 14}}
     onPress={() => Linking.openURL(to)}
   >
     {children}
