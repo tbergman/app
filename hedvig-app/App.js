@@ -2,6 +2,7 @@ import "babel-polyfill"
 import React from "react"
 import { AppState, Keyboard, Platform } from "react-native"
 import { Provider } from "react-redux"
+import { Notifications } from "expo"
 import Sentry from "sentry-expo"
 import createRavenMiddleware from "raven-for-redux"
 import {
@@ -114,6 +115,12 @@ export class App extends React.Component {
 
     this.store.dispatch(hedvigRedux.chatActions.getMessages())
     this.store.dispatch(hedvigRedux.chatActions.getAvatars())
+
+    Notifications.addListener(this._handleNotification)
+  }
+
+  _handleNotification = () => {
+    this.store.dispatch(hedvigRedux.chatActions.getMessages())
   }
 
   componentWillUnmount() {
