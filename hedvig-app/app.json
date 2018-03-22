@@ -1,7 +1,9 @@
 {
   "expo": {
     "name": "Hedvig Test",
-    "icon": "./assets/app_icon.png",
+    "ios.icon": "./assets/ios_icon.png",
+    "android.icon": "./assets/android_icon.png",
+    "icon": "./assets/ios_icon.png",
     "splash": {
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"
