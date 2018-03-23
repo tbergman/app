@@ -28,7 +28,6 @@ import {
   getInsuranceWithMessagesSaga,
   startWebChatSaga
 } from "./chat"
-import { updateItemSaga, deleteItemSaga, getAssetsSaga } from "./assetTracker"
 import { uploadSaga } from "./upload"
 import { updateCashbackSaga } from "./cashback"
 import { handleDialogSaga } from "./dialog"
@@ -51,9 +50,6 @@ const root = (additionalSagas = [], raven) =>
       resetConversationSaga,
       editLastResponseSaga,
       getInsuranceWithMessagesSaga,
-      updateItemSaga,
-      deleteItemSaga,
-      getAssetsSaga,
       uploadSaga,
       updateCashbackSaga,
       collectSaga,

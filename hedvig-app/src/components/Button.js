@@ -282,44 +282,6 @@ export const DisabledExpandButton = () => (
   />
 )
 
-export const AddButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require("../../assets/buttons/add_item.png")}
-    onPress={onPress}
-    width={32}
-  />
-)
-
-export const InputEditButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require("../../assets/icons/list_items/edit_list_item.png")}
-    onPress={onPress}
-    size="mediumBig"
-  />
-)
-
-export const InputDoneButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require("../../assets/icons/list_items/done_edit_list_item.png")}
-    onPress={onPress}
-    size="mediumBig"
-  />
-)
-
-export const DisabledInputEditButton = () => (
-  <DisabledIconButton
-    iconModule={require("../../assets/icons/list_items/edit_list_item.png")}
-    size="mediumBig"
-  />
-)
-
-export const DisabledInputDoneButton = () => (
-  <DisabledIconButton
-    iconModule={require("../../assets/icons/list_items/done_edit_list_item.png")}
-    size="mediumBig"
-  />
-)
-
 export const NavigateBackButton = ({ onPress }) => (
   <IconButton
     iconModule={require("../../assets/icons/navigate_back.png")}
@@ -331,14 +293,6 @@ export const NavigateBackButton = ({ onPress }) => (
 export const XNavigateBackButton = ({ onPress }) => (
   <IconButton
     iconModule={require("../../assets/icons/close/close_black.png")}
-    onPress={onPress}
-    size="mediumBig"
-  />
-)
-
-export const DeleteButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require("../../assets/icons/list_items/delete_item.png")}
     onPress={onPress}
     size="mediumBig"
   />

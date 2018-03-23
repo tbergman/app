@@ -7,7 +7,6 @@ import logger from "redux-logger"
 import helloActions from "./actions/hello"
 import * as insuranceActions from "./actions/insurance"
 import * as chatActions from "./actions/chat"
-import * as assetActions from "./actions/assetTracker"
 import * as uploadActions from "./actions/upload"
 import * as cashbackActions from "./actions/cashback"
 import * as userActions from "./actions/user"
@@ -66,7 +65,6 @@ export {
   environment,
   insuranceActions,
   chatActions,
-  assetActions,
   mockChatActions,
   uploadActions,
   cashbackActions,
