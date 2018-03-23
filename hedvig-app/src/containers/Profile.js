@@ -1,32 +1,32 @@
-import { connect } from "react-redux"
-import Profile from "../components/Profile"
+import { connect } from 'react-redux';
+import Profile from '../components/Profile';
 import {
   cashbackActions,
   chatActions,
   userActions,
   insuranceActions,
   types,
-  dialogActions
-} from "hedvig-redux"
+  dialogActions,
+} from 'hedvig-redux';
 
 const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
   dispatch(
     chatActions.apiAndNavigateToChat({
-      method: "POST",
+      method: 'POST',
       url: endpoint,
       body: null,
-      SUCCESS: success
-    })
-  )
-}
+      SUCCESS: success,
+    }),
+  );
+};
 
 const mapStateToProps = state => {
   return {
     user: state.user.currentUser,
     cashbackAlternatives: state.cashback.alternatives,
-    insurance: state.insurance
-  }
-}
+    insurance: state.insurance,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -39,49 +39,49 @@ const mapDispatchToProps = dispatch => {
     editPersonalInfo: () =>
       _apiAndNavigateToChat(
         dispatch,
-        "/hedvig/initiateUpdate?what=PERSONAL_INFORMATOIN",
-        "REQUESTED_PERSONAL_INFO_UPDATE"
+        '/hedvig/initiateUpdate?what=PERSONAL_INFORMATOIN',
+        'REQUESTED_PERSONAL_INFO_UPDATE',
       ),
     editFamilyMembers: () =>
       _apiAndNavigateToChat(
         dispatch,
-        "/hedvig/initiateUpdate?what=FAMILY_MEMBERS",
-        "REQUESTED_FAMILY_MEMBERS_UPDATE"
+        '/hedvig/initiateUpdate?what=FAMILY_MEMBERS',
+        'REQUESTED_FAMILY_MEMBERS_UPDATE',
       ),
     editApartmentInfo: () =>
       _apiAndNavigateToChat(
         dispatch,
-        "/hedvig/initiateUpdate?what=APARTMENT_INFORMATION",
-        "REQUESTED_APARTMENT_INFO_UPDATE"
+        '/hedvig/initiateUpdate?what=APARTMENT_INFORMATION',
+        'REQUESTED_APARTMENT_INFO_UPDATE',
       ),
     editSafetyIncreasers: () =>
       _apiAndNavigateToChat(
         dispatch,
-        "/hedvig/initiateUpdate?what=SAFETY_INCREASERS",
-        "REQUESTED_SAFETY_INCREASERS_UPDATE"
+        '/hedvig/initiateUpdate?what=SAFETY_INCREASERS',
+        'REQUESTED_SAFETY_INCREASERS_UPDATE',
       ),
     editBankAccount: () =>
       _apiAndNavigateToChat(
         dispatch,
-        "/hedvig/initiateUpdate?what=BANK_ACCOUNT",
-        "REQUESTED_BANK_ACCOUNT_UPDATE"
+        '/hedvig/initiateUpdate?what=BANK_ACCOUNT',
+        'REQUESTED_BANK_ACCOUNT_UPDATE',
       ),
     logout: () =>
       dispatch(
         dialogActions.showDialog({
-          title: "Vill du logga ut?",
-          paragraph: "Om du trycker ja loggas du ut.",
-          confirmButtonTitle: "Ja",
-          dismissButtonTitle: "Nej",
+          title: 'Vill du logga ut?',
+          paragraph: 'Om du trycker ja loggas du ut.',
+          confirmButtonTitle: 'Ja',
+          dismissButtonTitle: 'Nej',
           onConfirm: () => dispatch({ type: types.LOGOUT, payload: {} }),
-          onDismiss: () => {}
-        })
+          onDismiss: () => {},
+        }),
       ),
     sendPolicyEmail: () => dispatch(insuranceActions.sendPolicyEmail()),
-    dispatch
-  }
-}
+    dispatch,
+  };
+};
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
 
-export default ProfileContainer
+export default ProfileContainer;

@@ -1,13 +1,13 @@
-import { connect } from "react-redux"
-import ChatNumberInput from "../../components/chat/ChatNumberInput"
-import { chatActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import ChatNumberInput from '../../components/chat/ChatNumberInput';
+import { chatActions } from 'hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex]
+  let message = state.chat.messages[ownProps.messageIndex];
   return {
-    message
-  }
-}
+    message,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -16,14 +16,14 @@ const mapDispatchToProps = dispatch => {
     send: message =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          text: message._inputValue
-        })
-      )
-  }
-}
+          text: message._inputValue,
+        }),
+      ),
+  };
+};
 
 const ChatNumberInputContainer = connect(mapStateToProps, mapDispatchToProps)(
-  ChatNumberInput
-)
+  ChatNumberInput,
+);
 
-export default ChatNumberInputContainer
+export default ChatNumberInputContainer;

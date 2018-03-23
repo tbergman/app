@@ -1,27 +1,28 @@
-import React from "react"
-import { shallow } from "enzyme"
-import toJson from "enzyme-to-json"
+import React from 'react';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-import { PerilsCategory } from "./PerilsCategory"
+import { PerilsCategory } from './PerilsCategory';
 
 describe('<PerilsCategory />', () => {
   it('Should render correctly', () => {
     const peril = {
-      id: "ME.LEGAL",
-      title: "Juridisk tvist"
-    }
-    const perils = [peril]
+      id: 'ME.LEGAL',
+      title: 'Juridisk tvist',
+    };
+    const perils = [peril];
     const component = shallow(
       <PerilsCategory
-        title={"Jag och min familj"}
-        description={"Försäkras för"}
+        title={'Jag och min familj'}
+        description={'Försäkras för'}
         perils={perils}
         offerMode={false}
-        iconUrl={""}
+        iconUrl={''}
         key={0}
-        navigation={null} />
-    )
+        navigation={null}
+      />,
+    );
 
-    expect(toJson(component)).toMatchSnapshot()
-  })
-})
+    expect(toJson(component)).toMatchSnapshot();
+  });
+});

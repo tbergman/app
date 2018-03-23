@@ -1,27 +1,27 @@
-import React from "react"
-import { TabNavigator } from "react-navigation"
-import styled from "styled-components/native"
+import React from 'react';
+import { TabNavigator } from 'react-navigation';
+import styled from 'styled-components/native';
 
-import Dashboard from "../../containers/dashboard/Dashboard"
-import Profile from "../../containers/Profile"
+import Dashboard from '../../containers/dashboard/Dashboard';
+import Profile from '../../containers/Profile';
 
 import {
   StyledTabBarContainer,
   StyledTabBarButton,
-  StyledTabBarButtonText
-} from "../styles/tabbar"
+  StyledTabBarButtonText,
+} from '../styles/tabbar';
 
 const MyTabsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-`
+`;
 
 const TabBarButton = ({ title, disabled, navigation, navigateTo }) => {
   return (
     <StyledTabBarButton
       disabled={disabled}
       onPress={() => {
-        navigation.navigate(navigateTo)
+        navigation.navigate(navigateTo);
       }}
       activeOpacity={0.9}
     >
@@ -29,8 +29,8 @@ const TabBarButton = ({ title, disabled, navigation, navigateTo }) => {
         {title}
       </StyledTabBarButtonText>
     </StyledTabBarButton>
-  )
-}
+  );
+};
 
 class MyTabs extends React.Component {
   render() {
@@ -51,7 +51,7 @@ class MyTabs extends React.Component {
           />
         </MyTabsContainer>
       </StyledTabBarContainer>
-    )
+    );
   }
 }
 
@@ -60,19 +60,19 @@ const MyTabNavigator = TabNavigator(
     DashboardTab: {
       screen: ({ navigation }) => (
         <Dashboard navigation={navigation} extraScrollViewPadding={80} />
-      )
+      ),
     },
     ProfileTab: {
-      screen: Profile
-    }
+      screen: Profile,
+    },
   },
   {
     tabBarComponent: MyTabs,
-    tabBarPosition: "top",
+    tabBarPosition: 'top',
     swipeEnabled: true,
     animationEnabled: true,
-    initialRouteName: "DashboardTab"
-  }
-)
+    initialRouteName: 'DashboardTab',
+  },
+);
 
-export { MyTabNavigator }
+export { MyTabNavigator };

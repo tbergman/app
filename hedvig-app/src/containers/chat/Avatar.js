@@ -1,20 +1,19 @@
-import { connect } from "react-redux"
-import Avatar from "../../components/chat/Avatar"
+import { connect } from 'react-redux';
+import Avatar from '../../components/chat/Avatar';
 
 const mapStateToProps = (state, ownProps) => {
   if (state.chat.messages.length > 0) {
-    let message = state.chat.messages[ownProps.messageIndex]
+    let message = state.chat.messages[ownProps.messageIndex];
     return {
-      avatar: state.chat.avatars[message.header.avatarName] || {}
-    }
+      avatar: state.chat.avatars[message.header.avatarName] || {},
+    };
   } else {
     return {
-      avatar: {}
-    }
+      avatar: {},
+    };
   }
-}
+};
 
+const AvatarContainer = connect(mapStateToProps, undefined)(Avatar);
 
-const AvatarContainer = connect(mapStateToProps, undefined)(Avatar)
-
-export default AvatarContainer
+export default AvatarContainer;

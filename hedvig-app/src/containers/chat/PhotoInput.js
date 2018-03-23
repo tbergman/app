@@ -1,13 +1,13 @@
-import { connect } from "react-redux"
-import PhotoInput from "../../components/chat/PhotoInput"
-import { chatActions, uploadActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import PhotoInput from '../../components/chat/PhotoInput';
+import { chatActions, uploadActions } from 'hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex]
+  let message = state.chat.messages[ownProps.messageIndex];
   return {
-    message
-  }
-}
+    message,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -17,16 +17,16 @@ const mapDispatchToProps = dispatch => {
           body: info,
           successActionCreator: url =>
             chatActions.sendChatResponse(message, {
-              type: "photo_upload",
-              text: url
-            })
-        })
-      )
-  }
-}
+              type: 'photo_upload',
+              text: url,
+            }),
+        }),
+      ),
+  };
+};
 
 const PhotoInputContainer = connect(mapStateToProps, mapDispatchToProps)(
-  PhotoInput
-)
+  PhotoInput,
+);
 
-export default PhotoInputContainer
+export default PhotoInputContainer;

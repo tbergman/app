@@ -1,14 +1,14 @@
-import { connect } from "react-redux"
-import Chat from "../components/Chat"
-import { chatActions, dialogActions } from "hedvig-redux"
-import { showDashboardAction } from "../actions/baseNavigation"
+import { connect } from 'react-redux';
+import Chat from '../components/Chat';
+import { chatActions, dialogActions } from 'hedvig-redux';
+import { showDashboardAction } from '../actions/baseNavigation';
 
 const mapStateToProps = state => {
   return {
     messages: state.chat.messages,
-    insurance: state.insurance
-  }
-}
+    insurance: state.insurance,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -16,20 +16,20 @@ const mapDispatchToProps = dispatch => {
     resetConversation: () =>
       dispatch(
         dialogActions.showDialog({
-          title: "Vill du börja om?",
+          title: 'Vill du börja om?',
           paragraph:
-            "Om du trycker ja så börjar\nkonversationen om från början",
-          confirmButtonTitle: "Ja",
-          dismissButtonTitle: "Nej",
+            'Om du trycker ja så börjar\nkonversationen om från början',
+          confirmButtonTitle: 'Ja',
+          dismissButtonTitle: 'Nej',
           onConfirm: () => dispatch(chatActions.resetConversation()),
-          onDismiss: () => {}
-        })
+          onDismiss: () => {},
+        }),
       ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
-    showDashboard: () => dispatch(showDashboardAction())
-  }
-}
+    showDashboard: () => dispatch(showDashboardAction()),
+  };
+};
 
-const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat)
+const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat);
 
-export default ChatContainer
+export default ChatContainer;

@@ -1,22 +1,22 @@
 /* global require Promise */
 
-import React from "react"
-import { AppLoading, Font } from "expo"
+import React from 'react';
+import { AppLoading, Font } from 'expo';
 
 export default class WithAssets extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      loading: true
-    }
+      loading: true,
+    };
   }
 
   async load() {
     let fonts = Font.loadAsync({
-      merriweather: require("../../assets/fonts/Merriweather-Light.ttf"),
-      circular: require("../../assets/fonts/CircularStd-Book.ttf")
-    })
-    await Promise.all([fonts])
+      merriweather: require('../../assets/fonts/Merriweather-Light.ttf'),
+      circular: require('../../assets/fonts/CircularStd-Book.ttf'),
+    });
+    await Promise.all([fonts]);
   }
 
   render() {
@@ -25,11 +25,13 @@ export default class WithAssets extends React.Component {
         <AppLoading
           startAsync={this.load}
           onFinish={() => this.setState({ loading: false })}
-          onError={() => {throw new Error("Could not load the application")}}
+          onError={() => {
+            throw new Error('Could not load the application');
+          }}
         />
-      )
+      );
     } else {
-      return this.props.children
+      return this.props.children;
     }
   }
 }

@@ -1,11 +1,11 @@
-import React from "react"
-import VideoCamera from "./VideoCamera"
-import VideoPlayer from "./VideoPlayer"
+import React from 'react';
+import VideoCamera from './VideoCamera';
+import VideoPlayer from './VideoPlayer';
 
 export default class VideoExample extends React.Component {
   state = {
-    recordedFile: null
-  }
+    recordedFile: null,
+  };
 
   render() {
     return this.state.recordedFile ? (
@@ -14,9 +14,10 @@ export default class VideoExample extends React.Component {
       <VideoCamera
         onFinishedRecording={recordedFile =>
           this.setState({
-            recordedFile
-          })}
+            recordedFile,
+          })
+        }
       />
-    )
+    );
   }
 }

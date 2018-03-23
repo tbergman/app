@@ -1,13 +1,13 @@
-import { connect } from "react-redux"
-import ChatTextInput from "../../components/chat/ChatTextInput"
-import { chatActions, dialogActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import ChatTextInput from '../../components/chat/ChatTextInput';
+import { chatActions, dialogActions } from 'hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex]
+  let message = state.chat.messages[ownProps.messageIndex];
   return {
-    message
-  }
-}
+    message,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -16,26 +16,30 @@ const mapDispatchToProps = dispatch => {
     send: message =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          text: message._inputValue
-        })
+          text: message._inputValue,
+        }),
       ),
     requestPushNotifications: () => {
-        dispatch(dialogActions.showDialog({
-          title: "Notifikationer",
-          paragraph: "Slå på push-notiser så att du inte missar när Hedvig svarar!",
-          confirmButtonTitle: "Slå på",
-          dismissButtonTitle: "Inte nu",
-          onConfirm: () => dispatch({
-            type: "PUSH_NOTIFICATIONS/REQUEST_PUSH"
-          }),
-          onDismiss: () => {}
-      }))
-    }
-  }
-}
+      dispatch(
+        dialogActions.showDialog({
+          title: 'Notifikationer',
+          paragraph:
+            'Slå på push-notiser så att du inte missar när Hedvig svarar!',
+          confirmButtonTitle: 'Slå på',
+          dismissButtonTitle: 'Inte nu',
+          onConfirm: () =>
+            dispatch({
+              type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+            }),
+          onDismiss: () => {},
+        }),
+      );
+    },
+  };
+};
 
 const ChatTextInputContainer = connect(mapStateToProps, mapDispatchToProps)(
-  ChatTextInput
-)
+  ChatTextInput,
+);
 
-export default ChatTextInputContainer
+export default ChatTextInputContainer;

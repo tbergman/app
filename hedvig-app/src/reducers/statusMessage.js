@@ -1,5 +1,5 @@
-import Toast from "react-native-root-toast"
-import { types } from "hedvig-redux"
+import Toast from 'react-native-root-toast';
+import { types } from 'hedvig-redux';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -11,14 +11,14 @@ export default (state = {}, action) => {
         animation: true,
         hideOnPress: true,
         delay: 0,
-        backgroundColor: "#1be9b6",
-        textColor: "#ffffff",
+        backgroundColor: '#1be9b6',
+        textColor: '#ffffff',
         textStyle: {
-          fontFamily: "circular"
+          fontFamily: 'circular',
         },
-      })
-      return state
+      });
+      return state;
     default:
-      return state
+      return state;
   }
-}
+};
