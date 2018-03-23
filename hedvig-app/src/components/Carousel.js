@@ -1,14 +1,9 @@
-import React from "react"
-import {
-  View,
-  Dimensions,
-  BackHandler,
-  Image,
-} from "react-native"
-import { WebBrowser } from "expo"
-import { default as SnapCarousel } from "react-native-snap-carousel"
-import { connect } from "react-redux"
-import { NavigationActions } from "react-navigation"
+import React from 'react';
+import { View, Dimensions, BackHandler, Image } from 'react-native';
+import { WebBrowser } from 'expo';
+import { default as SnapCarousel } from 'react-native-snap-carousel';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import {
   StyledCarouselContainer,
   StyledAlignedCarouselItems,
@@ -16,12 +11,12 @@ import {
   StyledCarouselHeading,
   StyledCarouselTexts,
   StyledCarouselParagraph,
-  StyledParagraphToggleContainer
-} from "./styles/carousel"
-import { NavigateBackButton, TextButton } from "./Button"
-import { NavBar } from "./NavBar"
-const deviceWidth = Dimensions.get("window").width
-const perilContainerSize = 185
+  StyledParagraphToggleContainer,
+} from './styles/carousel';
+import { NavigateBackButton, TextButton } from './Button';
+import { NavBar } from './NavBar';
+const deviceWidth = Dimensions.get('window').width;
+const perilContainerSize = 185;
 
 class Carousel extends React.Component {
   navParams = this.props.navigation.state.params;
@@ -58,7 +53,7 @@ class Carousel extends React.Component {
           key={item.id}
         />
       </View>
-    )
+    );
   }
 
   getItem() {

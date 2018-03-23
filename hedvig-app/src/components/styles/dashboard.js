@@ -1,4 +1,4 @@
-import styled from "styled-components/native"
+import styled from 'styled-components/native';
 
 export const StyledDashboardContainer = styled.View`
   flex: 1;
@@ -114,24 +114,6 @@ export const StyledCheckoutButton = styled.View`
   bottom: 32px;
 `;
 
-<<<<<<< HEAD
-export const StyledPeril = styled.View`
-  width: 50px;
-  margin-left: 22px;
-  align-items: center;
-`;
-
-export const StyledPerilTitle = StyledSmallPassiveText.extend`
-  text-align: center;
-`;
-
-export const StyledPerilIcon = styled.Image`
-  width: 40px;
-  height: 40px;
-`;
-
-=======
->>>>>>> a4a86bd... Fix peril icons not always loading in carousel
 export const StyledConditionRow = styled.View`
   flex-direction: row;
   margin-bottom: 16px;

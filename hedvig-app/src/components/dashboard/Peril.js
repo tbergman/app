@@ -1,18 +1,6 @@
 /* global require */
-<<<<<<< HEAD
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import {
-  StyledPeril,
-  StyledPerilIcon,
-  StyledPerilTitle,
-} from '../styles/dashboard';
-=======
-import React from "react"
-import {
-  TouchableOpacity, Image, View, Text, StyleSheet
-} from "react-native"
->>>>>>> a4a86bd... Fix peril icons not always loading in carousel
+import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 
 const meLegalTrouble = require('../../../assets/icons/perils/perilIcos/jag_juridisk_tvist.png');
 const meAssault = require('../../../assets/icons/perils/perilIcos/jag_overfall.png');
@@ -75,26 +63,22 @@ const styles = StyleSheet.create({
   container: {
     width: 50,
     marginLeft: 22,
-    alignItems: "center"
+    alignItems: 'center',
   },
   icon: {
     width: 40,
     height: 40,
   },
   title: {
-    fontFamily: "circular",
+    fontFamily: 'circular',
     fontSize: 12,
-    color: "#9B9BAA",
-    textAlign: "center",
-  }
-})
+    color: '#9B9BAA',
+    textAlign: 'center',
+  },
+});
 
 export class Peril extends React.Component {
   render() {
-<<<<<<< HEAD
-    let peril = this.props.peril;
-=======
->>>>>>> a4a86bd... Fix peril icons not always loading in carousel
     return (
       <TouchableOpacity
         onPress={() =>
@@ -110,11 +94,11 @@ export class Peril extends React.Component {
         }
       >
         <View style={styles.container}>
-          <Image source={PERIL_IMAGE_MAP[this.props.peril.id]} style={styles.icon}>
-          </Image>
-          <Text style={styles.title}>
-            {this.props.peril.title}
-          </Text>
+          <Image
+            source={PERIL_IMAGE_MAP[this.props.peril.id]}
+            style={styles.icon}
+          />
+          <Text style={styles.title}>{this.props.peril.title}</Text>
         </View>
       </TouchableOpacity>
     );

@@ -1,7 +1,8 @@
-const path = require("path")
+/* global __dirname module */
+const path = require('path');
 
 module.exports = {
   getProjectRoots() {
-    return [path.join(__dirname, ".."), __dirname]
-  }
-}
+    return [path.join(__dirname, '..'), __dirname];
+  },
+};
