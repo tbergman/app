@@ -1,10 +1,10 @@
-import React from "react"
-import { Text, View, TouchableOpacity, CameraRoll } from "react-native"
-import { Video } from "expo"
+import React from 'react';
+import { Text, View, TouchableOpacity, CameraRoll } from 'react-native';
+import { Video } from 'expo';
 
 export default class VideoPlayer extends React.Component {
   save() {
-    CameraRoll.saveToCameraRoll(this.props.file.uri)
+    CameraRoll.saveToCameraRoll(this.props.file.uri);
   }
 
   render() {
@@ -18,21 +18,21 @@ export default class VideoPlayer extends React.Component {
           resizeMode="cover"
           shouldPlay
           isLooping
-          style={{ flex: 10, alignSelf: "stretch" }}
+          style={{ flex: 10, alignSelf: 'stretch' }}
         />
         <TouchableOpacity
           style={{
             flex: 1,
-            alignSelf: "flex-end",
-            alignItems: "center"
+            alignSelf: 'flex-end',
+            alignItems: 'center',
           }}
           onPress={() => {
-            this.save()
+            this.save();
           }}
         >
           <Text style={{ fontSize: 18, marginBottom: 10 }}>Save</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }

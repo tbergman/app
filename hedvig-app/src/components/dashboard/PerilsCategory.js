@@ -1,6 +1,6 @@
-import React from "react"
-import { View } from "react-native"
-import { Peril } from "../../components/dashboard/Peril"
+import React from 'react';
+import { View } from 'react-native';
+import { Peril } from '../../components/dashboard/Peril';
 import {
   StyledCategoryContainer,
   StyledCategoryHeader,
@@ -10,20 +10,17 @@ import {
   StyledPerilsContainer,
   StyledPerilsRow,
   StyledCategoryTextAndButton,
-  StyledPerilsHelpText
-} from "../styles/dashboard"
-import {
-  DisabledCollapseButton,
-  DisabledExpandButton,
-} from "../Button"
-import { StyledRow } from "../styles/general"
+  StyledPerilsHelpText,
+} from '../styles/dashboard';
+import { DisabledCollapseButton, DisabledExpandButton } from '../Button';
+import { StyledRow } from '../styles/general';
 import {
   StyledHeading,
   StyledPassiveText,
-  StyledSmallPassiveText
-} from "../styles/text"
+  StyledSmallPassiveText,
+} from '../styles/text';
 
-const coveredStates = ["COVERED", "ADD_REQUESTED", "ADD_PENDING"]
+const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
 
 export const coveredPerils = (perils, title, navigation) => {
   return perils
@@ -37,27 +34,28 @@ export const coveredPerils = (perils, title, navigation) => {
         categoryTitle={title}
         perilIndex={perils.findIndex(p => p.id === peril.id)}
       />
-    ))
-}
+    ));
+};
 
 export class PerilsCategory extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      showCategory: props.offerMode === true
-    }
+      showCategory: props.offerMode === true,
+    };
   }
 
   render() {
     let CollapseButton = this.state.showCategory
       ? DisabledCollapseButton
-      : DisabledExpandButton
+      : DisabledExpandButton;
     return (
       <StyledCategoryContainer
         activeOpacity={1}
         onPress={() =>
           !this.props.offerMode &&
-          this.setState({ showCategory: !this.state.showCategory })}
+          this.setState({ showCategory: !this.state.showCategory })
+        }
       >
         <StyledCategoryHeader>
           <StyledCategoryIcon source={{ uri: this.props.iconUrl }} />
@@ -68,30 +66,35 @@ export class PerilsCategory extends React.Component {
               </StyledRow>
               <StyledRow>
                 <StyledPassiveText>
-                  {this.props.description}{!this.props.offerMode && this.state.showCategory ? ":" : null}
+                  {this.props.description}
+                  {!this.props.offerMode && this.state.showCategory
+                    ? ':'
+                    : null}
                 </StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
-            { !this.props.offerMode ? (
+            {!this.props.offerMode ? (
               <StyledExpandButton>
                 <CollapseButton size="mediumBig" />
               </StyledExpandButton>
-            ) : null }
+            ) : null}
           </StyledCategoryTextAndButton>
         </StyledCategoryHeader>
-        {
-          this.state.showCategory && (
-            <ExpandedPerilsCategory>
-              {coveredPerils(this.props.perils, this.props.title, this.props.navigation)}
-            </ExpandedPerilsCategory>
-          )
-        }
+        {this.state.showCategory && (
+          <ExpandedPerilsCategory>
+            {coveredPerils(
+              this.props.perils,
+              this.props.title,
+              this.props.navigation,
+            )}
+          </ExpandedPerilsCategory>
+        )}
       </StyledCategoryContainer>
-    )
+    );
   }
 }
 
-export const ExpandedPerilsCategory = (props) => (
+export const ExpandedPerilsCategory = props => (
   <View>
     <StyledPerilsContainer>
       <StyledPerilsRow>{props.children}</StyledPerilsRow>
@@ -102,4 +105,4 @@ export const ExpandedPerilsCategory = (props) => (
       </StyledSmallPassiveText>
     </StyledPerilsHelpText>
   </View>
-)
+);

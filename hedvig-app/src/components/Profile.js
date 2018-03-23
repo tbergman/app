@@ -1,16 +1,13 @@
-import React from "react"
-import {
-  View,
-  Share,
-} from "react-native"
-import { NavigationActions } from 'react-navigation'
-import { HeaderRightChat } from "./NavBar"
+import React from 'react';
+import { View, Share } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { HeaderRightChat } from './NavBar';
 import {
   StyledProfileContainer,
   StyledCharityImage,
   StyledCharityParagraph,
-  StyledCharitySignature
-} from "./styles/profile"
+  StyledCharitySignature,
+} from './styles/profile';
 import {
   StyledListHeader,
   StyledList,
@@ -19,44 +16,44 @@ import {
   StyledListElementHeading,
   StyledListElementText,
   StyledRowButton,
-  TouchableStyledListElement
-} from "./styles/list"
+  TouchableStyledListElement,
+} from './styles/list';
 import {
   ProfileHeartIcon,
   ProfileFamilyIcon,
   ProfileLockIcon,
   ProfileBankAccountIcon,
-  ProfileShareIcon
-} from "./Icon"
+  ProfileShareIcon,
+} from './Icon';
 import {
   DisabledListNextButton,
   RoundedButton,
-  TurquoiseRoundedInvertedButton
-} from "./Button"
-import "moment/locale/sv"
-import * as R from "ramda"
+  TurquoiseRoundedInvertedButton,
+} from './Button';
+import 'moment/locale/sv';
+import * as R from 'ramda';
 
 export default class Profile extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: "Min Profil",
-    headerRight: <HeaderRightChat navigation={navigation} />
-  })
+    title: 'Min Profil',
+    headerRight: <HeaderRightChat navigation={navigation} />,
+  });
 
   componentWillMount() {
-    this.props.getUser()
-    this.props.getCashbackAlternatives()
-    this.props.getInsurance()
+    this.props.getUser();
+    this.props.getCashbackAlternatives();
+    this.props.getInsurance();
   }
 
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
     let ListElementComponent = onPress
       ? TouchableStyledListElement
-      : StyledListElement
+      : StyledListElement;
     let maybeButton = onPress ? (
       <StyledRowButton>
         <DisabledListNextButton />
       </StyledRowButton>
-    ) : null
+    ) : null;
     return (
       <ListElementComponent onPress={onPress}>
         {icon}
@@ -65,65 +62,67 @@ export default class Profile extends React.Component {
           <StyledListElementText>{text}</StyledListElementText>
           {secondText ? (
             <StyledListElementText>{secondText}</StyledListElementText>
-          ): null}
+          ) : null}
         </StyledListElementTexts>
         {maybeButton}
       </ListElementComponent>
-    )
+    );
   }
 
   _maybeFamilyMembers() {
     if (this.props.user.familyMembers) {
       return this._userRow({
-        title: "Familjemedlemmar",
-        text: R.join(", ", this.props.user.familyMembers)
+        title: 'Familjemedlemmar',
+        text: R.join(', ', this.props.user.familyMembers),
         // Disabled profile actions
         // onPress: () => this.props.editFamilyMembers()
-      })
+      });
     }
   }
 
   _maybePersonalInfo() {
     if (this.props.user.age) {
       return this._userRow({
-        title: "Personlig info",
+        title: 'Personlig info',
         icon: <ProfileFamilyIcon />,
         text: `${this.props.user.age} år | ${this.props.user.address}`,
-        secondText: R.join(", ", this.props.user.familyMembers)
-      })
+        secondText: R.join(', ', this.props.user.familyMembers),
+      });
     }
   }
 
   _safetyIncreasers() {
-    const ucFirst = string => string.charAt(0).toUpperCase() + string.slice(1)
+    const ucFirst = string => string.charAt(0).toUpperCase() + string.slice(1);
 
     if (this.props.user.safetyIncreasers) {
       return this._userRow({
-        title: "Mina trygghetshöjare",
+        title: 'Mina trygghetshöjare',
         icon: <ProfileLockIcon />,
-        text: ucFirst(R.join(", ", this.props.user.safetyIncreasers))
+        text: ucFirst(R.join(', ', this.props.user.safetyIncreasers)),
         // Disabled profile actions
         // onPress: () => this.props.editSafetyIncreasers()
-      })
+      });
     }
   }
 
   _maybeBankAccount() {
     if (this.props.user.maskedBankAccountNumber) {
       return this._userRow({
-        title: "Min betalning",
+        title: 'Min betalning',
         icon: <ProfileBankAccountIcon />,
-        text: `${this.props.insurance.currentTotalPrice} kr/månad. ${this.props.user.maskedBankAccountNumber}`,
-        secondText: "",
+        text: `${this.props.insurance.currentTotalPrice} kr/månad. ${
+          this.props.user.maskedBankAccountNumber
+        }`,
+        secondText: '',
         // onPress: () => this.props.navigation.navigate("Payment")
-      })
+      });
     }
   }
 
   _maybeSelectedCashback() {
     if (this.props.user.selectedCashback) {
       return this._userRow({
-        title: "Min välgörenhet",
+        title: 'Min välgörenhet',
         icon: <ProfileHeartIcon />,
         text: this.props.user.selectedCashback,
         // Cashback click removed for now as we only have one cashback. Will be re-added later
@@ -134,30 +133,34 @@ export default class Profile extends React.Component {
         //     initialSlideIndex: 0,
         //     renderCta: this._cashbackCarouselCta.bind(this)
         //   })
-      })
+      });
     }
   }
 
   _shareRow() {
     return this._userRow({
-      title: "Rekommendera en vän",
+      title: 'Rekommendera en vän',
       icon: <ProfileShareIcon />,
-      text: "Låt Hedvig förenkla vardagen för någon du bryr dig om",
-      onPress: () => this._sharePressed()
-    })
+      text: 'Låt Hedvig förenkla vardagen för någon du bryr dig om',
+      onPress: () => this._sharePressed(),
+    });
   }
 
   _cashbackCarouselCta(item) {
     if (item.selected) {
-      let title = item.charity ? "Tack för ditt bidrag" : "Ditt val"
-      return <TurquoiseRoundedInvertedButton title={title} disabled={true} />
+      let title = item.charity ? 'Tack för ditt bidrag' : 'Ditt val';
+      return <TurquoiseRoundedInvertedButton title={title} disabled={true} />;
     } else {
       return (
         <RoundedButton
           title={`Stöd ${item.name}`}
-          onPress={() => this.props.updateCashback(item, () => NavigationActions.navigate({ routeName: "ProfileTab" }))}
+          onPress={() =>
+            this.props.updateCashback(item, () =>
+              NavigationActions.navigate({ routeName: 'ProfileTab' }),
+            )
+          }
         />
-      )
+      );
     }
   }
 
@@ -165,16 +168,16 @@ export default class Profile extends React.Component {
     Share.share(
       {
         message:
-          "Livet är enklare med Hedvig. Ladda ner appen på AppStore eller Google Play. Läs mer på https://www.hedvig.com",
-        title: "Hedvig är försäkring som du aldrig tidigare har upplevt det"
+          'Livet är enklare med Hedvig. Ladda ner appen på AppStore eller Google Play. Läs mer på https://www.hedvig.com',
+        title: 'Hedvig är försäkring som du aldrig tidigare har upplevt det',
       },
       {
         // Android only:
-        dialogTitle: "Dela Hedvig",
+        dialogTitle: 'Dela Hedvig',
         // iOS only:
-        excludedActivityTypes: ["com.apple.UIKit.activity.PostToTwitter"]
-      }
-    )
+        excludedActivityTypes: ['com.apple.UIKit.activity.PostToTwitter'],
+      },
+    );
   }
 
   _maybeUserInfo() {
@@ -186,7 +189,7 @@ export default class Profile extends React.Component {
           {this._safetyIncreasers()}
           {this._maybeBankAccount()}
         </View>
-      )
+      );
     }
   }
 
@@ -207,9 +210,13 @@ export default class Profile extends React.Component {
             </StyledCharitySignature>
           </StyledListHeader>
           {this._maybeUserInfo()}
-          <RoundedButton title="Logga ut" onPress={() => this.props.logout()} style={{marginTop: 8, marginBottom: 24}}/>
+          <RoundedButton
+            title="Logga ut"
+            onPress={() => this.props.logout()}
+            style={{ marginTop: 8, marginBottom: 24 }}
+          />
         </StyledList>
       </StyledProfileContainer>
-    )
+    );
   }
 }

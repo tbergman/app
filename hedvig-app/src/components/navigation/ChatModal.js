@@ -1,11 +1,11 @@
-import React from "react"
-import { View } from "react-native"
+import React from 'react';
+import { View } from 'react-native';
 
-import Offer from "../../containers/dashboard/Offer"
+import Offer from '../../containers/dashboard/Offer';
 
 const VIEW_MAPPING = {
-  Offer
-}
+  Offer,
+};
 
 /*
   navigation.state.params contains a `link` object, in the same format
@@ -17,10 +17,10 @@ const VIEW_MAPPING = {
 const ChatModal = ({ navigation }) => {
   let content = React.createElement(
     VIEW_MAPPING[navigation.state.params.link.view],
-    { navigation }
-  )
+    { navigation },
+  );
   return (
-    <View style={{ flex: 1, alignSelf: "stretch" }}>
+    <View style={{ flex: 1, alignSelf: 'stretch' }}>
       {/* <Button
         title="Close"
         onPress={() => {
@@ -30,7 +30,7 @@ const ChatModal = ({ navigation }) => {
       /> */}
       {content}
     </View>
-  )
-}
+  );
+};
 
-export default ChatModal
+export default ChatModal;

@@ -1,24 +1,24 @@
-import { connect } from "react-redux"
-import AudioInput from "../../components/chat/AudioInput"
-import { chatActions, uploadActions, dialogActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import AudioInput from '../../components/chat/AudioInput';
+import { chatActions, uploadActions, dialogActions } from 'hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex]
+  let message = state.chat.messages[ownProps.messageIndex];
   return {
     message,
-    currentlyUploading: state.upload.currentlyUploading
-  }
-}
+    currentlyUploading: state.upload.currentlyUploading,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     showPermissionDialog: () =>
       dispatch(
         dialogActions.showDialog({
-          title: "Inspelning",
+          title: 'Inspelning',
           paragraph:
-            "Vänligen aktivera ljudinspelning för Hedvig i dina systeminställningar."
-        })
+            'Vänligen aktivera ljudinspelning för Hedvig i dina systeminställningar.',
+        }),
       ),
     upload: (message, info) =>
       dispatch(
@@ -26,16 +26,16 @@ const mapDispatchToProps = dispatch => {
           body: info,
           successActionCreator: url =>
             chatActions.sendChatResponse(message, {
-              type: "audio",
-              url
-            })
-        })
-      )
-  }
-}
+              type: 'audio',
+              url,
+            }),
+        }),
+      ),
+  };
+};
 
 const AudioInputContainer = connect(mapStateToProps, mapDispatchToProps)(
-  AudioInput
-)
+  AudioInput,
+);
 
-export default AudioInputContainer
+export default AudioInputContainer;

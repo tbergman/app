@@ -1,24 +1,24 @@
-import { connect } from "react-redux"
-import MultipleSelectInput from "../../components/chat/MultipleSelectInput"
-import { chatActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import MultipleSelectInput from '../../components/chat/MultipleSelectInput';
+import { chatActions } from 'hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    message: state.chat.messages[ownProps.messageIndex]
-  }
-}
+    message: state.chat.messages[ownProps.messageIndex],
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     onChoiceSelected: (message, choice) =>
       dispatch(chatActions.selectChoice(message, choice)),
-    done: message => dispatch(chatActions.sendChatResponse(message))
-  }
-}
+    done: message => dispatch(chatActions.sendChatResponse(message)),
+  };
+};
 
 const MultipleSelectInputContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
-)(MultipleSelectInput)
+  mapDispatchToProps,
+)(MultipleSelectInput);
 
-export default MultipleSelectInputContainer
+export default MultipleSelectInputContainer;

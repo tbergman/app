@@ -1,18 +1,18 @@
-import { connect } from "react-redux"
-import MessageList from "../../components/chat/MessageList"
+import { connect } from 'react-redux';
+import MessageList from '../../components/chat/MessageList';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    messages: state.chat.messages
-  }
-}
+    messages: state.chat.messages,
+  };
+};
 
 const mapDispatchToProps = () => {
-  return {}
-}
+  return {};
+};
 
 const MessageListContainer = connect(mapStateToProps, mapDispatchToProps)(
-  MessageList
-)
+  MessageList,
+);
 
-export default MessageListContainer
+export default MessageListContainer;

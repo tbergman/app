@@ -1,18 +1,14 @@
-import { connect } from "react-redux"
-import Offer from "../../components/dashboard/Offer"
-import {
-  insuranceActions,
-  types,
-  eventActions
-} from "hedvig-redux"
+import { connect } from 'react-redux';
+import Offer from '../../components/dashboard/Offer';
+import { insuranceActions, types, eventActions } from 'hedvig-redux';
 
 const mapStateToProps = state => {
   return {
     insurance: state.insurance,
     currentTotalPrice: state.insurance.currentTotalPrice,
-    newTotalPrice: state.insurance.newTotalPrice
-  }
-}
+    newTotalPrice: state.insurance.newTotalPrice,
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -20,29 +16,29 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     checkout: () => {
       dispatch({
         type: types.CHECKOUT,
-        payload: {}
-      })
-      ownProps.navigation.goBack()
+        payload: {},
+      });
+      ownProps.navigation.goBack();
     },
     closeModal: () => {
       dispatch(
         eventActions.event(
           {
-            type: "MODAL_CLOSED",
-            value: "quote"
+            type: 'MODAL_CLOSED',
+            value: 'quote',
           },
           {
             getMessagesAfter: true,
-            showLoadingIndicator: true
-          }
-        )
-      )
-      ownProps.navigation.goBack()
+            showLoadingIndicator: true,
+          },
+        ),
+      );
+      ownProps.navigation.goBack();
     },
-    dispatch
-  }
-}
+    dispatch,
+  };
+};
 
-const OfferContainer = connect(mapStateToProps, mapDispatchToProps)(Offer)
+const OfferContainer = connect(mapStateToProps, mapDispatchToProps)(Offer);
 
-export default OfferContainer
+export default OfferContainer;

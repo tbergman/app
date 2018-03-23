@@ -1,19 +1,19 @@
-import React from "react"
-import { Animated } from "react-native"
-import { DangerZone } from "expo"
-const { Lottie } = DangerZone
+import React from 'react';
+import { Animated } from 'react-native';
+import { DangerZone } from 'expo';
+const { Lottie } = DangerZone;
 
 // TODO PropType validation
 export default class Avatar extends React.Component {
   state = {
-    progress: new Animated.Value(0)
-  }
+    progress: new Animated.Value(0),
+  };
 
   play() {
     Animated.timing(this.state.progress, {
       toValue: 1,
-      duration: this.props.avatar.duration
-    }).start()
+      duration: this.props.avatar.duration,
+    }).start();
   }
 
   render() {
@@ -24,14 +24,14 @@ export default class Avatar extends React.Component {
           style={{
             height: this.props.avatar.height,
             width: this.props.avatar.width,
-            backgroundColor: "transparent"
+            backgroundColor: 'transparent',
           }}
           source={this.props.avatar.data}
           progress={this.state.progress}
         />
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }

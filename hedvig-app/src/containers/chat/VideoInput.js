@@ -1,19 +1,19 @@
-import { connect } from "react-redux"
-import VideoInput from "../../components/chat/VideoInput"
+import { connect } from 'react-redux';
+import VideoInput from '../../components/chat/VideoInput';
 
 const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex]
+  let message = state.chat.messages[ownProps.messageIndex];
   return {
-    message
-  }
-}
+    message,
+  };
+};
 
 const mapDispatchToProps = () => {
-  return {}
-}
+  return {};
+};
 
 const VideoInputContainer = connect(mapStateToProps, mapDispatchToProps)(
-  VideoInput
-)
+  VideoInput,
+);
 
-export default VideoInputContainer
+export default VideoInputContainer;

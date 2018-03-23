@@ -1,12 +1,12 @@
-import React from "react"
-import { AsyncStorage, StatusBar } from "react-native"
-import { connect } from "react-redux"
-import { NavigationActions, addNavigationHelpers } from "react-navigation"
-import { createReduxBoundAddListener } from "react-navigation-redux-helpers"
+import React from 'react';
+import { AsyncStorage, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
+import { NavigationActions, addNavigationHelpers } from 'react-navigation';
+import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
-import BaseNavigator from "./base-navigator/BaseNavigator"
-import { SEEN_MARKETING_CAROUSEL_KEY } from "../../constants"
-import { REDIRECTED_INITIAL_ROUTE } from "../../actions/router"
+import BaseNavigator from './base-navigator/BaseNavigator';
+import { SEEN_MARKETING_CAROUSEL_KEY } from '../../constants';
+import { REDIRECTED_INITIAL_ROUTE } from '../../actions/router';
 
 const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
   return (
@@ -17,51 +17,58 @@ const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
         addListener,
       })}
     />
-  )
-}
+  );
+};
 
-const ConnectedReduxBaseNavigator = connect(({ nav }, ownProps) => ({ ...ownProps, nav }))(ReduxBaseNavigator)
+const ConnectedReduxBaseNavigator = connect(({ nav }, ownProps) => ({
+  ...ownProps,
+  nav,
+}))(ReduxBaseNavigator);
 
 class BaseRouter extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     // Hooking up react-navigation + redux
-    this.addListener = createReduxBoundAddListener("root")
+    this.addListener = createReduxBoundAddListener('root');
   }
 
   _redirectToRouteHelper(routeName) {
     const { redirectToRoute } = this.props;
-    redirectToRoute(routeName)
+    redirectToRoute(routeName);
   }
 
   _doRedirection = () => {
-    if (this.props.hasRedirected || !this.props.insurance || !this.props.insurance.status) return
+    if (
+      this.props.hasRedirected ||
+      !this.props.insurance ||
+      !this.props.insurance.status
+    )
+      return;
 
-    if (["ACTIVE", "INACTIVE"].includes(this.props.insurance.status)) {
-      this._redirectToRouteHelper("HomeBase")
+    if (['ACTIVE', 'INACTIVE'].includes(this.props.insurance.status)) {
+      this._redirectToRouteHelper('HomeBase');
     } else {
-      this._redirectToRouteHelper("ChatBase")
+      this._redirectToRouteHelper('ChatBase');
     }
-
-  }
+  };
 
   async componentDidMount() {
-    if (this.props.hasRedirected) return
+    if (this.props.hasRedirected) return;
 
     let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
-      SEEN_MARKETING_CAROUSEL_KEY
-    )
+      SEEN_MARKETING_CAROUSEL_KEY,
+    );
 
     if (!alreadySeenMarketingCarousel) {
-      this._redirectToRouteHelper("Marketing")
+      this._redirectToRouteHelper('Marketing');
     }
 
-    this._doRedirection()
+    this._doRedirection();
   }
 
   componentDidUpdate() {
-    this._doRedirection()
+    this._doRedirection();
   }
 
   render() {
@@ -71,7 +78,7 @@ class BaseRouter extends React.Component {
         <StatusBar backgroundColor="white" />
         <ConnectedReduxBaseNavigator addListener={this.addListener} />
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -79,24 +86,22 @@ const mapStateToProps = ({ insurance, router }, ownProps) => {
   return {
     ...ownProps,
     insurance,
-    hasRedirected: router.hasRedirected
-  }
-}
+    hasRedirected: router.hasRedirected,
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    redirectToRoute: (routeName) => {
-      dispatch({ type: REDIRECTED_INITIAL_ROUTE })
+    redirectToRoute: routeName => {
+      dispatch({ type: REDIRECTED_INITIAL_ROUTE });
       return dispatch(
         NavigationActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName })],
-        })
-      )
+        }),
+      );
     },
-  }
-}
+  };
+};
 
-export const Router = connect(mapStateToProps, mapDispatchToProps)(
-  BaseRouter
-)
+export const Router = connect(mapStateToProps, mapDispatchToProps)(BaseRouter);

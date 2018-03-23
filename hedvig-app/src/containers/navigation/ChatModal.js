@@ -1,10 +1,10 @@
-import { connect } from "react-redux"
-import ChatModal from "../../components/navigation/ChatModal"
-import { eventActions } from "hedvig-redux"
+import { connect } from 'react-redux';
+import ChatModal from '../../components/navigation/ChatModal';
+import { eventActions } from 'hedvig-redux';
 
 const mapStateToProps = () => {
-  return {}
-}
+  return {};
+};
 
 // TODO Correct the `value` in MODAL_CLOSED
 const mapDispatchToProps = dispatch => {
@@ -12,15 +12,15 @@ const mapDispatchToProps = dispatch => {
     modalClosed: () =>
       dispatch(
         eventActions.event({
-          type: "MODAL_CLOSED",
-          value: "quote"
-        })
-      )
-  }
-}
+          type: 'MODAL_CLOSED',
+          value: 'quote',
+        }),
+      ),
+  };
+};
 
 const ChatModalContainer = connect(mapStateToProps, mapDispatchToProps)(
-  ChatModal
-)
+  ChatModal,
+);
 
-export default ChatModalContainer
+export default ChatModalContainer;

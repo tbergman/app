@@ -1,11 +1,11 @@
 /* global require */
-import React from "react"
-import { View, ScrollView } from "react-native"
+import React from 'react';
+import { View, ScrollView } from 'react-native';
 
-import { HeaderRightChat } from "../NavBar"
-import { PerilsCategory } from "./PerilsCategory"
+import { HeaderRightChat } from '../NavBar';
+import { PerilsCategory } from './PerilsCategory';
 
-import { RoundedButton } from "../Button"
+import { RoundedButton } from '../Button';
 import {
   StyledDashboardHeaderOffWhite,
   StyledDashboardHeaderRowLessMargin,
@@ -14,17 +14,17 @@ import {
   StyledCategoriesContainer,
   StyledCheckoutButton,
   StyledDashboardHeaderIcon,
-  StyledConditionRow
-} from "../styles/dashboard"
-import { StyledPassiveText, StyledHeading } from "../styles/text"
+  StyledConditionRow,
+} from '../styles/dashboard';
+import { StyledPassiveText, StyledHeading } from '../styles/text';
 
-import { INSURANCE_TYPES } from "../../constants"
+import { INSURANCE_TYPES } from '../../constants';
 
 export default class Dashboard extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: "Min Försäkring",
-    headerRight: <HeaderRightChat navigation={navigation} />
-  })
+    title: 'Min Försäkring',
+    headerRight: <HeaderRightChat navigation={navigation} />,
+  });
 
   renderCategories() {
     let categories = this.props.categories.map(
@@ -34,20 +34,20 @@ export default class Dashboard extends React.Component {
             title={title}
             description={description}
             perils={perils}
-            offerMode={this.props.mode === "offer"}
+            offerMode={this.props.mode === 'offer'}
             iconUrl={iconUrl}
             key={i}
             navigation={this.props.navigation}
           />
-        )
-      }
-    )
-    return <StyledCategoriesContainer>{categories}</StyledCategoriesContainer>
+        );
+      },
+    );
+    return <StyledCategoriesContainer>{categories}</StyledCategoriesContainer>;
   }
 
   maybeCheckoutButton() {
-    if (this.props.newTotalPrice !== null && this.props.mode !== "offer") {
-      let prefix = `${this.props.newTotalPrice} kr`
+    if (this.props.newTotalPrice !== null && this.props.mode !== 'offer') {
+      let prefix = `${this.props.newTotalPrice} kr`;
       return (
         <StyledCheckoutButton>
           <RoundedButton
@@ -56,25 +56,25 @@ export default class Dashboard extends React.Component {
             onPress={() => this.props.checkout()}
           />
         </StyledCheckoutButton>
-      )
+      );
     }
   }
 
   statusIcon() {
     const imageModule = {
-      ACTIVE: require("../../../assets/icons/my_insurance/aktiv.png"),
-      PENDING: require("../../../assets/icons/edit_perils/added_peril.png"),
-      INACTIVE: require("../../../assets/icons/edit_perils/added_peril.png"),
-    }[this.props.insurance.status]
-    return <StyledDashboardHeaderIcon source={imageModule} />
+      ACTIVE: require('../../../assets/icons/my_insurance/aktiv.png'),
+      PENDING: require('../../../assets/icons/edit_perils/added_peril.png'),
+      INACTIVE: require('../../../assets/icons/edit_perils/added_peril.png'),
+    }[this.props.insurance.status];
+    return <StyledDashboardHeaderIcon source={imageModule} />;
   }
 
   statusText() {
     return {
-      ACTIVE: "Aktiv",
-      PENDING: "På gång",
-      INACTIVE: "Aktiveras snart",
-    }[this.props.insurance.status]
+      ACTIVE: 'Aktiv',
+      PENDING: 'På gång',
+      INACTIVE: 'Aktiveras snart',
+    }[this.props.insurance.status];
   }
 
   render() {
@@ -97,25 +97,25 @@ export default class Dashboard extends React.Component {
             <View style={{ marginLeft: 24 }}>
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
-                  source={require("../../../assets/icons/my_insurance/pris.png")}
+                  source={require('../../../assets/icons/my_insurance/pris.png')}
                 />
-                <StyledPassiveText>
-                  Din självrisk är 1 500 kr
-                </StyledPassiveText>
+                <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
               </StyledConditionRow>
-              { this.props.insurance.insuranceType === INSURANCE_TYPES.BRF || this.props.insurance.insuranceType === INSURANCE_TYPES.SUBLET_BRF ? (
+              {this.props.insurance.insuranceType === INSURANCE_TYPES.BRF ||
+              this.props.insurance.insuranceType ===
+                INSURANCE_TYPES.SUBLET_BRF ? (
                 <StyledConditionRow>
                   <StyledDashboardHeaderIcon
-                    source={require("../../../assets/icons/my_insurance/aktiv.png")}
+                    source={require('../../../assets/icons/my_insurance/aktiv.png')}
                   />
                   <StyledPassiveText>
                     Lägenheten försäkras till sitt fulla värde
                   </StyledPassiveText>
                 </StyledConditionRow>
-              ) : null }
+              ) : null}
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
-                  source={require("../../../assets/icons/my_insurance/pris.png")}
+                  source={require('../../../assets/icons/my_insurance/pris.png')}
                 />
                 <StyledPassiveText>
                   Prylarna försäkras till totalt 1 000 000 kr
@@ -123,7 +123,7 @@ export default class Dashboard extends React.Component {
               </StyledConditionRow>
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
-                  source={require("../../../assets/icons/my_insurance/worldwide.png")}
+                  source={require('../../../assets/icons/my_insurance/worldwide.png')}
                 />
                 <StyledPassiveText>
                   Gäller på resor varsomhelst i världen
@@ -132,14 +132,14 @@ export default class Dashboard extends React.Component {
             </View>
             <View
               style={{
-                alignSelf: "stretch",
-                height: this.props.extraScrollViewPadding || 0
+                alignSelf: 'stretch',
+                height: this.props.extraScrollViewPadding || 0,
               }}
             />
           </View>
         </ScrollView>
         {this.maybeCheckoutButton()}
       </StyledDashboardContainer>
-    )
+    );
   }
 }

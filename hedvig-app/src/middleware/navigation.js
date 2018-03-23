@@ -1,3 +1,3 @@
-import { createReactNavigationReduxMiddleware } from "react-navigation-redux-helpers"
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 
-export default createReactNavigationReduxMiddleware("root", state => state.nav)
+export default createReactNavigationReduxMiddleware('root', state => state.nav);

@@ -1,19 +1,14 @@
-import React from "react"
-import {
-  DatePickerIOS,
-  DatePickerAndroid,
-  View,
-  Platform
-} from "react-native"
+import React from 'react';
+import { DatePickerIOS, DatePickerAndroid, View, Platform } from 'react-native';
 import {
   StyledDatePickerResultRow,
   StyledFakeTextInput,
   StyledFakeTextInputText,
-  TouchableStyledFakeTextInput
-} from "../styles/chat"
-import { SendIconButton } from "../Button"
-import moment from "moment"
-import "moment/locale/sv"
+  TouchableStyledFakeTextInput,
+} from '../styles/chat';
+import { SendIconButton } from '../Button';
+import moment from 'moment';
+import 'moment/locale/sv';
 
 // TODO: Render DatePickerAndroid on Android
 class DateInput extends React.Component {
@@ -22,25 +17,25 @@ class DateInput extends React.Component {
       const { action, year, month, day } = await DatePickerAndroid.open({
         // Use `new Date()` for current date.
         // May 25 2020. Month 0 is January.
-        date: new Date(1984, 8, 11)
-      })
+        date: new Date(1984, 8, 11),
+      });
       if (action !== DatePickerAndroid.dismissedAction) {
-        onChange(message, moment(new Date(year, month, day)).toISOString())
+        onChange(message, moment(new Date(year, month, day)).toISOString());
       }
-      this.setState({ androidDatePickerVisible: false })
+      this.setState({ androidDatePickerVisible: false });
     } catch ({ code, message }) {
-      throw new Error("Could not show datepicker")
+      throw new Error('Could not show datepicker');
     }
   }
 
   renderIos() {
-    let { message, onChange, send } = this.props
+    let { message, onChange, send } = this.props;
     return (
       <View>
         <StyledDatePickerResultRow>
           <StyledFakeTextInput>
             <StyledFakeTextInputText>
-              {moment(message._inputValue).format("LL")}
+              {moment(message._inputValue).format('LL')}
             </StyledFakeTextInputText>
           </StyledFakeTextInput>
           <SendIconButton onPress={() => send(message)} />
@@ -57,11 +52,11 @@ class DateInput extends React.Component {
           style={{ height: 220 }}
         />
       </View>
-    )
+    );
   }
 
   renderAndroid() {
-    let { message, onChange, send } = this.props
+    let { message, onChange, send } = this.props;
     return (
       <View>
         <StyledDatePickerResultRow>
@@ -69,22 +64,22 @@ class DateInput extends React.Component {
             onPress={() => this.showAndroidDatePicker(message, onChange)}
           >
             <StyledFakeTextInputText>
-              {moment(message._inputValue).format("LL")}
+              {moment(message._inputValue).format('LL')}
             </StyledFakeTextInputText>
           </TouchableStyledFakeTextInput>
           <SendIconButton onPress={() => send(message)} />
         </StyledDatePickerResultRow>
       </View>
-    )
+    );
   }
 
   render() {
-    if (Platform.OS === "ios") {
-      return this.renderIos()
-    } else if (Platform.OS === "android") {
-      return <View>{this.renderAndroid()}</View>
+    if (Platform.OS === 'ios') {
+      return this.renderIos();
+    } else if (Platform.OS === 'android') {
+      return <View>{this.renderAndroid()}</View>;
     }
   }
 }
 
-export default DateInput
+export default DateInput;

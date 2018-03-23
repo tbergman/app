@@ -1,11 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyledDashboardHeaderOffWhite,
   StyledDashboardHeaderRowLessMargin,
-  StyledDashboardHeaderItem
-} from "../styles/dashboard"
-import { StyledPassiveText, StyledHeading } from "../styles/text"
+  StyledDashboardHeaderItem,
+} from '../styles/dashboard';
+import { StyledPassiveText, StyledHeading } from '../styles/text';
 
 const DashboardHeader = ({ statusIcon, statusText }) => (
   <StyledDashboardHeaderOffWhite>
@@ -17,11 +17,11 @@ const DashboardHeader = ({ statusIcon, statusText }) => (
       </StyledDashboardHeaderItem>
     </StyledDashboardHeaderRowLessMargin>
   </StyledDashboardHeaderOffWhite>
-)
+);
 
 DashboardHeader.propTypes = {
   statusIcon: PropTypes.func.isRequired,
-  statusText: PropTypes.func.isRequired
-}
+  statusText: PropTypes.func.isRequired,
+};
 
-export default DashboardHeader
+export default DashboardHeader;
