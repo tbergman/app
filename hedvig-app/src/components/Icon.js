@@ -34,18 +34,6 @@ export const ProfileBankAccountIcon = ({ size }) =>
 export const ProfileShareIcon = ({ size }) =>
   Icon({ size, source: require("../../assets/icons/profil/share.png") })
 
-export const CameraCircleIcon = ({ size }) =>
-  Icon({ size, source: require("../../assets/icons/take_picture.png") })
-
-export const ChoosePhotoCircleIcon = ({ size }) =>
-  Icon({ size, source: require("../../assets/icons/choose_picture.png") })
-
-export const InputAddIcon = ({ size }) =>
-  Icon({
-    size,
-    source: require("../../assets/icons/list_items/add_list_item.png")
-  })
-
 export const HedvigLogoBlue = () => (
   <StyledIcon
     source={require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_blue.png")}

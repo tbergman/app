@@ -2,7 +2,6 @@ import React from "react"
 import { TabNavigator } from "react-navigation"
 import styled from "styled-components/native"
 
-import AssetList from "../../containers/asset-tracker/AssetList"
 import Dashboard from "../../containers/dashboard/Dashboard"
 import Profile from "../../containers/Profile"
 
@@ -45,14 +44,8 @@ class MyTabs extends React.Component {
             navigateTo="DashboardTab"
           />
           <TabBarButton
-            title="Prylbank"
-            disabled={this.props.navigation.state.index === 1}
-            navigation={this.props.navigation}
-            navigateTo="AssetTrackerTab"
-          />
-          <TabBarButton
             title="Profil"
-            disabled={this.props.navigation.state.index === 2}
+            disabled={this.props.navigation.state.index === 1}
             navigation={this.props.navigation}
             navigateTo="ProfileTab"
           />
@@ -68,9 +61,6 @@ const MyTabNavigator = TabNavigator(
       screen: ({ navigation }) => (
         <Dashboard navigation={navigation} extraScrollViewPadding={80} />
       )
-    },
-    AssetTrackerTab: {
-      screen: AssetList
     },
     ProfileTab: {
       screen: Profile

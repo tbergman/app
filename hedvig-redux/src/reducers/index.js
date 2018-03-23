@@ -4,7 +4,6 @@ import insuranceReducer from "./insurance"
 import chatReducer from "./chat"
 import mockedChatReducer from "./mock/chat"
 import authenticationReducer from "./authentication"
-import assetTrackerReducer from "./assetTracker"
 import userReducer from "./user"
 import cashbackReducer from "./cashback"
 import dialogReducer from "./dialog"
@@ -21,7 +20,6 @@ const rootReducer = (additionalReducers = {}) =>
         chat: chatReducer,
         mockedChat: mockedChatReducer,
         authentication: authenticationReducer,
-        assetTracker: assetTrackerReducer,
         user: userReducer,
         cashback: cashbackReducer,
         dialog: dialogReducer,

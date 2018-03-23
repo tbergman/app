@@ -8,7 +8,6 @@ import Chat from "../../containers/Chat"
 import ChatModal from "../../containers/navigation/ChatModal"
 import { Carousel } from "../Carousel"
 import { MyTabNavigator } from "./tabs"
-import AddEditAsset from "../../containers/asset-tracker/AddEditAsset"
 import Payment from "../../features/payment"
 
 const styles = StyleSheet.create({
@@ -24,9 +23,6 @@ const HomeBaseNavigator = StackNavigator(
     },
     Carousel: {
       screen: Carousel
-    },
-    AddEditAsset: {
-      screen: AddEditAsset
     },
     Payment: {
       screen: Payment
