@@ -53,7 +53,7 @@ class Offer extends React.Component {
             ))}
           </View>
           <OfferFooter insuranceType={this.props.insurance.insuranceType} />
-          <StyledPassiveText style={{paddingLeft: 24, paddingRight: 18, paddingBottom: 160}}>
+          <StyledPassiveText style={{paddingLeft: 24, paddingRight: 18, paddingBottom: 170}}>
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
             <TextLink to={this.props.insurance.presaleInformationUrl}>förköpsinformation</TextLink>,
             Hedvigs <TextLink to={this.props.insurance.policyUrl}>försäkringsvillkor</TextLink> och att mina personuppgifter&nbsp;

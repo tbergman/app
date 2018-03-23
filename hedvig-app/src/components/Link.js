@@ -9,8 +9,7 @@ const TextLink = ({ to, children }) => (
       textDecorationLine: "underline",
       lineHeight: 24,
     }}
-    onPress={() => Linking.openURL(to)}
-  >
+    onPress={() => Linking.openURL(to)}>
     {children}
   </Text>
 )
