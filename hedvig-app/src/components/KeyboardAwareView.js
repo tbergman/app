@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { KeyboardAvoidingView, StyleSheet, Platform } from "react-native"
+import { KeyboardAvoidingView, StyleSheet } from "react-native"
 import { Constants } from "expo"
 
 const styles = StyleSheet.create({
