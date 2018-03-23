@@ -7,14 +7,17 @@ import { PerilsCategory } from "./PerilsCategory"
 
 import { RoundedButton } from "../Button"
 import {
+  StyledDashboardHeaderOffWhite,
+  StyledDashboardHeaderRowLessMargin,
+  StyledDashboardHeaderItem,
   StyledDashboardContainer,
   StyledCategoriesContainer,
   StyledCheckoutButton,
   StyledDashboardHeaderIcon,
   StyledConditionRow
 } from "../styles/dashboard"
-import { StyledPassiveText } from "../styles/text"
-import DashboardHeader from "./DashboardHeader"
+import { StyledPassiveText, StyledHeading } from "../styles/text"
+
 import { INSURANCE_TYPES } from "../../constants"
 
 export default class Dashboard extends React.Component {
@@ -74,20 +77,20 @@ export default class Dashboard extends React.Component {
     }[this.props.insurance.status]
   }
 
-  header() {
-    return (
-      <DashboardHeader
-        statusIcon={this.statusIcon.bind(this)}
-        statusText={this.statusText.bind(this)}
-      />
-    )
-  }
-
   render() {
     return (
       <StyledDashboardContainer style={{ flex: 1 }}>
-        {this.header()}
         <ScrollView style={{ flex: 1 }}>
+          <StyledDashboardHeaderOffWhite>
+            <StyledDashboardHeaderRowLessMargin>
+              <StyledHeading>Min hemförsäkring</StyledHeading>
+              <StyledDashboardHeaderItem>
+                {this.statusIcon()}
+                <StyledPassiveText>{this.statusText()}</StyledPassiveText>
+              </StyledDashboardHeaderItem>
+            </StyledDashboardHeaderRowLessMargin>
+          </StyledDashboardHeaderOffWhite>
+
           {this.renderCategories()}
 
           <View>

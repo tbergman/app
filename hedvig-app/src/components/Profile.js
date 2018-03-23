@@ -193,19 +193,19 @@ export default class Profile extends React.Component {
   render() {
     return (
       <StyledProfileContainer>
-        <StyledListHeader>
-          <StyledCharityImage
-            source={{ uri: this.props.user.selectedCashbackImageUrl }}
-            resizeMode="center"
-          />
-          <StyledCharityParagraph>
-            {this.props.user.selectedCashbackParagraph}
-          </StyledCharityParagraph>
-          <StyledCharitySignature>
-            {this.props.user.selectedCashbackSignature}
-          </StyledCharitySignature>
-        </StyledListHeader>
         <StyledList>
+          <StyledListHeader>
+            <StyledCharityImage
+              source={{ uri: this.props.user.selectedCashbackImageUrl }}
+              resizeMode="center"
+            />
+            <StyledCharityParagraph>
+              {this.props.user.selectedCashbackParagraph}
+            </StyledCharityParagraph>
+            <StyledCharitySignature>
+              {this.props.user.selectedCashbackSignature}
+            </StyledCharitySignature>
+          </StyledListHeader>
           {this._maybeUserInfo()}
           <RoundedButton title="Logga ut" onPress={() => this.props.logout()} style={{marginTop: 8, marginBottom: 24}}/>
         </StyledList>
