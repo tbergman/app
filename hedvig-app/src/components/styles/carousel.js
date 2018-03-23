@@ -20,11 +20,6 @@ export const StyledImageCarouselContainer = styled.View`
   height: 185px;
 `;
 
-export const StyledCarouselImage = styled.Image`
-  height: 185px;
-  width: ${props => props.width};
-`;
-
 export const StyledCarouselHeading = MerriweatherFontText.extend`
   font-size: 24px;
   text-align: center;

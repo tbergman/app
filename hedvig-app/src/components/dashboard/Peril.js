@@ -1,11 +1,6 @@
 /* global require */
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import {
-  StyledPeril,
-  StyledPerilIcon,
-  StyledPerilTitle,
-} from '../styles/dashboard';
+import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 
 const meLegalTrouble = require('../../../assets/icons/perils/perilIcos/jag_juridisk_tvist.png');
 const meAssault = require('../../../assets/icons/perils/perilIcos/jag_overfall.png');
@@ -64,9 +59,26 @@ const PERIL_IMAGE_MAP = {
   'STUFF.SUBLET.RENT.WEATHER': stuffWeather,
 };
 
+const styles = StyleSheet.create({
+  container: {
+    width: 50,
+    marginLeft: 22,
+    alignItems: 'center',
+  },
+  icon: {
+    width: 40,
+    height: 40,
+  },
+  title: {
+    fontFamily: 'circular',
+    fontSize: 12,
+    color: '#9B9BAA',
+    textAlign: 'center',
+  },
+});
+
 export class Peril extends React.Component {
   render() {
-    let peril = this.props.peril;
     return (
       <TouchableOpacity
         onPress={() =>
@@ -81,10 +93,13 @@ export class Peril extends React.Component {
           })
         }
       >
-        <StyledPeril>
-          <StyledPerilIcon source={PERIL_IMAGE_MAP[peril.id]} />
-          <StyledPerilTitle>{peril.title}</StyledPerilTitle>
-        </StyledPeril>
+        <View style={styles.container}>
+          <Image
+            source={PERIL_IMAGE_MAP[this.props.peril.id]}
+            style={styles.icon}
+          />
+          <Text style={styles.title}>{this.props.peril.title}</Text>
+        </View>
       </TouchableOpacity>
     );
   }

@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { StyledSmallPassiveText } from './text';
 
 export const StyledDashboardContainer = styled.View`
   flex: 1;
@@ -113,21 +112,6 @@ export const StyledCheckoutButton = styled.View`
   left: 0;
   right: 0;
   bottom: 32px;
-`;
-
-export const StyledPeril = styled.View`
-  width: 50px;
-  margin-left: 22px;
-  align-items: center;
-`;
-
-export const StyledPerilTitle = StyledSmallPassiveText.extend`
-  text-align: center;
-`;
-
-export const StyledPerilIcon = styled.Image`
-  width: 40px;
-  height: 40px;
 `;
 
 export const StyledConditionRow = styled.View`
