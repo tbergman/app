@@ -20,11 +20,14 @@ export const StyledImageCarouselContainer = styled.View`
   height: 185px;
 `;
 
+<<<<<<< HEAD
 export const StyledCarouselImage = styled.Image`
   height: 185px;
   width: ${props => props.width};
 `;
 
+=======
+>>>>>>> a4a86bd... Fix peril icons not always loading in carousel
 export const StyledCarouselHeading = MerriweatherFontText.extend`
   font-size: 24px;
   text-align: center;

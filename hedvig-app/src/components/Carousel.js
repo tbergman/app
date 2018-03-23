@@ -1,23 +1,27 @@
-import React from 'react';
-import { View, Dimensions, BackHandler } from 'react-native';
-import { WebBrowser } from 'expo';
-import { default as SnapCarousel } from 'react-native-snap-carousel';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import React from "react"
+import {
+  View,
+  Dimensions,
+  BackHandler,
+  Image,
+} from "react-native"
+import { WebBrowser } from "expo"
+import { default as SnapCarousel } from "react-native-snap-carousel"
+import { connect } from "react-redux"
+import { NavigationActions } from "react-navigation"
 import {
   StyledCarouselContainer,
   StyledAlignedCarouselItems,
   StyledImageCarouselContainer,
-  StyledCarouselImage,
   StyledCarouselHeading,
   StyledCarouselTexts,
   StyledCarouselParagraph,
-  StyledParagraphToggleContainer,
-} from './styles/carousel';
-import { NavigateBackButton, TextButton } from './Button';
-import { NavBar } from './NavBar';
-const deviceWidth = Dimensions.get('window').width;
-const itemWidth = 186;
+  StyledParagraphToggleContainer
+} from "./styles/carousel"
+import { NavigateBackButton, TextButton } from "./Button"
+import { NavBar } from "./NavBar"
+const deviceWidth = Dimensions.get("window").width
+const perilContainerSize = 185
 
 class Carousel extends React.Component {
   navParams = this.props.navigation.state.params;
@@ -43,13 +47,18 @@ class Carousel extends React.Component {
 
   _renderItem({ item }) {
     return (
-      <StyledCarouselImage
-        source={item.imageUrl ? { uri: item.imageUrl } : item.itemSrc}
-        width={itemWidth}
-        height={itemWidth}
-        resizeMode="contain"
-      />
-    );
+      <View>
+        <Image
+          style={{
+            height: perilContainerSize,
+            width: perilContainerSize,
+          }}
+          source={item.itemSrc}
+          resizeMode="center"
+          key={item.id}
+        />
+      </View>
+    )
   }
 
   getItem() {
@@ -116,14 +125,13 @@ class Carousel extends React.Component {
         <StyledAlignedCarouselItems>
           <StyledImageCarouselContainer>
             <SnapCarousel
-              ref={c => {
-                this._carousel = c;
-              }}
               data={this.items}
               renderItem={this._renderItem}
               sliderWidth={deviceWidth}
-              itemWidth={itemWidth}
+              sliderHeight={perilContainerSize}
+              itemWidth={perilContainerSize}
               firstItem={this.state.slideIndex}
+              removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
               onSnapToItem={slideIndex => {
                 this.setState({ slideIndex, showFullDescription: false });
               }}

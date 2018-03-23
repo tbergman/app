@@ -5,13 +5,39 @@ exports[`<Peril /> Should render correctly 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <Styled(View)>
-    <Styled(Image)
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginLeft": 22,
+        "width": 50,
+      }
+    }
+  >
+    <Image
       source={1}
+      style={
+        Object {
+          "height": 40,
+          "width": 40,
+        }
+      }
     />
-    <Styled(Text)>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#9B9BAA",
+          "fontFamily": "circular",
+          "fontSize": 12,
+          "textAlign": "center",
+        }
+      }
+    >
       Juridisk tvist
-    </Styled(Text)>
-  </Styled(View)>
+    </Text>
+  </View>
 </TouchableOpacity>
 `;
