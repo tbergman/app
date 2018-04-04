@@ -12,7 +12,7 @@ export default class VideoExample extends React.Component {
       <VideoPlayer file={this.state.recordedFile} />
     ) : (
       <VideoCamera
-        onFinishedRecording={recordedFile =>
+        onFinishedRecording={(recordedFile) =>
           this.setState({
             recordedFile,
           })

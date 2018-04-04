@@ -6,13 +6,13 @@ import * as typography from './typography';
 // Regular text messages
 
 export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
-  color: ${props => props.theme.colors.hedvigMessageText};
-  font-size: ${props => props.theme.typography.hedvigMessage.fontSize};
+  color: ${(props) => props.theme.colors.hedvigMessageText};
+  font-size: ${(props) => props.theme.typography.hedvigMessage.fontSize};
 `;
 
 export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
-  color: ${props => props.theme.colors.white};
-  font-size: ${props => props.theme.typography.userMessage.fontSize};
+  color: ${(props) => props.theme.colors.white};
+  font-size: ${(props) => props.theme.typography.userMessage.fontSize};
 `;
 
 export const StyledChatMessage = styled.View`
@@ -20,7 +20,7 @@ export const StyledChatMessage = styled.View`
   padding: 12px 12px;
   border-radius: 8px;
   max-width: 88%;
-  background: ${props => props.theme.colors.hedvigMessageBackground};
+  background: ${(props) => props.theme.colors.hedvigMessageBackground};
   margin-bottom: 8px;
 `;
 
@@ -54,8 +54,8 @@ export class AnimatedStyledChatMessage extends React.Component {
 export const StyledUserChatMessage = styled.View`
   margin-bottom: 8px;
   padding: 8px 16px;
-  background-color: ${props => props.theme.colors.primary};
-  border-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.primary};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
   align-items: center;
@@ -77,7 +77,7 @@ export const StyledAvatarContainer = styled.View`
 
 export const StyledMarginContainer = styled.View`
   margin: 0px 16px 40px 16px;
-  flex-direction: ${props => (props.wrap ? 'row' : 'column')};
+  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
   justify-content: flex-end;
   flex-wrap: wrap;
 `;
@@ -93,7 +93,7 @@ export const StyledRightAlignedOptions = styled.View`
 
 export const StyledOptionsContainer = styled.View`
   margin-bottom: 8px;
-  flex-direction: ${props => (props.wrap ? 'row' : 'column')};
+  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
   justify-content: flex-end;
   flex-wrap: wrap;
 `;
@@ -110,14 +110,14 @@ export const StyledTextInputContainer = styled.View`
 export const StyledTextInput = styled.TextInput`
   flex: 1;
   align-self: stretch;
-  height: ${props => props.theme.input.default.height};
+  height: ${(props) => props.theme.input.default.height};
   padding: 10px 16px;
   margin-right: 8px;
-  background-color: ${props => props.theme.colors.white};
-  border-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.white};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
-  font-size: ${props => props.theme.typography.input.fontSize};
+  font-size: ${(props) => props.theme.typography.input.fontSize};
   overflow: hidden;
 `;
 
@@ -132,11 +132,11 @@ export const StyledFakeTextInput = styled.View`
   flex: 1;
   align-self: stretch;
   justify-content: center;
-  height: ${props => props.theme.input.default.height};
+  height: ${(props) => props.theme.input.default.height};
   padding: 10px 16px;
   margin-right: 8px;
-  background-color: ${props => props.theme.colors.white};
-  border-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.white};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
 `;
@@ -145,16 +145,16 @@ export const TouchableStyledFakeTextInput = styled.TouchableOpacity`
   flex: 1;
   align-self: stretch;
   justify-content: center;
-  height: ${props => props.theme.input.default.height};
+  height: ${(props) => props.theme.input.default.height};
   padding: 10px 16px;
   margin-right: 8px;
-  background-color: ${props => props.theme.colors.white};
-  border-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.white};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
 `;
 
 export const StyledFakeTextInputText = styled.Text`
-  font-size: ${props => props.theme.typography.input.fontSize};
-  color: ${props => props.theme.typography.activeText.color};
+  font-size: ${(props) => props.theme.typography.input.fontSize};
+  color: ${(props) => props.theme.typography.activeText.color};
 `;

@@ -4,7 +4,7 @@ import { MerriweatherFontText, CircularFontText } from './typography';
 export const DialogContainer = styled.View`
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 8px;
 `;
 
@@ -34,12 +34,12 @@ export const StyledDialogButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   border-top-width: 1px;
-  border-top-color: ${props => props.theme.colors.offWhite};
-  border-right-width: ${props => (props.borderRight ? '1px' : '0')}
-  border-right-color: ${props => props.theme.colors.offWhite};
+  border-top-color: ${(props) => props.theme.colors.offWhite};
+  border-right-width: ${(props) => (props.borderRight ? '1px' : '0')}
+  border-right-color: ${(props) => props.theme.colors.offWhite};
 `;
 
 export const StyledDialogButtonText = CircularFontText.extend`
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   font-size: 16px;
 `;

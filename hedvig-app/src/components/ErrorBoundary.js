@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 const mailTo = async (email, subject = '') => {
   const url = `mailto:${email}?subject=${encodeURIComponent(subject)}}`;
   Linking.canOpenURL(url)
-    .then(supported => {
+    .then((supported) => {
       if (supported) {
         return Linking.openURL(url);
       }

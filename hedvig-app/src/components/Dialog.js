@@ -94,7 +94,7 @@ export default class Dialog extends React.Component {
     let width = window.width - 2 * theme.mobile.margin.big;
     return (
       <PopupDialog
-        ref={popupDialog => {
+        ref={(popupDialog) => {
           this.popupDialog = popupDialog;
         }}
         dismissOnTouchOutside={false}

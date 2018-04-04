@@ -11,13 +11,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     selectChoice: (message, choice) =>
       dispatch(chatActions.selectChoice(message, choice)),
-    done: message => dispatch(chatActions.sendChatResponse(message)),
+    done: (message) => dispatch(chatActions.sendChatResponse(message)),
     goToDashboard: () => dispatch(showDashboardAction()),
-    startTrustly: id =>
+    startTrustly: (id) =>
       dispatch(
         NavigationActions.navigate({
           routeName: 'Payment',

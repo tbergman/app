@@ -127,7 +127,7 @@ class Carousel extends React.Component {
               itemWidth={perilContainerSize}
               firstItem={this.state.slideIndex}
               removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
-              onSnapToItem={slideIndex => {
+              onSnapToItem={(slideIndex) => {
                 this.setState({ slideIndex, showFullDescription: false });
               }}
             />
@@ -146,6 +146,6 @@ class Carousel extends React.Component {
   }
 }
 
-const ConnectedCarousel = connect(state => ({ nav: state.nav }))(Carousel);
+const ConnectedCarousel = connect((state) => ({ nav: state.nav }))(Carousel);
 
 export { ConnectedCarousel as Carousel };

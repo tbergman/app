@@ -42,7 +42,7 @@ class Payment extends React.Component {
     this.props.goBack();
   };
 
-  handleAllDeepLinks = event => {
+  handleAllDeepLinks = (event) => {
     if (event.url.match('trustly/payment-success')) {
       this.props.onPaymentSuccess();
     } else if (event.url.match('trustly/payment-failure')) {
@@ -70,11 +70,11 @@ class Payment extends React.Component {
 }
 
 export default connect(
-  state => ({
+  (state) => ({
     url: state.payment.url,
   }),
-  dispatch => ({
-    requestPaymentRegistration: id =>
+  (dispatch) => ({
+    requestPaymentRegistration: (id) =>
       dispatch({
         type: 'PAYMENT/REQUEST_PAYMENT_REGISTRATION',
         payload: { id },

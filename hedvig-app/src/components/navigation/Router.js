@@ -35,7 +35,11 @@ class BaseRouter extends React.Component {
   }
 
   async _doRedirection() {
-    if (this.props.hasRedirected || !this.props.insurance || !this.props.insurance.status) {
+    if (
+      this.props.hasRedirected ||
+      !this.props.insurance ||
+      !this.props.insurance.status
+    ) {
       return;
     }
 
@@ -64,7 +68,9 @@ class BaseRouter extends React.Component {
   async componentDidMount() {
     if (this.props.hasRedirected) return;
 
-    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(SEEN_MARKETING_CAROUSEL_KEY);
+    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
+      SEEN_MARKETING_CAROUSEL_KEY,
+    );
 
     if (!alreadySeenMarketingCarousel) {
       this.props.redirectToRoute({ routeName: 'Marketing' });

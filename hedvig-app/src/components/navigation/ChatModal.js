@@ -15,9 +15,12 @@ const VIEW_MAPPING = {
 */
 
 const ChatModal = ({ navigation }) => {
-  let content = React.createElement(VIEW_MAPPING[navigation.state.params.link.view], {
-    navigation,
-  });
+  let content = React.createElement(
+    VIEW_MAPPING[navigation.state.params.link.view],
+    {
+      navigation,
+    },
+  );
   return <View style={{ flex: 1, alignSelf: 'stretch' }}>{content}</View>;
 };
 

@@ -1,6 +1,12 @@
 /* global require */
 import React from 'react';
-import { View, ScrollView, ImageBackground, Dimensions, AsyncStorage } from 'react-native';
+import {
+  View,
+  ScrollView,
+  ImageBackground,
+  Dimensions,
+  AsyncStorage,
+} from 'react-native';
 import { NavBar } from '../NavBar';
 import { StyledButtonContainer, StyledCtaContainer } from '../styles/offer';
 import { TurquoiseRoundedInvertedButton, XNavigateBackButton } from '../Button';
@@ -30,7 +36,11 @@ class Offer extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignSelf: 'stretch' }}>
-        <NavBar headerLeft={<XNavigateBackButton onPress={() => this.props.closeModal()} />} />
+        <NavBar
+          headerLeft={
+            <XNavigateBackButton onPress={() => this.props.closeModal()} />
+          }
+        />
         <ScrollView style={{ backgroundColor: '#F9FAFC' }}>
           <OfferDashboardHeader
             newTotalPrice={this.props.insurance.newTotalPrice}
@@ -50,12 +60,20 @@ class Offer extends React.Component {
             ))}
           </View>
           <OfferFooter insuranceType={this.props.insurance.insuranceType} />
-          <StyledPassiveText style={{ paddingLeft: 24, paddingRight: 18, paddingBottom: 170 }}>
+          <StyledPassiveText
+            style={{ paddingLeft: 24, paddingRight: 18, paddingBottom: 170 }}
+          >
             Genom att trycka bli medlem bekräftar jag att jag tagit del av&nbsp;
-            <TextLink to={this.props.insurance.presaleInformationUrl}>förköpsinformation</TextLink>,
-            Hedvigs <TextLink to={this.props.insurance.policyUrl}>försäkringsvillkor</TextLink> och
-            att mina personuppgifter&nbsp; behandlas i enlighet med&nbsp;
-            <TextLink to={HEDVIG_INTEGRITET_S3_LINK}>Personuppgiftslagen</TextLink>.
+            <TextLink to={this.props.insurance.presaleInformationUrl}>
+              förköpsinformation
+            </TextLink>, Hedvigs{' '}
+            <TextLink to={this.props.insurance.policyUrl}>
+              försäkringsvillkor
+            </TextLink>{' '}
+            och att mina personuppgifter&nbsp; behandlas i enlighet med&nbsp;
+            <TextLink to={HEDVIG_INTEGRITET_S3_LINK}>
+              Personuppgiftslagen
+            </TextLink>.
           </StyledPassiveText>
         </ScrollView>
         <StyledCtaContainer>

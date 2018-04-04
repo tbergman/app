@@ -26,13 +26,13 @@ export const StyledCtaContainer = styled.View`
 
 export const StyledPriceText = CircularFontText.extend`
   font-size: 20px;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   background-color: transparent;
 `;
 
 export const StyledPriceComment = CircularFontText.extend`
   font-size: 16px;
-  color: ${props => props.theme.colors.blackPurple}
+  color: ${(props) => props.theme.colors.blackPurple}
   margin-top: 8px;
   margin-bottom: 16px;
   background-color: transparent;

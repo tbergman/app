@@ -84,7 +84,7 @@ export class Peril extends React.Component {
         onPress={() =>
           this.props.navigation.navigate('Carousel', {
             title: this.props.categoryTitle,
-            items: this.props.categoryPerils.map(i => ({
+            items: this.props.categoryPerils.map((i) => ({
               ...i,
               imageUrl: undefined,
               itemSrc: PERIL_IMAGE_MAP[i.id],

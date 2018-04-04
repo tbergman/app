@@ -9,8 +9,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  startCollecting: referenceId =>
+const mapDispatchToProps = (dispatch) => ({
+  startCollecting: (referenceId) =>
     dispatch({ type: types.BANKID_COLLECT, payload: { referenceId } }),
 });
 

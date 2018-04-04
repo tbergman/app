@@ -8,11 +8,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onChoiceSelected: (message, choice) =>
       dispatch(chatActions.selectChoice(message, choice)),
-    done: message => dispatch(chatActions.sendChatResponse(message)),
+    done: (message) => dispatch(chatActions.sendChatResponse(message)),
   };
 };
 

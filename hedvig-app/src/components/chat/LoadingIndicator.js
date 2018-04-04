@@ -26,7 +26,7 @@ export default class LoadingIndicator extends React.Component {
           }}
         >
           <Lottie
-            ref={animation => (animation ? animation.play() : null)}
+            ref={(animation) => (animation ? animation.play() : null)}
             style={{
               height: this.props.avatar.height,
               width: this.props.avatar.width,

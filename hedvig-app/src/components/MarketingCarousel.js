@@ -332,7 +332,7 @@ export default class MarketingCarousel extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     login: () => {
       dispatch({

@@ -9,11 +9,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onChange: (message, value) =>
       dispatch(chatActions.setResponseValue(message, value)),
-    send: message =>
+    send: (message) =>
       dispatch(
         chatActions.sendChatResponse(message, {
           text: message._inputValue,

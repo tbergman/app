@@ -26,7 +26,9 @@ const inputComponentMap = (lastIndex, navigation) => ({
   single_select: (
     <SingleSelectInput
       messageIndex={lastIndex}
-      launchModal={choice => navigation.navigate('ChatModal', { link: choice })}
+      launchModal={(choice) =>
+        navigation.navigate('ChatModal', { link: choice })
+      }
     />
   ),
   date_picker: <DateInput messageIndex={lastIndex} />,
@@ -58,7 +60,7 @@ class UnconnectedPollingMessage extends React.Component {
   }
 }
 
-const PollingMessage = connect(undefined, dispatch => ({
+const PollingMessage = connect(undefined, (dispatch) => ({
   startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
   stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
 }))(UnconnectedPollingMessage);

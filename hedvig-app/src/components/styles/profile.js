@@ -3,7 +3,7 @@ import { StyledText, StyledPassiveText } from './text';
 
 export const StyledProfileContainer = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 export const StyledCharityImage = styled.Image`

@@ -6,7 +6,7 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onPress: () =>
       dispatch(

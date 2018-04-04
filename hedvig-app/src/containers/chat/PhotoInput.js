@@ -9,13 +9,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     upload: (message, info) =>
       dispatch(
         uploadActions.upload({
           body: info,
-          successActionCreator: url =>
+          successActionCreator: (url) =>
             chatActions.sendChatResponse(message, {
               type: 'photo_upload',
               text: url,

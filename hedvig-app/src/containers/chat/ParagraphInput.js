@@ -8,9 +8,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    startPolling: pollingInterval =>
+    startPolling: (pollingInterval) =>
       dispatch({
         type: types.START_POLLING_MESSAGES,
         payload: { pollingInterval },

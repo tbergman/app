@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     showPermissionDialog: () =>
       dispatch(
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         uploadActions.upload({
           body: info,
-          successActionCreator: url =>
+          successActionCreator: (url) =>
             chatActions.sendChatResponse(message, {
               type: 'audio',
               url,

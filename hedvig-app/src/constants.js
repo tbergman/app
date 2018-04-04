@@ -5,7 +5,8 @@ export const INSURANCE_TYPES = {
   SUBLET_RENT: 'SUBLET_RENT',
 };
 
-export const SEEN_MARKETING_CAROUSEL_KEY = '@hedvig:alreadySeenMarketingCarousel';
+export const SEEN_MARKETING_CAROUSEL_KEY =
+  '@hedvig:alreadySeenMarketingCarousel';
 
 // Duplicated in hedvig-redux/src/sagas
 // Fix when merging hedvig-redux into app src

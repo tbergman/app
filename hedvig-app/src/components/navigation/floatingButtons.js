@@ -58,6 +58,6 @@ const FloatingChatButtonComponent = ({ dispatch, insurance }) => {
   }
 };
 
-export const FloatingChatButton = connect(state => ({
+export const FloatingChatButton = connect((state) => ({
   insurance: state.insurance,
 }))(FloatingChatButtonComponent);
