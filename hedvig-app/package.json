@@ -29,7 +29,8 @@
     "test:watch": "yarn run test -- --watch",
     "deploy": "exp publish --non-interactive",
     "lint": "eslint src --max-warnings 0",
-    "postinstall": "rndebugger-open"
+    "postinstall": "rndebugger-open",
+    "format": "prettier-eslint --write \"src/**/*.js\""
   },
   "jest": {
     "preset": "jest-expo",
@@ -46,6 +47,7 @@
     "enzyme-to-json": "^3.3.1",
     "expo": "^25.0.0",
     "moment": "^2.21.0",
+    "prettier-eslint-cli": "^4.7.1",
     "ramda": "^0.25.0",
     "raven-for-redux": "^1.3.0",
     "react": "16.2.0",
