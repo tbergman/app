@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const StyledDashboardContainer = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.colors.offWhite};
+  background-color: ${(props) => props.theme.colors.offWhite};
 `;
 
 export const StyledDashboardHeader = styled.View`
@@ -13,7 +13,7 @@ export const StyledDashboardHeader = styled.View`
 `;
 
 export const StyledDashboardHeaderOffWhite = StyledDashboardHeader.extend`
-  background-color: ${props => props.theme.colors.offWhite};
+  background-color: ${(props) => props.theme.colors.offWhite};
 `;
 
 export const StyledDashboardHeaderRow = styled.View`
@@ -27,7 +27,7 @@ export const StyledDashboardHeaderRowLessMargin = StyledDashboardHeaderRow.exten
 `;
 
 export const StyledDashboardHeaderRowGray = StyledDashboardHeaderRow.extend`
-  background-color: ${props => props.theme.colors.offWhite};
+  background-color: ${(props) => props.theme.colors.offWhite};
 `;
 
 export const StyledDashboardHeaderItem = styled.View`
@@ -47,7 +47,7 @@ export const StyledCategoriesContainer = styled.View`
 export const StyledCategoryContainer = styled.TouchableOpacity`
   margin-bottom: 8px;
   flex: 1;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
   padding-top: 16px;
   ${'' /* Drop shadow */} shadow-opacity: 0.2;
   shadow-radius: 2;
@@ -87,14 +87,14 @@ export const StyledCategoryTextAndButton = styled.View`
 `;
 
 export const StyledPerilsContainer = styled.View`
-  border-top-color: ${props => props.theme.colors.offWhite};
+  border-top-color: ${(props) => props.theme.colors.offWhite};
   border-top-width: 1px;
   padding: 16px 0px;
   flex-wrap: wrap;
 `;
 
 export const StyledPerilsHelpText = styled.View`
-  border-top-color: ${props => props.theme.colors.offWhite};
+  border-top-color: ${(props) => props.theme.colors.offWhite};
   border-top-width: 1px;
   height: 31px;
   justify-content: center;

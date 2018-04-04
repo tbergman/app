@@ -23,6 +23,6 @@ export const StyledCenteredRow = StyledRow.extend`
 `;
 
 export const StyledIcon = styled.Image`
-  width: ${props => props.width};
-  height: ${props => props.height};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;

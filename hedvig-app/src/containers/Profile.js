@@ -20,7 +20,7 @@ const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.currentUser,
     cashbackAlternatives: state.cashback.alternatives,
@@ -28,7 +28,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => dispatch(userActions.getCurrentUser()),
     getInsurance: () => dispatch(insuranceActions.getInsurance()),

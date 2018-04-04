@@ -1,9 +1,10 @@
+import { AsyncStorage } from 'react-native'
 import {
   API,
   EVENT,
   LOADED_MESSAGES,
 } from "../actions/types"
-import { take, takeEvery, put } from "redux-saga/effects"
+import { take, takeEvery, put, call } from "redux-saga/effects"
 import * as chatActions from "../actions/chat"
 
 const handleEvent = function*(action) {
@@ -35,8 +36,12 @@ const handleEvent = function*(action) {
       // yield put({ type: LOADING_MESSAGES_END, payload: {} })
     }
   }
+
+  yield call(AsyncStorage.removeItem, '@hedvig:isViewingOffer');
 }
 
+// Warning: Expected to only be used for the offer modal close event
+// Only Offer closeModal sends a type MODAL_CLOSED event
 const handleEventSaga = function*() {
   yield takeEvery(EVENT, handleEvent)
 }

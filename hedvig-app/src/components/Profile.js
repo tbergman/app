@@ -92,7 +92,8 @@ export default class Profile extends React.Component {
   }
 
   _safetyIncreasers() {
-    const ucFirst = string => string.charAt(0).toUpperCase() + string.slice(1);
+    const ucFirst = (string) =>
+      string.charAt(0).toUpperCase() + string.slice(1);
 
     if (this.props.user.safetyIncreasers) {
       return this._userRow({

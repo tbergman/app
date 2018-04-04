@@ -28,7 +28,7 @@ export default class AudioInput extends React.Component {
   };
 
   componentDidMount() {
-    Permissions.getAsync(Permissions.AUDIO_RECORDING).then(status =>
+    Permissions.getAsync(Permissions.AUDIO_RECORDING).then((status) =>
       this.setState({ permissionGranted: status.status === 'granted' }),
     );
   }

@@ -7,3 +7,7 @@ export const INSURANCE_TYPES = {
 
 export const SEEN_MARKETING_CAROUSEL_KEY =
   '@hedvig:alreadySeenMarketingCarousel';
+
+// Duplicated in hedvig-redux/src/sagas
+// Fix when merging hedvig-redux into app src
+export const IS_VIEWING_OFFER = '@hedvig:isViewingOffer';

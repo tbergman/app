@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Dashboard from '../../components/dashboard/Dashboard';
 import { insuranceActions, chatActions } from 'hedvig-redux';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     insurance: state.insurance,
     categories: state.insurance.categories,
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getInsurance: () => dispatch(insuranceActions.getInsurance()),
     checkout: () =>

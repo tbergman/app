@@ -16,8 +16,8 @@ const SingleSelectInput = ({
   startTrustly,
   launchModal = R.identity,
 }) => {
-  let anySelected = message.body.choices.some(choice => choice.selected);
-  let opts = message.body.choices.map(choice => {
+  let anySelected = message.body.choices.some((choice) => choice.selected);
+  let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
         <SingleSelectOptionButton

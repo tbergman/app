@@ -3,14 +3,14 @@ import Chat from '../components/Chat';
 import { chatActions, dialogActions } from 'hedvig-redux';
 import { showDashboardAction } from '../actions/baseNavigation';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
     insurance: state.insurance,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getMessages: () => dispatch(chatActions.getMessages()),
     resetConversation: () =>

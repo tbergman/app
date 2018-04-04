@@ -33,7 +33,7 @@ class ChatTextInput extends React.Component {
           keyboardType="numeric"
           value={message._inputValue || ''}
           underlineColorAndroid="transparent"
-          onChangeText={text => onChange(message, text)}
+          onChangeText={(text) => onChange(message, text)}
           onSubmitEditing={this._send}
         />
         <ButtonComponent onPress={this._send} />

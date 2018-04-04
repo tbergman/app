@@ -5,7 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import Dialog from '../../containers/Dialog';
 import { FloatingChatButton } from './floatingButtons';
 import Chat from '../../containers/Chat';
-import ChatModal from '../../containers/navigation/ChatModal';
+import ChatModal from '../../components/navigation/ChatModal';
 import { Carousel } from '../Carousel';
 import { MyTabNavigator } from './tabs';
 import Payment from '../../features/payment';

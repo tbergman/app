@@ -361,7 +361,7 @@ export const AnimationButton = ({
   return (
     <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
       <Lottie
-        ref={animation => {
+        ref={(animation) => {
           animation ? animation.play() : null;
         }}
         style={{

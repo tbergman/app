@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MessageList from '../../components/chat/MessageList';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
   };

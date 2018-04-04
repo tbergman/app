@@ -38,7 +38,7 @@ class ChatTextInput extends React.Component {
           placeholder="Skriv här..."
           value={message._inputValue || ''}
           underlineColorAndroid="transparent"
-          onChangeText={text => onChange(message, text)}
+          onChangeText={(text) => onChange(message, text)}
           autoGrow
           returnKeyType="send"
           enablesReturnKeyAutomatically

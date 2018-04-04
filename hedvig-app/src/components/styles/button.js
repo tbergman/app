@@ -8,29 +8,29 @@ export const StyledButton = styled.TouchableOpacity``;
 export const StyledDisabledButton = styled.View``;
 
 export const StyledButtonText = CircularFontText.extend`
-  color: ${props =>
+  color: ${(props) =>
     props.selected
       ? props.theme.colors.white
       : props.theme.button.textButton.color};
-  font-size: ${props => props.theme.button.textButton.fontSize};
+  font-size: ${(props) => props.theme.button.textButton.fontSize};
   background-color: transparent;
-  line-height: ${props => props.theme.button.textButton.fontSize + 4};
+  line-height: ${(props) => props.theme.button.textButton.fontSize + 4};
 `;
 
 export const StyledButtonTextInverted = CircularFontText.extend`
-  font-size: ${props => props.theme.button.textButton.fontSize};
-  color: ${props => props.theme.colors.white};
+  font-size: ${(props) => props.theme.button.textButton.fontSize};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 export const StyledButtonTextPrefix = StyledButtonText.extend`
-  color: ${props => props.theme.button.textButton.prefixColor};
+  color: ${(props) => props.theme.button.textButton.prefixColor};
 `;
 
 export const StyledRoundedButton = styled.TouchableOpacity`
-  min-height: ${props => props.theme.input.option.height};
+  min-height: ${(props) => props.theme.input.option.height};
   padding: 8px 16px;
-  background-color: ${props => props.theme.colors.white};
-  border-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.white};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
   align-items: center;
@@ -93,11 +93,11 @@ export const StyledTransparentButton = StyledRoundedButton.extend`
 `;
 
 export const StyledMultipleSelectOptionButton = styled.TouchableHighlight`
-  height: ${props => props.theme.input.default.height};
+  height: ${(props) => props.theme.input.default.height};
   padding: 10px 16px;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.selected ? props.theme.colors.primary : props.theme.colors.white};
-  border-color: ${props => props.theme.colors.primary};
+  border-color: ${(props) => props.theme.colors.primary};
   border-width: 1px;
   border-radius: 24px;
   align-items: center;
@@ -155,15 +155,15 @@ export class AnimatedStyledMultipleSelectOptionButton extends React.Component {
 }
 
 export const StyledRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.primary};
 `;
 
 export const StyledRedRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${props => props.theme.colors.red};
-  border-color: ${props => props.theme.colors.red};
+  background-color: ${(props) => props.theme.colors.red};
+  border-color: ${(props) => props.theme.colors.red};
 `;
 
 export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${props => props.theme.colors.turquoise};
-  border-color: ${props => props.theme.colors.turquoise};
+  background-color: ${(props) => props.theme.colors.turquoise};
+  border-color: ${(props) => props.theme.colors.turquoise};
 `;

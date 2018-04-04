@@ -43,7 +43,7 @@ export default class VideoCamera extends React.Component {
           quality: '480p',
           mute: true,
         })
-        .then(data => {
+        .then((data) => {
           this.props.onFinishedRecording(data);
         });
     }
@@ -61,7 +61,7 @@ export default class VideoCamera extends React.Component {
           <Camera
             style={{ flex: 1 }}
             type={this.state.type}
-            ref={ref => {
+            ref={(ref) => {
               this.camera = ref;
             }}
           >

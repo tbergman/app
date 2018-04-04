@@ -15,7 +15,7 @@ const WRAP_NUM_OPTIONS = 6;
 
 const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let anyOptionSelected = R.any(
-    choice => choice.selected,
+    (choice) => choice.selected,
     message.body.choices,
   );
   let sendButton = anyOptionSelected ? (
@@ -27,7 +27,7 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   ) : (
     <SendDisabledIconButton />
   );
-  let opts = message.body.choices.map(choice => {
+  let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
         <MultipleSelectOptionButton

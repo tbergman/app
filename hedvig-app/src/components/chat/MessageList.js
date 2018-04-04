@@ -21,7 +21,7 @@ import Avatar from '../../containers/chat/Avatar';
 import LoadingIndicator from '../../containers/chat/LoadingIndicator';
 import { theme } from 'hedvig-style';
 
-const renderImage = message => {
+const renderImage = (message) => {
   if (
     message.body.imageURL &&
     message.body.imageHeight &&
@@ -223,7 +223,7 @@ export default class MessageList extends React.Component {
       <ScrollView
         styles={styles.container}
         showsVerticalScrollIndicator={false}
-        ref={view => (this.ref = view)}
+        ref={(view) => (this.ref = view)}
         onContentSizeChange={() => this.ref.scrollToEnd()}
       >
         {renderMessages(this.props.messages)}

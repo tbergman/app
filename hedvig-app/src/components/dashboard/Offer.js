@@ -1,6 +1,12 @@
 /* global require */
 import React from 'react';
-import { View, ScrollView, ImageBackground, Dimensions } from 'react-native';
+import {
+  View,
+  ScrollView,
+  ImageBackground,
+  Dimensions,
+  AsyncStorage,
+} from 'react-native';
 import { NavBar } from '../NavBar';
 import { StyledButtonContainer, StyledCtaContainer } from '../styles/offer';
 import { TurquoiseRoundedInvertedButton, XNavigateBackButton } from '../Button';
@@ -9,6 +15,7 @@ import OfferDashboardHeader from '../dashboard/OfferDashboardHeader';
 import { StyledText, StyledPassiveText } from '../styles/text';
 import { TextLink } from '../Link';
 import OfferFooter from './OfferFooter';
+import { IS_VIEWING_OFFER } from '../../constants';
 
 const { width } = Dimensions.get('window');
 
@@ -18,6 +25,12 @@ const HEDVIG_INTEGRITET_S3_LINK =
 class Offer extends React.Component {
   componentWillMount() {
     this.props.getInsurance();
+  }
+
+  componentDidMount() {
+    // Routing to Offer view from BaseRouter when
+    // the app has been force closed and lost its state
+    AsyncStorage.setItem(IS_VIEWING_OFFER, 'true');
   }
 
   render() {

@@ -3,7 +3,7 @@ import { MerriweatherFontText, CircularFontText } from './typography';
 
 export const StyledCarouselContainer = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 export const StyledAlignedCarouselItems = styled.View`
@@ -29,7 +29,7 @@ export const StyledCarouselHeading = MerriweatherFontText.extend`
 
 export const StyledCarouselParagraph = CircularFontText.extend`
   font-size: 16px;
-  color: ${props => props.theme.typography.passiveText.color}
+  color: ${(props) => props.theme.typography.passiveText.color}
   text-align: center;
   margin: 0px 40px 40px 40px;
   line-height: 20px;

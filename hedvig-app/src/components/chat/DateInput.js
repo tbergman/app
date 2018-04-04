@@ -47,7 +47,7 @@ class DateInput extends React.Component {
               ? moment(message.body.date).toDate()
               : moment(message._inputValue).toDate()
           }
-          onDateChange={date => onChange(message, moment(date).toISOString())}
+          onDateChange={(date) => onChange(message, moment(date).toISOString())}
           // TODO: Fix layout to not use hard coded height
           style={{ height: 220 }}
         />

@@ -24,7 +24,7 @@ const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
 
 export const coveredPerils = (perils, title, navigation) => {
   return perils
-    .filter(peril => coveredStates.includes(peril.state))
+    .filter((peril) => coveredStates.includes(peril.state))
     .map((peril, index) => (
       <Peril
         peril={peril}
@@ -32,7 +32,7 @@ export const coveredPerils = (perils, title, navigation) => {
         navigation={navigation}
         categoryPerils={perils}
         categoryTitle={title}
-        perilIndex={perils.findIndex(p => p.id === peril.id)}
+        perilIndex={perils.findIndex((p) => p.id === peril.id)}
       />
     ));
 };
@@ -94,7 +94,7 @@ export class PerilsCategory extends React.Component {
   }
 }
 
-export const ExpandedPerilsCategory = props => (
+export const ExpandedPerilsCategory = (props) => (
   <View>
     <StyledPerilsContainer>
       <StyledPerilsRow>{props.children}</StyledPerilsRow>
