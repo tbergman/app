@@ -15,22 +15,10 @@ const VIEW_MAPPING = {
 */
 
 const ChatModal = ({ navigation }) => {
-  let content = React.createElement(
-    VIEW_MAPPING[navigation.state.params.link.view],
-    { navigation },
-  );
-  return (
-    <View style={{ flex: 1, alignSelf: 'stretch' }}>
-      {/* <Button
-        title="Close"
-        onPress={() => {
-          modalClosed()
-          navigation.goBack()
-        }}
-      /> */}
-      {content}
-    </View>
-  );
+  let content = React.createElement(VIEW_MAPPING[navigation.state.params.link.view], {
+    navigation,
+  });
+  return <View style={{ flex: 1, alignSelf: 'stretch' }}>{content}</View>;
 };
 
 export default ChatModal;

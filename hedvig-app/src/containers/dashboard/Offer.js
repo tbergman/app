@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Offer from '../../components/dashboard/Offer';
 import { insuranceActions, types, eventActions } from 'hedvig-redux';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     insurance: state.insurance,
     currentTotalPrice: state.insurance.currentTotalPrice,
@@ -33,7 +33,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
         ),
       );
-      ownProps.navigation.goBack();
+      ownProps.navigation.navigate({
+        routeName: 'ChatBase',
+      });
     },
     dispatch,
   };

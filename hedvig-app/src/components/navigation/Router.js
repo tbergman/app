@@ -5,7 +5,7 @@ import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
 import BaseNavigator from './base-navigator/BaseNavigator';
-import { SEEN_MARKETING_CAROUSEL_KEY } from '../../constants';
+import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../../constants';
 import { REDIRECTED_INITIAL_ROUTE } from '../../actions/router';
 
 const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
@@ -31,37 +31,43 @@ class BaseRouter extends React.Component {
 
     // Hooking up react-navigation + redux
     this.addListener = createReduxBoundAddListener('root');
+    this._doRedirection = this._doRedirection.bind(this);
   }
 
-  _redirectToRouteHelper(routeName) {
-    const { redirectToRoute } = this.props;
-    redirectToRoute(routeName);
-  }
-
-  _doRedirection = () => {
-    if (
-      this.props.hasRedirected ||
-      !this.props.insurance ||
-      !this.props.insurance.status
-    )
+  async _doRedirection() {
+    if (this.props.hasRedirected || !this.props.insurance || !this.props.insurance.status) {
       return;
+    }
 
     if (['ACTIVE', 'INACTIVE'].includes(this.props.insurance.status)) {
-      this._redirectToRouteHelper('HomeBase');
+      this.props.redirectToRoute({ routeName: 'HomeBase' });
     } else {
-      this._redirectToRouteHelper('ChatBase');
+      let isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
+
+      let action;
+      if (isViewingOffer) {
+        action = NavigationActions.navigate({
+          routeName: 'ChatModal',
+          params: {
+            link: { view: 'Offer' },
+          },
+        });
+      }
+
+      this.props.redirectToRoute({
+        routeName: 'ChatBase',
+        action,
+      });
     }
-  };
+  }
 
   async componentDidMount() {
     if (this.props.hasRedirected) return;
 
-    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
-      SEEN_MARKETING_CAROUSEL_KEY,
-    );
+    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(SEEN_MARKETING_CAROUSEL_KEY);
 
     if (!alreadySeenMarketingCarousel) {
-      this._redirectToRouteHelper('Marketing');
+      this.props.redirectToRoute({ routeName: 'Marketing' });
     }
 
     this._doRedirection();
@@ -90,14 +96,14 @@ const mapStateToProps = ({ insurance, router }, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    redirectToRoute: routeName => {
+    redirectToRoute: (options) => {
       dispatch({ type: REDIRECTED_INITIAL_ROUTE });
       return dispatch(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName })],
+          actions: [NavigationActions.navigate(options)],
         }),
       );
     },
