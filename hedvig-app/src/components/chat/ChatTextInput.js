@@ -40,6 +40,7 @@ class ChatTextInput extends React.Component {
           underlineColorAndroid="transparent"
           onChangeText={text => onChange(message, text)}
           autoGrow
+          multiline
           returnKeyType="send"
           enablesReturnKeyAutomatically
           blurOnSubmit
