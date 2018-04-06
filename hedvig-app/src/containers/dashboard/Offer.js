@@ -18,7 +18,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         type: types.CHECKOUT,
         payload: {},
       });
-      ownProps.navigation.goBack();
+      ownProps.navigation.navigate({
+        routeName: 'ChatBase',
+      });
     },
     closeModal: () => {
       dispatch(
