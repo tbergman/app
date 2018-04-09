@@ -49,7 +49,7 @@ class Carousel extends React.Component {
             width: perilContainerSize,
           }}
           source={item.itemSrc}
-          resizeMode="center"
+          resizeMode="contain"
           key={item.id}
         />
       </View>
