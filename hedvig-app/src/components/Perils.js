@@ -18,7 +18,7 @@ import { NavBar } from './NavBar';
 const deviceWidth = Dimensions.get('window').width;
 const perilContainerSize = 185;
 
-class Carousel extends React.Component {
+class Perils extends React.Component {
   navParams = this.props.navigation.state.params;
   items = this.navParams.items;
   renderCta = this.navParams.renderCta;
@@ -146,6 +146,6 @@ class Carousel extends React.Component {
   }
 }
 
-const ConnectedCarousel = connect((state) => ({ nav: state.nav }))(Carousel);
+const ConnectedPerils = connect((state) => ({ nav: state.nav }))(Perils);
 
-export { ConnectedCarousel as Carousel };
+export { ConnectedPerils as Perils };

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
+  AsyncStorage,
 } from 'react-native';
 import Expo from 'expo';
 
@@ -71,7 +72,11 @@ export class ErrorBoundary extends Component {
     this.setState({
       hasError: true,
     });
+
     this.props.raven.captureException(error, { extra: errorInfo });
+
+    // Clear persisted state, which could be corupt
+    AsyncStorage.clear();
   }
 
   render() {

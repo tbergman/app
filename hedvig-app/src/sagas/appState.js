@@ -10,8 +10,8 @@ const appStateChange = function*() {
     state.appState.lastState.match(/inactive|background/) &&
     state.appState.currentState === 'active'
   ) {
-    // Get messages
-    yield put(chatActions.getMessages());
+    const intent = state.conversation.intent;
+    yield put(chatActions.getMessages({ intent }));
     // If currently collecting bankid, resume
     if (state.bankid.currentlyCollecting) {
       yield put({

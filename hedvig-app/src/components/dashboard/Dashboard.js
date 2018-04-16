@@ -4,6 +4,7 @@ import { View, ScrollView } from 'react-native';
 
 import { HeaderRightChat } from '../NavBar';
 import { PerilsCategory } from './PerilsCategory';
+import { Loader } from '../Loader';
 
 import { RoundedButton } from '../Button';
 import {
@@ -46,8 +47,11 @@ export default class Dashboard extends React.Component {
   }
 
   maybeCheckoutButton() {
-    if (this.props.newTotalPrice !== null && this.props.mode !== 'offer') {
-      let prefix = `${this.props.newTotalPrice} kr`;
+    if (
+      this.props.insurance.newTotalPrice !== null &&
+      this.props.mode !== 'offer'
+    ) {
+      let prefix = `${this.props.insurance.newTotalPrice} kr`;
       return (
         <StyledCheckoutButton>
           <RoundedButton
@@ -78,6 +82,12 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+    // WARNING: Change this to loading state based on the request or something
+    // more robust
+    if (!this.props.categories || !this.props.categories.length) {
+      return <Loader />;
+    }
+
     return (
       <StyledDashboardContainer style={{ flex: 1 }}>
         <ScrollView style={{ flex: 1 }}>

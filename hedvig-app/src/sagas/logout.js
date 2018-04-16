@@ -1,5 +1,5 @@
-import { types } from 'hedvig-redux';
 import { AsyncStorage } from 'react-native';
+import { types } from 'hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { NavigationActions } from 'react-navigation';
 
@@ -27,7 +27,17 @@ const handleLogout = function*() {
   // Make sure the onboarding/marketing screens show after you restart app
   yield call(AsyncStorage.removeItem, SEEN_MARKETING_CAROUSEL_KEY);
 
-  yield put(NavigationActions.navigate({ routeName: 'Marketing' }));
+  yield put(
+    NavigationActions.reset({
+      index: 0,
+      key: null,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Marketing',
+        }),
+      ],
+    }),
+  );
 };
 
 const logoutSaga = function*() {

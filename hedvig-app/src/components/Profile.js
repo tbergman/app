@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Share } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { HeaderRightChat } from './NavBar';
 import {
   StyledProfileContainer,
@@ -25,11 +24,8 @@ import {
   ProfileBankAccountIcon,
   ProfileShareIcon,
 } from './Icon';
-import {
-  DisabledListNextButton,
-  RoundedButton,
-  TurquoiseRoundedInvertedButton,
-} from './Button';
+import { DisabledListNextButton, RoundedButton } from './Button';
+import { Loader } from './Loader';
 import 'moment/locale/sv';
 import * as R from 'ramda';
 
@@ -126,14 +122,6 @@ export default class Profile extends React.Component {
         title: 'Min välgörenhet',
         icon: <ProfileHeartIcon />,
         text: this.props.user.selectedCashback,
-        // Cashback click removed for now as we only have one cashback. Will be re-added later
-        // onPress: () =>
-        //   this.props.navigation.navigate("Carousel", {
-        //     items: this.props.cashbackAlternatives,
-        //     title: "Välgörenhet",
-        //     initialSlideIndex: 0,
-        //     renderCta: this._cashbackCarouselCta.bind(this)
-        //   })
       });
     }
   }
@@ -145,24 +133,6 @@ export default class Profile extends React.Component {
       text: 'Låt Hedvig förenkla vardagen för någon du bryr dig om',
       onPress: () => this._sharePressed(),
     });
-  }
-
-  _cashbackCarouselCta(item) {
-    if (item.selected) {
-      let title = item.charity ? 'Tack för ditt bidrag' : 'Ditt val';
-      return <TurquoiseRoundedInvertedButton title={title} disabled={true} />;
-    } else {
-      return (
-        <RoundedButton
-          title={`Stöd ${item.name}`}
-          onPress={() =>
-            this.props.updateCashback(item, () =>
-              NavigationActions.navigate({ routeName: 'ProfileTab' }),
-            )
-          }
-        />
-      );
-    }
   }
 
   _sharePressed() {
@@ -195,6 +165,12 @@ export default class Profile extends React.Component {
   }
 
   render() {
+    // WARNING: Change this to loading state based on the request or something
+    // more robust
+    if (!this.props.user || !this.props.user.address) {
+      return <Loader />;
+    }
+
     return (
       <StyledProfileContainer>
         <StyledList>

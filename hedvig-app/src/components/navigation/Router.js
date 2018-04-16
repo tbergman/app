@@ -1,9 +1,10 @@
 import React from 'react';
-import { AsyncStorage, StatusBar } from 'react-native';
+import { StatusBar, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
+import { insuranceActions } from 'hedvig-redux';
 import BaseNavigator from './base-navigator/BaseNavigator';
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../../constants';
 import { REDIRECTED_INITIAL_ROUTE } from '../../actions/router';
@@ -28,7 +29,6 @@ const ConnectedReduxBaseNavigator = connect(({ nav }, ownProps) => ({
 class BaseRouter extends React.Component {
   constructor(props) {
     super(props);
-
     // Hooking up react-navigation + redux
     this.addListener = createReduxBoundAddListener('root');
     this._doRedirection = this._doRedirection.bind(this);
@@ -44,25 +44,26 @@ class BaseRouter extends React.Component {
     }
 
     if (['ACTIVE', 'INACTIVE'].includes(this.props.insurance.status)) {
-      this.props.redirectToRoute({ routeName: 'HomeBase' });
+      this.props.redirectToRoute({ routeName: 'Account' });
     } else {
       let isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
 
       let action;
       if (isViewingOffer) {
         action = NavigationActions.navigate({
-          routeName: 'ChatModal',
-          params: {
-            link: { view: 'Offer' },
-          },
+          routeName: 'Offer',
         });
       }
 
       this.props.redirectToRoute({
-        routeName: 'ChatBase',
+        routeName: 'Conversation',
         action,
       });
     }
+  }
+
+  componentWillMount() {
+    this.props.getInsurance();
   }
 
   async componentDidMount() {
@@ -104,11 +105,13 @@ const mapStateToProps = ({ insurance, router }, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getInsurance: () => dispatch(insuranceActions.getInsurance()),
     redirectToRoute: (options) => {
       dispatch({ type: REDIRECTED_INITIAL_ROUTE });
       return dispatch(
         NavigationActions.reset({
           index: 0,
+          key: null,
           actions: [NavigationActions.navigate(options)],
         }),
       );

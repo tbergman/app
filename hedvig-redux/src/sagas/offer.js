@@ -1,9 +1,10 @@
+import { AsyncStorage } from 'react-native';
 import {
   API,
   CHECKOUT,
   LOADED_MESSAGES,
 } from "../actions/types"
-import { take, takeEvery, put } from "redux-saga/effects"
+import { call, take, takeEvery, put } from "redux-saga/effects"
 import * as chatActions from "../actions/chat"
 
 const handleCheckout = function*() {
@@ -20,6 +21,7 @@ const handleCheckout = function*() {
   yield take("INITIATE_CHECKOUT")
   yield put(chatActions.getMessages())
   yield take(LOADED_MESSAGES)
+  yield call(AsyncStorage.removeItem, '@hedvig:isViewingOffer');
   // yield put({ type: LOADING_MESSAGES_END, payload: {} })
 }
 

@@ -7,12 +7,19 @@ const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
     insurance: state.insurance,
+    intent: state.conversation.intent,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMessages: () => dispatch(chatActions.getMessages()),
+    getMessages: (intent) =>
+      dispatch(
+        chatActions.getMessages({
+          intent,
+        }),
+      ),
+    getAvatars: () => dispatch(chatActions.getAvatars()),
     resetConversation: () =>
       dispatch(
         dialogActions.showDialog({

@@ -5,8 +5,6 @@ import { insuranceActions, types, eventActions } from 'hedvig-redux';
 const mapStateToProps = (state) => {
   return {
     insurance: state.insurance,
-    currentTotalPrice: state.insurance.currentTotalPrice,
-    newTotalPrice: state.insurance.newTotalPrice,
   };
 };
 
@@ -19,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         payload: {},
       });
       ownProps.navigation.navigate({
-        routeName: 'ChatBase',
+        routeName: 'Conversation',
       });
     },
     closeModal: () => {
@@ -36,7 +34,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         ),
       );
       ownProps.navigation.navigate({
-        routeName: 'ChatBase',
+        routeName: 'Conversation',
       });
     },
     dispatch,

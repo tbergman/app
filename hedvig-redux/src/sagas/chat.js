@@ -86,16 +86,9 @@ const resetConversation = function*() {
     }
   })
   yield take("CHAT_RESET_REQUESTED")
-  yield put({
-    type: API,
-    payload: {
-      url: "/chat/start",
-      method: "POST",
-      SUCCESS: "CHAT_STARTED" // TODO No hardcoded actions
-    }
-  })
-  yield take("CHAT_STARTED")
-  yield put(chatActions.getMessages())
+  const state = yield select()
+  const intent = state.conversation.intent;
+  yield put(chatActions.getMessages({ intent }))
 }
 
 const resetConversationSaga = function*() {
@@ -132,7 +125,8 @@ const pollMessageHandler = function*(action) {
     yield put({ type: LOADING_MESSAGES_START, payload: {} })
     yield call(delay, pollingInterval)
 
-    yield put(chatActions.getMessages())
+    const intent = state.conversation.intent;
+    yield put(chatActions.getMessages({ intent }))
     yield take(LOADED_MESSAGES)
 
     // Decide whether to loop
