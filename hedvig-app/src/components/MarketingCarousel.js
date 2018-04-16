@@ -11,17 +11,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { Asset } from 'expo';
 import { connect } from 'react-redux';
-
-// Precache images
-Asset.loadAsync([
-  // require("../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png")
-  require('../../assets/onboarding/app-marketing-screen1.png'),
-  require('../../assets/onboarding/app-marketing-screen2.png'),
-  require('../../assets/onboarding/heart.png'),
-  require('../../assets/onboarding/hedvig_gang.png'),
-]);
 
 const fonts = {
   CIRCULAR: 'circular',
