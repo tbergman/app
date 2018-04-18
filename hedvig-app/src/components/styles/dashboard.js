@@ -104,7 +104,6 @@ export const StyledPerilsHelpText = styled.View`
 export const StyledPerilsRow = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 12px;
 `;
 
 export const StyledCheckoutButton = styled.View`

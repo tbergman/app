@@ -11,10 +11,10 @@ const appStateChange = function*() {
     state.appState.currentState === 'active'
   ) {
     // If currently collecting bankid, resume
-    if (state.bankid.currentlyCollecting) {
+    if (state.deprecatedBankId.currentlyCollecting) {
       yield put({
-        type: types.BANKID_COLLECT,
-        payload: { referenceId: state.bankid.referenceId },
+        type: types.DEPRECATED_BANKID_COLLECT,
+        payload: { referenceId: state.deprecatedBankId.referenceId },
       });
     }
   }

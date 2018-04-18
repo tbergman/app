@@ -77,8 +77,6 @@ export default class Profile extends React.Component {
       return this._userRow({
         title: 'Familjemedlemmar',
         text: R.join(', ', this.props.user.familyMembers),
-        // Disabled profile actions
-        // onPress: () => this.props.editFamilyMembers()
       });
     }
   }
@@ -97,14 +95,16 @@ export default class Profile extends React.Component {
   _safetyIncreasers() {
     const ucFirst = (string) =>
       string.charAt(0).toUpperCase() + string.slice(1);
+    const safetyIncreasers = R.join(
+      ', ',
+      this.props.user.safetyIncreasers || [],
+    );
 
-    if (this.props.user.safetyIncreasers) {
+    if (safetyIncreasers) {
       return this._userRow({
         title: 'Mina trygghetshöjare',
         icon: <ProfileLockIcon />,
-        text: ucFirst(R.join(', ', this.props.user.safetyIncreasers)),
-        // Disabled profile actions
-        // onPress: () => this.props.editSafetyIncreasers()
+        text: ucFirst(safetyIncreasers),
       });
     }
   }

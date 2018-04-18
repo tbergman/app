@@ -10,11 +10,11 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { Constants } from 'expo';
 
-import { ConnectedMarketingCarousel } from '../../MarketingCarousel';
+import { MarketingCarousel } from '../../../features/marketing/MarketingCarousel';
 import Dialog from '../../../containers/Dialog';
 import { FloatingChatButton } from '../floatingButtons';
 import Chat from '../../../containers/Chat';
-import Offer from '../../../containers/dashboard/Offer';
+import { OfferSwiper } from '../../../features/offer/OfferSwiper';
 import { Perils } from '../../Perils';
 import Payment from '../../../features/payment';
 import Dashboard from '../../../containers/dashboard/Dashboard';
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 const Loading = () => {
   return (
-    <View style={styles.loading}>
+    <View style={styles.flex}>
       <StatusBar hidden />
       <Loader />
     </View>
@@ -89,19 +89,32 @@ const ChatDialogContainer = ({ navigation }) => {
   );
 };
 
+const AppContainerWrapper = (Component) => {
+  return ({ navigation }) => {
+    return (
+      <View style={styles.container}>
+        <StatusBar />
+        <View style={styles.view}>
+          <Component navigation={navigation} />
+        </View>
+      </View>
+    );
+  };
+};
+
 const ConversationNavigator = StackNavigator(
   {
     Chat: {
-      screen: ChatDialogContainer,
+      screen: AppContainerWrapper(ChatDialogContainer),
     },
     Offer: {
-      screen: Offer,
+      screen: OfferSwiper,
     },
     Perils: {
-      screen: Perils,
+      screen: AppContainerWrapper(Perils),
     },
     Payment: {
-      screen: Payment,
+      screen: AppContainerWrapper(Payment),
     },
   },
   {
@@ -113,25 +126,6 @@ const ConversationNavigator = StackNavigator(
     },
   },
 );
-
-const AppContainer = ({ children }) => {
-  return (
-    <View style={styles.container}>
-      <StatusBar />
-      <View style={styles.view}>{children}</View>
-    </View>
-  );
-};
-
-const ConversationContainer = ({ navigation }) => {
-  return (
-    <AppContainer>
-      <ConversationNavigator navigation={navigation} />
-    </AppContainer>
-  );
-};
-
-ConversationContainer.router = ConversationNavigator.router;
 
 const TabBarButton = ({ title, isActive, navigation, navigateTo }) => {
   return (
@@ -222,13 +216,17 @@ NOTE: The order of the floating buttons vs the other components in the
 Chat and Account below affects whether the floating buttons are visible
 on Android!
 */
+
 const AccountContainer = ({ navigation }) => {
   return (
-    <AppContainer>
-      <AccountNavigator navigation={navigation} />
-      <FloatingChatButton />
+    <View style={styles.container}>
+      <StatusBar />
+      <View style={styles.view}>
+        <AccountNavigator navigation={navigation} />
+        <FloatingChatButton />
+      </View>
       <Dialog />
-    </AppContainer>
+    </View>
   );
 };
 
@@ -240,10 +238,10 @@ const BaseNavigator = StackNavigator(
       screen: Loading,
     },
     Marketing: {
-      screen: ConnectedMarketingCarousel,
+      screen: MarketingCarousel,
     },
     Conversation: {
-      screen: ConversationContainer,
+      screen: ConversationNavigator,
     },
     Account: {
       screen: AccountContainer,

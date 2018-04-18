@@ -11,7 +11,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   startCollecting: (referenceId) =>
-    dispatch({ type: types.BANKID_COLLECT, payload: { referenceId } }),
+    dispatch({
+      type: types.DEPRECATED_BANKID_COLLECT,
+      payload: { referenceId },
+    }),
 });
 
 const BankIdCollectInputContainer = connect(

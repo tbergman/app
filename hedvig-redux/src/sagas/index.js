@@ -32,7 +32,6 @@ import { uploadSaga } from "./upload"
 import { updateCashbackSaga } from "./cashback"
 import { handleDialogSaga } from "./dialog"
 import { collectSaga } from "./bankid"
-import { handleCheckoutSaga } from "./offer"
 import { handleEventSaga } from "./events"
 import { addListenerSaga } from "./listener"
 import runner from "./sagaRunner"
@@ -54,7 +53,6 @@ const root = (additionalSagas = [], raven) =>
       updateCashbackSaga,
       collectSaga,
       handleDialogSaga,
-      handleCheckoutSaga,
       handleEventSaga,
       addListenerSaga,
       startWebChatSaga,

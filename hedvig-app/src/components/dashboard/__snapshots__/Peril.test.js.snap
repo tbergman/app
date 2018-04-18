@@ -9,6 +9,7 @@ exports[`<Peril /> Should render correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
+        "marginBottom": 10,
         "marginLeft": 22,
         "width": 50,
       }
@@ -32,6 +33,7 @@ exports[`<Peril /> Should render correctly 1`] = `
           "color": "#9B9BAA",
           "fontFamily": "circular",
           "fontSize": 12,
+          "marginTop": 5,
           "textAlign": "center",
         }
       }

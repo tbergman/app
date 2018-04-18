@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Dashboard from '../../components/dashboard/Dashboard';
-import { insuranceActions, chatActions } from 'hedvig-redux';
+import { insuranceActions } from 'hedvig-redux';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,16 +12,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getInsurance: () => dispatch(insuranceActions.getInsurance()),
-    checkout: () =>
-      dispatch(
-        chatActions.apiAndNavigateToChat({
-          method: 'POST',
-          url: '/hedvig/quoteAccepted',
-          body: null,
-          SUCCESS: 'INITIATE_CHECKOUT',
-        }),
-      ),
-    dispatch,
   };
 };
 
