@@ -6,16 +6,9 @@ export const StyledProfileContainer = styled.View`
   background-color: ${(props) => props.theme.colors.white};
 `;
 
-export const StyledCharityImage = styled.Image`
-  height: 50px;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  width: 80%;
-`;
-
 export const StyledCharityParagraph = StyledPassiveText.extend`
   text-align: center;
-  margin: 0px 44px;
+  margin: 0px 32px;
 `;
 
 export const StyledCharitySignature = StyledText.extend`

@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Share } from 'react-native';
+import { View, Share, Image, StyleSheet } from 'react-native';
 import { HeaderRightChat } from './NavBar';
 import {
   StyledProfileContainer,
-  StyledCharityImage,
   StyledCharityParagraph,
   StyledCharitySignature,
 } from './styles/profile';
@@ -28,6 +27,14 @@ import { DisabledListNextButton, RoundedButton } from './Button';
 import { Loader } from './Loader';
 import 'moment/locale/sv';
 import * as R from 'ramda';
+
+const styles = StyleSheet.create({
+  cashbackImage: {
+    width: 300,
+    marginTop: 8,
+    marginBottom: 16,
+  },
+});
 
 export default class Profile extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -171,13 +178,26 @@ export default class Profile extends React.Component {
       return <Loader />;
     }
 
+    // Barncancerfonden logo is almost a square so we need to adjust height
+    // compared to SOS barnbyar which is more widescreen (should be default)
+    let cashbackImageHeight =
+      {
+        Barncancerfonden: 100,
+      }[this.props.user.selectedCashback] || 50;
+
     return (
       <StyledProfileContainer>
         <StyledList>
           <StyledListHeader>
-            <StyledCharityImage
+            <Image
               source={{ uri: this.props.user.selectedCashbackImageUrl }}
-              resizeMode="center"
+              resizeMode="contain"
+              style={[
+                styles.cashbackImage,
+                {
+                  height: cashbackImageHeight,
+                },
+              ]}
             />
             <StyledCharityParagraph>
               {this.props.user.selectedCashbackParagraph}
