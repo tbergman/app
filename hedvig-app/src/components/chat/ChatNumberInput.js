@@ -29,7 +29,7 @@ class ChatTextInput extends React.Component {
       <StyledTextInputContainer>
         <StyledTextInput
           placeholder="Type here..."
-          autoFocus={true}
+          autoFocus
           keyboardType="numeric"
           value={message._inputValue || ''}
           underlineColorAndroid="transparent"

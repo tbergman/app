@@ -1,4 +1,4 @@
-import { take, takeEvery, put } from 'redux-saga/effects';
+import { take, takeEvery, put, select } from 'redux-saga/effects';
 import { types, chatActions } from 'hedvig-redux';
 import { showChatAction } from '../actions/baseNavigation';
 
@@ -9,7 +9,9 @@ const apiAndNavigateToChat = function*({ payload }) {
       payload,
     });
     yield take(payload.SUCCESS);
-    yield put(chatActions.getMessages());
+    const state = yield select();
+    const intent = state.conversation.intent;
+    yield put(chatActions.getMessages({ intent }));
   }
   yield put(showChatAction());
 };

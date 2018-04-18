@@ -82,7 +82,7 @@ export class Peril extends React.Component {
     return (
       <TouchableOpacity
         onPress={() =>
-          this.props.navigation.navigate('Carousel', {
+          this.props.navigation.navigate('Perils', {
             title: this.props.categoryTitle,
             items: this.props.categoryPerils.map((i) => ({
               ...i,

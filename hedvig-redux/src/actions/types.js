@@ -42,7 +42,7 @@ const typesList = [
   "EVENT",
   "LOGOUT",
   "ADD_LISTENER",
-  "SHOW_ACTION_SHEET"
+  "SHOW_ACTION_SHEET",
 ]
 
 const typesMap = {}

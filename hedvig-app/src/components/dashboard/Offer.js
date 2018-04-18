@@ -7,13 +7,16 @@ import {
   Dimensions,
   AsyncStorage,
 } from 'react-native';
+
 import { NavBar } from '../NavBar';
 import { StyledButtonContainer, StyledCtaContainer } from '../styles/offer';
 import { TurquoiseRoundedInvertedButton, XNavigateBackButton } from '../Button';
-import { PerilsCategory } from './PerilsCategory';
 import OfferDashboardHeader from '../dashboard/OfferDashboardHeader';
 import { StyledText, StyledPassiveText } from '../styles/text';
 import { TextLink } from '../Link';
+import { Loader } from '../Loader';
+
+import { PerilsCategory } from './PerilsCategory';
 import OfferFooter from './OfferFooter';
 import { IS_VIEWING_OFFER } from '../../constants';
 
@@ -34,6 +37,12 @@ class Offer extends React.Component {
   }
 
   render() {
+    // WARNING: Change this to loading state based on the request or something
+    // more robust
+    if (!this.props.insurance.newTotalPrice) {
+      return <Loader />;
+    }
+
     return (
       <View style={{ flex: 1, alignSelf: 'stretch' }}>
         <NavBar

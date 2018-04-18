@@ -1,10 +1,10 @@
 export function showChatAction() {
   return {
     type: 'Navigation/NAVIGATE',
-    routeName: 'ChatBase',
+    routeName: 'Conversation',
     action: {
       type: 'Navigation/NAVIGATE',
-      routeName: 'ChatBase',
+      routeName: 'Conversation',
     },
   };
 }
@@ -12,10 +12,10 @@ export function showChatAction() {
 export function showDashboardAction() {
   return {
     type: 'Navigation/NAVIGATE',
-    routeName: 'HomeBase',
+    routeName: 'Account',
     action: {
       type: 'Navigation/NAVIGATE',
-      routeName: 'HomeBase',
+      routeName: 'Account',
     },
   };
 }

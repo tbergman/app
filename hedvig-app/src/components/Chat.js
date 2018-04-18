@@ -10,7 +10,6 @@ import ChatTextInput from '../containers/chat/ChatTextInput';
 import DateInput from '../containers/chat/DateInput';
 import MultipleSelectInput from '../containers/chat/MultipleSelectInput';
 import SingleSelectInput from '../containers/chat/SingleSelectInput';
-import VideoInput from '../containers/chat/VideoInput';
 import PhotoInput from '../containers/chat/PhotoInput';
 import BankIdCollectInput from '../containers/chat/BankIdCollectInput';
 import AudioInput from '../containers/chat/AudioInput';
@@ -18,6 +17,7 @@ import ParagraphInput from '../containers/chat/ParagraphInput';
 import { NavBar } from './NavBar';
 import { ChatNavRestartButton, NavigateBackButton } from './Button';
 import { KeyboardAwareView } from './KeyboardAwareView';
+import { Loader } from './Loader';
 
 const inputComponentMap = (lastIndex, navigation) => ({
   multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
@@ -26,20 +26,10 @@ const inputComponentMap = (lastIndex, navigation) => ({
   single_select: (
     <SingleSelectInput
       messageIndex={lastIndex}
-      launchModal={(choice) =>
-        navigation.navigate('ChatModal', { link: choice })
-      }
+      launchModal={() => navigation.navigate('Offer')}
     />
   ),
   date_picker: <DateInput messageIndex={lastIndex} />,
-  video: (
-    <VideoInput
-      messageIndex={lastIndex}
-      launchVideoRecorder={() => {
-        navigation.navigate('ChatModal', { link: { view: 'VideoExample' } });
-      }}
-    />
-  ),
   photo_upload: <PhotoInput messageIndex={lastIndex} />,
   bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
   paragraph: <ParagraphInput messageIndex={lastIndex} />,
@@ -102,8 +92,9 @@ const styles = StyleSheet.create({
 });
 
 export default class Chat extends React.Component {
-  componentDidMount() {
-    this.props.getMessages();
+  componentWillMount() {
+    this.props.getMessages(this.props.intent);
+    this.props.getAvatars();
   }
 
   render() {
@@ -121,6 +112,7 @@ export default class Chat extends React.Component {
         <ChatNavRestartButton onPress={() => this.props.resetConversation()} />
       );
     }
+
     return (
       <View style={styles.container}>
         <NavBar
@@ -130,7 +122,7 @@ export default class Chat extends React.Component {
         />
         <KeyboardAwareView>
           <View style={styles.messages}>
-            <MessageList />
+            {this.props.messages.length ? <MessageList /> : <Loader />}
           </View>
           <View style={styles.response}>
             {getInputComponent(this.props.messages, this.props.navigation)}

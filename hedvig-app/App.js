@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
-import { AppState, Keyboard, Platform } from 'react-native';
+import { AppState, Platform, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { Notifications } from 'expo';
 import Sentry from 'sentry-expo';
@@ -9,12 +9,13 @@ import {
   ActionSheetProvider,
   connectActionSheet,
 } from '@expo/react-native-action-sheet';
-import * as hedvigRedux from 'hedvig-redux';
-window.hedvigRedux = hedvigRedux;
+import { persistReducer, persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
+import * as hedvigRedux from 'hedvig-redux';
 import { theme } from 'hedvig-style';
+
 import nav from './src/reducers/nav';
-import * as Navigation from './src/services/Navigation';
 import { apiAndNavigateToChatSaga } from './src/sagas/apiAndNavigate';
 import { tokenStorageSaga } from './src/sagas/TokenStorage';
 import { logoutSaga } from './src/sagas/logout';
@@ -22,14 +23,12 @@ import { ThemeProvider } from 'styled-components';
 import { Router } from './src/components/navigation/Router';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import WithAssets from './src/components/WithAssets';
-window.Navigation = Navigation;
-
+import { Loader } from './src/components/Loader';
 import { appStateChange } from './src/actions/appState';
-import { keyboardStateChange } from './src/actions/keyboardState';
 import appStateChangeReducer from './src/reducers/appState';
-import keyboardStateChangeReducer from './src/reducers/keyboardState';
 import statusMessageReducer from './src/reducers/statusMessage';
 import routerReducer from './src/reducers/router';
+import conversationReducer from './src/reducers/conversation';
 import { appStateSaga } from './src/sagas/appState';
 import { keyboardSaga } from './src/sagas/keyboard';
 import { navigationSaga } from './src/sagas/navigation';
@@ -39,9 +38,6 @@ import {
 } from './src/sagas/pushNotifications';
 import { chatStartSaga, chatLoginSaga } from './src/sagas/marketingCarousel';
 import { getOrLoadToken } from './src/services/TokenStorage';
-import * as baseNavigationActions from './src/actions/baseNavigation';
-window.baseNavigation = baseNavigationActions;
-
 import navigationMiddleware from './src/middleware/navigation';
 
 Sentry.config(
@@ -49,17 +45,25 @@ Sentry.config(
 ).install();
 
 const ravenMiddleware = createRavenMiddleware(Sentry, {
-  stateTransformer: state => ({ user: state.user }),
+  stateTransformer: (state) => ({ user: state.user }),
 });
 
 export class App extends React.Component {
   constructor() {
     super();
+    const conversationPersistConfig = {
+      key: 'conversation',
+      storage: AsyncStorage,
+      whitelist: ['intent'],
+    };
     this.store = hedvigRedux.configureStore({
       additionalReducers: {
         nav,
+        conversation: persistReducer(
+          conversationPersistConfig,
+          conversationReducer,
+        ),
         appState: appStateChangeReducer,
-        keyboard: keyboardStateChangeReducer,
         status: statusMessageReducer,
         router: routerReducer,
       },
@@ -79,19 +83,12 @@ export class App extends React.Component {
       raven: Sentry,
     });
     window.store = this.store;
+    this.persistor = persistStore(this.store);
   }
 
-  _handleAppStateChange = nextAppState => {
+  _handleAppStateChange = (nextAppState) => {
     this.store.dispatch(appStateChange(nextAppState));
   };
-
-  _keyboardWillShow(event) {
-    this.store.dispatch(keyboardStateChange({ ...event, state: 'shown' }));
-  }
-
-  _keyboardWillHide(event) {
-    this.store.dispatch(keyboardStateChange({ ...event, state: 'hidden' }));
-  }
 
   componentDidMount() {
     if (Platform.OS === 'android') {
@@ -99,14 +96,6 @@ export class App extends React.Component {
     }
 
     AppState.addEventListener('change', this._handleAppStateChange);
-    this.keyboardWillShowListener = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
-      this._keyboardWillShow.bind(this),
-    );
-    this.keyboardWillHideListener = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
-      this._keyboardWillHide.bind(this),
-    );
     getOrLoadToken(this.store.dispatch);
 
     this.store.dispatch(
@@ -117,24 +106,20 @@ export class App extends React.Component {
       ),
     );
 
-    this.store.dispatch(hedvigRedux.chatActions.getMessages());
-    this.store.dispatch(hedvigRedux.chatActions.getAvatars());
-
     Notifications.addListener(this._handleNotification);
   }
 
   _handleNotification = () => {
-    this.store.dispatch(hedvigRedux.chatActions.getMessages());
+    const state = this.store.getState();
+    this.store.dispatch(
+      hedvigRedux.chatActions.getMessages({
+        intent: state.conversation.intent,
+      }),
+    );
   };
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
-    if (this.keyboardWillShowListener) {
-      this.keyboardWillShowListener.remove();
-    }
-    if (this.keyboardWillHideListener) {
-      this.keyboardWillHideListener.remove();
-    }
   }
 
   render() {
@@ -143,7 +128,9 @@ export class App extends React.Component {
         <WithAssets>
           <ThemeProvider theme={theme}>
             <Provider store={this.store}>
-              <Router />
+              <PersistGate loading={<Loader />} persistor={this.persistor}>
+                <Router />
+              </PersistGate>
             </Provider>
           </ThemeProvider>
         </WithAssets>

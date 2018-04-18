@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native';
 import {
   API,
   EVENT,
@@ -8,9 +8,6 @@ import { take, takeEvery, put, call } from "redux-saga/effects"
 import * as chatActions from "../actions/chat"
 
 const handleEvent = function*(action) {
-  if (action.payload.showLoadingIndicator) {
-    // yield put({ type: LOADING_MESSAGES_START, payload: {} })
-  }
   yield put({
     type: API,
     payload: {
@@ -29,11 +26,6 @@ const handleEvent = function*(action) {
     yield put(chatActions.getMessages())
     if (action.payload.showLoadingIndicator) {
       yield take(LOADED_MESSAGES)
-      // yield put({ type: LOADING_MESSAGES_END, payload: {} })
-    }
-  } else {
-    if (action.payload.showLoadingIndicator) {
-      // yield put({ type: LOADING_MESSAGES_END, payload: {} })
     }
   }
 
