@@ -23,7 +23,7 @@ const redirectToChat = function*({ intent }) {
 };
 
 const chatStart = function*() {
-  yield* redirectToChat({ intent: 'signup' });
+  yield* redirectToChat({ intent: 'onboarding' });
 };
 
 const chatLogin = function*() {

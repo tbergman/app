@@ -15,8 +15,8 @@ export const GET_MESSAGES_URL = "/messages"
 
 export function getMessages({intent=null}={}) {
   // `intent` is used to start the right conversation on the backend
-  // Defaults to signup/onboarding when no intent is given
-  // intent = login || signup
+  // Defaults to onboarding when no intent is given
+  // intent = login || onboarding
   const paramIntent = intent ? `&intent=${encodeURIComponent(intent)}` : '';
   return {
     type: API,
