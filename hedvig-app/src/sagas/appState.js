@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
 import { APP_STATE_CHANGE } from '../actions/appState';
-import { chatActions, types } from 'hedvig-redux';
+import { types } from 'hedvig-redux';
 
 const appStateChange = function*() {
   let state = yield select();
@@ -10,8 +10,6 @@ const appStateChange = function*() {
     state.appState.lastState.match(/inactive|background/) &&
     state.appState.currentState === 'active'
   ) {
-    const intent = state.conversation.intent;
-    yield put(chatActions.getMessages({ intent }));
     // If currently collecting bankid, resume
     if (state.bankid.currentlyCollecting) {
       yield put({

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, AppState } from 'react-native';
 
-import { types } from 'hedvig-redux';
+import { types, chatActions } from 'hedvig-redux';
 
 import MessageList from '../containers/chat/MessageList';
 import ChatNumberInput from '../containers/chat/ChatNumberInput';
@@ -96,6 +96,20 @@ export default class Chat extends React.Component {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
   }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (appState) => {
+    if (appState === 'active') {
+      this.props.getMessages(this.props.intent);
+    }
+  };
 
   render() {
     let headerLeft;
