@@ -23,5 +23,8 @@ module.exports = {
     'react/prop-types': OFF,
     'react/display-name': OFF,
     'no-debugger': OFF
+  },
+  globals: {
+    __DEV__: false,
   }
 }
