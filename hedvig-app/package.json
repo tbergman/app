@@ -38,6 +38,17 @@
       "./src/setupTests"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@expo/react-native-action-sheet": "^1.0.1",
     "@expo/vector-icons": "^6.2.2",
@@ -46,6 +57,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "expo": "^25.0.0",
+    "husky": "^1.0.0-rc.1",
+    "lint-staged": "^7.0.4",
     "moment": "^2.21.0",
     "prettier-eslint-cli": "^4.7.1",
     "ramda": "^0.25.0",
