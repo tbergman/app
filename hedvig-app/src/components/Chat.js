@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState } from 'react-native';
 
-import { types, chatActions } from 'hedvig-redux';
+import { types } from 'hedvig-redux';
 
 import MessageList from '../containers/chat/MessageList';
 import ChatNumberInput from '../containers/chat/ChatNumberInput';
