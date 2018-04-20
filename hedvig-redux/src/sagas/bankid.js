@@ -2,9 +2,9 @@ import { call, take, takeLatest, put, select } from "redux-saga/effects"
 import { delay } from "redux-saga"
 import {
   API,
-  BANKID_COLLECT,
-  BANKID_COLLECT_RESPONSE,
-  BANKID_COLLECT_COMPLETE
+  DEPRECATED_BANKID_COLLECT,
+  DEPRECATED_BANKID_COLLECT_RESPONSE,
+  DEPRECATED_BANKID_COLLECT_COMPLETE
 } from "../actions/types"
 import * as chatActions from "../actions/chat"
 
@@ -24,37 +24,37 @@ const isDone = (collectResponseBody, tryCount) => {
 
 const collectHandler = function*() {
   let state = yield select()
-  if (state.bankid.referenceId) {
+  if (state.deprecatedBankId.referenceId) {
     yield put({
       type: API,
       payload: {
-        url: `/hedvig/collect?referenceToken=${state.bankid.referenceId}`,
+        url: `/hedvig/collect?referenceToken=${state.deprecatedBankId.referenceId}`,
         method: "POST",
         body: null,
-        SUCCESS: BANKID_COLLECT_RESPONSE,
-        ERROR: BANKID_COLLECT_RESPONSE
+        SUCCESS: DEPRECATED_BANKID_COLLECT_RESPONSE,
+        ERROR: DEPRECATED_BANKID_COLLECT_RESPONSE
       }
     })
-    yield take(BANKID_COLLECT_RESPONSE)
+    yield take(DEPRECATED_BANKID_COLLECT_RESPONSE)
     state = yield select()
-    if (isDone(state.bankid.response, state.bankid.tryCount)) {
-      yield put({ type: BANKID_COLLECT_COMPLETE })
+    if (isDone(state.deprecatedBankId.response, state.deprecatedBankId.tryCount)) {
+      yield put({ type: DEPRECATED_BANKID_COLLECT_COMPLETE })
       yield put(chatActions.getMessages())
     } else {
       yield call(delay, COLLECT_DELAY_MS)
       yield put({
-        type: BANKID_COLLECT,
-        payload: { referenceId: state.bankid.referenceId }
+        type: DEPRECATED_BANKID_COLLECT,
+        payload: { referenceId: state.deprecatedBankId.referenceId }
       })
     }
   } else {
     // TODO: Report this error to the user and Sentry
-    console.warn("No referenceId found in `state.bankid.referenceId`") // eslint-disable-line no-console
+    console.warn("No referenceId found in `state.deprecatedBankId.referenceId`") // eslint-disable-line no-console
   }
 }
 
 const collectSaga = function*() {
-  yield takeLatest(BANKID_COLLECT, collectHandler)
+  yield takeLatest(DEPRECATED_BANKID_COLLECT, collectHandler)
 }
 
 export { collectSaga }
