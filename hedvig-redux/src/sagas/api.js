@@ -61,7 +61,6 @@ const api = function*(action) {
     } catch (e) {
       tries += 1
       if (action.payload.method !== 'GET' || tries > 5) {
-        yield put({type: STATUS_MESSAGE, message: "Något gick fel 😞"})
         yield put({
           type: action.payload.ERROR || API_ERROR,
           payload: data || e.toString()
