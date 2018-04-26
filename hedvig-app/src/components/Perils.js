@@ -126,6 +126,8 @@ class Perils extends React.Component {
               sliderHeight={perilContainerSize}
               itemWidth={perilContainerSize}
               firstItem={this.state.slideIndex}
+              inactiveSlideOpacity={0.4}
+              inactiveSlideScale={0.7}
               removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
               onSnapToItem={(slideIndex) => {
                 this.setState({ slideIndex, showFullDescription: false });
