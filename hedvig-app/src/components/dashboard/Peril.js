@@ -64,12 +64,14 @@ const styles = StyleSheet.create({
     width: 50,
     marginLeft: 22,
     alignItems: 'center',
+    marginBottom: 10,
   },
   icon: {
     width: 40,
     height: 40,
   },
   title: {
+    marginTop: 5,
     fontFamily: 'circular',
     fontSize: 12,
     color: '#9B9BAA',
