@@ -81,13 +81,12 @@ const styles = StyleSheet.create({
   messages: {
     flex: 1,
     alignSelf: 'stretch',
-    paddingTop: 0,
     paddingLeft: 16,
-    paddingBottom: 8,
     paddingRight: 16,
   },
   response: {
     alignItems: 'stretch',
+    paddingTop: 8,
   },
 });
 

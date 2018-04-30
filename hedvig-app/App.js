@@ -29,24 +29,44 @@ import appStateChangeReducer from './src/reducers/appState';
 import statusMessageReducer from './src/reducers/statusMessage';
 import routerReducer from './src/reducers/router';
 import conversationReducer from './src/reducers/conversation';
+import { bankIdReducer } from './src/features/bankid/reducer';
+import { offerReducer } from './src/features/offer/reducer';
+import { marketingReducer } from './src/features/marketing/reducer';
 import { appStateSaga } from './src/sagas/appState';
 import { keyboardSaga } from './src/sagas/keyboard';
 import { navigationSaga } from './src/sagas/navigation';
+import { handleCheckoutSaga } from './src/features/offer/saga';
+import {
+  bankIdSignSaga,
+  bankIdCollectSaga,
+  bankIdSignCancelSaga,
+  bankIdCollectCompleteSaga,
+  bankIdAppStateChangeSaga,
+} from './src/features/bankid/saga';
 import {
   requestPushSaga,
   registerPushSaga,
 } from './src/sagas/pushNotifications';
-import { chatStartSaga, chatLoginSaga } from './src/sagas/marketingCarousel';
+import { chatStartSaga, chatLoginSaga } from './src/features/marketing/saga';
 import { getOrLoadToken } from './src/services/TokenStorage';
 import navigationMiddleware from './src/middleware/navigation';
 
-Sentry.config(
-  'https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600',
-).install();
+// Fix HMR
+let SentryInstance = Sentry;
+let ravenMiddleware;
+if (!__DEV__) {
+  SentryInstance.config(
+    'https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600',
+  ).install();
 
-const ravenMiddleware = createRavenMiddleware(Sentry, {
-  stateTransformer: (state) => ({ user: state.user }),
-});
+  ravenMiddleware = createRavenMiddleware(Sentry, {
+    stateTransformer: (state) => ({ user: state.user }),
+  });
+} else {
+  SentryInstance = {
+    captureException() {},
+  };
+}
 
 export class App extends React.Component {
   constructor() {
@@ -56,6 +76,10 @@ export class App extends React.Component {
       storage: AsyncStorage,
       whitelist: ['intent'],
     };
+    const additionalMiddleware = [navigationMiddleware];
+    if (ravenMiddleware) {
+      additionalMiddleware.push(ravenMiddleware);
+    }
     this.store = hedvigRedux.configureStore({
       additionalReducers: {
         nav,
@@ -66,6 +90,9 @@ export class App extends React.Component {
         appState: appStateChangeReducer,
         status: statusMessageReducer,
         router: routerReducer,
+        bankid: bankIdReducer,
+        offer: offerReducer,
+        marketing: marketingReducer,
       },
       additionalSagas: [
         apiAndNavigateToChatSaga,
@@ -78,9 +105,15 @@ export class App extends React.Component {
         chatLoginSaga,
         requestPushSaga,
         registerPushSaga,
+        handleCheckoutSaga,
+        bankIdSignSaga,
+        bankIdCollectSaga,
+        bankIdSignCancelSaga,
+        bankIdCollectCompleteSaga,
+        bankIdAppStateChangeSaga,
       ],
-      additionalMiddleware: [navigationMiddleware, ravenMiddleware],
-      raven: Sentry,
+      additionalMiddleware: additionalMiddleware,
+      raven: SentryInstance,
     });
     window.store = this.store;
     this.persistor = persistStore(this.store);
@@ -124,7 +157,7 @@ export class App extends React.Component {
 
   render() {
     return (
-      <ErrorBoundary raven={Sentry}>
+      <ErrorBoundary raven={SentryInstance}>
         <WithAssets>
           <ThemeProvider theme={theme}>
             <Provider store={this.store}>

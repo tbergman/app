@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, AsyncStorage } from 'react-native';
+import { View, StatusBar, AsyncStorage, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
@@ -8,6 +8,12 @@ import { insuranceActions } from 'hedvig-redux';
 import BaseNavigator from './base-navigator/BaseNavigator';
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../../constants';
 import { REDIRECTED_INITIAL_ROUTE } from '../../actions/router';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
   return (
@@ -75,9 +81,9 @@ class BaseRouter extends React.Component {
 
     if (!alreadySeenMarketingCarousel) {
       this.props.redirectToRoute({ routeName: 'Marketing' });
+    } else {
+      this._doRedirection();
     }
-
-    this._doRedirection();
   }
 
   componentDidUpdate() {
@@ -86,11 +92,10 @@ class BaseRouter extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        {/* backgroundColor only applies to Android */}
+      <View style={styles.container}>
         <StatusBar backgroundColor="white" />
         <ConnectedReduxBaseNavigator addListener={this.addListener} />
-      </React.Fragment>
+      </View>
     );
   }
 }

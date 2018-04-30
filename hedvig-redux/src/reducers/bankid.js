@@ -1,7 +1,7 @@
 import {
-  BANKID_COLLECT,
-  BANKID_COLLECT_RESPONSE,
-  BANKID_COLLECT_COMPLETE
+  DEPRECATED_BANKID_COLLECT,
+  DEPRECATED_BANKID_COLLECT_RESPONSE,
+  DEPRECATED_BANKID_COLLECT_COMPLETE
 } from "../actions/types"
 
 const reducer = (
@@ -14,15 +14,15 @@ const reducer = (
   action
 ) => {
   switch (action.type) {
-    case BANKID_COLLECT:
+    case DEPRECATED_BANKID_COLLECT:
       return Object.assign({}, state, {
         referenceId: action.payload.referenceId,
         currentlyCollecting: true,
         tryCount: state.tryCount + 1
       })
-    case BANKID_COLLECT_RESPONSE:
+    case DEPRECATED_BANKID_COLLECT_RESPONSE:
       return Object.assign({}, state, { response: action.payload })
-    case BANKID_COLLECT_COMPLETE:
+    case DEPRECATED_BANKID_COLLECT_COMPLETE:
       return Object.assign({}, state, {
         referenceId: null,
         currentlyCollecting: false,

@@ -6,14 +6,12 @@ import { HeaderRightChat } from '../NavBar';
 import { PerilsCategory } from './PerilsCategory';
 import { Loader } from '../Loader';
 
-import { RoundedButton } from '../Button';
 import {
   StyledDashboardHeaderOffWhite,
   StyledDashboardHeaderRowLessMargin,
   StyledDashboardHeaderItem,
   StyledDashboardContainer,
   StyledCategoriesContainer,
-  StyledCheckoutButton,
   StyledDashboardHeaderIcon,
   StyledConditionRow,
 } from '../styles/dashboard';
@@ -35,7 +33,6 @@ export default class Dashboard extends React.Component {
             title={title}
             description={description}
             perils={perils}
-            offerMode={this.props.mode === 'offer'}
             iconUrl={iconUrl}
             key={i}
             navigation={this.props.navigation}
@@ -44,24 +41,6 @@ export default class Dashboard extends React.Component {
       },
     );
     return <StyledCategoriesContainer>{categories}</StyledCategoriesContainer>;
-  }
-
-  maybeCheckoutButton() {
-    if (
-      this.props.insurance.newTotalPrice !== null &&
-      this.props.mode !== 'offer'
-    ) {
-      let prefix = `${this.props.insurance.newTotalPrice} kr`;
-      return (
-        <StyledCheckoutButton>
-          <RoundedButton
-            prefix={prefix}
-            title="Betala ändringar"
-            onPress={() => this.props.checkout()}
-          />
-        </StyledCheckoutButton>
-      );
-    }
   }
 
   statusIcon() {
@@ -148,7 +127,6 @@ export default class Dashboard extends React.Component {
             />
           </View>
         </ScrollView>
-        {this.maybeCheckoutButton()}
       </StyledDashboardContainer>
     );
   }

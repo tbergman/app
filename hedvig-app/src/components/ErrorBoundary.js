@@ -76,7 +76,9 @@ export class ErrorBoundary extends Component {
     this.props.raven.captureException(error, { extra: errorInfo });
 
     // Clear persisted state, which could be corupt
-    AsyncStorage.clear();
+    if (!__DEV__) {
+      AsyncStorage.clear();
+    }
   }
 
   render() {

@@ -23,7 +23,7 @@ const rootReducer = (additionalReducers = {}) =>
         user: userReducer,
         cashback: cashbackReducer,
         dialog: dialogReducer,
-        bankid: bankIdReducer,
+        deprecatedBankId: bankIdReducer,
         upload: uploadReducer,
         payment: paymentReducer
       },

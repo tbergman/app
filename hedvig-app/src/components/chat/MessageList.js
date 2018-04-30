@@ -167,9 +167,13 @@ const renderMessages = function(messages) {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scroll: {
     flex: 1,
-    backgroundColor: 'white',
+  },
+  scrollContent: {
+    flex: 1,
+    paddingTop: 16,
+    paddingBottom: 16,
   },
 });
 
@@ -221,12 +225,14 @@ export default class MessageList extends React.Component {
   render() {
     return (
       <ScrollView
-        style={styles.container}
+        style={styles.scroll}
         showsVerticalScrollIndicator={false}
         ref={(view) => (this.ref = view)}
         onContentSizeChange={() => this.ref.scrollToEnd()}
       >
-        {renderMessages(this.props.messages)}
+        <View style={styles.scrollContent}>
+          {renderMessages(this.props.messages)}
+        </View>
       </ScrollView>
     );
   }

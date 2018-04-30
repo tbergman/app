@@ -15,6 +15,7 @@ export default class WithAssets extends React.Component {
     let fonts = Font.loadAsync({
       merriweather: require('../../assets/fonts/Merriweather-Light.ttf'),
       circular: require('../../assets/fonts/CircularStd-Book.ttf'),
+      'circular-bold': require('../../assets/fonts/CircularStd-Bold.ttf'),
     });
     await Promise.all([fonts]);
   }
