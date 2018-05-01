@@ -111,9 +111,9 @@ class PerilsDialog extends React.Component {
     }
   }
 
-  onBackPress() {
+  onBackPress = () => {
     this.props.unsetActivePeril();
-  }
+  };
 
   isPerilActive(peril) {
     const { activePeril } = this.props;
