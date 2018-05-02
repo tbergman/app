@@ -8,6 +8,7 @@ import {
   takeLatest,
   put,
   select,
+  fork,
 } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import {
@@ -33,6 +34,15 @@ import { types } from 'hedvig-redux';
 const COLLECT_DELAY_MS = 1000;
 const MAX_TRIES_COLLECT = 1000;
 const SIGN_COMPLETE_DELAY_MS = 1000;
+
+// Replace with built in effect when updating to redux-saga 1.0 (currently in beta)
+const takeLeading = (pattern, saga, ...args) =>
+  fork(function*() {
+    while (true) {
+      const action = yield take(pattern);
+      yield call(saga, ...args.concat(action));
+    }
+  });
 
 const buildBankIdClientUrl = (autoStartToken) => {
   const params = `?autostarttoken=${autoStartToken}&redirect=${
@@ -77,6 +87,7 @@ const bankIdSignHandler = function*() {
 
   const state = yield select();
   const { sign } = state.bankid;
+
   if (
     sign.isCurrentlySigning &&
     sign.response.orderRef &&
@@ -90,7 +101,8 @@ const bankIdSignHandler = function*() {
     });
 
     const bankIdClientUrl = buildBankIdClientUrl(sign.response.autoStartToken);
-    let hasOpenedBankId = yield* openBankId(bankIdClientUrl);
+    const hasOpenedBankId = yield* openBankId(bankIdClientUrl);
+
     if (!hasOpenedBankId) {
       yield put({
         type: BANKID_SIGN_CLIENT_FAILED_TO_OPEN,
@@ -105,30 +117,35 @@ const bankIdSignHandler = function*() {
       });
     }
   } else {
-    // report sentry
     yield put({ type: BANKID_SIGN_FAILED });
+    // Populate collect response with sign response
+    // Used to display errors in bank id dialog
+    yield put({ type: BANKID_COLLECT_RESPONSE, payload: sign.response });
+    yield put({ type: BANKID_COLLECT_FAILED });
   }
 };
 
 const bankIdCollectHandler = function*() {
-  let state = yield select();
+  const state = yield select();
+  const { orderRef } = state.bankid.collect;
+  const { isCurrentlySigning } = state.bankid.sign;
 
   // Quit if the sign has been cancelled
-  if (!state.bankid.sign.isCurrentlySigning) return;
+  if (!isCurrentlySigning) return;
 
-  let { collect } = state.bankid;
-  if (!collect.orderRef) {
+  if (!orderRef) {
     throw new Error(
       `No order ref for bank id collect: ${JSON.stringify(state.bankid)}`,
     );
   }
+
   yield put({
     type: types.API,
     payload: {
       url: `/hedvig/onboarding/collect`,
       method: 'POST',
       body: JSON.stringify({
-        orderRef: collect.orderRef,
+        orderRef,
       }),
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -140,11 +157,13 @@ const bankIdCollectHandler = function*() {
 
   yield take(BANKID_COLLECT_RESPONSE);
 
-  state = yield select();
-  collect = state.bankid.collect;
+  const updatedState = yield select();
+  const { collect } = updatedState.bankid;
+
   if (collect.response.status === 'complete') {
     yield put({ type: BANKID_COLLECT_COMPLETE });
   } else if (
+    collect.response.errorCode ||
     collect.response.status === 'failed' ||
     collect.tryCount >= MAX_TRIES_COLLECT
   ) {
@@ -153,7 +172,7 @@ const bankIdCollectHandler = function*() {
     yield call(delay, COLLECT_DELAY_MS);
     yield put({
       type: BANKID_COLLECT,
-      payload: { orderRef: collect.orderRef },
+      payload: { orderRef },
     });
   }
 };
@@ -166,7 +185,9 @@ const bankIdSignCancelHandler = function*() {
 
 const bankIdCollectCompleteHandler = function*() {
   const state = yield select();
-  if (state.bankid.sign.isCurrentlySigning) {
+  const { isCurrentlySigning } = state.bankid.sign;
+
+  if (isCurrentlySigning) {
     // Show success message for a little while before redirecting to chat
     yield call(delay, SIGN_COMPLETE_DELAY_MS);
     yield put({ type: BANKID_SIGN_COMPLETE });
@@ -177,8 +198,8 @@ const bankIdCollectCompleteHandler = function*() {
 
 const bankIdAppStateChangeHandler = function*() {
   let state = yield select();
+  const { orderRef } = state.bankid.collect;
 
-  const orderRef = state.bankid.collect.orderRef;
   if (
     state.appState.currentState === 'active' &&
     state.bankid.sign.isCurrentlySigning &&
@@ -192,7 +213,7 @@ const bankIdAppStateChangeHandler = function*() {
 };
 
 const bankIdSignSaga = function*() {
-  yield takeLatest(BANKID_SIGN, bankIdSignHandler);
+  yield takeLeading(BANKID_SIGN, bankIdSignHandler);
 };
 
 const bankIdSignCancelSaga = function*() {

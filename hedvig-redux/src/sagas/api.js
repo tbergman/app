@@ -14,9 +14,12 @@ const api = function*(action) {
   let data
   let response
   let tries = 0
+  const HTTP_NO_CONTENT = 204
+  const HTTP_BAD_REQUEST = 400
+  const HTTP_UNAUTHORIZED = 401
   while (tries < 5) {
     try {
-      let url = action.payload.url
+      const { url } = action.payload
       response = yield fetch(baseURL + url, {
         method: action.payload.method,
         headers: Object.assign(
@@ -25,49 +28,47 @@ const api = function*(action) {
         ),
         body: action.payload.body
       })
-      let knownHttpError = {
-        400: `Bad request (${url})`,
-        402: `Payment required (${url})`,
-        403: `Forbidden (${url})`,
-        404: `Not found (${url})`,
-        405: `Method Not Allowed (${url})`,
-        500: `Internal server error (${url})`,
-        502: `Bad gateway (${url})`,
-        503: `Service unavailable (${url})`
-      }[response.status.toString()]
-      let unknownHttpError =
-        !knownHttpError &&
-        response.status >= 402 &&
-        `Server error ${response.status} (${url})`
-      // Bad request
-      // Unauthenticated
-      if (knownHttpError || unknownHttpError) {
-        throw new Error(`Network communication exception, status code: ${response.status} for action: ${JSON.stringify(action)}, response was: ${JSON.stringify(response)}`)
-      } else if (response.status === 401) {
+
+      if (response.status === HTTP_UNAUTHORIZED) {
         yield put({
-          type: "API/UNAUTHORIZED"
+          type: 'API/UNAUTHORIZED'
         })
         return
-      } else if (response.status !== 204) {
+      } else if (response.status >= HTTP_BAD_REQUEST) {
+        data = yield response.json()
+        throw new Error(`Network communication exception, status code: ${response.status} for action: ${JSON.stringify(action)}, response was: ${JSON.stringify(response)}`)
+      } else if (response.status !== HTTP_NO_CONTENT) {
         data = yield response.json()
       } else {
         data = null
       }
+
       yield put({ type: action.payload.SUCCESS, payload: data })
       if (action.statusMessage) {
         yield put({type: STATUS_MESSAGE, message: action.statusMessage})
       }
+
       return
     } catch (e) {
       tries += 1
+
       if (action.payload.method !== 'GET' || tries > 5) {
         yield put({
           type: action.payload.ERROR || API_ERROR,
           payload: data || e.toString()
         })
-        throw e
+
+        // Client should gracefully handle bad requests (e.g. validation errors)
+        // TODO: Extend this to all 4xx status codes
+        if (!data || response.status !== HTTP_BAD_REQUEST) {
+          // Exceptions are captured in Sentry
+          throw e
+        } else {
+          // Don't retry HTTP_BAD_REQUEST
+          return;
+        }
       } else {
-        console.error("Was forced to retry request, tries: ", tries) // eslint-disable-line no-console
+        console.error('Was forced to retry request, tries: ', tries) // eslint-disable-line no-console
         yield delay(500)
       }
     }

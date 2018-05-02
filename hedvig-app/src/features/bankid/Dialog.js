@@ -113,7 +113,10 @@ const messages = [
   {
     status: 'failed',
     hintCode: 'alreadyInProgress',
-    getMessage: () => () => `Åtgärden avbruten`,
+    getMessage: (isSigning) =>
+      `Avbryter tidigare ${
+        isSigning ? 'signering' : 'inloggning'
+      }, vänta några sekunder och försök sedan igen`,
   },
   {
     status: 'failed',
