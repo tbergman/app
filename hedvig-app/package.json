@@ -50,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "@expo/react-native-action-sheet": "^1.0.1",
+    "@expo/react-native-action-sheet": "^1.0.2",
     "@expo/vector-icons": "^6.2.2",
     "babel-polyfill": "^6.26.0",
     "enzyme": "^3.3.0",
