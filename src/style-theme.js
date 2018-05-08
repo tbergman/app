@@ -18,7 +18,7 @@ const colors = {
   webHeading: '#212121',
 };
 
-module.exports.theme = {
+export const theme = {
   colors: colors,
   mobile: {
     margin: {
