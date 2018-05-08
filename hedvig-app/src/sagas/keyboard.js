@@ -1,6 +1,6 @@
 import { takeEvery } from 'redux-saga/effects';
 import { Keyboard } from 'react-native';
-import { types } from 'hedvig-redux';
+import { types } from '../../hedvig-redux';
 
 /*
 Hiding the keyboard:

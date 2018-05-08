@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import SingleSelectInput from '../../components/chat/SingleSelectInput';
-import { chatActions } from 'hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 import { showDashboardAction } from '../../actions/baseNavigation';
 
 const mapStateToProps = (state, ownProps) => {

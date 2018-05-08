@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { chatActions } from 'hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 import { call, takeLatest, take, put, select } from 'redux-saga/effects';
 
 import { showChatAction } from '../../actions/baseNavigation';

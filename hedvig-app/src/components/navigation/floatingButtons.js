@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { chatActions } from 'hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 
 const styles = StyleSheet.create({
   button: {

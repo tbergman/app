@@ -1,4 +1,4 @@
-import { types } from 'hedvig-redux';
+import { types } from '../../hedvig-redux';
 
 export function setStatusMessage({
   message = null,

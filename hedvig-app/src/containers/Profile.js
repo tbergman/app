@@ -7,7 +7,7 @@ import {
   insuranceActions,
   types,
   dialogActions,
-} from 'hedvig-redux';
+} from '../../hedvig-redux';
 
 const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
   dispatch(

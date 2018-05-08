@@ -1,5 +1,5 @@
 import { take, takeEvery, put, select } from 'redux-saga/effects';
-import { types, chatActions } from 'hedvig-redux';
+import { types, chatActions } from '../../hedvig-redux';
 import { showChatAction } from '../actions/baseNavigation';
 
 const apiAndNavigateToChat = function*({ payload }) {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { EditMessageButton } from '../../components/Button';
-import { chatActions, dialogActions } from 'hedvig-redux';
+import { chatActions, dialogActions } from '../../../hedvig-redux';
 
 const mapStateToProps = () => {
   return {};

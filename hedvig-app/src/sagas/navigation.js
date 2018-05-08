@@ -1,5 +1,5 @@
 import { takeEvery, put } from 'redux-saga/effects';
-import { types, userActions } from 'hedvig-redux';
+import { types, userActions } from '../../hedvig-redux';
 
 const NAVIGATION_ACTIONS = [types.SWITCH_BASE, 'Navigation/NAVIGATE'];
 

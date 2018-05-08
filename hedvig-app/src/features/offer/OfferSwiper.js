@@ -13,7 +13,7 @@ import {
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 
-import { insuranceActions, eventActions } from 'hedvig-redux';
+import { insuranceActions, eventActions } from '../../../hedvig-redux';
 
 import { IS_VIEWING_OFFER } from '../../constants';
 import { Loader } from '../../components/Loader';

@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { types } from 'hedvig-redux';
+import { types } from '../../hedvig-redux';
 import { getDeviceInfo } from './DeviceInfo';
 
 const TOKEN_KEY = '@hedvig:token';

@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { types } from 'hedvig-redux';
+import { types } from '../../hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { NavigationActions } from 'react-navigation';
 

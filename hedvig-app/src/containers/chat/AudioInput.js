@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import AudioInput from '../../components/chat/AudioInput';
-import { chatActions, uploadActions, dialogActions } from 'hedvig-redux';
+import {
+  chatActions,
+  uploadActions,
+  dialogActions,
+} from '../../../hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
   let message = state.chat.messages[ownProps.messageIndex];

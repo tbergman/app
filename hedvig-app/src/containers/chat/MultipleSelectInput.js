@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MultipleSelectInput from '../../components/chat/MultipleSelectInput';
-import { chatActions } from 'hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {

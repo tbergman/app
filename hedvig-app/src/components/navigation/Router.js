@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 
-import { insuranceActions } from 'hedvig-redux';
+import { insuranceActions } from '../../../hedvig-redux';
 import BaseNavigator from './base-navigator/BaseNavigator';
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../../constants';
 import { REDIRECTED_INITIAL_ROUTE } from '../../actions/router';

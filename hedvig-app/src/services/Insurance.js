@@ -1,4 +1,4 @@
-import { insuranceActions } from 'hedvig-redux';
+import { insuranceActions } from '../../hedvig-redux';
 import { navigateTo } from './Navigation';
 
 export function createClaimAndNavigateToChat(dispatch) {

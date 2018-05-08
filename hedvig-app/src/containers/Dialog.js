@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { dialogActions } from 'hedvig-redux';
+import { dialogActions } from '../../hedvig-redux';
 import Dialog from '../components/Dialog';
 
 const mapStateToProps = (state) => {

@@ -29,7 +29,7 @@ import {
 } from './actions';
 import { APP_STATE_CHANGE } from '../../actions/appState';
 
-import { types } from 'hedvig-redux';
+import { types } from '../../../hedvig-redux';
 
 const COLLECT_DELAY_MS = 1000;
 const MAX_TRIES_COLLECT = 1000;

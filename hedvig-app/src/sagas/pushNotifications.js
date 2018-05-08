@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { Permissions, Notifications } from 'expo';
 
-import { pushNotificationActions } from 'hedvig-redux';
+import { pushNotificationActions } from '../../hedvig-redux';
 
 const requestPush = function*() {
   const { status } = yield call(

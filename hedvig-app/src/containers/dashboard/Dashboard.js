@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Dashboard from '../../components/dashboard/Dashboard';
-import { insuranceActions } from 'hedvig-redux';
+import { insuranceActions } from '../../../hedvig-redux';
 
 const mapStateToProps = (state) => {
   return {

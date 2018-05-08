@@ -1,6 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects';
 import * as TokenStorage from '../services/TokenStorage';
-import { types } from 'hedvig-redux';
+import { types } from '../../hedvig-redux';
 
 const tokenStorageHandler = function*(action) {
   yield call(TokenStorage.saveToken, action.payload);
