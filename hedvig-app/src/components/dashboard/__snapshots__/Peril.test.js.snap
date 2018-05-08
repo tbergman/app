@@ -5,7 +5,7 @@ exports[`<Peril /> Should render correctly 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <View
+  <Component
     style={
       Object {
         "alignItems": "center",
@@ -40,6 +40,6 @@ exports[`<Peril /> Should render correctly 1`] = `
     >
       Juridisk tvist
     </Text>
-  </View>
+  </Component>
 </TouchableOpacity>
 `;

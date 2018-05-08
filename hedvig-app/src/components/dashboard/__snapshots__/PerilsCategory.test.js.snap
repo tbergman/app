@@ -5,7 +5,7 @@ exports[`<PerilsCategory /> Should render correctly 1`] = `
   activeOpacity={1}
   onPress={[Function]}
 >
-  <Styled(View)>
+  <Styled(Component)>
     <Styled(Image)
       source={
         Object {
@@ -13,25 +13,25 @@ exports[`<PerilsCategory /> Should render correctly 1`] = `
         }
       }
     />
-    <Styled(View)>
-      <Styled(View)>
-        <Styled(View)>
+    <Styled(Component)>
+      <Styled(Component)>
+        <Styled(Component)>
           <Styled(Text)>
             Jag och min familj
           </Styled(Text)>
-        </Styled(View)>
-        <Styled(View)>
+        </Styled(Component)>
+        <Styled(Component)>
           <Styled(Text)>
             Försäkras för
           </Styled(Text)>
-        </Styled(View)>
-      </Styled(View)>
-      <Styled(View)>
+        </Styled(Component)>
+      </Styled(Component)>
+      <Styled(Component)>
         <DisabledExpandButton
           size="mediumBig"
         />
-      </Styled(View)>
-    </Styled(View)>
-  </Styled(View)>
+      </Styled(Component)>
+    </Styled(Component)>
+  </Styled(Component)>
 </Styled(TouchableOpacity)>
 `;
