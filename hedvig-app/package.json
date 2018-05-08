@@ -67,7 +67,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-popup-dialog": "^0.10.46",
     "react-native-root-toast": "^3.0.1",
-    "react-native-snap-carousel": "^3.6.0",
+    "react-native-snap-carousel": "^3.7.0",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^1.2.1",
     "react-navigation-redux-helpers": "^1.0.1",
