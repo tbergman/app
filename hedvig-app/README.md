@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/HedvigInsurance/app.svg?branch=marketing-carousel)](https://travis-ci.org/HedvigInsurance/app)
+
 ## Deploying to TestFlight
 
 ```
