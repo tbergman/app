@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: '#1be9b6',
-    paddingTop: Expo.Constants.statusBarHeight || 20,
+    paddingTop: 20,
   },
   errorTitle: {
     color: '#087d61',
