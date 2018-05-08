@@ -39,7 +39,6 @@ class ChatTextInput extends React.Component {
           value={message._inputValue || ''}
           underlineColorAndroid="transparent"
           onChangeText={(text) => onChange(message, text)}
-          autoGrow
           multiline
           returnKeyType="send"
           enablesReturnKeyAutomatically

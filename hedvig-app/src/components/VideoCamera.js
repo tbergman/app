@@ -9,7 +9,7 @@ export default class VideoCamera extends React.Component {
     recording: false,
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     const camera_permission = await Permissions.askAsync(Permissions.CAMERA);
     const camera_granted = camera_permission.status === 'granted';
     const audio_recording_permission = await Permissions.askAsync(

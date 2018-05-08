@@ -104,11 +104,8 @@ const hitSlop = {
 };
 
 class OfferSwiper extends React.Component {
-  componentWillMount() {
-    this.props.getInsurance();
-  }
-
   componentDidMount() {
+    this.props.getInsurance();
     // Routing to Offer view from BaseRouter when
     // the app has been force closed and lost its state
     AsyncStorage.setItem(IS_VIEWING_OFFER, 'true');
