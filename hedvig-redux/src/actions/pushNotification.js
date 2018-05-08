@@ -9,6 +9,10 @@ export function registerPushToken(pushToken) {
     payload: {
       url: "/hedvig/push-token",
       method: "POST",
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',
+      },
       body: JSON.stringify(body, null, 4),
       SUCCESS: "REGISTERED_PUSH_TOKEN"
     }

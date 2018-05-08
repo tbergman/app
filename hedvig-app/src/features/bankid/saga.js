@@ -148,6 +148,7 @@ const bankIdCollectHandler = function*() {
         orderRef,
       }),
       headers: {
+        Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/json; charset=utf-8',
       },
       SUCCESS: BANKID_COLLECT_RESPONSE,

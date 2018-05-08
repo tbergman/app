@@ -38,7 +38,10 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
     payload: {
       method: "POST",
       url: "/response",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',
+      },
       body: JSON.stringify(messageFromState, null, 4),
       SUCCESS: "SEND_CHAT_RESPONSE_SUCCESS"
     }

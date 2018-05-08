@@ -16,7 +16,10 @@ const updateCashback = function*({ payload: selectedItem, continuation }) {
     payload: {
       method: "POST",
       url: `/cashback?optionId=${selectedItem.id}`,
-      // headers: { "Content-Type": "application/json" },
+      // headers: {
+      //   Accept: 'application/json; charset=utf-8',
+      //   'Content-Type': 'application/json; charset=utf-8',
+      // },
       // body: JSON.stringify(cashbackAlternatives, null, 4),
       SUCCESS: "UPDATED_CASHBACK"
     }

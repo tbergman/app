@@ -1,15 +1,18 @@
-import * as R from "ramda"
-import { takeEvery, put } from "redux-saga/effects"
-import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from "../actions/types"
-import { baseURL } from "../services/environment"
+import * as R from 'ramda'
+import { takeEvery, put } from 'redux-saga/effects'
+import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from '../actions/types'
+import { baseURL } from '../services/environment'
 
 const authenticate = function*(action) {
   let requestOpts = {
-    method: "POST"
+    method: 'POST'
   }
   if (!R.isNil(action.payload) && !R.isEmpty(action.payload)) {
     requestOpts.body = JSON.stringify(action.payload)
-    requestOpts.headers = { "Content-Type": "application/json" }
+    requestOpts.headers = {
+      Accept: 'application/json; charset=utf-8',
+      'Content-Type': 'application/json; charset=utf-8'
+    }
   }
   let authResponse = yield fetch(`${baseURL}/helloHedvig`, requestOpts)
   if (authResponse.status === 200) {
@@ -17,7 +20,7 @@ const authenticate = function*(action) {
     yield put({ type: RECEIVED_TOKEN, payload: token })
   } else {
     // TODO: Report this error to the user and to Sentry
-    console.warn("Failed to receive token", authResponse) // eslint-disable-line no-console
+    console.warn('Failed to receive token', authResponse) // eslint-disable-line no-console
   }
 }
 
@@ -28,9 +31,11 @@ const authenticateSaga = function*() {
 const validateToken = function*(action) {
   let token = action.payload
   let validateResponse = yield fetch(`${baseURL}/member/me`, {
+    method: 'GET',
     headers: {
-      Authorization: `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json; charset=utf-8',
+    },
   })
   if (validateResponse.status === 200 && token !== null) {
     yield put({ type: RECEIVED_TOKEN, payload: token })

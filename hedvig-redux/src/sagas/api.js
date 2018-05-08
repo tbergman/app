@@ -20,14 +20,17 @@ const api = function*(action) {
   while (tries < 5) {
     try {
       const { url } = action.payload
-      response = yield fetch(baseURL + url, {
+      const requestOptions = {
         method: action.payload.method,
         headers: Object.assign(
           { Authorization: `Bearer ${token}` },
           action.payload.headers
         ),
-        body: action.payload.body
-      })
+      }
+      if (action.payload.body) {
+        requestOptions.body = action.payload.body
+      }
+      response = yield fetch(baseURL + url, requestOptions)
 
       if (response.status === HTTP_UNAUTHORIZED) {
         yield put({

@@ -14,7 +14,8 @@ const handleEvent = function*(action) {
       url: "/event",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        Accept: 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(action.payload.info),
       SUCCESS: "POST_EVENT_SUCCESS"
