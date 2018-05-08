@@ -13,8 +13,8 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import * as hedvigRedux from 'hedvig-redux';
-import { theme } from 'hedvig-style';
 
+import { theme } from './src/style-theme';
 import nav from './src/reducers/nav';
 import { apiAndNavigateToChatSaga } from './src/sagas/apiAndNavigate';
 import { tokenStorageSaga } from './src/sagas/TokenStorage';

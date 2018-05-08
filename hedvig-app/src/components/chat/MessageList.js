@@ -19,7 +19,7 @@ import {
 import EditMessageButton from '../../containers/chat/EditMessageButton';
 import Avatar from '../../containers/chat/Avatar';
 import LoadingIndicator from '../../containers/chat/LoadingIndicator';
-import { theme } from 'hedvig-style';
+import { theme } from '../../style-theme';
 
 const renderImage = (message) => {
   if (
