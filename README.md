@@ -1,5 +1,14 @@
 [![Build Status](https://travis-ci.org/HedvigInsurance/app.svg?branch=marketing-carousel)](https://travis-ci.org/HedvigInsurance/app)
 
+# Project changes
+
+## Massive git rename
+
+Every single file in this repo was git mv'd so they lost their history.
+
+* Log commits pre rename: `git log --follow`
+* GitLens VSCode extension will automagically follow renames
+
 ## Deploying to TestFlight
 
 ```
