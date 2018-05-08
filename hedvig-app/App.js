@@ -68,6 +68,11 @@ if (!__DEV__) {
   };
 }
 
+// Disable warnings about deprecated lifecycle hooks in React 16.3.x+
+// https://blog.expo.io/expo-sdk-v26-0-0-is-now-available-2be6d9805b31
+// https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html
+console.disableYellowBox = true; // eslint-disable-line no-console
+
 export class App extends React.Component {
   constructor() {
     super();

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
-  category: {
+  categoryHeader: {
     marginTop: {
       [V_SPACIOUS]: '23%',
       [V_REGULAR]: '21%',
@@ -70,9 +70,6 @@ const styles = StyleSheet.create({
       [V_REGULAR]: '21%',
       [V_COMPACT]: '19%',
     }[verticalSizeClass],
-    flexDirection: 'row',
-  },
-  categoryHeader: {
     fontFamily: 'circular-bold',
     fontSize: 20,
     lineHeight: 20,
@@ -98,17 +95,9 @@ class OfferScreen extends React.Component {
                 </Text>
               </View>
               <View style={styles.content}>
-                <View style={styles.category}>
-                  <Text style={styles.categoryHeader}>Personskydd</Text>
-                </View>
-
-                <View style={styles.category}>
-                  <Text style={styles.categoryHeader}>Prylskydd</Text>
-                </View>
-
-                <View style={styles.category}>
-                  <Text style={styles.categoryHeader}>Lägenhetsskydd</Text>
-                </View>
+                <Text style={styles.categoryHeader}>Personskydd</Text>
+                <Text style={styles.categoryHeader}>Prylskydd</Text>
+                <Text style={styles.categoryHeader}>Lägenhetsskydd</Text>
               </View>
             </View>
           </ScrollView>

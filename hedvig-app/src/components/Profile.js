@@ -42,7 +42,7 @@ export default class Profile extends React.Component {
     headerRight: <HeaderRightChat navigation={navigation} />,
   });
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getUser();
     this.props.getCashbackAlternatives();
     this.props.getInsurance();

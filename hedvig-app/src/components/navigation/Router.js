@@ -68,11 +68,9 @@ class BaseRouter extends React.Component {
     }
   }
 
-  componentWillMount() {
-    this.props.getInsurance();
-  }
-
   async componentDidMount() {
+    this.props.getInsurance();
+
     if (this.props.hasRedirected) return;
 
     let alreadySeenMarketingCarousel = await AsyncStorage.getItem(

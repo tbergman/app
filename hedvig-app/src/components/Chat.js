@@ -91,12 +91,9 @@ const styles = StyleSheet.create({
 });
 
 export default class Chat extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
-  }
-
-  componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
   }
 
