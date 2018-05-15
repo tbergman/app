@@ -13,4 +13,7 @@ fi
 exp login -u $EXPO_USERNAME_TEST -p $EXPO_PASSWORD_TEST
 
 exp build:ios --release-channel test
-exp build:android --release-channel test
+
+# We don't currently have a test app for Android
+# Should start using a staging release channel
+# exp build:android --release-channel test
