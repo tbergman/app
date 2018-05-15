@@ -3,9 +3,6 @@ sudo: true
 node_js:
 - '9'
 
-before_install:
-- npm install exp --global
-
 install:
 - ./scripts/bootstrap.sh
 

@@ -14,6 +14,7 @@
 * Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
   * Mac
     * `brew install yarn`
+* Add `node_modules/.bin` to your `$PATH`
 * Create env-config and install dependencies
   * `./scripts/bootstrap.sh`
 
