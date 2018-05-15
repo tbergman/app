@@ -6,9 +6,7 @@
   * Mac
     * `brew install nodenv`
     * `brew install node-build`
-    * `nodenv install --list`
-    * `nodenv install X.X.LATEST`
-    * `nodenv global X.X.LATEST`
+    * `nodenv install`
     * `nodenv rehash`
 * Install [direnv](https://direnv.net/) (autoloads env variables in .envrc)
   * Mac
