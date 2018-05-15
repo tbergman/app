@@ -27,7 +27,7 @@ if (isValidBucket(S3_UPLOAD_BUCKET_PRODUCTION)) {
   );
 } else {
   console.log('Please export $S3_UPLOAD_BUCKET_PRODUCTION');
-  process.exit();
+  process.exit(1);
 }
 
 if (isValidBucket(S3_UPLOAD_BUCKET_TEST)) {
@@ -43,5 +43,5 @@ if (isValidBucket(S3_UPLOAD_BUCKET_TEST)) {
   );
 } else {
   console.log('Please export $S3_UPLOAD_BUCKET_TEST');
-  process.exit();
+  process.exit(1);
 }

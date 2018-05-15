@@ -9,7 +9,7 @@ const { BRANCH_API_KEY_LIVE } = process.env;
 if (!BRANCH_API_KEY_LIVE || BRANCH_API_KEY_LIVE.indexOf('key_live_') === -1) {
   console.log('Please export the LIVE Branch Key as $BRANCH_API_KEY_LIVE');
   console.log('Find it here: https://dashboard.branch.io/account-settings/app');
-  process.exit();
+  process.exit(1);
 }
 
 const appId = 'com.hedvig.app';
