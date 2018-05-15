@@ -1,7 +1,7 @@
 language: node_js
 sudo: true
 node_js:
-- '10'
+- '9'
 
 before_install:
 - npm install exp --global
