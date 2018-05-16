@@ -13,7 +13,7 @@ fi
 
 exp login -u $EXPO_USERNAME_PRODUCTION -p $EXPO_PASSWORD_PRODUCTION
 
-exp build:ios --release-channel production --config ../app.production.json
-exp build:android --release-channel production --config ../app.production.json
+exp build:ios --release-channel production --config ./app.production.json
+exp build:android --release-channel production --config ./app.production.json
 
 exp logout
