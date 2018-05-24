@@ -202,7 +202,7 @@ class OfferSwiper extends React.Component {
               <SafeAreaView key={'nextButton'}>
                 <View style={[styles.button, isFirst && styles.buttonIsFirst]}>
                   <Text style={[styles.label, isFirst && styles.labelIsFirst]}>
-                    {isFirst ? 'Gå igenom' : 'Gå vidare'}
+                    {isFirst ? 'Berätta mer' : 'Gå vidare'}
                   </Text>
                   {!isFirst && (
                     <Image

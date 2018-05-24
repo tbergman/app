@@ -10,6 +10,7 @@ import {
   StyleSheet,
   ImageBackground,
   SafeAreaView,
+  Linking,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
@@ -264,6 +265,14 @@ const marketingCarouselStyles = StyleSheet.create({
   footerLoginTextIsFirst: {
     color: 'white',
   },
+  footerPrivacyText: {
+    fontFamily: 'circular',
+    fontSize: 18,
+    lineHeight: 20,
+    height: 20,
+    color: 'white',
+    marginRight: 8,
+  },
   footerLoginCta: {
     fontFamily: 'circular',
     fontSize: 18,
@@ -361,6 +370,19 @@ export default class MarketingCarousel extends React.Component {
 
         <View style={marketingCarouselStyles.footerContainer}>
           <SafeAreaView key={'footer'}>
+            {isFirst && (
+              <TouchableOpacity
+                style={marketingCarouselStyles.footerLoginContainer}
+                onPress={() => {
+                  Linking.openURL('https://www.hedvig.com/privacy/');
+                }}
+              >
+                <Text style={[marketingCarouselStyles.footerPrivacyText]}>
+                  Om dina personuppgifter
+                </Text>
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity
               key={'cta'}
               onPress={() => this.props.startChat()}

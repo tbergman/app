@@ -156,7 +156,7 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Maxersättning för dina{'\n'}prylar är 1 miljon kr
+                      Maxersättning för prylarna{'\n'}i ditt hem är 1 miljon kr
                     </React.Fragment>
                   }
                 />
