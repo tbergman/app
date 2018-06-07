@@ -91,7 +91,6 @@ class BaseRouter extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="white" />
         <ConnectedReduxBaseNavigator addListener={this.addListener} />
       </View>
     );
