@@ -123,7 +123,7 @@ export const SegmentTracker = {
   identify: (userId, traits) => {
     // userId is optional in Segment
     if (userId) {
-      // Android crashes in dev if we make any Branch calls in development (this is a bug that we have reported)
+      // Android crashes in dev if we make any Branch calls in development (this is a bug that we have reported, see https://github.com/expo/expo/issues/1841)
       if (!__DEV__) {
         Branch.setIdentity(userId);
       }
