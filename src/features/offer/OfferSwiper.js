@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Dimensions,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
@@ -133,7 +134,25 @@ class OfferSwiper extends React.Component {
     const { orderId } = this.props.analytics;
     this.props.trackOfferOpen(this.props.insurance.newTotalPrice, orderId);
     this.props.trackOfferStepViewed(this.props.activeOfferScreenIndex, orderId);
+
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    const activeIndex = this.props.activeOfferScreenIndex;
+    if (activeIndex === 0) {
+      this.props.closeOffer(this.props.analytics.orderId);
+      return true;
+    }
+    if (this.swiper) {
+      this.swiper.scrollBy(-1);
+    }
+    return true;
+  };
 
   componentDidUpdate(prevProps) {
     const { orderId } = this.props.analytics;
@@ -197,6 +216,7 @@ class OfferSwiper extends React.Component {
             </View>
           ) : null}
           <Swiper
+            ref={(ref) => (this.swiper = ref)}
             style={styles.swiper}
             loop={false}
             showsButtons={!isLast}
