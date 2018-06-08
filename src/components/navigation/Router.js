@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar, AsyncStorage, StyleSheet } from 'react-native';
+import { View, AsyncStorage, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
