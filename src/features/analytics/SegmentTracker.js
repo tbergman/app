@@ -123,7 +123,10 @@ export const SegmentTracker = {
   identify: (userId, traits) => {
     // userId is optional in Segment
     if (userId) {
-      Branch.setIdentity(userId);
+      // Android crashes in dev if we make any Branch calls in development (this is a bug that we have reported)
+      if (!__DEV__) {
+        Branch.setIdentity(userId);
+      }
     }
     if (traits) {
       return Segment.identifyWithTraits(userId, traits);
@@ -141,7 +144,9 @@ export const SegmentTracker = {
       event,
       properties,
     );
-    Branch.userCompletedAction(branchEventName, branchProperties);
+    if (!__DEV__) {
+      Branch.userCompletedAction(branchEventName, branchProperties);
+    }
     if (properties) {
       return Segment.trackWithProperties(event, properties);
     }
@@ -155,7 +160,9 @@ export const SegmentTracker = {
   },
   flush: () => Segment.flush(),
   reset: () => {
-    Branch.logout();
+    if (!__DEV__) {
+      Branch.logout();
+    }
     return Segment.reset();
   },
 };
