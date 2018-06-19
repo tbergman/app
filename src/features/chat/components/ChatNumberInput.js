@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
-import { SendIconButton, SendDisabledIconButton } from '../Button';
+import {
+  SendIconButton,
+  SendDisabledIconButton,
+} from '../../../components/Button';
 
 class ChatTextInput extends React.Component {
   static propTypes = {

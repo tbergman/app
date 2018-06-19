@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import React from 'react';
 import { Linking } from 'react-native';
 import { WebBrowser } from 'expo';
-import { SingleSelectOptionButton } from '../Button';
+import { SingleSelectOptionButton } from '../../../components/Button';
 import {
   StyledRightAlignedOptions,
   StyledMarginContainer,

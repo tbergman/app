@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ParagraphInput from '../../components/chat/ParagraphInput';
-import { types } from '../../../hedvig-redux';
+import ParagraphInput from '../components/ParagraphInput';
+import { types } from '../../../../hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {

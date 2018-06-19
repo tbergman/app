@@ -6,14 +6,14 @@ import {
   StopRecordingButton,
   StopRecordingAnimationButton,
   SingleSelectOptionButton,
-} from '../Button';
-import { UploadingAnimation } from '../Animation';
+} from '../../../components/Button';
+import { UploadingAnimation } from '../../../components/Animation';
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions,
 } from '../styles/chat';
-import { StyledSmallText } from '../styles/text';
-import { StyledPassiveText } from '../styles/text';
+import { StyledSmallText } from '../../../components/styles/text';
+import { StyledPassiveText } from '../../../components/styles/text';
 
 export default class AudioInput extends React.Component {
   state = {

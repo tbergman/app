@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import LoadingIndicator from '../../components/chat/LoadingIndicator';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 const mapStateToProps = (state, ownProps) => {
   if (state.chat.messages.length > 0) {

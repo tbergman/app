@@ -9,7 +9,7 @@ import {
   MultipleSelectOptionButton,
   SendIconButton,
   SendDisabledIconButton,
-} from '../Button';
+} from '../../../components/Button';
 
 const WRAP_NUM_OPTIONS = 6;
 

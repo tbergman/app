@@ -1,6 +1,6 @@
 import React from 'react';
 import { Permissions, ImagePicker } from 'expo';
-import { SingleSelectOptionButton } from '../Button';
+import { SingleSelectOptionButton } from '../../../components/Button';
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions,

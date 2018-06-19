@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
-import * as typography from './typography';
+import * as typography from '../../../components/styles/typography';
 
 // Regular text messages
 

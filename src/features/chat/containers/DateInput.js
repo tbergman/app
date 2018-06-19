@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ChatNumberInput from '../../components/chat/ChatNumberInput';
-import { chatActions } from '../../../hedvig-redux';
+import DateInput from '../components/DateInput';
+import { chatActions } from '../../../../hedvig-redux';
 
 const mapStateToProps = (state, ownProps) => {
   let message = state.chat.messages[ownProps.messageIndex];
@@ -16,15 +16,15 @@ const mapDispatchToProps = (dispatch) => {
     send: (message) =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          text: message._inputValue,
+          date: message._inputValue,
         }),
       ),
   };
 };
 
-const ChatNumberInputContainer = connect(
+const DateInputContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ChatNumberInput);
+)(DateInput);
 
-export default ChatNumberInputContainer;
+export default DateInputContainer;

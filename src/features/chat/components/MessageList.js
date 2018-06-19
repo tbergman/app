@@ -16,10 +16,10 @@ import {
   StyledHeroMessage,
   StyledAvatarContainer,
 } from '../styles/chat';
-import EditMessageButton from '../../containers/chat/EditMessageButton';
-import Avatar from '../../containers/chat/Avatar';
-import LoadingIndicator from '../../containers/chat/LoadingIndicator';
-import { theme } from '../../style-theme';
+import EditMessageButton from '../containers/EditMessageButton';
+import Avatar from '../containers/Avatar';
+import LoadingIndicator from '../containers/LoadingIndicator';
+import { theme } from '../../../style-theme';
 
 const renderImage = (message) => {
   if (

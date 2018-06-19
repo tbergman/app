@@ -6,7 +6,7 @@ import {
   StyledFakeTextInputText,
   TouchableStyledFakeTextInput,
 } from '../styles/chat';
-import { SendIconButton } from '../Button';
+import { SendIconButton } from '../../../components/Button';
 import moment from 'moment';
 import 'moment/locale/sv';
 
