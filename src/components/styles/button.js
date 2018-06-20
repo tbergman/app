@@ -1,11 +1,24 @@
 import React from 'react';
-import { Animated, TouchableOpacity, TouchableHighlight } from 'react-native';
+import {
+  Animated,
+  TouchableOpacity,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import styled from 'styled-components/native';
 import { CircularFontText } from './typography';
 
-export const StyledButton = styled.TouchableOpacity``;
+export class StyledButton extends React.Component {
+  render() {
+    return <TouchableOpacity {...this.props} />;
+  }
+}
 
-export const StyledDisabledButton = styled.View``;
+export class StyledDisabledButton extends React.Component {
+  render() {
+    return <View {...this.props} />;
+  }
+}
 
 export const StyledButtonText = CircularFontText.extend`
   color: ${(props) =>
