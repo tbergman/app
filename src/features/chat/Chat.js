@@ -65,19 +65,18 @@ const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
     return null;
   }
-  let lastIndex = messages.length - 1;
-  let lastMessage = messages[lastIndex];
+  let lastMessage = messages[0];
   let lastMessageType = lastMessage.body.type;
   if (lastMessageType === 'polling') {
-    lastMessage = messages[lastIndex - 2];
+    lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
       <PollingMessage>
-        {inputComponentMap(lastIndex - 1, navigation)[lastMessageType]}
+        {inputComponentMap(0, navigation)[lastMessageType]}
       </PollingMessage>
     );
   }
-  return inputComponentMap(lastIndex, navigation)[lastMessageType];
+  return inputComponentMap(0, navigation)[lastMessageType];
 };
 
 const styles = StyleSheet.create({

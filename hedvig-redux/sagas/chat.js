@@ -123,7 +123,7 @@ const DEFAULT_POLLING_INTERVAL = 1000;
 const pollMessageHandler = function*(action) {
   // Remember the last message
   let state = yield select();
-  let [lastMessage] = state.chat.messages.slice(-1);
+  let lastMessage = state.chat.messages[0];
 
   if (action.type === START_POLLING_MESSAGES) {
     let pollingInterval =
@@ -137,7 +137,7 @@ const pollMessageHandler = function*(action) {
 
     // Decide whether to loop
     let nextState = yield select();
-    let [nextLastMessage] = nextState.chat.messages.slice(-1);
+    let nextLastMessage = nextState.chat.messages[0];
     // If we haven't received a new message in GET /messages, loop
     if (nextLastMessage.globalId === lastMessage.globalId) {
       yield put({

@@ -86,7 +86,7 @@ const reducer = (
     case LOADED_MESSAGES:
     case LOADED_ONBOARDING:
       return Object.assign({}, state, {
-        messages: R.sortBy(R.path(['timestamp']), R.values(action.payload)),
+        messages: Object.values(action.payload).reverse(),
       });
     case CHOICE_SELECTED:
       return selectChoice(state, action);
