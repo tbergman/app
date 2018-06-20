@@ -17,11 +17,11 @@ export function getMessages({ intent = null } = {}) {
   // `intent` is used to start the right conversation on the backend
   // Defaults to onboarding when no intent is given
   // intent = login || onboarding
-  const paramIntent = intent ? `&intent=${encodeURIComponent(intent)}` : '';
+  const paramIntent = intent ? `?intent=${encodeURIComponent(intent)}` : '';
   return {
     type: API,
     payload: {
-      url: `${GET_MESSAGES_URL}?timestamp=${Date.now()}${paramIntent}`,
+      url: `${GET_MESSAGES_URL}${paramIntent}`,
       method: 'GET',
       SUCCESS: LOADED_MESSAGES,
     },
