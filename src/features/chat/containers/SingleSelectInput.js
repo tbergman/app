@@ -7,7 +7,7 @@ import { NavigationActions } from 'react-navigation';
 
 import { chatActions } from '../../../../hedvig-redux';
 import { showDashboardAction } from '../../../actions/baseNavigation';
-import { SingleSelectOptionButton } from '../../../components/Button';
+import { AnimatedChatOptionButton } from '../components/Button';
 import {
   StyledRightAlignedOptions,
   StyledMarginContainer,
@@ -25,7 +25,7 @@ const SingleSelectInput = ({
   let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
-        <SingleSelectOptionButton
+        <AnimatedChatOptionButton
           hidden={anySelected && !choice.selected}
           title={choice.text}
           selected={choice.selected}

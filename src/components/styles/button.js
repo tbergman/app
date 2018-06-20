@@ -55,48 +55,6 @@ export const StyledChatResponseButton = StyledRoundedButton.extend`
   margin-bottom: 8px;
 `;
 
-export class AnimatedStyledChatResponseButton extends React.Component {
-  state = {
-    slideAnim: new Animated.Value(300),
-  };
-
-  componentDidMount() {
-    Animated.sequence([
-      Animated.delay(100),
-      Animated.spring(this.state.slideAnim, {
-        toValue: 0,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }
-
-  render() {
-    return (
-      <TouchableOpacity
-        style={{
-          transform: [{ translateX: this.state.slideAnim }],
-          minHeight: 20,
-          paddingTop: 8,
-          paddingRight: 16,
-          paddingBottom: 8,
-          paddingLeft: 16,
-          backgroundColor: this.props.selected ? '#651eff' : '#ffffff',
-          borderColor: '#651eff',
-          borderWidth: 1,
-          borderRadius: 24,
-          alignItems: 'center',
-          justifyContent: 'center',
-          alignSelf: 'center',
-          marginBottom: 8,
-        }}
-        {...this.props}
-      >
-        {this.props.children}
-      </TouchableOpacity>
-    );
-  }
-}
-
 export const StyledHiddenChatResponseButton = StyledChatResponseButton.extend`
   opacity: 0;
 `;

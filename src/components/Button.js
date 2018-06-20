@@ -12,10 +12,8 @@ import {
   StyledRoundedButtonInverted,
   StyledRedRoundedButtonInverted,
   StyledTurquoiseRoundedButtonInverted,
-  AnimatedStyledChatResponseButton,
   StyledTransparentButton,
   AnimatedStyledMultipleSelectOptionButton,
-  StyledHiddenChatResponseButton,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
 const { Lottie } = DangerZone;
@@ -148,23 +146,6 @@ export const RoundedTransparentButton = ({
     onPress,
     selected,
     _ContainerComponent: StyledTransparentButton,
-  });
-
-export const SingleSelectOptionButton = ({
-  title,
-  prefix,
-  onPress,
-  selected,
-  hidden,
-}) =>
-  RoundedButton({
-    title,
-    prefix,
-    onPress,
-    selected,
-    _ContainerComponent: hidden
-      ? StyledHiddenChatResponseButton
-      : AnimatedStyledChatResponseButton,
   });
 
 export const MultipleSelectOptionButton = ({
