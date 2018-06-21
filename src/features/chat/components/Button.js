@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Animated, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -30,6 +31,20 @@ const styles = StyleSheet.create({
 });
 
 export class AnimatedChatOptionButton extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    selected: PropTypes.bool,
+    disabled: PropTypes.bool,
+    onPress: PropTypes.func.isRequired,
+    hidden: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    selected: false,
+    disabled: false,
+    hidden: false,
+  };
+
   state = {
     slideAnim: new Animated.Value(300),
   };
