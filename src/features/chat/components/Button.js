@@ -129,9 +129,11 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
         style={[
           styles.chatOptionButton,
           {
-            transform: {
-              translateX: this.state.slideAnim,
-            },
+            transform: [
+              {
+                translateX: this.state.slideAnim,
+              },
+            ],
           },
           selected ? styles.buttonColorSelected : styles.buttonColorNotSelected,
         ]}

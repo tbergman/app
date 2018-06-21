@@ -1,9 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
+import { Animated, View, StyleSheet } from 'react-native';
 import * as typography from '../../../components/styles/typography';
 
 // Regular text messages
+
+const styles = StyleSheet.create({
+  rightAlignedOptions: {
+    flexDirection: 'row-reverse',
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+    marginLeft: 5,
+  },
+});
 
 export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
   color: ${(props) => props.theme.colors.hedvigMessageText};
@@ -82,12 +91,11 @@ export const StyledMarginContainer = styled.View`
   flex-wrap: wrap;
 `;
 
-export const StyledRightAlignedOptions = styled.View`
-  flex-direction: row-reverse;
-  align-self: flex-end;
-  align-items: center;
-  margin-left: 5px;
-`;
+export class StyledRightAlignedOptions extends React.Component {
+  render() {
+    return <View style={[styles.rightAlignedOptions]} {...this.props} />;
+  }
+}
 
 // Multiple select
 
