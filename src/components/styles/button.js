@@ -51,14 +51,6 @@ export const StyledRoundedButton = styled.TouchableOpacity`
   align-self: center;
 `;
 
-export const StyledChatResponseButton = StyledRoundedButton.extend`
-  margin-bottom: 8px;
-`;
-
-export const StyledHiddenChatResponseButton = StyledChatResponseButton.extend`
-  opacity: 0;
-`;
-
 export const StyledTransparentButton = StyledRoundedButton.extend`
   background-color: transparent;
 `;
