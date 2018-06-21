@@ -8,10 +8,10 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 import {
-  MultipleSelectOptionButton,
   SendIconButton,
   SendDisabledIconButton,
 } from '../../../components/Button';
+import { AnimatedMultipleSelectOptionButton } from '../components/Button';
 
 const WRAP_NUM_OPTIONS = 6;
 
@@ -32,7 +32,7 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
-        <MultipleSelectOptionButton
+        <AnimatedMultipleSelectOptionButton
           onPress={() => {
             onChoiceSelected(message, choice);
           }}

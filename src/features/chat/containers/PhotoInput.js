@@ -3,7 +3,7 @@ import { Permissions, ImagePicker } from 'expo';
 import { connect } from 'react-redux';
 import { chatActions, uploadActions } from '../../../../hedvig-redux';
 
-import { AnimatedChatOptionButton } from '../components/Button';
+import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions,
@@ -33,13 +33,13 @@ const choosePhotoAndUpload = (upload, message) => {
   return (
     <StyledMarginContainer>
       <StyledRightAlignedOptions>
-        <AnimatedChatOptionButton
+        <AnimatedSingleSelectOptionButton
           onPress={() => getAndUploadImage('camera', message, upload)}
           title="Ta en bild"
         />
       </StyledRightAlignedOptions>
       <StyledRightAlignedOptions>
-        <AnimatedChatOptionButton
+        <AnimatedSingleSelectOptionButton
           onPress={() => getAndUploadImage('picker', message, upload)}
           title="Välj en bild"
         />

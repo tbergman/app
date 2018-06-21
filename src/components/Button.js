@@ -7,13 +7,10 @@ import {
   StyledDisabledButton,
   StyledButtonText,
   StyledButtonTextInverted,
-  StyledButtonTextPrefix,
   StyledRoundedButton,
   StyledRoundedButtonInverted,
   StyledRedRoundedButtonInverted,
   StyledTurquoiseRoundedButtonInverted,
-  StyledTransparentButton,
-  AnimatedStyledMultipleSelectOptionButton,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
 const { Lottie } = DangerZone;
@@ -23,14 +20,6 @@ const hitSlop = {
   right: 20,
   bottom: 20,
   left: 20,
-};
-
-export const Button = ({ onPress, children }) => {
-  return (
-    <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
-      {children}
-    </TouchableOpacity>
-  );
 };
 
 export const TextButton = ({ title, onPress }) => {
@@ -119,6 +108,9 @@ export const RoundedButton = ({
   _TextComponent = StyledButtonText,
   style = undefined,
 }) => {
+  if (prefix) {
+    throw new Error('prefix used');
+  }
   return (
     <_ContainerComponent
       disabled={disabled}
@@ -126,47 +118,8 @@ export const RoundedButton = ({
       selected={selected}
       {...(style ? { style: style } : {})}
     >
-      <_TextComponent selected={selected}>
-        {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
-        {title}
-      </_TextComponent>
+      <_TextComponent selected={selected}>{title}</_TextComponent>
     </_ContainerComponent>
-  );
-};
-
-export const RoundedTransparentButton = ({
-  title,
-  prefix,
-  onPress,
-  selected,
-}) =>
-  RoundedButton({
-    title,
-    prefix,
-    onPress,
-    selected,
-    _ContainerComponent: StyledTransparentButton,
-  });
-
-export const MultipleSelectOptionButton = ({
-  title,
-  prefix,
-  onPress,
-  selected,
-}) => {
-  let TextComponent = selected ? StyledButtonTextInverted : StyledButtonText;
-  return (
-    <AnimatedStyledMultipleSelectOptionButton
-      onPress={onPress}
-      selected={selected}
-      underlayColor="transparent"
-      activeOpacity={0.5}
-    >
-      <TextComponent>
-        {prefix && <StyledButtonTextPrefix>{prefix} </StyledButtonTextPrefix>}
-        {title}
-      </TextComponent>
-    </AnimatedStyledMultipleSelectOptionButton>
   );
 };
 

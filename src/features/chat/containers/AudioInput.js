@@ -12,7 +12,7 @@ import {
   StopRecordingButton,
   StopRecordingAnimationButton,
 } from '../../../components/Button';
-import { AnimatedChatOptionButton } from '../components/Button';
+import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import { UploadingAnimation } from '../../../components/Animation';
 import {
   StyledMarginContainer,
@@ -231,19 +231,19 @@ class AudioInput extends React.Component {
       maybePlayback = (
         <View>
           <StyledRightAlignedOptions>
-            <AnimatedChatOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Gör om"
               onPress={() => this.startRecordingAudio()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <AnimatedChatOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Spela upp"
               onPress={() => this.startPlayback()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <AnimatedChatOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Spara"
               onPress={this.upload.bind(this)}
             />
