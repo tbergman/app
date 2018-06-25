@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/index';
 import mockMiddleware from './middleware/mock';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import helloActions from './actions/hello';
 import * as insuranceActions from './actions/insurance';
 import * as chatActions from './actions/chat';
 import * as uploadActions from './actions/upload';
@@ -47,7 +46,6 @@ function configureStore({
 }
 
 export {
-  helloActions,
   types,
   configureStore,
   insuranceActions,
