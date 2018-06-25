@@ -1,20 +1,35 @@
-import styled from 'styled-components/native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
-export const StyledNavBarContainer = styled.View`
-  height: 64;
-  background-color: ${(props) => props.theme.colors.white};
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  ${'' /* Drop shadow */} shadow-opacity: 0.3;
-  shadow-radius: 5;
-  shadow-color: black;
-  z-index: 100;
-  elevation: 1;
-`;
+const styles = StyleSheet.create({
+  container: {
+    height: 64,
+    backgroundColor: '#ffffff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 12,
+    paddingRight: 16,
+    paddingBottom: 12,
+    paddingLeft: 16,
+    // Drop shadow
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowColor: 'black',
+    zIndex: 100,
+    elevation: 1,
+  },
+  emptyHeaderItem: { width: 40, height: 40 },
+});
 
-export const EmptyHeaderItem = styled.View`
-  width: 40px;
-  height: 40px;
-`;
+export class StyledNavBarContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.container} />;
+  }
+}
+
+export class EmptyHeaderItem extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.emptyHeaderItem} />;
+  }
+}
