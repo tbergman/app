@@ -85,9 +85,16 @@ const reducer = (
     case MOCK_LOADED_CLAIM_MESSAGES:
     case LOADED_MESSAGES:
     case LOADED_ONBOARDING:
-      return Object.assign({}, state, {
-        messages: Object.values(action.payload).reverse(),
-      });
+      if (!action.payload.messages) {
+        // Remove this if-statement before merging
+        return { ...state, messages: Object.values(action.payload).reverse() };
+      }
+      return {
+        ...state,
+        messages: action.payload.messages,
+        ongoingClaim: action.payload.state.ongoingClaim,
+        showOfferScreen: action.payload.showOfferScreen,
+      };
     case CHOICE_SELECTED:
       return selectChoice(state, action);
     case SET_RESPONSE_VALUE:
