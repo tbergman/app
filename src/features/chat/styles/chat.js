@@ -1,9 +1,9 @@
 import React from 'react';
+import { Animated, View, StyleSheet, Text } from 'react-native';
 import styled from 'styled-components/native';
-import { Animated, View, StyleSheet } from 'react-native';
-import * as typography from '../../../components/styles/typography';
 
 // Regular text messages
+const AnimatableView = Animated.createAnimatedComponent(View);
 
 const styles = StyleSheet.create({
   rightAlignedOptions: {
@@ -12,17 +12,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 5,
   },
+  defaultMessageText: {
+    color: '#0f007a',
+    fontSize: 16,
+    fontFamily: 'merriweather',
+    textAlign: 'left',
+  },
+  userMessageText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'circular',
+    textAlign: 'left',
+  },
+  messageContainer: {
+    flexDirection: 'row',
+    paddingTop: 12,
+    paddingRight: 12,
+    paddingBottom: 12,
+    paddingLeft: 12,
+    borderRadius: 8,
+    maxWidth: '88%',
+    backgroundColor: '#f9fafc',
+    marginBottom: 8,
+  },
 });
 
-export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
-  color: ${(props) => props.theme.colors.hedvigMessageText};
-  font-size: ${(props) => props.theme.typography.hedvigMessage.fontSize};
-`;
+export class StyledDefaultMessageText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.defaultMessageText} />;
+  }
+}
 
-export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
-  color: ${(props) => props.theme.colors.white};
-  font-size: ${(props) => props.theme.typography.userMessage.fontSize};
-`;
+export class StyledDefaultUserMessageText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.userMessageText} />;
+  }
+}
 
 export const StyledChatMessage = styled.View`
   flex-direction: row;
@@ -33,9 +58,6 @@ export const StyledChatMessage = styled.View`
   margin-bottom: 8px;
 `;
 
-const _animatableStyledChatMessage = Animated.createAnimatedComponent(
-  StyledChatMessage,
-);
 export class AnimatedStyledChatMessage extends React.Component {
   state = {
     slideAnim: new Animated.Value(-100),
@@ -50,12 +72,15 @@ export class AnimatedStyledChatMessage extends React.Component {
 
   render() {
     return (
-      <_animatableStyledChatMessage
-        style={{ transform: [{ translateX: this.state.slideAnim }] }}
+      <AnimatableView
+        style={[
+          styles.messageContainer,
+          { transform: [{ translateX: this.state.slideAnim }] },
+        ]}
         {...this.props}
       >
         {this.props.children}
-      </_animatableStyledChatMessage>
+      </AnimatableView>
     );
   }
 }
