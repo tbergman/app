@@ -34,7 +34,7 @@ class ChatNumberInput extends React.Component {
     return (
       <StyledTextInputContainer>
         <StyledTextInput
-          placeholder="Type here..."
+          placeholder="Skriv här..."
           autoFocus
           keyboardType="numeric"
           value={message._inputValue || ''}
