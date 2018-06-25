@@ -3414,9 +3414,9 @@ exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
 
-exp@^55.0.2:
-  version "55.0.2"
-  resolved "https://registry.yarnpkg.com/exp/-/exp-55.0.2.tgz#28843900e79cc468cdec25b5c2a9d3e05591f341"
+exp@^55.0.4:
+  version "55.0.4"
+  resolved "https://registry.yarnpkg.com/exp/-/exp-55.0.4.tgz#3a7668915449656426bb78acc014f9b1dba13e8e"
   dependencies:
     "@babel/code-frame" "^7.0.0-beta.44"
     "@expo/bunyan" "^1.8.10"
@@ -3445,7 +3445,7 @@ exp@^55.0.2:
     source-map-support "^0.4.1"
     untildify "^3.0.2"
     wordwrap "^1.0.0"
-    xdl "50.2.1"
+    xdl "50.4.2"
   optionalDependencies:
     "@expo/traveling-fastlane-darwin" "1.5.0"
     "@expo/traveling-fastlane-linux" "1.5.0"
@@ -9271,9 +9271,9 @@ xdl@48.1.4:
     xmldom "^0.1.27"
     yesno "^0.0.1"
 
-xdl@50.2.1:
-  version "50.2.1"
-  resolved "https://registry.yarnpkg.com/xdl/-/xdl-50.2.1.tgz#a766f9f0f3ddddf60bcd1768ca60b43afc780311"
+xdl@50.4.2:
+  version "50.4.2"
+  resolved "https://registry.yarnpkg.com/xdl/-/xdl-50.4.2.tgz#e1f47535d4690ea639a1fedfee1ff2a61c5bf3e0"
   dependencies:
     "@expo/bunyan" "3.0.2"
     "@expo/json-file" "^8.0.0"
