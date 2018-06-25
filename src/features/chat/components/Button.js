@@ -13,18 +13,20 @@ const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
 );
 
 const styles = StyleSheet.create({
-  chatOptionButton: {
+  buttonBase: {
     minHeight: 20,
     paddingTop: 8,
     paddingRight: 16,
     paddingBottom: 8,
     paddingLeft: 16,
-    borderColor: '#651eff',
     borderWidth: 1,
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  chatOptionButton: {
+    borderColor: '#651eff',
     marginBottom: 8,
   },
   buttonColorSelected: { backgroundColor: '#651eff' },
@@ -38,6 +40,11 @@ const styles = StyleSheet.create({
   },
   buttonTextColorSelected: { color: '#ffffff' },
   buttonTextColorNotSelected: { color: '#651eff' },
+  backToOfferButton: {
+    backgroundColor: '#1be9b6',
+    borderColor: '#1be9b6',
+  },
+  backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {
@@ -76,6 +83,7 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
         onPress={onPress}
         disabled={disabled}
         style={[
+          styles.buttonBase,
           styles.chatOptionButton,
           {
             transform: [{ translateX: this.state.slideAnim }],
@@ -149,6 +157,24 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
           {title}
         </Text>
       </AnimatableTouchableHighlight>
+    );
+  }
+}
+
+export class BackToOfferButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[styles.buttonBase, styles.backToOfferButton]}
+      >
+        <Text style={styles.backToOfferText}>Fortsätt →</Text>
+      </TouchableOpacity>
     );
   }
 }

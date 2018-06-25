@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -20,24 +22,21 @@ import {
 import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
-import { showDashboardAction } from '../../actions/baseNavigation';
+import * as navigationActions from '../../actions/baseNavigation';
+import { BackToOfferButton } from './components/Button';
+import { shouldShowReturnToOfferScreenButton } from './state/selectors';
 
-const inputComponentMap = (lastIndex, navigation) => ({
-  multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
-  text: <ChatTextInput messageIndex={lastIndex} />,
-  number: <ChatNumberInput messageIndex={lastIndex} />,
-  single_select: (
-    <SingleSelectInput
-      messageIndex={lastIndex}
-      launchModal={() => navigation.navigate('Offer')}
-    />
-  ),
-  date_picker: <DateInput messageIndex={lastIndex} />,
-  photo_upload: <PhotoInput messageIndex={lastIndex} />,
-  bankid_collect: <BankIdCollectInput messageIndex={lastIndex} />,
-  paragraph: <ParagraphInput messageIndex={lastIndex} />,
-  audio: <AudioInput messageIndex={lastIndex} />,
-});
+const inputComponentMap = {
+  multiple_select: <MultipleSelectInput />,
+  text: <ChatTextInput />,
+  number: <ChatNumberInput />,
+  single_select: <SingleSelectInput />,
+  date_picker: <DateInput />,
+  photo_upload: <PhotoInput />,
+  bankid_collect: <BankIdCollectInput />,
+  paragraph: <ParagraphInput />,
+  audio: <AudioInput />,
+};
 
 class UnconnectedPollingMessage extends React.Component {
   componentDidMount() {
@@ -61,7 +60,7 @@ const PollingMessage = connect(
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = function(messages, navigation) {
+const getInputComponent = (messages) => {
   if (messages.length === 0) {
     return null;
   }
@@ -71,12 +70,10 @@ const getInputComponent = function(messages, navigation) {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
-      <PollingMessage>
-        {inputComponentMap(0, navigation)[lastMessageType]}
-      </PollingMessage>
+      <PollingMessage>{inputComponentMap[lastMessageType]}</PollingMessage>
     );
   }
-  return inputComponentMap(0, navigation)[lastMessageType];
+  return inputComponentMap[lastMessageType];
 };
 
 const styles = StyleSheet.create({
@@ -96,6 +93,12 @@ const styles = StyleSheet.create({
 });
 
 class Chat extends React.Component {
+  static propTypes = {
+    showOffer: PropTypes.func.isRequired,
+    getMessages: PropTypes.func.isRequired,
+    getAvatars: PropTypes.func.isRequired,
+    messages: PropTypes.arrayOf(PropTypes.object),
+  };
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -112,6 +115,10 @@ class Chat extends React.Component {
     }
   };
 
+  showOffer = () => {
+    this.props.showOffer();
+  };
+
   render() {
     let headerLeft;
     let headerRight;
@@ -123,9 +130,15 @@ class Chat extends React.Component {
         <NavigateBackButton onPress={() => this.props.showDashboard()} />
       );
     } else {
-      headerRight = (
-        <ChatNavRestartButton onPress={() => this.props.resetConversation()} />
-      );
+      if (!this.props.showReturnToOfferButton) {
+        headerRight = <BackToOfferButton onPress={this.showOffer} />;
+      } else {
+        headerRight = (
+          <ChatNavRestartButton
+            onPress={() => this.props.resetConversation()}
+          />
+        );
+      }
     }
 
     return (
@@ -151,6 +164,7 @@ class Chat extends React.Component {
 const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
+    showReturnToOfferButton: shouldShowReturnToOfferScreenButton(state),
     insurance: state.insurance,
     intent: state.conversation.intent,
   };
@@ -178,7 +192,9 @@ const mapDispatchToProps = (dispatch) => {
         }),
       ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
-    showDashboard: () => dispatch(showDashboardAction()),
+    showDashboard: () => dispatch(navigationActions.showDashboardAction()),
+    showOffer: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'Offer' })),
   };
 };
 

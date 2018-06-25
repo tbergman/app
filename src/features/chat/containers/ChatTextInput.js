@@ -56,8 +56,8 @@ class ChatTextInput extends React.Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex];
+const mapStateToProps = (state) => {
+  let message = state.chat.messages[0];
   return {
     message,
   };

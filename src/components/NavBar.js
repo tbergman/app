@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight, Text, StyleSheet } from 'react-native';
+import { TouchableHighlight, Text, StyleSheet, View } from 'react-native';
 import * as Navigation from '../services/Navigation';
 import { FontAwesome } from '@expo/vector-icons';
 import { EmptyHeaderItem, StyledNavBarContainer } from './styles/navbar';
@@ -11,14 +11,20 @@ const styles = StyleSheet.create({
     fontFamily: 'merriweather',
     color: '#414150',
     fontSize: 16,
+    textAlign: 'center',
+  },
+  headerItem: {
+    width: '33%',
   },
 });
 
 const NavBar = ({ title, headerLeft, headerRight }) => (
   <StyledNavBarContainer>
-    {headerLeft}
-    {title ? <Text style={styles.header}>{title}</Text> : <HedvigLogoBlue />}
-    {headerRight}
+    <View style={styles.headerItem}>{headerLeft}</View>
+    <View style={styles.headerItem}>
+      {title ? <Text style={styles.header}>{title}</Text> : <HedvigLogoBlue />}
+    </View>
+    <View style={styles.headerItem}>{headerRight}</View>
   </StyledNavBarContainer>
 );
 

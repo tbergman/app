@@ -1,5 +1,4 @@
 import React from 'react';
-import * as R from 'ramda';
 import { Linking } from 'react-native';
 import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
@@ -19,7 +18,7 @@ const SingleSelectInput = ({
   done,
   goToDashboard,
   startTrustly,
-  launchModal = R.identity,
+  showOffer,
 }) => {
   let anySelected = message.body.choices.some((choice) => choice.selected);
   let opts = message.body.choices.map((choice) => {
@@ -38,8 +37,8 @@ const SingleSelectInput = ({
               done(message);
               if (choice.view === 'Dashboard') {
                 goToDashboard();
-              } else {
-                launchModal(choice);
+              } else if (choice.view === 'Offer') {
+                showOffer();
               }
             } else if (choice.type === 'link' && choice.appUrl !== null) {
               selectChoice(message, choice);
@@ -62,9 +61,9 @@ const SingleSelectInput = ({
   return <StyledMarginContainer>{opts}</StyledMarginContainer>;
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    message: state.chat.messages[ownProps.messageIndex],
+    message: state.chat.messages[0],
   };
 };
 
@@ -81,6 +80,8 @@ const mapDispatchToProps = (dispatch) => {
           params: { id },
         }),
       ),
+    showOffer: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'Offer' })),
   };
 };
 
