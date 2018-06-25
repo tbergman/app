@@ -1,15 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import * as R from 'ramda';
+import { chatActions } from '../../../../hedvig-redux';
 import {
   StyledRightAlignedOptions,
   StyledOptionsContainer,
   StyledMarginContainer,
 } from '../styles/chat';
 import {
-  MultipleSelectOptionButton,
   SendIconButton,
   SendDisabledIconButton,
-} from '../Button';
+} from '../../../components/Button';
+import { AnimatedMultipleSelectOptionButton } from '../components/Button';
 
 const WRAP_NUM_OPTIONS = 6;
 
@@ -30,7 +32,7 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
-        <MultipleSelectOptionButton
+        <AnimatedMultipleSelectOptionButton
           onPress={() => {
             onChoiceSelected(message, choice);
           }}
@@ -49,4 +51,23 @@ const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
   );
 };
 
-export default MultipleSelectInput;
+const mapStateToProps = (state) => {
+  return {
+    message: state.chat.messages[0],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChoiceSelected: (message, choice) =>
+      dispatch(chatActions.selectChoice(message, choice)),
+    done: (message) => dispatch(chatActions.sendChatResponse(message)),
+  };
+};
+
+const MultipleSelectInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MultipleSelectInput);
+
+export default MultipleSelectInputContainer;

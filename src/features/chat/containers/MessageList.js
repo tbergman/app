@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Image,
-  Dimensions,
-  Keyboard,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { View, Image, Dimensions, StyleSheet, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+
 import {
   StyledDefaultMessageText,
   StyledDefaultUserMessageText,
@@ -16,10 +10,10 @@ import {
   StyledHeroMessage,
   StyledAvatarContainer,
 } from '../styles/chat';
-import EditMessageButton from '../../containers/chat/EditMessageButton';
-import Avatar from '../../containers/chat/Avatar';
-import LoadingIndicator from '../../containers/chat/LoadingIndicator';
-import { theme } from '../../style-theme';
+import EditMessageButton from '../containers/EditMessageButton';
+import Avatar from '../containers/Avatar';
+import LoadingIndicator from '../containers/LoadingIndicator';
+import { theme } from '../../../style-theme';
 
 const renderImage = (message) => {
   if (
@@ -159,17 +153,7 @@ const renderMessage = function(message, idx, lastIndex = false) {
   );
 };
 
-const renderMessages = function(messages) {
-  return messages.map((message, idx) => {
-    let lastIndex = idx === messages.length - 1;
-    return renderMessage(message, idx, lastIndex);
-  });
-};
-
 const styles = StyleSheet.create({
-  scroll: {
-    flex: 1,
-  },
   scrollContent: {
     flex: 1,
     paddingTop: 16,
@@ -177,63 +161,36 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class MessageList extends React.Component {
-  componentDidMount() {
-    if (Platform.OS === 'ios') {
-      this.keyboardWillShowListener = Keyboard.addListener(
-        'keyboardWillShow',
-        this._onKeyboardShow.bind(this),
-      );
-      this.keyboardWillHideListener = Keyboard.addListener(
-        'keyboardWillHide',
-        this._onKeyboardHide.bind(this),
-      );
-    } else {
-      this.keyboardDidShowListener = Keyboard.addListener(
-        'keyboardDidShow',
-        this._onKeyboardShow.bind(this),
-      );
-      this.keyboardDidHideListener = Keyboard.addListener(
-        'keyboardDidHide',
-        this._onKeyboardHide.bind(this),
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.keyboardWillShowListener) {
-      this.keyboardWillShowListener.remove();
-    }
-    if (this.keyboardWillHideListener) {
-      this.keyboardWillHideListener.remove();
-    }
-    if (this.keyboardDidShowListener) {
-      this.keyboardDidShowListener.remove();
-    }
-    if (this.keyboardDidHideListener) {
-      this.keyboardDidHideListener.remove();
-    }
-  }
-  _onKeyboardShow() {
-    setTimeout(this.ref.scrollToEnd, 0);
-  }
-
-  _onKeyboardHide() {
-    setTimeout(this.ref.scrollToEnd, 200); // ~200ms to scroll down after sending messages
-  }
-
+class MessageList extends React.Component {
   render() {
     return (
-      <ScrollView
-        style={styles.scroll}
+      <FlatList
+        inverted
+        style={styles.scrollContent}
         showsVerticalScrollIndicator={false}
-        ref={(view) => (this.ref = view)}
-        onContentSizeChange={() => this.ref.scrollToEnd()}
-      >
-        <View style={styles.scrollContent}>
-          {renderMessages(this.props.messages)}
-        </View>
-      </ScrollView>
+        data={this.props.messages}
+        renderItem={({ item, index }) =>
+          renderMessage(item, index, index === 0)
+        }
+        keyExtractor={(item) => '' + item.globalId}
+      />
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.chat.messages,
+  };
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+const MessageListContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MessageList);
+
+export default MessageListContainer;

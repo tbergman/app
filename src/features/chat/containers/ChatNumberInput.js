@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
-import { SendIconButton, SendDisabledIconButton } from '../Button';
+import { connect } from 'react-redux';
 
-class ChatTextInput extends React.Component {
+import { chatActions } from '../../../../hedvig-redux';
+import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
+import {
+  SendIconButton,
+  SendDisabledIconButton,
+} from '../../../components/Button';
+
+class ChatNumberInput extends React.Component {
   static propTypes = {
     message: PropTypes.object, // TODO Better definition of message type
     onChange: PropTypes.func.isRequired,
@@ -42,4 +48,29 @@ class ChatTextInput extends React.Component {
   }
 }
 
-export default ChatTextInput;
+const mapStateToProps = (state, ownProps) => {
+  let message = state.chat.messages[ownProps.messageIndex];
+  return {
+    message,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange: (message, value) =>
+      dispatch(chatActions.setResponseValue(message, value)),
+    send: (message) =>
+      dispatch(
+        chatActions.sendChatResponse(message, {
+          text: message._inputValue,
+        }),
+      ),
+  };
+};
+
+const ChatNumberInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChatNumberInput);
+
+export default ChatNumberInputContainer;

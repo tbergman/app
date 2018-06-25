@@ -1,9 +1,11 @@
 import React from 'react';
 import { Animated } from 'react-native';
 import { DangerZone } from 'expo';
+import { connect } from 'react-redux';
+
 const { Lottie } = DangerZone;
 
-export default class LoadingIndicator extends React.Component {
+class LoadingIndicator extends React.Component {
   state = {
     fade: new Animated.Value(0),
   };
@@ -42,3 +44,28 @@ export default class LoadingIndicator extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  if (state.chat.messages.length > 0) {
+    let message = state.chat.messages[ownProps.messageIndex];
+    return {
+      loadingMessages: state.chat.loadingMessages,
+      avatar: state.chat.avatars[message.header.loadingIndicator] || {},
+    };
+  } else {
+    return {
+      avatar: {},
+    };
+  }
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+const LoadingIndicatorContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoadingIndicator);
+
+export default LoadingIndicatorContainer;

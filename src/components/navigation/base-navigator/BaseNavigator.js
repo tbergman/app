@@ -13,7 +13,7 @@ import { Constants } from 'expo';
 import { MarketingCarousel } from '../../../features/marketing/MarketingCarousel';
 import Dialog from '../../../containers/Dialog';
 import { FloatingChatButton } from '../floatingButtons';
-import Chat from '../../../containers/Chat';
+import Chat from '../../../features/chat/Chat';
 import { OfferSwiper } from '../../../features/offer/OfferSwiper';
 import { Perils } from '../../Perils';
 import Payment from '../../../features/payment';

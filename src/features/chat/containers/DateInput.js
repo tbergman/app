@@ -1,12 +1,14 @@
 import React from 'react';
 import { DatePickerIOS, DatePickerAndroid, View, Platform } from 'react-native';
+import { connect } from 'react-redux';
+import { chatActions } from '../../../../hedvig-redux';
 import {
   StyledDatePickerResultRow,
   StyledFakeTextInput,
   StyledFakeTextInputText,
   TouchableStyledFakeTextInput,
 } from '../styles/chat';
-import { SendIconButton } from '../Button';
+import { SendIconButton } from '../../../components/Button';
 import moment from 'moment';
 import 'moment/locale/sv';
 
@@ -82,4 +84,29 @@ class DateInput extends React.Component {
   }
 }
 
-export default DateInput;
+const mapStateToProps = (state, ownProps) => {
+  let message = state.chat.messages[ownProps.messageIndex];
+  return {
+    message,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange: (message, value) =>
+      dispatch(chatActions.setResponseValue(message, value)),
+    send: (message) =>
+      dispatch(
+        chatActions.sendChatResponse(message, {
+          date: message._inputValue,
+        }),
+      ),
+  };
+};
+
+const DateInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DateInput);
+
+export default DateInputContainer;

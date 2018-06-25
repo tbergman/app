@@ -1,8 +1,13 @@
-import * as R from 'ramda';
 import React from 'react';
+import * as R from 'ramda';
 import { Linking } from 'react-native';
 import { WebBrowser } from 'expo';
-import { SingleSelectOptionButton } from '../Button';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+
+import { chatActions } from '../../../../hedvig-redux';
+import { showDashboardAction } from '../../../actions/baseNavigation';
+import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import {
   StyledRightAlignedOptions,
   StyledMarginContainer,
@@ -20,7 +25,7 @@ const SingleSelectInput = ({
   let opts = message.body.choices.map((choice) => {
     return (
       <StyledRightAlignedOptions key={choice.text}>
-        <SingleSelectOptionButton
+        <AnimatedSingleSelectOptionButton
           hidden={anySelected && !choice.selected}
           title={choice.text}
           selected={choice.selected}
@@ -57,4 +62,31 @@ const SingleSelectInput = ({
   return <StyledMarginContainer>{opts}</StyledMarginContainer>;
 };
 
-export default SingleSelectInput;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    message: state.chat.messages[ownProps.messageIndex],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectChoice: (message, choice) =>
+      dispatch(chatActions.selectChoice(message, choice)),
+    done: (message) => dispatch(chatActions.sendChatResponse(message)),
+    goToDashboard: () => dispatch(showDashboardAction()),
+    startTrustly: (id) =>
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'Payment',
+          params: { id },
+        }),
+      ),
+  };
+};
+
+const SingleSelectInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SingleSelectInput);
+
+export default SingleSelectInputContainer;

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Permissions, ImagePicker } from 'expo';
-import { SingleSelectOptionButton } from '../Button';
+import { connect } from 'react-redux';
+import { chatActions, uploadActions } from '../../../../hedvig-redux';
+
+import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions,
@@ -30,13 +33,13 @@ const choosePhotoAndUpload = (upload, message) => {
   return (
     <StyledMarginContainer>
       <StyledRightAlignedOptions>
-        <SingleSelectOptionButton
+        <AnimatedSingleSelectOptionButton
           onPress={() => getAndUploadImage('camera', message, upload)}
           title="Ta en bild"
         />
       </StyledRightAlignedOptions>
       <StyledRightAlignedOptions>
-        <SingleSelectOptionButton
+        <AnimatedSingleSelectOptionButton
           onPress={() => getAndUploadImage('picker', message, upload)}
           title="Välj en bild"
         />
@@ -49,4 +52,32 @@ const PhotoInput = ({ message, upload }) => {
   return choosePhotoAndUpload(upload, message);
 };
 
-export default PhotoInput;
+const mapStateToProps = (state, ownProps) => {
+  let message = state.chat.messages[ownProps.messageIndex];
+  return {
+    message,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    upload: (message, info) =>
+      dispatch(
+        uploadActions.upload({
+          body: info,
+          successActionCreator: (url) =>
+            chatActions.sendChatResponse(message, {
+              type: 'photo_upload',
+              text: url,
+            }),
+        }),
+      ),
+  };
+};
+
+const PhotoInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PhotoInput);
+
+export default PhotoInputContainer;

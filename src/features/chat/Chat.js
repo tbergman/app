@@ -2,22 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState } from 'react-native';
 
-import { types } from '../../hedvig-redux';
-
-import MessageList from '../containers/chat/MessageList';
-import ChatNumberInput from '../containers/chat/ChatNumberInput';
-import ChatTextInput from '../containers/chat/ChatTextInput';
-import DateInput from '../containers/chat/DateInput';
-import MultipleSelectInput from '../containers/chat/MultipleSelectInput';
-import SingleSelectInput from '../containers/chat/SingleSelectInput';
-import PhotoInput from '../containers/chat/PhotoInput';
-import BankIdCollectInput from '../containers/chat/BankIdCollectInput';
-import AudioInput from '../containers/chat/AudioInput';
-import ParagraphInput from '../containers/chat/ParagraphInput';
-import { NavBar } from './NavBar';
-import { ChatNavRestartButton, NavigateBackButton } from './Button';
-import { KeyboardAwareView } from './KeyboardAwareView';
-import { Loader } from './Loader';
+import MessageList from './containers/MessageList';
+import ChatNumberInput from './containers/ChatNumberInput';
+import ChatTextInput from './containers/ChatTextInput';
+import DateInput from './containers/DateInput';
+import MultipleSelectInput from './containers/MultipleSelectInput';
+import SingleSelectInput from './containers/SingleSelectInput';
+import PhotoInput from './containers/PhotoInput';
+import BankIdCollectInput from './containers/BankIdCollectInput';
+import AudioInput from './containers/AudioInput';
+import ParagraphInput from './containers/ParagraphInput';
+import { NavBar } from '../../components/NavBar';
+import {
+  ChatNavRestartButton,
+  NavigateBackButton,
+} from '../../components/Button';
+import { KeyboardAwareView } from './components/KeyboardAwareView';
+import { Loader } from '../../components/Loader';
+import { chatActions, dialogActions, types } from '../../../hedvig-redux';
+import { showDashboardAction } from '../../actions/baseNavigation';
 
 const inputComponentMap = (lastIndex, navigation) => ({
   multiple_select: <MultipleSelectInput messageIndex={lastIndex} />,
@@ -62,19 +65,18 @@ const getInputComponent = function(messages, navigation) {
   if (messages.length === 0) {
     return null;
   }
-  let lastIndex = messages.length - 1;
-  let lastMessage = messages[lastIndex];
+  let lastMessage = messages[0];
   let lastMessageType = lastMessage.body.type;
   if (lastMessageType === 'polling') {
-    lastMessage = messages[lastIndex - 2];
+    lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
       <PollingMessage>
-        {inputComponentMap(lastIndex - 1, navigation)[lastMessageType]}
+        {inputComponentMap(0, navigation)[lastMessageType]}
       </PollingMessage>
     );
   }
-  return inputComponentMap(lastIndex, navigation)[lastMessageType];
+  return inputComponentMap(0, navigation)[lastMessageType];
 };
 
 const styles = StyleSheet.create({
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Chat extends React.Component {
+class Chat extends React.Component {
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -145,3 +147,44 @@ export default class Chat extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.chat.messages,
+    insurance: state.insurance,
+    intent: state.conversation.intent,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMessages: (intent) =>
+      dispatch(
+        chatActions.getMessages({
+          intent,
+        }),
+      ),
+    getAvatars: () => dispatch(chatActions.getAvatars()),
+    resetConversation: () =>
+      dispatch(
+        dialogActions.showDialog({
+          title: 'Vill du börja om?',
+          paragraph:
+            'Om du trycker ja så börjar\nkonversationen om från början',
+          confirmButtonTitle: 'Ja',
+          dismissButtonTitle: 'Nej',
+          onConfirm: () => dispatch(chatActions.resetConversation()),
+          onDismiss: () => {},
+        }),
+      ),
+    editLastResponse: () => dispatch(chatActions.editLastResponse()),
+    showDashboard: () => dispatch(showDashboardAction()),
+  };
+};
+
+const ChatContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Chat);
+
+export default ChatContainer;

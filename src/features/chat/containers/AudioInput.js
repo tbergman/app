@@ -1,21 +1,27 @@
 import React from 'react';
 import { Audio, Permissions } from 'expo';
 import { View } from 'react-native';
+import { connect } from 'react-redux';
+import {
+  chatActions,
+  uploadActions,
+  dialogActions,
+} from '../../../../hedvig-redux';
 import {
   RecordButton,
   StopRecordingButton,
   StopRecordingAnimationButton,
-  SingleSelectOptionButton,
-} from '../Button';
-import { UploadingAnimation } from '../Animation';
+} from '../../../components/Button';
+import { AnimatedSingleSelectOptionButton } from '../components/Button';
+import { UploadingAnimation } from '../../../components/Animation';
 import {
   StyledMarginContainer,
   StyledRightAlignedOptions,
 } from '../styles/chat';
-import { StyledSmallText } from '../styles/text';
-import { StyledPassiveText } from '../styles/text';
+import { StyledSmallText } from '../../../components/styles/text';
+import { StyledPassiveText } from '../../../components/styles/text';
 
-export default class AudioInput extends React.Component {
+class AudioInput extends React.Component {
   state = {
     isRecording: false,
     recordingInstance: null,
@@ -225,19 +231,19 @@ export default class AudioInput extends React.Component {
       maybePlayback = (
         <View>
           <StyledRightAlignedOptions>
-            <SingleSelectOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Gör om"
               onPress={() => this.startRecordingAudio()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <SingleSelectOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Spela upp"
               onPress={() => this.startPlayback()}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
-            <SingleSelectOptionButton
+            <AnimatedSingleSelectOptionButton
               title="Spara"
               onPress={this.upload.bind(this)}
             />
@@ -265,3 +271,42 @@ export default class AudioInput extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  let message = state.chat.messages[ownProps.messageIndex];
+  return {
+    message,
+    currentlyUploading: state.upload.currentlyUploading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showPermissionDialog: () =>
+      dispatch(
+        dialogActions.showDialog({
+          title: 'Inspelning',
+          paragraph:
+            'Vänligen aktivera ljudinspelning för Hedvig i dina systeminställningar.',
+        }),
+      ),
+    upload: (message, info) =>
+      dispatch(
+        uploadActions.upload({
+          body: info,
+          successActionCreator: (url) =>
+            chatActions.sendChatResponse(message, {
+              type: 'audio',
+              url,
+            }),
+        }),
+      ),
+  };
+};
+
+const AudioInputContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AudioInput);
+
+export default AudioInputContainer;

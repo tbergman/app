@@ -1,10 +1,12 @@
 import React from 'react';
 import { Animated } from 'react-native';
 import { DangerZone } from 'expo';
+import { connect } from 'react-redux';
+
 const { Lottie } = DangerZone;
 
 // TODO PropType validation
-export default class Avatar extends React.Component {
+class Avatar extends React.Component {
   state = {
     progress: new Animated.Value(0),
   };
@@ -35,3 +37,23 @@ export default class Avatar extends React.Component {
     }
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  if (state.chat.messages.length > 0) {
+    let message = state.chat.messages[ownProps.messageIndex];
+    return {
+      avatar: state.chat.avatars[message.header.avatarName] || {},
+    };
+  } else {
+    return {
+      avatar: {},
+    };
+  }
+};
+
+const AvatarContainer = connect(
+  mapStateToProps,
+  undefined,
+)(Avatar);
+
+export default AvatarContainer;
