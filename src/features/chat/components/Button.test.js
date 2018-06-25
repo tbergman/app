@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import {
   AnimatedSingleSelectOptionButton,
   AnimatedMultipleSelectOptionButton,
+  BackToOfferButton,
 } from './Button';
 
 const NOOP = () => {};
@@ -32,5 +33,11 @@ describe('<AnimatedMultipleSelectOptionButton />', () => {
     expect(() =>
       shallow(<AnimatedMultipleSelectOptionButton {...standardProps} />),
     ).not.toThrow();
+  });
+});
+
+describe('<BackToOfferButton />', () => {
+  it('Should render without crashing given regular props', () => {
+    expect(() => shallow(<BackToOfferButton onPress={NOOP} />)).not.toThrow();
   });
 });
