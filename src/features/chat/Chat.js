@@ -130,7 +130,7 @@ class Chat extends React.Component {
         <NavigateBackButton onPress={() => this.props.showDashboard()} />
       );
     } else {
-      if (!this.props.showReturnToOfferButton) {
+      if (this.props.showReturnToOfferButton) {
         headerRight = <BackToOfferButton onPress={this.showOffer} />;
       } else {
         headerRight = (

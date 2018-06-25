@@ -135,6 +135,7 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
         underlayColor="transparent"
         activeOpacity={0.5}
         style={[
+          styles.buttonBase,
           styles.chatOptionButton,
           {
             transform: [
