@@ -9,8 +9,6 @@ import {
   StyledButtonTextInverted,
   StyledRoundedButton,
   StyledRoundedButtonInverted,
-  StyledRedRoundedButtonInverted,
-  StyledTurquoiseRoundedButtonInverted,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
 const { Lottie } = DangerZone;
@@ -55,46 +53,11 @@ export const RoundedInvertedButtonWithChildren = ({ onPress, children }) => {
   );
 };
 
-export const RedRoundedInvertedButtonWithChildren = ({ onPress, children }) => {
-  return (
-    <StyledRedRoundedButtonInverted onPress={onPress} hitSlop={hitSlop}>
-      {children}
-    </StyledRedRoundedButtonInverted>
-  );
-};
-
-export const TurquoiseRoundedInvertedButtonWithChildren = ({
-  onPress,
-  children,
-}) => {
-  return (
-    <StyledTurquoiseRoundedButtonInverted onPress={onPress} hitSlop={hitSlop}>
-      {children}
-    </StyledTurquoiseRoundedButtonInverted>
-  );
-};
-
 export const RoundedInvertedButton = ({ title, onPress }) => {
   return (
     <RoundedInvertedButtonWithChildren onPress={onPress}>
       <StyledButtonText>{title}</StyledButtonText>
     </RoundedInvertedButtonWithChildren>
-  );
-};
-
-export const RedRoundedInvertedButton = ({ title, onPress }) => {
-  return (
-    <RedRoundedInvertedButtonWithChildren onPress={onPress}>
-      <StyledButtonTextInverted>{title}</StyledButtonTextInverted>
-    </RedRoundedInvertedButtonWithChildren>
-  );
-};
-
-export const TurquoiseRoundedInvertedButton = ({ title, onPress }) => {
-  return (
-    <TurquoiseRoundedInvertedButtonWithChildren onPress={onPress}>
-      <StyledButtonTextInverted>{title}</StyledButtonTextInverted>
-    </TurquoiseRoundedInvertedButtonWithChildren>
   );
 };
 

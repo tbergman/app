@@ -68,13 +68,3 @@ export const StyledRoundedButton = styled.TouchableOpacity`
 export const StyledRoundedButtonInverted = StyledRoundedButton.extend`
   background-color: ${(props) => props.theme.colors.primary};
 `;
-
-export const StyledRedRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${(props) => props.theme.colors.red};
-  border-color: ${(props) => props.theme.colors.red};
-`;
-
-export const StyledTurquoiseRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${(props) => props.theme.colors.turquoise};
-  border-color: ${(props) => props.theme.colors.turquoise};
-`;
