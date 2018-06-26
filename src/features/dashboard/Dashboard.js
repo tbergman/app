@@ -3,7 +3,6 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import { HeaderRightChat } from '../../components/NavBar';
 import { PerilsCategory } from './components/PerilsCategory';
 import { Loader } from '../../components/Loader';
 
@@ -22,11 +21,6 @@ import { INSURANCE_TYPES } from '../../constants';
 import { insuranceActions } from '../../../hedvig-redux';
 
 class Dashboard extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Min Försäkring',
-    headerRight: <HeaderRightChat navigation={navigation} />,
-  });
-
   renderCategories() {
     let categories = this.props.categories.map(
       ({ title, description, perils, iconUrl }, i) => {
