@@ -14,7 +14,7 @@ import * as R from 'ramda';
 import PopupDialog from 'react-native-popup-dialog';
 
 import { XNavigateBackButton } from '../../components/Button';
-import { PERIL_IMAGE_MAP } from '../../components/dashboard/Peril';
+import { PERIL_IMAGE_MAP } from '../../features/dashboard/components/Peril';
 
 import {
   horizontalSizeClass,

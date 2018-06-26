@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PerilsCategory /> Should render correctly 1`] = `
-<Styled(TouchableOpacity)
+<StyledCategoryContainer
   activeOpacity={1}
   onPress={[Function]}
 >
-  <Styled(Component)>
-    <Styled(Image)
+  <StyledCategoryHeader>
+    <StyledCategoryIcon
       source={
         Object {
           "uri": "",
         }
       }
     />
-    <Styled(Component)>
-      <Styled(Component)>
+    <StyledCategoryTextAndButton>
+      <StyledCategoryTextContainer>
         <Styled(Component)>
           <Styled(Text)>
             Jag och min familj
@@ -25,13 +25,13 @@ exports[`<PerilsCategory /> Should render correctly 1`] = `
             Försäkras för
           </Styled(Text)>
         </Styled(Component)>
-      </Styled(Component)>
-      <Styled(Component)>
+      </StyledCategoryTextContainer>
+      <StyledExpandButton>
         <DisabledExpandButton
           size="mediumBig"
         />
-      </Styled(Component)>
-    </Styled(Component)>
-  </Styled(Component)>
-</Styled(TouchableOpacity)>
+      </StyledExpandButton>
+    </StyledCategoryTextAndButton>
+  </StyledCategoryHeader>
+</StyledCategoryContainer>
 `;

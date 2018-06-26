@@ -15,7 +15,7 @@ import {
   V_REGULAR,
   V_COMPACT,
 } from '../../services/DimensionSizes';
-import { PERIL_IMAGE_MAP } from '../../components/dashboard/Peril';
+import { PERIL_IMAGE_MAP } from '../../features/dashboard/components/Peril';
 import { PERILS_SET_ACTIVE } from './actions';
 import { Description } from './Description';
 import { Heading } from './Heading';

@@ -17,7 +17,7 @@ import Chat from '../../../features/chat/Chat';
 import { OfferSwiper } from '../../../features/offer/OfferSwiper';
 import { Perils } from '../../Perils';
 import Payment from '../../../features/payment';
-import Dashboard from '../../../containers/dashboard/Dashboard';
+import Dashboard from '../../../features/dashboard/Dashboard';
 import Profile from '../../../containers/Profile';
 import { Loader } from '../../../components/Loader';
 

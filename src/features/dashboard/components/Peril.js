@@ -2,24 +2,24 @@
 import React from 'react';
 import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 
-const meLegalTrouble = require('../../../assets/icons/perils/you/juridisk_tvist.png');
-const meAssault = require('../../../assets/icons/perils/you/overfall.png');
-const meIllness = require('../../../assets/icons/perils/you/sjuk_pa_resa.png');
-const meDelayedLuggage = require('../../../assets/icons/perils/you/resetrubbel.png');
+const meLegalTrouble = require('../../../../assets/icons/perils/you/juridisk_tvist.png');
+const meAssault = require('../../../../assets/icons/perils/you/overfall.png');
+const meIllness = require('../../../../assets/icons/perils/you/sjuk_pa_resa.png');
+const meDelayedLuggage = require('../../../../assets/icons/perils/you/resetrubbel.png');
 
-const apartmentFire = require('../../../assets/icons/perils/house/eldsvada.png');
-const apartmentWaterLeak = require('../../../assets/icons/perils/house/vattenlacka.png');
-const apartmentWeather = require('../../../assets/icons/perils/house/ovader.png');
-const apartmentAppliances = require('../../../assets/icons/perils/house/vitvaror.png');
-const apartmentBreakIn = require('../../../assets/icons/perils/house/inbrott.png');
-const apartmentVandalisation = require('../../../assets/icons/perils/house/skadegorelse.png');
+const apartmentFire = require('../../../../assets/icons/perils/house/eldsvada.png');
+const apartmentWaterLeak = require('../../../../assets/icons/perils/house/vattenlacka.png');
+const apartmentWeather = require('../../../../assets/icons/perils/house/ovader.png');
+const apartmentAppliances = require('../../../../assets/icons/perils/house/vitvaror.png');
+const apartmentBreakIn = require('../../../../assets/icons/perils/house/inbrott.png');
+const apartmentVandalisation = require('../../../../assets/icons/perils/house/skadegorelse.png');
 
-const stuffAllRisk = require('../../../assets/icons/perils/stuff/drulle.png');
-const stuffTheft = require('../../../assets/icons/perils/stuff/stold.png');
-const stuffVandalisation = require('../../../assets/icons/perils/stuff/skadegorelse.png');
-const stuffFire = require('../../../assets/icons/perils/stuff/eldsvada.png');
-const stuffWaterLeak = require('../../../assets/icons/perils/stuff/vattenlacka.png');
-const stuffWeather = require('../../../assets/icons/perils/stuff/ovader.png');
+const stuffAllRisk = require('../../../../assets/icons/perils/stuff/drulle.png');
+const stuffTheft = require('../../../../assets/icons/perils/stuff/stold.png');
+const stuffVandalisation = require('../../../../assets/icons/perils/stuff/skadegorelse.png');
+const stuffFire = require('../../../../assets/icons/perils/stuff/eldsvada.png');
+const stuffWaterLeak = require('../../../../assets/icons/perils/stuff/vattenlacka.png');
+const stuffWeather = require('../../../../assets/icons/perils/stuff/ovader.png');
 
 export const PERIL_IMAGE_MAP = {
   'ME.LEGAL': meLegalTrouble,

@@ -16,7 +16,6 @@ describe('<PerilsCategory />', () => {
         title={'Jag och min familj'}
         description={'Försäkras för'}
         perils={perils}
-        offerMode={false}
         iconUrl={''}
         key={0}
         navigation={null}
