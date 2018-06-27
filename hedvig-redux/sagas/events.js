@@ -7,13 +7,12 @@ const handleEvent = function*(action) {
   yield put({
     type: API,
     payload: {
-      url: '/event',
+      url: '/hedvig/onboarding/offerClosed',
       method: 'POST',
       headers: {
         Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(action.payload.info),
       SUCCESS: 'POST_EVENT_SUCCESS',
     },
   });
