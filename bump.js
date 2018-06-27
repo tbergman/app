@@ -19,6 +19,8 @@ appJson.expo.version = stringify(bump(parse(appJson.expo.version)));
 appJson.expo.ios.buildNumber = stringify(
   bump(parse(appJson.expo.ios.buildNumber)),
 );
+appJson.expo.android.versionCode += 1;
 
-fs.writeFile('app.json', JSON.stringify(appJson, null, 2), () => {});
+fs.writeFile('app.json', JSON.stringify(appJson, null, 2) + '\n', () => {});
 console.log('Bumped app.json to version', appJson.expo.version); // eslint-disable-line no-console
+console.log('Bumped android version code to', appJson.expo.android.versionCode); // eslint-disable-line no-console

@@ -6,8 +6,10 @@
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"
     },
-    "assetBundlePatterns": ["**/*"],
-    "version": "1.3.8",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "version": "1.3.9",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
     "sdkVersion": "27.0.0",
@@ -16,7 +18,7 @@
     "facebookAppId": "170982226921693",
     "facebookDisplayName": "Hedvig",
     "ios": {
-      "buildNumber": "1.3.8",
+      "buildNumber": "1.3.9",
       "bundleIdentifier": "com.hedvig.test.app",
       "associatedDomains": [
         "applinks:hedvig.app.link",
@@ -26,10 +28,8 @@
         "applinks:app.hedvig.com"
       ],
       "infoPlist": {
-        "NSCameraUsageDescription":
-          "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
-        "NSMicrophoneUsageDescription":
-          "Hedvig använder mikrofonen till att spela in meddelanden från dig"
+        "NSCameraUsageDescription": "Hedvig använder kamera för att ta bilder av dina försäkrade föremål",
+        "NSMicrophoneUsageDescription": "Hedvig använder mikrofonen till att spela in meddelanden från dig"
       },
       "config": {
         "branch": {
@@ -46,7 +46,7 @@
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
       ],
-      "versionCode": 26,
+      "versionCode": 27,
       "config": {
         "branch": {
           "apiKey": "key_test_jmu0ijecJKU5YhL4CdSEbgndBuksumyt"
