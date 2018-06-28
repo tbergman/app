@@ -24,13 +24,13 @@ class FloatingActionButton extends React.Component {
 
   handlePressItem = (url) => {
     const maybeBackendAction = this.props.fabActions.filter(
-      (a) => a.url === url,
+      (a) => a.triggerUrl === url,
     );
     if (maybeBackendAction.length !== 1) {
       throw new Error(
-        'Mismatch in remote and local fabActions: ',
-        this.props.fabActions,
-        url,
+        `Mismatch in remote and local fabActions: ${JSON.stringify(
+          this.props.fabActions,
+        )}, url: ${url}`,
       );
     }
     const backendAction = maybeBackendAction[0];
