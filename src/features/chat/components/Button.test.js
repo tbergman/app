@@ -6,6 +6,7 @@ import {
   AnimatedMultipleSelectOptionButton,
   BackToOfferButton,
   SendButton,
+  CloseButton,
 } from './Button';
 
 const NOOP = () => {};
@@ -62,5 +63,11 @@ describe('<SendButton />', () => {
     const component = shallow(<SendButton onPress={spy} disabled={false} />);
     component.simulate('press');
     expect(spy).toHaveBeenCalled();
+  });
+});
+
+describe('<CloseButton />', () => {
+  it('Sholuld render without crashing given regular props', () => {
+    expect(() => shallow(<CloseButton onPress={NOOP} />)).not.toThrow();
   });
 });

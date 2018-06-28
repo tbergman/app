@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     borderColor: '#1be9b6',
   },
   backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
+  sendButton: { width: 40, height: 40 },
+  closeButton: { width: 40, height: 40 },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {
@@ -206,6 +208,26 @@ export class SendButton extends React.Component {
         <Image
           source={require('../../../../assets/icons/chat/send.png')}
           style={styles.sendButton}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class CloseButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={CloseButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/close/close_black.png')}
+          style={styles.closeButton}
         />
       </TouchableOpacity>
     );

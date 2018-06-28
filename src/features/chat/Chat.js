@@ -15,15 +15,12 @@ import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
 import { NavBar } from '../../components/NavBar';
-import {
-  ChatNavRestartButton,
-  NavigateBackButton,
-} from '../../components/Button';
+import { ChatNavRestartButton } from '../../components/Button';
 import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as navigationActions from '../../actions/baseNavigation';
-import { BackToOfferButton } from './components/Button';
+import { BackToOfferButton, CloseButton } from './components/Button';
 import { shouldShowReturnToOfferScreenButton } from './state/selectors';
 
 const inputComponentMap = {
@@ -126,9 +123,7 @@ class Chat extends React.Component {
       this.props.insurance.status === 'INACTIVE' ||
       this.props.insurance.status === 'ACTIVE'
     ) {
-      headerLeft = (
-        <NavigateBackButton onPress={() => this.props.showDashboard()} />
-      );
+      headerLeft = <CloseButton onPress={this.props.showDashboard} />;
     } else {
       if (this.props.showReturnToOfferButton) {
         headerRight = <BackToOfferButton onPress={this.showOffer} />;
