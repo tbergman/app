@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'right',
     paddingRight: 34,
+    color: '#8a8a99',
   },
 });
 
@@ -113,7 +114,9 @@ const DefaultUserMessage = ({ message, index }) => {
         }}
       >
         {maybeEditMessageButton}
-        <StyledUserChatMessage>
+        <StyledUserChatMessage
+          withMargin={message.header.statusMessage && index !== 1}
+        >
           <StyledDefaultUserMessageText>
             {message.body.text}
           </StyledDefaultUserMessageText>

@@ -9,6 +9,7 @@ import {
   SET_RESPONSE_VALUE,
   LOADED_AVATARS,
   LOADED_AVATAR_DATA,
+  SEND_CHAT_RESPONSE,
 } from '../actions/types';
 import { MOCK_LOADED_CLAIM_MESSAGES } from '../actions/mock/types';
 
@@ -91,6 +92,7 @@ const reducer = (
         ongoingClaim: action.payload.state.ongoingClaim,
         showOfferScreen: action.payload.showOfferScreen,
         fabOptions: action.payload.fabOptions,
+        isSending: false,
       };
     case CHOICE_SELECTED:
       return selectChoice(state, action);
@@ -103,6 +105,8 @@ const reducer = (
       return handleLoadedAvatars(state, action);
     case LOADED_AVATAR_DATA:
       return handleLoadedAvatarData(state, action);
+    case SEND_CHAT_RESPONSE:
+      return { ...state, isSending: true };
     default:
       return state;
   }

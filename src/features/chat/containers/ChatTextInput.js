@@ -5,38 +5,36 @@ import { Permissions } from 'expo';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
-import {
-  SendIconButton,
-  SendDisabledIconButton,
-} from '../../../components/Button';
+import { isSendingChatMessage } from '../state/selectors';
+import { SendButton } from '../components/Button';
 
 class ChatTextInput extends React.Component {
   static propTypes = {
     message: PropTypes.object, // TODO Better definition for the shape of a message - should be reusable
     onChange: PropTypes.func.isRequired,
+    isSending: PropTypes.bool,
   };
 
-  lastSentFor = undefined; // TODO Fix this hack
+  static defaultProps = {
+    isSending: false,
+  };
 
   _send = async () => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
       if (status !== 'granted') {
-        this.props.requestPushNotifications();
+        if (!(__DEV__ && status === 'undetermined')) {
+          this.props.requestPushNotifications();
+        }
       }
     }
-    if (!this.lastSentFor || this.lastSentFor !== this.props.message.globalId) {
-      this.lastSentFor = this.props.message.globalId;
+    if (!this.props.isSending) {
       this.props.send(this.props.message);
     }
   };
 
   render() {
-    const { message, onChange } = this.props;
-    let ButtonComponent =
-      message._inputValue && message._inputValue.length > 0
-        ? SendIconButton
-        : SendDisabledIconButton;
+    const { message, onChange, isSending } = this.props;
     return (
       <StyledTextInputContainer>
         <StyledTextInput
@@ -50,16 +48,26 @@ class ChatTextInput extends React.Component {
           enablesReturnKeyAutomatically
           blurOnSubmit
           onSubmitEditing={this._send}
+          editable={!isSending}
         />
-        <ButtonComponent onPress={this._send} />
+        <SendButton
+          onPress={this._send}
+          disabled={
+            !(
+              message._inputValue &&
+              message._inputValue.length > 0 &&
+              !isSending
+            )
+          }
+        />
       </StyledTextInputContainer>
     );
   }
 }
 const mapStateToProps = (state) => {
-  let message = state.chat.messages[0];
   return {
-    message,
+    message: state.chat.messages[0],
+    isSending: isSendingChatMessage(state),
   };
 };
 

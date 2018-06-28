@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     width: '98%',
   },
   userMessage: {
-    marginBottom: 8,
+    marginBottom: 2,
     paddingTop: 8,
     paddingRight: 16,
     paddingBottom: 8,
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
+  userMessageWithMargin: { marginBottom: 8 },
   avatarContainer: { marginLeft: 15, marginBottom: 15 },
   datePickerResultRow: {
     marginRight: 8,
@@ -169,7 +170,16 @@ export class AnimatedStyledChatMessage extends React.Component {
 
 export class StyledUserChatMessage extends React.Component {
   render() {
-    return <View {...this.props} style={styles.userMessage} />;
+    const { withMargin, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.userMessage,
+          withMargin ? styles.userMessageWithMargin : undefined,
+        ]}
+      />
+    );
   }
 }
 

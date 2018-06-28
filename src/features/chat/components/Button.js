@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  Image,
+  View,
 } from 'react-native';
 
 const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
@@ -175,6 +177,36 @@ export class BackToOfferButton extends React.Component {
         style={[styles.buttonBase, styles.backToOfferButton]}
       >
         <Text style={styles.backToOfferText}>Fortsätt →</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class SendButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress, disabled } = this.props;
+    if (disabled) {
+      return (
+        <View>
+          <Image
+            source={require('../../../../assets/icons/chat/send_idle.png')}
+            style={styles.sendButton}
+          />
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={SendButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/chat/send.png')}
+          style={styles.sendButton}
+        />
       </TouchableOpacity>
     );
   }
