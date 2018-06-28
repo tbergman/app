@@ -12,7 +12,7 @@ import { Constants } from 'expo';
 
 import { MarketingCarousel } from '../../../features/marketing/MarketingCarousel';
 import Dialog from '../../../containers/Dialog';
-import { FloatingChatButton } from '../floatingButtons';
+import FloatingActionButton from '../../../features/dashboard/containers/fab';
 import Chat from '../../../features/chat/Chat';
 import { OfferSwiper } from '../../../features/offer/OfferSwiper';
 import { Perils } from '../../Perils';
@@ -223,7 +223,7 @@ const AccountContainer = ({ navigation }) => {
       <StatusBar />
       <View style={styles.view}>
         <AccountNavigator navigation={navigation} />
-        <FloatingChatButton />
+        <FloatingActionButton />
       </View>
       <Dialog />
     </View>
