@@ -1,9 +1,8 @@
 import React from 'react';
-import { Animated, View, StyleSheet, Text } from 'react-native';
+import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 // Regular text messages
-const AnimatableView = Animated.createAnimatedComponent(View);
 
 const styles = StyleSheet.create({
   rightAlignedOptions: {
@@ -34,6 +33,44 @@ const styles = StyleSheet.create({
     maxWidth: '88%',
     backgroundColor: '#f9fafc',
     marginBottom: 8,
+  },
+  textInputContainer: {
+    flexDirection: 'row',
+    marginRight: 8,
+    marginLeft: 8,
+    marginBottom: 8,
+  },
+  textInput: {
+    flex: 1,
+    alignSelf: 'stretch',
+    height: 40,
+    paddingTop: 10,
+    paddingRight: 16,
+    paddingBottom: 10,
+    paddingLeft: 16,
+    marginRight: 8,
+    backgroundColor: '#ffffff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+    fontSize: 16,
+    overflow: 'hidden',
+  },
+  optionsContainer: {
+    marginBottom: 8,
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+  },
+  optionsContainerWrap: {
+    flexDirection: 'row',
+  },
+  optionsContainerNoWrap: { flexDirection: 'column' },
+  marginContainer: {
+    marginRight: 16,
+    marginBottom: 40,
+    marginLeft: 16,
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
   },
 });
 
@@ -72,7 +109,7 @@ export class AnimatedStyledChatMessage extends React.Component {
 
   render() {
     return (
-      <AnimatableView
+      <Animated.View
         style={[
           styles.messageContainer,
           { transform: [{ translateX: this.state.slideAnim }] },
@@ -80,7 +117,7 @@ export class AnimatedStyledChatMessage extends React.Component {
         {...this.props}
       >
         {this.props.children}
-      </AnimatableView>
+      </Animated.View>
     );
   }
 }
@@ -109,12 +146,20 @@ export const StyledAvatarContainer = styled.View`
 
 // Single select & multiple select
 
-export const StyledMarginContainer = styled.View`
-  margin: 0px 16px 40px 16px;
-  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
-  justify-content: flex-end;
-  flex-wrap: wrap;
-`;
+export class StyledMarginContainer extends React.Component {
+  render() {
+    const { wrap, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.marginContainer,
+          wrap ? styles.optionsContainerWrap : styles.optionsContainerNoWrap,
+        ]}
+      />
+    );
+  }
+}
 
 export class StyledRightAlignedOptions extends React.Component {
   render() {
@@ -124,35 +169,34 @@ export class StyledRightAlignedOptions extends React.Component {
 
 // Multiple select
 
-export const StyledOptionsContainer = styled.View`
-  margin-bottom: 8px;
-  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
-  justify-content: flex-end;
-  flex-wrap: wrap;
-`;
+export class StyledOptionsContainer extends React.Component {
+  render() {
+    const { wrap, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.optionsContainer,
+          wrap ? styles.optionsContainerWrap : styles.optionsContainerNoWrap,
+        ]}
+      />
+    );
+  }
+}
 
 // Text input
 
-export const StyledTextInputContainer = styled.View`
-  flex-direction: row;
-  margin-right: 8px;
-  margin-left: 8px;
-  margin-bottom: 8px;
-`;
+export class StyledTextInputContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.textInputContainer} />;
+  }
+}
 
-export const StyledTextInput = styled.TextInput`
-  flex: 1;
-  align-self: stretch;
-  height: ${(props) => props.theme.input.default.height};
-  padding: 10px 16px;
-  margin-right: 8px;
-  background-color: ${(props) => props.theme.colors.white};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-  font-size: ${(props) => props.theme.typography.input.fontSize};
-  overflow: hidden;
-`;
+export class StyledTextInput extends React.Component {
+  render() {
+    return <TextInput {...this.props} style={styles.textInput} />;
+  }
+}
 
 // Date input
 
