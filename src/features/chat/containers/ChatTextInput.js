@@ -1,12 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { StyleSheet, TextInput } from 'react-native';
 import { Permissions } from 'expo';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
-import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
+import { StyledTextInputContainer } from '../styles/chat';
 import { isSendingChatMessage } from '../state/selectors';
 import { SendButton } from '../components/Button';
+
+const styles = StyleSheet.create({
+  textInput: {
+    flex: 1,
+    alignSelf: 'stretch',
+    height: 40,
+    paddingTop: 10,
+    paddingRight: 16,
+    paddingBottom: 10,
+    paddingLeft: 16,
+    marginRight: 8,
+    backgroundColor: '#ffffff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+    fontSize: 16,
+    overflow: 'hidden',
+  },
+});
 
 class ChatTextInput extends React.Component {
   static propTypes = {
@@ -17,6 +37,10 @@ class ChatTextInput extends React.Component {
 
   static defaultProps = {
     isSending: false,
+  };
+
+  state = {
+    height: 0,
   };
 
   _send = async () => {
@@ -33,11 +57,21 @@ class ChatTextInput extends React.Component {
     }
   };
 
+  _handleContentSizeChange = (event) => {
+    if (event && event.nativeEvent && event.nativeEvent.contentSize) {
+      this.setState({ height: event.nativeEvent.contentSize.height });
+    }
+  };
+
   render() {
     const { message, onChange, isSending } = this.props;
     return (
       <StyledTextInputContainer>
-        <StyledTextInput
+        <TextInput
+          style={[
+            styles.textInput,
+            { height: Math.max(40, this.state.height) },
+          ]}
           autoFocus
           placeholder="Skriv här..."
           value={message._inputValue || ''}
@@ -49,6 +83,7 @@ class ChatTextInput extends React.Component {
           blurOnSubmit
           onSubmitEditing={this._send}
           editable={!isSending}
+          onContentSizeChange={this._handleContentSizeChange}
         />
         <SendButton
           onPress={this._send}
