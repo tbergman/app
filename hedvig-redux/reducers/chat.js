@@ -106,7 +106,9 @@ const reducer = (
     case LOADED_AVATAR_DATA:
       return handleLoadedAvatarData(state, action);
     case SEND_CHAT_RESPONSE:
-      return { ...state, isSending: true };
+      return { ...state, isSending: true, inputValue: '' };
+    case 'CHAT/SET_INPUT_VALUE':
+      return { ...state, inputValue: action.payload };
     default:
       return state;
   }

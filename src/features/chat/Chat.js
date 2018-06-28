@@ -100,10 +100,17 @@ class Chat extends React.Component {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
     AppState.addEventListener('change', this._handleAppStateChange);
+
+    this._longPollTimeout = setInterval(() => {
+      this.props.getMessages(this.props.intent);
+    }, 1000 * 30);
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
+    if (this._longPollTimeout) {
+      clearInterval(this._longPollTimeout);
+    }
   }
 
   _handleAppStateChange = (appState) => {

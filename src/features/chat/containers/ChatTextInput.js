@@ -33,10 +33,12 @@ class ChatTextInput extends React.Component {
     message: PropTypes.object, // TODO Better definition for the shape of a message - should be reusable
     onChange: PropTypes.func.isRequired,
     isSending: PropTypes.bool,
+    inputValue: PropTypes.string,
   };
 
   static defaultProps = {
     isSending: false,
+    inputValue: '',
   };
 
   state = {
@@ -53,7 +55,7 @@ class ChatTextInput extends React.Component {
       }
     }
     if (!this.props.isSending) {
-      this.props.send(this.props.message);
+      this.props.send(this.props.message, this.props.inputValue);
     }
   };
 
@@ -63,8 +65,12 @@ class ChatTextInput extends React.Component {
     }
   };
 
+  _onTextChange = (text) => {
+    this.props.onChange(text);
+  };
+
   render() {
-    const { message, onChange, isSending } = this.props;
+    const { isSending, inputValue } = this.props;
     return (
       <StyledTextInputContainer>
         <TextInput
@@ -74,9 +80,9 @@ class ChatTextInput extends React.Component {
           ]}
           autoFocus
           placeholder="Skriv här..."
-          value={message._inputValue || ''}
+          value={inputValue}
           underlineColorAndroid="transparent"
-          onChangeText={(text) => onChange(message, text)}
+          onChangeText={this._onTextChange}
           multiline
           returnKeyType="send"
           enablesReturnKeyAutomatically
@@ -87,13 +93,7 @@ class ChatTextInput extends React.Component {
         />
         <SendButton
           onPress={this._send}
-          disabled={
-            !(
-              message._inputValue &&
-              message._inputValue.length > 0 &&
-              !isSending
-            )
-          }
+          disabled={!(inputValue && inputValue.length > 0 && !isSending)}
         />
       </StyledTextInputContainer>
     );
@@ -103,17 +103,18 @@ const mapStateToProps = (state) => {
   return {
     message: state.chat.messages[0],
     isSending: isSendingChatMessage(state),
+    inputValue: state.chat.inputValue,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (message, value) =>
-      dispatch(chatActions.setResponseValue(message, value)),
-    send: (message) =>
+    onChange: (value) =>
+      dispatch({ type: 'CHAT/SET_INPUT_VALUE', payload: value }),
+    send: (message, text) =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          text: message._inputValue,
+          text,
         }),
       ),
     requestPushNotifications: () => {
