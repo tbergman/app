@@ -115,7 +115,10 @@ const DefaultUserMessage = ({ message, index }) => {
       >
         {maybeEditMessageButton}
         <StyledUserChatMessage
-          withMargin={message.header.statusMessage && index !== 1}
+          withMargin={
+            !message.header.statusMessage ||
+            (message.header.statusMessage && index !== 1)
+          }
         >
           <StyledDefaultUserMessageText>
             {message.body.text}

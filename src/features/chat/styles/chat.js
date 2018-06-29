@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Animated,
   View,
@@ -169,6 +170,7 @@ export class AnimatedStyledChatMessage extends React.Component {
 }
 
 export class StyledUserChatMessage extends React.Component {
+  static propTypes = { withMargin: PropTypes.bool.isRequired };
   render() {
     const { withMargin, ...rest } = this.props;
     return (
