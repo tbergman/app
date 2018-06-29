@@ -15,13 +15,16 @@ import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
 import { NavBar } from '../../components/NavBar';
-import { ChatNavRestartButton } from '../../components/Button';
 import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as navigationActions from '../../actions/baseNavigation';
-import { BackToOfferButton, CloseButton } from './components/Button';
-import { shouldShowReturnToOfferScreenButton } from './state/selectors';
+import {
+  BackToOfferButton,
+  CloseButton,
+  RestartButton,
+} from './components/Button';
+import * as selectors from './state/selectors';
 
 const inputComponentMap = {
   multiple_select: <MultipleSelectInput />,
@@ -95,7 +98,9 @@ class Chat extends React.Component {
     getMessages: PropTypes.func.isRequired,
     getAvatars: PropTypes.func.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object),
+    onboardingDone: PropTypes.bool,
   };
+  static defaultProps = { onboardingDone: false };
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -133,23 +138,20 @@ class Chat extends React.Component {
     this.props.showDashboard();
   };
 
+  _resetConversation = () => {
+    this.props.resetConversation();
+  };
+
   render() {
     let headerLeft;
     let headerRight;
-    if (
-      this.props.insurance.status === 'INACTIVE' ||
-      this.props.insurance.status === 'ACTIVE'
-    ) {
+    if (this.props.onboardingDone) {
       headerLeft = <CloseButton onPress={this._showDashboard} />;
     } else {
       if (this.props.showReturnToOfferButton) {
         headerRight = <BackToOfferButton onPress={this._showOffer} />;
       } else {
-        headerRight = (
-          <ChatNavRestartButton
-            onPress={() => this.props.resetConversation()}
-          />
-        );
+        headerRight = <RestartButton onPress={this._resetConversation} />;
       }
     }
 
@@ -176,9 +178,12 @@ class Chat extends React.Component {
 const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
-    showReturnToOfferButton: shouldShowReturnToOfferScreenButton(state),
+    showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
+      state,
+    ),
     insurance: state.insurance,
     intent: state.conversation.intent,
+    onboardingDone: selectors.isOnboardingDone(state),
   };
 };
 

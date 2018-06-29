@@ -1,12 +1,9 @@
 import { connect } from 'react-redux';
-import { EditMessageButton } from '../../../components/Button';
+
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
+import { EditMessageButton } from '../components/Button';
 
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onPress: () =>
       dispatch(
@@ -15,7 +12,8 @@ const mapDispatchToProps = (dispatch) => {
           paragraph: 'Tryck ja för att ändra ditt\nsvar på förra frågan',
           confirmButtonTitle: 'Ja',
           dismissButtonTitle: 'Nej',
-          onConfirm: () => dispatch(chatActions.editLastResponse()),
+          onConfirm: () =>
+            dispatch(chatActions.editLastResponse(ownProps.index)),
           onDismiss: () => {},
         }),
       ),
@@ -23,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const EditMessageButtonContainer = connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps,
 )(EditMessageButton);
 

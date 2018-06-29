@@ -35,6 +35,14 @@ const styles = StyleSheet.create({
     paddingRight: 34,
     color: '#8a8a99',
   },
+  userMessageOuterContainer: { maxWidth: '88%' },
+  userMessageInnerContainer: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+  },
+  userMessageEditButton: {
+    marginLeft: 5,
+  },
 });
 
 const renderImage = (message) => {
@@ -96,26 +104,24 @@ const DefaultUserMessage = ({ message, index }) => {
   if (message.header.editAllowed) {
     maybeEditMessageButton = (
       <View
-        style={{
-          marginLeft: 10,
-          marginBottom: 10,
-        }}
+        style={[
+          styles.userMessageEditButton,
+          !message.header.statusMessage ? { marginBottom: 10 } : undefined,
+        ]}
       >
-        <EditMessageButton />
+        <EditMessageButton index={index} />
       </View>
     );
   }
   return (
-    <View style={{ maxWidth: '88%' }}>
-      <View
-        style={{
-          flexDirection: 'row-reverse',
-          alignItems: 'center',
-        }}
-      >
+    <View style={styles.userMessageOuterContainer}>
+      <View style={styles.userMessageInnerContainer}>
         {maybeEditMessageButton}
         <StyledUserChatMessage
-          withMargin={message.header.statusMessage && index !== 1}
+          withMargin={
+            !message.header.statusMessage ||
+            (message.header.statusMessage && index !== 1)
+          }
         >
           <StyledDefaultUserMessageText>
             {message.body.text}
@@ -192,6 +198,7 @@ class MessageList extends React.Component {
         data={this.props.messages}
         renderItem={({ item, index }) => renderMessage(item, index)}
         keyExtractor={(item) => '' + item.globalId}
+        keyboardDismissMode="interactive"
       />
     );
   }

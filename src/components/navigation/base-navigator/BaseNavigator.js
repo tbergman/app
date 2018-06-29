@@ -71,23 +71,28 @@ const styles = StyleSheet.create({
   },
 });
 
-const Loading = () => {
-  return (
-    <View style={styles.flex}>
-      <StatusBar hidden />
-      <Loader />
-    </View>
-  );
-};
+class Loading extends React.Component {
+  render() {
+    return (
+      <View style={styles.flex}>
+        <StatusBar hidden />
+        <Loader />
+      </View>
+    );
+  }
+}
 
-const ChatDialogContainer = ({ navigation }) => {
-  return (
-    <View style={styles.flex}>
-      <Chat navigation={navigation} />
-      <Dialog />
-    </View>
-  );
-};
+class ChatDialogContainer extends React.Component {
+  render() {
+    const { navigation } = this.props;
+    return (
+      <View style={styles.flex}>
+        <Chat navigation={navigation} />
+        <Dialog />
+      </View>
+    );
+  }
+}
 
 const AppContainerWrapper = (Component) => {
   return ({ navigation }) => {
@@ -127,28 +132,31 @@ const ConversationNavigator = StackNavigator(
   },
 );
 
-const TabBarButton = ({ title, isActive, navigation, navigateTo }) => {
-  return (
-    <TouchableOpacity
-      style={[styles.tabBarButton, isActive && styles.tabBarButtonIsActive]}
-      disabled={isActive}
-      onPress={() => {
-        navigation.navigate(navigateTo);
-      }}
-      activeOpacity={0.9}
-    >
-      <Text
-        style={[
-          styles.tabBarButtonText,
-          isActive && styles.tabBarButtonTextIsActive,
-        ]}
+class TabBarButton extends React.Component {
+  render() {
+    const { title, isActive, navigation, navigateTo } = this.props;
+    return (
+      <TouchableOpacity
+        style={[styles.tabBarButton, isActive && styles.tabBarButtonIsActive]}
         disabled={isActive}
+        onPress={() => {
+          navigation.navigate(navigateTo);
+        }}
+        activeOpacity={0.9}
       >
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-};
+        <Text
+          style={[
+            styles.tabBarButtonText,
+            isActive && styles.tabBarButtonTextIsActive,
+          ]}
+          disabled={isActive}
+        >
+          {title}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+}
 
 class AccountTabBar extends React.Component {
   render() {
@@ -217,18 +225,21 @@ Chat and Account below affects whether the floating buttons are visible
 on Android!
 */
 
-const AccountContainer = ({ navigation }) => {
-  return (
-    <View style={styles.container}>
-      <StatusBar />
-      <View style={styles.view}>
-        <AccountNavigator navigation={navigation} />
-        <FloatingActionButton />
+class AccountContainer extends React.Component {
+  render() {
+    const { navigation } = this.props;
+    return (
+      <View style={styles.container}>
+        <StatusBar />
+        <View style={styles.view}>
+          <AccountNavigator navigation={navigation} />
+          <FloatingActionButton />
+        </View>
+        <Dialog />
       </View>
-      <Dialog />
-    </View>
-  );
-};
+    );
+  }
+}
 
 AccountContainer.router = AccountNavigator.router;
 

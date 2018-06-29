@@ -154,13 +154,6 @@ export const ChatNavDashboardButton = ({ onPress }) => (
   />
 );
 
-export const ChatNavRestartButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/restart.png')}
-    onPress={onPress}
-  />
-);
-
 export const ListNextButton = ({ onPress }) => (
   <IconButton
     iconModule={require('../../assets/icons/navigate_next.png')}
@@ -222,14 +215,6 @@ export const StopRecordingButton = ({ onPress }) => (
     iconModule={require('../../assets/icons/chat/stop_record_audio.png')}
     onPress={onPress}
     size="huge"
-  />
-);
-
-export const EditMessageButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/edit_last_message.png')}
-    onPress={onPress}
-    size="mediumBig"
   />
 );
 
