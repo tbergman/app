@@ -22,6 +22,10 @@ export async function saveToken(token) {
 }
 
 export async function getOrLoadToken(dispatch) {
+  //await AsyncStorage.setItem(
+  //  TOKEN_KEY,
+  //  'C2heGEDbhM6ZVA==.GFTfJT1uaWvZZA==.VlGcGl9uWulY1A==',
+  //);
   let token = await loadToken();
   if (token) {
     dispatch({

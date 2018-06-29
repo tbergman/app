@@ -1,7 +1,12 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { Animated, View, StyleSheet } from 'react-native';
-import * as typography from '../../../components/styles/typography';
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 
 // Regular text messages
 
@@ -12,30 +17,130 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 5,
   },
+  defaultMessageText: {
+    color: '#0f007a',
+    fontSize: 16,
+    fontFamily: 'merriweather',
+    textAlign: 'left',
+  },
+  userMessageText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'circular',
+    textAlign: 'left',
+  },
+  messageContainer: {
+    flexDirection: 'row',
+    paddingTop: 12,
+    paddingRight: 12,
+    paddingBottom: 12,
+    paddingLeft: 12,
+    borderRadius: 8,
+    maxWidth: '88%',
+    backgroundColor: '#f9fafc',
+    marginBottom: 8,
+  },
+  textInputContainer: {
+    flexDirection: 'row',
+    marginRight: 8,
+    marginLeft: 8,
+    marginBottom: 8,
+  },
+  textInput: {
+    flex: 1,
+    alignSelf: 'stretch',
+    height: 40,
+    paddingTop: 10,
+    paddingRight: 16,
+    paddingBottom: 10,
+    paddingLeft: 16,
+    marginRight: 8,
+    backgroundColor: '#ffffff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+    fontSize: 16,
+    overflow: 'hidden',
+  },
+  optionsContainer: {
+    marginBottom: 8,
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+  },
+  optionsContainerWrap: {
+    flexDirection: 'row',
+  },
+  optionsContainerNoWrap: { flexDirection: 'column' },
+  marginContainer: {
+    marginRight: 16,
+    marginBottom: 40,
+    marginLeft: 16,
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+  },
+  heroMessage: {
+    flexDirection: 'column',
+    paddingTop: 12,
+    paddingRight: 12,
+    paddingBottom: 12,
+    paddingLeft: 12,
+    borderRadius: 8,
+    backgroundColor: '#f9fafc',
+    marginBottom: 8,
+    width: '98%',
+  },
+  userMessage: {
+    marginBottom: 2,
+    paddingTop: 8,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingLeft: 16,
+    backgroundColor: '#651eff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  userMessageWithMargin: { marginBottom: 8 },
+  avatarContainer: { marginLeft: 15, marginBottom: 15 },
+  datePickerResultRow: {
+    marginRight: 8,
+    marginBottom: 8,
+    marginLeft: 8,
+    flexDirection: 'row',
+  },
+  fakeTextInput: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    height: 40,
+    paddingTop: 10,
+    paddingRight: 16,
+    paddingBottom: 10,
+    paddingLeft: 16,
+    marginRight: 8,
+    backgroundColor: '#ffffff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+  },
+  fakeTextInputText: { fontSize: 16, color: '#414150' },
 });
 
-export const StyledDefaultMessageText = typography.MerriweatherFontText.extend`
-  color: ${(props) => props.theme.colors.hedvigMessageText};
-  font-size: ${(props) => props.theme.typography.hedvigMessage.fontSize};
-`;
+export class StyledDefaultMessageText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.defaultMessageText} />;
+  }
+}
 
-export const StyledDefaultUserMessageText = typography.CircularFontText.extend`
-  color: ${(props) => props.theme.colors.white};
-  font-size: ${(props) => props.theme.typography.userMessage.fontSize};
-`;
+export class StyledDefaultUserMessageText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.userMessageText} />;
+  }
+}
 
-export const StyledChatMessage = styled.View`
-  flex-direction: row;
-  padding: 12px 12px;
-  border-radius: 8px;
-  max-width: 88%;
-  background: ${(props) => props.theme.colors.hedvigMessageBackground};
-  margin-bottom: 8px;
-`;
-
-const _animatableStyledChatMessage = Animated.createAnimatedComponent(
-  StyledChatMessage,
-);
 export class AnimatedStyledChatMessage extends React.Component {
   state = {
     slideAnim: new Animated.Value(-100),
@@ -50,46 +155,62 @@ export class AnimatedStyledChatMessage extends React.Component {
 
   render() {
     return (
-      <_animatableStyledChatMessage
-        style={{ transform: [{ translateX: this.state.slideAnim }] }}
+      <Animated.View
+        style={[
+          styles.messageContainer,
+          { transform: [{ translateX: this.state.slideAnim }] },
+        ]}
         {...this.props}
       >
         {this.props.children}
-      </_animatableStyledChatMessage>
+      </Animated.View>
     );
   }
 }
 
-export const StyledUserChatMessage = styled.View`
-  margin-bottom: 8px;
-  padding: 8px 16px;
-  background-color: ${(props) => props.theme.colors.primary};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-`;
+export class StyledUserChatMessage extends React.Component {
+  render() {
+    const { withMargin, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.userMessage,
+          withMargin ? styles.userMessageWithMargin : undefined,
+        ]}
+      />
+    );
+  }
+}
 
-export const StyledHeroMessage = StyledChatMessage.extend`
-  flex-direction: column;
-  width: 98%;
-`;
+export class StyledHeroMessage extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.heroMessage} />;
+  }
+}
 
-export const StyledAvatarContainer = styled.View`
-  margin-left: 15px;
-  margin-bottom: 15px;
-`;
+export class StyledAvatarContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.avatarContainer} />;
+  }
+}
 
 // Single select & multiple select
 
-export const StyledMarginContainer = styled.View`
-  margin: 0px 16px 40px 16px;
-  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
-  justify-content: flex-end;
-  flex-wrap: wrap;
-`;
+export class StyledMarginContainer extends React.Component {
+  render() {
+    const { wrap, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.marginContainer,
+          wrap ? styles.optionsContainerWrap : styles.optionsContainerNoWrap,
+        ]}
+      />
+    );
+  }
+}
 
 export class StyledRightAlignedOptions extends React.Component {
   render() {
@@ -99,70 +220,57 @@ export class StyledRightAlignedOptions extends React.Component {
 
 // Multiple select
 
-export const StyledOptionsContainer = styled.View`
-  margin-bottom: 8px;
-  flex-direction: ${(props) => (props.wrap ? 'row' : 'column')};
-  justify-content: flex-end;
-  flex-wrap: wrap;
-`;
+export class StyledOptionsContainer extends React.Component {
+  render() {
+    const { wrap, ...rest } = this.props;
+    return (
+      <View
+        {...rest}
+        style={[
+          styles.optionsContainer,
+          wrap ? styles.optionsContainerWrap : styles.optionsContainerNoWrap,
+        ]}
+      />
+    );
+  }
+}
 
 // Text input
 
-export const StyledTextInputContainer = styled.View`
-  flex-direction: row;
-  margin-right: 8px;
-  margin-left: 8px;
-  margin-bottom: 8px;
-`;
+export class StyledTextInputContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.textInputContainer} />;
+  }
+}
 
-export const StyledTextInput = styled.TextInput`
-  flex: 1;
-  align-self: stretch;
-  height: ${(props) => props.theme.input.default.height};
-  padding: 10px 16px;
-  margin-right: 8px;
-  background-color: ${(props) => props.theme.colors.white};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-  font-size: ${(props) => props.theme.typography.input.fontSize};
-  overflow: hidden;
-`;
+export class StyledTextInput extends React.Component {
+  render() {
+    return <TextInput {...this.props} style={styles.textInput} />;
+  }
+}
 
 // Date input
 
-export const StyledDatePickerResultRow = styled.View`
-  margin: 0 8px 8px 8px;
-  flex-direction: row;
-`;
+export class StyledDatePickerResultRow extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.datePickerResultRow} />;
+  }
+}
 
-export const StyledFakeTextInput = styled.View`
-  flex: 1;
-  align-self: stretch;
-  justify-content: center;
-  height: ${(props) => props.theme.input.default.height};
-  padding: 10px 16px;
-  margin-right: 8px;
-  background-color: ${(props) => props.theme.colors.white};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-`;
+export class StyledFakeTextInput extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.fakeTextInput} />;
+  }
+}
 
-export const TouchableStyledFakeTextInput = styled.TouchableOpacity`
-  flex: 1;
-  align-self: stretch;
-  justify-content: center;
-  height: ${(props) => props.theme.input.default.height};
-  padding: 10px 16px;
-  margin-right: 8px;
-  background-color: ${(props) => props.theme.colors.white};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-`;
+export class TouchableStyledFakeTextInput extends React.Component {
+  render() {
+    return <TouchableOpacity {...this.props} style={styles.fakeTextInput} />;
+  }
+}
 
-export const StyledFakeTextInputText = styled.Text`
-  font-size: ${(props) => props.theme.typography.input.fontSize};
-  color: ${(props) => props.theme.typography.activeText.color};
-`;
+export class StyledFakeTextInputText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.fakeTextInputText} />;
+  }
+}

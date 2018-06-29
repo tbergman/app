@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  Image,
+  View,
 } from 'react-native';
 
 const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
@@ -13,18 +15,20 @@ const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
 );
 
 const styles = StyleSheet.create({
-  chatOptionButton: {
+  buttonBase: {
     minHeight: 20,
     paddingTop: 8,
     paddingRight: 16,
     paddingBottom: 8,
     paddingLeft: 16,
-    borderColor: '#651eff',
     borderWidth: 1,
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  chatOptionButton: {
+    borderColor: '#651eff',
     marginBottom: 8,
   },
   buttonColorSelected: { backgroundColor: '#651eff' },
@@ -38,6 +42,13 @@ const styles = StyleSheet.create({
   },
   buttonTextColorSelected: { color: '#ffffff' },
   buttonTextColorNotSelected: { color: '#651eff' },
+  backToOfferButton: {
+    backgroundColor: '#1be9b6',
+    borderColor: '#1be9b6',
+  },
+  backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
+  sendButton: { width: 40, height: 40 },
+  closeButton: { width: 40, height: 40 },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {
@@ -76,6 +87,7 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
         onPress={onPress}
         disabled={disabled}
         style={[
+          styles.buttonBase,
           styles.chatOptionButton,
           {
             transform: [{ translateX: this.state.slideAnim }],
@@ -127,6 +139,7 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
         underlayColor="transparent"
         activeOpacity={0.5}
         style={[
+          styles.buttonBase,
           styles.chatOptionButton,
           {
             transform: [
@@ -149,6 +162,74 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
           {title}
         </Text>
       </AnimatableTouchableHighlight>
+    );
+  }
+}
+
+export class BackToOfferButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[styles.buttonBase, styles.backToOfferButton]}
+      >
+        <Text style={styles.backToOfferText}>Fortsätt →</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class SendButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress, disabled } = this.props;
+    if (disabled) {
+      return (
+        <View>
+          <Image
+            source={require('../../../../assets/icons/chat/send_idle.png')}
+            style={styles.sendButton}
+          />
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={SendButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/chat/send.png')}
+          style={styles.sendButton}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class CloseButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={CloseButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/close/close_black.png')}
+          style={styles.closeButton}
+        />
+      </TouchableOpacity>
     );
   }
 }

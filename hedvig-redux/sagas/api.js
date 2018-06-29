@@ -47,7 +47,12 @@ const api = function*(action) {
           )}, response was: ${JSON.stringify(response)}`,
         );
       } else if (response.status !== HTTP_NO_CONTENT) {
-        data = yield response.json();
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = yield response.json();
+        } else {
+          data = null;
+        }
       } else {
         data = null;
       }

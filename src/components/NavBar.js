@@ -1,54 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight, Text, StyleSheet } from 'react-native';
-import * as Navigation from '../services/Navigation';
-import { FontAwesome } from '@expo/vector-icons';
+import { StyleSheet, View, Image } from 'react-native';
 import { EmptyHeaderItem, StyledNavBarContainer } from './styles/navbar';
-import { HedvigLogoBlue } from './Icon';
 
 const styles = StyleSheet.create({
   header: {
     fontFamily: 'merriweather',
     color: '#414150',
     fontSize: 16,
+    textAlign: 'center',
+  },
+  headerItem: {
+    width: '33%',
+  },
+  centerItem: { alignItems: 'center' },
+  hedvigLogo: {
+    width: 94,
+    height: 30,
+    justifyContent: 'center',
   },
 });
 
-const NavBar = ({ title, headerLeft, headerRight }) => (
-  <StyledNavBarContainer>
-    {headerLeft}
-    {title ? <Text style={styles.header}>{title}</Text> : <HedvigLogoBlue />}
-    {headerRight}
-  </StyledNavBarContainer>
-);
+class NavBar extends React.Component {
+  static propTypes = {
+    headerLeft: PropTypes.element,
+    headerRight: PropTypes.element,
+  };
+  static defaultProps = {
+    headerLeft: <EmptyHeaderItem />,
+    headerRight: <EmptyHeaderItem />,
+  };
 
-NavBar.propTypes = {
-  title: PropTypes.string,
-  headerLeft: PropTypes.element,
-  headerRight: PropTypes.element,
-};
+  render() {
+    const { headerLeft, headerRight } = this.props;
+    return (
+      <StyledNavBarContainer>
+        <View style={styles.headerItem}>{headerLeft}</View>
+        <View style={[styles.headerItem, styles.centerItem]}>
+          <Image
+            source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark_black.png')}
+            style={styles.hedvigLogo}
+          />
+        </View>
+        <View style={styles.headerItem}>{headerRight}</View>
+      </StyledNavBarContainer>
+    );
+  }
+}
 
-NavBar.defaultProps = {
-  title: undefined,
-  headerLeft: <EmptyHeaderItem />,
-  headerRight: <EmptyHeaderItem />,
-};
-
-// TODO Proptypes
-const HeaderRightChat = ({ navigation }) => {
-  return (
-    <TouchableHighlight
-      onPress={() => {
-        Navigation.navigateTo(navigation.dispatch, 'Chat');
-      }}
-      style={{ marginRight: 10, justifyContent: 'center' }}
-      underlayColor="transparent"
-      activeOpacity={0.5}
-      hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
-    >
-      <FontAwesome name="comments" size={20} />
-    </TouchableHighlight>
-  );
-};
-
-export { NavBar, HeaderRightChat };
+export { NavBar };

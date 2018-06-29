@@ -11,7 +11,7 @@ import {
   EDIT_LAST_RESPONSE,
 } from './types';
 
-export const GET_MESSAGES_URL = '/messages';
+export const GET_MESSAGES_URL = '/v2/app';
 
 export function getMessages({ intent = null } = {}) {
   // `intent` is used to start the right conversation on the backend

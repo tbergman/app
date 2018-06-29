@@ -34,7 +34,7 @@ class ChatNumberInput extends React.Component {
     return (
       <StyledTextInputContainer>
         <StyledTextInput
-          placeholder="Type here..."
+          placeholder="Skriv här..."
           autoFocus
           keyboardType="numeric"
           value={message._inputValue || ''}
@@ -48,8 +48,8 @@ class ChatNumberInput extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  let message = state.chat.messages[ownProps.messageIndex];
+const mapStateToProps = (state) => {
+  let message = state.chat.messages[0];
   return {
     message,
   };

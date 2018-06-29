@@ -1,10 +1,10 @@
 /* global require */
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 
-import { HeaderRightChat } from '../NavBar';
-import { PerilsCategory } from './PerilsCategory';
-import { Loader } from '../Loader';
+import { PerilsCategory } from './components/PerilsCategory';
+import { Loader } from '../../components/Loader';
 
 import {
   StyledDashboardHeaderOffWhite,
@@ -14,17 +14,13 @@ import {
   StyledCategoriesContainer,
   StyledDashboardHeaderIcon,
   StyledConditionRow,
-} from '../styles/dashboard';
-import { StyledPassiveText, StyledHeading } from '../styles/text';
+} from './styles/dashboard';
+import { StyledPassiveText, StyledHeading } from '../../components/styles/text';
 
 import { INSURANCE_TYPES } from '../../constants';
+import { insuranceActions } from '../../../hedvig-redux';
 
-export default class Dashboard extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Min Försäkring',
-    headerRight: <HeaderRightChat navigation={navigation} />,
-  });
-
+class Dashboard extends React.Component {
   renderCategories() {
     let categories = this.props.categories.map(
       ({ title, description, perils, iconUrl }, i) => {
@@ -131,3 +127,23 @@ export default class Dashboard extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    insurance: state.insurance,
+    categories: state.insurance.categories,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getInsurance: () => dispatch(insuranceActions.getInsurance()),
+  };
+};
+
+const DashboardContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Dashboard);
+
+export default DashboardContainer;

@@ -26,9 +26,9 @@ class ParagraphInput extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    message: state.chat.messages[ownProps.messageIndex],
+    message: state.chat.messages[0],
   };
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Share, Image, StyleSheet, Linking } from 'react-native';
-import { HeaderRightChat } from './NavBar';
 import {
   StyledProfileContainer,
   StyledCharityParagraph,
@@ -36,11 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 export default class Profile extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Min Profil',
-    headerRight: <HeaderRightChat navigation={navigation} />,
-  });
-
   componentDidMount() {
     this.props.getUser();
     this.props.getCashbackAlternatives();

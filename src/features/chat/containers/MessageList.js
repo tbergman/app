@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Image, Dimensions, StyleSheet, FlatList } from 'react-native';
+import {
+  View,
+  Image,
+  Dimensions,
+  StyleSheet,
+  FlatList,
+  Text,
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -14,6 +21,21 @@ import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { theme } from '../../../style-theme';
+
+const styles = StyleSheet.create({
+  scrollContent: {
+    flex: 1,
+    paddingTop: 16,
+    paddingBottom: 16,
+  },
+  statusMessage: {
+    fontFamily: 'circular',
+    fontSize: 12,
+    textAlign: 'right',
+    paddingRight: 34,
+    color: '#8a8a99',
+  },
+});
 
 const renderImage = (message) => {
   if (
@@ -56,22 +78,20 @@ const HeroMessage = ({ message, textAlign }) => {
   );
 };
 
-const DefaultHedvigMessage = ({ message, textAlign }) => {
+const DefaultHedvigMessage = ({ message }) => {
   if (message.body.text === '') {
     return null;
   } else {
     return (
       <AnimatedStyledChatMessage>
         {renderImage(message)}
-        <StyledDefaultMessageText style={{ textAlign }}>
-          {message.body.text}
-        </StyledDefaultMessageText>
+        <StyledDefaultMessageText>{message.body.text}</StyledDefaultMessageText>
       </AnimatedStyledChatMessage>
     );
   }
 };
 
-const DefaultUserMessage = ({ message, textAlign }) => {
+const DefaultUserMessage = ({ message, index }) => {
   let maybeEditMessageButton;
   if (message.header.editAllowed) {
     maybeEditMessageButton = (
@@ -86,19 +106,28 @@ const DefaultUserMessage = ({ message, textAlign }) => {
     );
   }
   return (
-    <View
-      style={{
-        flexDirection: 'row-reverse',
-        alignItems: 'center',
-        maxWidth: '88%',
-      }}
-    >
-      {maybeEditMessageButton}
-      <StyledUserChatMessage>
-        <StyledDefaultUserMessageText style={{ textAlign }}>
-          {message.body.text}
-        </StyledDefaultUserMessageText>
-      </StyledUserChatMessage>
+    <View style={{ maxWidth: '88%' }}>
+      <View
+        style={{
+          flexDirection: 'row-reverse',
+          alignItems: 'center',
+        }}
+      >
+        {maybeEditMessageButton}
+        <StyledUserChatMessage
+          withMargin={message.header.statusMessage && index !== 1}
+        >
+          <StyledDefaultUserMessageText>
+            {message.body.text}
+          </StyledDefaultUserMessageText>
+        </StyledUserChatMessage>
+      </View>
+      {message.header.statusMessage &&
+        index === 1 && (
+          <Text style={styles.statusMessage}>
+            {message.header.statusMessage}
+          </Text>
+        )}
     </View>
   );
 };
@@ -112,11 +141,11 @@ const HedvigMessageMapping = {
   polling: () => null,
 };
 
-const renderMessage = function(message, idx, lastIndex = false) {
+const renderMessage = (message, idx) => {
   let fromMe = message.header.fromId !== 1;
   let flexDirection = fromMe ? 'row-reverse' : 'row';
   let alignSelf = fromMe ? 'flex-end' : 'flex-start';
-  let textAlign = 'left';
+  const lastIndex = idx === 0;
 
   let MessageRenderComponent;
   if (!fromMe) {
@@ -146,20 +175,12 @@ const renderMessage = function(message, idx, lastIndex = false) {
           alignSelf: alignSelf,
         }}
       >
-        <MessageRenderComponent message={message} textAlign={textAlign} />
+        <MessageRenderComponent message={message} index={idx} />
       </View>
       {lastIndex ? <LoadingIndicator messageIndex={idx} /> : null}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollContent: {
-    flex: 1,
-    paddingTop: 16,
-    paddingBottom: 16,
-  },
-});
 
 class MessageList extends React.Component {
   render() {
@@ -169,9 +190,7 @@ class MessageList extends React.Component {
         style={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         data={this.props.messages}
-        renderItem={({ item, index }) =>
-          renderMessage(item, index, index === 0)
-        }
+        renderItem={({ item, index }) => renderMessage(item, index)}
         keyExtractor={(item) => '' + item.globalId}
       />
     );

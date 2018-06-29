@@ -4,6 +4,9 @@ import { shallow } from 'enzyme';
 import {
   AnimatedSingleSelectOptionButton,
   AnimatedMultipleSelectOptionButton,
+  BackToOfferButton,
+  SendButton,
+  CloseButton,
 } from './Button';
 
 const NOOP = () => {};
@@ -32,5 +35,39 @@ describe('<AnimatedMultipleSelectOptionButton />', () => {
     expect(() =>
       shallow(<AnimatedMultipleSelectOptionButton {...standardProps} />),
     ).not.toThrow();
+  });
+});
+
+describe('<BackToOfferButton />', () => {
+  it('Should render without crashing given regular props', () => {
+    expect(() => shallow(<BackToOfferButton onPress={NOOP} />)).not.toThrow();
+  });
+});
+
+describe('<SendButton />', () => {
+  it('Should render without crashing given regular props', () => {
+    expect(() =>
+      shallow(<SendButton onPress={NOOP} disabled={false} />),
+    ).not.toThrow();
+  });
+
+  it('Should not call onPress when pressed in disabled state', () => {
+    const spy = jest.fn();
+    const component = shallow(<SendButton onPress={spy} disabled />);
+    component.simulate('press');
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('Should call onPress when pressed in enabled state', () => {
+    const spy = jest.fn();
+    const component = shallow(<SendButton onPress={spy} disabled={false} />);
+    component.simulate('press');
+    expect(spy).toHaveBeenCalled();
+  });
+});
+
+describe('<CloseButton />', () => {
+  it('Sholuld render without crashing given regular props', () => {
+    expect(() => shallow(<CloseButton onPress={NOOP} />)).not.toThrow();
   });
 });

@@ -38,9 +38,9 @@ class Avatar extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   if (state.chat.messages.length > 0) {
-    let message = state.chat.messages[ownProps.messageIndex];
+    let message = state.chat.messages[0];
     return {
       avatar: state.chat.avatars[message.header.avatarName] || {},
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Peril } from '../../components/dashboard/Peril';
+import { Peril } from './Peril';
 import {
   StyledCategoryContainer,
   StyledCategoryHeader,
@@ -12,13 +12,16 @@ import {
   StyledCategoryTextAndButton,
   StyledPerilsHelpText,
 } from '../styles/dashboard';
-import { DisabledCollapseButton, DisabledExpandButton } from '../Button';
-import { StyledRow } from '../styles/general';
+import {
+  DisabledCollapseButton,
+  DisabledExpandButton,
+} from '../../../components/Button';
+import { StyledRow } from '../../../components/styles/general';
 import {
   StyledHeading,
   StyledPassiveText,
   StyledSmallPassiveText,
-} from '../styles/text';
+} from '../../../components/styles/text';
 
 const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
 
@@ -41,7 +44,7 @@ export class PerilsCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCategory: props.offerMode === true,
+      showCategory: false,
     };
   }
 
@@ -53,7 +56,6 @@ export class PerilsCategory extends React.Component {
       <StyledCategoryContainer
         activeOpacity={1}
         onPress={() =>
-          !this.props.offerMode &&
           this.setState({ showCategory: !this.state.showCategory })
         }
       >
@@ -67,17 +69,13 @@ export class PerilsCategory extends React.Component {
               <StyledRow>
                 <StyledPassiveText>
                   {this.props.description}
-                  {!this.props.offerMode && this.state.showCategory
-                    ? ':'
-                    : null}
+                  {this.state.showCategory && ':'}
                 </StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
-            {!this.props.offerMode ? (
-              <StyledExpandButton>
-                <CollapseButton size="mediumBig" />
-              </StyledExpandButton>
-            ) : null}
+            <StyledExpandButton>
+              <CollapseButton size="mediumBig" />
+            </StyledExpandButton>
           </StyledCategoryTextAndButton>
         </StyledCategoryHeader>
         {this.state.showCategory && (

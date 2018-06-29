@@ -9,6 +9,7 @@ import {
   SET_RESPONSE_VALUE,
   LOADED_AVATARS,
   LOADED_AVATAR_DATA,
+  SEND_CHAT_RESPONSE,
 } from '../actions/types';
 import { MOCK_LOADED_CLAIM_MESSAGES } from '../actions/mock/types';
 
@@ -85,9 +86,14 @@ const reducer = (
     case MOCK_LOADED_CLAIM_MESSAGES:
     case LOADED_MESSAGES:
     case LOADED_ONBOARDING:
-      return Object.assign({}, state, {
-        messages: Object.values(action.payload).reverse(),
-      });
+      return {
+        ...state,
+        messages: action.payload.messages,
+        ongoingClaim: action.payload.state.ongoingClaim,
+        showOfferScreen: action.payload.showOfferScreen,
+        fabOptions: action.payload.fabOptions,
+        isSending: false,
+      };
     case CHOICE_SELECTED:
       return selectChoice(state, action);
     case SET_RESPONSE_VALUE:
@@ -99,6 +105,10 @@ const reducer = (
       return handleLoadedAvatars(state, action);
     case LOADED_AVATAR_DATA:
       return handleLoadedAvatarData(state, action);
+    case SEND_CHAT_RESPONSE:
+      return { ...state, isSending: true, inputValue: '' };
+    case 'CHAT/SET_INPUT_VALUE':
+      return { ...state, inputValue: action.payload };
     default:
       return state;
   }
