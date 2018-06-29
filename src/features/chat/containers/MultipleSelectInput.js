@@ -15,41 +15,44 @@ import { AnimatedMultipleSelectOptionButton } from '../components/Button';
 
 const WRAP_NUM_OPTIONS = 6;
 
-const MultipleSelectInput = ({ message, onChoiceSelected, done }) => {
-  let anyOptionSelected = R.any(
-    (choice) => choice.selected,
-    message.body.choices,
-  );
-  let sendButton = anyOptionSelected ? (
-    <SendIconButton
-      onPress={() => {
-        done(message);
-      }}
-    />
-  ) : (
-    <SendDisabledIconButton />
-  );
-  let opts = message.body.choices.map((choice) => {
-    return (
-      <StyledRightAlignedOptions key={choice.text}>
-        <AnimatedMultipleSelectOptionButton
-          onPress={() => {
-            onChoiceSelected(message, choice);
-          }}
-          title={choice.text}
-          selected={choice.selected}
-        />
-      </StyledRightAlignedOptions>
+class MultipleSelectInput extends React.Component {
+  render() {
+    const { message, onChoiceSelected, done } = this.props;
+    let anyOptionSelected = R.any(
+      (choice) => choice.selected,
+      message.body.choices,
     );
-  });
-  let wrap = message.body.choices.length > WRAP_NUM_OPTIONS;
-  return (
-    <StyledMarginContainer wrap={wrap}>
-      <StyledOptionsContainer wrap={wrap}>{opts}</StyledOptionsContainer>
-      <StyledRightAlignedOptions>{sendButton}</StyledRightAlignedOptions>
-    </StyledMarginContainer>
-  );
-};
+    let sendButton = anyOptionSelected ? (
+      <SendIconButton
+        onPress={() => {
+          done(message);
+        }}
+      />
+    ) : (
+      <SendDisabledIconButton />
+    );
+    let opts = message.body.choices.map((choice) => {
+      return (
+        <StyledRightAlignedOptions key={choice.text}>
+          <AnimatedMultipleSelectOptionButton
+            onPress={() => {
+              onChoiceSelected(message, choice);
+            }}
+            title={choice.text}
+            selected={choice.selected}
+          />
+        </StyledRightAlignedOptions>
+      );
+    });
+    let wrap = message.body.choices.length > WRAP_NUM_OPTIONS;
+    return (
+      <StyledMarginContainer wrap={wrap}>
+        <StyledOptionsContainer wrap={wrap}>{opts}</StyledOptionsContainer>
+        <StyledRightAlignedOptions>{sendButton}</StyledRightAlignedOptions>
+      </StyledMarginContainer>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

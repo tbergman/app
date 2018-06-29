@@ -103,15 +103,19 @@ class Chat extends React.Component {
 
     this._longPollTimeout = setInterval(() => {
       this.props.getMessages(this.props.intent);
-    }, 1000 * 30);
+    }, 1000 * 15);
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
+    this._stopPolling();
+  }
+
+  _stopPolling = () => {
     if (this._longPollTimeout) {
       clearInterval(this._longPollTimeout);
     }
-  }
+  };
 
   _handleAppStateChange = (appState) => {
     if (appState === 'active') {
@@ -119,8 +123,14 @@ class Chat extends React.Component {
     }
   };
 
-  showOffer = () => {
+  _showOffer = () => {
+    this._stopPolling();
     this.props.showOffer();
+  };
+
+  _showDashboard = () => {
+    this._stopPolling();
+    this.props.showDashboard();
   };
 
   render() {
@@ -130,10 +140,10 @@ class Chat extends React.Component {
       this.props.insurance.status === 'INACTIVE' ||
       this.props.insurance.status === 'ACTIVE'
     ) {
-      headerLeft = <CloseButton onPress={this.props.showDashboard} />;
+      headerLeft = <CloseButton onPress={this._showDashboard} />;
     } else {
       if (this.props.showReturnToOfferButton) {
-        headerRight = <BackToOfferButton onPress={this.showOffer} />;
+        headerRight = <BackToOfferButton onPress={this._showOffer} />;
       } else {
         headerRight = (
           <ChatNavRestartButton

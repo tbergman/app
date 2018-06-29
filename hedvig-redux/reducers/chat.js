@@ -40,25 +40,9 @@ const setResponseValue = (state, { payload: { message, value } }) => {
   return newState;
 };
 
-// const loadingMessage = () => {
-//   return {
-//     globalId: -1,
-//     id: "loading",
-//     header: {
-//       fromId: 1
-//     },
-//     body: { type: "text", text: "..." },
-//     timestamp: moment().toISOString()
-//   }
-// }
-
 const handleLoading = (state, { type }) => {
   if (type === LOADING_MESSAGES_START) {
     let stateWithLoading = Object.assign({}, state, { loadingMessages: true });
-    // let newState = dotProp.set(state, `messages`, [
-    //   ...state.messages,
-    //   loadingMessage()
-    // ])
     return stateWithLoading;
   } else if (type === LOADING_MESSAGES_END) {
     return Object.assign({}, state, { loadingMessages: false });

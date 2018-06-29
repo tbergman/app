@@ -13,11 +13,17 @@ const styles = StyleSheet.create({
   headerItem: {
     width: '33%',
   },
-  centerItem: { alignItems: 'center' },
+  centerItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 6,
+  },
   hedvigLogo: {
     width: 94,
     height: 30,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
