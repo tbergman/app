@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   hedvigLogo: {
-    width: 94,
+    width: 96,
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
