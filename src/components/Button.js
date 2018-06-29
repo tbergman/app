@@ -154,13 +154,6 @@ export const ChatNavDashboardButton = ({ onPress }) => (
   />
 );
 
-export const ChatNavRestartButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/restart.png')}
-    onPress={onPress}
-  />
-);
-
 export const ListNextButton = ({ onPress }) => (
   <IconButton
     iconModule={require('../../assets/icons/navigate_next.png')}

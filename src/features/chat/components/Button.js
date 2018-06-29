@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
   sendButton: { width: 40, height: 40 },
   closeButton: { width: 40, height: 40 },
+  restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {
@@ -228,6 +229,26 @@ export class CloseButton extends React.Component {
         <Image
           source={require('../../../../assets/icons/close/close_black.png')}
           style={styles.closeButton}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class RestartButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={RestartButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/chat/restart.png')}
+          style={styles.restartButton}
         />
       </TouchableOpacity>
     );

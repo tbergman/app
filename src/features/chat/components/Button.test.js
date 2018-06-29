@@ -7,6 +7,7 @@ import {
   BackToOfferButton,
   SendButton,
   CloseButton,
+  RestartButton,
 } from './Button';
 
 const NOOP = () => {};
@@ -67,7 +68,13 @@ describe('<SendButton />', () => {
 });
 
 describe('<CloseButton />', () => {
-  it('Sholuld render without crashing given regular props', () => {
+  it('Should render without crashing given regular props', () => {
     expect(() => shallow(<CloseButton onPress={NOOP} />)).not.toThrow();
+  });
+});
+
+describe('<RestartButton />', () => {
+  it('Should render without crashing given regular props', () => {
+    expect(() => shallow(<RestartButton onPress={NOOP} />)).not.toThrow();
   });
 });
