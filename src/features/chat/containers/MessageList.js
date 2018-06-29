@@ -191,6 +191,7 @@ class MessageList extends React.Component {
         data={this.props.messages}
         renderItem={({ item, index }) => renderMessage(item, index)}
         keyExtractor={(item) => '' + item.globalId}
+        keyboardDismissMode="interactive"
       />
     );
   }
