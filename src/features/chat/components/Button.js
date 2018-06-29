@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   sendButton: { width: 40, height: 40 },
   closeButton: { width: 40, height: 40 },
   restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },
+  editMessageButton: { width: 24, height: 24, alignSelf: 'center' },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {
@@ -249,6 +250,26 @@ export class RestartButton extends React.Component {
         <Image
           source={require('../../../../assets/icons/chat/restart.png')}
           style={styles.restartButton}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
+
+export class EditMessageButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  };
+
+  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={EditMessageButton._hitSlop}>
+        <Image
+          source={require('../../../../assets/icons/chat/edit_last_message.png')}
+          style={styles.editMessageButton}
         />
       </TouchableOpacity>
     );

@@ -24,7 +24,7 @@ import {
   CloseButton,
   RestartButton,
 } from './components/Button';
-import { shouldShowReturnToOfferScreenButton } from './state/selectors';
+import * as selectors from './state/selectors';
 
 const inputComponentMap = {
   multiple_select: <MultipleSelectInput />,
@@ -98,7 +98,9 @@ class Chat extends React.Component {
     getMessages: PropTypes.func.isRequired,
     getAvatars: PropTypes.func.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object),
+    onboardingDone: PropTypes.bool,
   };
+  static defaultProps = { onboardingDone: false };
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -143,10 +145,7 @@ class Chat extends React.Component {
   render() {
     let headerLeft;
     let headerRight;
-    if (
-      this.props.insurance.status === 'INACTIVE' ||
-      this.props.insurance.status === 'ACTIVE'
-    ) {
+    if (this.props.onboardingDone) {
       headerLeft = <CloseButton onPress={this._showDashboard} />;
     } else {
       if (this.props.showReturnToOfferButton) {
@@ -179,9 +178,12 @@ class Chat extends React.Component {
 const mapStateToProps = (state) => {
   return {
     messages: state.chat.messages,
-    showReturnToOfferButton: shouldShowReturnToOfferScreenButton(state),
+    showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
+      state,
+    ),
     insurance: state.insurance,
     intent: state.conversation.intent,
+    onboardingDone: selectors.isOnboardingDone(state),
   };
 };
 

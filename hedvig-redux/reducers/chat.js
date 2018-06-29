@@ -10,6 +10,7 @@ import {
   LOADED_AVATARS,
   LOADED_AVATAR_DATA,
   SEND_CHAT_RESPONSE,
+  EDIT_LAST_RESPONSE,
 } from '../actions/types';
 import { MOCK_LOADED_CLAIM_MESSAGES } from '../actions/mock/types';
 
@@ -75,6 +76,7 @@ const reducer = (
         messages: action.payload.messages,
         ongoingClaim: action.payload.state.ongoingClaim,
         showOfferScreen: action.payload.state.showOfferScreen,
+        onboardingDone: action.payload.state.onboardingDone,
         fabOptions: action.payload.fabOptions,
         isSending: false,
       };
@@ -93,6 +95,17 @@ const reducer = (
       return { ...state, isSending: true, inputValue: '' };
     case 'CHAT/SET_INPUT_VALUE':
       return { ...state, inputValue: action.payload };
+    case EDIT_LAST_RESPONSE: {
+      return {
+        ...state,
+        inputValue:
+          state.messages &&
+          state.messages[action.payload.index] &&
+          state.messages[action.payload.index].body.type === 'text'
+            ? state.messages[action.payload.index].body.text
+            : '',
+      };
+    }
     default:
       return state;
   }

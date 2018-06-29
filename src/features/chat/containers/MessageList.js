@@ -40,7 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
-  userMessageEditButton: { marginLeft: 10, marginBottom: 10 },
+  userMessageEditButton: {
+    marginLeft: 5,
+  },
 });
 
 const renderImage = (message) => {
@@ -101,8 +103,13 @@ const DefaultUserMessage = ({ message, index }) => {
   let maybeEditMessageButton;
   if (message.header.editAllowed) {
     maybeEditMessageButton = (
-      <View style={styles.userMessageEditButton}>
-        <EditMessageButton />
+      <View
+        style={[
+          styles.userMessageEditButton,
+          !message.header.statusMessage ? { marginBottom: 10 } : undefined,
+        ]}
+      >
+        <EditMessageButton index={index} />
       </View>
     );
   }

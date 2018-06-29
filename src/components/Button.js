@@ -218,14 +218,6 @@ export const StopRecordingButton = ({ onPress }) => (
   />
 );
 
-export const EditMessageButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/edit_last_message.png')}
-    onPress={onPress}
-    size="mediumBig"
-  />
-);
-
 export const HiddenDisabledButton = ({ size = 'medium' }) => (
   <DisabledIconButton size={size} />
 );

@@ -8,6 +8,7 @@ import {
   SendButton,
   CloseButton,
   RestartButton,
+  EditMessageButton,
 } from './Button';
 
 const NOOP = () => {};
@@ -76,5 +77,11 @@ describe('<CloseButton />', () => {
 describe('<RestartButton />', () => {
   it('Should render without crashing given regular props', () => {
     expect(() => shallow(<RestartButton onPress={NOOP} />)).not.toThrow();
+  });
+});
+
+describe('<EditMessageButton />', () => {
+  it('Should render without crashing given regular props', () => {
+    expect(() => shallow(<EditMessageButton onPress={NOOP} />)).not.toThrow();
   });
 });

@@ -45,9 +45,12 @@ export function resetConversation() {
   };
 }
 
-export function editLastResponse() {
+export function editLastResponse(index) {
   return {
     type: EDIT_LAST_RESPONSE,
+    payload: {
+      index,
+    },
   };
 }
 

@@ -309,11 +309,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
         ),
       );
-      ownProps.navigation.navigate({
-        routeName: 'Conversation',
-      });
-    },
-    goBack: () => {
       ownProps.navigation.goBack();
     },
     navigate: (params) => ownProps.navigation.navigate(params),
