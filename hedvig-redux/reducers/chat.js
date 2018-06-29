@@ -74,7 +74,7 @@ const reducer = (
         ...state,
         messages: action.payload.messages,
         ongoingClaim: action.payload.state.ongoingClaim,
-        showOfferScreen: action.payload.showOfferScreen,
+        showOfferScreen: action.payload.state.showOfferScreen,
         fabOptions: action.payload.fabOptions,
         isSending: false,
       };
