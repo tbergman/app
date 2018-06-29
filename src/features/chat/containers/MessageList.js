@@ -35,6 +35,12 @@ const styles = StyleSheet.create({
     paddingRight: 34,
     color: '#8a8a99',
   },
+  userMessageOuterContainer: { maxWidth: '88%' },
+  userMessageInnerContainer: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+  },
+  userMessageEditButton: { marginLeft: 10, marginBottom: 10 },
 });
 
 const renderImage = (message) => {
@@ -95,24 +101,14 @@ const DefaultUserMessage = ({ message, index }) => {
   let maybeEditMessageButton;
   if (message.header.editAllowed) {
     maybeEditMessageButton = (
-      <View
-        style={{
-          marginLeft: 10,
-          marginBottom: 10,
-        }}
-      >
+      <View style={styles.userMessageEditButton}>
         <EditMessageButton />
       </View>
     );
   }
   return (
-    <View style={{ maxWidth: '88%' }}>
-      <View
-        style={{
-          flexDirection: 'row-reverse',
-          alignItems: 'center',
-        }}
-      >
+    <View style={styles.userMessageOuterContainer}>
+      <View style={styles.userMessageInnerContainer}>
         {maybeEditMessageButton}
         <StyledUserChatMessage
           withMargin={
