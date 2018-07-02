@@ -44,7 +44,7 @@ class NavBar extends React.Component {
         <View style={styles.headerItem}>{headerLeft}</View>
         <View style={[styles.headerItem, styles.centerItem]}>
           <Image
-            source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark_black.png')}
+            source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
             style={styles.hedvigLogo}
           />
         </View>
