@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
   sendButton: { width: 40, height: 40 },
-  closeButton: { width: 40, height: 40 },
+  closeButton: { width: 24, height: 24 },
   restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },
   editMessageButton: { width: 24, height: 24, alignSelf: 'center' },
 });
