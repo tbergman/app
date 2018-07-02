@@ -4,65 +4,71 @@ import { connect } from 'react-redux';
 
 import { chatActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer, StyledTextInput } from '../styles/chat';
-import {
-  SendIconButton,
-  SendDisabledIconButton,
-} from '../../../components/Button';
+import * as selectors from '../state/selectors';
+import { SendButton } from '../components/Button';
 
 class ChatNumberInput extends React.Component {
   static propTypes = {
     message: PropTypes.object, // TODO Better definition of message type
     onChange: PropTypes.func.isRequired,
     send: PropTypes.func.isRequired,
+    inputValue: PropTypes.string, // Inputs are entered as strings despite always being numbers
+    isSending: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    isSending: false,
+    inputValue: undefined,
   };
 
   lastSentFor = undefined;
 
   _send = () => {
-    if (!this.lastSentFor || this.lastSentFor !== this.props.message.globalId) {
-      this.lastSentFor = this.props.message.globalId;
-      this.props.send(this.props.message);
-    }
+    this.props.send(this.props.message, this.props.inputValue);
+  };
+
+  _onTextChange = (text) => {
+    this.props.onChange(text);
   };
 
   render() {
-    const { message, onChange } = this.props;
-    let ButtonComponent =
-      message._inputValue && message._inputValue.length > 0
-        ? SendIconButton
-        : SendDisabledIconButton;
+    const { isSending, inputValue } = this.props;
     return (
       <StyledTextInputContainer>
         <StyledTextInput
           placeholder="Skriv här..."
           autoFocus
           keyboardType="numeric"
-          value={message._inputValue || ''}
+          value={inputValue || ''}
           underlineColorAndroid="transparent"
-          onChangeText={(text) => onChange(message, text)}
+          onChangeText={this._onTextChange}
           onSubmitEditing={this._send}
         />
-        <ButtonComponent onPress={this._send} />
+        <SendButton
+          onPress={this._send}
+          disabled={!(inputValue && inputValue.length > 0 && !isSending)}
+        />
       </StyledTextInputContainer>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  let message = state.chat.messages[0];
   return {
-    message,
+    message: state.chat.messages[0],
+    isSending: selectors.isSendingChatMessage(state),
+    inputValue: selectors.getInputValue(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (message, value) =>
-      dispatch(chatActions.setResponseValue(message, value)),
-    send: (message) =>
+    onChange: (value) =>
+      dispatch({ type: 'CHAT/SET_INPUT_VALUE', payload: value }),
+    send: (message, text) =>
       dispatch(
         chatActions.sendChatResponse(message, {
-          text: message._inputValue,
+          text,
         }),
       ),
   };

@@ -6,7 +6,7 @@ import { Permissions } from 'expo';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer } from '../styles/chat';
-import { isSendingChatMessage } from '../state/selectors';
+import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
 const styles = StyleSheet.create({
@@ -102,8 +102,8 @@ class ChatTextInput extends React.Component {
 const mapStateToProps = (state) => {
   return {
     message: state.chat.messages[0],
-    isSending: isSendingChatMessage(state),
-    inputValue: state.chat.inputValue,
+    isSending: selectors.isSendingChatMessage(state),
+    inputValue: selectors.getInputValue(state),
   };
 };
 
