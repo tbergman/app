@@ -21,8 +21,6 @@ class ChatNumberInput extends React.Component {
     inputValue: undefined,
   };
 
-  lastSentFor = undefined;
-
   _send = () => {
     this.props.send(this.props.message, this.props.inputValue);
   };
