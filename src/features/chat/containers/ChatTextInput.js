@@ -55,6 +55,7 @@ class ChatTextInput extends React.Component {
   }
 
   _send = async (e) => {
+    const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
       const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
       if (status !== 'granted') {
@@ -64,7 +65,10 @@ class ChatTextInput extends React.Component {
       }
     }
     if (!this.props.isSending) {
-      this.props.send(this.props.message, e.nativeEvent.text);
+      this.props.send(
+        this.props.message,
+        nativeEventText || this.props.inputValue,
+      );
     }
   };
 

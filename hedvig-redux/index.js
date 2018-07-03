@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import immutableStateInvariant from 'redux-immutable-state-invariant';
 import rootReducer from './reducers/index';
 import mockMiddleware from './middleware/mock';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import * as insuranceActions from './actions/insurance';
 import * as chatActions from './actions/chat';
 import * as uploadActions from './actions/upload';
@@ -29,7 +30,12 @@ function configureStore({
   let middlewares;
   if (process.env.NODE_ENV === 'development') {
     middlewares = composeWithDevTools({})(
-      applyMiddleware(mockMiddleware, sagaMiddleware, ...additionalMiddleware),
+      applyMiddleware(
+        mockMiddleware,
+        sagaMiddleware,
+        immutableStateInvariant(),
+        ...additionalMiddleware,
+      ),
     );
   } else {
     middlewares = compose(

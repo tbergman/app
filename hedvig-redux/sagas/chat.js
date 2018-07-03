@@ -1,3 +1,15 @@
+import { delay } from 'redux-saga';
+import {
+  take,
+  takeEvery,
+  put,
+  select,
+  takeLatest,
+  call,
+  all,
+  fork,
+} from 'redux-saga/effects';
+import cloneDeep from 'lodash/cloneDeep';
 import {
   API,
   SEND_CHAT_RESPONSE,
@@ -13,25 +25,15 @@ import {
 } from '../actions/types';
 import * as chatActions from '../actions/chat';
 import * as insuranceActions from '../actions/insurance';
-import {
-  take,
-  takeEvery,
-  put,
-  select,
-  takeLatest,
-  call,
-  all,
-  fork,
-} from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 
 const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
   let state = yield select();
   let messageFromState = state.chat.messages.find(
     (m) => m.globalId === message.globalId,
   );
-  let body = Object.assign(messageFromState.body, bodyOverride);
-  messageFromState.body = body;
+  let body = { ...messageFromState.body, ...bodyOverride };
+  const messageFromStateCopy = cloneDeep(messageFromState);
+  messageFromStateCopy.body = body;
   // yield put({ type: LOADING_MESSAGES_START, payload: {} })
   yield put({
     type: API,
@@ -42,7 +44,7 @@ const sendChatResponse = function*({ payload: { message, bodyOverride } }) {
         Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(messageFromState, null, 4),
+      body: JSON.stringify(messageFromStateCopy, null, 4),
       SUCCESS: 'SEND_CHAT_RESPONSE_SUCCESS',
     },
   });
