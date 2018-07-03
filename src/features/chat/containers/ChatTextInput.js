@@ -45,7 +45,16 @@ class ChatTextInput extends React.Component {
     height: 0,
   };
 
-  _send = async () => {
+  componentDidUpdate(prevProps) {
+    if (this.props.message.globalId !== prevProps.message.globalId) {
+      this._onTextChange('');
+      if (this.ref) {
+        this.ref.focus();
+      }
+    }
+  }
+
+  _send = async (e) => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
       if (status !== 'granted') {
@@ -55,7 +64,7 @@ class ChatTextInput extends React.Component {
       }
     }
     if (!this.props.isSending) {
-      this.props.send(this.props.message, this.props.inputValue);
+      this.props.send(this.props.message, e.nativeEvent.text);
     }
   };
 
@@ -74,6 +83,7 @@ class ChatTextInput extends React.Component {
     return (
       <StyledTextInputContainer>
         <TextInput
+          ref={(ref) => (this.ref = ref)}
           style={[
             styles.textInput,
             { height: Math.max(40, this.state.height) },

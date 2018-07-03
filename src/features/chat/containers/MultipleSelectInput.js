@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as R from 'ramda';
 import { chatActions } from '../../../../hedvig-redux';
 import {
   StyledRightAlignedOptions,
@@ -8,38 +8,44 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 import {
-  SendIconButton,
-  SendDisabledIconButton,
-} from '../../../components/Button';
-import { AnimatedMultipleSelectOptionButton } from '../components/Button';
+  AnimatedMultipleSelectOptionButton,
+  SendButton,
+} from '../components/Button';
+import * as selectors from '../state/selectors';
 
 const WRAP_NUM_OPTIONS = 6;
 
 class MultipleSelectInput extends React.Component {
+  static propTypes = {
+    message: PropTypes.object.isRequired,
+    selections: PropTypes.arrayOf(PropTypes.string),
+    onChoiceSelected: PropTypes.func.isRequired,
+    done: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    selections: [],
+  };
+
+  _send = () => {
+    this.props.done(this.props.message, this.props.selections);
+  };
+
+  _onChoiceSelected = (choice) => () => {
+    this.props.onChoiceSelected(choice);
+  };
   render() {
-    const { message, onChoiceSelected, done } = this.props;
-    let anyOptionSelected = R.any(
-      (choice) => choice.selected,
-      message.body.choices,
-    );
-    let sendButton = anyOptionSelected ? (
-      <SendIconButton
-        onPress={() => {
-          done(message);
-        }}
-      />
-    ) : (
-      <SendDisabledIconButton />
-    );
+    const { message, selections } = this.props;
     let opts = message.body.choices.map((choice) => {
       return (
         <StyledRightAlignedOptions key={choice.text}>
           <AnimatedMultipleSelectOptionButton
-            onPress={() => {
-              onChoiceSelected(message, choice);
-            }}
+            onPress={this._onChoiceSelected(choice)}
             title={choice.text}
-            selected={choice.selected}
+            selected={
+              selections &&
+              selections.some((selection) => choice.value === selection)
+            }
           />
         </StyledRightAlignedOptions>
       );
@@ -48,23 +54,36 @@ class MultipleSelectInput extends React.Component {
     return (
       <StyledMarginContainer wrap={wrap}>
         <StyledOptionsContainer wrap={wrap}>{opts}</StyledOptionsContainer>
-        <StyledRightAlignedOptions>{sendButton}</StyledRightAlignedOptions>
+        <StyledRightAlignedOptions>
+          <SendButton disabled={selections.length < 1} onPress={this._send} />
+        </StyledRightAlignedOptions>
       </StyledMarginContainer>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    message: state.chat.messages[0],
-  };
-};
+const mapStateToProps = (state) => ({
+  message: state.chat.messages[0],
+  selections: selectors.getMultiSelectChoices(state),
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChoiceSelected: (message, choice) =>
-      dispatch(chatActions.selectChoice(message, choice)),
-    done: (message) => dispatch(chatActions.sendChatResponse(message)),
+    onChoiceSelected: (choice) =>
+      dispatch({
+        type: 'CHAT/SELECT_MULTIPLE_SELECTION_OPTION',
+        payload: { choice: choice.value },
+      }),
+    done: (message, selections) => {
+      let body = { ...message.body };
+      selections.forEach((selection) => {
+        const idx = message.body.choices.findIndex(
+          (i) => i.value === selection,
+        );
+        body.choices[idx].selected = true;
+      });
+      dispatch(chatActions.sendChatResponse(message, body));
+    },
   };
 };
 

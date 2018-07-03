@@ -42,7 +42,10 @@ const styles = StyleSheet.create({
   },
   userMessageEditButton: {
     marginLeft: 5,
+    marginRight: 1,
   },
+  messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
+  messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
 });
 
 const renderImage = (message) => {
@@ -149,8 +152,6 @@ const HedvigMessageMapping = {
 
 const renderMessage = (message, idx) => {
   let fromMe = message.header.fromId !== 1;
-  let flexDirection = fromMe ? 'row-reverse' : 'row';
-  let alignSelf = fromMe ? 'flex-end' : 'flex-start';
   const lastIndex = idx === 0;
 
   let MessageRenderComponent;
@@ -176,10 +177,9 @@ const renderMessage = (message, idx) => {
     <View key={message.globalId || idx}>
       {avatar}
       <View
-        style={{
-          flexDirection: flexDirection,
-          alignSelf: alignSelf,
-        }}
+        style={
+          fromMe ? styles.messageUserContainer : styles.messageHedvigContainer
+        }
       >
         <MessageRenderComponent message={message} index={idx} />
       </View>
@@ -189,6 +189,9 @@ const renderMessage = (message, idx) => {
 };
 
 class MessageList extends React.Component {
+  _renderItem = ({ item, index }) => renderMessage(item, index);
+  _keyExtractor = (item) => '' + item.globalId;
+
   render() {
     return (
       <FlatList
@@ -196,8 +199,8 @@ class MessageList extends React.Component {
         style={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         data={this.props.messages}
-        renderItem={({ item, index }) => renderMessage(item, index)}
-        keyExtractor={(item) => '' + item.globalId}
+        renderItem={this._renderItem}
+        keyExtractor={this._keyExtractor}
         keyboardDismissMode="interactive"
       />
     );

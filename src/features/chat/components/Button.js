@@ -261,7 +261,7 @@ export class EditMessageButton extends React.Component {
     onPress: PropTypes.func.isRequired,
   };
 
-  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
+  static _hitSlop = { top: 24, right: 24, bottom: 24, left: 24 };
 
   render() {
     const { onPress } = this.props;

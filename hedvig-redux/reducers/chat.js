@@ -92,7 +92,12 @@ const reducer = (
     case LOADED_AVATAR_DATA:
       return handleLoadedAvatarData(state, action);
     case SEND_CHAT_RESPONSE:
-      return { ...state, isSending: true, inputValue: '' };
+      return {
+        ...state,
+        isSending: true,
+        inputValue: '',
+        multiSelectChoices: [],
+      };
     case 'CHAT/SET_INPUT_VALUE':
       return { ...state, inputValue: action.payload };
     case EDIT_LAST_RESPONSE: {
@@ -105,6 +110,21 @@ const reducer = (
             ? state.messages[action.payload.index].body.text
             : '',
       };
+    }
+    case 'CHAT/SELECT_MULTIPLE_SELECTION_OPTION': {
+      const multiSelectChoices = state.multiSelectChoices
+        ? [...state.multiSelectChoices]
+        : [];
+      if (multiSelectChoices.some((c) => c === action.payload.choice)) {
+        return {
+          ...state,
+          multiSelectChoices: multiSelectChoices.filter(
+            (c) => c !== action.payload.choice,
+          ),
+        };
+      }
+      multiSelectChoices.push(action.payload.choice);
+      return { ...state, multiSelectChoices };
     }
     default:
       return state;

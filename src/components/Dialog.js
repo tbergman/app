@@ -11,6 +11,8 @@ import {
 } from './styles/dialog';
 import { DialogButton } from './Button';
 
+// TODO Clean up this mess
+
 /**
  * Props:
  * * `message`, ex: {title: "<some title>", paragraph: "<some paragraph>"}
