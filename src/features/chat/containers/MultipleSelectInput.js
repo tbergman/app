@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import cloneDeep from 'lodash/cloneDeep';
 import { chatActions } from '../../../../hedvig-redux';
 import {
   StyledRightAlignedOptions,
@@ -75,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
         payload: { choice: choice.value },
       }),
     done: (message, selections) => {
-      let body = { ...message.body };
+      let body = cloneDeep(message.body);
       selections.forEach((selection) => {
         const idx = message.body.choices.findIndex(
           (i) => i.value === selection,
