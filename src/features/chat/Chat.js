@@ -105,10 +105,13 @@ class Chat extends React.Component {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
     AppState.addEventListener('change', this._handleAppStateChange);
+    this._startPolling();
+  }
 
-    this._longPollTimeout = setInterval(() => {
-      this.props.getMessages(this.props.intent);
-    }, 1000 * 15);
+  componentDidUpdate() {
+    if (this.props.navigation.isFocused()) {
+      this._startPolling();
+    }
   }
 
   componentWillUnmount() {
@@ -116,9 +119,18 @@ class Chat extends React.Component {
     this._stopPolling();
   }
 
+  _startPolling = () => {
+    if (!this._longPollTimeout) {
+      this._longPollTimeout = setInterval(() => {
+        this.props.getMessages(this.props.intent);
+      }, 15000);
+    }
+  };
+
   _stopPolling = () => {
     if (this._longPollTimeout) {
       clearInterval(this._longPollTimeout);
+      this._longPollTimeout = null;
     }
   };
 
