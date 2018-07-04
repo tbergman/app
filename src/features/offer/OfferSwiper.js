@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
 import {
@@ -140,6 +141,7 @@ class OfferSwiper extends React.Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    AsyncStorage.removeItem(IS_VIEWING_OFFER);
   }
 
   onBackPress = () => {
@@ -309,7 +311,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
         ),
       );
-      ownProps.navigation.goBack();
+      dispatch(
+        NavigationActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Chat' })],
+        }),
+      );
     },
     navigate: (params) => ownProps.navigation.navigate(params),
     trackOfferOpen: (pricePerMonth, orderId) =>
