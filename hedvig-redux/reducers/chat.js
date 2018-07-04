@@ -11,6 +11,7 @@ import {
   LOADED_AVATAR_DATA,
   SEND_CHAT_RESPONSE,
   EDIT_LAST_RESPONSE,
+  SEND_CHAT_RESPONSE_SUCCESS,
 } from '../actions/types';
 import { MOCK_LOADED_CLAIM_MESSAGES } from '../actions/mock/types';
 
@@ -96,8 +97,9 @@ const reducer = (
         ...state,
         isSending: true,
         inputValue: '',
-        multiSelectChoices: [],
       };
+    case SEND_CHAT_RESPONSE_SUCCESS:
+      return { ...state, multiSelectChoices: [] };
     case 'CHAT/SET_INPUT_VALUE':
       return { ...state, inputValue: action.payload };
     case EDIT_LAST_RESPONSE: {
