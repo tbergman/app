@@ -40,6 +40,22 @@ class BaseRouter extends React.Component {
     this._doRedirection = this._doRedirection.bind(this);
   }
 
+  async componentDidMount() {
+    const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
+      SEEN_MARKETING_CAROUSEL_KEY,
+    );
+
+    if (!alreadySeenMarketingCarousel) {
+      this.props.redirectToRoute({ routeName: 'Marketing' });
+      return;
+    }
+    this.props.getInsurance();
+
+    if (this.props.hasRedirected) return;
+
+    this._doRedirection();
+  }
+
   async _doRedirection() {
     if (
       this.props.hasRedirected ||
@@ -65,22 +81,6 @@ class BaseRouter extends React.Component {
         routeName: 'Conversation',
         action,
       });
-    }
-  }
-
-  async componentDidMount() {
-    this.props.getInsurance();
-
-    if (this.props.hasRedirected) return;
-
-    let alreadySeenMarketingCarousel = await AsyncStorage.getItem(
-      SEEN_MARKETING_CAROUSEL_KEY,
-    );
-
-    if (!alreadySeenMarketingCarousel) {
-      this.props.redirectToRoute({ routeName: 'Marketing' });
-    } else {
-      this._doRedirection();
     }
   }
 
