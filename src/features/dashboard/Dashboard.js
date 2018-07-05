@@ -1,6 +1,6 @@
 /* global require */
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { PerilsCategory } from './components/PerilsCategory';
@@ -19,6 +19,11 @@ import { StyledPassiveText, StyledHeading } from '../../components/styles/text';
 
 import { INSURANCE_TYPES } from '../../constants';
 import { insuranceActions } from '../../../hedvig-redux';
+
+const styles = StyleSheet.create({
+  scroll: { flex: 1 },
+  footnotesContainer: { marginLeft: 24 },
+});
 
 class Dashboard extends React.Component {
   renderCategories() {
@@ -64,8 +69,8 @@ class Dashboard extends React.Component {
     }
 
     return (
-      <StyledDashboardContainer style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 1 }}>
+      <StyledDashboardContainer>
+        <ScrollView style={styles.scroll}>
           <StyledDashboardHeaderOffWhite>
             <StyledDashboardHeaderRowLessMargin>
               <StyledHeading>Min hemförsäkring</StyledHeading>
@@ -79,7 +84,7 @@ class Dashboard extends React.Component {
           {this.renderCategories()}
 
           <View>
-            <View style={{ marginLeft: 24 }}>
+            <View style={styles.footnotesContainer}>
               <StyledConditionRow>
                 <StyledDashboardHeaderIcon
                   source={require('../../../assets/icons/my_insurance/pris.png')}
