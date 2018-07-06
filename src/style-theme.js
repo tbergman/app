@@ -1,3 +1,6 @@
+// This file is entirely unused and is only kept as a reference on what
+// colors and sizes we use in the app. In the future this will move to
+// a more generalized style documentation
 const colors = {
   primary: '#651EFF',
   purple: '#651EFF',
