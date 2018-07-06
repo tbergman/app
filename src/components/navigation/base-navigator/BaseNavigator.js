@@ -184,9 +184,7 @@ class AccountTabBar extends React.Component {
 const AccountTabNavigator = TabNavigator(
   {
     Dashboard: {
-      screen: ({ navigation }) => (
-        <Dashboard navigation={navigation} extraScrollViewPadding={80} />
-      ),
+      screen: Dashboard,
     },
     Profile: {
       screen: Profile,

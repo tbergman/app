@@ -1,15 +1,19 @@
-import styled from 'styled-components/native';
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
 
-export const StyledRow = styled.View`
-  flex-direction: row;
-`;
+const styles = StyleSheet.create({
+  row: { flexDirection: 'row' },
+});
 
-export const StyledCenteredRow = StyledRow.extend`
-  align-items: center;
-  justify-content: center;
-`;
+export class StyledRow extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.row} />;
+  }
+}
 
-export const StyledIcon = styled.Image`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-`;
+export class StyledIcon extends React.Component {
+  render() {
+    const { width, height, ...props } = this.props;
+    return <Image {...props} style={{ width, height }} />;
+  }
+}

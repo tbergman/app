@@ -1,23 +1,33 @@
-import { CircularFontText, MerriweatherFontText } from './typography';
+import React from 'react';
+import { Text, StyleSheet } from 'react-native';
 
-export const StyledText = CircularFontText.extend`
-  color: ${(props) => props.theme.typography.activeText.color}
-  font-size: ${(props) => props.theme.typography.activeText.fontSize}
-`;
+const styles = StyleSheet.create({
+  heading: { fontFamily: 'merriweather', color: '#414150', fontSize: 16 },
+  smallPassiveText: { fontFamily: 'circular', color: '9b9baa', fontSize: 12 },
+  passiveText: { fontFamily: 'circular', color: '#414150', fontSize: 14 },
+  smallText: { fontFamily: 'circular', color: '#414150', fontSize: 12 },
+});
 
-export const StyledSmallText = StyledText.extend`
-  font-size: ${(props) => props.theme.typography.small.fontSize};
-`;
+export class StyledSmallText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.smallText} />;
+  }
+}
 
-export const StyledPassiveText = StyledText.extend`
-  color: ${(props) => props.theme.typography.passiveText.color};
-`;
+export class StyledPassiveText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.passiveText} />;
+  }
+}
 
-export const StyledSmallPassiveText = StyledSmallText.extend`
-  color: ${(props) => props.theme.typography.passiveText.color};
-`;
+export class StyledSmallPassiveText extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.smallPassiveText} />;
+  }
+}
 
-export const StyledHeading = MerriweatherFontText.extend`
-  color: ${(props) => props.theme.typography.activeText.color}
-  font-size: ${(props) => props.theme.typography.heading.fontSize};
-`;
+export class StyledHeading extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.heading} />;
+  }
+}

@@ -1,40 +1,70 @@
-import styled from 'styled-components/native';
-import { MerriweatherFontText, CircularFontText } from './typography';
+import React from 'react';
+import { View, ScrollView, Text, StyleSheet } from 'react-native';
 
-export const StyledCarouselContainer = styled.View`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.white};
-`;
+const styles = StyleSheet.create({
+  carouselContainer: { flex: 1, backgroundColor: '#ffffff' },
+  alignedCarouselItems: { flex: 1, alignItems: 'center', paddingTop: 32 },
+  carouselTexts: { marginTop: 30 },
+  imageCarouselContainer: { height: 185 },
+  carouselHeading: {
+    fontFamily: 'merriweather',
+    fontSize: 24,
+    textAlign: 'center',
+    paddingBottom: 24,
+    marginRight: 40,
+    marginLeft: 40,
+  },
+  carouselParagraph: {
+    fontFamily: 'circular',
+    fontSize: 16,
+    color: '#9b9baa',
+    textAlign: 'center',
+    marginRight: 40,
+    marginBottom: 40,
+    marginLeft: 40,
+    lineHeight: 20,
+  },
+  paragraphToggleContainer: { marginBottom: 40 },
+});
 
-export const StyledAlignedCarouselItems = styled.View`
-  flex: 1;
-  align-items: center;
-  padding-top: 32px;
-`;
+export class StyledCarouselContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.carouselContainer} />;
+  }
+}
 
-export const StyledCarouselTexts = styled.ScrollView`
-  margin-top: 30px;
-`;
+export class StyledAlignedCarouselItems extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.alignedCarouselItems} />;
+  }
+}
 
-export const StyledImageCarouselContainer = styled.View`
-  height: 185px;
-`;
+export class StyledCarouselTexts extends React.Component {
+  render() {
+    return <ScrollView {...this.props} style={styles.carouselTexts} />;
+  }
+}
 
-export const StyledCarouselHeading = MerriweatherFontText.extend`
-  font-size: 24px;
-  text-align: center;
-  padding-bottom: 24px;
-  margin: 0px 40px;
-`;
+export class StyledImageCarouselContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.imageCarouselContainer} />;
+  }
+}
 
-export const StyledCarouselParagraph = CircularFontText.extend`
-  font-size: 16px;
-  color: ${(props) => props.theme.typography.passiveText.color}
-  text-align: center;
-  margin: 0px 40px 40px 40px;
-  line-height: 20px;
-`;
+export class StyledCarouselHeading extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.carouselHeading} />;
+  }
+}
 
-export const StyledParagraphToggleContainer = styled.View`
-  margin-bottom: 40px;
-`;
+export class StyledCarouselParagraph extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.carouselParagraph} />;
+  }
+}
+
+export class StyledParagraphToggleContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.paragraphToggleContainer} />;
+  }
+}

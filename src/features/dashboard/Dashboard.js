@@ -23,6 +23,7 @@ import { insuranceActions } from '../../../hedvig-redux';
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
   footnotesContainer: { marginLeft: 24 },
+  bottomPadder: { alignSelf: 'stretch', height: 80 },
 });
 
 class Dashboard extends React.Component {
@@ -120,12 +121,7 @@ class Dashboard extends React.Component {
                 </StyledPassiveText>
               </StyledConditionRow>
             </View>
-            <View
-              style={{
-                alignSelf: 'stretch',
-                height: this.props.extraScrollViewPadding || 0,
-              }}
-            />
+            <View style={styles.bottomPadder} />
           </View>
         </ScrollView>
       </StyledDashboardContainer>

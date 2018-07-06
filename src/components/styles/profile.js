@@ -1,17 +1,39 @@
-import styled from 'styled-components/native';
-import { StyledText, StyledPassiveText } from './text';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-export const StyledProfileContainer = styled.View`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.white};
-`;
+const styles = StyleSheet.create({
+  profileContainer: { flex: 1, backgroundColor: '#ffffff' },
+  charityParagraph: {
+    fontFamily: 'circular',
+    color: '#9b9baa',
+    fontSize: 14,
+    textAlign: 'center',
+    marginRight: 32,
+    marginLeft: 32,
+  },
+  charitySignature: {
+    fontFamily: 'circular',
+    color: '#414150',
+    textAlign: 'center',
+    marginRight: 44,
+    marginLeft: 44,
+  },
+});
 
-export const StyledCharityParagraph = StyledPassiveText.extend`
-  text-align: center;
-  margin: 0px 32px;
-`;
+export class StyledProfileContainer extends React.Component {
+  render() {
+    return <View {...this.props} style={styles.profileContainer} />;
+  }
+}
 
-export const StyledCharitySignature = StyledText.extend`
-  text-align: center;
-  margin: 0px 44px;
-`;
+export class StyledCharityParagraph extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.charityParagraph} />;
+  }
+}
+
+export class StyledCharitySignature extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.charitySignature} />;
+  }
+}

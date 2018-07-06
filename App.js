@@ -18,12 +18,10 @@ import uuidv4 from 'uuid/v4';
 import * as hedvigRedux from './hedvig-redux';
 import { envConfig } from './hedvig-redux/env-config';
 
-import { theme } from './src/style-theme';
 import nav from './src/reducers/nav';
 import { apiAndNavigateToChatSaga } from './src/sagas/apiAndNavigate';
 import { tokenStorageSaga } from './src/sagas/TokenStorage';
 import { logoutSaga } from './src/sagas/logout';
-import { ThemeProvider } from 'styled-components';
 import { Router } from './src/components/navigation/Router';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import WithAssets from './src/components/WithAssets';
@@ -291,13 +289,11 @@ export class App extends React.Component {
     return (
       <ErrorBoundary raven={SentryInstance}>
         <WithAssets>
-          <ThemeProvider theme={theme}>
-            <Provider store={this.store}>
-              <PersistGate loading={<Loader />} persistor={this.persistor}>
-                <Router />
-              </PersistGate>
-            </Provider>
-          </ThemeProvider>
+          <Provider store={this.store}>
+            <PersistGate loading={<Loader />} persistor={this.persistor}>
+              <Router />
+            </PersistGate>
+          </Provider>
         </WithAssets>
       </ErrorBoundary>
     );

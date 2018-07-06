@@ -1,7 +1,5 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
-import styled from 'styled-components/native';
-import { CircularFontText } from './typography';
 
 const styles = StyleSheet.create({
   buttonText: {
@@ -16,6 +14,25 @@ const styles = StyleSheet.create({
   buttonTextColorNotSelected: {
     color: '#651eff',
   },
+  buttonTextInverted: {
+    fontFamily: 'circular',
+    fontSize: 16,
+    color: '#ffffff',
+  },
+  roundedButton: {
+    minHeight: 20,
+    paddingTop: 8,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingLeft: 16,
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  roundedButtonInverted: { backgroundColor: '#651eff' },
 });
 
 export class StyledButton extends React.Component {
@@ -48,23 +65,25 @@ export class StyledButtonText extends React.Component {
   }
 }
 
-export const StyledButtonTextInverted = CircularFontText.extend`
-  font-size: ${(props) => props.theme.button.textButton.fontSize};
-  color: ${(props) => props.theme.colors.white};
-`;
+export class StyledButtonTextInverted extends React.Component {
+  render() {
+    return <Text {...this.props} style={styles.buttonTextInverted} />;
+  }
+}
 
-export const StyledRoundedButton = styled.TouchableOpacity`
-  min-height: ${(props) => props.theme.input.option.height};
-  padding: 8px 16px;
-  background-color: ${(props) => props.theme.colors.white};
-  border-color: ${(props) => props.theme.colors.primary};
-  border-width: 1px;
-  border-radius: 24px;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-`;
+export class StyledRoundedButton extends React.Component {
+  render() {
+    return <TouchableOpacity {...this.props} style={styles.roundedButton} />;
+  }
+}
 
-export const StyledRoundedButtonInverted = StyledRoundedButton.extend`
-  background-color: ${(props) => props.theme.colors.primary};
-`;
+export class StyledRoundedButtonInverted extends React.Component {
+  render() {
+    return (
+      <TouchableOpacity
+        {...this.props}
+        style={[styles.roundedButton, styles.roundedButtonInverted]}
+      />
+    );
+  }
+}
