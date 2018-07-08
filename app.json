@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Hedvig Test",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-test.png",
     "splash": {
       "image": "./assets/splash_screen.png",
       "backgroundColor": "#FFFFFF"

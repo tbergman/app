@@ -15,8 +15,10 @@ if (!BRANCH_API_KEY_LIVE || BRANCH_API_KEY_LIVE.indexOf('key_live_') === -1) {
 const appId = 'com.hedvig.app';
 const name = 'Hedvig';
 const scheme = 'hedvig';
+const icon = './assets/icon.png';
 
 appConfig.expo.name = name;
+appConfig.expo.icon = icon;
 appConfig.expo.scheme = scheme;
 appConfig.expo.ios.bundleIdentifier = appId;
 appConfig.expo.android.package = appId;
