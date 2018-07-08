@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
 import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
@@ -12,54 +13,65 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 
-const SingleSelectInput = ({
-  message,
-  selectChoice,
-  done,
-  goToDashboard,
-  startTrustly,
-  showOffer,
-}) => {
-  let anySelected = message.body.choices.some((choice) => choice.selected);
-  let opts = message.body.choices.map((choice) => {
-    return (
-      <StyledRightAlignedOptions key={choice.text}>
-        <AnimatedSingleSelectOptionButton
-          hidden={anySelected && !choice.selected}
-          title={choice.text}
-          selected={choice.selected}
-          onPress={() => {
-            if (choice.type === 'selection') {
-              selectChoice(message, choice);
-              done(message);
-            } else if (choice.type === 'link' && choice.view !== null) {
-              selectChoice(message, choice);
-              done(message);
-              if (choice.view === 'Dashboard') {
-                goToDashboard();
-              } else if (choice.view === 'Offer') {
-                showOffer();
+class SingleSelectInput extends React.Component {
+  static propTypes = {
+    selectChoice: PropTypes.func.isRequired,
+    done: PropTypes.func.isRequired,
+    goToDashboard: PropTypes.func.isRequired,
+    startTrustly: PropTypes.func.isRequired,
+    showOffer: PropTypes.func.isRequired,
+  };
+
+  render() {
+    const {
+      message,
+      selectChoice,
+      done,
+      goToDashboard,
+      startTrustly,
+      showOffer,
+    } = this.props;
+    let anySelected = message.body.choices.some((choice) => choice.selected);
+    let opts = message.body.choices.map((choice) => {
+      return (
+        <StyledRightAlignedOptions key={choice.text}>
+          <AnimatedSingleSelectOptionButton
+            hidden={anySelected && !choice.selected}
+            title={choice.text}
+            selected={choice.selected}
+            onPress={() => {
+              if (choice.type === 'selection') {
+                selectChoice(message, choice);
+                done(message);
+              } else if (choice.type === 'link' && choice.view !== null) {
+                selectChoice(message, choice);
+                done(message);
+                if (choice.view === 'Dashboard') {
+                  goToDashboard();
+                } else if (choice.view === 'Offer') {
+                  showOffer();
+                }
+              } else if (choice.type === 'link' && choice.appUrl !== null) {
+                selectChoice(message, choice);
+                done(message);
+                Linking.openURL(choice.appUrl);
+              } else if (choice.type === 'link' && choice.webUrl !== null) {
+                selectChoice(message, choice);
+                done(message);
+                WebBrowser.openBrowserAsync(choice.webUrl);
+              } else if (choice.type === 'trustly') {
+                startTrustly(choice.id);
+                selectChoice(message, choice);
+                done(message);
               }
-            } else if (choice.type === 'link' && choice.appUrl !== null) {
-              selectChoice(message, choice);
-              done(message);
-              Linking.openURL(choice.appUrl);
-            } else if (choice.type === 'link' && choice.webUrl !== null) {
-              selectChoice(message, choice);
-              done(message);
-              WebBrowser.openBrowserAsync(choice.webUrl);
-            } else if (choice.type === 'trustly') {
-              startTrustly(choice.id);
-              selectChoice(message, choice);
-              done(message);
-            }
-          }}
-        />
-      </StyledRightAlignedOptions>
-    );
-  });
-  return <StyledMarginContainer>{opts}</StyledMarginContainer>;
-};
+            }}
+          />
+        </StyledRightAlignedOptions>
+      );
+    });
+    return <StyledMarginContainer>{opts}</StyledMarginContainer>;
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

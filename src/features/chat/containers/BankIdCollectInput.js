@@ -1,20 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { types } from '../../../../hedvig-redux';
 import { UploadingAnimation } from '../../../components/Animation';
 
+const styles = StyleSheet.create({
+  container: { height: 200, alignItems: 'center', justifyContent: 'center' },
+});
+
 class BankIdCollectInput extends React.Component {
+  static propTypes = { startCollecting: PropTypes.func.isRequired };
   componentDidMount() {
     this.props.startCollecting(this.props.message.body.referenceId);
   }
 
   render() {
     return (
-      <View
-        style={{ height: 200, alignItems: 'center', justifyContent: 'center' }}
-      >
+      <View style={styles.container}>
         <UploadingAnimation />
       </View>
     );

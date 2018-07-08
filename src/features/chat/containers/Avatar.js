@@ -1,12 +1,25 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import PropTypes from 'prop-types';
+import { Animated, StyleSheet } from 'react-native';
 import { DangerZone } from 'expo';
 import { connect } from 'react-redux';
 
 const { Lottie } = DangerZone;
 
-// TODO PropType validation
+const styles = StyleSheet.create({
+  avatar: { backgroundColor: 'transparent' },
+});
+
 class Avatar extends React.Component {
+  static propTypes = {
+    avatar: PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number,
+      data: PropTypes.object,
+    }),
+  };
+
+  static defaultProps = { avatar: {} };
   state = {
     progress: new Animated.Value(0),
   };
@@ -19,22 +32,19 @@ class Avatar extends React.Component {
   }
 
   render() {
-    if (this.props.avatar.data) {
+    const { avatar } = this.props;
+    if (avatar.data) {
+      const { width, height, data } = avatar;
       return (
         <Lottie
-          ref={() => this.play()}
-          style={{
-            height: this.props.avatar.height,
-            width: this.props.avatar.width,
-            backgroundColor: 'transparent',
-          }}
-          source={this.props.avatar.data}
+          ref={() => this.play()} // TODO: Fix this hack
+          style={[styles.avatar, { height, width }]}
+          source={data}
           progress={this.state.progress}
         />
       );
-    } else {
-      return null;
     }
+    return null;
   }
 }
 
@@ -51,9 +61,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const AvatarContainer = connect(
+export default connect(
   mapStateToProps,
   undefined,
 )(Avatar);
-
-export default AvatarContainer;

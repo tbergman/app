@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Image,
@@ -20,9 +21,13 @@ import {
 import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
-import { theme } from '../../../style-theme';
+
+const window = Dimensions.get('window');
+// (window width - (2 outer margin + 2 inner margin) * 0.98)
+const heroImageWidth = Math.round((window.width - 64) * 0.98);
 
 const styles = StyleSheet.create({
+  heroMessage: { height: 200, width: heroImageWidth },
   scrollContent: {
     flex: 1,
     paddingTop: 16,
@@ -68,78 +73,85 @@ const renderImage = (message) => {
   }
 };
 
-const HeroMessage = ({ message, textAlign }) => {
-  const window = Dimensions.get('window');
-  // (window width - (2 outer margin + 2 inner margin) * 0.98)
-  const imageWidth = Math.round(
-    (window.width - 4 * theme.mobile.margin.medium) * 0.98,
-  );
-  return (
-    <StyledHeroMessage>
-      {renderImage(message)}
-      <StyledDefaultMessageText style={{ textAlign }}>
-        {message.body.text}
-      </StyledDefaultMessageText>
-      <Image
-        resizeMode="contain"
-        source={{ uri: message.body.imageUri }}
-        style={{ height: 200, width: imageWidth }}
-      />
-    </StyledHeroMessage>
-  );
-};
+// TODO: Investigate if this is actually in use. If not, delete it
+class HeroMessage extends React.Component {
+  static propTypes = { message: PropTypes.object };
 
-const DefaultHedvigMessage = ({ message }) => {
-  if (message.body.text === '') {
-    return null;
-  } else {
+  render() {
+    const { message } = this.props;
     return (
-      <AnimatedStyledChatMessage>
+      <StyledHeroMessage>
         {renderImage(message)}
         <StyledDefaultMessageText>{message.body.text}</StyledDefaultMessageText>
-      </AnimatedStyledChatMessage>
+        <Image
+          resizeMode="contain"
+          source={{ uri: message.body.imageUri }}
+          style={styles.heroMessage}
+        />
+      </StyledHeroMessage>
     );
   }
-};
+}
 
-const DefaultUserMessage = ({ message, index }) => {
-  let maybeEditMessageButton;
-  if (message.header.editAllowed) {
-    maybeEditMessageButton = (
-      <View
-        style={[
-          styles.userMessageEditButton,
-          !message.header.statusMessage ? { marginBottom: 10 } : undefined,
-        ]}
-      >
-        <EditMessageButton index={index} />
+class DefaultHedvigMessage extends React.Component {
+  render() {
+    const { message } = this.props;
+    if (message.body.text === '') {
+      return null;
+    } else {
+      return (
+        <AnimatedStyledChatMessage>
+          {renderImage(message)}
+          <StyledDefaultMessageText>
+            {message.body.text}
+          </StyledDefaultMessageText>
+        </AnimatedStyledChatMessage>
+      );
+    }
+  }
+}
+
+class DefaultUserMessage extends React.Component {
+  render() {
+    const { message, index } = this.props;
+    let maybeEditMessageButton;
+    if (message.header.editAllowed) {
+      maybeEditMessageButton = (
+        <View
+          style={[
+            styles.userMessageEditButton,
+            !message.header.statusMessage ? { marginBottom: 10 } : undefined,
+          ]}
+        >
+          <EditMessageButton index={index} />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.userMessageOuterContainer}>
+        <View style={styles.userMessageInnerContainer}>
+          {maybeEditMessageButton}
+          <StyledUserChatMessage
+            withMargin={
+              !message.header.statusMessage ||
+              (message.header.statusMessage && index !== 1)
+            }
+          >
+            <StyledDefaultUserMessageText>
+              {message.body.text}
+            </StyledDefaultUserMessageText>
+          </StyledUserChatMessage>
+        </View>
+        {message.header.statusMessage &&
+          index === 1 && (
+            <Text style={styles.statusMessage}>
+              {message.header.statusMessage}
+            </Text>
+          )}
       </View>
     );
   }
-  return (
-    <View style={styles.userMessageOuterContainer}>
-      <View style={styles.userMessageInnerContainer}>
-        {maybeEditMessageButton}
-        <StyledUserChatMessage
-          withMargin={
-            !message.header.statusMessage ||
-            (message.header.statusMessage && index !== 1)
-          }
-        >
-          <StyledDefaultUserMessageText>
-            {message.body.text}
-          </StyledDefaultUserMessageText>
-        </StyledUserChatMessage>
-      </View>
-      {message.header.statusMessage &&
-        index === 1 && (
-          <Text style={styles.statusMessage}>
-            {message.header.statusMessage}
-          </Text>
-        )}
-    </View>
-  );
-};
+}
 
 const UserMessageMapping = {};
 
@@ -213,13 +225,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {};
-};
-
-const MessageListContainer = connect(
+export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  undefined,
 )(MessageList);
-
-export default MessageListContainer;

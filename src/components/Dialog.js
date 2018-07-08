@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimensions, BackHandler, Text } from 'react-native';
+import { Dimensions, BackHandler, Text, StyleSheet } from 'react-native';
 import PopupDialog from 'react-native-popup-dialog';
 import { theme } from '../style-theme';
 import {
@@ -12,6 +12,14 @@ import {
 import { DialogButton } from './Button';
 
 // TODO Clean up this mess
+
+const styles = StyleSheet.create({
+  possiblyUnusedStyle: { backgroundColor: 'blue' },
+  dialogStyle: {
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+  },
+});
 
 /**
  * Props:
@@ -102,11 +110,8 @@ export default class Dialog extends React.Component {
         dismissOnTouchOutside={false}
         width={width}
         height={1}
-        style={{ backgroundColor: 'blue' }}
-        dialogStyle={{
-          backgroundColor: 'transparent',
-          justifyContent: 'center',
-        }}
+        style={styles.possiblyUnusedStyle}
+        dialogStyle={styles.dialogStyle}
       >
         {this.props.message.title ? (
           <DialogContainer>

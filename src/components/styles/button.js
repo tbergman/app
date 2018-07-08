@@ -14,25 +14,6 @@ const styles = StyleSheet.create({
   buttonTextColorNotSelected: {
     color: '#651eff',
   },
-  buttonTextInverted: {
-    fontFamily: 'circular',
-    fontSize: 16,
-    color: '#ffffff',
-  },
-  roundedButton: {
-    minHeight: 20,
-    paddingTop: 8,
-    paddingRight: 16,
-    paddingBottom: 8,
-    paddingLeft: 16,
-    backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  roundedButtonInverted: { backgroundColor: '#651eff' },
 });
 
 export class StyledButton extends React.Component {
@@ -60,29 +41,6 @@ export class StyledButtonText extends React.Component {
           style,
         ]}
         {...props}
-      />
-    );
-  }
-}
-
-export class StyledButtonTextInverted extends React.Component {
-  render() {
-    return <Text {...this.props} style={styles.buttonTextInverted} />;
-  }
-}
-
-export class StyledRoundedButton extends React.Component {
-  render() {
-    return <TouchableOpacity {...this.props} style={styles.roundedButton} />;
-  }
-}
-
-export class StyledRoundedButtonInverted extends React.Component {
-  render() {
-    return (
-      <TouchableOpacity
-        {...this.props}
-        style={[styles.roundedButton, styles.roundedButtonInverted]}
       />
     );
   }

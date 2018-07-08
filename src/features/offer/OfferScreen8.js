@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   View,
   Image,
@@ -187,6 +187,10 @@ const hitSlop = {
 };
 
 class OfferScreen extends React.Component {
+  static propTypes = {
+    isCurrentlySigning: PropTypes.bool, // Appears to not be a thing
+    checkout: PropTypes.func.isRequired,
+  };
   state = {
     springTranslate: new Animated.Value(110),
   };
@@ -205,9 +209,14 @@ class OfferScreen extends React.Component {
     }).start();
   }
 
+  _checkout = () => {
+    if (!this.props.isCurrentlySigning) {
+      this.props.checkout();
+    }
+  };
+
   render() {
-    const { insuredAtOtherCompany } = this.props.insurance;
-    const isDisabled = this.props.isCurrentlySigning;
+    const { insuredAtOtherCompany } = this.props.insurance; // Appears to be dead code
 
     return (
       <View style={styles.container}>
@@ -279,9 +288,7 @@ class OfferScreen extends React.Component {
             ]}
           >
             <TouchableOpacity
-              onPress={() => {
-                !isDisabled && this.props.checkout();
-              }}
+              onPress={this._checkout}
               hitSlop={hitSlop}
               style={styles.button}
             >

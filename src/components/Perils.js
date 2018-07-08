@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, BackHandler, Image } from 'react-native';
+import { View, Dimensions, BackHandler, Image, StyleSheet } from 'react-native';
 import { WebBrowser } from 'expo';
 import { default as SnapCarousel } from 'react-native-snap-carousel';
 import { connect } from 'react-redux';
@@ -17,6 +17,15 @@ import { NavigateBackButton, TextButton } from './Button';
 import { NavBar } from './NavBar';
 const deviceWidth = Dimensions.get('window').width;
 const perilContainerSize = 185;
+
+const styles = StyleSheet.create({
+  perilImage: { width: perilContainerSize, height: perilContainerSize },
+  policyLinkContainer: {
+    alignItems: 'center',
+    paddingTop: 0,
+    marginBottom: 40,
+  },
+});
 
 class Perils extends React.Component {
   navParams = this.props.navigation.state.params;
@@ -44,10 +53,7 @@ class Perils extends React.Component {
     return (
       <View>
         <Image
-          style={{
-            height: perilContainerSize,
-            width: perilContainerSize,
-          }}
+          style={styles.perilImage}
           source={item.itemSrc}
           resizeMode="contain"
           key={item.id}
@@ -73,7 +79,7 @@ class Perils extends React.Component {
   maybePolicyLink() {
     if (this.state.showFullDescription && this.getItem().policyUrl) {
       return (
-        <View style={{ alignItems: 'center', paddingTop: 0, marginBottom: 40 }}>
+        <View style={styles.policyLinkContainer}>
           <TextButton
             title="Läsa mer"
             onPress={() =>
@@ -108,6 +114,10 @@ class Perils extends React.Component {
     );
   }
 
+  _onSnapToItem = (slideIndex) => {
+    this.setState({ slideIndex, showFullDescription: false });
+  };
+
   render() {
     let item = this.getItem();
     let title = item.title;
@@ -129,9 +139,7 @@ class Perils extends React.Component {
               inactiveSlideOpacity={0.4}
               inactiveSlideScale={0.7}
               removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
-              onSnapToItem={(slideIndex) => {
-                this.setState({ slideIndex, showFullDescription: false });
-              }}
+              onSnapToItem={this._onSnapToItem}
             />
           </StyledImageCarouselContainer>
           <StyledCarouselTexts>

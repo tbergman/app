@@ -5,14 +5,7 @@ const styles = StyleSheet.create({
   heading: { fontFamily: 'merriweather', color: '#414150', fontSize: 16 },
   smallPassiveText: { fontFamily: 'circular', color: '#9b9baa', fontSize: 12 },
   passiveText: { fontFamily: 'circular', color: '#414150', fontSize: 14 },
-  smallText: { fontFamily: 'circular', color: '#414150', fontSize: 12 },
 });
-
-export class StyledSmallText extends React.Component {
-  render() {
-    return <Text {...this.props} style={styles.smallText} />;
-  }
-}
 
 export class StyledPassiveText extends React.Component {
   render() {

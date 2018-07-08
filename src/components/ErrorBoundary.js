@@ -81,6 +81,10 @@ export class ErrorBoundary extends Component {
     }
   }
 
+  _openErrorEmail = () => {
+    mailTo('help@hedvig.com', 'Något gick fel');
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -88,15 +92,13 @@ export class ErrorBoundary extends Component {
           <Text style={styles.errorTitle}>Oj, nu gick något fel</Text>
           <TouchableOpacity
             style={styles.helpButton}
-            onPress={() => {
-              mailTo('help@hedvig.com', 'Något gick fel');
-            }}
+            onPress={this._openErrorEmail}
           >
             <Text style={styles.helpText}>Rapportera felet 🙏</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.reloadButton}
-            onPress={() => Expo.Util.reload()}
+            onPress={Expo.Util.reload}
           >
             <Text style={styles.reloadText}>Ladda om appen</Text>
           </TouchableOpacity>

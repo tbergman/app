@@ -15,17 +15,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReduxBaseNavigator = ({ dispatch, nav, addListener }) => {
-  return (
-    <BaseNavigator
-      navigation={addNavigationHelpers({
-        dispatch: dispatch,
-        state: nav,
-        addListener,
-      })}
-    />
-  );
-};
+class ReduxBaseNavigator extends React.Component {
+  render() {
+    const { dispatch, nav, addListener } = this.props;
+    return (
+      <BaseNavigator
+        navigation={addNavigationHelpers({
+          dispatch: dispatch,
+          state: nav,
+          addListener,
+        })}
+      />
+    );
+  }
+}
 
 const ConnectedReduxBaseNavigator = connect(({ nav }, ownProps) => ({
   ...ownProps,

@@ -1,5 +1,11 @@
 import React from 'react';
-import { DatePickerIOS, DatePickerAndroid, View, Platform } from 'react-native';
+import {
+  DatePickerIOS,
+  DatePickerAndroid,
+  View,
+  Platform,
+  StyleSheet,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { chatActions } from '../../../../hedvig-redux';
 import {
@@ -12,7 +18,11 @@ import { SendIconButton } from '../../../components/Button';
 import moment from 'moment';
 import 'moment/locale/sv';
 
+const styles = StyleSheet.create({ iosPicker: { height: 200 } });
+
 // TODO: Render DatePickerAndroid on Android
+// Also avoid recreation of functions per-render
+// And maybe also kill momentjs
 class DateInput extends React.Component {
   async showAndroidDatePicker(message, onChange) {
     try {
@@ -51,7 +61,7 @@ class DateInput extends React.Component {
           }
           onDateChange={(date) => onChange(message, moment(date).toISOString())}
           // TODO: Fix layout to not use hard coded height
-          style={{ height: 220 }}
+          style={styles.iosPicker}
         />
       </View>
     );

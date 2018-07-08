@@ -51,11 +51,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
     top: 20,
     left: 17,
     zIndex: 2,
+  },
+  closeOfferImage: { width: 26, height: 26 },
+  buttonWrapperStyle: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   swiperDot: {
     backgroundColor: '#E9ECEF',
@@ -178,8 +187,16 @@ class OfferSwiper extends React.Component {
     return insurance.newTotalPrice;
   }
 
+  _closeOffer = () => {
+    this.props.closeOffer(this.props.analytics.orderId);
+  };
+
+  _setActiveOfferScreen = (index) => {
+    this.props.setActiveOfferScreen(index);
+  };
+
   render() {
-    const { insurance, analytics } = this.props;
+    const { insurance } = this.props;
     if (!this.hasLoaded(insurance)) {
       return <Loader />;
     }
@@ -203,47 +220,38 @@ class OfferSwiper extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden />
-        <View style={{ flex: 1 }}>
+        <View style={styles.swiperContainer}>
           {activeOfferScreenIndex === 0 ? (
             <View style={styles.closeOffer}>
-              <TouchableOpacity
-                onPress={() => this.props.closeOffer(analytics.orderId)}
-                hitSlop={hitSlop}
-              >
+              <TouchableOpacity onPress={this._closeOffer} hitSlop={hitSlop}>
                 <Image
                   source={require('../../../assets/icons/close/close_white.png')}
-                  style={{ width: 26, height: 26 }}
+                  style={styles.closeOfferImage}
                 />
               </TouchableOpacity>
             </View>
           ) : null}
           <Swiper
             ref={(ref) => (this.swiper = ref)}
-            style={styles.swiper}
+            style={styles.swiper} // This is undefined, rofl
             loop={false}
             showsButtons={!isLast}
             showsPagination={!isLast && !isFirst}
-            buttonWrapperStyle={{
-              backgroundColor: 'transparent',
-              position: 'absolute',
-              bottom: 0,
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-            }}
+            buttonWrapperStyle={styles.buttonWrapperStyle}
             dot={
-              <View key={'dot'}>
+              <View key="dot">
                 <View style={styles.swiperDot} />
               </View>
             }
             activeDot={
-              <View key={'activeDot'}>
+              <View key="activeDot">
                 <View style={styles.swiperDotIsActive} />
               </View>
             }
             paginationStyle={styles.swiperPagination}
-            onIndexChanged={(index) => this.props.setActiveOfferScreen(index)}
+            onIndexChanged={this._setActiveOfferScreen}
             nextButton={
-              <View key={'nextButton'}>
+              <View key="nextButton">
                 <View style={[styles.button, isFirst && styles.buttonIsFirst]}>
                   <Text style={[styles.label, isFirst && styles.labelIsFirst]}>
                     {isFirst ? 'Berätta mer' : 'Gå vidare'}
@@ -257,7 +265,7 @@ class OfferSwiper extends React.Component {
                 </View>
               </View>
             }
-            prevButton={<View key={'prevButton'} />}
+            prevButton={<View key="prevButton" />}
             width={viewportWidth}
             height={viewportHeight}
             containerStyle={{}}

@@ -21,6 +21,62 @@ import {
   BANKID_DIALOG_DISMISSED,
 } from './actions';
 
+const styles = StyleSheet.create({
+  dialog: {
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    zIndex: 100,
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 8,
+    paddingTop: 10,
+  },
+  status: {
+    fontFamily: 'circular',
+    fontSize: 20,
+    lineHeight: 28,
+    marginTop: 20,
+    paddingBottom: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
+    textAlign: 'center',
+  },
+  loader: {
+    marginTop: 30,
+  },
+  figure: {},
+  buttonContainer: {
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: '#F9FAFC',
+    flexDirection: 'row',
+  },
+  button: {
+    flex: 1,
+    height: 55,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonRightBorder: {
+    borderRightWidth: 1,
+    borderRightColor: '#F9FAFC',
+  },
+  buttonText: {
+    fontFamily: 'circular',
+    fontSize: 18,
+    lineHeight: 25,
+    color: '#651EFF',
+    textAlign: 'center',
+  },
+  buttonTextIsPrimary: {
+    fontFamily: 'circular-bold',
+  },
+  bankIdLink: { color: '#555555', textDecorationLine: 'underline' },
+});
+
 const UNKNOWN_ERROR_MESSAGE = `Ojdå! Okänt fel 🙈`;
 const messages = [
   {
@@ -95,10 +151,7 @@ const messages = [
       `BankID-appen verkar inte finnas i din telefon. Installera den och hämta ett BankID hos din internetbank. Installera appen från `,
       <Text
         key={'bankid-link'}
-        style={{
-          color: '#555555',
-          textDecorationLine: 'underline',
-        }}
+        style={styles.bankIdLink}
         onPress={() => Linking.openURL('https://install.bankid.com')}
       >
         install.bankid.com
@@ -141,61 +194,6 @@ const messages = [
 ];
 
 const { width: viewportWidth } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  dialog: {
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    zIndex: 100,
-  },
-  content: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    borderRadius: 8,
-    paddingTop: 10,
-  },
-  status: {
-    fontFamily: 'circular',
-    fontSize: 20,
-    lineHeight: 28,
-    marginTop: 20,
-    paddingBottom: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-    textAlign: 'center',
-  },
-  loader: {
-    marginTop: 30,
-  },
-  figure: {},
-  buttonContainer: {
-    width: '100%',
-    borderTopWidth: 1,
-    borderTopColor: '#F9FAFC',
-    flexDirection: 'row',
-  },
-  button: {
-    flex: 1,
-    height: 55,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonRightBorder: {
-    borderRightWidth: 1,
-    borderRightColor: '#F9FAFC',
-  },
-  buttonText: {
-    fontFamily: 'circular',
-    fontSize: 18,
-    lineHeight: 25,
-    color: '#651EFF',
-    textAlign: 'center',
-  },
-  buttonTextIsPrimary: {
-    fontFamily: 'circular-bold',
-  },
-});
 
 class Dialog extends React.Component {
   componentDidMount() {

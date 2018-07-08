@@ -1,6 +1,6 @@
 import React from 'react';
 import { Audio, Permissions } from 'expo';
-import { View } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {
   chatActions,
@@ -18,8 +18,27 @@ import {
   StyledMarginContainer,
   StyledRightAlignedOptions,
 } from '../styles/chat';
-import { StyledSmallText } from '../../../components/styles/text';
 import { StyledPassiveText } from '../../../components/styles/text';
+
+const styles = StyleSheet.create({
+  preRecordingContainer: {
+    flexDirection: 'row',
+  },
+  preRecordingText: {
+    fontFamily: 'circular',
+    color: '#414150',
+    fontSize: 12,
+    alignSelf: 'center',
+    paddingRight: 12,
+    paddingBottom: 8,
+  },
+  playbackStatusText: {
+    fontFamily: 'circular',
+    color: '#414150',
+    fontSize: 14,
+    marginRight: 16,
+  },
+});
 
 class AudioInput extends React.Component {
   state = {
@@ -169,17 +188,11 @@ class AudioInput extends React.Component {
     const content = (
       <StyledRightAlignedOptions>
         {!this.state.isRecording ? (
-          <View style={{ flexDirection: 'row' }}>
+          <View style={styles.preRecordingContainer}>
             {!this.state.recordingStatus.isDoneRecording ? (
-              <StyledSmallText
-                style={{
-                  alignSelf: 'center',
-                  paddingRight: 12,
-                  paddingBottom: 8,
-                }}
-              >
+              <Text style={styles.preRecordingText}>
                 {this.props.message.body.text}
-              </StyledSmallText>
+              </Text>
             ) : null}
             <RecordButton
               onPress={() => this.startRecordingAudio(this.props.message)}
@@ -205,11 +218,11 @@ class AudioInput extends React.Component {
     if (this.state.sound && this.state.isPlaying) {
       if (this.state.playbackStatus) {
         maybePlaybackStatus = (
-          <StyledPassiveText style={{ marginRight: 16 }}>
+          <Text style={styles.playbackStatusText}>
             Spelar:{' '}
             {(this.state.playbackStatus.positionMillis / 1000).toFixed(0)} /{' '}
             {(this.state.playbackStatus.durationMillis / 1000).toFixed(0)} s
-          </StyledPassiveText>
+          </Text>
         );
       }
       playbackControls = (

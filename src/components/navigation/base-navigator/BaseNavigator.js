@@ -95,6 +95,7 @@ class ChatDialogContainer extends React.Component {
 }
 
 const AppContainerWrapper = (Component) => {
+  // TODO: needs fixing?
   return ({ navigation }) => {
     return (
       <View style={styles.container}>
@@ -133,15 +134,16 @@ const ConversationNavigator = StackNavigator(
 );
 
 class TabBarButton extends React.Component {
+  _navigate = () => {
+    this.props.navigation.navigate(this.props.navigateTo);
+  };
   render() {
-    const { title, isActive, navigation, navigateTo } = this.props;
+    const { title, isActive } = this.props;
     return (
       <TouchableOpacity
         style={[styles.tabBarButton, isActive && styles.tabBarButtonIsActive]}
         disabled={isActive}
-        onPress={() => {
-          navigation.navigate(navigateTo);
-        }}
+        onPress={this._navigate}
         activeOpacity={0.9}
       >
         <Text

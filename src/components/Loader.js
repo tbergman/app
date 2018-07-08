@@ -9,8 +9,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Loader = () => (
-  <View style={styles.container}>
-    <ActivityIndicator size="large" color="#651EFF" />
-  </View>
-);
+export class Loader extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#651EFF" />
+      </View>
+    );
+  }
+}

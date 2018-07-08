@@ -86,19 +86,23 @@ const slideStyles = StyleSheet.create({
   },
 });
 
-const Slide = ({ title, children }) => (
-  <View style={slideStyles.container}>
-    <View style={slideStyles.figure}>{children}</View>
-    <Text numberOfLines={2} style={slideStyles.caption}>
-      {title}
-    </Text>
-  </View>
-);
-
-Slide.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-};
+class Slide extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    title: PropTypes.string.isRequired,
+  };
+  render() {
+    const { title, children } = this.props;
+    return (
+      <View style={slideStyles.container}>
+        <View style={slideStyles.figure}>{children}</View>
+        <Text numberOfLines={2} style={slideStyles.caption}>
+          {title}
+        </Text>
+      </View>
+    );
+  }
+}
 
 const slideImageWidth = viewportWidth - 60;
 
@@ -129,21 +133,24 @@ const slideImageStyles = StyleSheet.create({
   },
 });
 
-const SlideImage = ({ imageSource }) => {
-  return (
-    <View style={slideImageStyles.container}>
-      <Image
-        source={imageSource}
-        style={slideImageStyles.image}
-        resizeMethod={'scale'}
-      />
-    </View>
-  );
-};
+class SlideImage extends React.Component {
+  static propTypes = {
+    imageSource: PropTypes.number.isRequired,
+  };
 
-SlideImage.propTypes = {
-  imageSource: PropTypes.number.isRequired,
-};
+  render() {
+    const { imageSource } = this.props;
+    return (
+      <View style={slideImageStyles.container}>
+        <Image
+          source={imageSource}
+          style={slideImageStyles.image}
+          resizeMethod="scale"
+        />
+      </View>
+    );
+  }
+}
 
 const marketingCarouselStyles = StyleSheet.create({
   container: {
@@ -153,6 +160,7 @@ const marketingCarouselStyles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
   },
+  swiperContainer: { flex: 1 },
   background: {
     width: viewportWidth,
     height: viewportHeight,
@@ -209,6 +217,16 @@ const marketingCarouselStyles = StyleSheet.create({
   slideFourContainer: {
     flex: 1,
     backgroundColor: '#FF8A80',
+  },
+  slideFourInnerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  slideFourImage: {
+    width: 132,
+    height: 129,
+    resizeMode: Image.resizeMode.contain,
   },
   footerContainer: {
     position: 'absolute',
@@ -282,22 +300,36 @@ const marketingCarouselStyles = StyleSheet.create({
 });
 
 export default class MarketingCarousel extends React.Component {
+  static propTypes = {
+    activeMarketingScreenIndex: PropTypes.number.isRequired,
+    setActiveMarketingScreen: PropTypes.func.isRequired,
+    startChat: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+  };
+
+  _privacyLinkClick = () => {
+    Linking.openURL('https://www.hedvig.com/privacy/');
+  };
+
   render() {
-    const { activeMarketingScreenIndex } = this.props;
+    const {
+      activeMarketingScreenIndex,
+      setActiveMarketingScreen,
+      startChat,
+      login,
+    } = this.props;
     const isFirst = activeMarketingScreenIndex === 0;
 
     return (
       <View style={marketingCarouselStyles.container}>
         <StatusBar hidden />
-        <View style={{ flex: 1 }}>
+        <View style={marketingCarouselStyles.swiperContainer}>
           <Swiper
             style={{}}
             index={0}
-            onIndexChanged={(index) =>
-              this.props.setActiveMarketingScreen(index)
-            }
+            onIndexChanged={setActiveMarketingScreen}
             dot={
-              <View key={'dot'}>
+              <View key="dot">
                 <View
                   style={[
                     marketingCarouselStyles.swiperDot,
@@ -307,7 +339,7 @@ export default class MarketingCarousel extends React.Component {
               </View>
             }
             activeDot={
-              <View key={'activeDot'}>
+              <View key="activeDot">
                 <View style={marketingCarouselStyles.swiperDotIsActive} />
               </View>
             }
@@ -317,11 +349,11 @@ export default class MarketingCarousel extends React.Component {
             <View style={marketingCarouselStyles.slideOneContainer}>
               <ImageBackground
                 style={marketingCarouselStyles.background}
-                resizeMode={'cover'}
+                resizeMode="cover"
                 source={require('../../../assets/offer/unbroken-bg.png')}
               >
                 <Image
-                  resizeMode={'contain'}
+                  resizeMode="contain"
                   style={marketingCarouselStyles.introHeader}
                   source={require('../../../assets/onboarding/marketing-intro-header.png')}
                 />
@@ -345,21 +377,11 @@ export default class MarketingCarousel extends React.Component {
             </View>
             <View style={marketingCarouselStyles.slideFourContainer}>
               <Slide title={'Överskottet doneras\ntill välgörenhet'}>
-                <View
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
+                <View style={marketingCarouselStyles.slideFourInnerContainer}>
                   <Image
                     source={require('../../../assets/onboarding/heart.png')}
-                    style={{
-                      width: 132,
-                      height: 129,
-                      resizeMode: Image.resizeMode.contain,
-                    }}
-                    resizeMethod={'scale'}
+                    style={marketingCarouselStyles.slideFourImage}
+                    resizeMethod="scale"
                   />
                 </View>
               </Slide>
@@ -376,11 +398,9 @@ export default class MarketingCarousel extends React.Component {
               <TouchableOpacity
                 key="marketing-footer-policy"
                 style={marketingCarouselStyles.footerLoginContainer}
-                onPress={() => {
-                  Linking.openURL('https://www.hedvig.com/privacy/');
-                }}
+                onPress={this._privacyLinkClick}
               >
-                <Text style={[marketingCarouselStyles.footerPrivacyText]}>
+                <Text style={marketingCarouselStyles.footerPrivacyText}>
                   Om dina personuppgifter
                 </Text>
               </TouchableOpacity>
@@ -388,7 +408,7 @@ export default class MarketingCarousel extends React.Component {
 
             <TouchableOpacity
               key="marketing-footer-cta"
-              onPress={() => this.props.startChat()}
+              onPress={startChat}
               style={[
                 marketingCarouselStyles.footerCtaButton,
                 isFirst && marketingCarouselStyles.footerCtaButtonIsFirst,
@@ -418,7 +438,7 @@ export default class MarketingCarousel extends React.Component {
                   Redan medlem?
                 </Text>
               </View>
-              <TouchableOpacity onPress={() => this.props.login()}>
+              <TouchableOpacity onPress={login}>
                 <Text style={marketingCarouselStyles.footerLoginCta}>
                   Logga in
                 </Text>

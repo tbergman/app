@@ -15,16 +15,16 @@ exports[`<PerilsCategory /> Should render correctly 1`] = `
     />
     <StyledCategoryTextAndButton>
       <StyledCategoryTextContainer>
-        <Styled(Component)>
-          <Styled(Text)>
+        <StyledRow>
+          <StyledHeading>
             Jag och min familj
-          </Styled(Text)>
-        </Styled(Component)>
-        <Styled(Component)>
-          <Styled(Text)>
+          </StyledHeading>
+        </StyledRow>
+        <StyledRow>
+          <StyledPassiveText>
             Försäkras för
-          </Styled(Text)>
-        </Styled(Component)>
+          </StyledPassiveText>
+        </StyledRow>
       </StyledCategoryTextContainer>
       <StyledExpandButton>
         <DisabledExpandButton

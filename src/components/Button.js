@@ -1,17 +1,20 @@
 /* global require */
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import PropTypes from 'prop-types';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { DangerZone } from 'expo';
 import {
   StyledButton,
   StyledDisabledButton,
   StyledButtonText,
-  StyledButtonTextInverted,
-  StyledRoundedButton,
-  StyledRoundedButtonInverted,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
+
 const { Lottie } = DangerZone;
+
+const styles = StyleSheet.create({
+  animationButton: { backgroundColor: 'transparent' },
+});
 
 const hitSlop = {
   top: 20,
@@ -20,256 +23,264 @@ const hitSlop = {
   left: 20,
 };
 
-export const TextButton = ({ title, onPress }) => {
-  return (
-    <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
-      <StyledButtonText>{title}</StyledButtonText>
-    </TouchableOpacity>
-  );
-};
-
-export const RoundedButtonWithChildren = ({
-  onPress,
-  children,
-  disabled,
-  style = undefined,
-}) => {
-  return (
-    <StyledRoundedButton
-      disabled={disabled}
-      onPress={onPress}
-      {...(style ? { style: style } : {})}
-    >
-      {children}
-    </StyledRoundedButton>
-  );
-};
-
-export const RoundedInvertedButtonWithChildren = ({ onPress, children }) => {
-  return (
-    <StyledRoundedButtonInverted onPress={onPress} hitSlop={hitSlop}>
-      {children}
-    </StyledRoundedButtonInverted>
-  );
-};
-
-export const RoundedInvertedButton = ({ title, onPress }) => {
-  return (
-    <RoundedInvertedButtonWithChildren onPress={onPress}>
-      <StyledButtonText>{title}</StyledButtonText>
-    </RoundedInvertedButtonWithChildren>
-  );
-};
-
-export const RoundedButton = ({
-  title,
-  prefix,
-  onPress,
-  disabled = false,
-  selected = false,
-  _ContainerComponent = RoundedButtonWithChildren,
-  _TextComponent = StyledButtonText,
-  style = undefined,
-}) => {
-  if (prefix) {
-    throw new Error('prefix used');
+export class TextButton extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+  };
+  render() {
+    const { title, onPress } = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
+        <StyledButtonText>{title}</StyledButtonText>
+      </TouchableOpacity>
+    );
   }
-  return (
-    <_ContainerComponent
-      disabled={disabled}
-      onPress={onPress}
-      selected={selected}
-      {...(style ? { style: style } : {})}
-    >
-      <_TextComponent selected={selected}>{title}</_TextComponent>
-    </_ContainerComponent>
-  );
-};
-
-export const TextInputSubmitButton = ({ title, prefix, onPress }) =>
-  RoundedButton({
-    title,
-    prefix,
-    onPress,
-    _ContainerComponent: RoundedInvertedButtonWithChildren,
-    _TextComponent: StyledButtonTextInverted,
-  });
+}
 
 // Dialog
 
-export const DialogButton = ({ title, onPress, borderRight = false }) => {
-  return (
-    <StyledDialogButton onPress={onPress} borderRight={borderRight}>
-      <StyledDialogButtonText>{title}</StyledDialogButtonText>
-    </StyledDialogButton>
-  );
-};
-
+export class DialogButton extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+    borderRight: PropTypes.bool,
+  };
+  static defaultProps = { borderRight: false };
+  render() {
+    const { title, onPress, borderRight } = this.props;
+    return (
+      <StyledDialogButton onPress={onPress} borderRight={borderRight}>
+        <StyledDialogButtonText>{title}</StyledDialogButtonText>
+      </StyledDialogButton>
+    );
+  }
+}
 // Icon buttons
 
-export const IconButton = ({
-  iconModule,
-  onPress,
-  width,
-  size = 'big',
-  _ButtonComponent = StyledButton,
-  style = {},
-}) => {
-  width =
-    width ||
-    {
-      small: 16,
-      medium: 20,
-      mediumBig: 24,
-      big: 40,
-      huge: 56,
-    }[size];
-  return (
-    <_ButtonComponent onPress={onPress} hitSlop={hitSlop} style={style}>
-      <Image source={iconModule} style={{ width: width, height: width }} />
-    </_ButtonComponent>
-  );
-};
+class IconButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func,
+    width: PropTypes.number,
+    size: PropTypes.string,
+  };
+  static defaultProps = {
+    size: 'big',
+    _ButtonComponent: StyledButton,
+    style: {},
+    onPress: () => {},
+  };
+  render() {
+    const { iconModule, onPress, size, _ButtonComponent, style } = this.props;
+    const width =
+      this.props.width ||
+      {
+        small: 16,
+        medium: 20,
+        mediumBig: 24,
+        big: 40,
+        huge: 56,
+      }[size];
+    return (
+      <_ButtonComponent onPress={onPress} hitSlop={hitSlop} style={style}>
+        <Image source={iconModule} style={{ width: width, height: width }} />
+      </_ButtonComponent>
+    );
+  }
+}
 
-export const DisabledIconButton = ({ iconModule, size }) =>
-  IconButton({ iconModule, size, _ButtonComponent: StyledDisabledButton });
+class DisabledIconButton extends React.Component {
+  render() {
+    const { iconModule, size } = this.props;
+    return (
+      <IconButton
+        iconModule={iconModule}
+        size={size}
+        _ButtonComponent={StyledDisabledButton}
+      />
+    );
+  }
+}
 
-export const SendIconButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/send.png')}
-    onPress={onPress}
-  />
-);
+export class SendIconButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/chat/send.png')}
+        onPress={onPress}
+      />
+    );
+  }
+}
 
-export const SendDisabledIconButton = () => (
-  <DisabledIconButton
-    iconModule={require('../../assets/icons/chat/send_idle.png')}
-  />
-);
+export class ListNextButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/navigate_next.png')}
+        onPress={onPress}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const ChatNavDashboardButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/to_dashboard.png')}
-    onPress={onPress}
-  />
-);
+export class DisabledListNextButton extends React.Component {
+  render() {
+    return (
+      <DisabledIconButton
+        iconModule={require('../../assets/icons/navigate_next.png')}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const ListNextButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/navigate_next.png')}
-    onPress={onPress}
-    size="mediumBig"
-  />
-);
+export class DisabledCollapseButton extends React.Component {
+  render() {
+    return (
+      <DisabledIconButton
+        iconModule={require('../../assets/icons/collapse.png')}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const DisabledListNextButton = () => (
-  <DisabledIconButton
-    iconModule={require('../../assets/icons/navigate_next.png')}
-    size="mediumBig"
-  />
-);
+export class DisabledExpandButton extends React.Component {
+  render() {
+    return (
+      <DisabledIconButton
+        iconModule={require('../../assets/icons/expand.png')}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const DisabledCollapseButton = () => (
-  <DisabledIconButton
-    iconModule={require('../../assets/icons/collapse.png')}
-    size="mediumBig"
-  />
-);
+export class NavigateBackButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/navigate_back.png')}
+        onPress={onPress}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const DisabledExpandButton = () => (
-  <DisabledIconButton
-    iconModule={require('../../assets/icons/expand.png')}
-    size="mediumBig"
-  />
-);
+export class XNavigateBackButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/close/close_black.png')}
+        onPress={onPress}
+        size="mediumBig"
+      />
+    );
+  }
+}
 
-export const NavigateBackButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/navigate_back.png')}
-    onPress={onPress}
-    size="mediumBig"
-  />
-);
+export class RecordButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/chat/record_audio.png')}
+        onPress={onPress}
+        size="huge"
+        style={{
+          marginBottom: 8,
+        }}
+      />
+    );
+  }
+}
 
-export const XNavigateBackButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/close/close_black.png')}
-    onPress={onPress}
-    size="mediumBig"
-  />
-);
-
-export const RecordButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/record_audio.png')}
-    onPress={onPress}
-    size="huge"
-    style={{
-      marginBottom: 8,
-    }}
-  />
-);
-
-export const StopRecordingButton = ({ onPress }) => (
-  <IconButton
-    iconModule={require('../../assets/icons/chat/stop_record_audio.png')}
-    onPress={onPress}
-    size="huge"
-  />
-);
-
-export const HiddenDisabledButton = ({ size = 'medium' }) => (
-  <DisabledIconButton size={size} />
-);
+export class StopRecordingButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <IconButton
+        iconModule={require('../../assets/icons/chat/stop_record_audio.png')}
+        onPress={onPress}
+        size="huge"
+      />
+    );
+  }
+}
 
 // Animation buttons
 
-export const AnimationButton = ({
-  animationModule,
-  onPress,
-  width,
-  size = 'big',
-  _ButtonComponent = StyledButton,
-}) => {
-  width =
-    width ||
-    {
-      small: 16,
-      medium: 20,
-      mediumBig: 24,
-      big: 40,
-      huge: 56,
-    }[size];
-  return (
-    <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
-      <Lottie
-        ref={(animation) => {
-          animation ? animation.play() : null;
-        }}
-        style={{
-          height: width,
-          width: width,
-          backgroundColor: 'transparent',
-        }}
-        loop={true}
-        source={animationModule}
+class AnimationButton extends React.Component {
+  static propTypes = {
+    onPress: PropTypes.func,
+    width: PropTypes.number,
+    size: PropTypes.string,
+  };
+  static defaultProps = { onPress: () => {} };
+
+  render() {
+    const { animationModule, onPress, size, _ButtonComponent } = this.props;
+    const width =
+      this.props.width ||
+      {
+        small: 16,
+        medium: 20,
+        mediumBig: 24,
+        big: 40,
+        huge: 56,
+      }[size];
+    return (
+      <_ButtonComponent onPress={onPress} hitSlop={hitSlop}>
+        <Lottie
+          ref={(animation) => {
+            animation ? animation.play() : null;
+          }}
+          style={[styles.animationButton, { height: width, width }]}
+          loop={true}
+          source={animationModule}
+        />
+      </_ButtonComponent>
+    );
+  }
+}
+
+export class DisabledAnimationButton extends React.Component {
+  render() {
+    const { animationModule, width, size } = this.props;
+    return (
+      <AnimationButton
+        animationModule={animationModule}
+        width={width}
+        size={size}
+        _ButtonComponent={StyledDisabledButton}
       />
-    </_ButtonComponent>
-  );
-};
+    );
+  }
+}
 
-export const DisabledAnimationButton = ({ animationModule, width, size }) =>
-  AnimationButton({
-    animationModule,
-    width,
-    size,
-    _ButtonComponent: StyledDisabledButton,
-  });
-
-export const StopRecordingAnimationButton = ({ onPress }) => (
-  <AnimationButton
-    animationModule={require('../../assets/animations/hedvig_voice_recording_animation.json')}
-    onPress={onPress}
-    size="huge"
-  />
-);
+export class StopRecordingAnimationButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <AnimationButton
+        animationModule={require('../../assets/animations/hedvig_voice_recording_animation.json')}
+        onPress={onPress}
+        size="huge"
+      />
+    );
+  }
+}

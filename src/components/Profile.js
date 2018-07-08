@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, Share, Image, StyleSheet, Linking } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  View,
+  Share,
+  Image,
+  StyleSheet,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 import {
   StyledProfileContainer,
   StyledCharityParagraph,
@@ -22,7 +30,7 @@ import {
   ProfileBankAccountIcon,
   ProfileShareIcon,
 } from './Icon';
-import { DisabledListNextButton, RoundedButton } from './Button';
+import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
 import 'moment/locale/sv';
 import * as R from 'ramda';
@@ -33,7 +41,24 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 16,
   },
+  certificateImage: { width: 40, height: 40 },
+  logoutButton: { marginTop: 8, marginBottom: 24 },
 });
+
+class LogoutButton extends React.Component {
+  static propTypes = { onPress: PropTypes.func.isRequired };
+  render() {
+    const { onPress } = this.props;
+    return (
+      <TouchableOpacity
+        title="Logga ut"
+        onPress={onPress}
+        style={styles.logoutButton}
+      />
+    );
+  }
+}
+
 export default class Profile extends React.Component {
   componentDidMount() {
     this.props.getUser();
@@ -133,10 +158,7 @@ export default class Profile extends React.Component {
         title: 'Mitt försäkringsbrev',
         icon: (
           <Image
-            style={{
-              width: 40,
-              height: 40,
-            }}
+            style={styles.certificateImage}
             source={require('../../assets/icons/profil/insurance-certificate.png')}
           />
         ),
@@ -185,6 +207,10 @@ export default class Profile extends React.Component {
     }
   }
 
+  _logout = () => {
+    this.props.logout();
+  };
+
   render() {
     // WARNING: Change this to loading state based on the request or something
     // more robust
@@ -221,11 +247,7 @@ export default class Profile extends React.Component {
             </StyledCharitySignature>
           </StyledListHeader>
           {this._maybeUserInfo()}
-          <RoundedButton
-            title="Logga ut"
-            onPress={() => this.props.logout()}
-            style={{ marginTop: 8, marginBottom: 24 }}
-          />
+          <LogoutButton onPress={this._logout} />
         </StyledList>
       </StyledProfileContainer>
     );

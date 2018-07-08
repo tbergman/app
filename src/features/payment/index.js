@@ -1,11 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { WebView, BackHandler, View, Text, Linking } from 'react-native';
+import {
+  WebView,
+  BackHandler,
+  View,
+  Text,
+  Linking,
+  StyleSheet,
+} from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import { NavBar } from '../../components/NavBar';
 import { NavigateBackButton } from '../../components/Button';
+
+const styles = StyleSheet.create({ container: { flex: 1 } });
+
 class Payment extends React.Component {
   static propTypes = {
     url: PropTypes.string,
@@ -51,7 +61,7 @@ class Payment extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <NavBar
           title="Betalning"
           headerLeft={<NavigateBackButton onPress={this.goBack} />}
