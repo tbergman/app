@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     color: '#414150',
     fontSize: 16,
   },
-  listElementText: { fontFamily: 'circular', color: '#414150', fontSize: 14 },
+  listElementText: { fontFamily: 'circular', color: '#9b9baa', fontSize: 14 },
   rowButton: { alignSelf: 'flex-end' },
 });
 
