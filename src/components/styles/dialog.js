@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   paragraph: {
-    fontFamily: 'ciruclar',
+    fontFamily: 'circular',
     fontSize: 16,
     marginBottom: 24,
     paddingRight: 16,
