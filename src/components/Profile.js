@@ -34,6 +34,7 @@ import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
 import 'moment/locale/sv';
 import * as R from 'ramda';
+import { StyledButtonText } from './styles/button';
 
 const styles = StyleSheet.create({
   cashbackImage: {
@@ -42,7 +43,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   certificateImage: { width: 40, height: 40 },
-  logoutButton: { marginTop: 8, marginBottom: 24 },
+  logoutButton: {
+    marginTop: 8,
+    marginBottom: 24,
+    minHeight: 20,
+    paddingTop: 8,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingLeft: 16,
+    backgroundColor: '#ffffff',
+    borderColor: '#651eff',
+    borderWidth: 1,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
 });
 
 class LogoutButton extends React.Component {
@@ -50,11 +66,9 @@ class LogoutButton extends React.Component {
   render() {
     const { onPress } = this.props;
     return (
-      <TouchableOpacity
-        title="Logga ut"
-        onPress={onPress}
-        style={styles.logoutButton}
-      />
+      <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
+        <StyledButtonText>Logga ut</StyledButtonText>
+      </TouchableOpacity>
     );
   }
 }

@@ -229,7 +229,7 @@ class AnimationButton extends React.Component {
     width: PropTypes.number,
     size: PropTypes.string,
   };
-  static defaultProps = { onPress: () => {} };
+  static defaultProps = { onPress: () => {}, _ButtonComponent: StyledButton };
 
   render() {
     const { animationModule, onPress, size, _ButtonComponent } = this.props;
