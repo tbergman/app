@@ -45,7 +45,6 @@ const buildCampaignParams = (params) => {
     '~tags': 'utmContent',
     '~campaign': 'utmCampaign',
     '~keywords': 'utmTerm',
-    '+phone_number': 'phoneNumber',
   };
 
   return Object.keys(params).reduce((acc, key) => {
