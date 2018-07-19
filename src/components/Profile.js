@@ -80,6 +80,9 @@ export default class Profile extends React.Component {
     this.props.getInsurance();
   }
 
+  //componentDidUpdate() { // TODO Make this refetch insurance (?)
+  //}
+
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
     let ListElementComponent = onPress
       ? TouchableStyledListElement
