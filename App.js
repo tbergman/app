@@ -81,6 +81,11 @@ import {
   TRACK_OFFER_SIGNED,
   TRACK_PAYMENT_ADDED,
 } from './src/features/analytics/actions';
+import {
+  MARKETING_SET_ACTIVE_SCREEN,
+  MARKETING_CHAT_LOGIN,
+  MARKETING_CHAT_START,
+} from './src/features/marketing/actions';
 
 const { Branch } = DangerZone;
 
@@ -143,7 +148,26 @@ const eventsMap = {
     eventName: SemanticEvents.Ecommerce.PaymentInfoEntered,
     customProperties: payload,
   })),
+  [MARKETING_SET_ACTIVE_SCREEN]: trackEvent(({ payload, analytics }) => ({
+    eventName: SemanticEvents.Ecommerce.PromotionViewed,
+    customProperties: {
+      step: payload.index,
+      ...analytics,
+    },
+  })),
+  [MARKETING_CHAT_LOGIN]: trackEvent(({ analytics }) => ({
+    eventName: 'Log in clicked',
+    customProperties: {
+      ...analytics,
+    },
+  })),
+  [MARKETING_CHAT_START]: trackEvent(({ analytics }) => ({
+    eventName: 'Start chat clicked',
+    customProperties: { ...analytics },
+  })),
 };
+
+// Foo
 
 const segmentMiddleware = createMiddleware(
   eventsMap,

@@ -10,6 +10,7 @@ export const SemanticEvents = {
     CheckoutStepCompleted: 'Checkout Step Completed',
     PaymentInfoEntered: 'Payment Info Entered',
     OrderCompleted: 'Order Completed',
+    PromotionViewed: 'Promotion Viewed',
   },
   Mobile: {
     ApplicationCrashed: 'Application Crashed',

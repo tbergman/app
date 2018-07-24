@@ -30,6 +30,8 @@ import {
   MARKETING_CHAT_START,
   MARKETING_CHAT_LOGIN,
 } from './actions';
+import * as marketingSelectors from './selectors';
+import * as analyticsSelectors from '../analytics/selectors';
 
 const colors = {
   PRIMARY_GREEN: '#1BE9B6',
@@ -55,9 +57,9 @@ const slideStyles = StyleSheet.create({
   caption: {
     fontFamily: 'circular-bold',
     fontSize: {
-      [H_SPACIOUS]: 24,
-      [H_REGULAR]: 22,
-      [H_COMPACT]: 18,
+      [H_SPACIOUS]: 22,
+      [H_REGULAR]: 20,
+      [H_COMPACT]: 16,
     }[horizontalSizeClass],
     lineHeight: {
       [H_SPACIOUS]: 33,
@@ -165,16 +167,17 @@ const marketingCarouselStyles = StyleSheet.create({
     width: viewportWidth,
     height: viewportHeight,
     backgroundColor: colors.PRIMARY_PURPLE,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
+  hedvigLogo: { width: 96, height: 30, position: 'absolute', top: 32 },
   introHeader: {
-    width: {
-      [H_SPACIOUS]: viewportWidth - 60,
-      [H_REGULAR]: viewportWidth - 50,
-      [H_COMPACT]: viewportWidth - 40,
-    }[horizontalSizeClass],
-    top: -30,
+    position: 'absolute',
+    top: 114,
+    fontSize: 56,
+    color: 'white',
+    fontFamily: 'soray',
+    textAlign: 'center',
   },
   swiperDot: {
     backgroundColor: '#dcdbdc',
@@ -299,6 +302,8 @@ const marketingCarouselStyles = StyleSheet.create({
   },
 });
 
+const NO_STYLE = {};
+
 export default class MarketingCarousel extends React.Component {
   static propTypes = {
     activeMarketingScreenIndex: PropTypes.number.isRequired,
@@ -311,23 +316,42 @@ export default class MarketingCarousel extends React.Component {
     Linking.openURL('https://www.hedvig.com/privacy/');
   };
 
+  handleCtaClick = () => {
+    const { activeMarketingScreenIndex, startChat, orderId } = this.props;
+    if (activeMarketingScreenIndex === 3) {
+      startChat(orderId);
+    } else {
+      if (!this.swiper) {
+        return;
+      }
+      this.swiper.scrollBy(1);
+    }
+  };
+
+  login = () => {
+    const { login, orderId } = this.props;
+    login(orderId);
+  };
+
+  setActiveMarketingScreen = (index) => {
+    const { setActiveMarketingScreen, orderId } = this.props;
+    setActiveMarketingScreen(index, orderId);
+  };
+
   render() {
-    const {
-      activeMarketingScreenIndex,
-      setActiveMarketingScreen,
-      startChat,
-      login,
-    } = this.props;
+    const { activeMarketingScreenIndex } = this.props;
     const isFirst = activeMarketingScreenIndex === 0;
+    const isLast = activeMarketingScreenIndex === 3;
 
     return (
       <View style={marketingCarouselStyles.container}>
         <StatusBar hidden />
         <View style={marketingCarouselStyles.swiperContainer}>
           <Swiper
-            style={{}}
+            ref={(swiper) => (this.swiper = swiper)}
+            style={NO_STYLE}
             index={0}
-            onIndexChanged={setActiveMarketingScreen}
+            onIndexChanged={this.setActiveMarketingScreen}
             dot={
               <View key="dot">
                 <View
@@ -350,26 +374,26 @@ export default class MarketingCarousel extends React.Component {
               <ImageBackground
                 style={marketingCarouselStyles.background}
                 resizeMode="cover"
-                source={require('../../../assets/offer/unbroken-bg.png')}
+                source={require('../../../assets/offer/hero/intro-2.png')}
               >
                 <Image
-                  resizeMode="contain"
-                  style={marketingCarouselStyles.introHeader}
-                  source={require('../../../assets/onboarding/marketing-intro-header.png')}
+                  source={require('../../../assets/identity/hedvig_wordmark/hedvig_wordmark_white.png')}
+                  style={marketingCarouselStyles.hedvigLogo}
                 />
+                <Text style={marketingCarouselStyles.introHeader}>
+                  Hjälp när du behöver det
+                </Text>
               </ImageBackground>
             </View>
             <View style={marketingCarouselStyles.slideTwoContainer}>
-              <Slide title={'Hemförsäkring för dig\nsom bor i\u00A0lägenhet'}>
+              <Slide title="Hedvig är en ny sorts hemförsäkring för dig som bor i lägenhet">
                 <SlideImage
                   imageSource={require('../../../assets/onboarding/app-marketing-screen1.png')}
                 />
               </Slide>
             </View>
             <View style={marketingCarouselStyles.slideThreeContainer}>
-              <Slide
-                title={'Anmäl en skada på sekunder,\nfå betalt på\u00A0minuter'}
-              >
+              <Slide title={'Få hjälp på sekunder och\nersättning på minuter'}>
                 <SlideImage
                   imageSource={require('../../../assets/onboarding/app-marketing-screen2.png')}
                 />
@@ -408,7 +432,7 @@ export default class MarketingCarousel extends React.Component {
 
             <TouchableOpacity
               key="marketing-footer-cta"
-              onPress={startChat}
+              onPress={this.handleCtaClick}
               style={[
                 marketingCarouselStyles.footerCtaButton,
                 isFirst && marketingCarouselStyles.footerCtaButtonIsFirst,
@@ -421,7 +445,7 @@ export default class MarketingCarousel extends React.Component {
                   isFirst && marketingCarouselStyles.footerCtaButtonTextIsFirst,
                 ]}
               >
-                Säg hej till Hedvig
+                {isLast ? 'Säg hej till Hedvig' : 'Gå vidare'}
               </Text>
             </TouchableOpacity>
             <View
@@ -438,7 +462,7 @@ export default class MarketingCarousel extends React.Component {
                   Redan medlem?
                 </Text>
               </View>
-              <TouchableOpacity onPress={login}>
+              <TouchableOpacity onPress={this.login}>
                 <Text style={marketingCarouselStyles.footerLoginCta}>
                   Logga in
                 </Text>
@@ -452,28 +476,33 @@ export default class MarketingCarousel extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { activeMarketingScreenIndex } = state.marketing;
   return {
-    activeMarketingScreenIndex,
+    activeMarketingScreenIndex: marketingSelectors.getActiveMarketingScreenIndex(
+      state,
+    ),
+    orderId: analyticsSelectors.getOrderId(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: () => {
+    login: (orderId) => {
       dispatch({
         type: MARKETING_CHAT_LOGIN,
+        analytics: { order_id: orderId },
       });
     },
-    startChat: () => {
+    startChat: (orderId) => {
       dispatch({
         type: MARKETING_CHAT_START,
+        analytics: { order_id: orderId },
       });
     },
-    setActiveMarketingScreen: (index) => {
+    setActiveMarketingScreen: (index, orderId) => {
       return dispatch({
         type: MARKETING_SET_ACTIVE_SCREEN,
         payload: { index },
+        analytics: { order_id: orderId },
       });
     },
   };
