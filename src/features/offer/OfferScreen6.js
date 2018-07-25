@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  spacer: {
-    flex: 1,
-  },
   header: {
     marginTop: {
       [V_COMPACT]: 10,

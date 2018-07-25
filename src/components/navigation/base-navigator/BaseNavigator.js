@@ -22,10 +22,6 @@ import Profile from '../../../containers/Profile';
 import { Loader } from '../../../components/Loader';
 
 const styles = StyleSheet.create({
-  loading: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   flex: {
     flex: 1,
   },

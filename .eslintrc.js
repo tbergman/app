@@ -9,11 +9,12 @@ module.exports = {
     jest: true,
     node: true,
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-native'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
+    'plugin:react-native/all',
   ],
   parserOptions: {
     ecmaVersion: 2016,
@@ -28,6 +29,8 @@ module.exports = {
     'react/prop-types': OFF,
     'react/display-name': OFF,
     'no-debugger': OFF,
+    'react-native/no-color-literals': OFF, // TODO Reenable this
+    'react-native/split-platform-components': OFF, // TODO maybe reenable this?
   },
   globals: {
     __DEV__: false,

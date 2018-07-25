@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import Expo from 'expo';
 
+import { colors } from '../style';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1be9b6',
+    backgroundColor: colors.TURQUOISE,
     paddingTop: 20,
   },
   errorTitle: {

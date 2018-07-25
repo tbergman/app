@@ -4,12 +4,6 @@ import { StyleSheet, View, Image } from 'react-native';
 import { EmptyHeaderItem, StyledNavBarContainer } from './styles/navbar';
 
 const styles = StyleSheet.create({
-  header: {
-    fontFamily: 'merriweather',
-    color: '#414150',
-    fontSize: 16,
-    textAlign: 'center',
-  },
   headerItem: {
     width: '33%',
   },

@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: 30,
   },
-  figure: {},
   buttonContainer: {
     width: '100%',
     borderTopWidth: 1,

@@ -10,13 +10,13 @@ import {
   ButtonsContainer,
 } from './styles/dialog';
 import { DialogButton } from './Button';
+import { colors } from '../style';
 
 // TODO Clean up this mess
 
 const styles = StyleSheet.create({
-  possiblyUnusedStyle: { backgroundColor: 'blue' },
   dialogStyle: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
     justifyContent: 'center',
   },
 });

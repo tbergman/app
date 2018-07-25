@@ -88,14 +88,6 @@ const styles = StyleSheet.create({
     color: '#9B9BAA',
     lineHeight: 27,
   },
-  explainer: {
-    fontFamily: 'circular',
-    fontSize: 19,
-    color: '#9B9BAA',
-    lineHeight: 27,
-    textAlign: 'center',
-    marginTop: 10,
-  },
 });
 
 const insuranceNames = [

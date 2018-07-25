@@ -9,11 +9,13 @@ import {
   StyledButtonText,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
+import { colors } from '../style';
 
 const { Lottie } = DangerZone;
 
 const styles = StyleSheet.create({
-  animationButton: { backgroundColor: 'transparent' },
+  animationButton: { backgroundColor: colors.TRANSPARENT },
+  recordButton: { marginBottom: 8 },
 });
 
 const hitSlop = {
@@ -199,9 +201,7 @@ export class RecordButton extends React.Component {
         iconModule={require('../../assets/icons/chat/record_audio.png')}
         onPress={onPress}
         size="huge"
-        style={{
-          marginBottom: 8,
-        }}
+        style={styles.recordButton}
       />
     );
   }

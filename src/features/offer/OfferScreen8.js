@@ -40,19 +40,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 80,
   },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
   view: {
     flex: 1,
     alignItems: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    left: 20,
-    top: 26,
-    zIndex: 200,
   },
   priceContainer: {
     marginTop: {
@@ -81,33 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 20,
     color: '#141132',
-  },
-  contractExplainer: {
-    fontFamily: 'circular',
-    fontSize: 17,
-    color: 'white',
-    marginTop: 12,
-  },
-  category: {
-    flexDirection: 'row',
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  categoryContent: {
-    flex: 1,
-    flexDirection: 'column',
-  },
-  categoryImage: {
-    position: 'relative',
-    top: 1,
-    marginRight: 17,
-  },
-  categoryHeader: {
-    fontFamily: 'circular-bold',
-    fontSize: 17,
-    lineHeight: 25,
-    color: '#414150',
-    marginBottom: 2,
   },
   button: {
     flexDirection: 'row',

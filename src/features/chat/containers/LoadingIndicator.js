@@ -1,7 +1,15 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 import { DangerZone } from 'expo';
 import { connect } from 'react-redux';
+
+import { colors } from '../../../style';
+
+const styles = StyleSheet.create({
+  innerAnimation: {
+    backgroundColor: colors.TRANSPARENT,
+  },
+});
 
 const { Lottie } = DangerZone;
 
@@ -29,11 +37,13 @@ class LoadingIndicator extends React.Component {
         >
           <Lottie
             ref={(animation) => (animation ? animation.play() : null)}
-            style={{
-              height: this.props.avatar.height,
-              width: this.props.avatar.width,
-              backgroundColor: 'transparent',
-            }}
+            style={[
+              styles.innerAnimation,
+              {
+                height: this.props.avatar.height,
+                width: this.props.avatar.width,
+              },
+            ]}
             loop={true}
             source={this.props.avatar.data}
           />

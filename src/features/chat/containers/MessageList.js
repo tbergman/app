@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 1,
   },
+  userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
 });
@@ -120,7 +121,9 @@ class DefaultUserMessage extends React.Component {
         <View
           style={[
             styles.userMessageEditButton,
-            !message.header.statusMessage ? { marginBottom: 10 } : undefined,
+            !message.header.statusMessage
+              ? styles.userMessageEditButtonWithStatusMessage
+              : undefined,
           ]}
         >
           <EditMessageButton index={index} />

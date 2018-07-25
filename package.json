@@ -49,6 +49,7 @@
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react-native": "^3.2.1",
     "exp": "^55.0.4",
     "expo": "^27.0.0",
     "husky": "^1.0.0-rc.9",

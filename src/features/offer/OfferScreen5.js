@@ -52,13 +52,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
-  subHeader: {
-    fontFamily: 'circular',
-    fontSize: 20,
-    lineHeight: 25,
-    color: '#414150',
-    marginTop: 10,
-  },
   bulletContainer: {
     width: {
       [H_SPACIOUS]: 270,
