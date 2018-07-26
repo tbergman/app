@@ -170,14 +170,27 @@ const marketingCarouselStyles = StyleSheet.create({
     // justifyContent: 'center',
     alignItems: 'center',
   },
-  hedvigLogo: { width: 96, height: 30, position: 'absolute', top: 32 },
+  hedvigLogo: {
+    width: 96,
+    height: 30,
+    position: 'absolute',
+    top: {
+      [V_SPACIOUS]: 46,
+      [V_REGULAR]: 32,
+      [V_COMPACT]: 24,
+    }[verticalSizeClass],
+  },
   introHeader: {
     position: 'absolute',
-    top: 114,
     fontSize: 56,
     color: 'white',
     fontFamily: 'soray',
     textAlign: 'center',
+    top: {
+      [V_SPACIOUS]: 144,
+      [V_REGULAR]: 114,
+      [V_COMPACT]: 84,
+    }[verticalSizeClass],
   },
   swiperDot: {
     backgroundColor: '#dcdbdc',
