@@ -28,7 +28,7 @@ export class CheckedBullet extends React.Component {
       <View style={styles.container}>
         <Image
           style={styles.icon}
-          source={require('../../../assets/icons/offer/offer-check.png')}
+          source={require('../../../../assets/icons/offer/offer-check.png')}
         />
         <Text style={styles.label}>{this.props.label}</Text>
       </View>

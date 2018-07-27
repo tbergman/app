@@ -14,7 +14,7 @@ import { MarketingCarousel } from '../../../features/marketing/MarketingCarousel
 import Dialog from '../../../containers/Dialog';
 import FloatingActionButton from '../../../features/dashboard/containers/fab';
 import Chat from '../../../features/chat/Chat';
-import { OfferSwiper } from '../../../features/offer/OfferSwiper';
+import OfferSwiper from '../../../features/offer';
 import { Perils } from '../../Perils';
 import Payment from '../../../features/payment';
 import Dashboard from '../../../features/dashboard/Dashboard';

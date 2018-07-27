@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { verticalSizeClass, V_SPACIOUS } from '../../services/DimensionSizes';
-import { PerilsOverview } from './PerilsOverview';
-import { Hero } from './Hero';
+import {
+  verticalSizeClass,
+  V_SPACIOUS,
+} from '../../../../services/DimensionSizes';
+import { PerilsOverview } from '../PerilsOverview';
+import { Hero } from '../../components/Hero';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -16,10 +19,9 @@ const styles = StyleSheet.create({
 
 class OfferScreen extends React.Component {
   render() {
-    // Is there a better way?
-    const category = this.props.insurance.categories[0];
-    const regular = require('../../../assets/offer/hero/you.png');
-    const spacious = require('../../../assets/offer/hero/you-xl.png');
+    const category = this.props.insurance.categories[2];
+    const regular = require('../../../../../assets/offer/hero/stuff.png');
+    const spacious = require('../../../../../assets/offer/hero/stuff-xl.png');
     const heroImage =
       {
         [V_SPACIOUS]: spacious,
@@ -28,17 +30,16 @@ class OfferScreen extends React.Component {
     return (
       <View style={styles.container}>
         <PerilsOverview
-          title="Personskyddet"
+          title="Prylskyddet"
           categoryTitle={category.title}
           description={
             <React.Fragment>
-              Hedvig skyddar dig mot obehagliga saker som kan hända på
-              hemmaplan, och det mesta som kan hända när du är ute
-              och&nbsp;reser.
+              Med Hedvig får du ett komplett skydd för dina prylar.
+              Drulleförsäkring ingår och täcker prylar värda upp till
+              50&nbsp;000&nbsp;kr&nbsp;styck.
             </React.Fragment>
           }
           perils={category.perils}
-          explainer={'Tryck på ikonerna för mer info'}
           hero={
             <Hero containerStyle={styles.heroBackground} source={heroImage} />
           }

@@ -19,9 +19,9 @@ import {
   V_COMPACT,
   V_REGULAR,
   V_SPACIOUS,
-} from '../../services/DimensionSizes';
+} from '../../../../services/DimensionSizes';
 
-const animationModule = require('../../../assets/animations/claims_demo.json');
+const animationModule = require('../../../../../assets/animations/claims_demo.json');
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -141,7 +141,7 @@ class OfferScreen extends React.Component {
                 >
                   <Image
                     style={styles.playIcon}
-                    source={require('../../../assets/icons/offer/offer-play.png')}
+                    source={require('../../../../../assets/icons/offer/offer-play.png')}
                   />
                 </TouchableOpacity>
               </View>

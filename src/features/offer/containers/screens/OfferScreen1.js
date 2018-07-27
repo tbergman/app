@@ -15,7 +15,7 @@ import {
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
-} from '../../services/DimensionSizes';
+} from '../../../../services/DimensionSizes';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -84,8 +84,8 @@ class OfferScreen extends React.Component {
       <View style={styles.container}>
         <ImageBackground
           style={styles.background}
-          resizeMode={'cover'}
-          source={require('../../../assets/offer/hero/intro.png')}
+          resizeMode="cover"
+          source={require('../../../../../assets/offer/hero/intro.png')}
         >
           <ScrollView style={styles.scroll}>
             <View style={styles.scrollContent}>

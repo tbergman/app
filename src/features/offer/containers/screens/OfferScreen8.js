@@ -23,9 +23,9 @@ import {
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
-} from '../../services/DimensionSizes';
-import { OFFER_CHECKOUT } from './actions';
-import { Dialog } from '../bankid/Dialog';
+} from '../../../../services/DimensionSizes';
+import { OFFER_CHECKOUT } from '../../state/actions';
+import { Dialog } from '../../../bankid/Dialog';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -186,7 +186,7 @@ class OfferScreen extends React.Component {
         <ImageBackground
           style={styles.screenBackground}
           resizeMode={'cover'}
-          source={require('../../../assets/offer/unbroken-bg.png')}
+          source={require('../../../../../assets/offer/unbroken-bg.png')}
         >
           <ScrollView style={styles.scroll}>
             <View style={styles.scrollContent}>
@@ -195,7 +195,7 @@ class OfferScreen extends React.Component {
                   <ImageBackground
                     style={styles.priceBackground}
                     resizeMode={'cover'}
-                    source={require('../../../assets/offer/offer-price-bg.png')}
+                    source={require('../../../../../assets/offer/offer-price-bg.png')}
                   >
                     <View>
                       <Text style={styles.priceAmount}>
@@ -210,14 +210,14 @@ class OfferScreen extends React.Component {
                   <View style={styles.check}>
                     <Image
                       style={styles.checkIcon}
-                      source={require('../../../assets/icons/offer/offer-check.png')}
+                      source={require('../../../../../assets/icons/offer/offer-check.png')}
                     />
                     <Text style={styles.checkLabel}>Blixtsnabb hjälp</Text>
                   </View>
                   <View style={styles.check}>
                     <Image
                       style={styles.checkIcon}
-                      source={require('../../../assets/icons/offer/offer-check.png')}
+                      source={require('../../../../../assets/icons/offer/offer-check.png')}
                     />
                     <Text style={styles.checkLabel}>
                       Blixtsnabb utbetalning
@@ -226,14 +226,14 @@ class OfferScreen extends React.Component {
                   <View style={styles.check}>
                     <Image
                       style={styles.checkIcon}
-                      source={require('../../../assets/icons/offer/offer-check.png')}
+                      source={require('../../../../../assets/icons/offer/offer-check.png')}
                     />
                     <Text style={styles.checkLabel}>Ingen bindningstid</Text>
                   </View>
                   <View style={styles.check}>
                     <Image
                       style={styles.checkIcon}
-                      source={require('../../../assets/icons/offer/offer-check.png')}
+                      source={require('../../../../../assets/icons/offer/offer-check.png')}
                     />
                     <Text style={styles.checkLabel}>
                       Överskottet till välgörenhet
@@ -262,7 +262,7 @@ class OfferScreen extends React.Component {
                 style={styles.buttonIcon}
                 width={27}
                 height={26}
-                source={require('../../../assets/icons/bankid/bankid-logo-dark.png')}
+                source={require('../../../../../assets/icons/bankid/bankid-logo-dark.png')}
               />
             </TouchableOpacity>
           </Animated.View>

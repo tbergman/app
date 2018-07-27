@@ -13,22 +13,22 @@ import {
 import * as R from 'ramda';
 import PopupDialog from 'react-native-popup-dialog';
 
-import { XNavigateBackButton } from '../../components/Button';
-import { PERIL_IMAGE_MAP } from '../../features/dashboard/components/Peril';
+import { XNavigateBackButton } from '../../../components/Button';
+import { PERIL_IMAGE_MAP } from '../../../features/dashboard/components/Peril';
 
 import {
   horizontalSizeClass,
   H_SPACIOUS,
   H_REGULAR,
   H_COMPACT,
-} from '../../services/DimensionSizes';
+} from '../../../services/DimensionSizes';
 import {
   PERILS_DIALOG_SHOWN,
   PERILS_DIALOG_DISMISSED,
   PERILS_UNSET_ACTIVE,
-} from './actions';
-import { Description } from './Description';
-import { Heading } from './Heading';
+} from '../state/actions';
+import { Description } from '../components/Description';
+import { Heading } from '../components/Heading';
 
 const { width: viewportWidth } = Dimensions.get('window');
 

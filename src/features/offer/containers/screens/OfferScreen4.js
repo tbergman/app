@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { verticalSizeClass, V_SPACIOUS } from '../../services/DimensionSizes';
-import { PerilsOverview } from './PerilsOverview';
-import { Hero } from './Hero';
+import {
+  verticalSizeClass,
+  V_SPACIOUS,
+} from '../../../../services/DimensionSizes';
+import { PerilsOverview } from '../PerilsOverview';
+import { Hero } from '../../components/Hero';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -17,8 +20,8 @@ const styles = StyleSheet.create({
 class OfferScreen extends React.Component {
   render() {
     const category = this.props.insurance.categories[1];
-    const regular = require('../../../assets/offer/hero/house.png');
-    const spacious = require('../../../assets/offer/hero/house-xl.png');
+    const regular = require('../../../../../assets/offer/hero/house.png');
+    const spacious = require('../../../../../assets/offer/hero/house-xl.png');
     const heroImage =
       {
         [V_SPACIOUS]: spacious,
