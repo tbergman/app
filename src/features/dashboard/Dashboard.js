@@ -68,6 +68,7 @@ class Dashboard extends React.Component {
     if (!this.props.categories || !this.props.categories.length) {
       return <Loader />;
     }
+    const { insurance } = this.props;
 
     return (
       <StyledDashboardContainer>
@@ -92,9 +93,9 @@ class Dashboard extends React.Component {
                 />
                 <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
               </StyledConditionRow>
-              {this.props.insurance.insuranceType === INSURANCE_TYPES.BRF ||
-              this.props.insurance.insuranceType ===
-                INSURANCE_TYPES.SUBLET_BRF ? (
+              {insurance.insuranceType === INSURANCE_TYPES.BRF ||
+              insurance.insuranceType === INSURANCE_TYPES.SUBLET_BRF ||
+              insurance.insuranceType === INSURANCE_TYPES.STUDENT_BRF ? (
                 <StyledConditionRow>
                   <StyledDashboardHeaderIcon
                     source={require('../../../assets/icons/my_insurance/aktiv.png')}

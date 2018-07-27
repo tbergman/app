@@ -112,7 +112,11 @@ class OfferScreen extends React.Component {
     const insuranceType = this.props.insurance.insuranceType;
     const isApartmentOwner =
       insuranceType === INSURANCE_TYPES.BRF ||
-      insuranceType === INSURANCE_TYPES.SUBLET_BRF;
+      insuranceType === INSURANCE_TYPES.SUBLET_BRF ||
+      insuranceType === INSURANCE_TYPES.STUDENT_BRF;
+    const isStudent =
+      insuranceType === INSURANCE_TYPES.STUDENT_BRF ||
+      insuranceType === INSURANCE_TYPES.STUDENT_RENT;
     const regular = require('../../../../../assets/offer/hero/legal.png');
     const spacious = require('../../../../../assets/offer/hero/legal-xl.png');
     const heroImage =
@@ -149,7 +153,8 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Maxersättning för prylarna{'\n'}i ditt hem är 1 miljon kr
+                      Maxersättning för prylarna{'\n'}i ditt hem är{' '}
+                      {isStudent ? '200 000' : '1 miljon'} kr
                     </React.Fragment>
                   }
                 />
