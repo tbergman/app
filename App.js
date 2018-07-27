@@ -176,9 +176,11 @@ const segmentMiddleware = createMiddleware(
     envConfig.SEGMENT_IOS_WRITE_KEY,
     SegmentTracker,
   ),
-  {
-    logger,
-  },
+  process.env.NODE_ENV === 'development'
+    ? {
+        logger,
+      }
+    : undefined,
 );
 
 export class App extends React.Component {
