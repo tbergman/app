@@ -413,7 +413,9 @@ export default class MarketingCarousel extends React.Component {
               </Slide>
             </View>
             <View style={marketingCarouselStyles.slideFourContainer}>
-              <Slide title={'Överskottet doneras\ntill välgörenhet'}>
+              <Slide
+                title={'Byggd på modern teknik,\nsunt förnuft och stort hjärta'}
+              >
                 <View style={marketingCarouselStyles.slideFourInnerContainer}>
                   <Image
                     source={require('../../../assets/onboarding/heart.png')}
