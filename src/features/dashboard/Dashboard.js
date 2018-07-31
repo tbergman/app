@@ -48,18 +48,10 @@ class Dashboard extends React.Component {
   statusIcon() {
     const imageModule = {
       ACTIVE: require('../../../assets/icons/my_insurance/aktiv.png'),
-      PENDING: require('../../../assets/icons/edit_perils/added_peril.png'),
+      INACTIVE_WITH_START_DATE: require('../../../assets/icons/my_insurance/startdatum_idle.png'),
       INACTIVE: require('../../../assets/icons/edit_perils/added_peril.png'),
     }[this.props.insurance.status];
     return <StyledDashboardHeaderIcon source={imageModule} />;
-  }
-
-  statusText() {
-    return {
-      ACTIVE: 'Aktiv',
-      PENDING: 'På gång',
-      INACTIVE: 'Aktiveras snart',
-    }[this.props.insurance.status];
   }
 
   render() {
@@ -77,7 +69,9 @@ class Dashboard extends React.Component {
               <StyledHeading>Min hemförsäkring</StyledHeading>
               <StyledDashboardHeaderItem>
                 {this.statusIcon()}
-                <StyledPassiveText>{this.statusText()}</StyledPassiveText>
+                <StyledPassiveText>
+                  {this.props.insurance.statusDescription}
+                </StyledPassiveText>
               </StyledDashboardHeaderItem>
             </StyledDashboardHeaderRowLessMargin>
           </StyledDashboardHeaderOffWhite>
