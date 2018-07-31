@@ -9,7 +9,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "version": "1.4.1",
+    "version": "1.4.2",
     "slug": "hedvig-app",
     "scheme": "hedvig-test",
     "sdkVersion": "27.0.0",
@@ -18,7 +18,7 @@
     "facebookAppId": "170982226921693",
     "facebookDisplayName": "Hedvig",
     "ios": {
-      "buildNumber": "1.4.1",
+      "buildNumber": "1.4.2",
       "bundleIdentifier": "com.hedvig.test.app",
       "associatedDomains": [
         "applinks:hedvig.app.link",
@@ -46,7 +46,7 @@
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
       ],
-      "versionCode": 29,
+      "versionCode": 30,
       "config": {
         "branch": {
           "apiKey": "key_test_jmu0ijecJKU5YhL4CdSEbgndBuksumyt"
