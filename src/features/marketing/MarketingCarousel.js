@@ -414,7 +414,7 @@ export default class MarketingCarousel extends React.Component {
             </View>
             <View style={marketingCarouselStyles.slideFourContainer}>
               <Slide
-                title={'Byggt på modern teknik,\nsunt förnuft och stort hjärta'}
+                title={'Byggd på modern teknik,\nsunt förnuft och stort hjärta'}
               >
                 <View style={marketingCarouselStyles.slideFourInnerContainer}>
                   <Image
