@@ -91,7 +91,9 @@ class OfferScreen extends React.Component {
             <View style={styles.scrollContent}>
               <View style={styles.heading}>
                 <Text style={styles.headingText}>
-                  Din hemförsäkring{'\n'}innehåller
+                  Din hemförsäkring
+                  {'\n'}
+                  innehåller
                 </Text>
               </View>
               <View style={styles.content}>
