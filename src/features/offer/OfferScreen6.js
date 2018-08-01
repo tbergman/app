@@ -128,7 +128,9 @@ class OfferScreen extends React.Component {
         <View style={styles.content}>
           <SafeAreaView>
             <Text style={styles.header}>
-              Så funkar det när{'\n'}du har en skada
+              Så funkar det när
+              {'\n'}
+              du har en skada
             </Text>
           </SafeAreaView>
           <View style={styles.animationContainer}>

@@ -133,7 +133,9 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Sveriges enda försäkring{'\n'}helt utan bindningstid
+                      Sveriges enda försäkring
+                      {'\n'}
+                      helt utan bindningstid
                     </React.Fragment>
                   }
                 />
@@ -141,7 +143,9 @@ class OfferScreen extends React.Component {
                   <CheckedBullet
                     label={
                       <React.Fragment>
-                        Lägenheten är försäkrad{'\n'}utan begränsning
+                        Lägenheten är försäkrad
+                        {'\n'}
+                        utan begränsning
                       </React.Fragment>
                     }
                   />
@@ -149,7 +153,8 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Maxersättning för prylarna{'\n'}i ditt hem är 1 miljon kr
+                      Maxersättning för prylarna
+                      {'\n'}i ditt hem är 1 miljon kr
                     </React.Fragment>
                   }
                 />
@@ -178,7 +183,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../assets/icons/offer/legal/forkopsinformation.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Förköps-{'\n'}information
+                      Förköps-
+                      {'\n'}
+                      information
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -195,7 +202,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../assets/icons/offer/legal/forsakringsvillkor.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Försäkrings-{'\n'}villkor
+                      Försäkrings-
+                      {'\n'}
+                      villkor
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -210,7 +219,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Personuppgifts-{'\n'}policy
+                      Personuppgifts-
+                      {'\n'}
+                      policy
                     </Text>
                   </View>
                 </TouchableOpacity>
