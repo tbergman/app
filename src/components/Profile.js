@@ -36,6 +36,8 @@ import 'moment/locale/sv';
 import * as R from 'ramda';
 import { StyledButtonText } from './styles/button';
 
+import { colors } from '../style';
+
 const styles = StyleSheet.create({
   cashbackImage: {
     width: 300,
@@ -51,8 +53,8 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingBottom: 8,
     paddingLeft: 16,
-    backgroundColor: '#ffffff',
-    borderColor: '#651eff',
+    backgroundColor: colors.WHITE,
+    borderColor: colors.PURPLE,
     borderWidth: 1,
     borderRadius: 24,
     alignItems: 'center',

@@ -4,10 +4,12 @@ import { Animated, StyleSheet } from 'react-native';
 import { DangerZone } from 'expo';
 import { connect } from 'react-redux';
 
+import { colors } from '../../../style';
+
 const { Lottie } = DangerZone;
 
 const styles = StyleSheet.create({
-  avatar: { backgroundColor: 'transparent' },
+  avatar: { backgroundColor: colors.TRANSPARENT },
 });
 
 class Avatar extends React.Component {

@@ -9,6 +9,8 @@ import { StyledTextInputContainer } from '../styles/chat';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
+import { colors } from '../../../style';
+
 const styles = StyleSheet.create({
   textInput: {
     flex: 1,
@@ -19,8 +21,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 16,
     marginRight: 8,
-    backgroundColor: '#ffffff',
-    borderColor: '#651eff',
+    backgroundColor: colors.WHITE,
+    borderColor: colors.PURPLE,
     borderWidth: 1,
     borderRadius: 24,
     fontSize: 16,

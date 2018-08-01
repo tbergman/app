@@ -2,12 +2,14 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   heading: {
     fontFamily: 'circular-bold',
     fontSize: 23,
     lineHeight: 32,
-    color: '#414150',
+    color: colors.OFF_BLACK,
     marginBottom: 7,
   },
 });

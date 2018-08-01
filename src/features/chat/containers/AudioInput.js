@@ -20,13 +20,15 @@ import {
 } from '../styles/chat';
 import { StyledPassiveText } from '../../../components/styles/text';
 
+import { colors } from '../../../style';
+
 const styles = StyleSheet.create({
   preRecordingContainer: {
     flexDirection: 'row',
   },
   preRecordingText: {
     fontFamily: 'circular',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     fontSize: 12,
     alignSelf: 'center',
     paddingRight: 12,
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
   },
   playbackStatusText: {
     fontFamily: 'circular',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     fontSize: 14,
     marginRight: 16,
   },

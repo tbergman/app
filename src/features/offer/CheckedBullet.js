@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular',
     fontSize: 17,
     lineHeight: 24,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
   },
 });
 

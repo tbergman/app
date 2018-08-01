@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native';
 
+import { colors } from '../../../style';
+
 const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
   TouchableHighlight,
 );
@@ -28,25 +30,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   chatOptionButton: {
-    borderColor: '#651eff',
+    borderColor: colors.PURPLE,
     marginBottom: 8,
   },
-  buttonColorSelected: { backgroundColor: '#651eff' },
-  buttonColorNotSelected: { backgroundColor: '#ffffff' },
+  buttonColorSelected: { backgroundColor: colors.PURPLE },
+  buttonColorNotSelected: { backgroundColor: colors.WHITE },
   buttonHidden: { opacity: 0 },
   buttonText: {
     fontFamily: 'circular',
     fontSize: 16,
     lineHeight: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
   },
-  buttonTextColorSelected: { color: '#ffffff' },
-  buttonTextColorNotSelected: { color: '#651eff' },
+  buttonTextColorSelected: { color: colors.WHITE },
+  buttonTextColorNotSelected: { color: colors.PURPLE },
   backToOfferButton: {
-    backgroundColor: '#1be9b6',
-    borderColor: '#1be9b6',
+    backgroundColor: colors.TURQUOISE,
+    borderColor: colors.TURQUOISE,
   },
-  backToOfferText: { color: '#ffffff', fontFamily: 'circular' },
+  backToOfferText: { color: colors.WHITE, fontFamily: 'circular' },
   sendButton: { width: 40, height: 40 },
   closeButton: { width: 24, height: 24 },
   restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },
