@@ -7,6 +7,8 @@ import { verticalSizeClass, V_SPACIOUS } from '../../services/DimensionSizes';
 import { PerilsOverview } from './PerilsOverview';
 import { Hero } from './Hero';
 
+//import { colors } from '../../style'
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   heroBackground: {

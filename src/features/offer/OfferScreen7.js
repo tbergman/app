@@ -16,11 +16,13 @@ import {
 } from '../../services/DimensionSizes';
 import { Hero } from './Hero';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
   },
   scrollContent: {
     paddingBottom: 80,
@@ -32,13 +34,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   heroBackground: {
-    backgroundColor: '#651EFF',
+    backgroundColor: colors.PURPLE,
   },
   heading: {
     fontFamily: 'circular-bold',
     fontSize: 23,
     lineHeight: 32,
-    color: '#414150',
+    color: colors.OFF_BLACK,
     marginBottom: {
       [V_SPACIOUS]: 15,
       [V_REGULAR]: 15,
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   stepNumber: {
-    backgroundColor: '#651EFF',
+    backgroundColor: colors.PURPLE,
     width: 35,
     height: 35,
     marginRight: 15,
@@ -78,14 +80,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     fontFamily: 'circular',
     fontSize: 19,
-    color: 'white',
+    color: colors.WHITE,
     textAlign: 'center',
   },
   stepLabel: {
     flex: 1,
     fontFamily: 'circular',
     fontSize: 19,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     lineHeight: 27,
   },
 });

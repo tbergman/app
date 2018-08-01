@@ -7,10 +7,12 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   listHeader: {
     alignSelf: 'stretch',
-    backgroundColor: '#f9fafc',
+    backgroundColor: colors.OFF_WHITE,
     paddingTop: 24,
     paddingRight: 16,
     paddingBottom: 24,
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  list: { backgroundColor: '#ffffff' },
+  list: { backgroundColor: colors.WHITE },
   listElement: {
     flex: 1,
     flexDirection: 'row',
@@ -28,15 +30,19 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#f9fafc',
+    borderBottomColor: colors.OFF_WHITE,
   },
   listElementTexts: { flex: 1, marginRight: 16, marginLeft: 16 },
   listElementHeading: {
     fontFamily: 'merriweather',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     fontSize: 16,
   },
-  listElementText: { fontFamily: 'circular', color: '#9b9baa', fontSize: 14 },
+  listElementText: {
+    fontFamily: 'circular',
+    color: colors.DARK_GRAY,
+    fontSize: 14,
+  },
   rowButton: { alignSelf: 'flex-end' },
 });
 

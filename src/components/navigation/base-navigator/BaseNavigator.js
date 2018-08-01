@@ -21,6 +21,8 @@ import Dashboard from '../../../features/dashboard/Dashboard';
 import Profile from '../../../containers/Profile';
 import { Loader } from '../../../components/Loader';
 
+import { colors } from '../../../style';
+
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
     paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
   },
   tabBar: {
@@ -41,29 +43,29 @@ const styles = StyleSheet.create({
   tabBarContainer: {
     shadowOpacity: 0.1,
     shadowRadius: 5,
-    shadowColor: '#000',
+    shadowColor: colors.BLACK,
     zIndex: 100,
     elevation: 1,
   },
   tabBarButton: {
     flex: 1,
     borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
+    borderBottomColor: colors.TRANSPARENT,
     alignItems: 'center',
     justifyContent: 'center',
     height: 64,
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
   },
   tabBarButtonIsActive: {
-    borderBottomColor: '#651EFF',
+    borderBottomColor: colors.PURPLE,
   },
   tabBarButtonText: {
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     fontFamily: 'circular',
     fontSize: 16,
   },
   tabBarButtonTextIsActive: {
-    color: '#414150',
+    color: colors.OFF_BLACK,
   },
 });
 

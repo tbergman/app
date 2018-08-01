@@ -2,6 +2,8 @@
 import React from 'react';
 import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../../style';
+
 const meLegalTrouble = require('../../../../assets/icons/perils/you/juridisk_tvist.png');
 const meAssault = require('../../../../assets/icons/perils/you/overfall.png');
 const meIllness = require('../../../../assets/icons/perils/you/sjuk_pa_resa.png');
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontFamily: 'circular',
     fontSize: 12,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     textAlign: 'center',
   },
 });
