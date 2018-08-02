@@ -27,6 +27,8 @@ import {
 import { OFFER_CHECKOUT } from '../../state/actions';
 import { Dialog } from '../../../bankid/Dialog';
 
+import { colors } from '../../style';
+
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
 );
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     height: 60,
     paddingLeft: 30,
     paddingRight: 30,
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
     borderRadius: 100,
     marginBottom: 36,
   },
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 21,
     lineHeight: 24,
-    color: 'white',
+    color: colors.WHITE,
   },
   screenBackground: {
     height: viewportHeight,

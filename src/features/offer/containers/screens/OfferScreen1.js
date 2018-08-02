@@ -17,6 +17,8 @@ import {
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
 
+import { colors } from '../../style';
+
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
 );
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
   background: {
     width: viewportWidth,
     height: viewportHeight,
-    backgroundColor: '#1be9b6',
+    backgroundColor: colors.TURQUOISE,
   },
   scrollContent: {
     width: viewportWidth,
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 26,
     lineHeight: 35,
-    color: '#fff',
+    color: colors.WHITE,
     textAlign: 'center',
   },
   categoryHeader: {
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 20,
     lineHeight: 20,
-    color: '#fff',
+    color: colors.WHITE,
     textAlign: 'center',
   },
 });
@@ -91,7 +93,9 @@ class OfferScreen extends React.Component {
             <View style={styles.scrollContent}>
               <View style={styles.heading}>
                 <Text style={styles.headingText}>
-                  Din hemförsäkring{'\n'}innehåller
+                  Din hemförsäkring
+                  {'\n'}
+                  innehåller
                 </Text>
               </View>
               <View style={styles.content}>

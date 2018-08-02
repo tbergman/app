@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: {
     height: 64,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
     // Drop shadow
     shadowOpacity: 0.3,
     shadowRadius: 5,
-    shadowColor: 'black',
+    shadowColor: colors.BLACK,
     zIndex: 100,
     elevation: 1,
   },

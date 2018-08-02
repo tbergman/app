@@ -43,6 +43,8 @@ import {
   V_COMPACT,
 } from '../../services/DimensionSizes';
 
+import { colors } from '../../style';
+
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
 );
@@ -60,14 +62,14 @@ const styles = StyleSheet.create({
   },
   closeOfferImage: { width: 26, height: 26 },
   buttonWrapperStyle: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
     position: 'absolute',
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
   swiperDot: {
-    backgroundColor: '#E9ECEF',
+    backgroundColor: colors.LIGHT_GRAY,
     width: 7.5,
     height: 7.5,
     borderRadius: 7.5,
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     marginRight: 5.5,
   },
   swiperDotIsActive: {
-    backgroundColor: '#1BE9B6',
+    backgroundColor: colors.TURQUOISE,
     width: 7.5,
     height: 7.5,
     borderRadius: 7.5,
@@ -108,12 +110,12 @@ const styles = StyleSheet.create({
     }[verticalSizeClass],
   },
   buttonIsFirst: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
   },
   label: {
     position: 'relative',
     top: -1,
-    color: 'white',
+    color: colors.WHITE,
     fontSize: 20,
     textAlign: 'center',
     fontFamily: 'circular',

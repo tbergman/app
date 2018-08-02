@@ -51,7 +51,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
       ellipsizeMode="tail"
       style={
         Object {
-          "color": "white",
+          "color": "#FFFFFF",
           "fontSize": 17,
           "fontWeight": "600",
         }

@@ -33,12 +33,7 @@ import {
 import * as marketingSelectors from './selectors';
 import * as analyticsSelectors from '../analytics/selectors';
 
-const colors = {
-  PRIMARY_GREEN: '#1BE9B6',
-  PRIMARY_BLUE: '#0F007A',
-  PRIMARY_PURPLE: '#651EFF',
-  TEXT: '#686E7E',
-};
+import { colors } from '../../style';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -67,7 +62,7 @@ const slideStyles = StyleSheet.create({
       [H_COMPACT]: 22,
     }[horizontalSizeClass],
     textAlign: 'center',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     width: viewportWidth,
     paddingTop: {
       [V_SPACIOUS]: 35,
@@ -81,8 +76,8 @@ const slideStyles = StyleSheet.create({
     }[verticalSizeClass],
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: colors.WHITE,
+    shadowColor: colors.BLACK,
     shadowOpacity: 0.25,
     shadowRadius: 20,
   },
@@ -159,14 +154,14 @@ const marketingCarouselStyles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     marginTop: 0,
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
     justifyContent: 'center',
   },
   swiperContainer: { flex: 1 },
   background: {
     width: viewportWidth,
     height: viewportHeight,
-    backgroundColor: colors.PRIMARY_PURPLE,
+    backgroundColor: colors.PURPLE,
     // justifyContent: 'center',
     alignItems: 'center',
   },
@@ -183,7 +178,7 @@ const marketingCarouselStyles = StyleSheet.create({
   introHeader: {
     position: 'absolute',
     fontSize: 56,
-    color: 'white',
+    color: colors.WHITE,
     fontFamily: 'soray',
     textAlign: 'center',
     top: {
@@ -201,10 +196,10 @@ const marketingCarouselStyles = StyleSheet.create({
     marginRight: 5.5,
   },
   swiperDotIsFirst: {
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
   },
   swiperDotIsActive: {
-    backgroundColor: colors.PRIMARY_PURPLE,
+    backgroundColor: colors.PURPLE,
     width: 7.5,
     height: 7.5,
     borderRadius: 7.5,
@@ -224,11 +219,11 @@ const marketingCarouselStyles = StyleSheet.create({
   },
   slideTwoContainer: {
     flex: 1,
-    backgroundColor: colors.PRIMARY_BLUE,
+    backgroundColor: colors.BLACK_PURPLE,
   },
   slideThreeContainer: {
     flex: 1,
-    backgroundColor: colors.PRIMARY_PURPLE,
+    backgroundColor: colors.PURPLE,
   },
   slideFourContainer: {
     flex: 1,
@@ -263,19 +258,19 @@ const marketingCarouselStyles = StyleSheet.create({
     height: 60,
     marginBottom: 18,
     padding: 0,
-    backgroundColor: colors.PRIMARY_GREEN,
+    backgroundColor: colors.TURQUOISE,
     borderWidth: 0,
     borderRadius: 30,
   },
   footerCtaButtonIsFirst: {
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
   },
   footerCtaButtonText: {
     fontSize: 21,
     fontFamily: 'circular',
     textAlignVertical: 'center',
     textAlign: 'center',
-    color: 'white',
+    color: colors.WHITE,
   },
   footerCtaButtonTextIsFirst: {
     color: '#141033',
@@ -292,18 +287,18 @@ const marketingCarouselStyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 20,
     height: 20,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     marginRight: 8,
   },
   footerLoginTextIsFirst: {
-    color: 'white',
+    color: colors.WHITE,
   },
   footerPrivacyText: {
     fontFamily: 'circular',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
-    color: 'white',
+    color: colors.WHITE,
     marginRight: 8,
   },
   footerLoginCta: {
@@ -311,7 +306,7 @@ const marketingCarouselStyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 20,
     height: 20,
-    color: colors.PRIMARY_PURPLE,
+    color: colors.PURPLE,
   },
 });
 
@@ -413,7 +408,9 @@ export default class MarketingCarousel extends React.Component {
               </Slide>
             </View>
             <View style={marketingCarouselStyles.slideFourContainer}>
-              <Slide title={'Överskottet doneras\ntill välgörenhet'}>
+              <Slide
+                title={'Byggd på modern teknik,\nsunt förnuft och stort hjärta'}
+              >
                 <View style={marketingCarouselStyles.slideFourInnerContainer}>
                   <Image
                     source={require('../../../assets/onboarding/heart.png')}

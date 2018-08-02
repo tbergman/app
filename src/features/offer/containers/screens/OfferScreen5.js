@@ -25,10 +25,12 @@ import { INSURANCE_TYPES } from '../../../../constants';
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
     flex: 1,
   },
   scrollContent: {
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 23,
     lineHeight: 32,
-    color: '#414150',
+    color: colors.OFF_BLACK,
     marginBottom: 10,
     textAlign: 'center',
   },
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
       [V_REGULAR]: 15,
       [V_COMPACT]: 14,
     }[verticalSizeClass],
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     textAlign: 'center',
     marginTop: 7,
     marginBottom: 10,
@@ -137,7 +139,9 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Sveriges enda försäkring{'\n'}helt utan bindningstid
+                      Sveriges enda försäkring
+                      {'\n'}
+                      helt utan bindningstid
                     </React.Fragment>
                   }
                 />
@@ -145,7 +149,9 @@ class OfferScreen extends React.Component {
                   <CheckedBullet
                     label={
                       <React.Fragment>
-                        Lägenheten är försäkrad{'\n'}utan begränsning
+                        Lägenheten är försäkrad
+                        {'\n'}
+                        utan begränsning
                       </React.Fragment>
                     }
                   />
@@ -153,8 +159,9 @@ class OfferScreen extends React.Component {
                 <CheckedBullet
                   label={
                     <React.Fragment>
-                      Maxersättning för prylarna{'\n'}i ditt hem är{' '}
-                      {isStudent ? '200 000' : '1 miljon'} kr
+                      Maxersättning för prylarna
+                      {'\n'}i ditt hem är {isStudent ? '200 000' : '1 miljon'}{' '}
+                      kr
                     </React.Fragment>
                   }
                 />
@@ -183,7 +190,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../../../assets/icons/offer/legal/forkopsinformation.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Förköps-{'\n'}information
+                      Förköps-
+                      {'\n'}
+                      information
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -200,7 +209,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../../../assets/icons/offer/legal/forsakringsvillkor.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Försäkrings-{'\n'}villkor
+                      Försäkrings-
+                      {'\n'}
+                      villkor
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -215,7 +226,9 @@ class OfferScreen extends React.Component {
                       source={require('../../../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
-                      Personuppgifts-{'\n'}policy
+                      Personuppgifts-
+                      {'\n'}
+                      policy
                     </Text>
                   </View>
                 </TouchableOpacity>

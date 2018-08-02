@@ -20,10 +20,12 @@ import { PERILS_SET_ACTIVE } from '../state/actions';
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
     flex: 1,
   },
   scrollContent: {
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     paddingRight: 7,
     fontFamily: 'circular',
     fontSize: 15,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     textAlign: 'center',
     marginTop: 7,
     marginBottom: 10,

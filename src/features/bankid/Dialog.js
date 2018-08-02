@@ -21,16 +21,18 @@ import {
   BANKID_DIALOG_DISMISSED,
 } from './actions';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   dialog: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
     justifyContent: 'center',
     zIndex: 100,
   },
   content: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
     borderRadius: 8,
     paddingTop: 10,
   },
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '100%',
     borderTopWidth: 1,
-    borderTopColor: '#F9FAFC',
+    borderTopColor: colors.OFF_WHITE,
     flexDirection: 'row',
   },
   button: {
@@ -61,13 +63,13 @@ const styles = StyleSheet.create({
   },
   buttonRightBorder: {
     borderRightWidth: 1,
-    borderRightColor: '#F9FAFC',
+    borderRightColor: colors.OFF_WHITE,
   },
   buttonText: {
     fontFamily: 'circular',
     fontSize: 18,
     lineHeight: 25,
-    color: '#651EFF',
+    color: colors.PURPLE,
     textAlign: 'center',
   },
   buttonTextIsPrimary: {
