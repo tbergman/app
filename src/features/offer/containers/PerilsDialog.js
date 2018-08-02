@@ -30,7 +30,7 @@ import {
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
-import { colors } from '../../style';
+import { colors } from '../../../style';
 
 const { width: viewportWidth } = Dimensions.get('window');
 

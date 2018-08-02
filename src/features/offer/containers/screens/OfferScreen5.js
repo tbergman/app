@@ -25,7 +25,8 @@ import { INSURANCE_TYPES } from '../../../../constants';
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
 
-import { colors } from '../../style';
+import { colors } from '../../../../style';
+import { isApartmentOwner, isStudentInsurance } from '../../../../utils';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -111,14 +112,7 @@ const hitSlop = {
 
 class OfferScreen extends React.Component {
   render() {
-    const insuranceType = this.props.insurance.insuranceType;
-    const isApartmentOwner =
-      insuranceType === INSURANCE_TYPES.BRF ||
-      insuranceType === INSURANCE_TYPES.SUBLET_BRF ||
-      insuranceType === INSURANCE_TYPES.STUDENT_BRF;
-    const isStudent =
-      insuranceType === INSURANCE_TYPES.STUDENT_BRF ||
-      insuranceType === INSURANCE_TYPES.STUDENT_RENT;
+    const { insurance } = this.props;
     const regular = require('../../../../../assets/offer/hero/legal.png');
     const spacious = require('../../../../../assets/offer/hero/legal-xl.png');
     const heroImage =
@@ -145,7 +139,7 @@ class OfferScreen extends React.Component {
                     </React.Fragment>
                   }
                 />
-                {isApartmentOwner && (
+                {isApartmentOwner(insurance) && (
                   <CheckedBullet
                     label={
                       <React.Fragment>
@@ -160,7 +154,8 @@ class OfferScreen extends React.Component {
                   label={
                     <React.Fragment>
                       Maxersättning för prylarna
-                      {'\n'}i ditt hem är {isStudent ? '200 000' : '1 miljon'}{' '}
+                      {'\n'}i ditt hem är{' '}
+                      {isStudentInsurance(insurance) ? '200 000' : '1 miljon'}{' '}
                       kr
                     </React.Fragment>
                   }

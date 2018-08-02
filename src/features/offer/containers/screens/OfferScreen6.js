@@ -22,7 +22,7 @@ import {
 } from '../../../../services/DimensionSizes';
 
 const animationModule = require('../../../../../assets/animations/claims_demo.json');
-import { colors } from '../../style';
+import { colors } from '../../../../style';
 
 const { width: viewportWidth } = Dimensions.get('window');
 

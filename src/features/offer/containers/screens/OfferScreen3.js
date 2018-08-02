@@ -9,6 +9,7 @@ import {
 } from '../../../../services/DimensionSizes';
 import { PerilsOverview } from '../PerilsOverview';
 import { Hero } from '../../components/Hero';
+import { isStudentInsurance } from '../../../../utils';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
 
 class OfferScreen extends React.Component {
   render() {
+    const { insurance } = this.props;
     const category = this.props.insurance.categories[2];
     const regular = require('../../../../../assets/offer/hero/stuff.png');
     const spacious = require('../../../../../assets/offer/hero/stuff-xl.png');
@@ -36,7 +38,7 @@ class OfferScreen extends React.Component {
             <React.Fragment>
               Med Hedvig får du ett komplett skydd för dina prylar.
               Drulleförsäkring ingår och täcker prylar värda upp till
-              50&nbsp;000&nbsp;kr&nbsp;styck.
+              {isStudentInsurance(insurance) ? ' 25 000' : ' 50 000'} kr styck.
             </React.Fragment>
           }
           perils={category.perils}
@@ -49,9 +51,7 @@ class OfferScreen extends React.Component {
   }
 }
 
-const OfferContainer = connect(
-  null,
+export default connect(
+  (state) => ({ insurance: state.insurance }),
   null,
 )(OfferScreen);
-
-export default OfferContainer;

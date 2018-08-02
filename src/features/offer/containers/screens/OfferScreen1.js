@@ -17,7 +17,7 @@ import {
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
 
-import { colors } from '../../style';
+import { colors } from '../../../../style';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',

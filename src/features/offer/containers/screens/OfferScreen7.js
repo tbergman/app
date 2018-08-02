@@ -16,7 +16,7 @@ import {
 } from '../../../../services/DimensionSizes';
 import { Hero } from '../../components/Hero';
 
-import { colors } from '../../style';
+import { colors } from '../../../../style';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
