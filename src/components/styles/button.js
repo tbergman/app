@@ -1,18 +1,20 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'circular',
     fontSize: 16,
     lineHeight: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
   },
   buttonTextColorSelected: {
-    color: '#ffffff',
+    color: colors.WHITE,
   },
   buttonTextColorNotSelected: {
-    color: '#651eff',
+    color: colors.PURPLE,
   },
 });
 

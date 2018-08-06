@@ -21,6 +21,8 @@ import {
   V_SPACIOUS,
 } from '../../services/DimensionSizes';
 
+import { colors } from '../../style';
+
 const animationModule = require('../../../assets/animations/claims_demo.json');
 
 const { width: viewportWidth } = Dimensions.get('window');
@@ -28,7 +30,7 @@ const { width: viewportWidth } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
   },
   content: {
     flex: 1,
@@ -44,12 +46,12 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 23,
     lineHeight: 32,
-    color: '#414150',
+    color: colors.OFF_BLACK,
     marginBottom: 0,
     textAlign: 'center',
   },
   overlay: {
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
       [V_SPACIOUS]: 30,
     }[verticalSizeClass],
     borderRadius: 15,
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
   },
   animation: {
     height: viewportWidth * 1.62,

@@ -30,6 +30,8 @@ import {
 import { Description } from './Description';
 import { Heading } from './Heading';
 
+import { colors } from '../../style';
+
 const { width: viewportWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   dialog: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.TRANSPARENT,
     justifyContent: 'center',
     zIndex: 102,
     elevation: 1,
@@ -55,24 +57,24 @@ const styles = StyleSheet.create({
   },
   dialogContent: {
     position: 'relative',
-    backgroundColor: '#F9FAFC',
+    backgroundColor: colors.OFF_WHITE,
     borderRadius: 3,
     overflow: 'hidden',
   },
   dialogHeading: {
     fontFamily: 'circular',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     fontSize: 23,
     lineHeight: 32,
     marginTop: 15,
   },
   contentWrapper: {
-    backgroundColor: 'white',
+    backgroundColor: colors.WHITE,
     flex: 1,
   },
   dialogSubHeading: {
     fontFamily: 'circular',
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     fontSize: 17,
     marginTop: 5,
   },

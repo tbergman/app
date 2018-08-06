@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../../style';
+
 const styles = StyleSheet.create({
   container: {
     zIndex: 5,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: '#651eff',
+    borderColor: colors.PURPLE,
     minHeight: 20,
     paddingTop: 10,
     paddingRight: 18,
@@ -19,10 +21,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   containerEnabled: {
-    borderColor: '#651eff',
+    borderColor: colors.PURPLE,
   },
   containerDisabled: { borderColor: '#d7d7dc' },
-  textEnabled: { color: '#651eff' },
+  textEnabled: { color: colors.PURPLE },
   textDisabled: { color: '#d7d7dc' },
 });
 

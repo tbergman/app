@@ -1,11 +1,13 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   description: {
     fontFamily: 'circular',
     fontSize: 17,
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     lineHeight: 23,
   },
 });

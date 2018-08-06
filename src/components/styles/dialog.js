@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     borderRadius: 8,
   },
   heading: {
@@ -32,11 +34,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderTopWidth: 1,
-    borderTopColor: '#f9fafc',
-    borderRightColor: '#f9fafc',
+    borderTopColor: colors.OFF_WHITE,
+    borderRightColor: colors.OFF_WHITE,
   },
   dialogButtonBorderRight: { borderRightWidth: 1 },
-  buttonText: { fontFamily: 'circular', color: '#651eff', fontSize: 16 },
+  buttonText: { fontFamily: 'circular', color: colors.PURPLE, fontSize: 16 },
 });
 
 export class DialogContainer extends React.Component {

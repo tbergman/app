@@ -25,10 +25,12 @@ import { INSURANCE_TYPES } from '../../constants';
 import { CheckedBullet } from './CheckedBullet';
 import { Hero } from './Hero';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.WHITE,
     flex: 1,
   },
   scrollContent: {
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     fontFamily: 'circular-bold',
     fontSize: 23,
     lineHeight: 32,
-    color: '#414150',
+    color: colors.OFF_BLACK,
     marginBottom: 10,
     textAlign: 'center',
   },
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
       [V_REGULAR]: 15,
       [V_COMPACT]: 14,
     }[verticalSizeClass],
-    color: '#9B9BAA',
+    color: colors.DARK_GRAY,
     textAlign: 'center',
     marginTop: 7,
     marginBottom: 10,

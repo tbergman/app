@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
-  profileContainer: { flex: 1, backgroundColor: '#ffffff' },
+  profileContainer: { flex: 1, backgroundColor: colors.WHITE },
   charityParagraph: {
     fontFamily: 'circular',
-    color: '#9b9baa',
+    color: colors.DARK_GRAY,
     fontSize: 14,
     textAlign: 'center',
     marginRight: 32,
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
   },
   charitySignature: {
     fontFamily: 'circular',
-    color: '#414150',
+    color: colors.OFF_BLACK,
     textAlign: 'center',
     marginRight: 44,
     marginLeft: 44,
