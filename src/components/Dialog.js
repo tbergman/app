@@ -17,7 +17,6 @@ import {
   ButtonsContainer,
 } from './styles/dialog';
 import { DialogButton } from './Button';
-import { colors } from '../style';
 
 // TODO Clean up this mess
 
