@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +19,10 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     zIndex: 100,
     elevation: 1,
+    ...ifIphoneX({
+      height: 89,
+      paddingTop: 25,
+    }),
   },
   emptyHeaderItem: { width: 40, height: 40 },
 });
