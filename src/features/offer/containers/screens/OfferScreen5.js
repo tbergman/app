@@ -21,7 +21,6 @@ import {
   H_REGULAR,
   H_COMPACT,
 } from '../../../../services/DimensionSizes';
-import { INSURANCE_TYPES } from '../../../../constants';
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
 
