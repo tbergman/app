@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimensions, BackHandler, Text, StyleSheet } from 'react-native';
-import PopupDialog from 'react-native-popup-dialog';
+import {
+  Dimensions,
+  BackHandler,
+  Text,
+  StyleSheet,
+  Modal,
+  View,
+  StatusBar,
+} from 'react-native';
 import { theme } from '../style-theme';
 import {
   DialogContainer,
@@ -16,8 +23,10 @@ import { colors } from '../style';
 
 const styles = StyleSheet.create({
   dialogStyle: {
-    backgroundColor: colors.TRANSPARENT,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -32,6 +41,10 @@ const styles = StyleSheet.create({
 export default class Dialog extends React.Component {
   static propTypes = {
     message: PropTypes.object.isRequired, // TODO Better definition of message type
+  };
+
+  state = {
+    visible: false,
   };
 
   componentDidMount() {
@@ -51,14 +64,20 @@ export default class Dialog extends React.Component {
 
   componentDidUpdate() {
     if (this.props.message.title) {
-      this.popupDialog.show();
+      this.open();
     } else {
-      this.popupDialog.dismiss();
+      this.close();
     }
   }
 
+  open() {
+    if (this.state.visible) return;
+    this.setState({ visible: true });
+  }
+
   close() {
-    this.popupDialog.dismiss();
+    if (!this.state.visible) return;
+    this.setState({ visible: false });
     this.props.emptyDialog();
   }
 
@@ -100,29 +119,25 @@ export default class Dialog extends React.Component {
   }
 
   render() {
-    let window = Dimensions.get('window');
-    let width = window.width - 2 * theme.mobile.margin.big;
+    const window = Dimensions.get('window');
+    const width = window.width - 2 * theme.mobile.margin.big;
     return (
-      <PopupDialog
-        ref={(popupDialog) => {
-          this.popupDialog = popupDialog;
-        }}
-        dismissOnTouchOutside={false}
-        width={width}
-        height={1}
-        style={styles.possiblyUnusedStyle}
-        dialogStyle={styles.dialogStyle}
-      >
-        {this.props.message.title ? (
-          <DialogContainer>
-            <Heading>{this.props.message.title}</Heading>
-            <Paragraph>{this.props.message.paragraph}</Paragraph>
-            {this.buttons()}
-          </DialogContainer>
-        ) : (
-          <Text />
-        )}
-      </PopupDialog>
+      <Modal visible={this.state.visible} transparent animationType="fade">
+        <StatusBar animated barStyle="light-content" />
+        <View style={styles.dialogStyle}>
+          <View style={{ width }}>
+            {this.props.message.title ? (
+              <DialogContainer>
+                <Heading>{this.props.message.title}</Heading>
+                <Paragraph>{this.props.message.paragraph}</Paragraph>
+                {this.buttons()}
+              </DialogContainer>
+            ) : (
+              <Text />
+            )}
+          </View>
+        </View>
+      </Modal>
     );
   }
 }
