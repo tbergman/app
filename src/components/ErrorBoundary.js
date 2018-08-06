@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   helpText: {
     fontSize: 17,
-    color: 'white',
+    color: colors.WHITE,
     fontWeight: '600',
   },
   reloadButton: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   reloadText: {
     fontSize: 17,
-    color: '#0F007A',
+    color: colors.BLACK_PURPLE,
     padding: 5,
     fontWeight: '600',
   },

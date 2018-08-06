@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
+import { colors } from '../../../style';
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9fafc' },
+  container: { flex: 1, backgroundColor: colors.OFF_WHITE },
   header: {
     paddingTop: 22,
     paddingRight: 24,
     paddingBottom: 12,
     paddingLeft: 24,
-    backgroundColor: '#f9fafc',
+    backgroundColor: colors.OFF_WHITE,
   },
   categoriesContainer: {
     paddingTop: 8,
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     marginBottom: 8,
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     paddingTop: 16,
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -51,14 +53,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   perilsContainer: {
-    borderTopColor: '#f9fafc',
+    borderTopColor: colors.OFF_WHITE,
     borderTopWidth: 1,
     paddingTop: 16,
     paddingBottom: 16,
     flexWrap: 'wrap',
   },
   perilsHelpText: {
-    borderTopColor: '#f9fafc',
+    borderTopColor: colors.OFF_WHITE,
     borderTopWidth: 1,
     height: 31,
     justifyContent: 'center',

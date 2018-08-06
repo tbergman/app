@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../../style';
+
 const styles = StyleSheet.create({
-  carouselContainer: { flex: 1, backgroundColor: '#ffffff' },
+  carouselContainer: { flex: 1, backgroundColor: colors.WHITE },
   alignedCarouselItems: { flex: 1, alignItems: 'center', paddingTop: 32 },
   carouselTexts: { marginTop: 30 },
   imageCarouselContainer: { height: 185 },
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
   carouselParagraph: {
     fontFamily: 'circular',
     fontSize: 16,
-    color: '#9b9baa',
+    color: colors.DARK_GRAY,
     textAlign: 'center',
     marginRight: 40,
     marginBottom: 40,
