@@ -17,8 +17,8 @@ import {
 } from './styles/dashboard';
 import { StyledPassiveText, StyledHeading } from '../../components/styles/text';
 
-import { INSURANCE_TYPES } from '../../constants';
 import { insuranceActions } from '../../../hedvig-redux';
+import { isApartmentOwner, isStudentInsurance } from 'src/utils';
 
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
@@ -87,9 +87,7 @@ class Dashboard extends React.Component {
                 />
                 <StyledPassiveText>Din självrisk är 1 500 kr</StyledPassiveText>
               </StyledConditionRow>
-              {insurance.insuranceType === INSURANCE_TYPES.BRF ||
-              insurance.insuranceType === INSURANCE_TYPES.SUBLET_BRF ||
-              insurance.insuranceType === INSURANCE_TYPES.STUDENT_BRF ? (
+              {isApartmentOwner(insurance) ? (
                 <StyledConditionRow>
                   <StyledDashboardHeaderIcon
                     source={require('../../../assets/icons/my_insurance/aktiv.png')}
@@ -104,7 +102,10 @@ class Dashboard extends React.Component {
                   source={require('../../../assets/icons/my_insurance/pris.png')}
                 />
                 <StyledPassiveText>
-                  Prylarna försäkras till totalt 1 000 000 kr
+                  Prylarna försäkras till totalt{' '}
+                  {isStudentInsurance(insurance)
+                    ? '200 000 kr'
+                    : '1 000 000 kr'}
                 </StyledPassiveText>
               </StyledConditionRow>
               <StyledConditionRow>
