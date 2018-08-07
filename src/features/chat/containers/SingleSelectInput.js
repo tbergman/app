@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
-import { WebBrowser } from 'expo';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
@@ -58,7 +57,7 @@ class SingleSelectInput extends React.Component {
               } else if (choice.type === 'link' && choice.webUrl !== null) {
                 selectChoice(message, choice);
                 done(message);
-                WebBrowser.openBrowserAsync(choice.webUrl);
+                Linking.openURL(choice.webUrl);
               } else if (choice.type === 'trustly') {
                 startTrustly(choice.id);
                 selectChoice(message, choice);

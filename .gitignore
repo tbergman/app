@@ -45,3 +45,13 @@ pids
 .expo/
 *.ipa
 *.apk
+
+# ios
+ios/Pods
+xcuserdata/
+
+# android
+.idea/
+.gradle/
+.settings/
+build/

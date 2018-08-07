@@ -1,24 +1,13 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { Permissions, Notifications } from 'expo';
-
-import { pushNotificationActions } from '../../hedvig-redux';
+import { takeLatest } from 'redux-saga/effects';
 
 const requestPush = function*() {
-  const { status } = yield call(
-    Permissions.askAsync,
-    Permissions.NOTIFICATIONS,
-  );
-  if (status !== 'granted') {
-    return yield put({
-      type: 'PUSH_NOTIFICATIONS/REQUEST_NOT_GRANTED',
-    });
-  }
-  return yield call(registerPush);
+  return yield;
+  // TODO Do something here
 };
 
 const registerPush = function*() {
-  const token = yield call(Notifications.getExpoPushTokenAsync);
-  return yield put(pushNotificationActions.registerPushToken(token));
+  return yield;
+  // TODO Do something here
 };
 
 export const requestPushSaga = function*() {

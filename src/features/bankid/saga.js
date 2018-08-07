@@ -1,6 +1,4 @@
 import { Linking, Platform } from 'react-native';
-import { Constants } from 'expo';
-
 import {
   call,
   take,
@@ -30,6 +28,7 @@ import {
 import { APP_STATE_CHANGE } from '../../actions/appState';
 
 import { types } from '../../../hedvig-redux';
+import { linkingUri } from '../../constants';
 
 const COLLECT_DELAY_MS = 1000;
 const MAX_TRIES_COLLECT = 1000;
@@ -45,9 +44,7 @@ const takeLeading = (pattern, saga, ...args) =>
   });
 
 const buildBankIdClientUrl = (autoStartToken) => {
-  const params = `?autostarttoken=${autoStartToken}&redirect=${
-    Constants.linkingUri
-  }`;
+  const params = `?autostarttoken=${autoStartToken}&redirect=${linkingUri}`;
   const androidBankIdClientUrl = `bankid:///${params}`;
   const iOsBankIdClientUrl = `https://app.bankid.com/${params}`;
   const bankIdClientUrl =

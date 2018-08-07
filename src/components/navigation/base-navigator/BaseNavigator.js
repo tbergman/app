@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { Constants } from 'expo';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { MarketingCarousel } from '../../../features/marketing/MarketingCarousel';
 import Dialog from '../../../containers/Dialog';
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.WHITE,
-    paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+    paddingTop: Platform.OS === 'ios' ? 20 : getStatusBarHeight(),
   },
   tabBar: {
     flexDirection: 'row',

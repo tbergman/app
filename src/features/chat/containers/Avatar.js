@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet } from 'react-native';
-import { DangerZone } from 'expo';
 import { connect } from 'react-redux';
+import Lottie from 'lottie-react-native';
 
 import { colors } from '../../../style';
-
-const { Lottie } = DangerZone;
 
 const styles = StyleSheet.create({
   avatar: { backgroundColor: colors.TRANSPARENT },

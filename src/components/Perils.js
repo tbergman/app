@@ -1,6 +1,12 @@
 import React from 'react';
-import { View, Dimensions, BackHandler, Image, StyleSheet } from 'react-native';
-import { WebBrowser } from 'expo';
+import {
+  View,
+  Dimensions,
+  BackHandler,
+  Image,
+  StyleSheet,
+  Linking,
+} from 'react-native';
 import { default as SnapCarousel } from 'react-native-snap-carousel';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -82,9 +88,7 @@ class Perils extends React.Component {
         <View style={styles.policyLinkContainer}>
           <TextButton
             title="Läsa mer"
-            onPress={() =>
-              WebBrowser.openBrowserAsync(this.getItem().policyUrl)
-            }
+            onPress={() => Linking.openUrl(this.getItem().policyUrl)}
           />
         </View>
       );

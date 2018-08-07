@@ -10,7 +10,6 @@ import ChatTextInput from './containers/ChatTextInput';
 import DateInput from './containers/DateInput';
 import MultipleSelectInput from './containers/MultipleSelectInput';
 import SingleSelectInput from './containers/SingleSelectInput';
-import PhotoInput from './containers/PhotoInput';
 import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
@@ -32,7 +31,6 @@ const inputComponentMap = {
   number: <ChatNumberInput />,
   single_select: <SingleSelectInput />,
   date_picker: <DateInput />,
-  photo_upload: <PhotoInput />,
   bankid_collect: <BankIdCollectInput />,
   paragraph: <ParagraphInput />,
   audio: <AudioInput />,

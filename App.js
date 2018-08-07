@@ -24,7 +24,6 @@ import { tokenStorageSaga } from './src/sagas/TokenStorage';
 import { logoutSaga } from './src/sagas/logout';
 import { Router } from './src/components/navigation/Router';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
-import WithAssets from './src/components/WithAssets';
 import { Loader } from './src/components/Loader';
 import { appStateChange } from './src/actions/appState';
 import appStateChangeReducer from './src/reducers/appState';
@@ -312,13 +311,11 @@ export class App extends React.Component {
   render() {
     return (
       <ErrorBoundary raven={SentryInstance}>
-        <WithAssets>
-          <Provider store={this.store}>
-            <PersistGate loading={<Loader />} persistor={this.persistor}>
-              <Router />
-            </PersistGate>
-          </Provider>
-        </WithAssets>
+        <Provider store={this.store}>
+          <PersistGate loading={<Loader />} persistor={this.persistor}>
+            <Router />
+          </PersistGate>
+        </Provider>
       </ErrorBoundary>
     );
   }

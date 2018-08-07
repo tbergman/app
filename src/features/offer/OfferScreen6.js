@@ -11,8 +11,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { DangerZone } from 'expo';
-const { Lottie } = DangerZone;
+import Lottie from 'lottie-react-native';
 
 import {
   verticalSizeClass,

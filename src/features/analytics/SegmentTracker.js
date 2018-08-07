@@ -1,4 +1,6 @@
-import { Segment, DangerZone } from 'expo';
+import { Platform } from 'react-native';
+import { DangerZone } from 'expo';
+import Segment from 'react-native-analytics-segment-io';
 const { Branch } = DangerZone;
 
 // Segment Semantic Events (does not cover all events!)
@@ -120,7 +122,13 @@ const branchEventFromSegmentEvent = (event, properties) => {
 };
 
 export const SegmentTracker = {
-  initialize: (options) => Segment.initialize(options),
+  initialize: ({ androidWriteKey, iosWriteKey, ...options }) => {
+    if (Platform.OS === 'ios') {
+      Segment.setup(iosWriteKey, options);
+    } else if (Platform.OS === 'android') {
+      Segment.setup(androidWriteKey, options);
+    }
+  },
   identify: (userId, traits) => {
     // userId is optional in Segment
     if (userId) {
