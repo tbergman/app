@@ -18,7 +18,7 @@ import {
 import { StyledPassiveText, StyledHeading } from '../../components/styles/text';
 
 import { insuranceActions } from '../../../hedvig-redux';
-import { isApartmentOwner, isStudentInsurance } from 'src/utils';
+import { isApartmentOwner, isStudentInsurance } from '../../utils';
 
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
