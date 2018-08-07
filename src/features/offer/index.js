@@ -24,17 +24,17 @@ import {
 
 import { IS_VIEWING_OFFER } from '../../constants';
 import { Loader } from '../../components/Loader';
-import { PerilsDialog } from './PerilsDialog';
-import { OFFER_SET_ACTIVE_SCREEN } from './actions';
+import { PerilsDialog } from './containers/PerilsDialog';
+import { OFFER_SET_ACTIVE_SCREEN } from './state/actions';
 
-import OfferScreen1 from './OfferScreen1';
-import OfferScreen2 from './OfferScreen2';
-import OfferScreen3 from './OfferScreen3';
-import OfferScreen4 from './OfferScreen4';
-import OfferScreen5 from './OfferScreen5';
-import OfferScreen6 from './OfferScreen6';
-import OfferScreen7 from './OfferScreen7';
-import OfferScreen8 from './OfferScreen8';
+import OfferScreen1 from './containers/screens/OfferScreen1';
+import OfferScreen2 from './containers/screens/OfferScreen2';
+import OfferScreen3 from './containers/screens/OfferScreen3';
+import OfferScreen4 from './containers/screens/OfferScreen4';
+import OfferScreen5 from './containers/screens/OfferScreen5';
+import OfferScreen6 from './containers/screens/OfferScreen6';
+import OfferScreen7 from './containers/screens/OfferScreen7';
+import OfferScreen8 from './containers/screens/OfferScreen8';
 
 import {
   verticalSizeClass,
@@ -351,9 +351,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const OfferSwiperContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(OfferSwiper);
-
-export { OfferSwiperContainer as OfferSwiper };

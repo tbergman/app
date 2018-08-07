@@ -32,12 +32,12 @@ import statusMessageReducer from './src/reducers/statusMessage';
 import routerReducer from './src/reducers/router';
 import conversationReducer from './src/reducers/conversation';
 import { bankIdReducer } from './src/features/bankid/reducer';
-import { offerReducer } from './src/features/offer/reducer';
+import { offerReducer } from './src/features/offer/state/reducer';
 import { marketingReducer } from './src/features/marketing/reducer';
 import { appStateSaga } from './src/sagas/appState';
 import { keyboardSaga } from './src/sagas/keyboard';
 import { navigationSaga } from './src/sagas/navigation';
-import { handleCheckoutSaga } from './src/features/offer/saga';
+import { handleCheckoutSaga } from './src/features/offer/state/saga';
 import {
   bankIdSignSaga,
   bankIdCollectSaga,
@@ -176,9 +176,11 @@ const segmentMiddleware = createMiddleware(
     envConfig.SEGMENT_IOS_WRITE_KEY,
     SegmentTracker,
   ),
-  {
-    logger,
-  },
+  process.env.NODE_ENV === 'development'
+    ? {
+        logger,
+      }
+    : undefined,
 );
 
 export class App extends React.Component {

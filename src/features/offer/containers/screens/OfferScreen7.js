@@ -13,10 +13,10 @@ import {
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
-} from '../../services/DimensionSizes';
-import { Hero } from './Hero';
+} from '../../../../services/DimensionSizes';
+import { Hero } from '../../components/Hero';
 
-import { colors } from '../../style';
+import { colors } from '../../../../style';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -137,8 +137,8 @@ class OfferScreen extends React.Component {
     const insuranceName = R.find(
       R.propEq('currentInsurerName', currentInsurerName),
     )(insuranceNames).displayName;
-    const regular = require('../../../assets/offer/hero/switch.png');
-    const spacious = require('../../../assets/offer/hero/switch-xl.png');
+    const regular = require('../../../../../assets/offer/hero/switch.png');
+    const spacious = require('../../../../../assets/offer/hero/switch-xl.png');
     const heroImage =
       {
         [V_SPACIOUS]: spacious,

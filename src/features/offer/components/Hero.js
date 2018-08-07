@@ -5,7 +5,7 @@ import {
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
-} from '../../services/DimensionSizes';
+} from '../../../services/DimensionSizes';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
