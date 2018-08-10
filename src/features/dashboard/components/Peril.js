@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 5,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 12,
     color: colors.DARK_GRAY,
     textAlign: 'center',

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   heading: {
-    fontFamily: 'merriweather',
+    fontFamily: 'Merriweather-Light',
     fontSize: 24,
     marginTop: 24,
     marginBottom: 16,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   paragraph: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
     marginBottom: 24,
     paddingRight: 16,
@@ -38,7 +38,11 @@ const styles = StyleSheet.create({
     borderRightColor: colors.OFF_WHITE,
   },
   dialogButtonBorderRight: { borderRightWidth: 1 },
-  buttonText: { fontFamily: 'circular', color: colors.PURPLE, fontSize: 16 },
+  buttonText: {
+    fontFamily: 'CircularStd-Book',
+    color: colors.PURPLE,
+    fontSize: 16,
+  },
 });
 
 export class DialogContainer extends React.Component {

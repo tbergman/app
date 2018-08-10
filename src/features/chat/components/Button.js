@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   buttonColorNotSelected: { backgroundColor: colors.WHITE },
   buttonHidden: { opacity: 0 },
   buttonText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
     lineHeight: 20,
     backgroundColor: colors.TRANSPARENT,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.TURQUOISE,
     borderColor: colors.TURQUOISE,
   },
-  backToOfferText: { color: colors.WHITE, fontFamily: 'circular' },
+  backToOfferText: { color: colors.WHITE, fontFamily: 'CircularStd-Book' },
   sendButton: { width: 40, height: 40 },
   closeButton: { width: 24, height: 24 },
   restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },

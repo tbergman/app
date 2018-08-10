@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontSize: 20,
     textAlign: 'center',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlignVertical: 'center',
   },
   labelIsFirst: {

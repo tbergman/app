@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   dialogHeading: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.OFF_BLACK,
     fontSize: 23,
     lineHeight: 32,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dialogSubHeading: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 17,
     marginTop: 5,

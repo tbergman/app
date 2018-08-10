@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       [V_REGULAR]: 25,
       [V_SPACIOUS]: 35,
     }[verticalSizeClass],
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 23,
     lineHeight: 32,
     color: colors.OFF_BLACK,

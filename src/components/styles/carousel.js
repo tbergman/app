@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   carouselTexts: { marginTop: 30 },
   imageCarouselContainer: { height: 185 },
   carouselHeading: {
-    fontFamily: 'merriweather',
+    fontFamily: 'Merriweather-Light',
     fontSize: 24,
     textAlign: 'center',
     paddingBottom: 24,
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginLeft: 40,
   },
   carouselParagraph: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
     color: colors.DARK_GRAY,
     textAlign: 'center',

@@ -2,18 +2,16 @@ import 'babel-polyfill';
 import React from 'react';
 import { AppState, Platform, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
-import { Notifications, DangerZone } from 'expo';
-import Sentry from 'sentry-expo';
+import { Sentry } from 'react-native-sentry';
 import createRavenMiddleware from 'raven-for-redux';
-import {
-  ActionSheetProvider,
-  connectActionSheet,
-} from '@expo/react-native-action-sheet';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { createMiddleware } from 'redux-beacon';
 import logger from '@redux-beacon/logger';
 import uuidv4 from 'uuid/v4';
+import Branch from 'react-native-branch';
+import codePush from 'react-native-code-push';
+import firebase from 'react-native-firebase';
 
 import * as hedvigRedux from './hedvig-redux';
 import { envConfig } from './hedvig-redux/env-config';
@@ -86,7 +84,9 @@ import {
   MARKETING_CHAT_START,
 } from './src/features/marketing/actions';
 
-const { Branch } = DangerZone;
+Sentry.config(
+  'https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600',
+).install();
 
 // Fix HMR
 let SentryInstance = Sentry;
@@ -180,7 +180,7 @@ const segmentMiddleware = createMiddleware(
   },
 );
 
-export class App extends React.Component {
+class App extends React.Component {
   constructor() {
     super();
     const conversationPersistConfig = {
@@ -264,14 +264,6 @@ export class App extends React.Component {
     AppState.addEventListener('change', this._handleAppStateChange);
     getOrLoadToken(this.store.dispatch);
 
-    this.store.dispatch(
-      hedvigRedux.listenerActions.addListener(
-        hedvigRedux.types.SHOW_ACTION_SHEET,
-        ({ payload: { options, callback } }) =>
-          this.props.showActionSheetWithOptions(options, callback),
-      ),
-    );
-
     this._unsubscribeFromBranch = Branch.subscribe(({ error, params }) => {
       if (error) {
         SentryInstance.captureException(error);
@@ -287,7 +279,7 @@ export class App extends React.Component {
       });
     });
 
-    Notifications.addListener(this._handleNotification);
+    firebase.notifications().onNotification(this._handleNotification);
   }
 
   _handleNotification = () => {
@@ -321,18 +313,4 @@ export class App extends React.Component {
   }
 }
 
-export class AppWithActionSheet extends React.Component {
-  constructor() {
-    super();
-    this.WrappedComponent = connectActionSheet(App);
-  }
-  render() {
-    return (
-      <ActionSheetProvider>
-        <this.WrappedComponent />
-      </ActionSheetProvider>
-    );
-  }
-}
-
-export default AppWithActionSheet;
+export default codePush(App);

@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
   },
   listElementTexts: { flex: 1, marginRight: 16, marginLeft: 16 },
   listElementHeading: {
-    fontFamily: 'merriweather',
+    fontFamily: 'Merriweather-Light',
     color: colors.OFF_BLACK,
     fontSize: 16,
   },
   listElementText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 14,
   },

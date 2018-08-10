@@ -5,7 +5,7 @@ import { colors } from '../../style';
 
 const styles = StyleSheet.create({
   description: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 17,
     color: colors.DARK_GRAY,
     lineHeight: 23,

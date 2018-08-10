@@ -5,8 +5,8 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
+		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
 		544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */; };
 		64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */; };
 		75AE7C27B021493BB35790B6 /* libRNAnalyticsSegmentIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */; };
@@ -23,10 +23,18 @@
 		B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
 		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
 		BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */; };
+		C1EDB0F70A6140B199B39E02 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2C3D460FE642E781CC166C /* libRNFirebase.a */; };
 		EBB8117C1BFA0514F79CAF74 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		55A1D9D0211B1A2D00547027 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BBF0C9AB1BE487DBD223EA2 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 		55B67D2421198A1A0072177A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4936F9C6F2A4C50BAF01D19 /* RNAnalyticsSegmentIO.xcodeproj */;
@@ -37,11 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E11984458714DEDB8081244 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SoRay-ExtraBold.ttf"; path = "../assets/fonts/SoRay-ExtraBold.ttf"; sourceTree = "<group>"; };
+		4BBF0C9AB1BE487DBD223EA2 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.ttf"; path = "../assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		86E51AED3F4549CCAE78F83F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/@expo/vector-icons/vendor/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-hedvig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release.xcconfig"; sourceTree = "<group>"; };
+		AB2C3D460FE642E781CC166C /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalyticsSegmentIO.a; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* hedvig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hedvig.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +72,7 @@
 		C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
 		E4936F9C6F2A4C50BAF01D19 /* RNAnalyticsSegmentIO.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalyticsSegmentIO.xcodeproj; path = "../node_modules/react-native-analytics-segment-io/ios/RNAnalyticsSegmentIO.xcodeproj"; sourceTree = "<group>"; };
+		EEE722F0E32948AA96106D5E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +82,8 @@
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-hedvig.a in Frameworks */,
 				75AE7C27B021493BB35790B6 /* libRNAnalyticsSegmentIO.a in Frameworks */,
+				2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */,
+				C1EDB0F70A6140B199B39E02 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,14 +94,25 @@
 			isa = PBXGroup;
 			children = (
 				C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */,
+				1E11984458714DEDB8081244 /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55A1D9CC211B1A2D00547027 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55A1D9D1211B1A2D00547027 /* libRNFirebase.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		55B67D2021198A1A0072177A /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */,
+				EEE722F0E32948AA96106D5E /* libRNVectorIcons.a */,
+				AB2C3D460FE642E781CC166C /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -112,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				E4936F9C6F2A4C50BAF01D19 /* RNAnalyticsSegmentIO.xcodeproj */,
+				86E51AED3F4549CCAE78F83F /* RNVectorIcons.xcodeproj */,
+				4BBF0C9AB1BE487DBD223EA2 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -176,6 +204,38 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		935C86767E5B46569C02B309 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		52399E3225B34D6F85DC83C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		39AFD653301D4CE0922F25AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		2811A494BC0F4471AA22D9CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,12 +244,11 @@
 			buildConfigurationList = B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "hedvig" */;
 			buildPhases = (
 				23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */,
-				B5722AD01DFB7E3F0084848F /* Prepare Expo */,
 				B563863D1DB9693800A0598C /* Sources */,
 				B563863E1DB9693800A0598C /* Frameworks */,
 				B563863F1DB9693800A0598C /* Resources */,
 				AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */,
-				19D233B7204FDD7D0087ED51 /* Bundle Expo Assets */,
+				1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -232,6 +291,10 @@
 					ProductGroup = 55B67D2121198A1A0072177A /* Products */;
 					ProjectRef = E4936F9C6F2A4C50BAF01D19 /* RNAnalyticsSegmentIO.xcodeproj */;
 				},
+				{
+					ProductGroup = 55A1D9CC211B1A2D00547027 /* Products */;
+					ProjectRef = 4BBF0C9AB1BE487DBD223EA2 /* RNFirebase.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -241,6 +304,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		55A1D9D1211B1A2D00547027 /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = 55A1D9D0211B1A2D00547027 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		55B67D2521198A1A0072177A /* libRNAnalyticsSegmentIO.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -274,19 +344,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19D233B7204FDD7D0087ED51 /* Bundle Expo Assets */ = {
+		1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bundle Expo Assets";
+			name = "Upload Debug Symbols to Sentry";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eo pipefail\n\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n  echo \"Skipping asset bundling in debug mode.\"\n  exit 0\nfi\n\npushd ${SRCROOT}/..\nvalue=$(cat ~/.expo/PATH)\ndest=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nPATH=\"$PATH:$value\" exp bundle-assets --platform ios --dest \"$dest\"\npopd";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
 		23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -313,54 +383,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
-				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/api.amplitude.com.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoCaLimitedRsaCertificationAuthority.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaCA.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaDomainValidationCA.der",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B5722AD01DFB7E3F0084848F /* Prepare Expo */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Prepare Expo";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "set -eo pipefail\n\npushd ${SRCROOT}/..\nvalue=$(cat ~/.expo/PATH)\nPATH=\"$PATH:$value\" exp prepare-detached-build --platform ios\npopd\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -490,6 +522,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,6 +541,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.app;

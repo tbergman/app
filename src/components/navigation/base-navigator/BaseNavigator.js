@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   tabBarButtonText: {
     color: colors.DARK_GRAY,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
   },
   tabBarButtonTextIsActive: {

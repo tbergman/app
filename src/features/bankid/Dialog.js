@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   status: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 20,
     lineHeight: 28,
     marginTop: 20,
@@ -66,14 +66,14 @@ const styles = StyleSheet.create({
     borderRightColor: colors.OFF_WHITE,
   },
   buttonText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 25,
     color: colors.PURPLE,
     textAlign: 'center',
   },
   buttonTextIsPrimary: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
   },
   bankIdLink: { color: '#555555', textDecorationLine: 'underline' },
 });

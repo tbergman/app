@@ -6,5 +6,6 @@
   "search.exclude": {
     "**/node_modules": true
   },
-  "npm.enableScriptExplorer": true
+  "npm.enableScriptExplorer": true,
+  "java.configuration.updateBuildConfiguration": "automatic"
 }

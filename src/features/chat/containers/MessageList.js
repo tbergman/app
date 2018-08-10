@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   statusMessage: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 12,
     textAlign: 'right',
     paddingRight: 34,

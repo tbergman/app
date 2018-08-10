@@ -50,7 +50,7 @@ const slideStyles = StyleSheet.create({
     alignItems: 'center',
   },
   caption: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: {
       [H_SPACIOUS]: 22,
       [H_REGULAR]: 20,
@@ -179,7 +179,7 @@ const marketingCarouselStyles = StyleSheet.create({
     position: 'absolute',
     fontSize: 56,
     color: colors.WHITE,
-    fontFamily: 'soray',
+    fontFamily: 'SoRay-ExtraBold',
     textAlign: 'center',
     top: {
       [V_SPACIOUS]: 144,
@@ -267,7 +267,7 @@ const marketingCarouselStyles = StyleSheet.create({
   },
   footerCtaButtonText: {
     fontSize: 21,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: colors.WHITE,
@@ -283,7 +283,7 @@ const marketingCarouselStyles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   footerLoginText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
@@ -294,7 +294,7 @@ const marketingCarouselStyles = StyleSheet.create({
     color: colors.WHITE,
   },
   footerPrivacyText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
@@ -302,7 +302,7 @@ const marketingCarouselStyles = StyleSheet.create({
     marginRight: 8,
   },
   footerLoginCta: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,

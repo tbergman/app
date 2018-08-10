@@ -50,8 +50,10 @@ pids
 ios/Pods
 xcuserdata/
 
+
 # android
-.idea/
-.gradle/
-.settings/
+.gradle
 build/
+.idea
+.settings
+maven/
