@@ -5,23 +5,19 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
 		544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */; };
 		64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */; };
 		75AE7C27B021493BB35790B6 /* libRNAnalyticsSegmentIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */; };
 		AC5BB2AB4E954E429F91AB9E /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D398F87383C7495A9938B698 /* Merriweather-Light.ttf */; };
-		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
 		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
-		B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
 		B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
 		B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
 		B5693E921FABD46800307FA4 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
-		B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */; };
-		B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
-		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
 		BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */; };
 		C1EDB0F70A6140B199B39E02 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2C3D460FE642E781CC166C /* libRNFirebase.a */; };
 		EBB8117C1BFA0514F79CAF74 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */; };
@@ -204,38 +200,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		935C86767E5B46569C02B309 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		52399E3225B34D6F85DC83C1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		39AFD653301D4CE0922F25AB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		2811A494BC0F4471AA22D9CB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,13 +290,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
-				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
-				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
-				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
-				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
-				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */,
 				BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */,
