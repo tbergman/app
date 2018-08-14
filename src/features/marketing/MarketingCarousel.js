@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import {
   View,
   Image,
@@ -33,6 +34,7 @@ import {
 import * as marketingSelectors from './selectors';
 import * as analyticsSelectors from '../analytics/selectors';
 
+import { CHAT_SCREEN } from '../../navigation/screens/chat';
 import { colors } from '../../style';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
@@ -325,8 +327,14 @@ export default class MarketingCarousel extends React.Component {
   };
 
   handleCtaClick = () => {
-    const { activeMarketingScreenIndex, startChat, orderId } = this.props;
+    const {
+      activeMarketingScreenIndex,
+      startChat,
+      orderId,
+      componentId,
+    } = this.props;
     if (activeMarketingScreenIndex === 3) {
+      Navigation.setStackRoot(componentId, CHAT_SCREEN);
       startChat(orderId);
     } else {
       if (!this.swiper) {
@@ -337,7 +345,9 @@ export default class MarketingCarousel extends React.Component {
   };
 
   login = () => {
-    const { login, orderId } = this.props;
+    const { login, orderId, componentId } = this.props;
+
+    Navigation.setStackRoot(componentId, CHAT_SCREEN);
     login(orderId);
   };
 
@@ -353,7 +363,6 @@ export default class MarketingCarousel extends React.Component {
 
     return (
       <View style={marketingCarouselStyles.container}>
-        <StatusBar hidden />
         <View style={marketingCarouselStyles.swiperContainer}>
           <Swiper
             ref={(swiper) => (this.swiper = swiper)}

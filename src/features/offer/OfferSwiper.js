@@ -13,6 +13,7 @@ import {
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { Navigation } from 'react-native-navigation';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
 import {
@@ -190,6 +191,7 @@ class OfferSwiper extends React.Component {
   }
 
   _closeOffer = () => {
+    Navigation.dismissModal(this.props.componentId);
     this.props.closeOffer(this.props.analytics.orderId);
   };
 
@@ -221,7 +223,6 @@ class OfferSwiper extends React.Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar hidden />
         <View style={styles.swiperContainer}>
           {activeOfferScreenIndex === 0 ? (
             <View style={styles.closeOffer}>

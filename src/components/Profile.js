@@ -35,6 +35,7 @@ import { Loader } from './Loader';
 import 'moment/locale/sv';
 import * as R from 'ramda';
 import { StyledButtonText } from './styles/button';
+import { Spacing } from './Spacing';
 
 import { colors } from '../style';
 
@@ -266,6 +267,7 @@ export default class Profile extends React.Component {
             </StyledCharitySignature>
           </StyledListHeader>
           {this._maybeUserInfo()}
+          <Spacing height={15} />
           <LogoutButton onPress={this._logout} />
         </StyledList>
       </StyledProfileContainer>

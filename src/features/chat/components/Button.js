@@ -239,10 +239,6 @@ export class CloseButton extends React.Component {
 }
 
 export class RestartButton extends React.Component {
-  static propTypes = {
-    onPress: PropTypes.func.isRequired,
-  };
-
   static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
 
   render() {

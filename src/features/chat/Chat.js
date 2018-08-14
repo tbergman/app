@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, StyleSheet, AppState } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  AppState,
+  KeyboardAvoidingView,
+} from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -13,7 +20,6 @@ import SingleSelectInput from './containers/SingleSelectInput';
 import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
-import { NavBar } from '../../components/NavBar';
 import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
@@ -24,6 +30,14 @@ import {
   RestartButton,
 } from './components/Button';
 import * as selectors from './state/selectors';
+import { OFFER_SCREEN } from '../../navigation/screens/offer';
+import { getMainAppStack } from '../../navigation/getInitialStack';
+
+import {
+  RESTART_BUTTON,
+  CLOSE_BUTTON,
+  GO_TO_DASHBOARD_BUTTON,
+} from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
   multiple_select: <MultipleSelectInput />,
@@ -77,6 +91,9 @@ const getInputComponent = (messages) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    ...ifIphoneX({
+      marginBottom: 20,
+    }),
   },
   messages: {
     flex: 1,
@@ -92,13 +109,32 @@ const styles = StyleSheet.create({
 
 class Chat extends React.Component {
   static propTypes = {
-    showOffer: PropTypes.func.isRequired,
     getMessages: PropTypes.func.isRequired,
     getAvatars: PropTypes.func.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object),
     onboardingDone: PropTypes.bool,
   };
   static defaultProps = { onboardingDone: false };
+
+  constructor(props) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
+
+  navigationButtonPressed({ buttonId }) {
+    if (buttonId === RESTART_BUTTON.id) {
+      this._resetConversation();
+    }
+
+    if (buttonId === CLOSE_BUTTON.id) {
+      Navigation.dismissModal(this.props.componentId);
+    }
+
+    if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
+      Navigation.setRoot(getMainAppStack());
+    }
+  }
+
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -107,14 +143,36 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.navigation.isFocused()) {
-      this._startPolling();
-    }
+    this._startPolling();
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
     this._stopPolling();
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.onboardingDone) {
+      if (!nextProps.isModal) {
+        Navigation.mergeOptions(nextProps.componentId, {
+          topBar: {
+            leftButtons: [GO_TO_DASHBOARD_BUTTON],
+            rightButtons: [],
+          },
+        });
+      }
+    } else {
+      if (nextProps.showReturnToOfferButton) {
+        console.log('return to offer');
+      } else {
+        Navigation.mergeOptions(nextProps.componentId, {
+          topBar: {
+            leftButtons: [],
+            rightButtons: [RESTART_BUTTON],
+          },
+        });
+      }
+    }
   }
 
   _startPolling = () => {
@@ -140,7 +198,11 @@ class Chat extends React.Component {
 
   _showOffer = () => {
     this._stopPolling();
-    this.props.showOffer();
+    Navigation.showModal({
+      stack: {
+        children: [OFFER_SCREEN],
+      },
+    });
   };
 
   _showDashboard = () => {
@@ -153,34 +215,20 @@ class Chat extends React.Component {
   };
 
   render() {
-    let headerLeft;
-    let headerRight;
-    if (this.props.onboardingDone) {
-      headerLeft = <CloseButton onPress={this._showDashboard} />;
-    } else {
-      if (this.props.showReturnToOfferButton) {
-        headerRight = <BackToOfferButton onPress={this._showOffer} />;
-      } else {
-        headerRight = <RestartButton onPress={this._resetConversation} />;
-      }
-    }
-
     return (
-      <View style={styles.container}>
-        <NavBar
-          title="Hedvig"
-          headerLeft={headerLeft}
-          headerRight={headerRight}
-        />
-        <KeyboardAwareView>
-          <View style={styles.messages}>
-            {this.props.messages.length ? <MessageList /> : <Loader />}
-          </View>
-          <View style={styles.response}>
-            {getInputComponent(this.props.messages, this.props.navigation)}
-          </View>
-        </KeyboardAwareView>
-      </View>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={100}
+        behavior="padding"
+        enabled
+        style={styles.container}
+      >
+        <View style={styles.messages}>
+          {this.props.messages.length ? <MessageList /> : <Loader />}
+        </View>
+        <View style={styles.response}>
+          {getInputComponent(this.props.messages, this.props.navigation)}
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -219,9 +267,6 @@ const mapDispatchToProps = (dispatch) => {
         }),
       ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
-    showDashboard: () => dispatch(navigationActions.showDashboardAction()),
-    showOffer: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Offer' })),
   };
 };
 

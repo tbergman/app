@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../../style';
 
 const styles = StyleSheet.create({
-  profileContainer: { flex: 1, backgroundColor: colors.WHITE },
+  profileContainer: { flex: 1, backgroundColor: colors.PURPLE },
   charityParagraph: {
     fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,

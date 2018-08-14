@@ -34,16 +34,10 @@ class NavBar extends React.Component {
   render() {
     const { headerLeft, headerRight } = this.props;
     return (
-      <StyledNavBarContainer>
-        <View style={styles.headerItem}>{headerLeft}</View>
-        <View style={[styles.headerItem, styles.centerItem]}>
-          <Image
-            source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
-            style={styles.hedvigLogo}
-          />
-        </View>
-        <View style={styles.headerItem}>{headerRight}</View>
-      </StyledNavBarContainer>
+      <Image
+        source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
+        style={styles.hedvigLogo}
+      />
     );
   }
 }

@@ -3,7 +3,7 @@ import { put, select, take, takeEvery } from 'redux-saga/effects';
 import { API, API_ERROR, STATUS_MESSAGE } from '../actions/types';
 import { envConfig } from '../env-config';
 
-const api = function*(action) {
+export const api = function*(action) {
   let state = yield select();
   if (!state.authentication.token) {
     yield take('RECEIVED_TOKEN');

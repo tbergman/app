@@ -17,6 +17,7 @@ target 'hedvig' do
       "RCTText",
       "RCTVibration",
       "RCTWebSocket",
+      "RCTLinkingIOS",
       "DevSupport",
       "CxxBridge"
     ]
@@ -41,7 +42,7 @@ target 'hedvig' do
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
-
+  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
