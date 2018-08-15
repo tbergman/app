@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Image } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import { NavigationEvents } from '../../../navigation/events';
 
@@ -60,13 +61,14 @@ class FloatingActionButton extends React.Component {
 
   render() {
     const { fabActions } = this.props;
+
     return (
       <React.Fragment>
         <NavigationEvents onNavigationCommand={this.onNavigationCommand} />
         {this.state.show && (
           <FloatingAction
             color="#651eff"
-            distanceToEdge={55}
+            distanceToEdge={isIphoneX() ? 55 : 20}
             position="center"
             floatingIcon={
               <Image
