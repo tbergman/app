@@ -8,6 +8,7 @@ import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
 import Config from '@hedviginsurance/react-native-config';
 import firebase from 'react-native-firebase';
+import { Navigation } from 'react-native-navigation';
 
 import * as hedvigRedux from '../hedvig-redux';
 
@@ -88,8 +89,8 @@ if (!__DEV__) {
 }
 
 const eventsMap = {
-  'Navigation/NAVIGATE': trackScreenView(({ screenName }) => ({
-    screenName: screenName,
+  'Navigation/NAVIGATE': trackScreenView(({ payload: { screenName } }) => ({
+    screenName,
   })),
   [hedvigRedux.types.DELETE_TRACKING_ID]: resetSession(),
   [TRACK_SET_IDENTITY]: identify(({ payload }) => ({
@@ -215,7 +216,7 @@ Navigation.events().registerComponentDidAppearListener(({ componentName }) => {
   store.dispatch({
     type: 'Navigation/NAVIGATE',
     payload: {
-      screenName: componentId,
+      screenName: componentName,
     },
   });
 });
