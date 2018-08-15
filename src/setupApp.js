@@ -1,4 +1,4 @@
-import { AppState, Platform, AsyncStorage } from 'react-native';
+import { AppState, AsyncStorage } from 'react-native';
 import { Sentry } from 'react-native-sentry';
 import createRavenMiddleware from 'raven-for-redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -227,9 +227,7 @@ Branch.subscribe(({ error, params }) => {
 
 const state = store.getState();
 
-if (Platform.OS === 'android') {
-  store.dispatch({ type: 'PUSH_NOTIFICATIONS/REGISTER_PUSH' });
-}
+store.dispatch({ type: 'PUSH_NOTIFICATIONS/REGISTER_PUSH' });
 
 // Persist analytics orderId for reliable ecommerce event tracking
 // Storing in AsyncStorage so you get a new id each time you re-install the app
