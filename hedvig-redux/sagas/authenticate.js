@@ -1,4 +1,4 @@
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 import * as R from 'ramda';
 import { put, takeEvery } from 'redux-saga/effects';
 import { AUTHENTICATE, RECEIVED_TOKEN, VALIDATE_TOKEN } from '../actions/types';

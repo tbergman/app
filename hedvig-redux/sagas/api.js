@@ -1,4 +1,4 @@
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 import { delay } from 'redux-saga';
 import { put, select, take, takeEvery } from 'redux-saga/effects';
 import { API, API_ERROR, STATUS_MESSAGE } from '../actions/types';
