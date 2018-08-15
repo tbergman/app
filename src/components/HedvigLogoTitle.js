@@ -1,18 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, View, Image } from 'react-native';
-import { EmptyHeaderItem, StyledNavBarContainer } from './styles/navbar';
+import { StyleSheet, Image } from 'react-native';
 
 const styles = StyleSheet.create({
-  headerItem: {
-    width: '33%',
-  },
-  centerItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginTop: 6,
-  },
   hedvigLogo: {
     width: 96,
     height: 30,
@@ -21,18 +10,8 @@ const styles = StyleSheet.create({
   },
 });
 
-class NavBar extends React.Component {
-  static propTypes = {
-    headerLeft: PropTypes.element,
-    headerRight: PropTypes.element,
-  };
-  static defaultProps = {
-    headerLeft: <EmptyHeaderItem />,
-    headerRight: <EmptyHeaderItem />,
-  };
-
+export class HedvigLogoTitle extends React.Component {
   render() {
-    const { headerLeft, headerRight } = this.props;
     return (
       <Image
         source={require('../../assets/identity/hedvig_wordmark/hedvig_wordmark.png')}
@@ -41,5 +20,3 @@ class NavBar extends React.Component {
     );
   }
 }
-
-export { NavBar };

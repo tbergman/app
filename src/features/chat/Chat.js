@@ -174,7 +174,7 @@ class Chat extends React.Component {
           return {
             topBar: {
               leftButtons: [],
-              rightButtons: [SHOW_OFFER],
+              rightButtons: [SHOW_OFFER_BUTTON],
             },
           };
         }

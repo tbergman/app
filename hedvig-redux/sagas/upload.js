@@ -1,4 +1,4 @@
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 import { put, select, takeEvery } from 'redux-saga/effects';
 import uuidv4 from 'uuid/v4';
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from '../actions/types';

@@ -85,7 +85,6 @@ class SingleSelectInput extends React.Component {
               }
             }}
           />
-          )}
         </StyledRightAlignedOptions>
       );
     });

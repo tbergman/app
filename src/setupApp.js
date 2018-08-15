@@ -6,12 +6,11 @@ import { createMiddleware } from 'redux-beacon';
 import logger from '@redux-beacon/logger';
 import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 import firebase from 'react-native-firebase';
 
 import * as hedvigRedux from '../hedvig-redux';
 
-import nav from './reducers/nav';
 import { apiAndNavigateToChatSaga } from './sagas/apiAndNavigate';
 import { tokenStorageSaga } from './sagas/TokenStorage';
 import { logoutSaga } from './sagas/logout';
@@ -25,7 +24,6 @@ import { offerReducer } from './features/offer/reducer';
 import { marketingReducer } from './features/marketing/reducer';
 import { appStateSaga } from './sagas/appState';
 import { keyboardSaga } from './sagas/keyboard';
-import { navigationSaga } from './sagas/navigation';
 import { handleCheckoutSaga } from './features/offer/saga';
 import {
   bankIdSignSaga,
@@ -38,7 +36,6 @@ import { requestPushSaga, registerPushSaga } from './sagas/pushNotifications';
 import { chatStartSaga, chatLoginSaga } from './features/marketing/saga';
 import { DEEP_LINK_OPENED } from './features/deep-linking/actions';
 import { getOrLoadToken } from './services/TokenStorage';
-import navigationMiddleware from './middleware/navigation';
 import {
   setTrackingIdentitySaga,
   trackDeepLinkOpenedSaga,
@@ -91,9 +88,6 @@ if (!__DEV__) {
 }
 
 const eventsMap = {
-  'Navigation/NAVIGATE': trackScreenView(({ routeName }) => ({
-    screenName: routeName,
-  })),
   [hedvigRedux.types.DELETE_TRACKING_ID]: resetSession(),
   [TRACK_SET_IDENTITY]: identify(({ payload }) => ({
     userId: payload.userId,
@@ -172,14 +166,13 @@ const analyticsPersistConfig = {
   storage: AsyncStorage,
   whitelist: ['orderId'],
 };
-const additionalMiddleware = [segmentMiddleware, navigationMiddleware];
+const additionalMiddleware = [segmentMiddleware];
 if (ravenMiddleware) {
   additionalMiddleware.push(ravenMiddleware);
 }
 
 let store = hedvigRedux.configureStore({
   additionalReducers: {
-    nav,
     conversation: persistReducer(
       conversationPersistConfig,
       conversationReducer,
@@ -197,7 +190,6 @@ let store = hedvigRedux.configureStore({
     appStateSaga,
     keyboardSaga,
     tokenStorageSaga,
-    navigationSaga,
     logoutSaga,
     chatStartSaga,
     chatLoginSaga,

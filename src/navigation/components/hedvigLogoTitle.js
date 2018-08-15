@@ -6,4 +6,4 @@ export const HEDVIG_LOGO_TITLE_COMPONENT = {
 };
 
 export const register = (registerComponent) =>
-  registerComponent(HEDVIG_LOGO_TITLE_COMPONENT.name, () => NavBar);
+  registerComponent(HEDVIG_LOGO_TITLE_COMPONENT.name, () => HedvigLogoTitle);
