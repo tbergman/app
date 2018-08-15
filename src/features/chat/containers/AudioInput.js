@@ -56,8 +56,8 @@ class AudioInput extends React.Component {
   componentDidMount() {
     // TODO This cant be done if we dont have permissions probably
     this.prepareRecordingPath();
-    AudioRecorder.onProgress(this.onProgress);
-    AudioRecorder.onFinished(this.onFinished);
+    AudioRecorder.onProgress = this.onProgress;
+    AudioRecorder.onFinished = this.onFinished;
   }
 
   prepareRecordingPath = () => {
@@ -94,15 +94,17 @@ class AudioInput extends React.Component {
 
   onError = (err) => {
     // TODO Handle error
-    console.log(err); // eslint-disable-line no-console
+    console.error('Error!', err); // eslint-disable-line no-console
   };
 
   requestPermissions = async () => {
     if (Platform.OS !== 'android') {
+      console.log('Platform was not android, returning true');
       return true;
     }
 
     const status = await Permissions.check('microphone');
+    console.log('Status was: ', status);
     if (status !== 'authorized') {
       // TODO: Notifiy user if they need to take action
       return false;
@@ -143,9 +145,13 @@ class AudioInput extends React.Component {
   };
 
   startPlayback = () => {
-    const sound = new Sound(audioPath, '', this.onError);
-    this.setState({ isPlayingBack: true, sound });
-    sound.play(this.stopPlayback);
+    const sound = new Sound(audioPath, '', (error) => {
+      if (error) {
+        console.log('Got error when attempting to play back: ', error);
+      }
+      this.setState({ isPlayingBack: true, sound });
+      sound.play(this.stopPlayback);
+    });
   };
 
   stopPlayback = () => {
@@ -153,7 +159,7 @@ class AudioInput extends React.Component {
     if (sound) {
       sound.stop();
     }
-    this.setState({ isPlayingBack: false });
+    this.setState({ isPlayingBack: true });
   };
 
   render() {
@@ -169,8 +175,10 @@ class AudioInput extends React.Component {
     if (isPlayingBack) {
       return (
         <StyledMarginContainer>
-          <Text style={styles.playbackStatusText}>{playbackStatus}</Text>
-          <StopRecordingButton onPress={this.stopPlayback} />
+          <StyledRightAlignedOptions>
+            <Text style={styles.playbackStatusText}>{playbackStatus}</Text>
+            <StopRecordingButton onPress={this.stopPlayback} />
+          </StyledRightAlignedOptions>
         </StyledMarginContainer>
       );
     }

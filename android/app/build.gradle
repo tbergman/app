@@ -17,8 +17,14 @@ android {
     minSdkVersion 19
     versionCode 31
     versionName '2.0'
+    missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
 
     resValue "string", "build_config_package", "com.hedvig.app"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 
   splits {
@@ -57,14 +63,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-sound')
-    compile project(':react-native-sentry')
-    compile project(':react-native-firebase')
-    compile project(':react-native-code-push')
-    compile project(':react-native-branch')
-    compile project(':react-native-audio')
-    compile project(':react-native-analytics-segment-io')
-    compile project(':lottie-react-native')
   // Link dependencies
   compile project(':react-native-config')
   compile project(':rn-fetch-blob')
@@ -76,6 +74,10 @@ dependencies {
   compile project(':react-native-analytics-segment-io')
   compile project(':lottie-react-native')
   compile project(':react-native-code-push')
+
+  // React-Native-Navigation
+  implementation project(':react-native-navigation')
+  implementation 'com.android.support:design:27.1.1'
 
   // Firebase
   implementation project(':react-native-firebase')

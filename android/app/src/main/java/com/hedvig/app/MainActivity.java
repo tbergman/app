@@ -1,15 +1,10 @@
 package com.hedvig.app;
 
-import com.facebook.react.ReactActivity;
+import com.reactnativenavigation.NavigationActivity;
 import io.branch.rnbranch.*;
 import android.content.Intent;
 
-public class MainActivity extends ReactActivity {
-    @Override
-    protected String getMainComponentName() {
-        return "Hedvig";
-    }
-
+public class MainActivity extends NavigationActivity {
     @Override
     protected void onStart() {
         super.onStart();

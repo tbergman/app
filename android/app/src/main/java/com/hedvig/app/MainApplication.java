@@ -1,8 +1,9 @@
 package com.hedvig.app;
 
-import android.app.Application;
+import com.reactnativenavigation.NavigationApplication;
+import com.reactnativenavigation.react.NavigationReactNativeHost;
+import com.reactnativenavigation.react.ReactGateway;
 
-import com.facebook.react.ReactApplication;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import io.branch.rnbranch.RNBranchPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
@@ -19,6 +20,7 @@ import io.branch.referral.Branch;
 
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.Nullable;
 
 import com.zmxv.RNSound.RNSoundPackage;
 import io.sentry.RNSentryPackage;
@@ -30,36 +32,46 @@ import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 
-public class MainApplication extends Application implements ReactApplication {
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+public class MainApplication extends NavigationApplication {
+  @Override
+  protected ReactGateway createReactGateway() {
+    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), getPackages()) {
+      @Override
+      public boolean getUseDeveloperSupport() {
+        return isDebug();
+      }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new ReactNativeConfigPackage(),
-          new RNFetchBlobPackage(), new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
-          new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
-          new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(),
-          new AnalyticsPackage(), new LottiePackage());
-    }
+      @Override
+      protected String getJSMainModuleName() {
+        return "index";
+      }
 
-    @Override
-    protected String getJSBundleFile() {
-      return CodePush.getJSBundleFile();
-    }
+      @Nullable
+      @Override
+      protected String getJSBundleFile() {
+        return CodePush.getJSBundleFile();
+      }
+    };
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
+    return new ReactGateway(this, isDebug(), host);
+  }
 
   @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
+  public boolean isDebug() {
+    return BuildConfig.DEBUG;
+  }
+
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
+        new CodePush(BuildConfig.CODE_PUSH_DEPLOYMENT_KEY, getApplicationContext(), isDebug()), new RNSoundPackage(),
+        new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
+        new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
+        new LottiePackage());
+  }
+
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
   }
 
   @Override
