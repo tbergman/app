@@ -44,14 +44,7 @@ const styles = StyleSheet.create({
   },
   buttonTextColorSelected: { color: colors.WHITE },
   buttonTextColorNotSelected: { color: colors.PURPLE },
-  backToOfferButton: {
-    backgroundColor: colors.TURQUOISE,
-    borderColor: colors.TURQUOISE,
-  },
-  backToOfferText: { color: colors.WHITE, fontFamily: 'CircularStd-Book' },
   sendButton: { width: 40, height: 40 },
-  closeButton: { width: 24, height: 24 },
-  restartButton: { width: 40, height: 40, alignSelf: 'flex-end' },
   editMessageButton: { width: 24, height: 24, alignSelf: 'center' },
 });
 
@@ -170,24 +163,6 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
   }
 }
 
-export class BackToOfferButton extends React.Component {
-  static propTypes = {
-    onPress: PropTypes.func.isRequired,
-  };
-
-  render() {
-    const { onPress } = this.props;
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        style={[styles.buttonBase, styles.backToOfferButton]}
-      >
-        <Text style={styles.backToOfferText}>Fortsätt →</Text>
-      </TouchableOpacity>
-    );
-  }
-}
-
 export class SendButton extends React.Component {
   static propTypes = {
     onPress: PropTypes.func.isRequired,
@@ -212,42 +187,6 @@ export class SendButton extends React.Component {
         <Image
           source={require('../../../../assets/icons/chat/send.png')}
           style={styles.sendButton}
-        />
-      </TouchableOpacity>
-    );
-  }
-}
-
-export class CloseButton extends React.Component {
-  static propTypes = {
-    onPress: PropTypes.func.isRequired,
-  };
-
-  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
-
-  render() {
-    const { onPress } = this.props;
-    return (
-      <TouchableOpacity onPress={onPress} hitSlop={CloseButton._hitSlop}>
-        <Image
-          source={require('../../../../assets/icons/close/close_black.png')}
-          style={styles.closeButton}
-        />
-      </TouchableOpacity>
-    );
-  }
-}
-
-export class RestartButton extends React.Component {
-  static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
-
-  render() {
-    const { onPress } = this.props;
-    return (
-      <TouchableOpacity onPress={onPress} hitSlop={RestartButton._hitSlop}>
-        <Image
-          source={require('../../../../assets/icons/chat/restart.png')}
-          style={styles.restartButton}
         />
       </TouchableOpacity>
     );

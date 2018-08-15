@@ -20,7 +20,6 @@ import {
   StyledParagraphToggleContainer,
 } from './styles/carousel';
 import { NavigateBackButton, TextButton } from './Button';
-import { NavBar } from './NavBar';
 import { NavigationEvents } from '../navigation/events';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -107,17 +106,6 @@ class Perils extends React.Component {
     } else {
       return null;
     }
-  }
-
-  navbar() {
-    return (
-      <NavBar
-        title={this.navParams.title || 'Carousel'}
-        headerLeft={
-          <NavigateBackButton onPress={() => this.props.navigation.goBack()} />
-        }
-      />
-    );
   }
 
   _onSnapToItem = (slideIndex) => {

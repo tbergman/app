@@ -1,4 +1,4 @@
-import { NavBar } from '../../components/NavBar';
+import { HedvigLogoTitle } from '../../components/HedvigLogoTitle';
 
 export const HEDVIG_LOGO_TITLE_COMPONENT = {
   name: 'HedvigLogoTitle',
