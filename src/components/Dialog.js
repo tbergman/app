@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Modal,
   View,
-  StatusBar,
 } from 'react-native';
 import { theme } from '../style-theme';
 import {
@@ -122,7 +121,6 @@ export default class Dialog extends React.Component {
     const width = window.width - 2 * theme.mobile.margin.big;
     return (
       <Modal visible={this.state.visible} transparent animationType="fade">
-        <StatusBar animated barStyle="light-content" />
         <View style={styles.dialogStyle}>
           <View style={{ width }}>
             {this.props.message.title ? (

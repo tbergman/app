@@ -13,6 +13,7 @@
 #import "RNFirebaseMessaging.h"
 #import <Codepush.h>
 #import <react-native-branch/RNBranch.h>
+#import <ReactNativeNavigation/ReactNativeNavigation.h>
 
 @implementation AppDelegate
 
@@ -25,24 +26,15 @@
     NSURL *jsCodeLocation;
 
 #ifdef DEBUG
-    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios&dev=true"];
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
     jsCodeLocation = [CodePush bundleUrl]
 #endif
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                        moduleName:@"Hedvig"
-                                                 initialProperties:nil
-                                                     launchOptions:launchOptions];
+    
+    [RNSentry installWithBridge:[ReactNativeNavigation getBridge]];
 
-    [RNSentry installWithRootView:rootView];
-
-    rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UIViewController *rootViewController = [UIViewController new];
-    rootViewController.view = rootView;
-    self.window.rootViewController = rootViewController;
-    [self.window makeKeyAndVisible];
+    [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
+    
     return YES;
 }
 

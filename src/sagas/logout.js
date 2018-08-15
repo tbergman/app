@@ -1,8 +1,10 @@
 import { AsyncStorage } from 'react-native';
 import { types } from '../../hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { NavigationActions } from 'react-navigation';
 import { SEEN_MARKETING_CAROUSEL_KEY } from '../constants';
+import { getMarketingLayout, setLayout } from '../navigation/layout';
+
+const resetRoot = () => setLayout(getMarketingLayout());
 
 const handleLogout = function*() {
   // Delete session from backend, then create a new one
@@ -28,17 +30,7 @@ const handleLogout = function*() {
   // Make sure the onboarding/marketing screens show after you restart app
   yield call(AsyncStorage.removeItem, SEEN_MARKETING_CAROUSEL_KEY);
 
-  yield put(
-    NavigationActions.reset({
-      index: 0,
-      key: null,
-      actions: [
-        NavigationActions.navigate({
-          routeName: 'Marketing',
-        }),
-      ],
-    }),
-  );
+  resetRoot();
 };
 
 const logoutSaga = function*() {

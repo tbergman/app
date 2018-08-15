@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  list: { backgroundColor: colors.WHITE },
+  list: { backgroundColor: colors.OFF_WHITE },
   listElement: {
     flex: 1,
     flexDirection: 'row',
@@ -29,8 +29,10 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingLeft: 16,
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.OFF_WHITE,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    backgroundColor: colors.WHITE,
+    borderColor: colors.LIGHT_GRAY,
   },
   listElementTexts: { flex: 1, marginRight: 16, marginLeft: 16 },
   listElementHeading: {

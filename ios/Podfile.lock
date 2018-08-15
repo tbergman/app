@@ -138,6 +138,8 @@ PODS:
   - React/RCTImage (0.56.0):
     - React/Core
     - React/RCTNetwork
+  - React/RCTLinkingIOS (0.56.0):
+    - React/Core
   - React/RCTNetwork (0.56.0):
     - React/Core
   - React/RCTText (0.56.0):
@@ -148,6 +150,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - ReactNativeNavigation (2.0.2474):
+    - React
   - ReactNativePermissions (1.1.1):
     - React
   - rn-fetch-blob (0.10.6):
@@ -196,10 +200,12 @@ DEPENDENCIES:
   - React/RCTCameraRoll (from `../node_modules/react-native`)
   - React/RCTGeolocation (from `../node_modules/react-native`)
   - React/RCTImage (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - RNAudio (from `../node_modules/react-native-audio`)
@@ -250,6 +256,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-branch"
   react-native-config:
     :path: "../node_modules/@hedviginsurance/react-native-config"
+  ReactNativeNavigation:
+    :path: "../node_modules/react-native-navigation"
   ReactNativePermissions:
     :path: "../node_modules/react-native-permissions"
   rn-fetch-blob:
@@ -290,6 +298,7 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-branch: 8988998ef912c6373dc39a24e4638f02a1268265
   react-native-config: 9314df2fa7cca076e4bb38b8068210029beded14
+  ReactNativeNavigation: 664b103e358bc0198a627fbea3bd3caadb4b0c4b
   ReactNativePermissions: 9f2d9c45c98800795e6c2ed330e25d11a66a8169
   rn-fetch-blob: 76a8f798dae965bbcd146a2438f2e1d381c91ae3
   RNAudio: 190cf085b4dddd366f4f3f7be1794c78d7d434a3
@@ -300,6 +309,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 51a800ebb77f95a8329b6ced1faaff394b47f509
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 1a01898c0c3a6100390a40c11e279831882f2d87
+PODFILE CHECKSUM: 6375f4e79e2e8a155ada4c1702d3ab992e50a407
 
 COCOAPODS: 1.5.3

@@ -1,18 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  WebView,
-  BackHandler,
-  View,
-  Text,
-  Linking,
-  StyleSheet,
-} from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { WebView, BackHandler, View, Text, StyleSheet } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 
-import { NavBar } from '../../components/NavBar';
-import { NavigateBackButton } from '../../components/Button';
+import { NavigationEvents } from '../../navigation/events';
 
 const styles = StyleSheet.create({ container: { flex: 1 } });
 
@@ -31,43 +23,45 @@ class Payment extends React.Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-    this.props.requestPaymentRegistration(
-      this.props.navigation.state.params.id,
-    );
-    Linking.addEventListener('url', this.handleAllDeepLinks);
+    this.props.requestPaymentRegistration(this.props.id);
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-    Linking.removeEventListener('url', this.handleAllDeepLinks);
   }
 
   onBackPress = () => {
-    this.props.goBack();
+    this.props.goBack(this.props.componentId);
     return true;
   };
 
   goBack = () => {
-    this.props.goBack();
+    this.props.goBack(this.props.componentId);
   };
 
-  handleAllDeepLinks = (event) => {
+  onNavigationStateChange = (event) => {
     if (event.url.match('trustly/payment-success')) {
-      this.props.onPaymentSuccess();
+      this.props.onPaymentSuccess(this.props.componentId);
     } else if (event.url.match('trustly/payment-failure')) {
-      this.props.onPaymentFailure();
+      this.props.onPaymentFailure(this.props.componentId);
     }
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <NavBar
-          title="Betalning"
-          headerLeft={<NavigateBackButton onPress={this.goBack} />}
+        <NavigationEvents
+          onNavigationButtonPressed={() =>
+            this.props.goBack(this.props.componentId)
+          }
         />
         {this.props.url ? (
-          <WebView source={{ uri: this.props.url }} />
+          <WebView
+            onError={() => {}}
+            renderError={() => null}
+            source={{ uri: this.props.url }}
+            onNavigationStateChange={this.onNavigationStateChange}
+          />
         ) : (
           <View>
             <Text>Loading...</Text>
@@ -88,21 +82,21 @@ export default connect(
         type: 'PAYMENT/REQUEST_PAYMENT_REGISTRATION',
         payload: { id },
       }),
-    onPaymentSuccess: () => {
+    onPaymentSuccess: (componentId) => {
       dispatch({
         type: 'PAYMENT/ON_PAYMENT_SUCCESS',
-        payload: { onFinish: () => dispatch(NavigationActions.back()) },
+        payload: { onFinish: () => Navigation.dismissModal(componentId) },
       });
     },
-    onPaymentFailure: () =>
+    onPaymentFailure: (componentId) =>
       dispatch({
         type: 'PAYMENT/ON_PAYMENT_FAILURE',
-        payload: { onFinish: () => dispatch(NavigationActions.back()) },
+        payload: { onFinish: () => Navigation.dismissModal(componentId) },
       }),
-    goBack: () =>
+    goBack: (componentId) =>
       dispatch({
         type: 'PAYMENT/CANCEL_PAYMENT',
-        payload: { onFinish: () => dispatch(NavigationActions.back()) },
+        payload: { onFinish: () => Navigation.dismissModal(componentId) },
       }),
   }),
 )(Payment);
