@@ -1,7 +1,7 @@
+import Config from 'react-native-config';
 import { delay } from 'redux-saga';
 import { put, select, take, takeEvery } from 'redux-saga/effects';
 import { API, API_ERROR, STATUS_MESSAGE } from '../actions/types';
-import { envConfig } from '../env-config';
 
 const api = function*(action) {
   let state = yield select();
@@ -30,7 +30,7 @@ const api = function*(action) {
       if (action.payload.body) {
         requestOptions.body = action.payload.body;
       }
-      response = yield fetch(envConfig.API_BASE_URL + url, requestOptions);
+      response = yield fetch(Config.API_BASE_URL + url, requestOptions);
 
       if (response.status === HTTP_UNAUTHORIZED) {
         yield put({

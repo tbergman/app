@@ -12,9 +12,9 @@ import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
 import codePush from 'react-native-code-push';
 import firebase from 'react-native-firebase';
+import Config from 'react-native-config';
 
 import * as hedvigRedux from './hedvig-redux';
-import { envConfig } from './hedvig-redux/env-config';
 
 import nav from './src/reducers/nav';
 import { apiAndNavigateToChatSaga } from './src/sagas/apiAndNavigate';
@@ -84,16 +84,14 @@ import {
   MARKETING_CHAT_START,
 } from './src/features/marketing/actions';
 
-Sentry.config(
-  'https://11b25670dab44c79bfd36ec805fda14a@sentry.io/271600',
-).install();
+const NOOP = () => {};
 
 // Fix HMR
 let SentryInstance = Sentry;
 let ravenMiddleware;
 if (!__DEV__) {
-  SentryInstance.config(envConfig.SENTRY_DSN, {
-    environment: envConfig.ENVIRONMENT,
+  SentryInstance.config(Config.SENTRY_DSN, {
+    environment: Config.ENVIRONMENT,
   }).install();
 
   ravenMiddleware = createRavenMiddleware(SentryInstance, {
@@ -101,7 +99,7 @@ if (!__DEV__) {
   });
 } else {
   SentryInstance = {
-    captureException() {},
+    captureException: NOOP,
   };
 }
 
@@ -171,8 +169,8 @@ const eventsMap = {
 const segmentMiddleware = createMiddleware(
   eventsMap,
   SegmentReduxTarget(
-    envConfig.SEGMENT_ANDROID_WRITE_KEY,
-    envConfig.SEGMENT_IOS_WRITE_KEY,
+    Config.SEGMENT_ANDROID_WRITE_KEY,
+    Config.SEGMENT_IOS_WRITE_KEY,
     SegmentTracker,
   ),
   {
@@ -280,6 +278,11 @@ class App extends React.Component {
     });
 
     firebase.notifications().onNotification(this._handleNotification);
+    this.tokenRefreshListener = firebase.messaging().onTokenRefresh((token) => {
+      this.store.dispatch(
+        hedvigRedux.pushNotificationActions.registerPushToken(token),
+      );
+    });
   }
 
   _handleNotification = () => {
@@ -298,6 +301,10 @@ class App extends React.Component {
       this._unsubscribeFromBranch();
       this._unsubscribeFromBranch = null;
     }
+
+    if (this.tokenRefreshListener) {
+      this.tokenRefreshListener();
+    }
   }
 
   render() {
@@ -313,4 +320,6 @@ class App extends React.Component {
   }
 }
 
-export default codePush(App);
+const appWithCodePush = __DEV__ ? App : codePush(App);
+
+export default appWithCodePush;

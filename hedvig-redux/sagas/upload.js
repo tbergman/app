@@ -1,11 +1,10 @@
+import Config from 'react-native-config';
 import { put, select, takeEvery } from 'redux-saga/effects';
 import uuidv4 from 'uuid/v4';
 import { UPLOAD, UPLOAD_STARTED, UPLOAD_SUCCEEDED } from '../actions/types';
-import { envConfig } from '../env-config';
 import { upload } from '../services/Upload';
 
-const { UPLOAD_URL } = envConfig;
-
+// TODO Rewrite this to use rn-fetch-blob, and cut out the obsolete web code
 const uploadHandler = function*(action) {
   if (action.payload.addToken) {
     const state = yield select();
@@ -39,7 +38,7 @@ const uploadHandler = function*(action) {
   try {
     yield put({ type: UPLOAD_STARTED, payload: action.payload });
     let response = yield upload(
-      action.payload.uploadUrl || UPLOAD_URL,
+      action.payload.uploadUrl || Config.UPLOAD_URL,
       action.payload,
       () => {}, // Upload progress report function
     );

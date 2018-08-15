@@ -9,7 +9,10 @@
 #import "RNSentry.h" // This is used for versions of react < 0.40
 #endif
 #import <Firebase.h>
+#import "RNFirebaseNotifications.h"
+#import "RNFirebaseMessaging.h"
 #import <Codepush.h>
+#import <react-native-branch/RNBranch.h>
 
 @implementation AppDelegate
 
@@ -17,6 +20,8 @@
 
 {
     [FIRApp configure];
+    [RNFirebaseNotifications configure];
+    [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
     NSURL *jsCodeLocation;
 
 #ifdef DEBUG
@@ -39,6 +44,30 @@
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+  [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo
+                                                       fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
+  [[RNFirebaseNotifications instance] didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+  [[RNFirebaseMessaging instance] didRegisterUserNotificationSettings:notificationSettings];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if (![RNBranch.branch application:app openURL:url options:options]) {
+        // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+    return [RNBranch continueUserActivity:userActivity];
 }
 
 @end

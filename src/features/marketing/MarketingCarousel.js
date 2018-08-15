@@ -11,6 +11,7 @@ import {
   ImageBackground,
   Linking,
 } from 'react-native';
+import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 
@@ -126,7 +127,7 @@ const slideImageStyles = StyleSheet.create({
     right: 0,
     bottom: 0,
     width: slideImageWidth,
-    resizeMode: Image.resizeMode.contain,
+    resizeMode: ImageResizeMode.contain,
   },
 });
 
@@ -237,7 +238,7 @@ const marketingCarouselStyles = StyleSheet.create({
   slideFourImage: {
     width: 132,
     height: 129,
-    resizeMode: Image.resizeMode.contain,
+    resizeMode: ImageResizeMode.contain,
   },
   footerContainer: {
     position: 'absolute',

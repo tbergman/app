@@ -2,8 +2,9 @@
 
 buildscript {
   repositories {
-    mavenLocal()
     google()
+    mavenCentral()
+    mavenLocal()
     jcenter()
   }
 
