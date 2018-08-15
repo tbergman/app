@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
-import { AppState, Platform, AsyncStorage } from 'react-native';
+import { AppState, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { Sentry } from 'react-native-sentry';
 import createRavenMiddleware from 'raven-for-redux';
@@ -12,7 +12,7 @@ import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
 import codePush from 'react-native-code-push';
 import firebase from 'react-native-firebase';
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 
 import * as hedvigRedux from './hedvig-redux';
 
@@ -244,9 +244,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const state = this.store.getState();
-    if (Platform.OS === 'android') {
-      this.store.dispatch({ type: 'PUSH_NOTIFICATIONS/REGISTER_PUSH' });
-    }
+    this.store.dispatch({ type: 'PUSH_NOTIFICATIONS/REGISTER_PUSH' });
 
     // Persist analytics orderId for reliable ecommerce event tracking
     // Storing in AsyncStorage so you get a new id each time you re-install the app
