@@ -2,34 +2,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { Navigation } from 'react-native-navigation';
 
 import { chatActions } from '../../../../hedvig-redux';
-import { showDashboardAction } from '../../../actions/baseNavigation';
 import { AnimatedSingleSelectOptionButton } from '../components/Button';
 import {
   StyledRightAlignedOptions,
   StyledMarginContainer,
 } from '../styles/chat';
 
+import { OFFER_SCREEN } from '../../../navigation/screens/offer';
+import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
+import { setLayout, getMainLayout } from '../../../navigation/layout';
+
+const showOffer = () =>
+  Navigation.showModal({
+    stack: {
+      children: [OFFER_SCREEN],
+    },
+  });
+
+const showTrustly = (id) =>
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            ...PAYMENT_SCREEN.component,
+            passProps: {
+              id,
+            },
+          },
+        },
+      ],
+    },
+  });
+
+const goToDashboard = () => {
+  setLayout(getMainLayout());
+};
+
 class SingleSelectInput extends React.Component {
   static propTypes = {
     selectChoice: PropTypes.func.isRequired,
     done: PropTypes.func.isRequired,
-    goToDashboard: PropTypes.func.isRequired,
-    startTrustly: PropTypes.func.isRequired,
-    showOffer: PropTypes.func.isRequired,
   };
 
   render() {
-    const {
-      message,
-      selectChoice,
-      done,
-      goToDashboard,
-      startTrustly,
-      showOffer,
-    } = this.props;
+    const { message, selectChoice, done } = this.props;
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
       return (
@@ -59,7 +79,7 @@ class SingleSelectInput extends React.Component {
                 done(message);
                 Linking.openURL(choice.webUrl);
               } else if (choice.type === 'trustly') {
-                startTrustly(choice.id);
+                showTrustly(choice.id);
                 selectChoice(message, choice);
                 done(message);
               }
@@ -83,16 +103,6 @@ const mapDispatchToProps = (dispatch) => {
     selectChoice: (message, choice) =>
       dispatch(chatActions.selectChoice(message, choice)),
     done: (message) => dispatch(chatActions.sendChatResponse(message)),
-    goToDashboard: () => dispatch(showDashboardAction()),
-    startTrustly: (id) =>
-      dispatch(
-        NavigationActions.navigate({
-          routeName: 'Payment',
-          params: { id },
-        }),
-      ),
-    showOffer: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Offer' })),
   };
 };
 

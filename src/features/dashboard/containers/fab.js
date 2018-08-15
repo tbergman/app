@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Image } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
+import { isIphoneX } from 'react-native-iphone-x-helper';
+
+import { NavigationEvents } from '../../../navigation/events';
 
 import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
@@ -15,6 +18,14 @@ class FloatingActionButton extends React.Component {
     getMessages: PropTypes.func.isRequired,
   };
   static defaultProps = { fabActions: [] };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: true,
+      modalStackIndex: 0,
+    };
+  }
 
   componentDidMount() {
     if (this.props.fabActions.length === 0) {
@@ -40,28 +51,54 @@ class FloatingActionButton extends React.Component {
     this.props.goToChat(url);
   };
 
+  onNavigationCommand = async (name) => {
+    if (name === 'showModal') {
+      this.setState({
+        show: false,
+        modalStackIndex: this.state.modalStackIndex + 1,
+      });
+    }
+    if (name === 'dismissModal') {
+      if (this.state.modalStackIndex === 1) {
+        setTimeout(
+          () => this.setState({ show: true, modalStackIndex: 0 }),
+          250,
+        );
+      } else {
+        this.setState({ modalStackIndex: this.state.modalStackIndex - 1 });
+      }
+    }
+  };
+
   render() {
     const { fabActions } = this.props;
+
     return (
-      <FloatingAction
-        color="#651eff"
-        distanceToEdge={16}
-        floatingIcon={
-          <Image
-            source={require('../../../../assets/buttons/fab/fab-icon.png')}
+      <React.Fragment>
+        <NavigationEvents onNavigationCommand={this.onNavigationCommand} />
+        {this.state.show && (
+          <FloatingAction
+            color="#651eff"
+            distanceToEdge={isIphoneX() ? 55 : 20}
+            position="center"
+            floatingIcon={
+              <Image
+                source={require('../../../../assets/buttons/fab/fab-icon.png')}
+              />
+            }
+            overlayColor="rgba(0,0,0,0.10)"
+            actions={fabActions.map((a) => ({
+              name: a.triggerUrl,
+              margin: 0,
+              render: (props) => (
+                <FabAction {...props} text={a.text} enabled={a.enabled} />
+              ),
+            }))}
+            actionsPaddingTopBottom={0}
+            onPressItem={this.handlePressItem}
           />
-        }
-        overlayColor="rgba(242,242,242,0.67)"
-        actions={fabActions.map((a) => ({
-          name: a.triggerUrl,
-          margin: 0,
-          render: (props) => (
-            <FabAction {...props} text={a.text} enabled={a.enabled} />
-          ),
-        }))}
-        actionsPaddingTopBottom={0}
-        onPressItem={this.handlePressItem}
-      />
+        )}
+      </React.Fragment>
     );
   }
 }

@@ -37,7 +37,6 @@ class Dashboard extends React.Component {
             perils={perils}
             iconUrl={iconUrl}
             key={i}
-            navigation={this.props.navigation}
           />
         );
       },
