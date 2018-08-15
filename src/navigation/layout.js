@@ -1,8 +1,11 @@
 import { AsyncStorage } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
+import { colors } from '../style';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';
@@ -11,7 +14,7 @@ import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
 
-export const getMarketingStack = () => ({
+export const getMarketingLayout = () => ({
   root: {
     stack: {
       children: [MARKETING_SCREEN],
@@ -19,7 +22,7 @@ export const getMarketingStack = () => ({
   },
 });
 
-export const getMainAppStack = () => ({
+export const getMainLayout = () => ({
   root: {
     bottomTabs: {
       children: [
@@ -62,7 +65,7 @@ export const getMainAppStack = () => ({
   ],
 });
 
-export const getChatStack = () => ({
+export const getChatLayout = () => ({
   root: {
     stack: {
       children: [CHAT_SCREEN],
@@ -70,7 +73,7 @@ export const getChatStack = () => ({
   },
 });
 
-export const getOfferStack = () => ({
+export const getOfferLayout = () => ({
   modals: [
     {
       stack: {
@@ -81,13 +84,13 @@ export const getOfferStack = () => ({
   ...getChatStack(),
 });
 
-export const getInitialStack = async () => {
+export const getInitialLayout = async () => {
   const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
     SEEN_MARKETING_CAROUSEL_KEY,
   );
 
   if (!alreadySeenMarketingCarousel) {
-    return getMarketingStack();
+    return getMarketingLayout();
   }
 
   Store.dispatch(insuranceActions.getInsurance());
@@ -101,16 +104,49 @@ export const getInitialStack = async () => {
       unsubscribe();
 
       if (['ACTIVE', 'INACTIVE'].includes(insurance.status)) {
-        return resolve(getMainAppStack());
+        return resolve(getMainLayout());
       }
 
       const isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
 
       if (isViewingOffer) {
-        return resolve(getOfferStack());
+        return resolve(getOfferLayout());
       }
 
-      return resolve(getChatStack());
+      return resolve(getChatLayout());
     });
   });
+};
+
+export const setLayout = ({ root, modals, overlays }) => {
+  Navigation.setDefaultOptions({
+    topBar: {
+      fontFamily: 'CircularStd-Book',
+    },
+    bottomTab: {
+      iconColor: colors.DARK_GRAY,
+      selectedIconColor: colors.PURPLE,
+      textColor: colors.DARK_GRAY,
+      selectedTextColor: colors.PURPLE,
+      fontFamily: 'CircularStd-Book',
+      fontSize: 13,
+    },
+  });
+
+  Navigation.setRoot({
+    root,
+  });
+
+  if (modals) {
+    modals.forEach((modal) => Navigation.showModal(modal));
+  }
+
+  if (overlays) {
+    overlays.forEach((overlay) => Navigation.showOverlay(overlay));
+  }
+};
+
+export const setInitialLayout = async () => {
+  const layout = await getInitialLayout();
+  setLayout(layout);
 };

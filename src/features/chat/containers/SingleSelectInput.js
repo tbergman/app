@@ -13,7 +13,7 @@ import {
 
 import { OFFER_SCREEN } from '../../../navigation/screens/offer';
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
-import { getInitialStack } from '../../../navigation/getInitialStack';
+import { setLayout, getMainLayout } from '../../../navigation/layout';
 
 const showOffer = () =>
   Navigation.showModal({
@@ -38,9 +38,8 @@ const showTrustly = (id) =>
     },
   });
 
-const goToDashboard = async () => {
-  const initialStack = await getInitialStack();
-  Navigation.setRoot(initialStack);
+const goToDashboard = () => {
+  setLayout(getMainLayout());
 };
 
 class SingleSelectInput extends React.Component {

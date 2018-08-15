@@ -31,7 +31,7 @@ import {
 } from './components/Button';
 import * as selectors from './state/selectors';
 import { OFFER_SCREEN } from '../../navigation/screens/offer';
-import { getMainAppStack } from '../../navigation/getInitialStack';
+import { getMainLayout, setLayout } from '../../navigation/layout';
 
 import {
   RESTART_BUTTON,
@@ -131,7 +131,7 @@ class Chat extends React.Component {
     }
 
     if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-      Navigation.setRoot(getMainAppStack());
+      setLayout(getMainLayout());
     }
   }
 

@@ -3,9 +3,9 @@ import { Navigation } from 'react-native-navigation';
 import { types } from '../../hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { SEEN_MARKETING_CAROUSEL_KEY } from '../constants';
-import { getInitialStack } from '../navigation/getInitialStack';
+import { getMarketingLayout, setLayout } from '../navigation/layout';
 
-const resetRoot = async () => Navigation.setRoot(await getInitialStack());
+const resetRoot = () => setLayout(getMarketingLayout());
 
 const handleLogout = function*() {
   // Delete session from backend, then create a new one
