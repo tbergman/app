@@ -566,6 +566,10 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@hedviginsurance/react-native-config@^0.11.5":
+  version "0.11.6"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-config/-/react-native-config-0.11.6.tgz#edf8aa2cf2510bcdbb199114f2029664b7bb2aae"
+
 "@hedviginsurance/react-native-floating-action@^1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.0.tgz#27ef28b363d44c530e4b36bea247923d683b0dff"
