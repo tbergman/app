@@ -17,8 +17,6 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-  <!-- ADD TEST PERMISSIONS HERE -->
-
   <application
     android:name=".MainApplication"
     android:allowBackup="true"

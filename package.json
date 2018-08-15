@@ -101,10 +101,10 @@
   },
   "xcodeSchemes": {
     "Debug": [
-      "Dev"
+      "Development"
     ],
     "Release": [
-      "Test",
+      "Staging",
       "Prod"
     ]
   },

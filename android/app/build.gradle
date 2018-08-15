@@ -13,7 +13,7 @@ android {
   buildToolsVersion '28.0.2'
 
   defaultConfig {
-    applicationId 'com.hedvig.app'
+    applicationId project.env.get('APP_ID')
     minSdkVersion 19
     versionCode 31
     versionName '2.0'
@@ -32,6 +32,14 @@ android {
     release {
       minifyEnabled enableProguardInReleaseBuilds
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+
+    staging {
+
+    }
+
+    debug {
+      debuggable true
     }
   }
 
@@ -76,8 +84,5 @@ dependencies {
 
   // Segment
   compile 'com.segment.analytics.android:analytics:4.2.6'
-  compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
+  // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 }
-
-apply plugin: 'com.google.gms.google-services'
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
