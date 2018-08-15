@@ -2,13 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  AppState,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
@@ -20,15 +14,8 @@ import SingleSelectInput from './containers/SingleSelectInput';
 import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
-import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
-import * as navigationActions from '../../actions/baseNavigation';
-import {
-  BackToOfferButton,
-  CloseButton,
-  RestartButton,
-} from './components/Button';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { OFFER_SCREEN } from '../../navigation/screens/offer';

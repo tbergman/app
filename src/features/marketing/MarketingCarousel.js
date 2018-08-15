@@ -7,7 +7,6 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
-  StatusBar,
   StyleSheet,
   ImageBackground,
   Linking,

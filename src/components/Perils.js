@@ -19,7 +19,7 @@ import {
   StyledCarouselParagraph,
   StyledParagraphToggleContainer,
 } from './styles/carousel';
-import { NavigateBackButton, TextButton } from './Button';
+import { TextButton } from './Button';
 import { NavigationEvents } from '../navigation/events';
 
 const deviceWidth = Dimensions.get('window').width;

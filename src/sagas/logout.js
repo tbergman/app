@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { types } from '../../hedvig-redux';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { SEEN_MARKETING_CAROUSEL_KEY } from '../constants';

@@ -3,7 +3,6 @@ import {
   View,
   Image,
   Text,
-  StatusBar,
   StyleSheet,
   AsyncStorage,
   Dimensions,

@@ -81,7 +81,7 @@ export const getOfferLayout = () => ({
       },
     },
   ],
-  ...getChatStack(),
+  ...getChatLayout(),
 });
 
 export const getInitialLayout = async () => {

@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Modal,
   View,
-  StatusBar,
 } from 'react-native';
 import { theme } from '../style-theme';
 import {

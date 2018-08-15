@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Image } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
-import { Navigation } from 'react-native-navigation';
 
 import { NavigationEvents } from '../../../navigation/events';
 
@@ -52,7 +51,7 @@ class FloatingActionButton extends React.Component {
     this.props.goToChat(url);
   };
 
-  onNavigationCommand = async (name, params) => {
+  onNavigationCommand = async (name) => {
     if (name === 'showModal') {
       this.setState({
         show: false,
