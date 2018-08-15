@@ -14,7 +14,7 @@ const registerHandler = (name, componentCreator) =>
 register(registerHandler);
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  const { root, modals } = await getInitialStack();
+  const { root, modals, overlays } = await getInitialStack();
 
   Navigation.setDefaultOptions({
     topBar: {
@@ -36,5 +36,9 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
   if (modals) {
     modals.forEach((modal) => Navigation.showModal(modal));
+  }
+
+  if (overlays) {
+    overlays.forEach((overlay) => Navigation.showOverlay(overlay));
   }
 });

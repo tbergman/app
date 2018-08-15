@@ -9,6 +9,7 @@ import { MARKETING_SCREEN } from './screens/marketing';
 import { OFFER_SCREEN } from './screens/offer';
 import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
+import { FAB_COMPONENT } from './components/fab';
 
 export const getMarketingStack = () => ({
   root: {
@@ -47,6 +48,18 @@ export const getMainAppStack = () => ({
       ],
     },
   },
+  overlays: [
+    {
+      component: {
+        name: FAB_COMPONENT.name,
+        options: {
+          overlay: {
+            interceptTouchOutside: false,
+          },
+        },
+      },
+    },
+  ],
 });
 
 export const getChatStack = () => ({

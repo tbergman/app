@@ -1,6 +1,5 @@
 import React from 'react';
 import Dashboard from '../../../features/dashboard/Dashboard';
-import FloatingActionButton from '../../../features/dashboard/containers/fab';
 
 class DashboardScreen extends React.Component {
   static get options() {
@@ -16,12 +15,7 @@ class DashboardScreen extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <Dashboard {...this.props} />
-        <FloatingActionButton />
-      </React.Fragment>
-    );
+    return <Dashboard {...this.props} />;
   }
 }
 

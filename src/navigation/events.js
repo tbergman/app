@@ -7,6 +7,19 @@ class NavigationEventsHandler extends React.Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
+
+    if (props.onNavigationCommand) {
+      this.unregisterCommands = Navigation.events().registerCommandListener(
+        (name, params) =>
+          props.onNavigationCommand(name, params, props.componentId),
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.unregisterCommands) {
+      this.unregisterCommands();
+    }
   }
 
   navigationButtonPressed(event) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Profile from '../../../features/profile';
-import FloatingActionButton from '../../../features/dashboard/containers/fab';
 
 class ProfileScreen extends React.Component {
   static get options() {
@@ -16,12 +15,7 @@ class ProfileScreen extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <Profile {...this.props} />
-        <FloatingActionButton />
-      </React.Fragment>
-    );
+    return <Profile {...this.props} />;
   }
 }
 
