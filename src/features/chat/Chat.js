@@ -30,6 +30,7 @@ import {
   RestartButton,
 } from './components/Button';
 import * as selectors from './state/selectors';
+import { NavigationOptions } from '../../navigation/options';
 import { OFFER_SCREEN } from '../../navigation/screens/offer';
 import { getMainLayout, setLayout } from '../../navigation/layout';
 
@@ -37,6 +38,7 @@ import {
   RESTART_BUTTON,
   CLOSE_BUTTON,
   GO_TO_DASHBOARD_BUTTON,
+  SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
@@ -133,6 +135,10 @@ class Chat extends React.Component {
     if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
       setLayout(getMainLayout());
     }
+
+    if (buttonId === SHOW_OFFER_BUTTON.id) {
+      this._showOffer();
+    }
   }
 
   componentDidMount() {
@@ -151,29 +157,37 @@ class Chat extends React.Component {
     this._stopPolling();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.onboardingDone) {
-      if (!nextProps.isModal) {
-        Navigation.mergeOptions(nextProps.componentId, {
+  getNavigationOptions = () => {
+    const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
+    if (onboardingDone) {
+      if (!isModal) {
+        return {
           topBar: {
             leftButtons: [GO_TO_DASHBOARD_BUTTON],
             rightButtons: [],
           },
-        });
+        };
       }
     } else {
-      if (nextProps.showReturnToOfferButton) {
-        console.log('return to offer');
+      if (showReturnToOfferButton) {
+        {
+          return {
+            topBar: {
+              leftButtons: [],
+              rightButtons: [SHOW_OFFER],
+            },
+          };
+        }
       } else {
-        Navigation.mergeOptions(nextProps.componentId, {
+        return {
           topBar: {
             leftButtons: [],
             rightButtons: [RESTART_BUTTON],
           },
-        });
+        };
       }
     }
-  }
+  };
 
   _startPolling = () => {
     if (!this._longPollTimeout) {
@@ -216,19 +230,21 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={100}
-        behavior="padding"
-        enabled
-        style={styles.container}
-      >
-        <View style={styles.messages}>
-          {this.props.messages.length ? <MessageList /> : <Loader />}
-        </View>
-        <View style={styles.response}>
-          {getInputComponent(this.props.messages, this.props.navigation)}
-        </View>
-      </KeyboardAvoidingView>
+      <NavigationOptions options={this.getNavigationOptions()}>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={100}
+          behavior="padding"
+          enabled
+          style={styles.container}
+        >
+          <View style={styles.messages}>
+            {this.props.messages.length ? <MessageList /> : <Loader />}
+          </View>
+          <View style={styles.response}>
+            {getInputComponent(this.props.messages, this.props.navigation)}
+          </View>
+        </KeyboardAvoidingView>
+      </NavigationOptions>
     );
   }
 }

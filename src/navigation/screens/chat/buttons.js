@@ -18,8 +18,8 @@ export const CLOSE_BUTTON = {
   color: colors.DARK_GRAY,
 };
 
-export const RETURN_TO_OFFER_BUTTON = {
-  id: 'RETURN_TO_OFFER_BUTTON',
-  text: 'Se mitt erbjudande',
+export const SHOW_OFFER_BUTTON = {
+  id: 'SHOW_OFFER_BUTTON',
+  text: 'Fortsätt',
   color: colors.PURPLE,
 };
