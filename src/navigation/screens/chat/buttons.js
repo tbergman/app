@@ -22,5 +22,4 @@ export const SHOW_OFFER_BUTTON = {
   id: 'SHOW_OFFER_BUTTON',
   text: 'Fortsätt →',
   color: colors.PURPLE,
-  fontFamily: 'CircularStd-Book',
 };

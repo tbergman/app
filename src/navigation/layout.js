@@ -124,6 +124,12 @@ export const setLayout = ({ root, modals, overlays }) => {
       title: {
         fontFamily: 'CircularStd-Book',
       },
+      leftButtons: {
+        fontFamily: 'CircularStd-Book',
+      },
+      rightButtons: {
+        fontFamily: 'CircularStd-Book',
+      },
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,
