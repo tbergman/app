@@ -6,9 +6,10 @@ import { createMiddleware } from 'redux-beacon';
 import logger from '@redux-beacon/logger';
 import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
+import Config from 'react-native-config';
+import firebase from 'react-native-firebase';
 
 import * as hedvigRedux from '../hedvig-redux';
-import { envConfig } from '../hedvig-redux/env-config';
 
 import nav from './reducers/nav';
 import { apiAndNavigateToChatSaga } from './sagas/apiAndNavigate';
@@ -76,8 +77,8 @@ let SentryInstance = Sentry;
 let ravenMiddleware;
 
 if (!__DEV__) {
-  SentryInstance.config(envConfig.SENTRY_DSN, {
-    environment: envConfig.ENVIRONMENT,
+  SentryInstance.config(Config.SENTRY_DSN, {
+    environment: Config.ENVIRONMENT,
   }).install();
 
   ravenMiddleware = createRavenMiddleware(SentryInstance, {
@@ -152,8 +153,8 @@ const eventsMap = {
 const segmentMiddleware = createMiddleware(
   eventsMap,
   SegmentReduxTarget(
-    envConfig.SEGMENT_ANDROID_WRITE_KEY,
-    envConfig.SEGMENT_IOS_WRITE_KEY,
+    Config.SEGMENT_ANDROID_WRITE_KEY,
+    Config.SEGMENT_IOS_WRITE_KEY,
     SegmentTracker,
   ),
   {
@@ -248,6 +249,21 @@ if (!state.analytics.orderId) {
     },
   });
 }
+
+const handleNotification = () => {
+  const state = store.getState();
+  store.dispatch(
+    hedvigRedux.chatActions.getMessages({
+      intent: state.conversation.intent,
+    }),
+  );
+};
+
+firebase.notifications().onNotification(handleNotification);
+
+firebase.messaging().onTokenRefresh((token) => {
+  store.dispatch(hedvigRedux.pushNotificationActions.registerPushToken(token));
+});
 
 getOrLoadToken(store.dispatch);
 

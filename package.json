@@ -7,8 +7,8 @@
     "ios": "react-native run-ios",
     "test": "node node_modules/jest/bin/jest.js",
     "test:watch": "yarn run test -- --watch",
-    "lint": "eslint src --max-warnings 0",
-    "postinstall": "rndebugger-open",
+    "lint": "eslint src hedvig-redux App.js index.js --max-warnings 0",
+    "postinstall": "rndebugger-open;react-native-schemes-manager all",
     "format": "prettier-eslint --write \"src/**/*.js\""
   },
   "jest": {
@@ -37,7 +37,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.14",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2016": "^6.24.1",
-    "babel-preset-react-native": "^4.0.0",
+    "babel-preset-react-native": "5.0.2",
     "dot-prop-immutable": "^1.4.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -62,11 +62,12 @@
     "raven-for-redux": "^1.3.1",
     "react": "^16.4.2",
     "react-dom": "16.4.0",
-    "react-native": "^0.55.0",
+    "react-native": "^0.56.0",
     "react-native-analytics-segment-io": "^3.1.3",
     "react-native-audio": "^4.1.3",
     "react-native-branch": "^2.3.3",
     "react-native-code-push": "^5.4.1",
+    "react-native-config": "^0.11.5",
     "react-native-debugger-open": "^0.3.15",
     "react-native-firebase": "^4.3.8",
     "react-native-iphone-x-helper": "^1.0.3",
@@ -90,11 +91,24 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
+    "rn-fetch-blob": "^0.10.12",
     "uuid": "^3.3.2"
   },
   "rnpm": {
     "assets": [
       "./assets/fonts"
     ]
+  },
+  "xcodeSchemes": {
+    "Debug": [
+      "Dev"
+    ],
+    "Release": [
+      "Test",
+      "Prod"
+    ]
+  },
+  "devDependencies": {
+    "react-native-schemes-manager": "^1.0.5"
   }
 }

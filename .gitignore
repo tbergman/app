@@ -45,6 +45,7 @@ pids
 .expo/
 *.ipa
 *.apk
+.env
 
 # ios
 ios/Pods

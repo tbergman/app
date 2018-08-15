@@ -33,5 +33,5 @@ export const HOC = (options) => (Component) => {
     }
   }
 
-  return Screen;
+  return __DEV__ ? Screen : codePush(Screen);
 };

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -55,6 +56,8 @@ dependencies {
     compile project(':react-native-analytics-segment-io')
     compile project(':lottie-react-native')
   // Link dependencies
+  compile project(':react-native-config')
+  compile project(':rn-fetch-blob')
   compile project(':react-native-sound')
   compile project(':react-native-sentry')
   compile project(':react-native-firebase')
@@ -68,9 +71,13 @@ dependencies {
   implementation project(':react-native-firebase')
   implementation 'com.google.android.gms:play-services-base:15.0.1'
   implementation 'com.google.firebase:firebase-core:16.0.1'
-  implementation 'com.google.firebase:firebase-messaging:17.1.0'
-  implementation 'me.leolin:ShorcutBadger:1.1.21@aar'
+  implementation 'com.google.firebase:firebase-messaging:17.3.0'
+  implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 
   // Segment
   compile 'com.segment.analytics.android:analytics:4.2.6'
+  compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

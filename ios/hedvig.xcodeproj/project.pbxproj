@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */; };
 		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
 		544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */; };
+		559CCAE6211F26E60080C272 /* branch.json in Resources */ = {isa = PBXBuildFile; fileRef = 559CCAE5211F26E60080C272 /* branch.json */; };
+		559CCAF02121B3530080C272 /* debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 559CCAEF2121B3530080C272 /* debug.xcconfig */; };
+		55A1D9ED211DB2FA00547027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */; };
 		64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */; };
 		75AE7C27B021493BB35790B6 /* libRNAnalyticsSegmentIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */; };
 		AC5BB2AB4E954E429F91AB9E /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D398F87383C7495A9938B698 /* Merriweather-Light.ttf */; };
@@ -20,7 +24,6 @@
 		B5693E921FABD46800307FA4 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
 		BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */; };
 		C1EDB0F70A6140B199B39E02 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2C3D460FE642E781CC166C /* libRNFirebase.a */; };
-		EBB8117C1BFA0514F79CAF74 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,31 +44,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		144664CBE43805326635DE2E /* Pods-hedvig.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.test.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.test.xcconfig"; sourceTree = "<group>"; };
+		14DAAD861ADCC674F81A246E /* Pods-hedvig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release.xcconfig"; sourceTree = "<group>"; };
 		1E11984458714DEDB8081244 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		2C1548D9E4CB1AEFA5CCAE6D /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SoRay-ExtraBold.ttf"; path = "../assets/fonts/SoRay-ExtraBold.ttf"; sourceTree = "<group>"; };
 		4BBF0C9AB1BE487DBD223EA2 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.ttf"; path = "../assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		559CCAD6211F1AC10080C272 /* hedvig.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hedvig.entitlements; sourceTree = "<group>"; };
+		559CCAE5211F26E60080C272 /* branch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = branch.json; sourceTree = "<group>"; };
+		559CCAEF2121B3530080C272 /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		559CCAF12121B42C0080C272 /* test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.xcconfig; sourceTree = "<group>"; };
+		559CCAF22121B4620080C272 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
 		86E51AED3F4549CCAE78F83F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/@expo/vector-icons/vendor/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
-		A47FE4D7F70906B7DC8CE39B /* Pods-hedvig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release.xcconfig"; sourceTree = "<group>"; };
 		AB2C3D460FE642E781CC166C /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
+		ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		ADA460CB5E034A3892827C3D /* libRNAnalyticsSegmentIO.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalyticsSegmentIO.a; sourceTree = "<group>"; };
-		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
-		B56386411DB9693800A0598C /* hedvig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hedvig.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B56386411DB9693800A0598C /* Hedvig Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hedvig Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B56386661DB9994300A0598C /* EXSDKVersions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXSDKVersions.plist; sourceTree = "<group>"; };
 		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B5693E8F1FABD46800307FA4 /* launch_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background_image.png; sourceTree = "<group>"; };
 		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
-		B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXBuildConstants.plist; sourceTree = "<group>"; };
-		B5DB047E1F3A684600E91581 /* shell-app-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shell-app-manifest.json"; sourceTree = "<group>"; };
-		B5DB047F1F3A684600E91581 /* shell-app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shell-app.bundle"; sourceTree = "<group>"; };
-		C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
 		E4936F9C6F2A4C50BAF01D19 /* RNAnalyticsSegmentIO.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalyticsSegmentIO.xcodeproj; path = "../node_modules/react-native-analytics-segment-io/ios/RNAnalyticsSegmentIO.xcodeproj"; sourceTree = "<group>"; };
 		EEE722F0E32948AA96106D5E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -76,10 +81,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBB8117C1BFA0514F79CAF74 /* libPods-hedvig.a in Frameworks */,
 				75AE7C27B021493BB35790B6 /* libRNAnalyticsSegmentIO.a in Frameworks */,
 				2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */,
 				C1EDB0F70A6140B199B39E02 /* libRNFirebase.a in Frameworks */,
+				231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,10 +94,20 @@
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C4A88D15726AD99E8A257BC7 /* libPods-hedvig.a */,
 				1E11984458714DEDB8081244 /* libz.tbd */,
+				C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22BE85EFBA2F70EA99DAE0CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */,
+				14DAAD861ADCC674F81A246E /* Pods-hedvig.release.xcconfig */,
+				144664CBE43805326635DE2E /* Pods-hedvig.test.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		55A1D9CC211B1A2D00547027 /* Products */ = {
@@ -121,15 +136,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5B29BC350A332C58878A9F13 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2C1548D9E4CB1AEFA5CCAE6D /* Pods-hedvig.debug.xcconfig */,
-				A47FE4D7F70906B7DC8CE39B /* Pods-hedvig.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6E8FDB63AE0146F9AAD6A733 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,18 +151,18 @@
 			children = (
 				B56386431DB9693800A0598C /* hedvig */,
 				B56386421DB9693800A0598C /* Products */,
-				5B29BC350A332C58878A9F13 /* Pods */,
 				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
 				6E8FDB63AE0146F9AAD6A733 /* Libraries */,
 				CBDC454088964670A468ACDB /* Resources */,
 				55B67D2021198A1A0072177A /* Recovered References */,
+				22BE85EFBA2F70EA99DAE0CA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		B56386421DB9693800A0598C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B56386411DB9693800A0598C /* hedvig.app */,
+				B56386411DB9693800A0598C /* Hedvig Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,10 +170,16 @@
 		B56386431DB9693800A0598C /* hedvig */ = {
 			isa = PBXGroup;
 			children = (
+				559CCAEF2121B3530080C272 /* debug.xcconfig */,
+				559CCAE5211F26E60080C272 /* branch.json */,
+				559CCAD6211F1AC10080C272 /* hedvig.entitlements */,
+				55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */,
 				B56386471DB9693800A0598C /* AppDelegate.h */,
 				B56386481DB9693800A0598C /* AppDelegate.m */,
 				B56386501DB9693800A0598C /* Assets.xcassets */,
 				B563865B1DB96A5E00A0598C /* Supporting */,
+				559CCAF12121B42C0080C272 /* test.xcconfig */,
+				559CCAF22121B4620080C272 /* release.xcconfig */,
 			);
 			path = hedvig;
 			sourceTree = "<group>";
@@ -178,11 +190,6 @@
 				B5693E8F1FABD46800307FA4 /* launch_background_image.png */,
 				B5693E901FABD46800307FA4 /* launch_icon.png */,
 				B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */,
-				B5DB047E1F3A684600E91581 /* shell-app-manifest.json */,
-				B5DB047F1F3A684600E91581 /* shell-app.bundle */,
-				B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */,
-				B501732A1DC01252003445D9 /* EXShell.plist */,
-				B56386661DB9994300A0598C /* EXSDKVersions.plist */,
 				B563865C1DB96A5E00A0598C /* Info.plist */,
 				B563865E1DB96A5E00A0598C /* main.m */,
 			);
@@ -207,13 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "hedvig" */;
 			buildPhases = (
-				23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */,
+				44BDFBEAACB7B256479661F4 /* [CP] Check Pods Manifest.lock */,
 				B563863D1DB9693800A0598C /* Sources */,
 				B563863E1DB9693800A0598C /* Frameworks */,
 				B563863F1DB9693800A0598C /* Resources */,
-				EBACAD12211DAF5A00237869 /* React Native Start */,
-				AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */,
 				1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */,
+				173DFD024884E0F9DF96B449 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,7 +227,7 @@
 			);
 			name = hedvig;
 			productName = hedvig;
-			productReference = B56386411DB9693800A0598C /* hedvig.app */;
+			productReference = B56386411DB9693800A0598C /* Hedvig Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +242,15 @@
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = AW656G5PFM;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -292,11 +306,14 @@
 			files = (
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
+				55A1D9ED211DB2FA00547027 /* GoogleService-Info.plist in Resources */,
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */,
 				BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */,
+				559CCAE6211F26E60080C272 /* branch.json in Resources */,
 				AC5BB2AB4E954E429F91AB9E /* Merriweather-Light.ttf in Resources */,
+				559CCAF02121B3530080C272 /* debug.xcconfig in Resources */,
 				64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,25 +335,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
-		23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-hedvig-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */ = {
+		173DFD024884E0F9DF96B449 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,19 +353,23 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EBACAD12211DAF5A00237869 /* React Native Start */ = {
+		44BDFBEAACB7B256479661F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "React Native Start";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hedvig-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -383,8 +386,89 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		559CCAED2121A5520080C272 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 559CCAF12121B42C0080C272 /* test.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Test;
+		};
+		559CCAEE2121A5520080C272 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 144664CBE43805326635DE2E /* Pods-hedvig.test.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BRANCH_KEY = "$(BRANCH_KEY)";
+				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AW656G5PFM;
+				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
+				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Production";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Test;
+		};
 		B56386561DB9693800A0598C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 559CCAEF2121B3530080C272 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -439,6 +523,7 @@
 		};
 		B56386571DB9693800A0598C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 559CCAF22121B4620080C272 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -487,11 +572,58 @@
 		};
 		B56386591DB9693800A0598C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-hedvig.debug.xcconfig */;
+			baseConfigurationReference = ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BRANCH_KEY = "$(BRANCH_KEY)";
+				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AW656G5PFM;
+				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Analytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Base64\"",
+					"\"${PODS_ROOT}/Headers/Public/Bolts\"",
+					"\"${PODS_ROOT}/Headers/Public/Branch-SDK\"",
+					"\"${PODS_ROOT}/Headers/Public/CodePush\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKCoreKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/JWT\"",
+					"\"${PODS_ROOT}/Headers/Public/KSCrash\"",
+					"\"${PODS_ROOT}/Headers/Public/Protobuf\"",
+					"\"${PODS_ROOT}/Headers/Public/RNAudio\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSound\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactNativePermissions\"",
+					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
+					"\"${PODS_ROOT}/Headers/Public/Segment-Facebook-App-Events\"",
+					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
+					"\"${PODS_ROOT}/Headers/Public/SentryReactNative\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/lottie-ios\"",
+					"\"${PODS_ROOT}/Headers/Public/lottie-react-native\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-branch\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
+					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
+					"\"${PODS_ROOT}/Headers/Public/yoga\"",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -499,19 +631,30 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Production";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		B563865A1DB9693800A0598C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-hedvig.release.xcconfig */;
+			baseConfigurationReference = 14DAAD861ADCC674F81A246E /* Pods-hedvig.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BRANCH_KEY = "$(BRANCH_KEY)";
+				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
+				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AW656G5PFM;
+				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
 				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -519,8 +662,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hedvig.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PROVISIONING_PROFILE = "ec3e0828-e3fc-4165-afbc-b60504392532";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Production";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -533,6 +678,7 @@
 			buildConfigurations = (
 				B56386561DB9693800A0598C /* Debug */,
 				B56386571DB9693800A0598C /* Release */,
+				559CCAED2121A5520080C272 /* Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -542,6 +688,7 @@
 			buildConfigurations = (
 				B56386591DB9693800A0598C /* Debug */,
 				B563865A1DB9693800A0598C /* Release */,
+				559CCAEE2121A5520080C272 /* Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
