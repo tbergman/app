@@ -147,14 +147,21 @@ class Chat extends React.Component {
   getNavigationOptions = () => {
     const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
     if (onboardingDone) {
-      if (!isModal) {
+      if (isModal) {
         return {
           topBar: {
-            leftButtons: [GO_TO_DASHBOARD_BUTTON],
+            leftButtons: [CLOSE_BUTTON],
             rightButtons: [],
           },
         };
       }
+
+      return {
+        topBar: {
+          leftButtons: [GO_TO_DASHBOARD_BUTTON],
+          rightButtons: [],
+        },
+      };
     } else {
       if (showReturnToOfferButton) {
         {
@@ -165,14 +172,14 @@ class Chat extends React.Component {
             },
           };
         }
-      } else {
-        return {
-          topBar: {
-            leftButtons: [],
-            rightButtons: [RESTART_BUTTON],
-          },
-        };
       }
+
+      return {
+        topBar: {
+          leftButtons: [],
+          rightButtons: [RESTART_BUTTON],
+        },
+      };
     }
   };
 
