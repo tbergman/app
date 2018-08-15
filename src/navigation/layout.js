@@ -121,7 +121,9 @@ export const getInitialLayout = async () => {
 export const setLayout = ({ root, modals, overlays }) => {
   Navigation.setDefaultOptions({
     topBar: {
-      fontFamily: 'CircularStd-Book',
+      title: {
+        fontFamily: 'CircularStd-Book',
+      },
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,
