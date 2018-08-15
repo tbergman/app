@@ -88,6 +88,9 @@ if (!__DEV__) {
 }
 
 const eventsMap = {
+  'Navigation/NAVIGATE': trackScreenView(({ screenName }) => ({
+    screenName: screenName,
+  })),
   [hedvigRedux.types.DELETE_TRACKING_ID]: resetSession(),
   [TRACK_SET_IDENTITY]: identify(({ payload }) => ({
     userId: payload.userId,
@@ -206,6 +209,15 @@ let store = hedvigRedux.configureStore({
   ],
   additionalMiddleware,
   raven: SentryInstance,
+});
+
+Navigation.events().registerComponentDidAppearListener(({ componentName }) => {
+  store.dispatch({
+    type: 'Navigation/NAVIGATE',
+    payload: {
+      screenName: componentId,
+    },
+  });
 });
 
 let persistor = persistStore(store);
