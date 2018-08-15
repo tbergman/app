@@ -17,6 +17,8 @@ android {
     minSdkVersion 19
     versionCode 31
     versionName '2.0'
+
+    resValue "string", "build_config_package", "com.hedvig.app"
   }
 
   splits {
@@ -78,3 +80,6 @@ dependencies {
   compile 'com.segment.analytics.android:analytics:4.2.6'
   // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
