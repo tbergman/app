@@ -45,15 +45,7 @@ export default class Dialog extends React.Component {
     visible: false,
   };
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  onBackPress = () => {
+  onRequestClose = () => {
     if (this.props.message.title) {
       this.dismissButtonPressed();
       return true;
@@ -120,7 +112,12 @@ export default class Dialog extends React.Component {
     const window = Dimensions.get('window');
     const width = window.width - 2 * theme.mobile.margin.big;
     return (
-      <Modal visible={this.state.visible} transparent animationType="fade">
+      <Modal
+        onRequestClose={this.onRequestClose}
+        visible={this.state.visible}
+        transparent
+        animationType="fade"
+      >
         <View style={styles.dialogStyle}>
           <View style={{ width }}>
             {this.props.message.title ? (

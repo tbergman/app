@@ -158,7 +158,7 @@ class OfferSwiper extends React.Component {
   onBackPress = () => {
     const activeIndex = this.props.activeOfferScreenIndex;
     if (activeIndex === 0) {
-      this.props.closeOffer(this.props.analytics.orderId);
+      this._closeOffer();
       return true;
     }
     if (this.swiper) {
