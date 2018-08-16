@@ -9,8 +9,8 @@ class MarketingScreen extends React.Component {
         drawBehind: true,
       },
       statusBar: {
-        visible: false,
-        drawBehind: true,
+        visible: true,
+        drawBehind: false,
         style: 'light',
       },
     };

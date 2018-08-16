@@ -56,6 +56,9 @@ export const getMainLayout = () => ({
       component: {
         name: FAB_COMPONENT.name,
         options: {
+          layout: {
+            backgroundColor: 'transparent',
+          },
           overlay: {
             interceptTouchOutside: false,
           },
@@ -121,6 +124,7 @@ export const getInitialLayout = async () => {
 export const setLayout = ({ root, modals, overlays }) => {
   Navigation.setDefaultOptions({
     topBar: {
+      animate: false,
       title: {
         fontFamily: 'CircularStd-Book',
       },

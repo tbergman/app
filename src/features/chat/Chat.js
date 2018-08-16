@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
@@ -228,7 +229,7 @@ class Chat extends React.Component {
         <KeyboardAvoidingView
           keyboardVerticalOffset={ifIphoneX() ? 100 : 60}
           behavior="padding"
-          enabled
+          enabled={Platform.OS === 'ios'}
           style={styles.container}
         >
           <View style={styles.messages}>
