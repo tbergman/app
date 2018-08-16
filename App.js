@@ -1,6 +1,4 @@
-import 'babel-polyfill';
 import React from 'react';
-
 import codePush from 'react-native-code-push';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
