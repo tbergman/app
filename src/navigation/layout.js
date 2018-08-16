@@ -131,6 +131,10 @@ export const setLayout = ({ root, modals, overlays }) => {
         fontFamily: 'CircularStd-Book',
       },
     },
+    statusBar: {
+      visible: true,
+      drawBehind: false,
+    },
     bottomTab: {
       iconColor: colors.DARK_GRAY,
       selectedIconColor: colors.PURPLE,
@@ -138,6 +142,9 @@ export const setLayout = ({ root, modals, overlays }) => {
       selectedTextColor: colors.PURPLE,
       fontFamily: 'CircularStd-Book',
       fontSize: 13,
+    },
+    layout: {
+      backgroundColor: 'white',
     },
   });
 
