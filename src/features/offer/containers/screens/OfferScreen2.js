@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { verticalSizeClass, V_SPACIOUS } from '../../services/DimensionSizes';
-import { PerilsOverview } from './PerilsOverview';
-import { Hero } from './Hero';
+import {
+  verticalSizeClass,
+  V_SPACIOUS,
+} from '../../../../services/DimensionSizes';
+import { PerilsOverview } from '../PerilsOverview';
+import { Hero } from '../../components/Hero';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
   heroBackground: {
-    backgroundColor: '#f8f7f9',
+    backgroundColor: '#f5f4f7',
   },
 });
 
 class OfferScreen extends React.Component {
   render() {
-    const category = this.props.insurance.categories[1];
-    const regular = require('../../../assets/offer/hero/house.png');
-    const spacious = require('../../../assets/offer/hero/house-xl.png');
+    // Is there a better way?
+    const category = this.props.insurance.categories[0];
+    const regular = require('../../../../../assets/offer/hero/you.png');
+    const spacious = require('../../../../../assets/offer/hero/you-xl.png');
     const heroImage =
       {
         [V_SPACIOUS]: spacious,
@@ -27,15 +31,17 @@ class OfferScreen extends React.Component {
     return (
       <View style={styles.container}>
         <PerilsOverview
-          title="Lägenhetsskyddet"
+          title="Personskyddet"
           categoryTitle={category.title}
           description={
             <React.Fragment>
-              Vi vet hur mycket ett hem betyder. Därför ger vi det ett riktigt
-              bra skydd, så att du kan känna dig trygg i alla&nbsp;lägen.
+              Hedvig skyddar dig mot obehagliga saker som kan hända på
+              hemmaplan, och det mesta som kan hända när du är ute
+              och&nbsp;reser.
             </React.Fragment>
           }
           perils={category.perils}
+          explainer={'Tryck på ikonerna för mer info'}
           hero={
             <Hero containerStyle={styles.heroBackground} source={heroImage} />
           }

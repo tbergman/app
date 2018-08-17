@@ -20,12 +20,12 @@ import {
   H_SPACIOUS,
   H_REGULAR,
   H_COMPACT,
-} from '../../services/DimensionSizes';
-import { INSURANCE_TYPES } from '../../constants';
-import { CheckedBullet } from './CheckedBullet';
-import { Hero } from './Hero';
+} from '../../../../services/DimensionSizes';
+import { CheckedBullet } from '../../components/CheckedBullet';
+import { Hero } from '../../components/Hero';
 
-import { colors } from '../../style';
+import { colors } from '../../../../style';
+import { isApartmentOwner, isStudentInsurance } from '../../../../utils';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -111,12 +111,9 @@ const hitSlop = {
 
 class OfferScreen extends React.Component {
   render() {
-    const insuranceType = this.props.insurance.insuranceType;
-    const isApartmentOwner =
-      insuranceType === INSURANCE_TYPES.BRF ||
-      insuranceType === INSURANCE_TYPES.SUBLET_BRF;
-    const regular = require('../../../assets/offer/hero/legal.png');
-    const spacious = require('../../../assets/offer/hero/legal-xl.png');
+    const { insurance } = this.props;
+    const regular = require('../../../../../assets/offer/hero/legal.png');
+    const spacious = require('../../../../../assets/offer/hero/legal-xl.png');
     const heroImage =
       {
         [V_SPACIOUS]: spacious,
@@ -141,7 +138,7 @@ class OfferScreen extends React.Component {
                     </React.Fragment>
                   }
                 />
-                {isApartmentOwner && (
+                {isApartmentOwner(insurance) && (
                   <CheckedBullet
                     label={
                       <React.Fragment>
@@ -156,7 +153,9 @@ class OfferScreen extends React.Component {
                   label={
                     <React.Fragment>
                       Maxersättning för prylarna
-                      {'\n'}i ditt hem är 1 miljon kr
+                      {'\n'}i ditt hem är{' '}
+                      {isStudentInsurance(insurance) ? '200 000' : '1 miljon'}{' '}
+                      kr
                     </React.Fragment>
                   }
                 />
@@ -182,7 +181,7 @@ class OfferScreen extends React.Component {
                   <View style={styles.legalLinkContent}>
                     <Image
                       style={styles.legalLinkIcon}
-                      source={require('../../../assets/icons/offer/legal/forkopsinformation.png')}
+                      source={require('../../../../../assets/icons/offer/legal/forkopsinformation.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
                       Förköps-
@@ -201,7 +200,7 @@ class OfferScreen extends React.Component {
                   <View style={styles.legalLinkContent}>
                     <Image
                       style={styles.legalLinkIcon}
-                      source={require('../../../assets/icons/offer/legal/forsakringsvillkor.png')}
+                      source={require('../../../../../assets/icons/offer/legal/forsakringsvillkor.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
                       Försäkrings-
@@ -218,7 +217,7 @@ class OfferScreen extends React.Component {
                   <View style={styles.legalLinkContent}>
                     <Image
                       style={styles.legalLinkIcon}
-                      source={require('../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
+                      source={require('../../../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
                     />
                     <Text style={styles.legalLinkLabel}>
                       Personuppgifts-

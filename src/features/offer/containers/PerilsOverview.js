@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -14,13 +14,13 @@ import {
   V_SPACIOUS,
   V_REGULAR,
   V_COMPACT,
-} from '../../services/DimensionSizes';
-import { PERIL_IMAGE_MAP } from '../../features/dashboard/components/Peril';
-import { PERILS_SET_ACTIVE } from './actions';
-import { Description } from './Description';
-import { Heading } from './Heading';
+} from '../../../services/DimensionSizes';
+import { PERIL_IMAGE_MAP } from '../../../features/dashboard/components/Peril';
+import { PERILS_SET_ACTIVE } from '../state/actions';
+import { Description } from '../components/Description';
+import { Heading } from '../components/Heading';
 
-import { colors } from '../../style';
+import { colors } from '../../../style';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
