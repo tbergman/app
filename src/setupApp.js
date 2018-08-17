@@ -21,11 +21,11 @@ import statusMessageReducer from './reducers/statusMessage';
 import routerReducer from './reducers/router';
 import conversationReducer from './reducers/conversation';
 import { bankIdReducer } from './features/bankid/reducer';
-import { offerReducer } from './features/offer/reducer';
+import { offerReducer } from './features/offer/state/reducer';
 import { marketingReducer } from './features/marketing/reducer';
 import { appStateSaga } from './sagas/appState';
 import { keyboardSaga } from './sagas/keyboard';
-import { handleCheckoutSaga } from './features/offer/saga';
+import { handleCheckoutSaga } from './features/offer/state/saga';
 import {
   bankIdSignSaga,
   bankIdCollectSaga,
