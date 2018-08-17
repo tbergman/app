@@ -25,16 +25,6 @@
 		BBAFAB7DAC15463DAA2348E5 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		55BE2F452125ADB5007106B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EE249F841F0BC5B200AC5C78;
-			remoteInfo = RNAnalyticsSegmentIO;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		08E5427420879B64DB0FAC97 /* Pods-hedvig.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.staging.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.staging.xcconfig"; sourceTree = "<group>"; };
 		14DAAD861ADCC674F81A246E /* Pods-hedvig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +38,6 @@
 		55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65CE7B8D2A23403FB5B43192 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
-		80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalyticsSegmentIO.xcodeproj; path = "../node_modules/react-native-analytics-segment-io/ios/RNAnalyticsSegmentIO.xcodeproj"; sourceTree = "<group>"; };
 		8F42E067380843DCBBE2F740 /* libRNAnalyticsSegmentIO.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalyticsSegmentIO.a; sourceTree = "<group>"; };
 		ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* Hedvig Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hedvig Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,18 +96,9 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		55BE2F422125ADB5007106B8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55BE2F462125ADB5007106B8 /* libRNAnalyticsSegmentIO.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6E8FDB63AE0146F9AAD6A733 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -241,28 +221,12 @@
 			mainGroup = B56386381DB9693800A0598C;
 			productRefGroup = B56386421DB9693800A0598C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 55BE2F422125ADB5007106B8 /* Products */;
-					ProjectRef = 80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B56386401DB9693800A0598C /* hedvig */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		55BE2F462125ADB5007106B8 /* libRNAnalyticsSegmentIO.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNAnalyticsSegmentIO.a;
-			remoteRef = 55BE2F452125ADB5007106B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B563863F1DB9693800A0598C /* Resources */ = {

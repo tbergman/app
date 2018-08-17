@@ -34,7 +34,6 @@ target 'hedvig' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  pod 'Analytics'
   pod 'Segment-Facebook-App-Events'
   # pod 'Segment-Branch'
   pod 'react-native-branch', :path => '../node_modules/react-native-branch'
@@ -51,5 +50,6 @@ target 'hedvig' do
   pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
   pod 'react-native-config', :path => '../node_modules/@hedviginsurance/react-native-config'
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+  pod 'RNAnalyticsSegmentIO', :path => './local-podspecs'
 
 end
