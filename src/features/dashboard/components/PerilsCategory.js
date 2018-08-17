@@ -66,10 +66,7 @@ export class PerilsCategory extends React.Component {
                 <StyledHeading>{this.props.title}</StyledHeading>
               </StyledRow>
               <StyledRow>
-                <StyledPassiveText>
-                  {this.props.description}
-                  {this.state.showCategory && ':'}
-                </StyledPassiveText>
+                <StyledPassiveText>{this.props.description}</StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
             <StyledExpandButton>
