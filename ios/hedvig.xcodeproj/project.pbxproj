@@ -26,13 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		55BE2F3D2125AB29007106B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B73137186112469D84605547 /* RNFirebase.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNFirebase;
-		};
 		55BE2F452125ADB5007106B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */;
@@ -67,7 +60,6 @@
 		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B5693E8F1FABD46800307FA4 /* launch_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background_image.png; sourceTree = "<group>"; };
 		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
-		B73137186112469D84605547 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,14 +107,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		55BE2F3A2125AB29007106B8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				55BE2F3E2125AB29007106B8 /* libRNFirebase.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		55BE2F422125ADB5007106B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +118,6 @@
 		6E8FDB63AE0146F9AAD6A733 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				B73137186112469D84605547 /* RNFirebase.xcodeproj */,
 				80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */,
 			);
 			name = Libraries;
@@ -263,10 +246,6 @@
 					ProductGroup = 55BE2F422125ADB5007106B8 /* Products */;
 					ProjectRef = 80D2849F378B45A59B097F09 /* RNAnalyticsSegmentIO.xcodeproj */;
 				},
-				{
-					ProductGroup = 55BE2F3A2125AB29007106B8 /* Products */;
-					ProjectRef = B73137186112469D84605547 /* RNFirebase.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -276,13 +255,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		55BE2F3E2125AB29007106B8 /* libRNFirebase.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFirebase.a;
-			remoteRef = 55BE2F3D2125AB29007106B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		55BE2F462125ADB5007106B8 /* libRNAnalyticsSegmentIO.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
