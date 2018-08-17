@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		212BB6478241406B90953B9E /* libRNAnalyticsSegmentIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F42E067380843DCBBE2F740 /* libRNAnalyticsSegmentIO.a */; };
 		231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */; };
 		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
 		544ED67F4B9649438F02FDD3 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CB76B2DDD2F4C42A9C41DF6 /* CircularStd-Bold.ttf */; };
 		559CCAF02121B3530080C272 /* debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 559CCAEF2121B3530080C272 /* debug.xcconfig */; };
 		55A1D9ED211DB2FA00547027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */; };
 		64ADFEB80E9B4CE188FF5E21 /* SoRay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446808BB14A544DA8419781D /* SoRay-ExtraBold.ttf */; };
-		864A5DA5D5F642BD9C2DE2F9 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CE7B8D2A23403FB5B43192 /* libRNFirebase.a */; };
 		AC5BB2AB4E954E429F91AB9E /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D398F87383C7495A9938B698 /* Merriweather-Light.ttf */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
@@ -36,9 +34,7 @@
 		559CCAF12121B42C0080C272 /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
 		559CCAF22121B4620080C272 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		65CE7B8D2A23403FB5B43192 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
-		8F42E067380843DCBBE2F740 /* libRNAnalyticsSegmentIO.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalyticsSegmentIO.a; sourceTree = "<group>"; };
 		ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* Hedvig Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hedvig Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +47,7 @@
 		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
 		C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +57,6 @@
 			files = (
 				2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */,
 				231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */,
-				864A5DA5D5F642BD9C2DE2F9 /* libRNFirebase.a in Frameworks */,
-				212BB6478241406B90953B9E /* libRNAnalyticsSegmentIO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +66,7 @@
 		1A42804E64B7E9E0AB8B6799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */,
 				1E11984458714DEDB8081244 /* libz.tbd */,
 				C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */,
 			);
@@ -87,31 +83,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		55B67D2021198A1A0072177A /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				65CE7B8D2A23403FB5B43192 /* libRNFirebase.a */,
-				8F42E067380843DCBBE2F740 /* libRNAnalyticsSegmentIO.a */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		6E8FDB63AE0146F9AAD6A733 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
 				B56386431DB9693800A0598C /* hedvig */,
 				B56386421DB9693800A0598C /* Products */,
 				1A42804E64B7E9E0AB8B6799 /* Frameworks */,
-				6E8FDB63AE0146F9AAD6A733 /* Libraries */,
 				CBDC454088964670A468ACDB /* Resources */,
-				55B67D2021198A1A0072177A /* Recovered References */,
 				22BE85EFBA2F70EA99DAE0CA /* Pods */,
 			);
 			sourceTree = "<group>";
