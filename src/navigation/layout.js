@@ -106,7 +106,11 @@ export const getInitialLayout = async () => {
 
       unsubscribe();
 
-      if (['ACTIVE', 'INACTIVE'].includes(insurance.status)) {
+      if (
+        ['ACTIVE', 'INACTIVE_WITH_START_DATE', 'INACTIVE'].includes(
+          insurance.status,
+        )
+      ) {
         return resolve(getMainLayout());
       }
 
