@@ -102,12 +102,20 @@
   },
   "xcodeSchemes": {
     "Debug": [
-      "Development"
-    ],
-    "Release": [
+      "Development",
       "Staging",
       "Prod"
-    ]
+    ],
+    "Release": [
+      "Development",
+      "Staging",
+      "Prod"
+    ],
+    "settings": {
+      "fix-script": {
+        "nodeCommand": "$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
+      }
+    }
   },
   "devDependencies": {
     "react-native-schemes-manager": "^1.0.5"

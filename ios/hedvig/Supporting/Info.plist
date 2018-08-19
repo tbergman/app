@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>__RN_CONFIG_APP_ID</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.2</string>
+	<string>1.4.9</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.4.2</string>
+	<string>1.4.9</string>
 	<key>CodePushDeploymentKey</key>
 	<string>__RN_CONFIG_CODE_PUSH_DEPLOYMENT_KEY</string>
 	<key>FacebookAppID</key>
@@ -57,8 +57,24 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Media library usage description here</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth library usage descriotion here</string>
+	<key>NSBluetoothPeripheralUsageDescription </key>
+	<string>Bluetooth usage description here</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Calendar usage description here</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Hedvig använder mikrofonen till att spela in meddelanden från dig</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion library usage description here</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Hedvig använder fotobiblioteket för att låta dig ladda upp bilder</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech recognition library usage description here</string>
+	<key>NSSpeechRecognitionUsageDescription </key>
+	<string>Speech recognition library usage description here</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>CircularStd-Bold.ttf</string>

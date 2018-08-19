@@ -11,7 +11,7 @@
 #import <Firebase.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
-#import <Codepush.h>
+#import <CodePush/CodePush.h>
 #import <react-native-branch/RNBranch.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 
@@ -25,11 +25,11 @@
     [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
     NSURL *jsCodeLocation;
 
-#ifdef DEBUG
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-#else
-    jsCodeLocation = [CodePush bundleUrl]
-#endif
+    #ifdef DEBUG
+        jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    #else
+        jsCodeLocation = [CodePush bundleURL];
+    #endif
     
     [RNSentry installWithBridge:[ReactNativeNavigation getBridge]];
 
