@@ -6,6 +6,9 @@ class DashboardScreen extends React.Component {
     return {
       topBar: {
         visible: false,
+        title: {
+          text: 'Min hemförsäkring',
+        },
       },
       statusBar: {
         visible: true,

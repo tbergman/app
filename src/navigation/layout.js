@@ -138,10 +138,15 @@ export const setLayout = ({ root, modals, overlays }) => {
       rightButtons: {
         fontFamily: 'CircularStd-Book',
       },
+      largeTitle: {
+        fontFamily: 'CircularStd-Book',
+        fontSize: 30,
+      },
     },
     statusBar: {
       visible: true,
       drawBehind: false,
+      blur: true,
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,
