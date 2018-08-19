@@ -251,7 +251,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_ORG=hedvig\nexport SENTRY_PROJECT=app\nexport SENTRY_AUTH_TOKEN=de7105bcee8e4b88957021805ae02a909e2a198950b640b8af8198733c873bfc\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
+			shellScript = "../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
 		};
 		173DFD024884E0F9DF96B449 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -435,6 +435,7 @@
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
 				HEADER_SEARCH_PATHS = (
@@ -594,6 +595,7 @@
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
 				HEADER_SEARCH_PATHS = (
@@ -721,6 +723,7 @@
 				CODE_SIGN_ENTITLEMENTS = hedvig/hedvig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
 				HEADER_SEARCH_PATHS = (
