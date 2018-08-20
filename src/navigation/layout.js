@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
@@ -51,7 +51,7 @@ export const getMainLayout = () => ({
       ],
     },
   },
-  overlays: [
+  overlays: Platform.OS === 'ios' && [
     {
       component: {
         name: FAB_COMPONENT.name,

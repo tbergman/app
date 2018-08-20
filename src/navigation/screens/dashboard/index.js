@@ -1,5 +1,7 @@
+import { Platform } from 'react-native';
 import React from 'react';
 import Dashboard from '../../../features/dashboard/Dashboard';
+import Fab from '../../../features/dashboard/containers/fab';
 
 class DashboardScreen extends React.Component {
   static get options() {
@@ -18,7 +20,12 @@ class DashboardScreen extends React.Component {
   }
 
   render() {
-    return <Dashboard {...this.props} />;
+    return (
+      <React.Fragment>
+        <Dashboard {...this.props} />
+        {Platform.OS === 'android' && <Fab />}
+      </React.Fragment>
+    );
   }
 }
 

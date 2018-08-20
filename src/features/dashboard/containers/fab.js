@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -75,12 +76,14 @@ class FloatingActionButton extends React.Component {
 
     return (
       <React.Fragment>
-        <NavigationEvents onNavigationCommand={this.onNavigationCommand} />
+        {Platform.OS === 'ios' && (
+          <NavigationEvents onNavigationCommand={this.onNavigationCommand} />
+        )}
         {this.state.show && (
           <FloatingAction
             color="#651eff"
             distanceToEdge={isIphoneX() ? 55 : 20}
-            position="center"
+            position={Platform.OS === 'ios' ? 'center' : 'right'}
             floatingIcon={
               <Image
                 source={require('../../../../assets/buttons/fab/fab-icon.png')}
