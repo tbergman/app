@@ -107,14 +107,14 @@
   },
   "xcodeSchemes": {
     "Debug": [
-      "Development",
-      "Staging",
-      "Prod"
+      "Debug - Development",
+      "Debug- Staging",
+      "Debug - Production"
     ],
     "Release": [
-      "Development",
-      "Staging",
-      "Prod"
+      "Release - Development",
+      "Release - Staging",
+      "Release - Production"
     ],
     "settings": {
       "fix-script": {
