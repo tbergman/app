@@ -77,6 +77,7 @@ let ravenMiddleware;
 if (!__DEV__) {
   SentryInstance.config(Config.SENTRY_DSN, {
     environment: Config.ENVIRONMENT,
+    deactivateStacktraceMerging: false,
   }).install();
 
   ravenMiddleware = createRavenMiddleware(SentryInstance, {
