@@ -124,5 +124,6 @@
         "nodeCommand": "$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
       }
     }
-  }
+  },
+  "version": "1.5.0"
 }
