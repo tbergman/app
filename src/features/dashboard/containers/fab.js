@@ -10,6 +10,7 @@ import { NavigationEvents } from '../../../navigation/events';
 import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
 import { getFabActions } from '../state/selectors';
+import { colors } from '../../../style';
 
 class FloatingActionButton extends React.Component {
   static propTypes = {
@@ -81,6 +82,13 @@ class FloatingActionButton extends React.Component {
             color="#651eff"
             distanceToEdge={isIphoneX() ? 55 : 20}
             position="center"
+            customButtonStyles={{
+              shadowColor: colors.PURPLE,
+              shadowOffset: {
+                width: 0,
+                height: 0,
+              },
+            }}
             floatingIcon={
               <Image
                 source={require('../../../../assets/buttons/fab/fab-icon.png')}
