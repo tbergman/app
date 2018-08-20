@@ -86,7 +86,7 @@ class FloatingActionButton extends React.Component {
                 source={require('../../../../assets/buttons/fab/fab-icon.png')}
               />
             }
-            overlayColor="rgba(0,0,0,0.10)"
+            overlayColor="rgba(0,0,0,0.05)"
             actions={fabActions.map((a) => ({
               name: a.triggerUrl,
               margin: 0,
