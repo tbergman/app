@@ -10,7 +10,8 @@
     "lint": "eslint src hedvig-redux App.js index.js --max-warnings 0",
     "postinstall": "rndebugger-open;react-native-schemes-manager all && yarn run create-podspecs",
     "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics",
-    "format": "prettier-eslint --write \"src/**/*.js\""
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "postversion": "react-native-version"
   },
   "jest": {
     "preset": "react-native",
@@ -86,6 +87,7 @@
     "react-native-sound": "^0.10.9",
     "react-native-status-bar-height": "^2.0.0",
     "react-native-swiper": "^1.5.13",
+    "react-native-version": "^2.6.3",
     "react-navigation": "1.5.11",
     "react-navigation-redux-helpers": "^1.0.1",
     "react-primitives": "^0.6.0",
@@ -98,7 +100,8 @@
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "rn-fetch-blob": "^0.10.12",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "react-native-schemes-manager": "^1.0.5"
   },
   "rnpm": {
     "assets": [
@@ -122,7 +125,5 @@
       }
     }
   },
-  "devDependencies": {
-    "react-native-schemes-manager": "^1.0.5"
-  }
+  "version": "1.5.1"
 }

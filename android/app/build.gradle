@@ -15,8 +15,8 @@ android {
   defaultConfig {
     applicationId project.env.get('APP_ID')
     minSdkVersion 19
-    versionCode 31
-    versionName '2.0'
+    versionCode 32
+    versionName '1.5.1'
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
 
     resValue "string", "build_config_package", "com.hedvig.app"

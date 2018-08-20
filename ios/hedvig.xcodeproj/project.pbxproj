@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */; };
 		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
@@ -483,7 +484,7 @@
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -515,7 +516,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -643,7 +644,7 @@
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -771,7 +772,7 @@
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -854,7 +855,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -937,7 +938,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AW656G5PFM;
 				FACEBOOK_APP_ID = "$(FACEBOOK_APP_ID)";
-				INFOPLIST_FILE = "$(SRCROOT)/hedvig/Supporting/Info.plist";
+				INFOPLIST_FILE = hedvig/Supporting/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
