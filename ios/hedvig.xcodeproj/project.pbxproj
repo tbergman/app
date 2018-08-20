@@ -37,6 +37,7 @@
 		559CCAF22121B4620080C272 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		55A1D9EC211DB2FA00547027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B57D15156864FA4B906A3EC /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		7CDE8491802332E881E48B7F /* Pods-hedvig.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug - production.xcconfig"; sourceTree = "<group>"; };
 		ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug.xcconfig"; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* Hedvig Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hedvig Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,7 +51,10 @@
 		BA6B49A7D50CBF7527166E28 /* Pods-hedvig.release - dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - dev.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - dev.xcconfig"; sourceTree = "<group>"; };
 		C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hedvig.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D398F87383C7495A9938B698 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Merriweather-Light.ttf"; path = "../assets/fonts/Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		D5671F6FBF53920F1E91F718 /* Pods-hedvig.release - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - production.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - production.xcconfig"; sourceTree = "<group>"; };
 		EBC15BDB2126C0D700D0E296 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9E45FE503F4AA1B6290424 /* Pods-hedvig.release - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.release - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.release - development.xcconfig"; sourceTree = "<group>"; };
+		FE838C28F7895ED6D2053AD7 /* Pods-hedvig.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hedvig.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-hedvig/Pods-hedvig.debug - development.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,10 @@
 				40A4E138DA01BAEEA68F884C /* Pods-hedvig.debug - dev.xcconfig */,
 				2DCF4132F2BAB8D3F906C415 /* Pods-hedvig.debug - staging.xcconfig */,
 				BA6B49A7D50CBF7527166E28 /* Pods-hedvig.release - dev.xcconfig */,
+				7CDE8491802332E881E48B7F /* Pods-hedvig.debug - production.xcconfig */,
+				FE838C28F7895ED6D2053AD7 /* Pods-hedvig.debug - development.xcconfig */,
+				D5671F6FBF53920F1E91F718 /* Pods-hedvig.release - production.xcconfig */,
+				EE9E45FE503F4AA1B6290424 /* Pods-hedvig.release - development.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -300,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Development|Staging|Prod|Debug)\"\nexport NODE_BINARY=node\n$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
+			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Debug - Development|Debug- Staging|Debug - Production|Debug)\"\nexport NODE_BINARY=node\n$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -317,7 +325,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B56386561DB9693800A0598C /* Debug */ = {
+		B56386561DB9693800A0598C /* Debug - Production */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 559CCAEF2121B3530080C272 /* debug.xcconfig */;
 			buildSettings = {
@@ -371,9 +379,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
-			name = Debug;
+			name = "Debug - Production";
 		};
-		B56386571DB9693800A0598C /* Release */ = {
+		B56386571DB9693800A0598C /* Release - Production */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 559CCAF22121B4620080C272 /* release.xcconfig */;
 			buildSettings = {
@@ -421,13 +429,13 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release - Production";
 		};
-		B56386591DB9693800A0598C /* Debug */ = {
+		B56386591DB9693800A0598C /* Debug - Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABC3DF484F2DAA91A9A81943 /* Pods-hedvig.debug.xcconfig */;
+			baseConfigurationReference = 7CDE8491802332E881E48B7F /* Pods-hedvig.debug - production.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.app;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
@@ -493,11 +501,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Hedvig App Test";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Debug - Production";
 		};
-		B563865A1DB9693800A0598C /* Release */ = {
+		B563865A1DB9693800A0598C /* Release - Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14DAAD861ADCC674F81A246E /* Pods-hedvig.release.xcconfig */;
+			baseConfigurationReference = D5671F6FBF53920F1E91F718 /* Pods-hedvig.release - production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
@@ -525,7 +533,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "com.hedvig.test.app AppStore";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = "Release - Production";
 		};
 		EB99BB7F2129E5D1003AD933 /* Debug - Staging */ = {
 			isa = XCBuildConfiguration;
@@ -587,7 +595,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2DCF4132F2BAB8D3F906C415 /* Pods-hedvig.debug - staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.test.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.test.app;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
@@ -655,7 +663,7 @@
 			};
 			name = "Debug - Staging";
 		};
-		EB99BB812129E5DE003AD933 /* Debug - Dev */ = {
+		EB99BB812129E5DE003AD933 /* Debug - Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 559CCAEF2121B3530080C272 /* debug.xcconfig */;
 			buildSettings = {
@@ -709,11 +717,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
-			name = "Debug - Dev";
+			name = "Debug - Development";
 		};
-		EB99BB822129E5DE003AD933 /* Debug - Dev */ = {
+		EB99BB822129E5DE003AD933 /* Debug - Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A4E138DA01BAEEA68F884C /* Pods-hedvig.debug - dev.xcconfig */;
+			baseConfigurationReference = FE838C28F7895ED6D2053AD7 /* Pods-hedvig.debug - development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
@@ -781,9 +789,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Hedvig App Dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = "Debug - Dev";
+			name = "Debug - Development";
 		};
-		EB99BB832129E5E5003AD933 /* Release - Dev */ = {
+		EB99BB832129E5E5003AD933 /* Release - Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 559CCAF22121B4620080C272 /* release.xcconfig */;
 			buildSettings = {
@@ -831,13 +839,13 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Release - Dev";
+			name = "Release - Development";
 		};
-		EB99BB842129E5E5003AD933 /* Release - Dev */ = {
+		EB99BB842129E5E5003AD933 /* Release - Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA6B49A7D50CBF7527166E28 /* Pods-hedvig.release - dev.xcconfig */;
+			baseConfigurationReference = EE9E45FE503F4AA1B6290424 /* Pods-hedvig.release - development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.app;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.com.hedvig.dev.app;
 				BRANCH_KEY = "$(BRANCH_KEY)";
 				BUNDLE_IDENTIFIER = com.hedvig.dev.app;
 				CODE_PUSH_DEPLOYMENT_KEY = "$(CODE_PUSH_DEPLOYMENT_KEY)";
@@ -864,7 +872,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "com.hedvig.test.app AppStore";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = "Release - Dev";
+			name = "Release - Development";
 		};
 		EBC15BE3212714AC00D0E296 /* Release - Staging */ = {
 			isa = XCBuildConfiguration;
@@ -955,28 +963,28 @@
 		B563863C1DB9693800A0598C /* Build configuration list for PBXProject "hedvig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B56386561DB9693800A0598C /* Debug */,
-				EB99BB812129E5DE003AD933 /* Debug - Dev */,
+				B56386561DB9693800A0598C /* Debug - Production */,
+				EB99BB812129E5DE003AD933 /* Debug - Development */,
 				EB99BB7F2129E5D1003AD933 /* Debug - Staging */,
-				B56386571DB9693800A0598C /* Release */,
-				EB99BB832129E5E5003AD933 /* Release - Dev */,
+				B56386571DB9693800A0598C /* Release - Production */,
+				EB99BB832129E5E5003AD933 /* Release - Development */,
 				EBC15BE3212714AC00D0E296 /* Release - Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release - Production";
 		};
 		B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "hedvig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B56386591DB9693800A0598C /* Debug */,
-				EB99BB822129E5DE003AD933 /* Debug - Dev */,
+				B56386591DB9693800A0598C /* Debug - Production */,
+				EB99BB822129E5DE003AD933 /* Debug - Development */,
 				EB99BB802129E5D1003AD933 /* Debug - Staging */,
-				B563865A1DB9693800A0598C /* Release */,
-				EB99BB842129E5E5003AD933 /* Release - Dev */,
+				B563865A1DB9693800A0598C /* Release - Production */,
+				EB99BB842129E5E5003AD933 /* Release - Development */,
 				EBC15BE4212714AC00D0E296 /* Release - Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release - Production";
 		};
 /* End XCConfigurationList section */
 	};
