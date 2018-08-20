@@ -145,6 +145,7 @@ class AudioInput extends React.Component {
   startPlayback = () => {
     const sound = new Sound(audioPath, '', () => {
       this.setState({ isPlayingBack: true, sound });
+      this._playBackStatusUpdater = setInterval(this.updatePlaybackStatus, 100);
       sound.play(this.stopPlayback);
     });
   };
@@ -154,7 +155,18 @@ class AudioInput extends React.Component {
     if (sound) {
       sound.stop();
     }
-    this.setState({ isPlayingBack: true });
+    if (this._playBackStatusUpdater) {
+      clearInterval(this._playBackStatusUpdater);
+    }
+    this.setState({ isPlayingBack: false });
+  };
+
+  updatePlaybackStatus = () => {
+    if (this.state.sound) {
+      this.state.sound.getCurrentTime((seconds) => {
+        this.setState({ playbackStatus: `${seconds}s` });
+      });
+    }
   };
 
   render() {
