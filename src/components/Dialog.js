@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dimensions,
-  BackHandler,
-  Text,
-  StyleSheet,
-  Modal,
-  View,
-} from 'react-native';
+import { Dimensions, Text, StyleSheet, Modal, View } from 'react-native';
 import { theme } from '../style-theme';
 import {
   DialogContainer,
