@@ -2,7 +2,6 @@ package com.hedvig.app;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
-import com.reactnativenavigation.react.ReactGateway;
 
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import io.branch.rnbranch.RNBranchPackage;
@@ -34,8 +33,8 @@ import com.airbnb.android.react.lottie.LottiePackage;
 
 public class MainApplication extends NavigationApplication {
   @Override
-  protected ReactGateway createReactGateway() {
-    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), getPackages()) {
+  protected ReactNativeHost createReactNativeHost() {
+    return new NavigationReactNativeHost(this) {
       @Override
       public boolean getUseDeveloperSupport() {
         return isDebug();
@@ -52,8 +51,6 @@ public class MainApplication extends NavigationApplication {
         return CodePush.getJSBundleFile();
       }
     };
-
-    return new ReactGateway(this, isDebug(), host);
   }
 
   @Override
@@ -62,7 +59,7 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_DEPLOYMENT_KEY, getApplicationContext(), isDebug()), new RNSoundPackage(),
         new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
         new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
