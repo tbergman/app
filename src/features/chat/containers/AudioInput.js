@@ -143,7 +143,7 @@ class AudioInput extends React.Component {
   };
 
   startPlayback = () => {
-    const sound = new Sound(audioPath, '', (error) => {
+    const sound = new Sound(audioPath, '', () => {
       this.setState({ isPlayingBack: true, sound });
       sound.play(this.stopPlayback);
     });
