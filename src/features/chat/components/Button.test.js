@@ -4,10 +4,7 @@ import { shallow } from 'enzyme';
 import {
   AnimatedSingleSelectOptionButton,
   AnimatedMultipleSelectOptionButton,
-  BackToOfferButton,
   SendButton,
-  CloseButton,
-  RestartButton,
   EditMessageButton,
 } from './Button';
 
@@ -40,12 +37,6 @@ describe('<AnimatedMultipleSelectOptionButton />', () => {
   });
 });
 
-describe('<BackToOfferButton />', () => {
-  it('Should render without crashing given regular props', () => {
-    expect(() => shallow(<BackToOfferButton onPress={NOOP} />)).not.toThrow();
-  });
-});
-
 describe('<SendButton />', () => {
   it('Should render without crashing given regular props', () => {
     expect(() =>
@@ -65,18 +56,6 @@ describe('<SendButton />', () => {
     const component = shallow(<SendButton onPress={spy} disabled={false} />);
     component.simulate('press');
     expect(spy).toHaveBeenCalled();
-  });
-});
-
-describe('<CloseButton />', () => {
-  it('Should render without crashing given regular props', () => {
-    expect(() => shallow(<CloseButton onPress={NOOP} />)).not.toThrow();
-  });
-});
-
-describe('<RestartButton />', () => {
-  it('Should render without crashing given regular props', () => {
-    expect(() => shallow(<RestartButton onPress={NOOP} />)).not.toThrow();
   });
 });
 

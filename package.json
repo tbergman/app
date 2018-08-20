@@ -5,7 +5,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js",
+    "test": "jest",
     "test:watch": "yarn run test -- --watch",
     "lint": "eslint src hedvig-redux App.js index.js --max-warnings 0",
     "postinstall": "rndebugger-open;react-native-schemes-manager all && yarn run create-podspecs",
@@ -14,6 +14,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
     "setupFiles": [
       "./src/setupTests"
     ]
@@ -30,14 +33,24 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-flow": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "@babel/preset-stage-0": "^7.0.0-rc.1",
     "@emotion/primitives": "^9.2.7",
+    "@hedviginsurance/podspec-generator": "^0.2.3",
     "@hedviginsurance/react-native-config": "^0.11.6",
     "@hedviginsurance/react-native-floating-action": "^1.11.0",
     "@redux-beacon/logger": "^1.0.0",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.4.2",
     "babel-plugin-flow-react-proptypes": "^24.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.14",
     "babel-preset-es2016": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react-native": "5.0.2",
     "dot-prop-immutable": "^1.4.0",
     "enzyme": "^3.3.0",
@@ -50,12 +63,11 @@
     "eslint-plugin-react-native": "^3.2.1",
     "generator-to-promise": "^1.0.0",
     "husky": "^1.0.0-rc.9",
-    "jest": "^23.1.0",
+    "jest": "^23.5.0",
     "lint-staged": "^7.2.0",
     "lodash": "^4.17.10",
     "lottie-react-native": "^2.5.6",
     "moment": "^2.22.2",
-    "@hedviginsurance/podspec-generator": "^0.2.3",
     "prettier": "^1.14.0",
     "prettier-eslint-cli": "^4.7.1",
     "promise-defer": "^1.0.0",
