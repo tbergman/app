@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   playbackStatusText: {
     fontFamily: 'CircularStd-Book',
-    color: colors.OFF_BLACK,
+    color: colors.DARK_GRAY,
     fontSize: 14,
     marginRight: 16,
   },
@@ -158,13 +158,13 @@ class AudioInput extends React.Component {
     if (this._playBackStatusUpdater) {
       clearInterval(this._playBackStatusUpdater);
     }
-    this.setState({ isPlayingBack: false });
+    this.setState({ isPlayingBack: false, playbackStatus: undefined });
   };
 
   updatePlaybackStatus = () => {
     if (this.state.sound) {
       this.state.sound.getCurrentTime((seconds) => {
-        this.setState({ playbackStatus: `${seconds}s` });
+        this.setState({ playbackStatus: `${Math.floor(seconds)}s` });
       });
     }
   };
@@ -183,8 +183,8 @@ class AudioInput extends React.Component {
       return (
         <StyledMarginContainer>
           <StyledRightAlignedOptions>
-            <Text style={styles.playbackStatusText}>{playbackStatus}</Text>
             <StopRecordingButton onPress={this.stopPlayback} />
+            <Text style={styles.playbackStatusText}>{playbackStatus}</Text>
           </StyledRightAlignedOptions>
         </StyledMarginContainer>
       );
