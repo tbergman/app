@@ -8,11 +8,13 @@ import {
   Dimensions,
   TouchableOpacity,
   BackHandler,
+  Platform,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Navigation } from 'react-native-navigation';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
 import {
@@ -85,6 +87,9 @@ const styles = StyleSheet.create({
     marginRight: 5.5,
   },
   swiperPagination: {
+    ...ifIphoneX({
+      bottom: 30,
+    }),
     bottom: {
       [V_SPACIOUS]: 18,
       [V_REGULAR]: 15,
@@ -103,11 +108,19 @@ const styles = StyleSheet.create({
     height: 47,
     zIndex: 200,
     elevation: 1,
+    ...ifIphoneX({
+      marginBottom: 40,
+    }),
     marginBottom: {
       [V_SPACIOUS]: 29,
-      [V_REGULAR]: 26,
+      [V_REGULAR]: 50,
       [V_COMPACT]: 26,
     }[verticalSizeClass],
+    ...Platform.select({
+      android: {
+        marginBottom: 50,
+      },
+    }),
   },
   buttonIsFirst: {
     backgroundColor: colors.WHITE,

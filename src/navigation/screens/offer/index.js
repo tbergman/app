@@ -11,9 +11,9 @@ class OfferScreen extends React.Component {
         drawBehind: true,
       },
       statusBar: {
-        visible: false,
+        visible: true,
         style: 'light',
-        drawBehind: true,
+        drawBehind: false,
       },
     };
   }

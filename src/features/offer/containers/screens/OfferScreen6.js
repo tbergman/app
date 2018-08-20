@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginTop: {
       [V_COMPACT]: 10,
       [V_REGULAR]: 25,
-      [V_SPACIOUS]: 35,
+      [V_SPACIOUS]: 15,
     }[verticalSizeClass],
     fontFamily: 'CircularStd-Bold',
     fontSize: 23,
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   overlay: {
-    backgroundColor: colors.WHITE,
     width: '100%',
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 1,
+    position: 'absolute',
   },
   play: {
     width: 100,
@@ -71,23 +71,24 @@ const styles = StyleSheet.create({
   },
   // Maintain aspect ratio for animation
   animationContainer: {
-    width: viewportWidth * 0.89,
-    overflow: 'hidden',
-    height: viewportWidth * 1.15,
-    marginTop: {
-      [V_COMPACT]: 19,
-      [V_REGULAR]: 30,
-      [V_SPACIOUS]: 30,
-    }[verticalSizeClass],
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
     borderRadius: 15,
-    backgroundColor: colors.WHITE,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   animation: {
-    height: viewportWidth * 1.62,
-    width: viewportWidth * 0.94,
-    // Some crazy scaling difference per platform - resolution independent!
-    top: -(viewportWidth * (Platform.OS === 'ios' ? 0.25 : 0.45)),
-    left: -(viewportWidth * (Platform.OS === 'ios' ? 0.012 : 0.025)),
+    height: viewportWidth * 1.22,
+    width: viewportWidth * 0.74,
+    ...Platform.select({
+      android: {
+        marginTop: 10,
+        height: viewportWidth * 1.12,
+        width: viewportWidth * 0.64,
+      },
+    }),
   },
 });
 
