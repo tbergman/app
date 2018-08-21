@@ -28,6 +28,8 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
     Oj, nu gick något fel
   </Component>
   <TouchableOpacity
+    accessibilityComponentType="button"
+    accessibilityTraits="link"
     activeOpacity={0.2}
     onPress={[Function]}
     style={
