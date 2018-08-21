@@ -31,7 +31,7 @@ android {
     abi {
       reset()
       enable enableSeparateBuildPerCPUArchitecture
-      universalApk false
+      universalApk true
       include 'armeabi-v7a', 'x86'
     }
   }
