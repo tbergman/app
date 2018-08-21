@@ -19,7 +19,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginLeft: Platform.OS === 'ios' ? -64 : 0,
+    ...Platform.select({
+      ios: {
+        marginLeft: 64,
+      },
+    }),
   },
   containerEnabled: {
     borderColor: colors.PURPLE,

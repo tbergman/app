@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { WebView, BackHandler, View, Text, StyleSheet } from 'react-native';
+import { WebView, BackHandler, View, StyleSheet } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
 import { NavigationEvents } from '../../navigation/events';
+
+import { Loader } from '../../components/Loader';
+
+import { PaymentSuccess } from './PaymentSuccess';
+import { PaymentFailure } from './PaymentFailure';
 
 const styles = StyleSheet.create({ container: { flex: 1 } });
 
@@ -20,6 +25,14 @@ class Payment extends React.Component {
   static defaultProps = {
     url: undefined,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSuccess: false,
+      showFailure: false,
+    };
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
@@ -40,10 +53,12 @@ class Payment extends React.Component {
   };
 
   onNavigationStateChange = (event) => {
-    if (event.url.match('trustly/payment-success')) {
-      this.props.onPaymentSuccess(this.props.componentId);
-    } else if (event.url.match('trustly/payment-failure')) {
-      this.props.onPaymentFailure(this.props.componentId);
+    if (this.showSuccess || this.showFailure) return;
+
+    if (event.url.match('success')) {
+      this.setState({ showSuccess: true });
+    } else if (event.url.match('fail')) {
+      this.setState({ showFailure: true });
     }
   };
 
@@ -55,18 +70,30 @@ class Payment extends React.Component {
             this.props.goBack(this.props.componentId)
           }
         />
-        {this.props.url ? (
-          <WebView
-            onError={() => {}}
-            renderError={() => null}
-            source={{ uri: this.props.url }}
-            onNavigationStateChange={this.onNavigationStateChange}
+        {!this.props.url && <Loader />}
+        {this.state.showSuccess && (
+          <PaymentSuccess
+            onPressContinue={() =>
+              this.props.onPaymentSuccess(this.props.componentId)
+            }
           />
-        ) : (
-          <View>
-            <Text>Loading...</Text>
-          </View>
         )}
+        {this.state.showFailure && (
+          <PaymentFailure
+            onPressContinue={() =>
+              this.props.onPaymentFailure(this.props.componentId)
+            }
+          />
+        )}
+        {this.props.url &&
+          !this.state.showSuccess &&
+          !this.state.showFailure && (
+            <WebView
+              renderError={() => null}
+              source={{ uri: this.props.url }}
+              onNavigationStateChange={this.onNavigationStateChange}
+            />
+          )}
       </View>
     );
   }
