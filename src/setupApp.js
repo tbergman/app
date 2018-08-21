@@ -156,7 +156,7 @@ const segmentMiddleware = createMiddleware(
     Config.SEGMENT_IOS_WRITE_KEY,
     SegmentTracker,
   ),
-  {
+  __DEV__ && {
     logger,
   },
 );
