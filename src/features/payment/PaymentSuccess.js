@@ -4,6 +4,7 @@ import styled from '@emotion/primitives';
 
 import { colors } from '../../style';
 import { Spacing } from '../../components/Spacing';
+import { CircledCheckmark } from '../../components/icons/CircledCheckmark';
 
 const Container = styled(View)({
   padding: 20,
@@ -42,6 +43,8 @@ const ButtonText = styled(Text)({
 
 export const PaymentSuccess = ({ onPressContinue }) => (
   <Container>
+    <CircledCheckmark height={100} width={100} />
+    <Spacing height={20} />
     <Title>Autogirot aktivt</Title>
     <Spacing height={20} />
     <Body>

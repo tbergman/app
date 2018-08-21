@@ -51,6 +51,7 @@ target 'hedvig' do
   pod 'react-native-config', :path => '../node_modules/@hedviginsurance/react-native-config'
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

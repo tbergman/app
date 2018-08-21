@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Dimensions,
-  BackHandler,
-  Image,
-  StyleSheet,
-  Linking,
-} from 'react-native';
+import { View, Dimensions, Image, StyleSheet, Linking } from 'react-native';
 import { default as SnapCarousel } from 'react-native-snap-carousel';
-import { NavigationActions } from 'react-navigation';
 import { Navigation } from 'react-native-navigation';
 import {
   StyledCarouselContainer,
@@ -42,19 +34,6 @@ class Perils extends React.Component {
       showFullDescription: false,
     };
   }
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  onBackPress = () => {
-    const { dispatch } = this.props;
-    return dispatch(NavigationActions.back());
-  };
 
   _renderItem({ item }) {
     return (
