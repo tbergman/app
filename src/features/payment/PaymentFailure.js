@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styled from '@emotion/primitives';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 import { Spacing } from '../../components/Spacing';
 
 import { CircledCross } from '../../components/icons/CircledCross';

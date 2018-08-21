@@ -3,7 +3,7 @@ import React from 'react';
 import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 import { PERIL_SCREEN } from '../../../navigation/screens/dashboard/peril';
 
 const meLegalTrouble = require('../../../../assets/icons/perils/you/juridisk_tvist.png');

@@ -5,7 +5,7 @@ import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
-import { colors } from '../style';
+import { colors } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';

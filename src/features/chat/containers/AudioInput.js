@@ -22,7 +22,7 @@ import {
 } from '../styles/chat';
 import { StyledPassiveText } from '../../../components/styles/text';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const audioPath = `${AudioUtils.DocumentDirectoryPath}/claim.aac`;
 

@@ -21,7 +21,7 @@ import {
   BANKID_DIALOG_DISMISSED,
 } from './actions';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   dialog: {

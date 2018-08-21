@@ -9,7 +9,7 @@ import { StyledTextInputContainer } from '../styles/chat';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   textInput: {

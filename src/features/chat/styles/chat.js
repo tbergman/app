@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 // Regular text messages
 

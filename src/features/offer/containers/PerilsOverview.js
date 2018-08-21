@@ -20,7 +20,7 @@ import { PERILS_SET_ACTIVE } from '../state/actions';
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },

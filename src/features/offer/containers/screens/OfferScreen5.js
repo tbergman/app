@@ -24,7 +24,7 @@ import {
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
 
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 import { isApartmentOwner, isStudentInsurance } from '../../../../utils';
 
 const styles = StyleSheet.create({

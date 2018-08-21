@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const AnimatableTouchableHighlight = Animated.createAnimatedComponent(
   TouchableHighlight,

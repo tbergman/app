@@ -37,7 +37,7 @@ import * as R from 'ramda';
 import { StyledButtonText } from './styles/button';
 import { Spacing } from './Spacing';
 
-import { colors } from '../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   cashbackImage: {

@@ -35,7 +35,7 @@ import * as marketingSelectors from './selectors';
 import * as analyticsSelectors from '../analytics/selectors';
 
 import { CHAT_SCREEN } from '../../navigation/screens/chat';
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: {

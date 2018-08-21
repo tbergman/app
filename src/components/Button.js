@@ -9,7 +9,7 @@ import {
   StyledButtonText,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
-import { colors } from '../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   animationButton: { backgroundColor: colors.TRANSPARENT },

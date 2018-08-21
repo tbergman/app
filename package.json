@@ -36,6 +36,7 @@
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",
     "@emotion/primitives": "^9.2.7",
+    "@hedviginsurance/brand": "^1.0.0",
     "@hedviginsurance/podspec-generator": "^0.2.3",
     "@hedviginsurance/react-native-config": "^0.11.6",
     "@hedviginsurance/react-native-floating-action": "^1.11.3",

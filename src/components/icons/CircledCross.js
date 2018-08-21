@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Svg, Circle, G, Polygon } from 'react-native-svg';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 export const CircledCross = ({
   width,
