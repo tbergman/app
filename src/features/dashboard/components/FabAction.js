@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
 import { colors } from '../../../style';
 
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
+    marginLeft: Platform.OS === 'ios' ? -64 : 0,
   },
   containerEnabled: {
     borderColor: colors.PURPLE,
