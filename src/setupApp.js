@@ -227,7 +227,6 @@ let persistor = persistStore(store);
 Branch.subscribe(({ error, params }) => {
   if (error) {
     SentryInstance.captureException(error);
-    console.error('Error from Branch', error); // eslint-disable-line no-console
     return;
   }
 
