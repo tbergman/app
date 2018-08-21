@@ -5,6 +5,8 @@ import styled from '@emotion/primitives';
 import { colors } from '../../style';
 import { Spacing } from '../../components/Spacing';
 
+import { CircledCross } from '../../components/icons/CircledCross';
+
 const Container = styled(View)({
   padding: 20,
   flex: 1,
@@ -42,6 +44,8 @@ const ButtonText = styled(Text)({
 
 export const PaymentFailure = ({ onPressContinue }) => (
   <Container>
+    <CircledCross width={100} height={100} />
+    <Spacing height={20} />
     <Title>Något gick fel</Title>
     <Spacing height={20} />
     <Body>
