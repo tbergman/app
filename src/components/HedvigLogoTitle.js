@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   hedvigLogo: {
@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    ...Platform.select({
+      android: {
+        marginTop: 5,
+      },
+      ios: {},
+    }),
   },
 });
 
