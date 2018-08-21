@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Animated, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Lottie from 'lottie-react-native';
 
