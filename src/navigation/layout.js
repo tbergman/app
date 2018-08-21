@@ -31,7 +31,7 @@ export const getMainLayout = () => ({
             children: [DASHBOARD_SCREEN],
             options: {
               bottomTab: {
-                text: 'Min hemförsäkring',
+                text: 'Hemförsäkring',
                 icon: require('../../assets/icons/tab_bar/lagenhet.png'),
               },
             },
@@ -42,7 +42,7 @@ export const getMainLayout = () => ({
             children: [PROFILE_SCREEN],
             options: {
               bottomTab: {
-                text: 'Min Profil',
+                text: 'Profil',
                 icon: require('../../assets/icons/tab_bar/du_och_din_familj.png'),
               },
             },
