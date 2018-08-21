@@ -22,7 +22,7 @@ android {
     resValue "string", "build_config_package", "com.hedvig.app"
 
     ndk {
-      abiFilters "armeabi-v7a", "x86"
+      abiFilters 'armeabi-v7a', 'x86'
     }
   }
 
