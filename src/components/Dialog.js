@@ -60,8 +60,7 @@ export default class Dialog extends React.Component {
 
   close() {
     if (!this.state.visible) return;
-    this.setState({ visible: false });
-    this.props.emptyDialog();
+    this.setState({ visible: false }, () => this.props.emptyDialog());
   }
 
   confirmButtonPressed() {
