@@ -2,6 +2,8 @@
 
 exports[`<Peril /> Should render correctly 1`] = `
 <TouchableOpacity
+  accessibilityComponentType="button"
+  accessibilityTraits="image"
   activeOpacity={0.2}
   onPress={[Function]}
 >

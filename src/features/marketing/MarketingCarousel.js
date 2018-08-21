@@ -442,6 +442,8 @@ export default class MarketingCarousel extends React.Component {
                 key="marketing-footer-policy"
                 style={marketingCarouselStyles.footerLoginContainer}
                 onPress={this._privacyLinkClick}
+                accessibilityTraits="link"
+                accessibilityComponentType="button"
               >
                 <Text style={marketingCarouselStyles.footerPrivacyText}>
                   Om dina personuppgifter
@@ -452,6 +454,8 @@ export default class MarketingCarousel extends React.Component {
             <TouchableOpacity
               key="marketing-footer-cta"
               onPress={this.handleCtaClick}
+              accessibilityTraits="button"
+              accessibilityComponentType="button"
               style={[
                 marketingCarouselStyles.footerCtaButton,
                 isFirst && marketingCarouselStyles.footerCtaButtonIsFirst,
@@ -481,7 +485,11 @@ export default class MarketingCarousel extends React.Component {
                   Redan medlem?
                 </Text>
               </View>
-              <TouchableOpacity onPress={this.login}>
+              <TouchableOpacity
+                accessibilityTraits="link"
+                accessibilityComponentType="button"
+                onPress={this.login}
+              >
                 <Text style={marketingCarouselStyles.footerLoginCta}>
                   Logga in
                 </Text>

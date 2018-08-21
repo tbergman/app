@@ -9,12 +9,13 @@ module.exports = {
     jest: true,
     node: true,
   },
-  plugins: ['react', 'react-native'],
+  plugins: ['react', 'react-native', 'react-native-a11y'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:react-native/all',
+    'plugin:react-native-a11y/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2016,

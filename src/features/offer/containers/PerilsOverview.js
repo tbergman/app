@@ -108,6 +108,8 @@ class PerilsOverview extends React.Component {
                     hitSlop={hitSlop}
                     style={styles.peril}
                     key={index}
+                    accessibilityComponentType="button"
+                    accessibilityTraits="image"
                   >
                     <Image
                       source={PERIL_IMAGE_MAP[peril.id]}

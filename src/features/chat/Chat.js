@@ -9,7 +9,6 @@ import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
 import ChatTextInput from './containers/ChatTextInput';
-import DateInput from './containers/DateInput';
 import MultipleSelectInput from './containers/MultipleSelectInput';
 import SingleSelectInput from './containers/SingleSelectInput';
 import BankIdCollectInput from './containers/BankIdCollectInput';
@@ -34,7 +33,6 @@ const inputComponentMap = {
   text: <ChatTextInput />,
   number: <ChatNumberInput />,
   single_select: <SingleSelectInput />,
-  date_picker: <DateInput />,
   bankid_collect: <BankIdCollectInput />,
   paragraph: <ParagraphInput />,
   audio: <AudioInput />,
