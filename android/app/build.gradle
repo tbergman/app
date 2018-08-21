@@ -3,6 +3,12 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 
 import com.android.build.OutputFile
 
+project.ext.react = [
+  entryFile: "index.js",
+  bundleInStaging: true,
+  devDisabledInStaging: true
+]
+
 apply from: '../../node_modules/react-native/react.gradle'
 
 def enableSeparateBuildPerCPUArchitecture = false
