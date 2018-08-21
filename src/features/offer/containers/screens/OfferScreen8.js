@@ -27,7 +27,7 @@ import {
 import { OFFER_CHECKOUT } from '../../state/actions';
 import { Dialog } from '../../../bankid/Dialog';
 
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',

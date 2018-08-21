@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 export const RESTART_BUTTON = {
   id: 'RESTART_BUTTON',

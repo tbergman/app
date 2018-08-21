@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   listHeader: {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: {

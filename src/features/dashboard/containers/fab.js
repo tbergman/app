@@ -11,7 +11,7 @@ import { NavigationEvents } from '../../../navigation/events';
 import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
 import { getFabActions } from '../state/selectors';
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 class FloatingActionButton extends React.Component {
   static propTypes = {

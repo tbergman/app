@@ -1,4 +1,4 @@
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 export const CLOSE_BUTTON = {
   id: 'CLOSE_BUTTON',

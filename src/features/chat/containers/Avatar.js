@@ -4,7 +4,7 @@ import { Animated, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Lottie from 'lottie-react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   avatar: { backgroundColor: colors.TRANSPARENT },
