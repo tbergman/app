@@ -5,7 +5,7 @@ import com.android.build.OutputFile
 
 apply from: '../../node_modules/react-native/react.gradle'
 
-def enableSeparateBuildPerCPUArchitecture = true
+def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
@@ -20,6 +20,10 @@ android {
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
 
     resValue "string", "build_config_package", "com.hedvig.app"
+
+    ndk {
+      abiFilters 'armeabi-v7a', 'x86'
+    }
   }
 
   compileOptions {
@@ -31,7 +35,7 @@ android {
     abi {
       reset()
       enable enableSeparateBuildPerCPUArchitecture
-      universalApk false
+      universalApk true
       include 'armeabi-v7a', 'x86'
     }
   }
