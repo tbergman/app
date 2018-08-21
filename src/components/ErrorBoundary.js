@@ -87,6 +87,8 @@ export class ErrorBoundary extends Component {
           <TouchableOpacity
             style={styles.helpButton}
             onPress={this._openErrorEmail}
+            accessibilityTraits="link"
+            accessibilityComponentType="button"
           >
             <Text style={styles.helpText}>Rapportera felet 🙏</Text>
           </TouchableOpacity>

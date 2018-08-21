@@ -68,7 +68,14 @@ export class StyledListElement extends React.Component {
 
 export class TouchableStyledListElement extends React.Component {
   render() {
-    return <TouchableOpacity {...this.props} style={styles.listElement} />;
+    return (
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        {...this.props}
+        style={styles.listElement}
+      />
+    );
   }
 }
 

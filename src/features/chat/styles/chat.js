@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Animated,
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { Animated, View, StyleSheet, Text, TextInput } from 'react-native';
 
 import { colors } from '../../../style';
 
@@ -264,12 +257,6 @@ export class StyledDatePickerResultRow extends React.Component {
 export class StyledFakeTextInput extends React.Component {
   render() {
     return <View {...this.props} style={styles.fakeTextInput} />;
-  }
-}
-
-export class TouchableStyledFakeTextInput extends React.Component {
-  render() {
-    return <TouchableOpacity {...this.props} style={styles.fakeTextInput} />;
   }
 }
 

@@ -111,6 +111,8 @@ export class Peril extends React.Component {
             },
           })
         }
+        accessibilityComponentType="button"
+        accessibilityTraits="image"
       >
         <View style={styles.container}>
           <Image

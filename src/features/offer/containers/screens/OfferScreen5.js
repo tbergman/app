@@ -177,6 +177,8 @@ class OfferScreen extends React.Component {
                   }
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image
@@ -196,6 +198,8 @@ class OfferScreen extends React.Component {
                   }
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image
@@ -213,6 +217,8 @@ class OfferScreen extends React.Component {
                   onPress={() => Linking.openURL(HEDVIG_INTEGRITET_S3_LINK)}
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image

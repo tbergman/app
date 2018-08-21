@@ -31,7 +31,12 @@ export class TextButton extends React.Component {
   render() {
     const { title, onPress } = this.props;
     return (
-      <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        onPress={onPress}
+        hitSlop={hitSlop}
+      >
         <StyledButtonText>{title}</StyledButtonText>
       </TouchableOpacity>
     );

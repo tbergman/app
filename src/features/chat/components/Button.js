@@ -92,6 +92,8 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
           selected ? styles.buttonColorSelected : styles.buttonColorNotSelected,
           hidden ? styles.buttonHidden : undefined,
         ]}
+        accessibilityTraits="button"
+        accessibilityComponentType="button"
       >
         <Text
           style={[
@@ -183,7 +185,13 @@ export class SendButton extends React.Component {
       );
     }
     return (
-      <TouchableOpacity onPress={onPress} hitSlop={SendButton._hitSlop}>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        accessibilityLabel="Skicka"
+        onPress={onPress}
+        hitSlop={SendButton._hitSlop}
+      >
         <Image
           source={require('../../../../assets/icons/chat/send.png')}
           style={styles.sendButton}
@@ -203,7 +211,13 @@ export class EditMessageButton extends React.Component {
   render() {
     const { onPress } = this.props;
     return (
-      <TouchableOpacity onPress={onPress} hitSlop={EditMessageButton._hitSlop}>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        accessibilityLabel="Redigera meddelande"
+        onPress={onPress}
+        hitSlop={EditMessageButton._hitSlop}
+      >
         <Image
           source={require('../../../../assets/icons/chat/edit_last_message.png')}
           style={styles.editMessageButton}

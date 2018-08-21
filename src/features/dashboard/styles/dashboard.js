@@ -117,7 +117,12 @@ export class StyledCategoriesContainer extends React.Component {
 export class StyledCategoryContainer extends React.Component {
   render() {
     return (
-      <TouchableOpacity {...this.props} style={styles.categoryContainer} />
+      <TouchableOpacity
+        accessibilityTraits="header"
+        accessibilityComponentType="button"
+        {...this.props}
+        style={styles.categoryContainer}
+      />
     );
   }
 }

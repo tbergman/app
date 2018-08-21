@@ -280,6 +280,8 @@ class Dialog extends React.Component {
                     <TouchableOpacity
                       style={styles.button}
                       onPress={() => this.props.signCancel()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text style={styles.buttonText}>Avbryt</Text>
                     </TouchableOpacity>
@@ -299,12 +301,16 @@ class Dialog extends React.Component {
                     <TouchableOpacity
                       style={[styles.button, styles.buttonRightBorder]}
                       onPress={() => this.props.signCancel()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text style={[styles.buttonText]}>Stäng</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.button}
                       onPress={() => this.props.signRetry()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text
                         style={[styles.buttonText, styles.buttonTextIsPrimary]}

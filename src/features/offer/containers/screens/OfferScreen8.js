@@ -256,6 +256,8 @@ class OfferScreen extends React.Component {
               onPress={this._checkout}
               hitSlop={hitSlop}
               style={styles.button}
+              accessibilityTraits="button"
+              accessibilityComponentType="button"
             >
               <Text style={styles.buttonLabel}>
                 {insuredAtOtherCompany ? 'Byt till Hedvig' : 'Skaffa Hedvig'}

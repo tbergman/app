@@ -237,7 +237,13 @@ class OfferSwiper extends React.Component {
         <View style={styles.swiperContainer}>
           {activeOfferScreenIndex === 0 ? (
             <View style={styles.closeOffer}>
-              <TouchableOpacity onPress={this._closeOffer} hitSlop={hitSlop}>
+              <TouchableOpacity
+                accessibilityTraits="button"
+                accessibilityComponentType="button"
+                accessibilityLabel="Stäng erbjudandet"
+                onPress={this._closeOffer}
+                hitSlop={hitSlop}
+              >
                 <Image
                   source={require('../../../assets/icons/close/close_white.png')}
                   style={styles.closeOfferImage}

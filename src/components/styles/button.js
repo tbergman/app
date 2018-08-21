@@ -20,7 +20,13 @@ const styles = StyleSheet.create({
 
 export class StyledButton extends React.Component {
   render() {
-    return <TouchableOpacity {...this.props} />;
+    return (
+      <TouchableOpacity
+        accessibilityTraits="button"
+        accessibilityComponentType="button"
+        {...this.props}
+      />
+    );
   }
 }
 

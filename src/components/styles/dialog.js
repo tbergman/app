@@ -79,6 +79,8 @@ export class StyledDialogButton extends React.Component {
           styles.dialogButton,
           borderRight ? styles.dialogButtonBorderRight : undefined,
         ]}
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
       />
     );
   }
