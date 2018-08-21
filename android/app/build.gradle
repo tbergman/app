@@ -20,6 +20,10 @@ android {
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
 
     resValue "string", "build_config_package", "com.hedvig.app"
+
+    ndk {
+      abiFilters "armeabi-v7a", "x86"
+    }
   }
 
   compileOptions {
