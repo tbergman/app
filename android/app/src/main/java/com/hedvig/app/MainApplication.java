@@ -16,6 +16,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import io.branch.referral.Branch;
+import com.horcrux.svg.SvgPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +60,8 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new MainReactPackage(), new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new SvgPackage(), new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_DEPLOYMENT_KEY, getApplicationContext(), isDebug()), new RNSoundPackage(),
         new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
         new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
