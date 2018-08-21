@@ -5,7 +5,7 @@ import { colors } from '../../style';
 
 const styles = StyleSheet.create({
   buttonText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
     lineHeight: 20,
     backgroundColor: colors.TRANSPARENT,

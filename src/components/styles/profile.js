@@ -4,9 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../../style';
 
 const styles = StyleSheet.create({
-  profileContainer: { flex: 1, backgroundColor: colors.WHITE },
+  profileContainer: { flex: 1, backgroundColor: colors.PURPLE },
   charityParagraph: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 14,
     textAlign: 'center',
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     marginLeft: 32,
   },
   charitySignature: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.OFF_BLACK,
     textAlign: 'center',
     marginRight: 44,

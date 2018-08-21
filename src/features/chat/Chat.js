@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Platform } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { View, StyleSheet, AppState } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -10,21 +12,22 @@ import ChatTextInput from './containers/ChatTextInput';
 import DateInput from './containers/DateInput';
 import MultipleSelectInput from './containers/MultipleSelectInput';
 import SingleSelectInput from './containers/SingleSelectInput';
-import PhotoInput from './containers/PhotoInput';
 import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
-import { NavBar } from '../../components/NavBar';
-import { KeyboardAwareView } from './components/KeyboardAwareView';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
-import * as navigationActions from '../../actions/baseNavigation';
-import {
-  BackToOfferButton,
-  CloseButton,
-  RestartButton,
-} from './components/Button';
 import * as selectors from './state/selectors';
+import { NavigationOptions } from '../../navigation/options';
+import { OFFER_SCREEN } from '../../navigation/screens/offer';
+import { getMainLayout, setLayout } from '../../navigation/layout';
+
+import {
+  RESTART_BUTTON,
+  CLOSE_BUTTON,
+  GO_TO_DASHBOARD_BUTTON,
+  SHOW_OFFER_BUTTON,
+} from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
   multiple_select: <MultipleSelectInput />,
@@ -32,7 +35,6 @@ const inputComponentMap = {
   number: <ChatNumberInput />,
   single_select: <SingleSelectInput />,
   date_picker: <DateInput />,
-  photo_upload: <PhotoInput />,
   bankid_collect: <BankIdCollectInput />,
   paragraph: <ParagraphInput />,
   audio: <AudioInput />,
@@ -79,6 +81,9 @@ const getInputComponent = (messages) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    ...ifIphoneX({
+      marginBottom: 20,
+    }),
   },
   messages: {
     flex: 1,
@@ -94,13 +99,36 @@ const styles = StyleSheet.create({
 
 class Chat extends React.Component {
   static propTypes = {
-    showOffer: PropTypes.func.isRequired,
     getMessages: PropTypes.func.isRequired,
     getAvatars: PropTypes.func.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object),
     onboardingDone: PropTypes.bool,
   };
   static defaultProps = { onboardingDone: false };
+
+  constructor(props) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
+
+  navigationButtonPressed({ buttonId }) {
+    if (buttonId === RESTART_BUTTON.id) {
+      this._resetConversation();
+    }
+
+    if (buttonId === CLOSE_BUTTON.id) {
+      Navigation.dismissModal(this.props.componentId);
+    }
+
+    if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
+      setLayout(getMainLayout());
+    }
+
+    if (buttonId === SHOW_OFFER_BUTTON.id) {
+      this._showOffer();
+    }
+  }
+
   componentDidMount() {
     this.props.getMessages(this.props.intent);
     this.props.getAvatars();
@@ -109,15 +137,52 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.navigation.isFocused()) {
-      this._startPolling();
-    }
+    this._startPolling();
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
     this._stopPolling();
   }
+
+  getNavigationOptions = () => {
+    const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
+    if (onboardingDone) {
+      if (isModal) {
+        return {
+          topBar: {
+            leftButtons: [CLOSE_BUTTON],
+            rightButtons: [],
+          },
+        };
+      }
+
+      return {
+        topBar: {
+          leftButtons: [GO_TO_DASHBOARD_BUTTON],
+          rightButtons: [],
+        },
+      };
+    } else {
+      if (showReturnToOfferButton) {
+        {
+          return {
+            topBar: {
+              leftButtons: [],
+              rightButtons: [SHOW_OFFER_BUTTON],
+            },
+          };
+        }
+      }
+
+      return {
+        topBar: {
+          leftButtons: [],
+          rightButtons: [RESTART_BUTTON],
+        },
+      };
+    }
+  };
 
   _startPolling = () => {
     if (!this._longPollTimeout) {
@@ -142,7 +207,11 @@ class Chat extends React.Component {
 
   _showOffer = () => {
     this._stopPolling();
-    this.props.showOffer();
+    Navigation.showModal({
+      stack: {
+        children: [OFFER_SCREEN],
+      },
+    });
   };
 
   _showDashboard = () => {
@@ -155,34 +224,22 @@ class Chat extends React.Component {
   };
 
   render() {
-    let headerLeft;
-    let headerRight;
-    if (this.props.onboardingDone) {
-      headerLeft = <CloseButton onPress={this._showDashboard} />;
-    } else {
-      if (this.props.showReturnToOfferButton) {
-        headerRight = <BackToOfferButton onPress={this._showOffer} />;
-      } else {
-        headerRight = <RestartButton onPress={this._resetConversation} />;
-      }
-    }
-
     return (
-      <View style={styles.container}>
-        <NavBar
-          title="Hedvig"
-          headerLeft={headerLeft}
-          headerRight={headerRight}
-        />
-        <KeyboardAwareView>
+      <NavigationOptions options={this.getNavigationOptions()}>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={ifIphoneX() ? 100 : 60}
+          behavior="padding"
+          enabled={Platform.OS === 'ios'}
+          style={styles.container}
+        >
           <View style={styles.messages}>
             {this.props.messages.length ? <MessageList /> : <Loader />}
           </View>
           <View style={styles.response}>
             {getInputComponent(this.props.messages, this.props.navigation)}
           </View>
-        </KeyboardAwareView>
-      </View>
+        </KeyboardAvoidingView>
+      </NavigationOptions>
     );
   }
 }
@@ -221,9 +278,6 @@ const mapDispatchToProps = (dispatch) => {
         }),
       ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
-    showDashboard: () => dispatch(navigationActions.showDashboardAction()),
-    showOffer: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Offer' })),
   };
 };
 

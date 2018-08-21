@@ -1,14 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dimensions,
-  BackHandler,
-  Text,
-  StyleSheet,
-  Modal,
-  View,
-  StatusBar,
-} from 'react-native';
+import { Dimensions, Text, StyleSheet, Modal, View } from 'react-native';
 import { theme } from '../style-theme';
 import {
   DialogContainer,
@@ -46,15 +38,7 @@ export default class Dialog extends React.Component {
     visible: false,
   };
 
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  onBackPress = () => {
+  onRequestClose = () => {
     if (this.props.message.title) {
       this.dismissButtonPressed();
       return true;
@@ -121,8 +105,12 @@ export default class Dialog extends React.Component {
     const window = Dimensions.get('window');
     const width = window.width - 2 * theme.mobile.margin.big;
     return (
-      <Modal visible={this.state.visible} transparent animationType="fade">
-        <StatusBar animated barStyle="light-content" />
+      <Modal
+        onRequestClose={this.onRequestClose}
+        visible={this.state.visible}
+        transparent
+        animationType="fade"
+      >
         <View style={styles.dialogStyle}>
           <View style={{ width }}>
             {this.props.message.title ? (

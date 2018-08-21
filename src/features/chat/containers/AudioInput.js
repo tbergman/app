@@ -1,7 +1,9 @@
 import React from 'react';
-import { Audio, Permissions } from 'expo';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Platform } from 'react-native';
+import Permissions from 'react-native-permissions';
 import { connect } from 'react-redux';
+import { AudioRecorder, AudioUtils } from 'react-native-audio';
+import Sound from 'react-native-sound';
 import {
   chatActions,
   uploadActions,
@@ -22,12 +24,14 @@ import { StyledPassiveText } from '../../../components/styles/text';
 
 import { colors } from '../../../style';
 
+const audioPath = `${AudioUtils.DocumentDirectoryPath}/claim.aac`;
+
 const styles = StyleSheet.create({
   preRecordingContainer: {
     flexDirection: 'row',
   },
   preRecordingText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.OFF_BLACK,
     fontSize: 12,
     alignSelf: 'center',
@@ -35,8 +39,8 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   playbackStatusText: {
-    fontFamily: 'circular',
-    color: colors.OFF_BLACK,
+    fontFamily: 'CircularStd-Book',
+    color: colors.DARK_GRAY,
     fontSize: 14,
     marginRight: 16,
   },
@@ -45,243 +49,201 @@ const styles = StyleSheet.create({
 class AudioInput extends React.Component {
   state = {
     isRecording: false,
-    recordingInstance: null,
-    permissionGranted: null,
-    recordingStatus: { isDoneRecording: false },
-    sound: null,
-    playbackStatus: null,
-    isPlaying: false,
-    hasSentUpload: false,
+    recordingTime: 0.0,
+    isFinished: false,
   };
 
   componentDidMount() {
-    Permissions.getAsync(Permissions.AUDIO_RECORDING).then((status) =>
-      this.setState({ permissionGranted: status.status === 'granted' }),
-    );
+    // TODO This cant be done if we dont have permissions probably
+    this.prepareRecordingPath();
+    AudioRecorder.onProgress = this.onProgress;
+    AudioRecorder.onFinished = this.onFinished;
   }
 
-  onRecordingStatusUpdate(status) {
-    this.setState({ recordingStatus: status });
-  }
-
-  async askPermissions() {
-    const askResult = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
-    if (askResult.status !== 'granted') {
-      this.props.showPermissionDialog();
-    }
-    this.setState({ permissionGranted: askResult.status === 'granted' });
-    return askResult.status === 'granted';
-  }
-
-  async startRecordingAudio() {
-    if (!this.state.permissionGranted) {
-      const askResult = await this.askPermissions();
-      if (!askResult) {
-        this.setState({ isRecording: false });
-        return;
-      }
-    }
-    try {
-      await Audio.setAudioModeAsync({
-        playsInSilentModeIOS: true,
-        allowsRecordingIOS: true,
-        interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
-        shouldDuckAndroid: true,
-        interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
-      });
-      await this.setState({
-        recordingStatus: { ...this.state.recordingStatus, durationMillis: 0 },
-      });
-      const recordingInstance = new Audio.Recording();
-      recordingInstance.setProgressUpdateInterval(100);
-      recordingInstance.setOnRecordingStatusUpdate(
-        this.onRecordingStatusUpdate.bind(this),
-      );
-      if (this.state.sound) {
-        this.state.sound.setOnPlaybackStatusUpdate(null);
-        await this.state.sound.unloadAsync();
-      }
-      await this.setState({
-        recordingInstance,
-        sound: null,
-        playbackStatus: null,
-        isPlaying: false,
-      });
-      await this.state.recordingInstance.prepareToRecordAsync(
-        Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY,
-      );
-      this.setState({ isRecording: true });
-      await this.state.recordingInstance.startAsync();
-    } catch (error) {
-      this.setState({ isRecording: false });
-    }
-  }
-
-  async stopRecordingAudio() {
-    await this.state.recordingInstance.stopAndUnloadAsync();
-    this.setState({ isRecording: false });
-  }
-
-  async onPlaybackStatusUpdate(playbackStatus) {
-    this.setState({ playbackStatus });
-    if (
-      playbackStatus.isPlaying &&
-      (playbackStatus.didJustFinish === true ||
-        playbackStatus.positionMillis === playbackStatus.durationMillis)
-    ) {
-      this.stopPlayback();
-    }
-  }
-
-  async startPlayback() {
-    // Need to set allowsRecordingIOS to false to allow playback using the loud speakers
-    await Audio.setAudioModeAsync({
-      playsInSilentModeIOS: true,
-      allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
+  prepareRecordingPath = () => {
+    AudioRecorder.prepareRecordingAtPath(audioPath, {
+      SampleRate: 22050,
+      Channels: 1,
+      AudioQuality: 'Low',
+      AudioEncoding: 'aac',
+      AudioEncodingBitRate: 32000,
     });
-    let soundToPlay;
-    if (!this.state.sound) {
-      let { sound } = await this.state.recordingInstance.createNewLoadedSound();
-      this.setState({ sound });
-      soundToPlay = sound;
-    } else {
-      soundToPlay = this.state.sound;
+  };
+
+  onProgress = (data) => {
+    this.setState({ recordingTime: Math.floor(data.currentTime) });
+  };
+
+  onFinished = (data) => {
+    if (Platform === 'ios') {
+      this.finishRecording(
+        data.status === 'ok',
+        data.audioFileURL,
+        data.audioFileSize,
+      );
     }
-    soundToPlay.setProgressUpdateIntervalAsync(100);
-    soundToPlay.setVolumeAsync(1.0);
-    soundToPlay.setOnPlaybackStatusUpdate(
-      this.onPlaybackStatusUpdate.bind(this),
-    );
-    soundToPlay.playAsync();
-    this.setState({ isPlaying: true });
-  }
+  };
 
-  async stopPlayback() {
-    await Audio.setAudioModeAsync({
-      playsInSilentModeIOS: true,
-      allowsRecordingIOS: true,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DUCK_OTHERS,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
-    });
-    // NOTE: for some reason pause + setPosition works but `stopAsync` doesn't!
-    await this.state.sound.pauseAsync();
-    await this.state.sound.setPositionAsync(0);
-    this.setState({ isPlaying: false });
-  }
+  finishRecording = (success, url) => {
+    if (!success) {
+      this.onError('failed to record');
+      return;
+    }
+    this.setState({ recordingUrl: url });
+  };
 
-  upload() {
-    const uri = this.state.recordingInstance.getURI();
-    const uriParts = uri.split('.');
-    const extension = uriParts[uriParts.length - 1];
+  onError = (err) => {
+    // TODO Handle error
+    console.error('Error!', err); // eslint-disable-line no-console
+  };
+
+  requestPermissions = async () => {
+    if (Platform.OS !== 'android') {
+      return true;
+    }
+
+    const status = await Permissions.check('microphone');
+    if (status !== 'authorized') {
+      // TODO: Notifiy user if they need to take action
+      return false;
+    }
+    return true;
+  };
+
+  upload = () => {
+    const { recordingUrl } = this.state;
     this.props.upload(this.props.message, {
-      uri: this.state.recordingInstance.getURI(),
-      type: `audio/x-${extension}`,
-      fileExtension: extension,
+      uri: recordingUrl,
+      type: `audio/x-aac`,
+      fileExtension: 'aac',
     });
     this.setState({ hasSentUpload: true });
-  }
+  };
+
+  startRecording = async () => {
+    const hasPermission = await this.requestPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    this.setState({ isRecording: true });
+    await AudioRecorder.startRecording();
+  };
+
+  stopRecording = async () => {
+    const filePath = await AudioRecorder.stopRecording();
+    if (Platform.OS === 'android') {
+      this.finishRecording(true, filePath);
+    }
+    this.setState({ isRecording: false, isFinished: true });
+  };
+
+  restartRecording = () => {
+    this.prepareRecordingPath();
+    this.setState({ isFinished: false });
+  };
+
+  startPlayback = () => {
+    const sound = new Sound(audioPath, '', () => {
+      this.setState({ isPlayingBack: true, sound });
+      this._playBackStatusUpdater = setInterval(this.updatePlaybackStatus, 100);
+      sound.play(this.stopPlayback);
+    });
+  };
+
+  stopPlayback = () => {
+    const { sound } = this.state;
+    if (sound) {
+      sound.stop();
+    }
+    if (this._playBackStatusUpdater) {
+      clearInterval(this._playBackStatusUpdater);
+    }
+    this.setState({ isPlayingBack: false, playbackStatus: undefined });
+  };
+
+  updatePlaybackStatus = () => {
+    if (this.state.sound) {
+      this.state.sound.getCurrentTime((seconds) => {
+        this.setState({ playbackStatus: `${Math.floor(seconds)}s` });
+      });
+    }
+  };
 
   render() {
-    // TODO Refactor this entire method
-    const content = (
-      <StyledRightAlignedOptions>
-        {!this.state.isRecording ? (
-          <View style={styles.preRecordingContainer}>
-            {!this.state.recordingStatus.isDoneRecording ? (
-              <Text style={styles.preRecordingText}>
-                {this.props.message.body.text}
-              </Text>
-            ) : null}
-            <RecordButton
-              onPress={() => this.startRecordingAudio(this.props.message)}
-            />
-          </View>
-        ) : (
-          <View>
-            <StopRecordingAnimationButton
-              onPress={() => this.stopRecordingAudio(this.props.message)}
-            />
-            <StyledPassiveText>
-              Spelar in:{' '}
-              {(this.state.recordingStatus.durationMillis / 1000.0).toFixed(0)}{' '}
-              s
-            </StyledPassiveText>
-          </View>
-        )}
-      </StyledRightAlignedOptions>
-    );
-
-    let playbackControls;
-    let maybePlaybackStatus;
-    if (this.state.sound && this.state.isPlaying) {
-      if (this.state.playbackStatus) {
-        maybePlaybackStatus = (
-          <Text style={styles.playbackStatusText}>
-            Spelar:{' '}
-            {(this.state.playbackStatus.positionMillis / 1000).toFixed(0)} /{' '}
-            {(this.state.playbackStatus.durationMillis / 1000).toFixed(0)} s
-          </Text>
-        );
-      }
-      playbackControls = (
-        <StyledRightAlignedOptions>
-          <StopRecordingButton onPress={this.stopPlayback.bind(this)} />
-          {maybePlaybackStatus}
-        </StyledRightAlignedOptions>
+    const { message, isUploading } = this.props;
+    const {
+      isRecording,
+      isPlayingBack,
+      isFinished,
+      recordingTime,
+      playbackStatus,
+      hasSentUpload,
+    } = this.state;
+    if (isPlayingBack) {
+      return (
+        <StyledMarginContainer>
+          <StyledRightAlignedOptions>
+            <StopRecordingButton onPress={this.stopPlayback} />
+            <Text style={styles.playbackStatusText}>{playbackStatus}</Text>
+          </StyledRightAlignedOptions>
+        </StyledMarginContainer>
       );
     }
 
-    let maybePlayback;
-    if (
-      this.state.recordingInstance &&
-      this.state.recordingStatus.isDoneRecording &&
-      !this.state.isPlaying &&
-      !this.props.currentlyUploading &&
-      !this.state.hasSentUpload
-    ) {
-      maybePlayback = (
-        <View>
+    if (isUploading || hasSentUpload) {
+      return (
+        <StyledMarginContainer>
+          <StyledRightAlignedOptions>
+            <UploadingAnimation />
+          </StyledRightAlignedOptions>
+        </StyledMarginContainer>
+      );
+    }
+
+    if (isRecording) {
+      return (
+        <StyledMarginContainer>
+          <StyledRightAlignedOptions>
+            <StopRecordingAnimationButton onPress={this.stopRecording} />
+            <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+          </StyledRightAlignedOptions>
+        </StyledMarginContainer>
+      );
+    }
+
+    if (isFinished) {
+      return (
+        <StyledMarginContainer>
           <StyledRightAlignedOptions>
             <AnimatedSingleSelectOptionButton
               title="Gör om"
-              onPress={() => this.startRecordingAudio()}
+              onPress={this.restartRecording}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
             <AnimatedSingleSelectOptionButton
               title="Spela upp"
-              onPress={() => this.startPlayback()}
+              onPress={this.startPlayback}
             />
           </StyledRightAlignedOptions>
           <StyledRightAlignedOptions>
             <AnimatedSingleSelectOptionButton
               title="Spara"
-              onPress={this.upload.bind(this)}
+              onPress={this.upload}
             />
           </StyledRightAlignedOptions>
-        </View>
+        </StyledMarginContainer>
       );
     }
 
-    let maybeUploading;
-    if (this.props.currentlyUploading || this.state.hasSentUpload) {
-      // TODO: Replace with animation
-      maybeUploading = (
-        <StyledRightAlignedOptions>
-          <UploadingAnimation />
-        </StyledRightAlignedOptions>
-      );
-    }
     return (
       <StyledMarginContainer>
-        {content}
-        {maybePlayback}
-        {playbackControls}
-        {maybeUploading}
+        <StyledRightAlignedOptions>
+          <View style={styles.preRecordingContainer}>
+            <Text style={styles.preRecordingText}>{message.body.text}</Text>
+            <RecordButton onPress={this.startRecording} />
+          </View>
+        </StyledRightAlignedOptions>
       </StyledMarginContainer>
     );
   }

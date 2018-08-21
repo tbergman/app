@@ -6,7 +6,7 @@ import { colors } from '../../../style';
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 23,
     lineHeight: 32,
     color: colors.OFF_BLACK,

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 1,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 17,
     lineHeight: 24,
     color: colors.DARK_GRAY,

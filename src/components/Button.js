@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { DangerZone } from 'expo';
+import Lottie from 'lottie-react-native';
 import {
   StyledButton,
   StyledDisabledButton,
@@ -10,8 +10,6 @@ import {
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
 import { colors } from '../style';
-
-const { Lottie } = DangerZone;
 
 const styles = StyleSheet.create({
   animationButton: { backgroundColor: colors.TRANSPARENT },

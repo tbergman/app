@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   priceAmount: {
     textAlign: 'center',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 43,
     lineHeight: 44,
     color: '#141132',
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     textAlign: 'center',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 17,
     lineHeight: 20,
     color: '#141132',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     color: '#141132',
     fontSize: 19,
     textAlign: 'center',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlignVertical: 'center',
   },
   buttonIcon: {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   checkLabel: {
     flex: 1,
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 21,
     lineHeight: 24,
     color: colors.WHITE,

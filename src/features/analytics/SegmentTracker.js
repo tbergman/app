@@ -1,5 +1,5 @@
-import { Segment, DangerZone } from 'expo';
-const { Branch } = DangerZone;
+import { Platform } from 'react-native';
+import Segment from 'react-native-analytics-segment-io';
 
 // Segment Semantic Events (does not cover all events!)
 // https://segment.com/docs/spec/semantic/
@@ -74,96 +74,28 @@ export const SemanticEvents = {
 //   }
 // }
 
-// Map Segment Semantic events to Branch Events (does not cover all events!)
-// https://docs.branch.io/pages/exports/event_ontology_data_schema/#events-included
-
-// https://github.com/expo/expo/blob/master/ios/Exponent/Versioned/Core/Api/EXSegment.m
-// https://github.com/BranchMetrics/Segment-Branch-iOS/blob/master/Pod/Classes/BNCBranchIntegration.m
-const branchEventFromSegmentEvent = (event, properties) => {
-  const mapSegmentToBranchEvent = {
-    [SemanticEvents.Ecommerce.CheckoutStarted]: 'INITIATE_PURCHASE',
-    [SemanticEvents.Ecommerce.PaymentInfoEntered]: 'ADD_PAYMENT_INFO',
-    [SemanticEvents.Ecommerce.OrderCompleted]: 'PURCHASE',
-  };
-
-  // Top level event attributes in Branch, rest in `customData`
-  // https://github.com/BranchMetrics/react-native-branch-deep-linking#tracking-user-actions-and-events
-  const mapSegmentToBranchKeys = {
-    order_id: 'transactionID',
-    affiliation: 'affiliation',
-    revenue: 'revenue',
-    shipping: 'shipping',
-    tax: 'tax',
-    coupon: 'coupon',
-    currency: 'currency',
-    query: 'searchQuery',
-  };
-
-  const mappedEvent = mapSegmentToBranchEvent[event];
-
-  const branchProperties =
-    properties &&
-    Object.keys(properties).reduce((acc, segmentKey) => {
-      const branchKey = mapSegmentToBranchKeys[segmentKey];
-      const value = properties[segmentKey];
-      if (branchKey) {
-        acc[branchKey] = value;
-      } else {
-        acc.customData = { ...acc.customData, [segmentKey]: value };
-      }
-      return acc;
-    }, mappedEvent ? { description: event } : {});
-
-  const branchEventName = mappedEvent || event;
-
-  return [branchEventName, branchProperties];
-};
-
 export const SegmentTracker = {
-  initialize: (options) => Segment.initialize(options),
+  initialize: ({ androidWriteKey, iosWriteKey, ...options }) => {
+    if (Platform.OS === 'ios') {
+      Segment.setup(iosWriteKey, options);
+    } else if (Platform.OS === 'android') {
+      Segment.setup(androidWriteKey, options).catch(() => {});
+    }
+  },
   identify: (userId, traits) => {
-    // userId is optional in Segment
-    if (userId) {
-      // Android crashes in dev if we make any Branch calls in development (this is a bug that we have reported, see https://github.com/expo/expo/issues/1841)
-      if (!__DEV__) {
-        Branch.setIdentity(userId);
-      }
-    }
-    if (traits) {
-      return Segment.identifyWithTraits(userId, traits);
-    }
-    return Segment.identify(userId);
+    return Segment.identify(userId, traits);
   },
   screen: (name, properties) => {
-    if (properties) {
-      return Segment.screenWithProperties(name, properties);
-    }
-    return Segment.screen(name);
+    return Segment.screen(name, properties);
   },
   track: (event, properties) => {
-    const [branchEventName, branchProperties] = branchEventFromSegmentEvent(
-      event,
-      properties,
-    );
-    if (!__DEV__) {
-      Branch.userCompletedAction(branchEventName, branchProperties);
-    }
-    if (properties) {
-      return Segment.trackWithProperties(event, properties);
-    }
-    return Segment.track(event);
+    return Segment.track(event, properties);
   },
   group: (groupId, traits) => {
-    if (traits) {
-      return Segment.groupWithTraits(groupId, traits);
-    }
-    return Segment.group(groupId);
+    return Segment.group(groupId, traits);
   },
   flush: () => Segment.flush(),
   reset: () => {
-    if (!__DEV__) {
-      Branch.logout();
-    }
     return Segment.reset();
   },
 };

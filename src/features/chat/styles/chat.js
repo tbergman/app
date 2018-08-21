@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
   defaultMessageText: {
     color: colors.BLACK_PURPLE,
     fontSize: 16,
-    fontFamily: 'merriweather',
+    fontFamily: 'Merriweather-Light',
     textAlign: 'left',
   },
   userMessageText: {
     color: colors.WHITE,
     fontSize: 16,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlign: 'left',
   },
   messageContainer: {

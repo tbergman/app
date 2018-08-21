@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   perilTitle: {
     paddingLeft: 7,
     paddingRight: 7,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 15,
     color: colors.DARK_GRAY,
     textAlign: 'center',
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   moreInfo: {
     color: '#cbcbd0',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 17,
     textAlign: 'center',
     marginTop: {

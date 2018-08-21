@@ -1,0 +1,1 @@
+sh ./scripts/build-appcenter.sh
