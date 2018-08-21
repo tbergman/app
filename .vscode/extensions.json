@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "EditorConfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "Orta.vscode-jest",
+    "Rubymaniac.vscode-direnv",
+    "vsmobile.vscode-react-native"
+  ]
+}

@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorBoundary /> Should render child 1`] = `"test"`;
+
+exports[`<ErrorBoundary /> Should render error 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "#1BE9B6",
+      "flex": 1,
+      "justifyContent": "center",
+      "paddingTop": 20,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#087d61",
+        "fontSize": 26,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Oj, nu gick något fel
+  </Text>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#14a07e",
+        "borderRadius": 30,
+        "marginTop": 15,
+        "paddingBottom": 10,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 10,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontSize": 17,
+          "fontWeight": "600",
+        }
+      }
+    >
+      Rapportera felet 🙏
+    </Text>
+  </TouchableOpacity>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "marginTop": 12,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#0F007A",
+          "fontSize": 17,
+          "fontWeight": "600",
+          "padding": 5,
+        }
+      }
+    >
+      Ladda om appen
+    </Text>
+  </TouchableOpacity>
+</Component>
+`;

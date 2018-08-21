@@ -1,823 +1,302 @@
-[![Build Status](https://travis-ci.org/HedvigInsurance/hedvig-frontend.svg?branch=marketing-carousel)](https://travis-ci.org/HedvigInsurance/hedvig-frontend)
+[![Build Status](https://travis-ci.org/HedvigInsurance/app.svg?branch=marketing-carousel)](https://travis-ci.org/HedvigInsurance/app)
 
-## Prerequisites
+# Project setup
 
-* node js
-* yarn
-* expo account
-* exp cli
-* S3 bucket set up as website [link](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
-* s3cmd (cli)
+* Install Node.js
+  * Mac
+    * `brew install nodenv`
+    * `brew install node-build`
+    * `nodenv install`
+    * `nodenv rehash`
+* Install [direnv](https://direnv.net/) (autoloads env variables in .envrc)
+  * Mac
+    * `brew install direnv`
+* Install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+  * Mac
+    * `brew install yarn`
+* Add `node_modules/.bin` to your `$PATH`
+* Create env-config and install dependencies
+  * `./scripts/bootstrap.sh`
 
-## Set up
+# Project changes
 
-```
-exp login
-s3cmd --configure
-```
+## Massive git rename
 
-## Installation
+Every single file in this repo was git mv'd so they lost their history.
 
-```
-make install
-```
+* Log commits pre rename: `git log --follow`
+* GitLens VSCode extension will automagically follow renames
 
-## Deployment
+# Publishing changes
 
-### Mobile apps
-
-This will deploy to your expo account
-
-```
-cd hedvig-app
-yarn deploy
-```
-
-### Web
+## Deploying to TestFlight
 
 ```
-cd hedvig-web
-HEDVIG_S3_BUCKET=<your_bucket_name> yarn deploy
+node bump.js
+<commit the bumped version>
+exp start
+exp build:ios
+watch -n 5 exp build:status
+wget <link to IPA when build:status is done>
+<upload IPA using Application Loader>
+<administrate TestFlight on iTunes Connect>
 ```
 
-## Internal api
+NOTES
 
-### Status bar messages
+* I think `expo.version` and `expo.ios.buildNumber` have to be in the format `x.y.z`, where `x,y,z` are integers and **x > 0**.
+* The app icon cannot contain alpha/transparency.
 
-You can use the status bar to show a message, warning or error:
-`store.dispatch(
-  hedvigRedux.statusMessageActions.setStatusMessage(
-    {message: "Hello World!"}
-  )
-)`
-where you use any of these keys: `message`, `warning` or `error`
+---
 
-## Client / Server communcation
+This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
-### Peril states
+Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
-* `"ADD_REQUESTED"` - set by the client to mark a user's request to add this peril
-* `"REMOVE_REQUESTED"` - set by the client to mark a user's request to remove this peril
-* `"ADD_PENDING"` - the peril add is pending
-* `"REMOVE_PENDING"` - the peril remove is pending
-* `"WAITING_FOR_PAYMENT"` - needs payment to get activated
-* `"NOT_COVERED"` - this peril is not covered by the user's insurance
-* `"COVERED"` - this peril is covered by the user's insurance
+## Table of Contents
 
-### Initiate an insurance update by requesting a quote
+* [Updating to New Releases](#updating-to-new-releases)
+* [Available Scripts](#available-scripts)
+  * [npm start](#npm-start)
+  * [npm test](#npm-test)
+  * [npm run ios](#npm-run-ios)
+  * [npm run android](#npm-run-android)
+  * [npm run eject](#npm-run-eject)
+* [Writing and Running Tests](#writing-and-running-tests)
+* [Environment Variables](#environment-variables)
+  * [Configuring Packager IP Address](#configuring-packager-ip-address)
+* [Adding Flow](#adding-flow)
+* [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
+* [Sharing and Deployment](#sharing-and-deployment)
+  * [Publishing to Expo's React Native Community](#publishing-to-expos-react-native-community)
+  * [Building an Expo "standalone" app](#building-an-expo-standalone-app)
+  * [Ejecting from Create React Native App](#ejecting-from-create-react-native-app)
+    * [Build Dependencies (Xcode & Android Studio)](#build-dependencies-xcode-android-studio)
+    * [Should I Use ExpoKit?](#should-i-use-expokit)
+* [Troubleshooting](#troubleshooting)
+  * [Networking](#networking)
+  * [iOS Simulator won't open](#ios-simulator-wont-open)
+  * [QR Code does not scan](#qr-code-does-not-scan)
 
-Get a quote
+## Updating to New Releases
 
-`POST /insurance/quote`
+You should only need to update the global installation of `create-react-native-app` very rarely, ideally never.
 
-#### Request body example:
+Updating the `react-native-scripts` dependency of your app should be as simple as bumping the version number in `package.json` and reinstalling your project's dependencies.
+
+Upgrading to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions, and setting the correct `sdkVersion` in `app.json`. See the [versioning guide](https://github.com/react-community/create-react-native-app/blob/master/VERSIONS.md) for up-to-date information about package version compatibility.
+
+## Available Scripts
+
+If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and NPM at the time of this writing.
+
+### `npm start`
+
+Runs your app in development mode.
+
+Open it in the [Expo app](https://expo.io) on your phone to view it. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
+
+Sometimes you may need to reset or clear the React Native packager's cache. To do so, you can pass the `--reset-cache` flag to the start script:
 
 ```
-"categories": [
-  {
-    "title": "Du och din familj",
-    "description": "Brand, inbrott, vattenläcka",
-    "iconUrl": "https://unsplash.it/70/70"
-    "perils": [
-      {
-        "id": "someid",
-        "title": "Peril 1 CREATED",
-        "isRemovable": true,
-        "key": 0,
-        "state": "ADD_REQUESTED",   // ADD_REQUESTED when a user wants to add this peril or REMOVE_REQUESTED when a user wants to remove this peril
-        "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
-        "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
-      },
-      ...
-    ],
-  },
-  ...
-]
+npm start -- --reset-cache
+# or
+yarn start -- --reset-cache
 ```
 
-#### Response body example
+#### `npm test`
+
+Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
+
+#### `npm run ios`
+
+Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
+
+#### `npm run android`
+
+Like `npm start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup). We also recommend installing Genymotion as your Android emulator. Once you've finished setting up the native build environment, there are two options for making the right copy of `adb` available to Create React Native App:
+
+##### Using Android Studio's `adb`
+
+1.  Make sure that you can run adb from your terminal.
+2.  Open Genymotion and navigate to `Settings -> ADB`. Select “Use custom Android SDK tools” and update with your [Android SDK directory](https://stackoverflow.com/questions/25176594/android-sdk-location).
+
+##### Using Genymotion's `adb`
+
+1.  Find Genymotion’s copy of adb. On macOS for example, this is normally `/Applications/Genymotion.app/Contents/MacOS/tools/`.
+2.  Add the Genymotion tools directory to your path (instructions for [Mac](http://osxdaily.com/2014/08/14/add-new-path-to-path-command-line/), [Linux](http://www.computerhope.com/issues/ch001647.htm), and [Windows](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/)).
+3.  Make sure that you can run adb from your terminal.
+
+#### `npm run eject`
+
+This will start the process of "ejecting" from Create React Native App's build scripts. You'll be asked a couple of questions about how you'd like to build your project.
+
+**Warning:** Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an [Xcode and/or Android Studio environment](https://facebook.github.io/react-native/docs/getting-started.html) set up.
+
+## Customizing App Display Name and Icon
+
+You can edit `app.json` to include [configuration keys](https://docs.expo.io/versions/latest/guides/configuration.html) under the `expo` key.
+
+To change your app's display name, set the `expo.name` key in `app.json` to an appropriate string.
+
+To set an app icon, set the `expo.icon` key in `app.json` to be either a local path or a URL. It's recommended that you use a 512x512 png file with transparency.
+
+## Writing and Running Tests
+
+This project is set up to use [jest](https://facebook.github.io/jest/) for tests. You can configure whatever testing strategy you like, but jest works out of the box. Create test files in directories called `__tests__` or with the `.test` extension to have the files loaded by jest. See the [the template project](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/App.test.js) for an example test. The [jest documentation](https://facebook.github.io/jest/docs/getting-started.html) is also a wonderful resource, as is the [React Native testing tutorial](https://facebook.github.io/jest/docs/tutorial-react-native.html).
+
+## Environment Variables
+
+You can configure some of Create React Native App's behavior using environment variables.
+
+### Configuring Packager IP Address
+
+When starting your project, you'll see something like this for your project URL:
 
 ```
-{
-  "categories": [
-    {
-      "title": "Du och din familj",
-      "description": "Brand, inbrott, vattenläcka",
-      "iconUrl": "https://unsplash.it/70/70"
-      "perils": [
-        {
-          "id": "someid",
-          "title": "Peril 1 CREATED",
-          "isRemovable": true,
-          "key": 0,
-          "state": "CREATED",
-          "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
-          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
-        },
-        ...
-      ],
-    },
-    ...
-  ],
-  "currentTotalPrice": 0,
-  "newTotalPrice": 500,
-  "status": OK,
-  "statusDescription": ""
+exp://192.168.0.2:19000
+```
+
+The "manifest" at that URL tells the Expo app how to retrieve and load your app's JavaScript bundle, so even if you load it in the app via a URL like `exp://localhost:19000`, the Expo client app will still try to retrieve your app at the IP address that the start script provides.
+
+In some cases, this is less than ideal. This might be the case if you need to run your project inside of a virtual machine and you have to access the packager via a different IP address than the one which prints by default. In order to override the IP address or hostname that is detected by Create React Native App, you can specify your own hostname via the `REACT_NATIVE_PACKAGER_HOSTNAME` environment variable:
+
+Mac and Linux:
+
+```
+REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname' npm start
+```
+
+Windows:
+
+```
+set REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname'
+npm start
+```
+
+The above example would cause the development server to listen on `exp://my-custom-ip-address-or-hostname:19000`.
+
+## Adding Flow
+
+Flow is a static type checker that helps you write code with fewer bugs. Check out this [introduction to using static types in JavaScript](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) if you are new to this concept.
+
+React Native works with [Flow](http://flowtype.org/) out of the box, as long as your Flow version matches the one used in the version of React Native.
+
+To add a local dependency to the correct Flow version to a Create React Native App project, follow these steps:
+
+1.  Find the Flow `[version]` at the bottom of the included [.flowconfig](.flowconfig)
+2.  Run `npm install --save-dev flow-bin@x.y.z` (or `yarn add --dev flow-bin@x.y.z`), where `x.y.z` is the .flowconfig version number.
+3.  Add `"flow": "flow"` to the `scripts` section of your `package.json`.
+4.  Add `// @flow` to any files you want to type check (for example, to `App.js`).
+
+Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors.
+You can optionally use a [plugin for your IDE or editor](https://flow.org/en/docs/editors/) for a better integrated experience.
+
+To learn more about Flow, check out [its documentation](https://flow.org/).
+
+## Sharing and Deployment
+
+Create React Native App does a lot of work to make app setup and development simple and straightforward, but it's very difficult to do the same for deploying to Apple's App Store or Google's Play Store without relying on a hosted service.
+
+### Publishing to Expo's React Native Community
+
+Expo provides free hosting for the JS-only apps created by CRNA, allowing you to share your app through the Expo client app. This requires registration for an Expo account.
+
+Install the `exp` command-line tool, and run the publish command:
+
+```
+$ npm i -g exp
+$ exp publish
+```
+
+### Building an Expo "standalone" app
+
+You can also use a service like [Expo's standalone builds](https://docs.expo.io/versions/latest/guides/building-standalone-apps.html) if you want to get an IPA/APK for distribution without having to build the native code yourself.
+
+### Ejecting from Create React Native App
+
+If you want to build and deploy your app yourself, you'll need to eject from CRNA and use Xcode and Android Studio.
+
+This is usually as simple as running `npm run eject` in your project, which will walk you through the process. Make sure to install `react-native-cli` and follow the [native code getting started guide for React Native](https://facebook.github.io/react-native/docs/getting-started.html).
+
+#### Should I Use ExpoKit?
+
+If you have made use of Expo APIs while working on your project, then those API calls will stop working if you eject to a regular React Native project. If you want to continue using those APIs, you can eject to "React Native + ExpoKit" which will still allow you to build your own native code and continue using the Expo APIs. See the [ejecting guide](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md) for more details about this option.
+
+## Troubleshooting
+
+### Networking
+
+If you're unable to load your app on your phone due to a network timeout or a refused connection, a good first step is to verify that your phone and computer are on the same network and that they can reach each other. Create React Native App needs access to ports 19000 and 19001 so ensure that your network and firewall settings allow access from your device to your computer on both of these ports.
+
+Try opening a web browser on your phone and opening the URL that the packager script prints, replacing `exp://` with `http://`. So, for example, if underneath the QR code in your terminal you see:
+
+```
+exp://192.168.0.1:19000
+```
+
+Try opening Safari or Chrome on your phone and loading
+
+```
+http://192.168.0.1:19000
+```
+
+and
+
+```
+http://192.168.0.1:19001
+```
+
+If this works, but you're still unable to load your app by scanning the QR code, please open an issue on the [Create React Native App repository](https://github.com/react-community/create-react-native-app) with details about these steps and any other error messages you may have received.
+
+If you're not able to load the `http` URL in your phone's web browser, try using the tethering/mobile hotspot feature on your phone (beware of data usage, though), connecting your computer to that WiFi network, and restarting the packager.
+
+### iOS Simulator won't open
+
+If you're on a Mac, there are a few errors that users sometimes see when attempting to `npm run ios`:
+
+* "non-zero exit code: 107"
+* "You may need to install Xcode" but it is already installed
+* and others
+
+There are a few steps you may want to take to troubleshoot these kinds of errors:
+
+1.  Make sure Xcode is installed and open it to accept the license agreement if it prompts you. You can install it from the Mac App Store.
+2.  Open Xcode's Preferences, the Locations tab, and make sure that the `Command Line Tools` menu option is set to something. Sometimes when the CLI tools are first installed by Homebrew this option is left blank, which can prevent Apple utilities from finding the simulator. Make sure to re-run `npm/yarn run ios` after doing so.
+3.  If that doesn't work, open the Simulator, and under the app menu select `Reset Contents and Settings...`. After that has finished, quit the Simulator, and re-run `npm/yarn run ios`.
+
+### How to open app in Expo client
+
+Expo have removed the ability to scan QR codes in the client app :(
+
+What to do
+
+* Log in with the same expo account locally as the client
+* Start the app using XDE
+* Once you've openend the app once it will show under recent and you don't need to log in or use XDE
+
+### React Debugger opens in Chrome instead of native app
+
+What to do (Only works on Mac)
+
+* Check what port is used when Expo openend Chrome
+* Use this port to open the native debugger: `rndebugger://set-debugger-loc?host=localhost&port=__PORT__`
+
+Expo seems to now use port 19002 for React debugger (where it used to use 19001).
+
+Chrome is openened if the native debugger is configured with a different port.
+
+If you restart the packager it sometimes creates a new instance of the debugger with a new port.
+
+Handy bash function to open the debugger with a specific port:
+
+```
+function rndebug() {
+  if [ -n "$1" ]
+  then
+    open "rndebugger://set-debugger-loc?host=localhost&port="$1""
+  else
+    open "rndebugger://set-debugger-loc?host=localhost&port=19002"
+  fi
 }
 ```
-
-or in case the user is denied a quote the status is set to DENIED and statusDescription contains a text for display
-
-### My current insurance
-
-Get my current insurance (also includes new price if user has requested a quote that differs from their current insurance)
-
-`GET /insurance`
-
-NOTE: A call to /insurance is issued after every call to /messages to ensure an up-to-date view of insurance status. This is an MVP solution which might render a larger than necessary number of messages.
-
-#### Response body example
-
-```
-{
-  "categories": [
-    {
-      "title": "Du och din familj",
-      "description": "Brand, inbrott, vattenläcka",
-      "iconUrl": "https://unsplash.it/70/70"
-      "perils": [
-        {
-          "id": "someid",
-          "title": "Peril 1 CREATED",
-          "isRemovable": true,
-          "key": 0,
-          "state": "CREATED",
-          "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png",
-          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m"
-        },
-        ...
-      ],
-    },
-    ...
-  ],
-  "currentTotalPrice": 0,
-  "newTotalPrice": 500  // This is only set to an integer if the user hasn't paid an updated insurance. Otherwise, when no update is done, it's set to null.
-}
-```
-
-### Send insurance policy email
-
-`POST /insurance/email-policy`
-
-### Asset states
-
-* `"CREATED"` - information posted to backend
-* `"PENDING"` - Wait for
-Hedvig to get back to the user in the chat / email
-* `"WAITING_FOR_PAYMENT"`
-* `"NOT_COVERED"` - if they chose not to pay, or Hedvig decided this can’t be covered
-* `"COVERED"`
-
-### Upload image files
-`POST file in field fileUpload to /asset/fileupload/`
-```
-<form method="post" action="https://gateway.hedvig.com/asset/fileupload/" enctype="multipart/form-data">
-  <input type="file" class="file" name="fileUpload"/>
-</form>
-```
-Returns 2xx with id of saved image
-```
-{id:2d3ab7cc-469b-416b-a146-61937542dc51}
-```
-Images are then loaded from
-```
-GET /asset/image/{id}
-```
-Ex:
-```
-https://gateway.hedvig.com/asset/image/2d3ab7cc-469b-416b-a146-61937522dc51
-```
-
-### List assets
-
-`GET /asset/`
-
-```
-[
-  {
-    "id": "someid",
-    "photoUrl": "https://unsplash.it/200/200",
-    "receiptUrl": "https://unsplash.it/100/200",
-    "title": "Laptop",
-    "date": "2017-09-29T22:00:00.000Z",
-    "price": 123,
-    "state": "COVERED",
-    "includedInBasePackage": false,
-    "registrationDate": "2017-10-10"
-  },
-  ...
-]
-```
-
-### Add / edit an asset
-
-`POST (for create) PUT (for edit) /asset/ (set id in payload if editing)`
-
-#### Request body example (for POST and PUT - no body required for DELETE)
-
-```
-{
-  "id": "someidIfWe'reEditing",
-  "photoUrl": "https://unsplash.it/200/200",
-  "receiptUrl": "https://unsplash.it/100/200",
-  "title": "Laptop"
-  "date": "2017-09-29T22:00:00.000Z",
-  "price": 123,
-  "state": "CREATED" // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "includedInBasePackage": false
-  "registrationDate": "2017-10-10"
-}
-```
-### Delete an asset
-
-`DELETE /asset/{id}`
-
-```
-gateway.hedvig.com/asset/57003ec1-bdd0-4e8b-a98e-325fa5b629de
-```
-
-#### Response code
-
-2xx
-
-```
-{
-  "id": "someid",
-  "photoUrl": "https://unsplash.it/200/200",
-  "receiptUrl": "https://unsplash.it/100/200",
-  "title": "Laptop",
-  "date": "2017-09-29T22:00:00.000Z",
-  "price": 123,
-  "state": "PENDING", // The client sets state to "CREATED" when adding an item. The backend should respond with pending.
-  "includedInBasePackage": false,
-  "registrationDate": "2017-10-10"
-}
-```
-
-### Checkout
-
-When a member has reviewed and accepted an quote.
-
-`POST /hedvig/quoteAccept`
-
-### Claims
-
-#### Initiate a general claim
-
-`POST /claim`
-
-Response code: 204
-
-#### Initiate a claim for specific asset
-
-`POST /claim/asset/{id}`
-
-Reponse code: 204
-
-**After initiating a claim the client fetches `/messages`**
-
-### Claim video / audio / photo upload
-
-`POST {response_path}` where response_path is provided in the chat message with corresponding type
-
-### List cashback options
-
-#### Request body example
-
-`GET /cashback/options`
-
-```
-[
-  {
-    "id": "someid",
-    "title": "Rädda Barnen",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": false,
-    "charity": true,
-    "imageUrl": "https://unsplash.it/400/200"
-  },
-  {
-    "id": "someotherid",
-    "title": "Mitt konto",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": true,
-    "charity": false,
-    "imageUrl": "https://unsplash.it/400/200"
-  }
-]
-```
-
-### Edit cashback option via separate endpoint (used in profile view)
-
-`POST /cashback`
-
-* Parameter `optionId`
-* Value `id` of the option selected
-
-#### Request body example
-
-```
-[
-  {
-    "id": "someid",
-    "title": "Rädda Barnen",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": true,
-    "charity": true,
-    "imageUrl": "https://unsplash.it/400/200"
-  },
-  {
-    "id": "someotherid",
-    "title": "Mitt konto",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": false,
-    "charity": false,
-    "imageUrl": "https://unsplash.it/400/200"
-  }
-]
-```
-
-#### Response body example
-
-```
-[
-  {
-    "id": "someid",
-    "title": "Rädda Barnen",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": true,
-    "charity": true,
-    "imageUrl": "https://unsplash.it/400/200"
-  },
-  {
-    "id": "someotherid",
-    "title": "Mitt konto",
-    "description": "Lorem ipsum dolor sit amet...",
-    "selected": false,
-    "charity": false,
-    "imageUrl": "https://unsplash.it/400/200"
-  }
-]
-```
-
-### Get current user
-
-`GET ~~/me~~ /member/me`
-
-```
-{
-  "name": "Anakin Skywalker",
-  "familyMembers": [
-    "Anakin Skywalker",
-    "Padmé Amidala",
-    "Luke Skywalker",
-    "Leia Organa"
-  ],
-  "age": 26,
-  "email": "anakkin@skywalk.er",
-  "address": "Krukmakargatan 5",
-  "livingAreaSqm": "48",
-  "maskedBankAccountNumber": "XXXX XXXX 1234",
-  "paymentStatus": "ACTIVE",
-  "nextPaymentDate": 1507042098159,
-  "selectedCashback": "Rädda Barnen",
-  "selectedCashbackImageUrl": "https://unsplash.it/400/400",
-  "selectedCashbackParagraph": "\“Tack kära Lucas för att du bidrar till att rädda livet på fler cancerdrabbade barn\"",
-  "selectedCashbackSignature": "Isabelle Ducellier, Generaldirektör",
-  "safetyIncreasers": [
-    "brandvarnare",
-    "säkerhetsdörr",
-    "gallergrind"
-  ]
-}
-```
-
-### Update profile
-
-The client:
-
-1. makes the corresponding request
-2. navigates to chat where the the converation in /messages is about updating the requested topic
-
-`POST /hedvig/initiateUpdate`
-
-* Paramter: `what`
-* Values: `PERSONAL_INFORMATOIN, FAMILY_MEMBERS, APARTMENT_INFORMATION, BANK_ACCOUNT, SAFETY_INCREASERS`
-
-Response code: 204
-
-### Push notifications
-
-Read more about the client / server requirements [here](https://docs.expo.io/versions/latest/guides/push-notifications.html#2-call-expos-push-api-with-the-users-token)
-
-`POST /push-token`
-
-```
-{
-  "token": "somepushtoken"
-}
-```
-
-### Chat
-
-![image](https://user-images.githubusercontent.com/206061/30038446-f1a534e0-91c4-11e7-9ee7-74ba6bf4c976.png)
-
-Chat messages are delivered through polling the /messages endpoint. They are delivered in timestamp order (as seen by the API-GATEWAY)
-<BR>Response format is {"timestamp1":message1, "timestamp2":message2,...}
-<BR><BR>
-Chat messages are recieved by POSTING to the /response endpoint with the id field set to the message you are responding to. To respond to a message just alter the content and/or the Boolean select fields of the choices and post it to /response. Note the message does not include the initial timestamp so to reply to
-
-The form feed character '\f' is used to separate text bewteen chat-bubbles when rendering a single message
-
-* Message header
-The message headers contains information about:
-```
-"messageId":6,
-"fromId":1,
-"responsePath":"/response",
-"timeStamp":1508233456622,
-"loadingIndicator":"loader",
-"avatarName":null,
-"pollingInterval":1000,
-"editAllowed": true
-```
-
-The loadingIndicator is the loading animation displayed after the message is shown and before the next message appears. The avatarName is the animation to be displayed above the message and the pollingInterval is the delay time in the case of a paragraph message before the client polls the server for new messages
-
-```
-"1507473841801":{
-  "globalId":4,
-  "id":"message.getname",
-  "header":{
-    "messageId":4,
-    "fromId":1,
-    "responsePath":"/response",
-    "timeStamp":1507473841801},
-   "body":{
-    "type":"text",
-    "id":4,
-    "text": "😁 Hej, jag heter Hedvig!\n\nFint att ha dig här\n\nJag är en försäkringsbot så låt mig visa vad jag gör!",
-    "imageURL": "http://www.apa.org/Images/insurance-title-image_tcm7-198694.jpg",
-    "imageWidth": 730,
-    "imageHeight": 330},
-   "timestamp":1507473841.801000000}
-```
-simply POST this to /response:
-
-```
-{
-  "globalId":4,
-  "id":"message.getname",
-  "header":{
-    "messageId":4,
-    "fromId":1,
-    "responsePath":"/response",
-    "timeStamp":1507473841801},
-   "body":{
-    "type":"text",
-    "id":4,
-    "text":"John Doe"},
-   "timestamp":1507473841.801000000
-}
-```
-<BR>Request format is {message}
-
-#### Avatar / lottie animations
-
-* `/avatars` - Returns a list of available lottie animations to pre-load by the client
-```
-[
-  {"name":"loader",
-  "URL":"https://www.lottiefiles.com/storage/datafiles/qm9uaAEoe13l3eQ/data.json","width":500,
-  "height":500,
-  "duration":1000},
-  {"name":"bike",
-  "URL":"https://www.lottiefiles.com/storage/datafiles/dlzGwlfS0fkCJcq/data.json",
-  "width":500,
-  "height":500,
-  "duration":2000}
-]
-```
-
-#### Chat message types
-
-* `text` - Plain text message
-```
-"1507549994762": {
-  "id": "message.getname",
-  "header": {
-    "messageId": 20,
-    "fromId": 1,
-    "responsePath": "/response",
-    "timeStamp": 1507549994762,
-    "loadingIndicator":"loader",
-    "avatarName":null
-  },
-  "body": {
-    "type": "text",
-    "id": 20,
-    "text": "Trevlig, vad heter du?"
-  },
-  "timestamp": 1507549994.762
-}
-```
-* `paragraph` - Plain text/image message with no response option
-```
-"1507549994762": {
-  "id": "message.getname",
-  "header": {
-    "messageId": 20,
-    "fromId": 1,
-    "responsePath": "/response",
-    "timeStamp": 1507549994762,
-    "loadingIndicator":"loader",
-    "avatarName":null,
-    "pollingInterval":1000
-  },
-  "body": {
-    "type": "text",
-    "id": 20,
-    "text": "Trevlig, vad heter du?",
-    "imageURL": "http://www.apa.org/Images/insurance-title-image_tcm7-198694.jpg",
-    "imageWidth": 730,
-    "imageHeight": 330
-  },
-  "timestamp": 1507549994.762
-}
-```
-* `number` - Numeric input
-```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response",
-     "loadingIndicator":"loader",
-    "avatarName":null
-  },
-  "body":{
-     "type":"number",
-     "text":"Trevlig, vad heter du?"
-  }
-}
-```
-* `single_select` - Single select question / answer
-
-NOTE: Each `link` should only have one of [`appUrl`, `webUrl`, `view`]
-```
-"17879879179871": {
-  "id":"message.hello",
-  "timestamp": 17879879179871,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response"
-  },
-  "body":{
-     "type":"single_select",
-     "text":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
-     "choices":[
-        {
-           "type": "selection",
-           "text":"Jag vill ha en ny",
-        },
-        {
-           "type": "link",
-           "text":"I want to see my assets",
-           "view": "AssetTracker",
-           "appUrl": "bankid://",
-           "webUrl": "http://hedvig.com"
-        }
-     ]
-  }
-}
-```
-
-List of valid `view` values:
-
-* `AssetTracker`
-* `Dashboard`
-
-* `multiple_select` - Multiple select question / answer
-```
-"1507042097247": {
-  "id":"message.hello",
-  "timestamp": 1507042097247,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response",
-  },
-  "body":{
-     "type":"multiple_select",
-     "text":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?",
-     "choices":[
-        {
-           "text":"Jag vill ha en ny",
-           "selected":false
-        },
-        {
-           "text":"Vill byta försäkring",
-           "selected":false
-        },
-        {
-           "text":"Varför behöver jag?",
-           "selected":false
-        },
-        {
-           "text":"Vem är du, Hedvig?",
-           "selected":false
-        }
-     ]
-  }
-}
-```
-* `datepicker` - Select a date
-```
-"1507474046966":{
-  "globalId":7,
-  "id":"message.greetings",
-  "header":{
-    "messageId":7,
-    "fromId":1230923,
-    "responsePath":"/response",
-    "timeStamp":1507474046966},
-   "body":{
-    "type":"date_picker",
-    "id":7,
-    "text":"Hej John Doe, kul att du gillar försäkring :). När är du född?",
-    "date":[2002,8,25,0,0]},
-   "timestamp":1507474046.966000000}
-```
-* `video`
-```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response"
-  },
-  "body":{
-     "type":"video",
-     "text":"Record a video"
-  }
-}
-```
-* `hero` - A big "hero" / "jumbotron" to showcase key (marketing?) messages
-```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response"
-  },
-  "body":{
-     "type":"hero",
-     "text":"I'm a hero",
-     "imageUri": "http://placekitten.com/g/200/300"
-  }
-}
-```
-* `photo_upload`
-```
-"1507042098159": {
-  "id":"message.getname",
-  "timestamp": 1507042098159,
-  "header":{
-     "fromId":1,
-     "responsePath":"/response"
-  },
-  "body":{
-     "type":"photo_upload",
-     "text":"Upload a photo"
-  }
-}
-```
-* ~`link` - A link to another view~ This is now a `single_select` type with one `choices.type` set to `link`
-
-#### Generate a main menu (what do you want to do today) message from Hedvig
-
-`POST /chat/main`
-
-This will generate a new message which is available through the /messages endpoint
-
-#### Reset a conversation
-
-Used in claim and onboarding.
-
-`POST /chat/reset`
-
-#### Edit the last message from current user
-
-On the next `GET /messages`, the backend serves messages which let the user edit their last answer.
-
-`POST /chat/edit`
-
-Example:
-
-Hedvig: What's your name?
-
-User: Kirderf
-
-Hedvig: Hey Kirderf, where do you live?
-
-`User clicks edit`
-
-Hedvig: Ok, everyone makes mistakes. What's you name?
-
-User: Fredrik
-
-Hedvig: Ok Fredrik, where do you live?
-
-#### Chat flow example
-
-GET /messages
-```
-"1506330482691":{"id":"message.hello","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330482691E12},"body":{"type":"text","content":"Hello I am Hedvig"}}}
-```
-
-GET /messages
-```
-{"1506330403007":
-  {"id":"message.hello","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330403007E12},"body":{"type":"multiple_choice","content":"Hej, det är jag som är Hedvig, din personliga försäkringsassistent! Vad kan jag hjälpa dig med?","links":[{"text":"Jag vill ha en ny","selected":false,"URI":"/response","param":"action.new"},{"text":"Vill byta försäkring","selected":false,"URI":"/response","param":"action.change"},{"text":"Varför behöver jag?","selected":false,"URI":"/response","param":"action.why"},{"text":"Vem är du, Hedvig?","selected":false,"URI":"/response","param":"action.who"}]}},
-"1506330444463":
-  {"id":"message.changecompany","header":{"fromId":1,"responsePath":"/response","timeStamp":1.506330444463E12},"body":{"type":"multiple_choice","content":"Ok, vilket bolag har du idag?","links":[{"text":"If","selected":false,"URI":"/response","param":"company.if"},{"text":"TH","selected":false,"URI":"/response","param":"company.th"},{"text":"LF","selected":false,"URI":"/response","param":"company.lf"}]}},
-"1506330482691":{"id":"error","header":
-  {"fromId":1,"responsePath":"/response","timeStamp":1.506330482691E12},"body":{"type":"text","content":"Oj nu blev något fel..."}}}
-```
-
-POST /message
-```
-To reply to a particular message just use the same id as the message you are replying to and alter the body. Time stamp and other header information is updated by the API-GATEWAY
-{
-  "id":"message.name",
-  "header":
-    {"fromId":1,"responsePath":"/response","timeStamp":1.506330482691E12},
-  "body":
-    {"type":"text","content":"John"}
-}
-```
-
-### Authentication
-
-For authentication we utilize the JWT tokens. The tokens should be added to the _Authorization_ header and prepended with _Bearer _.
-
-Ex:```Authorization:Bearer AKLSJDLAJD.ASDLKJADJ.KJALJDSLA```
-
-#### On newly started applications
-
-Newly started application should be initiated by calling helloHedvig
-endpoint and get an access token. Further calles to the backend should
-include this token.
-
-
-POST /helloHedvig
-
-```
-Response:
-XXXX.XXXXX.XXXX
-```
-
-### Log out
-
-`POST /logout` (authorized request)
-
-#### BankId authentication
-
-The bankId authentication flow mimics the flow used by BankId.  A call
-to /member/bankid/auth starts the auth process. In order to know if
-the auth request succeded or not the client must poll
-/member/bankid/collect.
-
-POST /member/bankid/auth
-
-Arguments:
-* ssn - (Optional) The personnumer of the authenticating member
-
-
-#### BankId collect
-
-POST /member/bankid/collect
-
-Response:
-SUCCESS
-FAILIURE
-.
-.
-
-# Thanks to BrowserStack
-Big thanks to BrowserStack for letting us use their service to test our website in multiple browsers and environments.
-
-
-<a href="https://www.browserstack.com/"><img alt="BrowserStack Logo" src="https://raw.github.com/hedviginsurance/hedvig-frontend/master/media/BrowserStack.png"/></a>

@@ -1,6 +1,0 @@
-export const INSURANCE_TYPES = {
-  BRF: "BRF",
-  SUBLET_BRF: "SUBLET_BRF",
-  RENT: "RENT",
-  SUBLET_RENT: "SUBLET_RENT",
-}

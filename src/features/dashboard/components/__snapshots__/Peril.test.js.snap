@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Peril /> Should render correctly 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 10,
+        "marginLeft": 22,
+        "width": 50,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 40,
+          "width": 40,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#9B9BAA",
+          "fontFamily": "circular",
+          "fontSize": 12,
+          "marginTop": 5,
+          "textAlign": "center",
+        }
+      }
+    >
+      Juridisk tvist
+    </Text>
+  </Component>
+</TouchableOpacity>
+`;

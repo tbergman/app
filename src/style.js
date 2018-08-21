@@ -1,0 +1,12 @@
+export const colors = {
+  TRANSPARENT: 'transparent',
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+  TURQUOISE: '#1BE9B6',
+  PURPLE: '#651EFF',
+  BLACK_PURPLE: '#0F007A',
+  DARK_GRAY: '#9B9BAA',
+  LIGHT_GRAY: '#E9ECEF',
+  OFF_BLACK: '#414150',
+  OFF_WHITE: '#F9FAFC',
+};
