@@ -53,10 +53,6 @@ export default class Dialog extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.isMounted = false;
-  }
-
   open() {
     if (this.state.visible) return;
     this.setState({ visible: true });
