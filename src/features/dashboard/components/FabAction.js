@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     paddingRight: 18,
     paddingBottom: 10,
     paddingLeft: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
     alignSelf: 'center',
     ...Platform.select({
       ios: {
-        marginLeft: 64,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: -64,
       },
     }),
   },

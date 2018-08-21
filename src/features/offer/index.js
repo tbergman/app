@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 import { Navigation } from 'react-native-navigation';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
@@ -333,12 +332,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             showLoadingIndicator: true,
           },
         ),
-      );
-      dispatch(
-        NavigationActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: 'Chat' })],
-        }),
       );
     },
     navigate: (params) => ownProps.navigation.navigate(params),
