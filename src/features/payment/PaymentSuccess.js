@@ -23,7 +23,7 @@ const Body = styled(Text)({
   fontSize: 18,
   color: colors.BLACK,
   textAlign: 'center',
-  maxWidth: '60%',
+  maxWidth: '80%',
 });
 
 const Button = styled(TouchableOpacity)({
