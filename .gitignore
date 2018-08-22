@@ -61,3 +61,6 @@ maven/
 local.properties
 sentry.properties
 .sts4-cache
+
+# e2e
+e2e/artifacts

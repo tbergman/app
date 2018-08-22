@@ -189,7 +189,7 @@ const renderMessage = (message, idx) => {
       </StyledAvatarContainer>
     ) : null;
   return (
-    <View key={message.globalId || idx}>
+    <View testId={message.globalId} key={message.globalId || idx}>
       {avatar}
       <View
         style={

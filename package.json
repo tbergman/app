@@ -13,6 +13,18 @@
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "postversion": "react-native-version"
   },
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "e2e/config.json",
+    "configurations": {
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-Staging-iphonesimulator/Hedvig.app",
+        "build": "CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=\"NO\" CODE_SIGN_ENTITLEMENTS=\"\" xcodebuild -workspace ios/hedvig.xcworkspace -scheme Staging -configuration \"Release-Staging\" -sdk iphonesimulator -derivedDataPath ios/build -archivePath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      }
+    }
+  },
   "jest": {
     "preset": "react-native",
     "transform": {
@@ -48,6 +60,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.14",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react-native": "5.0.2",
+    "detox": "^8.1.6",
     "dot-prop-immutable": "^1.4.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -111,14 +124,14 @@
   },
   "xcodeSchemes": {
     "Debug": [
-      "Debug - Development",
-      "Debug- Staging",
-      "Debug - Production"
+      "Debug-Development",
+      "Debug-Staging",
+      "Debug-Production"
     ],
     "Release": [
-      "Release - Development",
-      "Release - Staging",
-      "Release - Production"
+      "Release-Development",
+      "Release-Staging",
+      "Release-Production"
     ],
     "settings": {
       "fix-script": {

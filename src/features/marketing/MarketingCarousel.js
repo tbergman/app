@@ -460,6 +460,7 @@ export default class MarketingCarousel extends React.Component {
                 marketingCarouselStyles.footerCtaButton,
                 isFirst && marketingCarouselStyles.footerCtaButtonIsFirst,
               ]}
+              testID="continueButton"
             >
               <Text
                 numberOfLines={1}
