@@ -22,8 +22,7 @@ const authenticate = function*(action) {
     let token = yield authResponse.text();
     yield put({ type: RECEIVED_TOKEN, payload: token });
   } else {
-    // TODO: Report this error to the user and to Sentry
-    console.warn('Failed to receive token', authResponse); // eslint-disable-line no-console
+    throw new Error('Failed to receive token', authResponse);
   }
 };
 

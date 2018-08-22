@@ -15,7 +15,6 @@ const _runner = function*(sagas, raven) {
           } catch (e) {
             if (raven) {
               raven.captureException(e);
-              console.error(e); // eslint-disable-line no-console
             }
           }
         }
