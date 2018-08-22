@@ -19,7 +19,7 @@ install:
 - npm install -g detox-cli
 - npm install -g yarn
 - yarn install
-- cd ios; pod install; cd ..
+- cd ios; pod repo update; pod install; cd ..
 
 script:
 - scripts/build-appcenter.sh
