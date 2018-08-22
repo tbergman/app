@@ -21,6 +21,7 @@ android {
   defaultConfig {
     applicationId project.env.get('APP_ID')
     minSdkVersion 19
+    multiDexEnabled true
     versionCode 32
     versionName '1.5.1'
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
