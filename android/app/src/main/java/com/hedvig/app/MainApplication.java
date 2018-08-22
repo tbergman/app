@@ -60,10 +60,10 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new SvgPackage(), new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
-        new CodePush(BuildConfig.CODE_PUSH_DEPLOYMENT_KEY, getApplicationContext(), isDebug()), new RNSoundPackage(),
-        new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new SvgPackage(), new ReactNativeConfigPackage(),
+        new RNFetchBlobPackage(),
+        new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
+        new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
         new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
         new LottiePackage());
   }
