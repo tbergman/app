@@ -98,6 +98,7 @@ dependencies {
   implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 
   // Segment
+  implementation 'com.google.android.gms:play-services-ads:15.0.1'
   compile 'com.segment.analytics.android:analytics:4.2.6'
   // compile 'io.branch.segment.analytics.android.integrations:branch:1.0.2-RELEASE'
 }
