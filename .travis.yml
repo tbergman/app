@@ -18,9 +18,9 @@ install:
 - npm install -g detox-cli
 - npm install -g yarn
 - yarn install
-- scripts/build-appcenter.sh
 - cd ios; pod install; cd ..
 
 script:
+- scripts/build-appcenter.sh
 - detox build --configuration ios.sim.release
 - detox test --configuration ios.sim.release --cleanup
