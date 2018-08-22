@@ -34,7 +34,6 @@ target 'hedvig' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  pod 'Segment-Facebook-App-Events'
   pod 'react-native-branch', :path => '../node_modules/react-native-branch'
   pod 'Branch-SDK', :path => '../node_modules/react-native-branch/ios'
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
@@ -42,8 +41,6 @@ target 'hedvig' do
   pod 'RNSound', :path => '../node_modules/react-native-sound'
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
-  pod 'Firebase/Core', '5.6.0'
-  pod 'Firebase/Messaging', '5.6.0'
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
@@ -51,7 +48,10 @@ target 'hedvig' do
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   pod 'JWT', '3.0.0-beta.7'
+  pod 'Firebase/Core', '5.6.0'
+  pod 'Firebase/Messaging', '5.6.0'
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
