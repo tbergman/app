@@ -85,7 +85,7 @@ if (!__DEV__) {
   });
 } else {
   SentryInstance = {
-    captureException() {},
+    captureException: (e) => console.error(e), // eslint-disable-line no-console
   };
 }
 

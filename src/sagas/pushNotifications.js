@@ -14,7 +14,7 @@ const requestPush = function*() {
 const registerPush = function*() {
   const token = yield call([firebase.messaging(), 'getToken']);
   if (!token) {
-    console.log('ERROR: User does not have an FCM token'); // eslint-disable-line no-console
+    throw new Error('User has no FCM token');
   }
   return yield put(pushNotificationActions.registerPushToken(token));
 };
