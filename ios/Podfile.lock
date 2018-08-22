@@ -73,7 +73,7 @@ PODS:
   - "GoogleUtilities/NSData+zlib (5.2.2)"
   - GoogleUtilities/Reachability (5.2.2):
     - GoogleUtilities/Logger
-  - JWT (3.0.0-beta.11):
+  - JWT (3.0.0-beta.7):
     - Base64 (~> 1.1.2)
   - KSCrash/Core (1.15.18):
     - KSCrash/Reporting/Filters/Basic
@@ -195,6 +195,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - JWT (= 3.0.0-beta.7)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - react-native-branch (from `../node_modules/react-native-branch`)
   - "react-native-config (from `../node_modules/@hedviginsurance/react-native-config`)"
@@ -305,7 +306,7 @@ SPEC CHECKSUMS:
   glog: b3b0330915eccea41c5cc9731a77cf564a9be5ea
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
-  JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
+  JWT: 8a0c3e95ee8d521a7eafb108b0496eac18a1bc2e
   KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
@@ -328,6 +329,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 51a800ebb77f95a8329b6ced1faaff394b47f509
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: d06e66dab8489dd24e3b29503a57fed973de9814
+PODFILE CHECKSUM: 04fb4e52d2fa9c5cb7aff606297243c494688957
 
 COCOAPODS: 1.5.3
