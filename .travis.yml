@@ -16,6 +16,8 @@ install:
 
 - npm install -g react-native-cli
 - npm install -g detox-cli
+- npm install -g yarn
+- yarn install
 
 script:
 - detox build --configuration ios.sim.release
