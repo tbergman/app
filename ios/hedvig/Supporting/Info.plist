@@ -39,10 +39,6 @@
 	<string>2</string>
 	<key>CodePushDeploymentKey</key>
 	<string>__RN_CONFIG_CODE_PUSH_IOS_DEPLOYMENT_KEY</string>
-	<key>FacebookAppID</key>
-	<string>__RN_CONFIG_FACEBOOK_APP_ID</string>
-	<key>FacebookDisplayName</key>
-	<string>Hedvig</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

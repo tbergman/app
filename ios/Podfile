@@ -34,7 +34,6 @@ target 'hedvig' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  pod 'Segment-Facebook-App-Events'
   # pod 'Segment-Branch'
   pod 'react-native-branch', :path => '../node_modules/react-native-branch'
   pod 'Branch-SDK', :path => '../node_modules/react-native-branch/ios'

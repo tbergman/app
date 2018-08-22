@@ -170,7 +170,6 @@
 				EBC15BE5212850D700D0E296 /* Bundle React Native code and images */,
 				B563863F1DB9693800A0598C /* Resources */,
 				1692B8F87AFA418B9266FEBB /* Upload Debug Symbols to Sentry */,
-				173DFD024884E0F9DF96B449 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,24 +259,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
-		};
-		173DFD024884E0F9DF96B449 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh",
-				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hedvig/Pods-hedvig-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		44BDFBEAACB7B256479661F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
