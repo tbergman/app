@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import Config from 'react-native-config';
+import Config from '@hedviginsurance/react-native-config';
 
 export function getDeviceInfo() {
   return {
