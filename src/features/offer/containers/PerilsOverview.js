@@ -20,7 +20,7 @@ import { PERILS_SET_ACTIVE } from '../state/actions';
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   perilTitle: {
     paddingLeft: 7,
     paddingRight: 7,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 15,
     color: colors.DARK_GRAY,
     textAlign: 'center',
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   moreInfo: {
     color: '#cbcbd0',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 17,
     textAlign: 'center',
     marginTop: {
@@ -108,6 +108,8 @@ class PerilsOverview extends React.Component {
                     hitSlop={hitSlop}
                     style={styles.peril}
                     key={index}
+                    accessibilityComponentType="button"
+                    accessibilityTraits="image"
                   >
                     <Image
                       source={PERIL_IMAGE_MAP[peril.id]}

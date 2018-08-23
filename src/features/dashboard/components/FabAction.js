@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,9 +16,14 @@ const styles = StyleSheet.create({
     paddingRight: 18,
     paddingBottom: 10,
     paddingLeft: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
     alignSelf: 'center',
+    ...Platform.select({
+      ios: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: -64,
+      },
+    }),
   },
   containerEnabled: {
     borderColor: colors.PURPLE,

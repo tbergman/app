@@ -52,10 +52,9 @@ const collectHandler = function*() {
       });
     }
   } else {
-    // TODO: Report this error to the user and Sentry
-    console.warn(
+    throw new Error(
       'No referenceId found in `state.deprecatedBankId.referenceId`',
-    ); // eslint-disable-line no-console
+    );
   }
 };
 

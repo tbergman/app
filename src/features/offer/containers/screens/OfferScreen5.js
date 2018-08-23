@@ -24,7 +24,7 @@ import {
 import { CheckedBullet } from '../../components/CheckedBullet';
 import { Hero } from '../../components/Hero';
 
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 import { isApartmentOwner, isStudentInsurance } from '../../../../utils';
 
 const styles = StyleSheet.create({
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f7f9',
   },
   header: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 23,
     lineHeight: 32,
     color: colors.OFF_BLACK,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   legalLinkLabel: {
     paddingLeft: 0,
     paddingRight: 0,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: {
       [V_SPACIOUS]: 15,
       [V_REGULAR]: 15,
@@ -177,6 +177,8 @@ class OfferScreen extends React.Component {
                   }
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image
@@ -196,6 +198,8 @@ class OfferScreen extends React.Component {
                   }
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image
@@ -213,6 +217,8 @@ class OfferScreen extends React.Component {
                   onPress={() => Linking.openURL(HEDVIG_INTEGRITET_S3_LINK)}
                   hitSlop={hitSlop}
                   style={styles.legalLink}
+                  accessibilityTraits="link"
+                  accessibilityComponentType="button"
                 >
                   <View style={styles.legalLinkContent}>
                     <Image

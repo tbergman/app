@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 import {
   View,
   Image,
   Text,
   Dimensions,
   TouchableOpacity,
-  StatusBar,
   StyleSheet,
   ImageBackground,
   Linking,
 } from 'react-native';
+import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 
@@ -33,7 +34,8 @@ import {
 import * as marketingSelectors from './selectors';
 import * as analyticsSelectors from '../analytics/selectors';
 
-import { colors } from '../../style';
+import { CHAT_SCREEN } from '../../navigation/screens/chat';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -50,7 +52,7 @@ const slideStyles = StyleSheet.create({
     alignItems: 'center',
   },
   caption: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: {
       [H_SPACIOUS]: 22,
       [H_REGULAR]: 20,
@@ -126,7 +128,7 @@ const slideImageStyles = StyleSheet.create({
     right: 0,
     bottom: 0,
     width: slideImageWidth,
-    resizeMode: Image.resizeMode.contain,
+    resizeMode: ImageResizeMode.contain,
   },
 });
 
@@ -179,7 +181,7 @@ const marketingCarouselStyles = StyleSheet.create({
     position: 'absolute',
     fontSize: 56,
     color: colors.WHITE,
-    fontFamily: 'soray',
+    fontFamily: 'SoRay-ExtraBold',
     textAlign: 'center',
     top: {
       [V_SPACIOUS]: 144,
@@ -237,7 +239,7 @@ const marketingCarouselStyles = StyleSheet.create({
   slideFourImage: {
     width: 132,
     height: 129,
-    resizeMode: Image.resizeMode.contain,
+    resizeMode: ImageResizeMode.contain,
   },
   footerContainer: {
     position: 'absolute',
@@ -267,7 +269,7 @@ const marketingCarouselStyles = StyleSheet.create({
   },
   footerCtaButtonText: {
     fontSize: 21,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: colors.WHITE,
@@ -283,7 +285,7 @@ const marketingCarouselStyles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   footerLoginText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
@@ -294,7 +296,7 @@ const marketingCarouselStyles = StyleSheet.create({
     color: colors.WHITE,
   },
   footerPrivacyText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
@@ -302,7 +304,7 @@ const marketingCarouselStyles = StyleSheet.create({
     marginRight: 8,
   },
   footerLoginCta: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 20,
     height: 20,
@@ -325,8 +327,14 @@ export default class MarketingCarousel extends React.Component {
   };
 
   handleCtaClick = () => {
-    const { activeMarketingScreenIndex, startChat, orderId } = this.props;
+    const {
+      activeMarketingScreenIndex,
+      startChat,
+      orderId,
+      componentId,
+    } = this.props;
     if (activeMarketingScreenIndex === 3) {
+      Navigation.setStackRoot(componentId, CHAT_SCREEN);
       startChat(orderId);
     } else {
       if (!this.swiper) {
@@ -337,7 +345,9 @@ export default class MarketingCarousel extends React.Component {
   };
 
   login = () => {
-    const { login, orderId } = this.props;
+    const { login, orderId, componentId } = this.props;
+
+    Navigation.setStackRoot(componentId, CHAT_SCREEN);
     login(orderId);
   };
 
@@ -353,7 +363,6 @@ export default class MarketingCarousel extends React.Component {
 
     return (
       <View style={marketingCarouselStyles.container}>
-        <StatusBar hidden />
         <View style={marketingCarouselStyles.swiperContainer}>
           <Swiper
             ref={(swiper) => (this.swiper = swiper)}
@@ -433,6 +442,8 @@ export default class MarketingCarousel extends React.Component {
                 key="marketing-footer-policy"
                 style={marketingCarouselStyles.footerLoginContainer}
                 onPress={this._privacyLinkClick}
+                accessibilityTraits="link"
+                accessibilityComponentType="button"
               >
                 <Text style={marketingCarouselStyles.footerPrivacyText}>
                   Om dina personuppgifter
@@ -443,6 +454,8 @@ export default class MarketingCarousel extends React.Component {
             <TouchableOpacity
               key="marketing-footer-cta"
               onPress={this.handleCtaClick}
+              accessibilityTraits="button"
+              accessibilityComponentType="button"
               style={[
                 marketingCarouselStyles.footerCtaButton,
                 isFirst && marketingCarouselStyles.footerCtaButtonIsFirst,
@@ -472,7 +485,11 @@ export default class MarketingCarousel extends React.Component {
                   Redan medlem?
                 </Text>
               </View>
-              <TouchableOpacity onPress={this.login}>
+              <TouchableOpacity
+                accessibilityTraits="link"
+                accessibilityComponentType="button"
+                onPress={this.login}
+              >
                 <Text style={marketingCarouselStyles.footerLoginCta}>
                   Logga in
                 </Text>

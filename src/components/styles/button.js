@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   buttonText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 16,
     lineHeight: 20,
     backgroundColor: colors.TRANSPARENT,
@@ -20,7 +20,13 @@ const styles = StyleSheet.create({
 
 export class StyledButton extends React.Component {
   render() {
-    return <TouchableOpacity {...this.props} />;
+    return (
+      <TouchableOpacity
+        accessibilityTraits="button"
+        accessibilityComponentType="button"
+        {...this.props}
+      />
+    );
   }
 }
 

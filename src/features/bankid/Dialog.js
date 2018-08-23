@@ -21,7 +21,7 @@ import {
   BANKID_DIALOG_DISMISSED,
 } from './actions';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   dialog: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   status: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 20,
     lineHeight: 28,
     marginTop: 20,
@@ -66,14 +66,14 @@ const styles = StyleSheet.create({
     borderRightColor: colors.OFF_WHITE,
   },
   buttonText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 18,
     lineHeight: 25,
     color: colors.PURPLE,
     textAlign: 'center',
   },
   buttonTextIsPrimary: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
   },
   bankIdLink: { color: '#555555', textDecorationLine: 'underline' },
 });
@@ -280,6 +280,8 @@ class Dialog extends React.Component {
                     <TouchableOpacity
                       style={styles.button}
                       onPress={() => this.props.signCancel()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text style={styles.buttonText}>Avbryt</Text>
                     </TouchableOpacity>
@@ -299,12 +301,16 @@ class Dialog extends React.Component {
                     <TouchableOpacity
                       style={[styles.button, styles.buttonRightBorder]}
                       onPress={() => this.props.signCancel()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text style={[styles.buttonText]}>Stäng</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.button}
                       onPress={() => this.props.signRetry()}
+                      accessibilityTraits="button"
+                      accessibilityComponentType="button"
                     >
                       <Text
                         style={[styles.buttonText, styles.buttonTextIsPrimary]}

@@ -45,3 +45,19 @@ pids
 .expo/
 *.ipa
 *.apk
+.env
+
+# ios
+ios/Pods
+xcuserdata/
+
+
+# android
+.gradle
+build/
+.idea
+.settings
+maven/
+local.properties
+sentry.properties
+.sts4-cache

@@ -2,16 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { DangerZone } from 'expo';
+import Lottie from 'lottie-react-native';
 import {
   StyledButton,
   StyledDisabledButton,
   StyledButtonText,
 } from './styles/button';
 import { StyledDialogButton, StyledDialogButtonText } from './styles/dialog';
-import { colors } from '../style';
-
-const { Lottie } = DangerZone;
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   animationButton: { backgroundColor: colors.TRANSPARENT },
@@ -33,7 +31,12 @@ export class TextButton extends React.Component {
   render() {
     const { title, onPress } = this.props;
     return (
-      <TouchableOpacity onPress={onPress} hitSlop={hitSlop}>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        onPress={onPress}
+        hitSlop={hitSlop}
+      >
         <StyledButtonText>{title}</StyledButtonText>
       </TouchableOpacity>
     );

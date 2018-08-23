@@ -2,6 +2,8 @@
 
 exports[`<Peril /> Should render correctly 1`] = `
 <TouchableOpacity
+  accessibilityComponentType="button"
+  accessibilityTraits="image"
   activeOpacity={0.2}
   onPress={[Function]}
 >
@@ -16,7 +18,11 @@ exports[`<Peril /> Should render correctly 1`] = `
     }
   >
     <Image
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../assets/icons/perils/you/juridisk_tvist.png",
+        }
+      }
       style={
         Object {
           "height": 40,
@@ -24,14 +30,11 @@ exports[`<Peril /> Should render correctly 1`] = `
         }
       }
     />
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <Component
       style={
         Object {
           "color": "#9B9BAA",
-          "fontFamily": "circular",
+          "fontFamily": "CircularStd-Book",
           "fontSize": 12,
           "marginTop": 5,
           "textAlign": "center",
@@ -39,7 +42,7 @@ exports[`<Peril /> Should render correctly 1`] = `
       }
     >
       Juridisk tvist
-    </Text>
+    </Component>
   </Component>
 </TouchableOpacity>
 `;

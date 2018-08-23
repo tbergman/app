@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Dimensions, BackHandler, Image, StyleSheet } from 'react-native';
-import { WebBrowser } from 'expo';
+import { View, Dimensions, Image, StyleSheet, Linking } from 'react-native';
 import { default as SnapCarousel } from 'react-native-snap-carousel';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { Navigation } from 'react-native-navigation';
 import {
   StyledCarouselContainer,
   StyledAlignedCarouselItems,
@@ -13,8 +11,9 @@ import {
   StyledCarouselParagraph,
   StyledParagraphToggleContainer,
 } from './styles/carousel';
-import { NavigateBackButton, TextButton } from './Button';
-import { NavBar } from './NavBar';
+import { TextButton } from './Button';
+import { NavigationEvents } from '../navigation/events';
+
 const deviceWidth = Dimensions.get('window').width;
 const perilContainerSize = 185;
 
@@ -28,26 +27,13 @@ const styles = StyleSheet.create({
 });
 
 class Perils extends React.Component {
-  navParams = this.props.navigation.state.params;
-  items = this.navParams.items;
-  renderCta = this.navParams.renderCta;
-  state = {
-    slideIndex: this.navParams.initialSlideIndex || 0,
-    showFullDescription: false,
-  };
-
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  constructor(props) {
+    super(props);
+    this.state = {
+      slideIndex: props.initialSlideIndex || 0,
+      showFullDescription: false,
+    };
   }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
-
-  onBackPress = () => {
-    const { dispatch } = this.props;
-    return dispatch(NavigationActions.back());
-  };
 
   _renderItem({ item }) {
     return (
@@ -63,7 +49,7 @@ class Perils extends React.Component {
   }
 
   getItem() {
-    return this.items[this.state.slideIndex];
+    return this.props.items[this.state.slideIndex];
   }
 
   shortDescription() {
@@ -82,9 +68,7 @@ class Perils extends React.Component {
         <View style={styles.policyLinkContainer}>
           <TextButton
             title="Läsa mer"
-            onPress={() =>
-              WebBrowser.openBrowserAsync(this.getItem().policyUrl)
-            }
+            onPress={() => Linking.openUrl(this.getItem().policyUrl)}
           />
         </View>
       );
@@ -92,10 +76,10 @@ class Perils extends React.Component {
   }
 
   maybeCta() {
-    if (this.renderCta) {
+    if (this.props.renderCta) {
       return (
         <StyledParagraphToggleContainer>
-          {this.renderCta(this.getItem())}
+          {this.props.renderCta(this.getItem())}
         </StyledParagraphToggleContainer>
       );
     } else {
@@ -103,59 +87,54 @@ class Perils extends React.Component {
     }
   }
 
-  navbar() {
-    return (
-      <NavBar
-        title={this.navParams.title || 'Carousel'}
-        headerLeft={
-          <NavigateBackButton onPress={() => this.props.navigation.goBack()} />
-        }
-      />
-    );
-  }
-
   _onSnapToItem = (slideIndex) => {
     this.setState({ slideIndex, showFullDescription: false });
   };
 
   render() {
-    let item = this.getItem();
-    let title = item.title;
-    if (title.includes('-\n')) {
-      title = title.replace('-\n', '');
-    }
+    const item = this.getItem();
+    const title = item.title.includes('-\n')
+      ? item.title.replace('-\n', '')
+      : item.title;
+
     return (
-      <StyledCarouselContainer>
-        {this.navbar()}
-        <StyledAlignedCarouselItems>
-          <StyledImageCarouselContainer>
-            <SnapCarousel
-              data={this.items}
-              renderItem={this._renderItem}
-              sliderWidth={deviceWidth}
-              sliderHeight={perilContainerSize}
-              itemWidth={perilContainerSize}
-              firstItem={this.state.slideIndex}
-              inactiveSlideOpacity={0.4}
-              inactiveSlideScale={0.7}
-              removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
-              onSnapToItem={this._onSnapToItem}
-            />
-          </StyledImageCarouselContainer>
-          <StyledCarouselTexts>
-            <StyledCarouselHeading>{title}</StyledCarouselHeading>
-            <StyledCarouselParagraph>
-              {this.shownDescription()}
-            </StyledCarouselParagraph>
-            {this.maybePolicyLink()}
-            {this.maybeCta()}
-          </StyledCarouselTexts>
-        </StyledAlignedCarouselItems>
-      </StyledCarouselContainer>
+      <React.Fragment>
+        <NavigationEvents
+          onNavigationButtonPressed={(_, componentId) =>
+            Navigation.dismissModal(componentId)
+          }
+        />
+        <StyledCarouselContainer>
+          <StyledAlignedCarouselItems>
+            <StyledImageCarouselContainer>
+              <SnapCarousel
+                data={this.props.items}
+                renderItem={this._renderItem}
+                sliderWidth={deviceWidth}
+                sliderHeight={perilContainerSize}
+                itemWidth={perilContainerSize}
+                firstItem={this.state.slideIndex}
+                inactiveSlideOpacity={0.4}
+                inactiveSlideScale={0.7}
+                removeClippedSubviews={false} // removeClippedSubviews fixes an issue where the item is not always initially rendered
+                onSnapToItem={this._onSnapToItem}
+              />
+            </StyledImageCarouselContainer>
+            <StyledCarouselTexts>
+              <StyledCarouselHeading>{title}</StyledCarouselHeading>
+              <StyledCarouselParagraph>
+                {this.shownDescription()}
+              </StyledCarouselParagraph>
+              {this.maybePolicyLink()}
+              {this.maybeCta()}
+            </StyledCarouselTexts>
+          </StyledAlignedCarouselItems>
+        </StyledCarouselContainer>
+      </React.Fragment>
     );
   }
 }
 
-const ConnectedPerils = connect((state) => ({ nav: state.nav }))(Perils);
+const ConnectedPerils = Perils;
 
 export { ConnectedPerils as Perils };

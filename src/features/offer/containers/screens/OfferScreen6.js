@@ -11,8 +11,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { DangerZone } from 'expo';
-const { Lottie } = DangerZone;
+import Lottie from 'lottie-react-native';
 
 import {
   verticalSizeClass,
@@ -22,7 +21,7 @@ import {
 } from '../../../../services/DimensionSizes';
 
 const animationModule = require('../../../../../assets/animations/claims_demo.json');
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -40,9 +39,9 @@ const styles = StyleSheet.create({
     marginTop: {
       [V_COMPACT]: 10,
       [V_REGULAR]: 25,
-      [V_SPACIOUS]: 35,
+      [V_SPACIOUS]: 15,
     }[verticalSizeClass],
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 23,
     lineHeight: 32,
     color: colors.OFF_BLACK,
@@ -50,12 +49,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   overlay: {
-    backgroundColor: colors.WHITE,
     width: '100%',
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 1,
+    position: 'absolute',
   },
   play: {
     width: 100,
@@ -72,23 +71,24 @@ const styles = StyleSheet.create({
   },
   // Maintain aspect ratio for animation
   animationContainer: {
-    width: viewportWidth * 0.89,
-    overflow: 'hidden',
-    height: viewportWidth * 1.15,
-    marginTop: {
-      [V_COMPACT]: 19,
-      [V_REGULAR]: 30,
-      [V_SPACIOUS]: 30,
-    }[verticalSizeClass],
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
     borderRadius: 15,
-    backgroundColor: colors.WHITE,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   animation: {
-    height: viewportWidth * 1.62,
-    width: viewportWidth * 0.94,
-    // Some crazy scaling difference per platform - resolution independent!
-    top: -(viewportWidth * (Platform.OS === 'ios' ? 0.25 : 0.45)),
-    left: -(viewportWidth * (Platform.OS === 'ios' ? 0.012 : 0.025)),
+    height: viewportWidth * 1.22,
+    width: viewportWidth * 0.74,
+    ...Platform.select({
+      android: {
+        marginTop: 10,
+        height: viewportWidth * 1.12,
+        width: viewportWidth * 0.64,
+      },
+    }),
   },
 });
 
@@ -141,6 +141,9 @@ class OfferScreen extends React.Component {
                   style={styles.play}
                   hitSlop={hitSlop}
                   onPress={() => this.play()}
+                  accessibilityComponentType="button"
+                  accessibilityTraits="button"
+                  accessibilityLabel="Spela upp demo"
                 >
                   <Image
                     style={styles.playIcon}

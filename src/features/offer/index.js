@@ -3,16 +3,17 @@ import {
   View,
   Image,
   Text,
-  StatusBar,
   StyleSheet,
   AsyncStorage,
   Dimensions,
   TouchableOpacity,
   BackHandler,
+  Platform,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { Navigation } from 'react-native-navigation';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
 import {
@@ -43,7 +44,7 @@ import {
   V_COMPACT,
 } from '../../services/DimensionSizes';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -85,6 +86,9 @@ const styles = StyleSheet.create({
     marginRight: 5.5,
   },
   swiperPagination: {
+    ...ifIphoneX({
+      bottom: 30,
+    }),
     bottom: {
       [V_SPACIOUS]: 18,
       [V_REGULAR]: 15,
@@ -103,11 +107,19 @@ const styles = StyleSheet.create({
     height: 47,
     zIndex: 200,
     elevation: 1,
+    ...ifIphoneX({
+      marginBottom: 40,
+    }),
     marginBottom: {
       [V_SPACIOUS]: 29,
-      [V_REGULAR]: 26,
+      [V_REGULAR]: 50,
       [V_COMPACT]: 26,
     }[verticalSizeClass],
+    ...Platform.select({
+      android: {
+        marginBottom: 50,
+      },
+    }),
   },
   buttonIsFirst: {
     backgroundColor: colors.WHITE,
@@ -118,7 +130,7 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontSize: 20,
     textAlign: 'center',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     textAlignVertical: 'center',
   },
   labelIsFirst: {
@@ -158,7 +170,7 @@ class OfferSwiper extends React.Component {
   onBackPress = () => {
     const activeIndex = this.props.activeOfferScreenIndex;
     if (activeIndex === 0) {
-      this.props.closeOffer(this.props.analytics.orderId);
+      this._closeOffer();
       return true;
     }
     if (this.swiper) {
@@ -190,6 +202,7 @@ class OfferSwiper extends React.Component {
   }
 
   _closeOffer = () => {
+    Navigation.dismissModal(this.props.componentId);
     this.props.closeOffer(this.props.analytics.orderId);
   };
 
@@ -221,11 +234,16 @@ class OfferSwiper extends React.Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar hidden />
         <View style={styles.swiperContainer}>
           {activeOfferScreenIndex === 0 ? (
             <View style={styles.closeOffer}>
-              <TouchableOpacity onPress={this._closeOffer} hitSlop={hitSlop}>
+              <TouchableOpacity
+                accessibilityTraits="button"
+                accessibilityComponentType="button"
+                accessibilityLabel="Stäng erbjudandet"
+                onPress={this._closeOffer}
+                hitSlop={hitSlop}
+              >
                 <Image
                   source={require('../../../assets/icons/close/close_white.png')}
                   style={styles.closeOfferImage}
@@ -320,12 +338,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             showLoadingIndicator: true,
           },
         ),
-      );
-      dispatch(
-        NavigationActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: 'Chat' })],
-        }),
       );
     },
     navigate: (params) => ownProps.navigation.navigate(params),

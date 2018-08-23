@@ -1,0 +1,64 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.1.4'
+    classpath 'com.google.gms:google-services:4.0.1'
+  }
+}
+
+allprojects {
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+      url "$rootDir/../node_modules/react-native/android"
+    }
+    maven {
+      url 'https://maven.google.com'
+    }
+    maven {
+      url 'https://jitpack.io'
+    }
+  }
+}
+
+subprojects {
+  afterEvaluate { project ->
+    if (project.hasProperty('android')) {
+      android {
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
+        buildTypes {
+          debug {
+
+          }
+          staging {
+
+          }
+          release {
+
+          }
+        }
+      }
+    }
+
+    if ((project.plugins.hasPlugin('android') || project.plugins.hasPlugin('android-library'))) {
+      android {
+        variantFilter { variant ->
+          def names = variant.flavors*.name
+          if (names.contains("reactNative51") || names.contains("reactNative55")) {
+            setIgnore(true)
+          }
+        }
+      }
+    }
+  }
+}

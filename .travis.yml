@@ -10,9 +10,6 @@ script:
 - yarn lint
 - yarn test
 
-after_success:
-- ./scripts/travis-publish-test.sh
-
 notifications:
   email: false
   webhooks: https://www.travisbuddy.com

@@ -1,17 +1,15 @@
 import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
-import { DangerZone } from 'expo';
 import { connect } from 'react-redux';
+import Lottie from 'lottie-react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   innerAnimation: {
     backgroundColor: colors.TRANSPARENT,
   },
 });
-
-const { Lottie } = DangerZone;
 
 class LoadingIndicator extends React.Component {
   state = {

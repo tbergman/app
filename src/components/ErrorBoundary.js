@@ -7,9 +7,8 @@ import {
   Linking,
   AsyncStorage,
 } from 'react-native';
-import Expo from 'expo';
 
-import { colors } from '../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,15 +39,6 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontWeight: '600',
   },
-  reloadButton: {
-    marginTop: 12,
-  },
-  reloadText: {
-    fontSize: 17,
-    color: colors.BLACK_PURPLE,
-    padding: 5,
-    fontWeight: '600',
-  },
 });
 
 const mailTo = async (email, subject = '') => {
@@ -63,6 +53,8 @@ const mailTo = async (email, subject = '') => {
       console.error('Cannot open mailto link'); // eslint-disable-line no-console
     });
 };
+
+// TODO Maybe reload button?
 
 export class ErrorBoundary extends Component {
   constructor(props) {
@@ -95,14 +87,10 @@ export class ErrorBoundary extends Component {
           <TouchableOpacity
             style={styles.helpButton}
             onPress={this._openErrorEmail}
+            accessibilityTraits="link"
+            accessibilityComponentType="button"
           >
             <Text style={styles.helpText}>Rapportera felet 🙏</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.reloadButton}
-            onPress={Expo.Util.reload}
-          >
-            <Text style={styles.reloadText}>Ladda om appen</Text>
           </TouchableOpacity>
         </View>
       );

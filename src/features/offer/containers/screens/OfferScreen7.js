@@ -16,7 +16,7 @@ import {
 } from '../../../../services/DimensionSizes';
 import { Hero } from '../../components/Hero';
 
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.PURPLE,
   },
   heading: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 23,
     lineHeight: 32,
     color: colors.OFF_BLACK,
@@ -78,14 +78,14 @@ const styles = StyleSheet.create({
   stepNumberText: {
     top: -1,
     position: 'relative',
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 19,
     color: colors.WHITE,
     textAlign: 'center',
   },
   stepLabel: {
     flex: 1,
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     fontSize: 19,
     color: colors.DARK_GRAY,
     lineHeight: 27,

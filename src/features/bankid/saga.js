@@ -1,6 +1,4 @@
 import { Linking, Platform } from 'react-native';
-import { Constants } from 'expo';
-
 import {
   call,
   take,
@@ -10,6 +8,7 @@ import {
   select,
   fork,
 } from 'redux-saga/effects';
+import Config from '@hedviginsurance/react-native-config';
 import { delay } from 'redux-saga';
 import {
   BANKID_SIGN,
@@ -46,8 +45,8 @@ const takeLeading = (pattern, saga, ...args) =>
 
 const buildBankIdClientUrl = (autoStartToken) => {
   const params = `?autostarttoken=${autoStartToken}&redirect=${
-    Constants.linkingUri
-  }`;
+    Config.APP_SCHEME
+  }://`;
   const androidBankIdClientUrl = `bankid:///${params}`;
   const iOsBankIdClientUrl = `https://app.bankid.com/${params}`;
   const bankIdClientUrl =

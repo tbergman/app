@@ -25,14 +25,13 @@ import {
 
 const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
 
-export const coveredPerils = (perils, title, navigation) => {
+export const coveredPerils = (perils, title) => {
   return perils
     .filter((peril) => coveredStates.includes(peril.state))
     .map((peril, index) => (
       <Peril
         peril={peril}
         key={index}
-        navigation={navigation}
         categoryPerils={perils}
         categoryTitle={title}
         perilIndex={perils.findIndex((p) => p.id === peril.id)}
@@ -67,10 +66,7 @@ export class PerilsCategory extends React.Component {
                 <StyledHeading>{this.props.title}</StyledHeading>
               </StyledRow>
               <StyledRow>
-                <StyledPassiveText>
-                  {this.props.description}
-                  {this.state.showCategory && ':'}
-                </StyledPassiveText>
+                <StyledPassiveText>{this.props.description}</StyledPassiveText>
               </StyledRow>
             </StyledCategoryTextContainer>
             <StyledExpandButton>
@@ -80,11 +76,7 @@ export class PerilsCategory extends React.Component {
         </StyledCategoryHeader>
         {this.state.showCategory && (
           <ExpandedPerilsCategory>
-            {coveredPerils(
-              this.props.perils,
-              this.props.title,
-              this.props.navigation,
-            )}
+            {coveredPerils(this.props.perils, this.props.title)}
           </ExpandedPerilsCategory>
         )}
       </StyledCategoryContainer>

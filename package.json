@@ -1,20 +1,23 @@
 {
   "private": true,
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "index.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest",
     "test:watch": "yarn run test -- --watch",
-    "deploy": "exp publish --non-interactive",
-    "lint": "eslint src --max-warnings 0",
-    "postinstall": "rndebugger-open",
-    "format": "prettier-eslint --write \"src/**/*.js\""
+    "lint": "eslint src hedvig-redux App.js index.js --max-warnings 0",
+    "postinstall": "rndebugger-open;react-native-schemes-manager all && yarn run create-podspecs",
+    "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics",
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "postversion": "react-native-version"
   },
   "jest": {
-    "preset": "jest-expo",
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
     "setupFiles": [
       "./src/setupTests"
     ]
@@ -31,50 +34,65 @@
     ]
   },
   "dependencies": {
-    "@expo/react-native-action-sheet": "^1.0.2",
-    "@expo/vector-icons": "^6.3.1",
-    "@hedviginsurance/react-native-floating-action": "^1.11.0",
+    "@babel/core": "^7.0.0-rc.1",
+    "@emotion/primitives": "^9.2.7",
+    "@hedviginsurance/brand": "^1.0.0",
+    "@hedviginsurance/podspec-generator": "^0.2.3",
+    "@hedviginsurance/react-native-config": "^0.11.6",
+    "@hedviginsurance/react-native-floating-action": "^1.11.3",
     "@redux-beacon/logger": "^1.0.0",
     "babel-eslint": "^8.2.3",
-    "babel-plugin-flow-react-proptypes": "^24.0.1",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-flow-react-proptypes": "^24.1.1",
+    "babel-plugin-functional-hmr": "^1.0.24",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.14",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-es2016": "^6.24.1",
-    "babel-preset-react-native": "^4.0.0",
+    "babel-preset-react-native": "5.0.2",
     "dot-prop-immutable": "^1.4.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
-    "eslint": "^5.1.0",
+    "eslint": "^5.4.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-react-native": "^3.2.1",
-    "exp": "^55.0.4",
-    "expo": "^27.0.0",
+    "eslint-plugin-react-native-a11y": "^1.0.0",
+    "generator-to-promise": "^1.0.0",
     "husky": "^1.0.0-rc.9",
-    "jest": "^23.1.0",
-    "jest-expo": "^27.0.0",
+    "jest": "^23.5.0",
     "lint-staged": "^7.2.0",
     "lodash": "^4.17.10",
-    "moment": "^2.22.2",
-    "prettier": "^1.14.0",
+    "lottie-react-native": "^2.5.6",
+    "prettier": "^1.14.2",
     "prettier-eslint-cli": "^4.7.1",
+    "promise-defer": "^1.0.0",
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "raven-for-redux": "^1.3.1",
-    "react": "16.4.0",
-    "react-dom": "16.4.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react": "^16.4.2",
+    "react-dom": "16.4.2",
+    "react-native": "^0.56.0",
+    "react-native-analytics-segment-io": "^3.1.3",
+    "react-native-audio": "^4.1.3",
+    "react-native-branch": "^2.3.3",
+    "react-native-code-push": "^5.4.1",
     "react-native-debugger-open": "^0.3.15",
+    "react-native-firebase": "^4.3.8",
     "react-native-iphone-x-helper": "^1.0.3",
-    "react-native-popup-dialog": "^0.14.50",
+    "react-native-navigation": "^2.0.2485",
+    "react-native-permissions": "^1.1.1",
+    "react-native-popup-dialog": "^0.15.0",
     "react-native-root-toast": "^3.0.1",
-    "react-native-scripts": "^1.11.1",
+    "react-native-schemes-manager": "^1.0.5",
+    "react-native-sentry": "^0.38.3",
     "react-native-snap-carousel": "^3.7.0",
+    "react-native-sound": "^0.10.9",
+    "react-native-status-bar-height": "^2.0.0",
+    "react-native-svg": "^6.5.2",
     "react-native-swiper": "^1.5.13",
-    "react-navigation": "1.5.11",
-    "react-navigation-redux-helpers": "^1.0.1",
+    "react-native-version": "^2.6.3",
+    "react-primitives": "^0.6.0",
     "react-redux": "^5.0.6",
     "react-test-renderer": "16.4.0",
     "redux": "^4.0.0",
@@ -83,7 +101,30 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
-    "sentry-expo": "~1.9.0",
+    "rn-fetch-blob": "^0.10.12",
     "uuid": "^3.3.2"
-  }
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
+  },
+  "xcodeSchemes": {
+    "Debug": [
+      "Debug - Development",
+      "Debug- Staging",
+      "Debug - Production"
+    ],
+    "Release": [
+      "Release - Development",
+      "Release - Staging",
+      "Release - Production"
+    ],
+    "settings": {
+      "fix-script": {
+        "nodeCommand": "$NODE_BINARY ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
+      }
+    }
+  },
+  "version": "2.0.0"
 }

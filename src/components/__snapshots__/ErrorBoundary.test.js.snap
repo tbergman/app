@@ -16,10 +16,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <Component
     style={
       Object {
         "color": "#087d61",
@@ -29,8 +26,10 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
     }
   >
     Oj, nu gick något fel
-  </Text>
+  </Component>
   <TouchableOpacity
+    accessibilityComponentType="button"
+    accessibilityTraits="link"
     activeOpacity={0.2}
     onPress={[Function]}
     style={
@@ -45,10 +44,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+    <Component
       style={
         Object {
           "color": "#FFFFFF",
@@ -58,32 +54,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
       }
     >
       Rapportera felet 🙏
-    </Text>
-  </TouchableOpacity>
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
-    style={
-      Object {
-        "marginTop": 12,
-      }
-    }
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "color": "#0F007A",
-          "fontSize": 17,
-          "fontWeight": "600",
-          "padding": 5,
-        }
-      }
-    >
-      Ladda om appen
-    </Text>
+    </Component>
   </TouchableOpacity>
 </Component>
 `;

@@ -17,7 +17,7 @@ import {
   V_COMPACT,
 } from '../../../../services/DimensionSizes';
 
-import { colors } from '../../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     }[verticalSizeClass],
   },
   headingText: {
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 26,
     lineHeight: 35,
     color: colors.WHITE,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       [V_REGULAR]: '21%',
       [V_COMPACT]: '19%',
     }[verticalSizeClass],
-    fontFamily: 'circular-bold',
+    fontFamily: 'CircularStd-Bold',
     fontSize: 20,
     lineHeight: 20,
     color: colors.WHITE,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.OFF_WHITE },
@@ -24,8 +24,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     flex: 1,
     backgroundColor: colors.WHITE,
+    borderRadius: 10,
     paddingTop: 16,
-    shadowOpacity: 0.2,
+    marginLeft: 15,
+    marginRight: 10,
+    shadowOpacity: 0.1,
     shadowRadius: 2,
     shadowOffset: { width: 0, height: 1 },
     elevation: 1,
@@ -114,7 +117,12 @@ export class StyledCategoriesContainer extends React.Component {
 export class StyledCategoryContainer extends React.Component {
   render() {
     return (
-      <TouchableOpacity {...this.props} style={styles.categoryContainer} />
+      <TouchableOpacity
+        accessibilityTraits="header"
+        accessibilityComponentType="button"
+        {...this.props}
+        style={styles.categoryContainer}
+      />
     );
   }
 }

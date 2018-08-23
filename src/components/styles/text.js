@@ -1,21 +1,21 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-import { colors } from '../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: 'merriweather',
+    fontFamily: 'Merriweather-Light',
     color: colors.OFF_BLACK,
     fontSize: 16,
   },
   smallPassiveText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 12,
   },
   passiveText: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 14,
   },

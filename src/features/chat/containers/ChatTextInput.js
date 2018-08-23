@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StyleSheet, TextInput } from 'react-native';
-import { Permissions } from 'expo';
+import Permissions from 'react-native-permissions';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer } from '../styles/chat';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -59,11 +59,9 @@ class ChatTextInput extends React.Component {
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
-      const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-      if (status !== 'granted') {
-        if (!(__DEV__ && status === 'undetermined')) {
-          this.props.requestPushNotifications();
-        }
+      const status = await Permissions.check('notification');
+      if (status !== 'authorized') {
+        this.props.requestPushNotifications();
       }
     }
     if (!this.props.isSending) {

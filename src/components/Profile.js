@@ -32,11 +32,11 @@ import {
 } from './Icon';
 import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
-import 'moment/locale/sv';
 import * as R from 'ramda';
 import { StyledButtonText } from './styles/button';
+import { Spacing } from './Spacing';
 
-import { colors } from '../style';
+import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   cashbackImage: {
@@ -68,7 +68,12 @@ class LogoutButton extends React.Component {
   render() {
     const { onPress } = this.props;
     return (
-      <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        onPress={onPress}
+        style={styles.logoutButton}
+      >
         <StyledButtonText>Logga ut</StyledButtonText>
       </TouchableOpacity>
     );
@@ -266,6 +271,7 @@ export default class Profile extends React.Component {
             </StyledCharitySignature>
           </StyledListHeader>
           {this._maybeUserInfo()}
+          <Spacing height={15} />
           <LogoutButton onPress={this._logout} />
         </StyledList>
       </StyledProfileContainer>

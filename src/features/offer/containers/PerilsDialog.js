@@ -30,7 +30,7 @@ import {
 import { Description } from '../components/Description';
 import { Heading } from '../components/Heading';
 
-import { colors } from '../../../style';
+import { colors } from '@hedviginsurance/brand';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   dialogHeading: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.OFF_BLACK,
     fontSize: 23,
     lineHeight: 32,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dialogSubHeading: {
-    fontFamily: 'circular',
+    fontFamily: 'CircularStd-Book',
     color: colors.DARK_GRAY,
     fontSize: 17,
     marginTop: 5,
