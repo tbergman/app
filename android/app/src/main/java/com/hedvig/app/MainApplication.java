@@ -17,6 +17,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import io.branch.referral.Branch;
 import com.horcrux.svg.SvgPackage;
+import android.support.multidex.MultiDex;
+import android.content.Context;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +73,12 @@ public class MainApplication extends NavigationApplication {
   @Override
   public List<ReactPackage> createAdditionalReactPackages() {
     return getPackages();
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+     super.attachBaseContext(base);
+     MultiDex.install(this);
   }
 
   @Override
