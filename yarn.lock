@@ -6480,9 +6480,9 @@ react-native-permissions@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
 
-react-native-popup-dialog@^0.14.50:
-  version "0.14.52"
-  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.14.52.tgz#451562a73038da9f6a5277b2c563a13b112d90c0"
+react-native-popup-dialog@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.15.0.tgz#26c494babc4c627bb3ec8146203bb04fa3827b7f"
   dependencies:
     babel-plugin-flow-react-proptypes "^9.1.1"
     prop-types "^15.6.0"
