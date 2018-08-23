@@ -8,6 +8,7 @@ import {
   select,
   fork,
 } from 'redux-saga/effects';
+import Config from '@hedviginsurance/react-native-config';
 import { delay } from 'redux-saga';
 import {
   BANKID_SIGN,
@@ -28,7 +29,6 @@ import {
 import { APP_STATE_CHANGE } from '../../actions/appState';
 
 import { types } from '../../../hedvig-redux';
-import { linkingUri } from '../../constants';
 
 const COLLECT_DELAY_MS = 1000;
 const MAX_TRIES_COLLECT = 1000;
@@ -44,7 +44,9 @@ const takeLeading = (pattern, saga, ...args) =>
   });
 
 const buildBankIdClientUrl = (autoStartToken) => {
-  const params = `?autostarttoken=${autoStartToken}&redirect=${linkingUri}`;
+  const params = `?autostarttoken=${autoStartToken}&redirect=${
+    Config.APP_SCHEME
+  }://`;
   const androidBankIdClientUrl = `bankid:///${params}`;
   const iOsBankIdClientUrl = `https://app.bankid.com/${params}`;
   const bankIdClientUrl =

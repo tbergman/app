@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import Config from '@hedviginsurance/react-native-config';
 
 import { chatActions } from '../../../../hedvig-redux';
 import { AnimatedSingleSelectOptionButton } from '../components/Button';
@@ -73,7 +74,17 @@ class SingleSelectInput extends React.Component {
               } else if (choice.type === 'link' && choice.appUrl !== null) {
                 selectChoice(message, choice);
                 done(message);
-                Linking.openURL(choice.appUrl);
+
+                if (choice.appUrl.includes('bankid://')) {
+                  Linking.openURL(
+                    choice.appUrl.replace(
+                      'hedvig://+',
+                      `${Config.APP_SCHEME}://+`,
+                    ),
+                  );
+                } else {
+                  Linking.openURL(choice.appUrl);
+                }
               } else if (choice.type === 'link' && choice.webUrl !== null) {
                 selectChoice(message, choice);
                 done(message);

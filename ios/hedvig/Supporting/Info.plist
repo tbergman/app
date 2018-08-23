@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>hedvig</string>
+				<string>__RN_CONFIG_APP_SCHEME</string>
 			</array>
 		</dict>
 		<dict>
