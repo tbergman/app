@@ -140,7 +140,7 @@ class OfferScreen extends React.Component {
                 <TouchableOpacity
                   style={styles.play}
                   hitSlop={hitSlop}
-                  onPress={this.play}
+                  onPress={() => this.play()}
                   accessibilityComponentType="button"
                   accessibilityTraits="button"
                   accessibilityLabel="Spela upp demo"
