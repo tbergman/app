@@ -22,6 +22,12 @@
         "build": "CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=\"NO\" CODE_SIGN_ENTITLEMENTS=\"\" xcodebuild -workspace ios/hedvig.xcworkspace -scheme Staging -configuration \"Release-Staging\" -sdk iphonesimulator -derivedDataPath ios/build -archivePath ios/build",
         "type": "ios.simulator",
         "name": "iPhone 7"
+      },
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-Staging-iphonesimulator/Hedvig.app",
+        "build": "FORCE_BUNDLING=true CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=\"NO\" CODE_SIGN_ENTITLEMENTS=\"\" xcodebuild -workspace ios/hedvig.xcworkspace -scheme Staging -configuration \"Debug-Staging\" -sdk iphonesimulator -derivedDataPath ios/build -archivePath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
       }
     }
   },

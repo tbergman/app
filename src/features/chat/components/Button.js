@@ -78,9 +78,10 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
   }
 
   render() {
-    const { title, selected, disabled, onPress, hidden } = this.props;
+    const { title, selected, disabled, onPress, hidden, testID } = this.props;
     return (
       <TouchableOpacity
+        testID={testID}
         onPress={onPress}
         disabled={disabled}
         style={[
@@ -173,7 +174,7 @@ export class SendButton extends React.Component {
   static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
 
   render() {
-    const { onPress, disabled } = this.props;
+    const { onPress, disabled, testID } = this.props;
     if (disabled) {
       return (
         <View>
@@ -186,6 +187,7 @@ export class SendButton extends React.Component {
     }
     return (
       <TouchableOpacity
+        testID={testID}
         accessibilityComponentType="button"
         accessibilityTraits="button"
         accessibilityLabel="Skicka"

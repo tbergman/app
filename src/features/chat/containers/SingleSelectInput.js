@@ -52,9 +52,11 @@ class SingleSelectInput extends React.Component {
     const { message, selectChoice, done } = this.props;
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
+      console.log(choice);
       return (
         <StyledRightAlignedOptions key={choice.text}>
           <AnimatedSingleSelectOptionButton
+            testID={choice.value}
             hidden={anySelected && !choice.selected}
             title={choice.text}
             selected={choice.selected}

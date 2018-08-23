@@ -87,6 +87,7 @@ class ChatTextInput extends React.Component {
     return (
       <StyledTextInputContainer>
         <TextInput
+          testID="inputField"
           ref={(ref) => (this.ref = ref)}
           style={[
             styles.textInput,
@@ -106,6 +107,7 @@ class ChatTextInput extends React.Component {
           onContentSizeChange={this._handleContentSizeChange}
         />
         <SendButton
+          testID="sendButton"
           onPress={this._send}
           disabled={!(inputValue && inputValue.length > 0 && !isSending)}
         />
