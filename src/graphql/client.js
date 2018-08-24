@@ -12,6 +12,39 @@ const typeDefs = `
     monthlyCost: Int
     safetyIncreasers: [String!]
     certificateUrl: String
+    status: InsuranceStatus
+    type: InsuranceType
+    activeFrom: LocalDate
+
+    perilCategories: [PerilCategory]
+  }
+
+  type PerilCategory {
+    title: String
+    description: String
+    iconUrl: String
+    perils: [Peril]
+  }
+
+  type Peril {
+    title: String
+    imageUrl: String
+    description: String
+  }
+
+  enum InsuranceStatus {
+    PENDING
+    ACTIVE
+    INACTIVE
+    INACTIVE_WITH_START_DATE
+    TERMINATED
+  }
+
+  enum InsuranceType {
+    RENT
+    BRF
+    STUDENT_RENT
+    STUDENT_BRF
   }
 
   type Cashback {
@@ -31,11 +64,14 @@ const typeDefs = `
 
   type Query {
     user: User!
+    insurance: Insurance!
   }
 
   type Mutation {
     logout: Auth
   }
+
+  scalar LocalDate
 `;
 
 const getUser = async () => {
@@ -84,6 +120,18 @@ const resolvers = {
           name: user.selectedCashback,
           imageUrl: user.selectedCashbackImageUrl,
         },
+      };
+    },
+    insurance: async () => {
+      const insurance = await getInsurance();
+      return {
+        monthlyCost: insurance.currentTotalPrice,
+        address: insurance.addressStreet,
+        certificateUrl: insurance.certificateUrl,
+        status: insurance.status,
+        type: insurance.insuranceType,
+        activeFrom: insurance.activeFrom,
+        perilCategories: insurance.categories,
       };
     },
   },

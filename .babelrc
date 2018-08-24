@@ -14,7 +14,8 @@
                     ".js"
                 ],
                 "alias": {
-                    "src": "./src"
+                    "src": "./src",
+                    "assets": "./assets"
                 }
             }
         ]

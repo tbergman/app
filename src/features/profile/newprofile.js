@@ -2,9 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from '@emotion/primitives';
-import { View, ScrollView, Image, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 
-import { colors, fonts } from '@hedviginsurance/brand';
+import { colors } from '@hedviginsurance/brand';
 import { Loader } from 'src/components/Loader';
 import { Spacing } from 'src/components/Spacing';
 import { CashbackRow } from 'src/features/profile/components/CashbackRow';
@@ -85,9 +85,7 @@ const Profile = () => (
           <InsuranceAddressRow address={address} />
           <SafetyIncreasersRow safetyIncreasers={safetyIncreasers} />
           <PaymentRow monthlyCost={monthlyCost} />
-          {certificateUrl && (
-            <InsuranceCertificateRow certificateUrl={certificateUrl} />
-          )}
+          <InsuranceCertificateRow certificateUrl={certificateUrl} />
           <Spacing height={15} />
           <LogoutButton
             onPress={() => {

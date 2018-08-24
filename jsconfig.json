@@ -3,10 +3,18 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"]
+      "src/*": [
+        "src/*"
+      ],
+      "assets/*": [
+        "assets/*"
+      ]
     },
     "jsx": "react",
     "moduleResolution": "node"
   },
-  "exclude": ["node_modules/*", "public/*"]
+  "exclude": [
+    "node_modules/*",
+    "public/*"
+  ]
 }

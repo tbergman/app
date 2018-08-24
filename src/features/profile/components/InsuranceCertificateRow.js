@@ -9,14 +9,15 @@ import {
 } from './ProfileRow';
 import { ProfileCertificateIcon } from 'src/components/Icon';
 
-const InsuranceCertificateRow = ({ certificateUrl }) => (
-  <TouchableProfileRow onPress={() => Linking.openURL(certificateUrl)}>
-    <ProfileCertificateIcon />
-    <ProfileRowTextContainer>
-      <ProfileRowHeader>Mitt försäkringsbrev</ProfileRowHeader>
-      <ProfileRowText>Tryck för att läsa</ProfileRowText>
-    </ProfileRowTextContainer>
-  </TouchableProfileRow>
-);
+const InsuranceCertificateRow = ({ certificateUrl }) =>
+  certificateUrl ? (
+    <TouchableProfileRow onPress={() => Linking.openURL(certificateUrl)}>
+      <ProfileCertificateIcon />
+      <ProfileRowTextContainer>
+        <ProfileRowHeader>Mitt försäkringsbrev</ProfileRowHeader>
+        <ProfileRowText>Tryck för att läsa</ProfileRowText>
+      </ProfileRowTextContainer>
+    </TouchableProfileRow>
+  ) : null;
 
 export { InsuranceCertificateRow };
