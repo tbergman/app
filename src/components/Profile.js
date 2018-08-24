@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Share,
   Image,
   StyleSheet,
   Linking,
@@ -28,7 +27,6 @@ import {
   ProfileFamilyIcon,
   ProfileLockIcon,
   ProfileBankAccountIcon,
-  ProfileShareIcon,
 } from './Icon';
 import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
@@ -87,9 +85,6 @@ export default class Profile extends React.Component {
     this.props.getInsurance();
   }
 
-  //componentDidUpdate() { // TODO Make this refetch insurance (?)
-  //}
-
   _userRow({ title, icon, text, secondText = null, onPress = null }) {
     let ListElementComponent = onPress
       ? TouchableStyledListElement
@@ -112,15 +107,6 @@ export default class Profile extends React.Component {
         {maybeButton}
       </ListElementComponent>
     );
-  }
-
-  _maybeFamilyMembers() {
-    if (this.props.user.familyMembers) {
-      return this._userRow({
-        title: 'Familjemedlemmar',
-        text: R.join(', ', this.props.user.familyMembers),
-      });
-    }
   }
 
   _maybePersonalInfo() {
@@ -190,31 +176,6 @@ export default class Profile extends React.Component {
         onPress: () => Linking.openURL(certificateUrl),
       });
     }
-  }
-
-  _shareRow() {
-    return this._userRow({
-      title: 'Rekommendera en vän',
-      icon: <ProfileShareIcon />,
-      text: 'Låt Hedvig förenkla vardagen för någon du bryr dig om',
-      onPress: () => this._sharePressed(),
-    });
-  }
-
-  _sharePressed() {
-    Share.share(
-      {
-        message:
-          'Livet är enklare med Hedvig. Ladda ner appen på AppStore eller Google Play. Läs mer på https://www.hedvig.com',
-        title: 'Hedvig är försäkring som du aldrig tidigare har upplevt det',
-      },
-      {
-        // Android only:
-        dialogTitle: 'Dela Hedvig',
-        // iOS only:
-        excludedActivityTypes: ['com.apple.UIKit.activity.PostToTwitter'],
-      },
-    );
   }
 
   _maybeUserInfo() {

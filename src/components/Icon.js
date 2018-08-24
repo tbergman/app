@@ -66,14 +66,9 @@ export class ProfileBankAccountIcon extends React.Component {
   }
 }
 
-export class ProfileShareIcon extends React.Component {
-  render() {
-    const { size } = this.props;
-    return (
-      <Icon
-        size={size}
-        source={require('../../assets/icons/profil/share.png')}
-      />
-    );
-  }
-}
+export const ProfileCertificateIcon = () => (
+  <Icon
+    size={40}
+    source={require('../../assets/icons/profil/insurance-certificate.png')}
+  />
+);

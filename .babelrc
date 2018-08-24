@@ -3,6 +3,20 @@
         "react-native"
     ],
     "plugins": [
-        "functional-hmr"
+        "functional-hmr",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "extensions": [
+                    ".js"
+                ],
+                "alias": {
+                    "src": "./src"
+                }
+            }
+        ]
     ]
 }

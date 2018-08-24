@@ -175,6 +175,7 @@ export const setLayout = ({ root, modals, overlays }) => {
 };
 
 export const setInitialLayout = async () => {
-  const layout = await getInitialLayout();
+  // const layout = await getInitialLayout();
+  const layout = getMainLayout();
   setLayout(layout);
 };

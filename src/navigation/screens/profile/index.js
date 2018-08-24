@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import React from 'react';
-import Profile from '../../../features/profile';
+import { Profile } from '../../../features/profile/newprofile';
 import Fab from '../../../features/dashboard/containers/fab';
 
 class ProfileScreen extends React.Component {
