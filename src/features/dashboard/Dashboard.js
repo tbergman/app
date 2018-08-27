@@ -23,7 +23,6 @@ import { isApartmentOwner, isStudentInsurance } from '../../utils';
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
   footnotesContainer: { marginLeft: 24 },
-  bottomPadder: { alignSelf: 'stretch', height: 80 },
 });
 
 class Dashboard extends React.Component {
@@ -116,7 +115,6 @@ class Dashboard extends React.Component {
                 </StyledPassiveText>
               </StyledConditionRow>
             </View>
-            <View style={styles.bottomPadder} />
           </View>
         </ScrollView>
       </StyledDashboardContainer>
