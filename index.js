@@ -47,8 +47,8 @@ Navigation.events().registerAppLaunchedListener(async () => {
   firebase
     .notifications()
     .getInitialNotification()
-    .then((notifcation) => {
-      if (notifcation) {
+    .then((notification) => {
+      if (notification) {
         openChat();
       }
     });
