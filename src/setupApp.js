@@ -12,7 +12,7 @@ import { Navigation } from 'react-native-navigation';
 
 import * as hedvigRedux from '../hedvig-redux';
 
-import { apiAndNavigateToChatSaga } from './sagas/apiAndNavigate';
+import { apiAndNavigateToChatSaga, openChat } from './sagas/apiAndNavigate';
 import { tokenStorageSaga } from './sagas/TokenStorage';
 import { logoutSaga } from './sagas/logout';
 import { appStateChange } from './actions/appState';
@@ -263,6 +263,15 @@ const handleNotification = () => {
 };
 
 firebase.notifications().onNotification(handleNotification);
+
+firebase
+  .notifications()
+  .getInitialNotification()
+  .then((notifcation) => {
+    if (notifcation) {
+      openChat();
+    }
+  });
 
 firebase.messaging().onTokenRefresh((token) => {
   store.dispatch(hedvigRedux.pushNotificationActions.registerPushToken(token));
