@@ -1,8 +1,13 @@
 import { Navigation } from 'react-native-navigation';
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layout';
-
 import { register } from './src/navigation/register';
+
+import { pushNotificationActions, chatActions } from './hedvig-redux';
+import { openChat } from './src/sagas/apiAndNavigate';
+import { Store } from './src/setupApp';
+
+import firebase from 'react-native-firebase';
 
 const registerHandler = (name, componentCreator) =>
   Navigation.registerComponent(name, () => {
@@ -13,5 +18,38 @@ const registerHandler = (name, componentCreator) =>
 register(registerHandler);
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  setInitialLayout();
+  await setInitialLayout();
+
+  firebase.messaging().onTokenRefresh((token) => {
+    Store.dispatch(pushNotificationActions.registerPushToken(token));
+  });
+
+  firebase
+    .messaging()
+    .getToken()
+    .then((token) => {
+      if (token) {
+        Store.dispatch(pushNotificationActions.registerPushToken(token));
+      }
+    });
+
+  const handleNotification = () => {
+    const state = Store.getState();
+    Store.dispatch(
+      chatActions.getMessages({
+        intent: state.conversation.intent,
+      }),
+    );
+  };
+
+  firebase.notifications().onNotification(handleNotification);
+
+  firebase
+    .notifications()
+    .getInitialNotification()
+    .then((notifcation) => {
+      if (notifcation) {
+        openChat();
+      }
+    });
 });
