@@ -7,7 +7,7 @@ export function registerPushToken(pushToken) {
   return {
     type: API,
     payload: {
-      url: '/hedvig/v2/push-token',
+      url: '/v2/push-token',
       method: 'POST',
       headers: {
         Accept: 'application/json; charset=utf-8',
