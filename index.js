@@ -1,4 +1,6 @@
 import { Navigation } from 'react-native-navigation';
+import firebase from 'react-native-firebase';
+
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layout';
 import { register } from './src/navigation/register';
@@ -6,8 +8,6 @@ import { register } from './src/navigation/register';
 import { pushNotificationActions, chatActions } from './hedvig-redux';
 import { openChat } from './src/sagas/apiAndNavigate';
 import { Store } from './src/setupApp';
-
-import firebase from 'react-native-firebase';
 
 const registerHandler = (name, componentCreator) =>
   Navigation.registerComponent(name, () => {
