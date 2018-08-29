@@ -58,10 +58,7 @@ class ChatTextInput extends React.Component {
 
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
-    if (
-      this.props.message.header.shouldRequestPushNotifications &&
-      Platform.OS !== 'android'
-    ) {
+    if (this.props.message.header.shouldRequestPushNotifications) {
       const enabled = await firebase.messaging().hasPermission();
       if (!enabled) {
         this.props.requestPushNotifications();
