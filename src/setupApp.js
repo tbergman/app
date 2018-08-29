@@ -11,7 +11,7 @@ import { Navigation } from 'react-native-navigation';
 
 import * as hedvigRedux from '../hedvig-redux';
 
-import { apiAndNavigateToChatSaga, openChat } from './sagas/apiAndNavigate';
+import { apiAndNavigateToChatSaga } from './sagas/apiAndNavigate';
 import { tokenStorageSaga } from './sagas/TokenStorage';
 import { logoutSaga } from './sagas/logout';
 import { appStateChange } from './actions/appState';
