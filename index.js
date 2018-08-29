@@ -33,13 +33,15 @@ Navigation.events().registerAppLaunchedListener(async () => {
       }
     });
 
-  const handleNotification = () => {
+  const handleNotification = (notification) => {
     const state = Store.getState();
     Store.dispatch(
       chatActions.getMessages({
         intent: state.conversation.intent,
       }),
     );
+
+    firebase.notifications().displayNotification(notification);
   };
 
   firebase.notifications().onNotification(handleNotification);
