@@ -1,5 +1,6 @@
 import { Navigation } from 'react-native-navigation';
 import firebase from 'react-native-firebase';
+import { AppState } from 'react-native';
 
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layout';
@@ -16,6 +17,16 @@ const registerHandler = (name, componentCreator) =>
   });
 
 register(registerHandler);
+
+const getInitialNotification = () =>
+  firebase
+    .notifications()
+    .getInitialNotification()
+    .then((notification) => {
+      if (notification) {
+        setTimeout(() => openChat(), 500);
+      }
+    });
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await setInitialLayout();
@@ -44,12 +55,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
   firebase.notifications().onNotification(handleNotification);
 
-  firebase
-    .notifications()
-    .getInitialNotification()
-    .then((notification) => {
-      if (notification) {
-        setTimeout(() => openChat(), 500);
-      }
-    });
+  getInitialNotification();
+
+  AppState.addEventListener(
+    'change',
+    (nextAppState) => nextAppState === 'active' && getInitialNotification(),
+  );
 });
