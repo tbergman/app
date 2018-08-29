@@ -1,11 +1,10 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import Permissions from 'react-native-permissions';
 import firebase from 'react-native-firebase';
 import { pushNotificationActions } from '../../hedvig-redux';
 
 const requestPush = function*() {
-  const status = yield call(Permissions.request, 'notification');
-  if (status !== 'authorized') {
+  const error = yield call([firebase.messaging(), 'requestPermission']);
+  if (error) {
     return yield put({ type: 'PUSH_NOTIFICATIONS/REQUEST_NOT_GRANTED' });
   }
   return yield call(registerPush);
