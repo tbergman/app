@@ -49,7 +49,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
     .getInitialNotification()
     .then((notification) => {
       if (notification) {
-        openChat();
+        setTimeout(() => openChat(), 500);
       }
     });
 });
