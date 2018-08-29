@@ -52,4 +52,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
         setTimeout(() => openChat(), 500);
       }
     });
+
+  firebase.notifications().onNotificationOpened((notification) => {
+    if (notification) {
+      setTimeout(() => openChat(), 500);
+    }
+  });
 });
