@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, Platform } from 'react-native';
 import Permissions from 'react-native-permissions';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
@@ -58,7 +58,10 @@ class ChatTextInput extends React.Component {
 
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
-    if (this.props.message.header.shouldRequestPushNotifications) {
+    if (
+      this.props.message.header.shouldRequestPushNotifications &&
+      Platform.OS !== 'android'
+    ) {
       const status = await Permissions.check('notification');
       if (status !== 'authorized') {
         this.props.requestPushNotifications();

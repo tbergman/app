@@ -7,7 +7,6 @@ import logger from '@redux-beacon/logger';
 import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
 import Config from '@hedviginsurance/react-native-config';
-import firebase from 'react-native-firebase';
 import { Navigation } from 'react-native-navigation';
 
 import * as hedvigRedux from '../hedvig-redux';
@@ -252,21 +251,6 @@ if (!state.analytics.orderId) {
     },
   });
 }
-
-const handleNotification = () => {
-  const state = store.getState();
-  store.dispatch(
-    hedvigRedux.chatActions.getMessages({
-      intent: state.conversation.intent,
-    }),
-  );
-};
-
-firebase.notifications().onNotification(handleNotification);
-
-firebase.messaging().onTokenRefresh((token) => {
-  store.dispatch(hedvigRedux.pushNotificationActions.registerPushToken(token));
-});
 
 getOrLoadToken(store.dispatch);
 
