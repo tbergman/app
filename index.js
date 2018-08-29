@@ -41,6 +41,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
       }),
     );
 
+    notification.android.setChannelId(notification.data.channelId);
     firebase.notifications().displayNotification(notification);
   };
 
