@@ -38,6 +38,7 @@ export const setupPushNotifications = () => {
         .android.createChannel(channel)
         .then(() => {
           notification.android.setChannelId(channel.channelId);
+          notification.android.setAutoCancel(true);
           firebase.notifications().displayNotification(notification);
         });
     } else {
