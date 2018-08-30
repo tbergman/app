@@ -59,10 +59,7 @@ class ChatTextInput extends React.Component {
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
-      const enabled = await firebase.messaging().hasPermission();
-      if (!enabled) {
-        this.props.requestPushNotifications();
-      }
+      this.props.requestPushNotifications();
     }
     if (!this.props.isSending) {
       this.props.send(
@@ -131,27 +128,31 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
-    requestPushNotifications: () => {
+    requestPushNotifications: async () => {
       if (Platform.OS === 'android') {
         return dispatch({
           type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
         });
       }
 
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Notifikationer',
-          paragraph:
-            'Slå på push-notiser så att du inte missar när Hedvig svarar!',
-          confirmButtonTitle: 'Slå på',
-          dismissButtonTitle: 'Inte nu',
-          onConfirm: () =>
-            dispatch({
-              type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
-            }),
-          onDismiss: () => {},
-        }),
-      );
+      const enabled = await firebase.messaging().hasPermission();
+
+      if (!enabled) {
+        dispatch(
+          dialogActions.showDialog({
+            title: 'Notifikationer',
+            paragraph:
+              'Slå på notiser så att du inte missar när Hedvig svarar!',
+            confirmButtonTitle: 'Slå på',
+            dismissButtonTitle: 'Inte nu',
+            onConfirm: () =>
+              dispatch({
+                type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+              }),
+            onDismiss: () => {},
+          }),
+        );
+      }
     },
   };
 };
