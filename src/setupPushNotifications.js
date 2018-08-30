@@ -5,6 +5,18 @@ import { pushNotificationActions, chatActions } from '../hedvig-redux';
 import { openChat } from './sagas/apiAndNavigate';
 import { Store } from './setupApp';
 
+const handleNotificationOpened = (notificationOpen) => {
+  if (!notificationOpen) return;
+
+  const { notification } = notificationOpen;
+
+  if (notification) {
+    if (notification.data.TYPE === 'NEW_MESSAGE') {
+      setTimeout(() => openChat(), 500);
+    }
+  }
+};
+
 export const setupPushNotifications = () => {
   firebase.messaging().onTokenRefresh((token) => {
     Store.dispatch(pushNotificationActions.registerPushToken(token));
@@ -33,11 +45,13 @@ export const setupPushNotifications = () => {
         'Hedvig Push',
         firebase.notifications.Android.Importance.Max,
       );
+
       firebase
         .notifications()
         .android.createChannel(channel)
         .then(() => {
           notification.android.setChannelId(channel.channelId);
+          notification.android.setAutoCancel(true);
           firebase.notifications().displayNotification(notification);
         });
     } else {
@@ -50,15 +64,7 @@ export const setupPushNotifications = () => {
   firebase
     .notifications()
     .getInitialNotification()
-    .then((notification) => {
-      if (notification) {
-        setTimeout(() => openChat(), 500);
-      }
-    });
+    .then(handleNotificationOpened);
 
-  firebase.notifications().onNotificationOpened((notification) => {
-    if (notification) {
-      setTimeout(() => openChat(), 500);
-    }
-  });
+  firebase.notifications().onNotificationOpened(handleNotificationOpened);
 };
