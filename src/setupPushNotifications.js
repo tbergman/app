@@ -1,7 +1,7 @@
 import firebase from 'react-native-firebase';
 import { Platform } from 'react-native';
 
-import { pushNotificationActions, chatActions } from '../hedvig-redux';
+import { chatActions } from '../hedvig-redux';
 import { openChat } from './sagas/apiAndNavigate';
 import { Store } from './setupApp';
 
@@ -18,19 +18,6 @@ const handleNotificationOpened = (notificationOpen) => {
 };
 
 export const setupPushNotifications = () => {
-  firebase.messaging().onTokenRefresh((token) => {
-    Store.dispatch(pushNotificationActions.registerPushToken(token));
-  });
-
-  firebase
-    .messaging()
-    .getToken()
-    .then((token) => {
-      if (token) {
-        Store.dispatch(pushNotificationActions.registerPushToken(token));
-      }
-    });
-
   const handleNotification = (notification) => {
     const state = Store.getState();
     Store.dispatch(

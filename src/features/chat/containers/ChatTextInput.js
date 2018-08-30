@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StyleSheet, TextInput, Platform } from 'react-native';
-import firebase from 'react-native-firebase';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer } from '../styles/chat';
@@ -59,10 +58,7 @@ class ChatTextInput extends React.Component {
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
-      const enabled = await firebase.messaging().hasPermission();
-      if (!enabled) {
-        this.props.requestPushNotifications();
-      }
+      this.props.requestPushNotifications();
     }
     if (!this.props.isSending) {
       this.props.send(
