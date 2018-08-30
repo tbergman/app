@@ -5,7 +5,11 @@ import { pushNotificationActions, chatActions } from '../hedvig-redux';
 import { openChat } from './sagas/apiAndNavigate';
 import { Store } from './setupApp';
 
-const handleNotificationOpened = ({ notification }) => {
+const handleNotificationOpened = (notificationOpen) => {
+  if (!notificationOpen) return;
+
+  const { notification } = notificationOpen;
+
   if (notification) {
     if (notification.data.TYPE === 'NEW_MESSAGE') {
       setTimeout(() => openChat(), 500);
