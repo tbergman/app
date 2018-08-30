@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StyleSheet, TextInput, Platform } from 'react-native';
+import firebase from 'react-native-firebase';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer } from '../styles/chat';
@@ -127,27 +128,31 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
-    requestPushNotifications: () => {
+    requestPushNotifications: async () => {
       if (Platform.OS === 'android') {
         return dispatch({
           type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
         });
       }
 
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Notifikationer',
-          paragraph:
-            'Slå på push-notiser så att du inte missar när Hedvig svarar!',
-          confirmButtonTitle: 'Slå på',
-          dismissButtonTitle: 'Inte nu',
-          onConfirm: () =>
-            dispatch({
-              type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
-            }),
-          onDismiss: () => {},
-        }),
-      );
+      const enabled = await firebase.messaging().hasPermission();
+
+      if (!enabled) {
+        dispatch(
+          dialogActions.showDialog({
+            title: 'Notifikationer',
+            paragraph:
+              'Slå på notiser så att du inte missar när Hedvig svarar!',
+            confirmButtonTitle: 'Slå på',
+            dismissButtonTitle: 'Inte nu',
+            onConfirm: () =>
+              dispatch({
+                type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+              }),
+            onDismiss: () => {},
+          }),
+        );
+      }
     },
   };
 };
