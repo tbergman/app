@@ -50,8 +50,6 @@ export const setupPushNotifications = () => {
     Store.dispatch(pushNotificationActions.registerPushToken(token));
   });
 
-  firebase.notifications().getToken();
-
   firebase.notifications().onNotification(handleNotification);
 
   firebase
