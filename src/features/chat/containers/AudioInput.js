@@ -63,20 +63,9 @@ class AudioInput extends React.Component {
   };
 
   componentDidMount() {
-    this.prepareRecordingPath();
     AudioRecorder.onProgress = this.onProgress;
     AudioRecorder.onFinished = this.onFinished;
   }
-
-  prepareRecordingPath = () => {
-    AudioRecorder.prepareRecordingAtPath(audioPath, {
-      SampleRate: 22050,
-      Channels: 1,
-      AudioQuality: 'Low',
-      AudioEncoding: 'aac',
-      AudioEncodingBitRate: 32000,
-    });
-  };
 
   onProgress = (data) => {
     this.setState({ recordingTime: Math.floor(data.currentTime) });
@@ -130,7 +119,15 @@ class AudioInput extends React.Component {
     if (!hasPermission) {
       return this.props.showPermissionDialog();
     }
-    this.setState({ isRecording: true }, () => {
+    this.setState({ isRecording: true }, async () => {
+      await AudioRecorder.prepareRecordingAtPath(audioPath, {
+        SampleRate: 22050,
+        Channels: 1,
+        AudioQuality: 'Low',
+        AudioEncoding: 'aac',
+        AudioEncodingBitRate: 32000,
+      });
+
       AudioRecorder.startRecording();
     });
   };
