@@ -16,6 +16,7 @@ const uploadHandler = function*(action) {
   } = action.payload;
   const formData = new FormData();
   formData.append('key', `${uuidv4()}.${fileExtension}`);
+
   formData.append('file', {
     uri,
     type,

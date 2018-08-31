@@ -4,6 +4,8 @@ import Permissions from 'react-native-permissions';
 import { connect } from 'react-redux';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import Sound from 'react-native-sound';
+import styled from '@emotion/primitives';
+
 import {
   chatActions,
   uploadActions,
@@ -21,6 +23,7 @@ import {
   StyledRightAlignedOptions,
 } from '../styles/chat';
 import { StyledPassiveText } from '../../../components/styles/text';
+import { Spacing } from '../../../components/Spacing';
 
 import { colors } from '@hedviginsurance/brand';
 
@@ -46,6 +49,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const RecordingTimeContainer = styled(View)({
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  width: '50%',
+});
+
 class AudioInput extends React.Component {
   state = {
     isRecording: false,
@@ -54,7 +63,6 @@ class AudioInput extends React.Component {
   };
 
   componentDidMount() {
-    // TODO This cant be done if we dont have permissions probably
     this.prepareRecordingPath();
     AudioRecorder.onProgress = this.onProgress;
     AudioRecorder.onFinished = this.onFinished;
@@ -75,13 +83,11 @@ class AudioInput extends React.Component {
   };
 
   onFinished = (data) => {
-    if (Platform === 'ios') {
-      this.finishRecording(
-        data.status === 'ok',
-        data.audioFileURL,
-        data.audioFileSize,
-      );
-    }
+    this.finishRecording(
+      data.status === 'OK',
+      data.audioFileURL,
+      data.audioFileSize,
+    );
   };
 
   finishRecording = (success, url) => {
@@ -89,6 +95,7 @@ class AudioInput extends React.Component {
       this.onError('failed to record');
       return;
     }
+
     this.setState({ recordingUrl: url });
   };
 
@@ -104,7 +111,6 @@ class AudioInput extends React.Component {
 
     const status = await Permissions.check('microphone');
     if (status !== 'authorized') {
-      // TODO: Notifiy user if they need to take action
       return false;
     }
     return true;
@@ -204,8 +210,11 @@ class AudioInput extends React.Component {
       return (
         <StyledMarginContainer>
           <StyledRightAlignedOptions>
-            <StopRecordingAnimationButton onPress={this.stopRecording} />
-            <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+            <RecordingTimeContainer>
+              <StopRecordingAnimationButton onPress={this.stopRecording} />
+              <Spacing height={15} />
+              <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+            </RecordingTimeContainer>
           </StyledRightAlignedOptions>
         </StyledMarginContainer>
       );
