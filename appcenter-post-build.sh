@@ -20,6 +20,8 @@ echo "**************** PUBLISH CHANGES WITH CODEPUSH ******************"
 echo "$APPCENTER_OUTPUT_DIRECTORY"
 echo "$ARCHIVE_DIR"
 
+ls "$APPCENTER_OUTPUT_DIRECTORY"
+
 mkdir "$TMP_FOLDER"
 cp "$ARCHIVE_DIR/$BUNDLE_NAME" "$TMP_FOLDER"
 cp -r "$ARCHIVE_DIR/assets" "$TMP_FOLDER"
