@@ -3,7 +3,15 @@
 COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%s)
 PACKAGE_VERSION=$( awk -F: '$1 ~ /"version"/ { split($2,array,"\""); print array[2] ; exit }' package.json )
 
-ARCHIVE_DIR="$APPCENTER_OUTPUT_DIRECTORY/archive/Staging.xcarchive/Products/Applications/Hedvig.app"
+ANDROID_ARCHIVE_DIR="$APPCENTER_OUTPUT_DIRECTORY/android/app/build/intermediates/assets/release"
+IOS_ARCHIVE_DIR="$APPCENTER_OUTPUT_DIRECTORY/archive/Staging.xcarchive/Products/Applications/Hedvig.app"
+
+if [ "$PLATFORM" = "ANDROID" ]; then
+    ARCHIVE_DIR="$ANDROID_ARCHIVE_DIR"
+else
+    ARCHIVE_DIR="$IOS_ARCHIVE_DIR"
+fi
+
 TMP_FOLDER="/tmp/codepush"
 
 echo "**************** PUBLISH CHANGES WITH CODEPUSH ******************"
