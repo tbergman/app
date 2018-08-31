@@ -46,6 +46,8 @@ export const setupPushNotifications = () => {
     }
   };
 
+  firebase.notifications().getToken();
+
   firebase.notifications().onNotification(handleNotification);
 
   firebase
