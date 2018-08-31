@@ -107,7 +107,10 @@ class AudioInput extends React.Component {
   requestPermissions = async () => {
     const status = await Permissions.check('microphone');
     if (status !== 'authorized') {
-      return false;
+      const requestStatus = await Permissions.request('microphone', {
+        type: 'always',
+      });
+      return requestStatus === 'authorized';
     }
     return true;
   };
@@ -125,7 +128,7 @@ class AudioInput extends React.Component {
   startRecording = async () => {
     const hasPermission = await this.requestPermissions();
     if (!hasPermission) {
-      return;
+      return this.props.showPermissionDialog();
     }
     this.setState({ isRecording: true });
     await AudioRecorder.startRecording();
