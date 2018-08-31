@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { connect } from 'react-redux';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
@@ -135,10 +135,7 @@ class AudioInput extends React.Component {
   };
 
   stopRecording = async () => {
-    const filePath = await AudioRecorder.stopRecording();
-    if (Platform.OS === 'android') {
-      this.finishRecording(true, filePath);
-    }
+    await AudioRecorder.stopRecording();
     this.setState({ isRecording: false, isFinished: true });
   };
 
