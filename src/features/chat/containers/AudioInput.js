@@ -130,8 +130,9 @@ class AudioInput extends React.Component {
     if (!hasPermission) {
       return this.props.showPermissionDialog();
     }
-    this.setState({ isRecording: true });
-    await AudioRecorder.startRecording();
+    this.setState({ isRecording: true }, () => {
+      AudioRecorder.startRecording();
+    });
   };
 
   stopRecording = async () => {
