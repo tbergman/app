@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { connect } from 'react-redux';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import Sound from 'react-native-sound';
+import styled from '@emotion/primitives';
+
 import {
   chatActions,
   uploadActions,
@@ -21,6 +23,7 @@ import {
   StyledRightAlignedOptions,
 } from '../styles/chat';
 import { StyledPassiveText } from '../../../components/styles/text';
+import { Spacing } from '../../../components/Spacing';
 
 import { colors } from '@hedviginsurance/brand';
 
@@ -46,6 +49,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const RecordingTimeContainer = styled(View)({
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  width: '50%',
+});
+
 class AudioInput extends React.Component {
   state = {
     isRecording: false,
@@ -54,34 +63,20 @@ class AudioInput extends React.Component {
   };
 
   componentDidMount() {
-    // TODO This cant be done if we dont have permissions probably
-    this.prepareRecordingPath();
     AudioRecorder.onProgress = this.onProgress;
     AudioRecorder.onFinished = this.onFinished;
   }
-
-  prepareRecordingPath = () => {
-    AudioRecorder.prepareRecordingAtPath(audioPath, {
-      SampleRate: 22050,
-      Channels: 1,
-      AudioQuality: 'Low',
-      AudioEncoding: 'aac',
-      AudioEncodingBitRate: 32000,
-    });
-  };
 
   onProgress = (data) => {
     this.setState({ recordingTime: Math.floor(data.currentTime) });
   };
 
   onFinished = (data) => {
-    if (Platform === 'ios') {
-      this.finishRecording(
-        data.status === 'ok',
-        data.audioFileURL,
-        data.audioFileSize,
-      );
-    }
+    this.finishRecording(
+      data.status === 'OK',
+      data.audioFileURL,
+      data.audioFileSize,
+    );
   };
 
   finishRecording = (success, url) => {
@@ -89,6 +84,7 @@ class AudioInput extends React.Component {
       this.onError('failed to record');
       return;
     }
+
     this.setState({ recordingUrl: url });
   };
 
@@ -98,14 +94,12 @@ class AudioInput extends React.Component {
   };
 
   requestPermissions = async () => {
-    if (Platform.OS !== 'android') {
-      return true;
-    }
-
     const status = await Permissions.check('microphone');
     if (status !== 'authorized') {
-      // TODO: Notifiy user if they need to take action
-      return false;
+      const requestStatus = await Permissions.request('microphone', {
+        type: 'always',
+      });
+      return requestStatus === 'authorized';
     }
     return true;
   };
@@ -123,17 +117,23 @@ class AudioInput extends React.Component {
   startRecording = async () => {
     const hasPermission = await this.requestPermissions();
     if (!hasPermission) {
-      return;
+      return this.props.showPermissionDialog();
     }
-    this.setState({ isRecording: true });
-    await AudioRecorder.startRecording();
+    this.setState({ isRecording: true }, async () => {
+      await AudioRecorder.prepareRecordingAtPath(audioPath, {
+        SampleRate: 22050,
+        Channels: 1,
+        AudioQuality: 'Low',
+        AudioEncoding: 'aac',
+        AudioEncodingBitRate: 32000,
+      });
+
+      AudioRecorder.startRecording();
+    });
   };
 
   stopRecording = async () => {
-    const filePath = await AudioRecorder.stopRecording();
-    if (Platform.OS === 'android') {
-      this.finishRecording(true, filePath);
-    }
+    await AudioRecorder.stopRecording();
     this.setState({ isRecording: false, isFinished: true });
   };
 
@@ -204,8 +204,11 @@ class AudioInput extends React.Component {
       return (
         <StyledMarginContainer>
           <StyledRightAlignedOptions>
-            <StopRecordingAnimationButton onPress={this.stopRecording} />
-            <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+            <RecordingTimeContainer>
+              <StopRecordingAnimationButton onPress={this.stopRecording} />
+              <Spacing height={15} />
+              <StyledPassiveText>Spelar in: {recordingTime}</StyledPassiveText>
+            </RecordingTimeContainer>
           </StyledRightAlignedOptions>
         </StyledMarginContainer>
       );

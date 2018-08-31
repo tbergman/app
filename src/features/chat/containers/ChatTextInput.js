@@ -152,6 +152,10 @@ const mapDispatchToProps = (dispatch) => {
             onDismiss: () => {},
           }),
         );
+      } else {
+        dispatch({
+          type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+        });
       }
     },
   };
