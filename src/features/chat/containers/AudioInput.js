@@ -105,10 +105,6 @@ class AudioInput extends React.Component {
   };
 
   requestPermissions = async () => {
-    if (Platform.OS !== 'android') {
-      return true;
-    }
-
     const status = await Permissions.check('microphone');
     if (status !== 'authorized') {
       return false;
