@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StyleSheet, TextInput } from 'react-native';
-import Permissions from 'react-native-permissions';
+import { StyleSheet, TextInput, Platform } from 'react-native';
+import firebase from 'react-native-firebase';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { StyledTextInputContainer } from '../styles/chat';
@@ -59,10 +59,7 @@ class ChatTextInput extends React.Component {
   _send = async (e) => {
     const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
-      const status = await Permissions.check('notification');
-      if (status !== 'authorized') {
-        this.props.requestPushNotifications();
-      }
+      this.props.requestPushNotifications();
     }
     if (!this.props.isSending) {
       this.props.send(
@@ -131,21 +128,35 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
-    requestPushNotifications: () => {
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Notifikationer',
-          paragraph:
-            'Slå på push-notiser så att du inte missar när Hedvig svarar!',
-          confirmButtonTitle: 'Slå på',
-          dismissButtonTitle: 'Inte nu',
-          onConfirm: () =>
-            dispatch({
-              type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
-            }),
-          onDismiss: () => {},
-        }),
-      );
+    requestPushNotifications: async () => {
+      if (Platform.OS === 'android') {
+        return dispatch({
+          type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+        });
+      }
+
+      const enabled = await firebase.messaging().hasPermission();
+
+      if (!enabled) {
+        dispatch(
+          dialogActions.showDialog({
+            title: 'Notifikationer',
+            paragraph:
+              'Slå på notiser så att du inte missar när Hedvig svarar!',
+            confirmButtonTitle: 'Slå på',
+            dismissButtonTitle: 'Inte nu',
+            onConfirm: () =>
+              dispatch({
+                type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+              }),
+            onDismiss: () => {},
+          }),
+        );
+      } else {
+        dispatch({
+          type: 'PUSH_NOTIFICATIONS/REQUEST_PUSH',
+        });
+      }
     },
   };
 };

@@ -3,6 +3,14 @@ import { Navigation } from 'react-native-navigation';
 import { types, chatActions } from '../../hedvig-redux';
 import { CHAT_SCREEN_MODAL } from '../../src/navigation/screens/chat/modal';
 
+export const openChat = () => {
+  Navigation.showModal({
+    stack: {
+      children: [CHAT_SCREEN_MODAL],
+    },
+  });
+};
+
 const apiAndNavigateToChat = function*({ payload }) {
   if (payload) {
     yield put({
@@ -15,11 +23,7 @@ const apiAndNavigateToChat = function*({ payload }) {
     yield put(chatActions.getMessages({ intent }));
   }
 
-  Navigation.showModal({
-    stack: {
-      children: [CHAT_SCREEN_MODAL],
-    },
-  });
+  openChat();
 };
 
 const apiAndNavigateToChatSaga = function*() {
