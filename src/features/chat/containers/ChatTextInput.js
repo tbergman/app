@@ -55,7 +55,7 @@ class ChatTextInput extends React.Component {
     }
   }
 
-  _send = async (e) => {
+  _send = () => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       this.props.requestPushNotifications();
     }
