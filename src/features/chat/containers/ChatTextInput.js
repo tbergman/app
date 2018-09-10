@@ -49,7 +49,6 @@ class ChatTextInput extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.message.globalId !== prevProps.message.globalId) {
-      this._onTextChange('');
       if (this.ref) {
         this.ref.focus();
       }
@@ -57,15 +56,13 @@ class ChatTextInput extends React.Component {
   }
 
   _send = async (e) => {
-    const nativeEventText = e && e.nativeEvent && e.nativeEvent.text;
     if (this.props.message.header.shouldRequestPushNotifications) {
       this.props.requestPushNotifications();
     }
     if (!this.props.isSending) {
-      this.props.send(
-        this.props.message,
-        nativeEventText || this.props.inputValue,
-      );
+      const inputValue = String(this.props.inputValue);
+      this._onTextChange('');
+      this.props.send(this.props.message, inputValue);
     }
   };
 
