@@ -34,9 +34,7 @@ target 'hedvig' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  # pod 'Segment-Branch'
-  pod 'react-native-branch', :path => '../node_modules/react-native-branch'
-  pod 'Branch-SDK', :path => '../node_modules/react-native-branch/ios'
+  pod 'react-native-branch', :path => '../node_modules/@hedviginsurance/react-native-branch'
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
   pod 'RNAudio', :path => '../node_modules/react-native-audio'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
@@ -50,6 +48,7 @@ target 'hedvig' do
   pod 'react-native-config', :path => '../node_modules/@hedviginsurance/react-native-config'
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
+  pod 'Segment-Branch'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   post_install do |installer|
