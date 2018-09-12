@@ -33,11 +33,8 @@ import {
 import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
 import * as R from 'ramda';
-import { StyledButtonText } from './styles/button';
 import { Spacing } from './Spacing';
 import { LogoutButton } from '../features/profile/logoutButton';
-
-import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   cashbackImage: {

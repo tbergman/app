@@ -6,9 +6,11 @@
     "noEmit": true,
     "strict": true,
     "isolatedModules": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["./typings"],
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

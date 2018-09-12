@@ -3,5 +3,16 @@
     "module:metro-react-native-babel-preset",
     "@babel/preset-typescript"
   ],
-  "plugins": ["functional-hmr"]
+  "plugins": [
+    "functional-hmr",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "src": "./src"
+        }
+      }
+    ]
+  ]
 }
