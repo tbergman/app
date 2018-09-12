@@ -1,13 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  Share,
-  Image,
-  StyleSheet,
-  Linking,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Share, Image, StyleSheet, Linking } from 'react-native';
 import {
   StyledProfileContainer,
   StyledCharityParagraph,
