@@ -14,8 +14,6 @@
 #import <CodePush/CodePush.h>
 #import <react-native-branch/RNBranch.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
-#import <Segment-Branch/BNCBranchIntegrationFactory.h>
-#import "ReactNativeConfig.h"
 
 @implementation AppDelegate
 
@@ -26,14 +24,6 @@
     [RNFirebaseNotifications configure];
     [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
     NSURL *jsCodeLocation;
-    
-    NSString *SEGMENT_WRITE_KEY = [ReactNativeConfig envFor:@"SEGMENT_IOS_WRITE_KEY"];
-    
-    SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_WRITE_KEY];
-    
-    [config use:[BNCBranchIntegrationFactory instance]];
-    
-    [SEGAnalytics setupWithConfiguration:config];
 
     #ifdef DEBUG
         jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

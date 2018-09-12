@@ -2,9 +2,9 @@ PODS:
   - Analytics (3.6.9)
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
-  - Branch (0.25.3):
-    - Branch/Core (= 0.25.3)
-  - Branch/Core (0.25.3)
+  - Branch-SDK (0.25.1):
+    - Branch-SDK/Core (= 0.25.1)
+  - Branch-SDK/Core (0.25.1)
   - CodePush (5.4.1):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
@@ -89,8 +89,8 @@ PODS:
   - Protobuf (3.6.1)
   - React (0.56.0):
     - React/Core (= 0.56.0)
-  - react-native-branch (2.3.4):
-    - Branch
+  - react-native-branch (2.3.3):
+    - Branch-SDK
     - React
   - react-native-config (0.11.6):
     - React
@@ -163,9 +163,6 @@ PODS:
     - React/Core
   - RNSVG (6.5.2):
     - React
-  - Segment-Branch (0.1.15):
-    - Analytics
-    - Branch
   - Sentry (3.12.4):
     - Sentry/Core (= 3.12.4)
     - Sentry/KSCrash (= 3.12.4)
@@ -180,6 +177,7 @@ PODS:
   - yoga (0.56.0.React)
 
 DEPENDENCIES:
+  - Branch-SDK (from `../node_modules/react-native-branch/ios`)
   - CodePush (from `../node_modules/react-native-code-push`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Firebase/Core
@@ -187,7 +185,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - "react-native-branch (from `../node_modules/@hedviginsurance/react-native-branch`)"
+  - react-native-branch (from `../node_modules/react-native-branch`)
   - "react-native-config (from `../node_modules/@hedviginsurance/react-native-config`)"
   - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
@@ -211,7 +209,6 @@ DEPENDENCIES:
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - Segment-Branch
   - SentryReactNative (from `../node_modules/react-native-sentry`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -220,7 +217,6 @@ SPEC REPOS:
     - Analytics
     - Base64
     - boost-for-react-native
-    - Branch
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -233,11 +229,12 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - Protobuf
-    - Segment-Branch
     - Sentry
     - SSZipArchive
 
 EXTERNAL SOURCES:
+  Branch-SDK:
+    :path: "../node_modules/react-native-branch/ios"
   CodePush:
     :path: "../node_modules/react-native-code-push"
   DoubleConversion:
@@ -251,7 +248,7 @@ EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
   react-native-branch:
-    :path: "../node_modules/@hedviginsurance/react-native-branch"
+    :path: "../node_modules/react-native-branch"
   react-native-config:
     :path: "../node_modules/@hedviginsurance/react-native-config"
   ReactNativeAnalyticsSegmentIo:
@@ -279,7 +276,7 @@ SPEC CHECKSUMS:
   Analytics: 6541ce337e99d9f7a2240a8b3953940a7be5f998
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  Branch: 9917f91a5381bc88ed8e4f080a18213267cf44e6
+  Branch-SDK: 8a0fa24e01a68cc3f98f184900e5adf0328c7f02
   CodePush: f6b348759cdc42c734d9c3a46ceb2997c270b12e
   DoubleConversion: a9706f16e388b53ff12cca34473428ee29746a26
   Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
@@ -298,7 +295,7 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
-  react-native-branch: 6dd5ed28bf303e19837fc115630acffce3ca15cb
+  react-native-branch: 8988998ef912c6373dc39a24e4638f02a1268265
   react-native-config: 9314df2fa7cca076e4bb38b8068210029beded14
   ReactNativeAnalyticsSegmentIo: d571ea899d7dfcd864fbd6dfbbd04e23ef04786a
   ReactNativeNavigation: 664b103e358bc0198a627fbea3bd3caadb4b0c4b
@@ -308,12 +305,11 @@ SPEC CHECKSUMS:
   RNFirebase: 2b25fd2e60269f26bb0a76c71dcc942b35a77df0
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
-  Segment-Branch: 96b84a8bf38dfd5bd34598f6096f54c780d00e9f
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
   SentryReactNative: 787a08161d641dde91dd36d4c8e76f9b0ba4fc84
   SSZipArchive: 51a800ebb77f95a8329b6ced1faaff394b47f509
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 0e6ec7a5be821ce077fbeda49d016e8e2ffcd384
+PODFILE CHECKSUM: ec64628888e285e9ae21a2961d9a53a801e4cfe1
 
 COCOAPODS: 1.5.3
