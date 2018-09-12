@@ -34,7 +34,6 @@ target 'hedvig' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  # pod 'Segment-Branch'
   pod 'react-native-branch', :path => '../node_modules/react-native-branch'
   pod 'Branch-SDK', :path => '../node_modules/react-native-branch/ios'
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
