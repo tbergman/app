@@ -5,7 +5,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { createMiddleware } from 'redux-beacon';
 import logger from '@redux-beacon/logger';
 import uuidv4 from 'uuid/v4';
-import Branch from '@hedviginsurance/react-native-branch';
+import Branch from 'react-native-branch';
 import Config from '@hedviginsurance/react-native-config';
 import { Navigation } from 'react-native-navigation';
 
