@@ -1,8 +1,7 @@
 {
-    "presets": [
-        "react-native"
-    ],
-    "plugins": [
-        "functional-hmr"
-    ]
+  "presets": [
+    "module:metro-react-native-babel-preset",
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["functional-hmr"]
 }
