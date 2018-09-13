@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import styled from '@emotion/primitives';
-import { colors, fonts } from '@hedviginsurance/brand';
+import { colors } from '@hedviginsurance/brand';
 
 import { CircledLogout } from 'src/components/icons/CircledLogout';
 
@@ -18,7 +18,7 @@ const Button = styled(TouchableOpacity)({
 });
 
 const ButtonText = styled(Text)({
-  fontFamily: fonts.MERRIWEATHER,
+  fontFamily: 'Merriweather',
   fontSize: 16,
   color: colors.BLACK,
   paddingLeft: 15,
