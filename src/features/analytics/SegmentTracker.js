@@ -1,8 +1,7 @@
 import { Platform } from 'react-native';
 import Segment from 'react-native-analytics-segment-io';
+import Branch, { BranchEvent } from 'react-native-branch';
 
-// Segment Semantic Events (does not cover all events!)
-// https://segment.com/docs/spec/semantic/
 export const SemanticEvents = {
   Ecommerce: {
     CheckoutStarted: 'Checkout Started',
@@ -19,60 +18,41 @@ export const SemanticEvents = {
   },
 };
 
-// Checkout Started
-// {
-//   checkout_id: 123,
-//   order_id: 123,
-//   revenue: 25,
-//   value: 25,
-//   currency: 'SEK',
-// }
+const branchEventFromSegmentEvent = (event, properties) => {
+  const mapSegmentToBranchEvent = {
+    [SemanticEvents.Ecommerce.CheckoutStarted]: BranchEvent.InitiatePurchase,
+    [SemanticEvents.Ecommerce.PaymentInfoEntered]: BranchEvent.AddPaymentInfo,
+    [SemanticEvents.Ecommerce.OrderCompleted]: BranchEvent.Purchase,
+  };
 
-// Checkout Step Viewed
-// {
-//   checkout_id: 123,
-//   order_id: 123,
-//   step: Number
-// }
+  const mapSegmentToBranchKeys = {
+    order_id: 'transactionID',
+    affiliation: 'affiliation',
+    revenue: 'revenue',
+    shipping: 'shipping',
+    tax: 'tax',
+    coupon: 'coupon',
+    currency: 'currency',
+    query: 'searchQuery',
+  };
 
-// Checkout Step Completed
-// {
-//   checkout_id: 123,
-//   order_id: 123,
-//   step: Number
-// }
+  const branchEventType = mapSegmentToBranchEvent[event];
 
-// Order Completed
-// {
-//   checkout_id: 123,
-//   order_id: 123,
-//   step: Number
-// }
+  const branchProperties =
+    properties &&
+    Object.keys(properties).reduce((acc, segmentKey) => {
+      const branchKey = mapSegmentToBranchKeys[segmentKey];
+      const value = properties[segmentKey];
+      if (branchKey) {
+        acc[branchKey] = value;
+      } else {
+        acc.customData = { ...acc.customData, [segmentKey]: String(value) };
+      }
+      return acc;
+    }, branchEventType ? { description: event } : {});
 
-// Payment Info Entered
-// {
-//   checkout_id: 123,
-//   order_id: 123,
-//   payment_method: 'Trustly'
-// }
-
-// Deep Link Opened
-// {
-//   provider: 'Branch Metrics',
-//   url: 'app://landing'
-// }
-
-// Install Attributed
-// {
-//   provider: 'Branch Metrics',
-//   campaign: {
-//     source: 'Network/FB/AdWords/MoPub/Source',
-//     name: 'Campaign Name',
-//     content: 'Organic Content Title',
-//     ad_creative: 'Red Hello World Ad',
-//     ad_group: 'Red Ones'
-//   }
-// }
+  return { branchEventType, branchProperties };
+};
 
 export const SegmentTracker = {
   initialize: ({ androidWriteKey, iosWriteKey, ...options }) => {
@@ -83,19 +63,28 @@ export const SegmentTracker = {
     }
   },
   identify: (userId, traits) => {
+    if (userId) {
+      Branch.setIdentity(userId);
+    }
     return Segment.identify(userId, traits);
   },
-  screen: (name, properties) => {
-    return Segment.screen(name, properties);
-  },
+  screen: Segment.screen,
   track: (event, properties) => {
+    const { branchEventType, branchProperties } = branchEventFromSegmentEvent(
+      event,
+      properties,
+    );
+
+    if (branchEventType) {
+      new BranchEvent(branchEventType, null, branchProperties).logEvent();
+    }
+
     return Segment.track(event, properties);
   },
-  group: (groupId, traits) => {
-    return Segment.group(groupId, traits);
-  },
-  flush: () => Segment.flush(),
+  group: Segment.group,
+  flush: Segment.flush,
   reset: () => {
+    Branch.logout();
     return Segment.reset();
   },
 };
