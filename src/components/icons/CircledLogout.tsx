@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import { colors } from '@hedviginsurance/brand';
 
 interface IconSize {
   width: number;
@@ -11,7 +12,7 @@ interface CircledLogoutProps extends IconSize {
 }
 
 export const CircledLogout: React.SFC<CircledLogoutProps> = ({
-  ovalFill = '#F9FAFC',
+  ovalFill = colors.OFF_WHITE,
   width,
   height,
 }) => (

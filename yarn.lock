@@ -974,9 +974,9 @@
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.1.tgz#f3a81587ad8d0ef33cdad6f3b4310774fcc1053e"
 
-"@hedviginsurance/brand@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/brand/-/brand-1.0.0.tgz#4209c89eb2ec500583233e4a5bd173e767f63ee8"
+"@hedviginsurance/brand@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/brand/-/brand-1.2.1.tgz#1447e6904a9c06b0032412c2a6231f38d243a69f"
 
 "@hedviginsurance/podspec-generator@^0.2.3":
   version "0.2.3"
