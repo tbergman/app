@@ -1,12 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  Image,
-  StyleSheet,
-  Linking,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Image, StyleSheet, Linking } from 'react-native';
 import {
   StyledProfileContainer,
   StyledCharityParagraph,
@@ -31,10 +24,8 @@ import {
 import { DisabledListNextButton } from './Button';
 import { Loader } from './Loader';
 import * as R from 'ramda';
-import { StyledButtonText } from './styles/button';
 import { Spacing } from './Spacing';
-
-import { colors } from '@hedviginsurance/brand';
+import { LogoutButton } from '../features/profile/logoutButton';
 
 const styles = StyleSheet.create({
   cashbackImage: {
@@ -43,40 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   certificateImage: { width: 40, height: 40 },
-  logoutButton: {
-    marginTop: 8,
-    marginBottom: 24,
-    minHeight: 20,
-    paddingTop: 8,
-    paddingRight: 16,
-    paddingBottom: 8,
-    paddingLeft: 16,
-    backgroundColor: colors.WHITE,
-    borderColor: colors.PURPLE,
-    borderWidth: 1,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
 });
-
-class LogoutButton extends React.Component {
-  static propTypes = { onPress: PropTypes.func.isRequired };
-  render() {
-    const { onPress } = this.props;
-    return (
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        onPress={onPress}
-        style={styles.logoutButton}
-      >
-        <StyledButtonText>Logga ut</StyledButtonText>
-      </TouchableOpacity>
-    );
-  }
-}
 
 export default class Profile extends React.Component {
   componentDidMount() {

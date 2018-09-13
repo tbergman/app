@@ -7,7 +7,7 @@ exports[`<Peril /> Should render correctly 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <Component
+  <ForwardRef(View)
     style={
       Object {
         "alignItems": "center",
@@ -17,7 +17,7 @@ exports[`<Peril /> Should render correctly 1`] = `
       }
     }
   >
-    <Image
+    <ForwardRef(Image)
       source={
         Object {
           "testUri": "../../../assets/icons/perils/you/juridisk_tvist.png",
@@ -30,7 +30,7 @@ exports[`<Peril /> Should render correctly 1`] = `
         }
       }
     />
-    <Component
+    <ForwardRef(Text)
       style={
         Object {
           "color": "#9B9BAA",
@@ -42,7 +42,7 @@ exports[`<Peril /> Should render correctly 1`] = `
       }
     >
       Juridisk tvist
-    </Component>
-  </Component>
+    </ForwardRef(Text)>
+  </ForwardRef(View)>
 </TouchableOpacity>
 `;
