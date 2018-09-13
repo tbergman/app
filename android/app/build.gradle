@@ -24,7 +24,7 @@ android {
     multiDexEnabled true
     versionCode 33
     versionName '2.0.0'
-    missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
+    missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
     resValue "string", "build_config_package", "com.hedvig.app"
 
