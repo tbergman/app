@@ -1,8 +1,15 @@
 {
-    "presets": [
-        "react-native"
-    ],
-    "plugins": [
-        "functional-hmr"
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    "functional-hmr",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "src": "./src"
+        }
+      }
     ]
+  ]
 }

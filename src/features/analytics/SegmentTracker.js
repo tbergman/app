@@ -75,7 +75,9 @@ export const SegmentTracker = {
       properties,
     );
 
-    new BranchEvent(branchEventType, null, branchProperties).logEvent();
+    if (branchEventType) {
+      new BranchEvent(branchEventType, null, branchProperties).logEvent();
+    }
 
     return Segment.track(event, properties);
   },
