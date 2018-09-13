@@ -4,6 +4,7 @@
     ],
     "plugins": [
         "functional-hmr",
+        "graphql-tag",
         [
             "module-resolver",
             {
