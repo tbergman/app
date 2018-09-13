@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import styled from '@emotion/primitives';
 
 import { fonts, colors } from '@hedviginsurance/brand';
@@ -16,8 +16,12 @@ const StatusText = styled(Text)({
   fontSize: 14,
 });
 
+const Container = styled(View)({
+  flexDirection: 'row',
+});
+
 const InsuranceStatus = ({ status, activeFrom }) => (
-  <React.Fragment>
+  <Container>
     <Icon
       source={
         {
@@ -36,7 +40,7 @@ const InsuranceStatus = ({ status, activeFrom }) => (
         }[status]
       }
     </StatusText>
-  </React.Fragment>
+  </Container>
 );
 
 export { InsuranceStatus };

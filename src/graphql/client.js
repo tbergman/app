@@ -27,6 +27,7 @@ const typeDefs = `
   }
 
   type Peril {
+    id: ID
     title: String
     imageUrl: String
     description: String
@@ -142,18 +143,6 @@ const resolvers = {
       return { token: newToken };
     },
   },
-  // User: {
-  //   insurance: () => ({
-  //     active: true,
-  //     address: 'Lomvägen 641',
-  //     monthlyCost: 139,
-  //     safetyIncreasers: ['Brandvarnare', 'Säkerhetsdörr'],
-  //     certificateUrl: null,
-  //   }),
-  //   cashback: () => ({
-  //     name: 'Barncancerfonden',
-  //   }),
-  // },
 };
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });

@@ -5,7 +5,7 @@ import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';
@@ -130,16 +130,16 @@ export const setLayout = ({ root, modals, overlays }) => {
     topBar: {
       animate: false,
       title: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       leftButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       rightButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       largeTitle: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
         fontSize: 30,
       },
     },
@@ -153,7 +153,7 @@ export const setLayout = ({ root, modals, overlays }) => {
       selectedIconColor: colors.PURPLE,
       textColor: colors.DARK_GRAY,
       selectedTextColor: colors.PURPLE,
-      fontFamily: 'CircularStd-Book',
+      fontFamily: fonts.CIRCULAR,
       fontSize: 13,
     },
     layout: {
@@ -175,7 +175,6 @@ export const setLayout = ({ root, modals, overlays }) => {
 };
 
 export const setInitialLayout = async () => {
-  // const layout = await getInitialLayout();
-  const layout = getMainLayout();
+  const layout = await getInitialLayout();
   setLayout(layout);
 };

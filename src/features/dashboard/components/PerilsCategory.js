@@ -23,20 +23,16 @@ import {
   StyledSmallPassiveText,
 } from '../../../components/styles/text';
 
-const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
-
 export const coveredPerils = (perils, title) => {
-  return perils
-    .filter((peril) => coveredStates.includes(peril.state))
-    .map((peril, index) => (
-      <Peril
-        peril={peril}
-        key={index}
-        categoryPerils={perils}
-        categoryTitle={title}
-        perilIndex={perils.findIndex((p) => p.id === peril.id)}
-      />
-    ));
+  return perils.map((peril, index) => (
+    <Peril
+      peril={peril}
+      key={index}
+      categoryPerils={perils}
+      categoryTitle={title}
+      perilIndex={perils.findIndex((p) => p.id === peril.id)}
+    />
+  ));
 };
 
 export class PerilsCategory extends React.Component {
