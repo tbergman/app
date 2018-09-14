@@ -3996,6 +3996,12 @@ graphql-anywhere@^4.1.19:
   dependencies:
     apollo-utilities "^1.0.21"
 
+graphql-schema-typescript@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/graphql-schema-typescript/-/graphql-schema-typescript-1.2.3.tgz#53bc8efae82705c550850c10699bc1497fc426e2"
+  dependencies:
+    yargs "^11.0.0"
+
 graphql-tag@^2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.9.2.tgz#2f60a5a981375f430bf1e6e95992427dc18af686"
