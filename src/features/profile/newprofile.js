@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import styled from '@emotion/primitives';
 import { View, ScrollView, Image } from 'react-native';
 
@@ -12,23 +12,27 @@ import { InsuranceAddressRow } from 'src/features/profile/components/InsuranceAd
 import { SafetyIncreasersRow } from 'src/features/profile/components/SafetyIncreasersRow';
 import { PaymentRow } from 'src/features/profile/components/PaymentRow';
 import { InsuranceCertificateRow } from 'src/features/profile/components/InsuranceCertificateRow';
-import { LogoutButton } from 'src/features/profile/components/LogoutButton';
+import { LogoutButton } from './logoutButton';
 
 const PROFILE_QUERY = gql`
   query ProfileQuery {
-    user {
-      insurance {
-        address
-        monthlyCost
-        safetyIncreasers
-        certificateUrl
-      }
-
-      cashback {
-        name
-        imageUrl
-      }
+    insurance {
+      address
+      monthlyCost
+      safetyIncreasers
+      certificateUrl
     }
+
+    cashback {
+      name
+      imageUrl
+    }
+  }
+`;
+
+const LOGOUT_MUTATION = gql`
+  mutation LogoutMutation {
+    logout
   }
 `;
 
@@ -62,7 +66,7 @@ const Profile = () => (
         return <Loader />; // TODO Better error component
       }
 
-      const { insurance, cashback } = data.user;
+      const { insurance, cashback } = data;
       const {
         address,
         safetyIncreasers,
@@ -87,13 +91,16 @@ const Profile = () => (
           <PaymentRow monthlyCost={monthlyCost} />
           <InsuranceCertificateRow certificateUrl={certificateUrl} />
           <Spacing height={15} />
-          <LogoutButton
-            onPress={() => {
-              console.log('TODO LOG USER OUT'); // eslint-disable-line no-console
-            }}
-          >
-            Logga ut
-          </LogoutButton>
+          <Mutation mutation={LOGOUT_MUTATION}>
+            {(logout, { client }) => (
+              <LogoutButton
+                onPress={() => {
+                  logout();
+                  client.clearStore();
+                }}
+              />
+            )}
+          </Mutation>
         </Container>
       );
     }}
