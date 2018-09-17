@@ -3,13 +3,13 @@ import { PerilsCategory } from './PerilsCategory';
 
 const PerilCategories = ({ perilCategories }) => (
   <React.Fragment>
-    {perilCategories.map(({ title, description, perils, iconUrl }, i) => (
+    {perilCategories.map(({ title, description, perils, iconUrl }) => (
       <PerilsCategory
         title={title}
         description={description}
         perils={perils}
         iconUrl={iconUrl}
-        key={i}
+        key={title}
       />
     ))}
   </React.Fragment>
