@@ -8,7 +8,7 @@ import { Loader } from 'src/components/Loader';
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
 import { InsuranceStatus } from 'src/features/dashboard/components/InsuranceStatus';
-import { PerilCategories } from './components/PerilCategories';
+import { PerilCategories } from 'src/features/dashboard/components/PerilCategories';
 import { DeductibleFootnote } from 'src/features/dashboard/components/DeductibleFootnote';
 import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
 import { InsuranceAmountFootnote } from 'src/features/dashboard/components/InsuranceAmountFootnote';

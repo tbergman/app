@@ -1,90 +1,110 @@
-import { connect } from 'react-redux';
-import Profile from '../../components/Profile';
-import {
-  cashbackActions,
-  chatActions,
-  userActions,
-  insuranceActions,
-  types,
-  dialogActions,
-} from '../../../hedvig-redux';
+import React from 'react';
+import gql from 'graphql-tag';
+import { Query, Mutation } from 'react-apollo';
+import styled from '@emotion/primitives';
+import { View, ScrollView, Image } from 'react-native';
 
-const _apiAndNavigateToChat = (dispatch, endpoint, success) => {
-  dispatch(
-    chatActions.apiAndNavigateToChat({
-      method: 'POST',
-      url: endpoint,
-      body: null,
-      SUCCESS: success,
-    }),
-  );
-};
+import { colors } from '@hedviginsurance/brand';
+import { Loader } from 'src/components/Loader';
+import { Spacing } from 'src/components/Spacing';
+import { CashbackRow } from 'src/features/profile/components/CashbackRow';
+import { InsuranceAddressRow } from 'src/features/profile/components/InsuranceAddressRow';
+import { SafetyIncreasersRow } from 'src/features/profile/components/SafetyIncreasersRow';
+import { PaymentRow } from 'src/features/profile/components/PaymentRow';
+import { InsuranceCertificateRow } from 'src/features/profile/components/InsuranceCertificateRow';
+import { LogoutButton } from 'src/features/profile/logoutButton';
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user.currentUser,
-    cashbackAlternatives: state.cashback.alternatives,
-    insurance: state.insurance,
-  };
-};
+const PROFILE_QUERY = gql`
+  query ProfileQuery {
+    insurance {
+      address
+      monthlyCost
+      safetyIncreasers
+      certificateUrl
+    }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getUser: () => dispatch(userActions.getCurrentUser()),
-    getInsurance: () => dispatch(insuranceActions.getInsurance()),
-    getCashbackAlternatives: () =>
-      dispatch(cashbackActions.getCashbackAlternatives()),
-    updateCashback: (selectedCashback, continuation) =>
-      dispatch(cashbackActions.updateCashback(selectedCashback, continuation)),
-    editPersonalInfo: () =>
-      _apiAndNavigateToChat(
-        dispatch,
-        '/hedvig/initiateUpdate?what=PERSONAL_INFORMATOIN',
-        'REQUESTED_PERSONAL_INFO_UPDATE',
-      ),
-    editFamilyMembers: () =>
-      _apiAndNavigateToChat(
-        dispatch,
-        '/hedvig/initiateUpdate?what=FAMILY_MEMBERS',
-        'REQUESTED_FAMILY_MEMBERS_UPDATE',
-      ),
-    editApartmentInfo: () =>
-      _apiAndNavigateToChat(
-        dispatch,
-        '/hedvig/initiateUpdate?what=APARTMENT_INFORMATION',
-        'REQUESTED_APARTMENT_INFO_UPDATE',
-      ),
-    editSafetyIncreasers: () =>
-      _apiAndNavigateToChat(
-        dispatch,
-        '/hedvig/initiateUpdate?what=SAFETY_INCREASERS',
-        'REQUESTED_SAFETY_INCREASERS_UPDATE',
-      ),
-    editBankAccount: () =>
-      _apiAndNavigateToChat(
-        dispatch,
-        '/hedvig/initiateUpdate?what=BANK_ACCOUNT',
-        'REQUESTED_BANK_ACCOUNT_UPDATE',
-      ),
-    logout: () =>
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Vill du logga ut?',
-          paragraph: 'Om du trycker ja loggas du ut.',
-          confirmButtonTitle: 'Ja',
-          dismissButtonTitle: 'Nej',
-          onConfirm: () => dispatch({ type: types.LOGOUT, payload: {} }),
-          onDismiss: () => {},
-        }),
-      ),
-    sendPolicyEmail: () => dispatch(insuranceActions.sendPolicyEmail()),
-    dispatch,
-  };
-};
+    cashback {
+      name
+      imageUrl
+    }
+  }
+`;
 
-const ProfileContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Profile);
+const LOGOUT_MUTATION = gql`
+  mutation LogoutMutation {
+    logout
+  }
+`;
 
-export default ProfileContainer;
+const Container = styled(ScrollView)({
+  flex: 1,
+  backgroundColor: colors.OFF_WHITE,
+});
+
+const Header = styled(View)({
+  paddingTop: 24,
+  paddingRight: 16,
+  paddingBottom: 24,
+  paddingLeft: 16,
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const CashbackImage = styled(Image)({
+  width: 300,
+  height: 100,
+});
+
+const Profile = () => (
+  <Query query={PROFILE_QUERY}>
+    {({ loading, error, data }) => {
+      if (loading || !data) {
+        return <Loader />;
+      }
+
+      if (error) {
+        return <Loader />; // TODO Better error component
+      }
+
+      const { insurance, cashback } = data;
+      const {
+        address,
+        safetyIncreasers,
+        monthlyCost,
+        certificateUrl,
+      } = insurance;
+      const { name: cashbackName, imageUrl: cashbackImageUrl } = cashback;
+
+      return (
+        <Container>
+          <Header>
+            <Spacing height={8} />
+            <CashbackImage
+              source={{ uri: cashbackImageUrl }}
+              resizeMode="contain"
+            />
+            <Spacing height={16} />
+          </Header>
+          <CashbackRow name={cashbackName} />
+          <InsuranceAddressRow address={address} />
+          <SafetyIncreasersRow safetyIncreasers={safetyIncreasers} />
+          <PaymentRow monthlyCost={monthlyCost} />
+          <InsuranceCertificateRow certificateUrl={certificateUrl} />
+          <Spacing height={15} />
+          <Mutation mutation={LOGOUT_MUTATION}>
+            {(logout, { client }) => (
+              <LogoutButton
+                onPress={() => {
+                  logout();
+                  client.clearStore();
+                }}
+              />
+            )}
+          </Mutation>
+        </Container>
+      );
+    }}
+  </Query>
+);
+
+export { Profile };
