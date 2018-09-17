@@ -36,6 +36,7 @@ import * as analyticsSelectors from '../analytics/selectors';
 
 import { CHAT_SCREEN } from '../../navigation/screens/chat';
 import { colors } from '@hedviginsurance/brand';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window',
@@ -333,6 +334,13 @@ export default class MarketingCarousel extends React.Component {
       orderId,
       componentId,
     } = this.props;
+
+    Navigation.showModal({
+      stack: {
+        children: [NEW_OFFER_SCREEN],
+      },
+    });
+
     if (activeMarketingScreenIndex === 3) {
       Navigation.setStackRoot(componentId, CHAT_SCREEN);
       startChat(orderId);

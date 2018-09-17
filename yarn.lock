@@ -928,20 +928,6 @@
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.5.tgz#f868c314b889e7c3d84868a1d1cc323fbb40ca86"
 
-"@emotion/primitives-core@^9.2.7":
-  version "9.2.7"
-  resolved "https://registry.yarnpkg.com/@emotion/primitives-core/-/primitives-core-9.2.7.tgz#719470e603a207cef687d4376a92abb82c3ec4e0"
-  dependencies:
-    "@emotion/is-prop-valid" "^0.6.3"
-    css-to-react-native "^2.2.1"
-
-"@emotion/primitives@^9.2.7":
-  version "9.2.7"
-  resolved "https://registry.yarnpkg.com/@emotion/primitives/-/primitives-9.2.7.tgz#4d19a6c9ddbdf1ccfeafaf028cdec666c78c676d"
-  dependencies:
-    "@emotion/primitives-core" "^9.2.7"
-    babel-plugin-emotion "^9.2.5"
-
 "@emotion/serialize@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@emotion/serialize/-/serialize-0.9.0.tgz#ac5577cb98c7557c1a24a94cc101c5da6dc18322"
@@ -1006,6 +992,23 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
 
+"@sampettersson/primitives-core@^9.2.8":
+  version "9.2.8"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives-core/-/primitives-core-9.2.8.tgz#27e9476fad183ded3cc1542a96016a575b4c8df3"
+  dependencies:
+    "@emotion/is-prop-valid" "^0.6.3"
+    "@types/react-native" "^0.56.19"
+    css-to-react-native "^2.2.1"
+
+"@sampettersson/primitives@^9.2.12":
+  version "9.2.12"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives/-/primitives-9.2.12.tgz#df3069c8e5731692d20b4b667400c02197998335"
+  dependencies:
+    "@sampettersson/primitives-core" "^9.2.8"
+    "@types/react-native" "^0.56.19"
+    "@types/react-primitives" "^0.6.2"
+    babel-plugin-emotion "^9.2.8"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -1050,6 +1053,13 @@
   version "0.56.18"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.56.18.tgz#9e656d87da53a1fdd42be4cc4eab23f81bff71e9"
   dependencies:
+    "@types/react" "*"
+
+"@types/react-native@^0.56.19":
+  version "0.56.19"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.56.19.tgz#64ec243b7af6c53787909519b1ac22f56688cc96"
+  dependencies:
+    "@types/prop-types" "*"
     "@types/react" "*"
 
 "@types/react-primitives@^0.6.2":
@@ -1674,24 +1684,6 @@ babel-plugin-check-es2015-constants@^6.8.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
     babel-runtime "^6.22.0"
-
-babel-plugin-emotion@^9.2.5:
-  version "9.2.6"
-  resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-9.2.6.tgz#992d48f316c20610c28a95ae90e6bd193014eec5"
-  dependencies:
-    "@babel/helper-module-imports" "7.0.0-beta.51"
-    "@emotion/babel-utils" "^0.6.4"
-    "@emotion/hash" "^0.6.2"
-    "@emotion/memoize" "^0.6.1"
-    "@emotion/stylis" "^0.6.10"
-    babel-core "^6.26.3"
-    babel-plugin-macros "^2.0.0"
-    babel-plugin-syntax-jsx "^6.18.0"
-    convert-source-map "^1.5.0"
-    find-root "^1.1.0"
-    mkdirp "^0.5.1"
-    source-map "^0.5.7"
-    touch "^1.0.0"
 
 babel-plugin-emotion@^9.2.8:
   version "9.2.8"
@@ -9231,6 +9223,10 @@ typescript-eslint-parser@^16.0.0:
 typescript@^2.5.1:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+
+typescript@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.3.tgz#4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

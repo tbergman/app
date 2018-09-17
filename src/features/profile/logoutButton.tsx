@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
 
 import { CircledLogout } from 'src/components/icons/CircledLogout';

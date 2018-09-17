@@ -132,6 +132,9 @@ export const setLayout = ({ root, modals, overlays }) => {
       title: {
         fontFamily: 'CircularStd-Book',
       },
+      subtitle: {
+        fontFamily: 'CircularStd-Book',
+      },
       leftButtons: {
         fontFamily: 'CircularStd-Book',
       },
