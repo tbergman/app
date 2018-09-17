@@ -63,7 +63,7 @@ const Profile = () => (
       }
 
       if (error) {
-        return <Loader />; // TODO Better error component
+        throw new Error(error);
       }
 
       const { insurance, cashback } = data;

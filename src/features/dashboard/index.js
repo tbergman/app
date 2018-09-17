@@ -63,8 +63,7 @@ const Dashboard = () => (
       }
 
       if (error) {
-        console.error(error); // eslint-disable-line no-console
-        return <Loader />; // TODO Better error communication
+        throw new Error(error);
       }
 
       const { insurance } = data;
