@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const graphqlSchemaTypescript = require('graphql-schema-typescript');
 const { makeExecutableSchema } = require('graphql-tools');
 
@@ -62,8 +63,12 @@ scalar LocalDate
 `;
 
 graphqlSchemaTypescript
-  .generateTypeScriptTypes(makeExecutableSchema({ typeDefs }), '../blargh')
+  .generateTypeScriptTypes(
+    makeExecutableSchema({ typeDefs }),
+    './src/graphql/types.ts',
+    { typePrefix: '', asyncResult: true },
+  )
   .then(() => {
-    console.log('YAYYYY');
+    console.log('Success');
   })
   .catch(console.error);

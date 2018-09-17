@@ -3,6 +3,7 @@ import Config from '@hedviginsurance/react-native-config'
 
 import { Store } from 'src/setupApp'
 import { setLayout, getMarketingLayout } from 'src/navigation/layout'
+import { Mutation, MutationToLogoutResolver } from 'src/graphql/types';
 
 const logoutUser = async () => {
   const token = await AsyncStorage.getItem('@hedvig:token');
@@ -12,7 +13,7 @@ const logoutUser = async () => {
   });
 };
 
-const logout = async () => {
+const logout: MutationToLogoutResolver<Mutation, boolean> = async () => {
   await logoutUser();
   Store.dispatch({ type: 'DELETE_TOKEN' });
   Store.dispatch({ type: 'DELETE_TRACKING_ID' });

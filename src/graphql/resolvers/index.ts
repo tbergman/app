@@ -1,8 +1,9 @@
 import { insurance } from './insurance'
 import { cashback } from './cashback'
 import { logout } from './logout'
+import { Resolver } from '../types';
 
-const resolvers = {
+const resolvers: Resolver = {
   Query: {
     insurance,
     cashback

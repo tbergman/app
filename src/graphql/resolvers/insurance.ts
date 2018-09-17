@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import Config from '@hedviginsurance/react-native-config'
 import { getUser } from './user'
+import { QueryToInsuranceResolver, Query, Insurance } from '../types';
 
 const getInsurance = async () => {
   const token = await AsyncStorage.getItem('@hedvig:token');
@@ -10,7 +11,7 @@ const getInsurance = async () => {
   return data.json();
 };
 
-const insurance = async () => {
+const insurance: QueryToInsuranceResolver<Query, Insurance> = async () => {
   const [insurance, user] = await Promise.all([getInsurance(), getUser()]);
   return {
     monthlyCost: insurance.currentTotalPrice,
