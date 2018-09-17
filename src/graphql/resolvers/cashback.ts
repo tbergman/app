@@ -1,8 +1,10 @@
 import { getUser } from './user'
 import { Cashback, QueryToCashbackResolver, Query } from '../types';
 
-const cashback: QueryToCashbackResolver<Query, Cashback> = async () => {
-  const user = await getUser();
+const cashback: QueryToCashbackResolver<Query, Cashback> = async (_root, _args, { getToken }) => {
+  const token = await getToken()
+  console.log('getting user')
+  const user = await getUser(token)
   return {
     name: user.selectedCashback,
     imageUrl: user.selectedCashbackImageUrl,
