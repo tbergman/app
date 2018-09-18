@@ -979,11 +979,11 @@
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
 
-"@hedviginsurance/react-native-navigation@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.0.0.tgz#eb76c9cf52747bfa34f57ef8c94ad53eef5aff39"
+"@hedviginsurance/react-native-navigation@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.0.2.tgz#dafbcde960d556d5008230ce213eab11accd20c8"
   dependencies:
-    hoist-non-react-statics "3.x.x"
+    hoist-non-react-statics "2.x.x"
     lodash "4.x.x"
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
@@ -4335,13 +4335,7 @@ hoek@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@3.x.x:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
-  dependencies:
-    react-is "^16.3.2"
-
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@2.x.x, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
@@ -7595,10 +7589,6 @@ react-dom@^16.4.1:
     prop-types "^15.6.2"
     schedule "^0.3.0"
 
-react-is@^16.3.2:
-  version "16.5.0"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.0.tgz#2ec7c192709698591efe13722fab3ef56144ba55"
-
 react-is@^16.4.0, react-is@^16.4.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
@@ -7676,11 +7666,11 @@ react-native-iphone-x-helper@^1.0.1, react-native-iphone-x-helper@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.0.3.tgz#7a2f1e0574e899a0f1d426e6167fd98990083214"
 
-react-native-navigation@2.0.2539:
-  version "2.0.2539"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2539.tgz#1a3ec8c76d26774cb851133397411b4888e9c69e"
+react-native-navigation@2.0.2485:
+  version "2.0.2485"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2485.tgz#bf1ce63bf282314f84843cc086cdc94ac1f31746"
   dependencies:
-    hoist-non-react-statics "3.x.x"
+    hoist-non-react-statics "2.x.x"
     lodash "4.x.x"
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
