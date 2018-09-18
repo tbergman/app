@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from '@emotion/primitives';
@@ -7,7 +7,7 @@ import { ScrollView, View, Text } from 'react-native';
 import { Loader } from 'src/components/Loader';
 import { colors, fonts } from '@hedviginsurance/brand';
 import { Spacing } from 'src/components/Spacing';
-import { InsuranceStatus } from 'src/features/dashboard/components/InsuranceStatus';
+import { InsuranceStatusDisplay } from 'src/features/dashboard/components/InsuranceStatus';
 import { PerilCategories } from 'src/features/dashboard/components/PerilCategories';
 import { DeductibleFootnote } from 'src/features/dashboard/components/DeductibleFootnote';
 import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
@@ -55,7 +55,7 @@ const Heading = styled(Text)({
   fontSize: 16,
 });
 
-const Dashboard = () => (
+const Dashboard: React.SFC = () => (
   <Query query={DASHBOARD_QUERY}>
     {({ loading, error, data }) => {
       if (loading || !data) {
@@ -63,7 +63,7 @@ const Dashboard = () => (
       }
 
       if (error) {
-        throw new Error(error);
+        throw new Error(`error when fetching data: ${JSON.stringify(error, null, 2)}`);
       }
 
       const { insurance } = data;
@@ -74,7 +74,7 @@ const Dashboard = () => (
           <Spacing height={24} />
           <Header>
             <Heading>Min hemförsäkring</Heading>
-            <InsuranceStatus status={status} activeFrom={activeFrom} />
+            <InsuranceStatusDisplay status={status} activeFrom={activeFrom} />
           </Header>
           <Spacing height={24} />
           <PerilCategories perilCategories={perilCategories} />

@@ -1,0 +1,18 @@
+import * as React from 'react';
+import { Footnote, FootnoteIcon, FootnoteText } from 'src/features/dashboard/components/Footnote';
+import { isApartmentOwner } from 'src/utils';
+import { INSURANCE_TYPES } from 'src/constants';
+
+interface OwnerFootnoteProps {
+  type: INSURANCE_TYPES
+}
+
+const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) =>
+  isApartmentOwner({ type }) ? (
+    <Footnote>
+      <FootnoteIcon source={require('assets/icons/my_insurance/aktiv.png')} />
+      <FootnoteText>Lägenheten försäkras till sitt fulla värde</FootnoteText>
+    </Footnote>
+  ) : null;
+
+export { OwnerFootnote };

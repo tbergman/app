@@ -1,8 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from '@emotion/primitives';
 
 import { fonts, colors } from '@hedviginsurance/brand';
+import { InsuranceStatus } from 'src/graphql/types';
+
+interface InsuranceStatusProps {
+  status: InsuranceStatus
+  activeFrom: string
+}
 
 const Icon = styled(Image)({
   marginRight: 5,
@@ -20,7 +26,7 @@ const Container = styled(View)({
   flexDirection: 'row',
 });
 
-const InsuranceStatus = ({ status, activeFrom }) => (
+const InsuranceStatusDisplay: React.SFC<InsuranceStatusProps> = ({ status, activeFrom }) => (
   <Container>
     <Icon
       source={
@@ -43,4 +49,4 @@ const InsuranceStatus = ({ status, activeFrom }) => (
   </Container>
 );
 
-export { InsuranceStatus };
+export { InsuranceStatusDisplay };

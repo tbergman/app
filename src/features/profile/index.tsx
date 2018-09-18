@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import styled from '@emotion/primitives';
@@ -55,7 +55,7 @@ const CashbackImage = styled(Image)({
   height: 100,
 });
 
-const Profile = () => (
+const Profile: React.SFC = () => (
   <Query query={PROFILE_QUERY}>
     {({ loading, error, data }) => {
       if (loading || !data) {
@@ -63,7 +63,7 @@ const Profile = () => (
       }
 
       if (error) {
-        throw new Error(error);
+        throw new Error(`error when fetching data: ${JSON.stringify(error, null, 2)}`);
       }
 
       const { insurance, cashback } = data;
@@ -94,8 +94,8 @@ const Profile = () => (
           <Mutation mutation={LOGOUT_MUTATION}>
             {(logout, { client }) => (
               <LogoutButton
-                onPress={() => {
-                  logout();
+                onPress={async () => {
+                  await logout();
                   client.clearStore();
                 }}
               />

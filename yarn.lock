@@ -877,6 +877,23 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
 
+"@sampettersson/primitives-core@^9.2.8":
+  version "9.2.8"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives-core/-/primitives-core-9.2.8.tgz#27e9476fad183ded3cc1542a96016a575b4c8df3"
+  dependencies:
+    "@emotion/is-prop-valid" "^0.6.3"
+    "@types/react-native" "^0.56.19"
+    css-to-react-native "^2.2.1"
+
+"@sampettersson/primitives@^9.2.12":
+  version "9.2.12"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives/-/primitives-9.2.12.tgz#df3069c8e5731692d20b4b667400c02197998335"
+  dependencies:
+    "@sampettersson/primitives-core" "^9.2.8"
+    "@types/react-native" "^0.56.19"
+    "@types/react-primitives" "^0.6.2"
+    babel-plugin-emotion "^9.2.8"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -928,6 +945,33 @@
 "@types/node@^9.4.6":
   version "9.6.31"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.31.tgz#4d1722987f8d808b4c194dceb8c213bd92f028e5"
+
+"@types/prop-types@*":
+  version "15.5.5"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.5.tgz#17038dd322c2325f5da650a94d5f9974943625e3"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-native@*", "@types/react-native@^0.56.19":
+  version "0.56.21"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.56.21.tgz#15e7aeb48d5e56013c0778290038aa1d6df7e906"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
+"@types/react-primitives@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@types/react-primitives/-/react-primitives-0.6.2.tgz#c1490667968a42029ed6eb4555808e1542e9ccd8"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react@*":
+  version "16.4.14"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.14.tgz#47c604c8e46ed674bbdf4aabf82b34b9041c6a04"
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
 
 "@types/semver@^5.4.0":
   version "5.5.0"
@@ -2592,7 +2636,7 @@ cssstyle@^1.0.0:
   dependencies:
     cssom "0.3.x"
 
-csstype@^2.5.2:
+csstype@^2.2.0, csstype@^2.5.2:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
 
