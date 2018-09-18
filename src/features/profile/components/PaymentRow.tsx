@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   ProfileRow,
   ProfileRowTextContainer,
@@ -7,7 +7,11 @@ import {
 } from './ProfileRow';
 import { ProfileBankAccountIcon } from 'src/components/Icon';
 
-const PaymentRow = ({ monthlyCost }) => (
+interface PaymentRowProps {
+  monthlyCost: number
+}
+
+const PaymentRow: React.SFC<PaymentRowProps> = ({ monthlyCost }) => (
   <ProfileRow>
     <ProfileBankAccountIcon />
     <ProfileRowTextContainer>

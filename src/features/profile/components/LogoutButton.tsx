@@ -1,8 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import styled from '@emotion/primitives';
 
 import { colors, fonts } from '@hedviginsurance/brand';
+
+interface LogoutButtonProps {
+  onPress(): void
+  children: React.ReactNode
+}
 
 const LogoutButtonContainer = styled(TouchableOpacity)({
   minHeight: 20,
@@ -27,7 +32,7 @@ const LogoutButtonText = styled(Text)({
   color: colors.PURPLE,
 });
 
-const LogoutButton = ({ onPress, children }) => (
+const LogoutButton: React.SFC<LogoutButtonProps> = ({ onPress, children }) => (
   <LogoutButtonContainer onPress={onPress}>
     <LogoutButtonText>{children}</LogoutButtonText>
   </LogoutButtonContainer>

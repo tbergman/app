@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   ProfileRow,
   ProfileRowTextContainer,
@@ -7,7 +7,11 @@ import {
 } from './ProfileRow';
 import { ProfileLockIcon } from 'src/components/Icon';
 
-const SafetyIncreasersRow = ({ safetyIncreasers }) => (
+interface SafetyIncreasersRowProps {
+  safetyIncreasers: Array<string>
+}
+
+const SafetyIncreasersRow: React.SFC<SafetyIncreasersRowProps> = ({ safetyIncreasers }) => (
   <ProfileRow>
     <ProfileLockIcon />
     <ProfileRowTextContainer>

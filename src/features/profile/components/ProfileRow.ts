@@ -1,10 +1,9 @@
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 
 import { colors, fonts } from '@hedviginsurance/brand';
 
-const profileRowStyles = {
-  flex: 1,
+const ProfileRow = styled(View)({
   flexDirection: 'row',
   paddingTop: 16,
   paddingRight: 16,
@@ -15,10 +14,8 @@ const profileRowStyles = {
   borderTopWidth: StyleSheet.hairlineWidth,
   backgroundColor: colors.WHITE,
   borderColor: colors.LIGHT_GRAY,
-};
-
-const ProfileRow = styled(View)(profileRowStyles);
-const TouchableProfileRow = styled(TouchableOpacity)(profileRowStyles);
+});
+const TouchableProfileRow = ProfileRow.withComponent(TouchableOpacity)
 
 const ProfileRowTextContainer = styled(View)({
   flex: 1,

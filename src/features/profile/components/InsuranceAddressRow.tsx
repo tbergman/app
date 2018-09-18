@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   ProfileRow,
   ProfileRowTextContainer,
@@ -7,7 +7,11 @@ import {
 } from './ProfileRow';
 import { ProfileFamilyIcon } from 'src/components/Icon';
 
-const InsuranceAddressRow = ({ address }) => (
+interface InsuranceAddressRowProps {
+  address: string
+}
+
+const InsuranceAddressRow: React.SFC<InsuranceAddressRowProps> = ({ address }) => (
   <ProfileRow>
     <ProfileFamilyIcon />
     <ProfileRowTextContainer>

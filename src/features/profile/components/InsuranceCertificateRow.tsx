@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Linking } from 'react-native';
 
 import {
@@ -9,7 +9,11 @@ import {
 } from './ProfileRow';
 import { ProfileCertificateIcon } from 'src/components/Icon';
 
-const InsuranceCertificateRow = ({ certificateUrl }) =>
+interface InsuranceCertificateRowProps {
+  certificateUrl?: string
+}
+
+const InsuranceCertificateRow: React.SFC<InsuranceCertificateRowProps> = ({ certificateUrl }) =>
   certificateUrl ? (
     <TouchableProfileRow onPress={() => Linking.openURL(certificateUrl)}>
       <ProfileCertificateIcon />
