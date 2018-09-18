@@ -1,32 +1,45 @@
 import * as React from 'react';
-import { colors, fonts } from '@hedviginsurance/brand';
-import styled from '@sampettersson/primitives';
-import { Text, View } from 'react-native';
+import { colors } from '@hedviginsurance/brand';
+import { Spring } from 'src/components/animated';
+
+import { Spacing } from 'src/components/Spacing';
 
 import { Bubble } from '../bubble';
-import { Spacing } from 'src/components/Spacing';
+import { BubbleAnimation } from '../bubble-animation';
+import { Position } from '../position';
+
+import { Title } from './common/title';
+import { Subtitle } from './common/subtitle';
+import { Checkmark } from 'src/components/icons/Checkmark';
 
 const INSURED_TITLE = 'Försäkrade';
 const INSURED_SUBTITLE = '2 personer';
 
-const Title = styled(Text)({
-  color: colors.WHITE,
-  fontFamily: fonts.CIRCULAR,
-  fontWeight: '500',
-  fontSize: 20,
-});
-
-const Subtitle = styled(Text)({
-  color: colors.WHITE,
-  fontFamily: fonts.CIRCULAR,
-  fontWeight: '500',
-  fontSize: 20,
-});
-
 export const Insured = () => (
-  <Bubble width={150} height={150} backgroundColor={colors.PURPLE}>
-    <Title>{INSURED_TITLE}</Title>
-    <Spacing height={2.5} />
-    <Subtitle>{INSURED_SUBTITLE}</Subtitle>
-  </Bubble>
+  <BubbleAnimation delay={0}>
+    <Bubble width={110} height={110} backgroundColor={colors.PURPLE}>
+      <Title>{INSURED_TITLE}</Title>
+      <Spacing height={2.5} />
+      <Subtitle>{INSURED_SUBTITLE}</Subtitle>
+    </Bubble>
+    <Position top={0} left={0}>
+      <Spring
+        delay={1200}
+        bounciness={12}
+        toValue={1}
+        initialValue={0}
+        mapStyles={(animatedValue) => ({
+          transform: [{ scale: animatedValue }],
+        })}
+      >
+        <Bubble width={25} height={25} backgroundColor={colors.GREEN}>
+          <Checkmark
+            width={12.5}
+            height={12.5}
+            checkmarkFillColor={colors.WHITE}
+          />
+        </Bubble>
+      </Spring>
+    </Position>
+  </BubbleAnimation>
 );

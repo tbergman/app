@@ -16,6 +16,13 @@ const BubbleContainer = styled(View)(
     backgroundColor,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   }),
 );
 

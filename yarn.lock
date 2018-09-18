@@ -992,6 +992,10 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
 
+"@sampettersson/constate@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@sampettersson/constate/-/constate-0.8.2.tgz#433780c19be4b35f6d499790804d3f72877662ca"
+
 "@sampettersson/primitives-core@^9.2.8":
   version "9.2.8"
   resolved "https://registry.yarnpkg.com/@sampettersson/primitives-core/-/primitives-core-9.2.8.tgz#27e9476fad183ded3cc1542a96016a575b4c8df3"
@@ -2686,6 +2690,10 @@ constant-case@^2.0.0:
   dependencies:
     snake-case "^2.1.0"
     upper-case "^1.1.1"
+
+constate@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/constate/-/constate-0.8.2.tgz#36974aa47d5243f0f07a92da46eb8c3df40179d8"
 
 convert-source-map@^1.1.0, convert-source-map@^1.4.0, convert-source-map@^1.5.0, convert-source-map@^1.5.1:
   version "1.5.1"
@@ -7603,6 +7611,10 @@ react-lazy-load@^3.0.12:
     lodash.debounce "^4.0.0"
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
+
+react-lifecycle-components@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-lifecycle-components/-/react-lifecycle-components-1.0.0.tgz#fd5c77899acc5cc6cc76da0c6dadd19701801a6f"
 
 react-lifecycles-compat@2.0.0:
   version "2.0.0"
