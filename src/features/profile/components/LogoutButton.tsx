@@ -6,7 +6,6 @@ import { colors, fonts } from '@hedviginsurance/brand';
 
 interface LogoutButtonProps {
   onPress(): void
-  children: React.ReactNode
 }
 
 const LogoutButtonContainer = styled(TouchableOpacity)({

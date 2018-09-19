@@ -10,13 +10,13 @@ interface OwnerFootnoteProps {
 
 const OwnerFootnote: React.SFC<OwnerFootnoteProps> = ({ type }) => (
   isApartmentOwner({ insuranceType: type }) ? (
-    <React.Fragment>
+    <>
       <Spacing height={16} />
       <Footnote>
         <FootnoteIcon source={require('assets/icons/my_insurance/aktiv.png')} />
         <FootnoteText>Lägenheten försäkras till sitt fulla värde</FootnoteText>
       </Footnote>
-    </React.Fragment>
+    </>
   ) : null
 )
 
