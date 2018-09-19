@@ -13,7 +13,7 @@ import { BindingPeriod } from 'src/features/new-offer/components/features-bubble
 import { Position } from './position';
 
 const Container = styled(View)({
-  height: 500,
+  height: 350,
   width: 350,
   marginLeft: 35,
   position: 'relative',

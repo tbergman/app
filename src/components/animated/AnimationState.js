@@ -15,22 +15,6 @@ const actions = {
   }),
 };
 
-const shouldUpdate = ({ state, nextState, setState }) => {
-  if (state.isDefferingUpdate) {
-    return false;
-  }
-
-  if (state.timestamp === nextState.timestamp) {
-    setState({ isDefferingUpdate: true });
-    window.requestAnimationFrame(() =>
-      setState({ timestamp: new Date().toString(), isDefferingUpdate: false }),
-    );
-    return false;
-  }
-
-  return true;
-};
-
 export const AnimationState = ({ children }) => (
   <Container actions={actions} initialState={initialState}>
     {children}
