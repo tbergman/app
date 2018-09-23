@@ -3,7 +3,6 @@ import { Cashback, QueryToCashbackResolver, Query } from '../types';
 
 const cashback: QueryToCashbackResolver<Query, Cashback> = async (_root, _args, { getToken }) => {
   const token = await getToken()
-  console.log('getting user')
   const user = await getUser(token)
   return {
     name: user.selectedCashback,
