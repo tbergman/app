@@ -1,4 +1,3 @@
-import { Dimensions } from 'react-native';
 import Config from '@hedviginsurance/react-native-config';
 import DeviceInfo from 'react-native-device-info'
 
