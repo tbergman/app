@@ -19,7 +19,13 @@ const Container = styled(View)({
   position: 'relative',
 });
 
-export const FeaturesBubbles = () => (
+interface FeaturesBubblesProps {
+  personsInHousehold: number;
+}
+
+export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
+  personsInHousehold,
+}) => (
   <>
     <Spacing height={35} />
     <Parallel>
@@ -37,7 +43,7 @@ export const FeaturesBubbles = () => (
           <StartDate />
         </Position>
         <Position top={0} left="20%">
-          <Insured />
+          <Insured personsInHousehold={personsInHousehold} />
         </Position>
       </Container>
     </Parallel>

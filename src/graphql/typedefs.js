@@ -3,6 +3,7 @@ const typeDefs = `
     address: String
     monthlyCost: Int
     safetyIncreasers: [String!]
+    personsInHousehold: Int
     certificateUrl: String
     status: InsuranceStatus
     type: InsuranceType

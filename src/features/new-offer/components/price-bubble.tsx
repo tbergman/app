@@ -38,7 +38,11 @@ const MonthlyLabel = styled(Text)({
   fontFamily: fonts.CIRCULAR,
 });
 
-export const PriceBubble: React.SFC = () => (
+interface PriceBubbleProps {
+  price: number;
+}
+
+export const PriceBubble: React.SFC<PriceBubbleProps> = ({ price }) => (
   <Gate>
     <Sequence>
       <Delay config={{ delay: 950 }} />
@@ -60,7 +64,7 @@ export const PriceBubble: React.SFC = () => (
             }}
           >
             <Circle>
-              <Price>279</Price>
+              <Price>{price}</Price>
               <MonthlyLabel>kr/mån</MonthlyLabel>
             </Circle>
           </AnimatedView>

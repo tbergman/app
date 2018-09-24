@@ -4,7 +4,8 @@ import { GraphQLResolveInfo, GraphQLScalarType } from 'graphql';
  * Please note that any changes in this file may be overwritten
  */
 
-/* tslint:disable */ 
+/* tslint:disable */
+
 /*******************************
  *                             *
  *          TYPE DEFS          *
@@ -18,6 +19,7 @@ export interface Query {
 export interface Insurance {
   address?: string;
   monthlyCost?: number;
+  personsInHousehold?: number;
   safetyIncreasers?: Array<string>;
   certificateUrl?: string;
   status?: InsuranceStatus;
@@ -31,14 +33,14 @@ export enum InsuranceStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
   INACTIVE_WITH_START_DATE = 'INACTIVE_WITH_START_DATE',
-  TERMINATED = 'TERMINATED'
+  TERMINATED = 'TERMINATED',
 }
 
 export enum InsuranceType {
   RENT = 'RENT',
   BRF = 'BRF',
   STUDENT_RENT = 'STUDENT_RENT',
-  STUDENT_BRF = 'STUDENT_BRF'
+  STUDENT_BRF = 'STUDENT_BRF',
 }
 
 export type LocalDate = any;
@@ -92,11 +94,15 @@ export interface QueryTypeResolver<TParent = any> {
 }
 
 export interface QueryToInsuranceResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface QueryToCashbackResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface InsuranceTypeResolver<TParent = any> {
@@ -111,35 +117,60 @@ export interface InsuranceTypeResolver<TParent = any> {
 }
 
 export interface InsuranceToAddressResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface InsuranceToMonthlyCostResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
-export interface InsuranceToSafetyIncreasersResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+export interface InsuranceToSafetyIncreasersResolver<
+  TParent = any,
+  TResult = any
+> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
-export interface InsuranceToCertificateUrlResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+export interface InsuranceToCertificateUrlResolver<
+  TParent = any,
+  TResult = any
+> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface InsuranceToStatusResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface InsuranceToTypeResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface InsuranceToActiveFromResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
-export interface InsuranceToPerilCategoriesResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+export interface InsuranceToPerilCategoriesResolver<
+  TParent = any,
+  TResult = any
+> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilCategoryTypeResolver<TParent = any> {
@@ -150,19 +181,30 @@ export interface PerilCategoryTypeResolver<TParent = any> {
 }
 
 export interface PerilCategoryToTitleResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
-export interface PerilCategoryToDescriptionResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+export interface PerilCategoryToDescriptionResolver<
+  TParent = any,
+  TResult = any
+> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilCategoryToIconUrlResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilCategoryToPerilsResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilTypeResolver<TParent = any> {
@@ -173,19 +215,27 @@ export interface PerilTypeResolver<TParent = any> {
 }
 
 export interface PerilToIdResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilToTitleResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilToImageUrlResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface PerilToDescriptionResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface CashbackTypeResolver<TParent = any> {
@@ -195,15 +245,21 @@ export interface CashbackTypeResolver<TParent = any> {
 }
 
 export interface CashbackToIdResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface CashbackToNameResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface CashbackToImageUrlResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }
 
 export interface MutationTypeResolver<TParent = any> {
@@ -211,5 +267,7 @@ export interface MutationTypeResolver<TParent = any> {
 }
 
 export interface MutationToLogoutResolver<TParent = any, TResult = any> {
-  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo):
+    | TResult
+    | Promise<TResult>;
 }

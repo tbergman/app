@@ -86,6 +86,8 @@ const INSURANCE_QUERY = gql`
   query insurance {
     insurance {
       address
+      monthlyCost
+      personsInHousehold
     }
   }
 `;
@@ -106,9 +108,11 @@ export const NewOffer: React.SFC = () => (
               >
                 <FixedContainer animatedValue={animatedValue}>
                   <Spacing height={35} />
-                  <PriceBubble />
+                  <PriceBubble price={data.insurance.monthlyCost} />
                   <FeaturesContainer animatedValue={animatedValue}>
-                    <FeaturesBubbles />
+                    <FeaturesBubbles
+                      personsInHousehold={data.insurance.personsInHousehold}
+                    />
                   </FeaturesContainer>
                 </FixedContainer>
                 <ScrollContent scrollAnimatedValue={animatedValue} />
