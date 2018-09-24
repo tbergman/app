@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import React from 'react';
-import Dashboard from '../../../features/dashboard/Dashboard';
+import { Dashboard } from 'src/features/dashboard';
 import Fab from '../../../features/dashboard/containers/fab';
 
 class DashboardScreen extends React.Component {

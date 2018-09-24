@@ -1,15 +1,21 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
-  "plugins": [
-    "functional-hmr",
-    [
-      "module-resolver",
-      {
-        "root": ["./"],
-        "alias": {
-          "src": "./src"
-        }
-      }
+    "presets": [
+        "module:metro-react-native-babel-preset"
+    ],
+    "plugins": [
+        "functional-hmr",
+        "graphql-tag",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "alias": {
+                    "src": "./src",
+                    "assets": "./assets"
+                }
+            }
+        ]
     ]
-  ]
 }

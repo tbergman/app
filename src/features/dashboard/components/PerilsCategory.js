@@ -23,22 +23,6 @@ import {
   StyledSmallPassiveText,
 } from '../../../components/styles/text';
 
-const coveredStates = ['COVERED', 'ADD_REQUESTED', 'ADD_PENDING'];
-
-export const coveredPerils = (perils, title) => {
-  return perils
-    .filter((peril) => coveredStates.includes(peril.state))
-    .map((peril, index) => (
-      <Peril
-        peril={peril}
-        key={index}
-        categoryPerils={perils}
-        categoryTitle={title}
-        perilIndex={perils.findIndex((p) => p.id === peril.id)}
-      />
-    ));
-};
-
 export class PerilsCategory extends React.Component {
   constructor(props) {
     super(props);
@@ -51,6 +35,7 @@ export class PerilsCategory extends React.Component {
     let CollapseButton = this.state.showCategory
       ? DisabledCollapseButton
       : DisabledExpandButton;
+    const { perils, title } = this.props;
     return (
       <StyledCategoryContainer
         activeOpacity={1}
@@ -76,7 +61,15 @@ export class PerilsCategory extends React.Component {
         </StyledCategoryHeader>
         {this.state.showCategory && (
           <ExpandedPerilsCategory>
-            {coveredPerils(this.props.perils, this.props.title)}
+            {perils.map((peril) => (
+              <Peril
+                key={peril.id}
+                peril={peril}
+                categoryPerils={perils}
+                categoryTitle={title}
+                perilIndex={perils.findIndex((p) => p.id === peril.id)}
+              />
+            ))}
           </ExpandedPerilsCategory>
         )}
       </StyledCategoryContainer>

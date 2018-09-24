@@ -5,7 +5,7 @@ import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';
@@ -125,24 +125,24 @@ export const getInitialLayout = async () => {
   });
 };
 
-export const setLayout = ({ root, modals, overlays }) => {
+export const setLayout = ({ root, modals = [], overlays = [] }) => {
   Navigation.setDefaultOptions({
     topBar: {
       animate: false,
       title: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       subtitle: {
         fontFamily: 'CircularStd-Book',
       },
       leftButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       rightButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       largeTitle: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
         fontSize: 30,
       },
     },
@@ -156,7 +156,7 @@ export const setLayout = ({ root, modals, overlays }) => {
       selectedIconColor: colors.PURPLE,
       textColor: colors.DARK_GRAY,
       selectedTextColor: colors.PURPLE,
-      fontFamily: 'CircularStd-Book',
+      fontFamily: fonts.CIRCULAR,
       fontSize: 13,
     },
     layout: {
