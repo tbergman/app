@@ -11,14 +11,14 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 
-import { OFFER_SCREEN } from '../../../navigation/screens/offer';
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
 import { setLayout, getMainLayout } from '../../../navigation/layout';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 
 const showOffer = () =>
   Navigation.showModal({
     stack: {
-      children: [OFFER_SCREEN],
+      children: [NEW_OFFER_SCREEN],
     },
   });
 
