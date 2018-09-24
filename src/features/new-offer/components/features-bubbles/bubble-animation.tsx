@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Spring, Delay, Sequence } from 'src/components/animated';
+import { Spring, Delay, Sequence } from 'animated-react-native-components';
 import { Animated } from 'react-native';
 
 interface BubbleAnimationProps {

@@ -14,7 +14,7 @@ import { Query } from 'react-apollo';
 import { Insurance } from 'src/graphql/types';
 import { PriceBubble } from 'src/features/new-offer/components/price-bubble';
 import { FeaturesBubbles } from 'src/features/new-offer/components/features-bubbles';
-import { AnimationValueProvider } from 'src/components/animated';
+import { AnimationValueProvider } from 'animated-react-native-components';
 import { Spacing } from 'src/components/Spacing';
 import { ScrollContent } from 'src/features/new-offer/components/scroll-content';
 import { Checkout } from 'src/features/new-offer/components/checkout';

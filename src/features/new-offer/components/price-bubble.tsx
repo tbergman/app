@@ -2,7 +2,12 @@ import * as React from 'react';
 import { View, ViewProps, Text, Animated } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors, fonts } from '@hedviginsurance/brand';
-import { Sequence, Spring, Delay, Gate } from 'src/components/animated';
+import {
+  Sequence,
+  Spring,
+  Delay,
+  Gate,
+} from 'animated-react-native-components';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -36,7 +41,7 @@ const MonthlyLabel = styled(Text)({
 export const PriceBubble: React.SFC = () => (
   <Gate>
     <Sequence>
-      <Delay config={{ delay: 1500 }} />
+      <Delay config={{ delay: 950 }} />
       <Spring
         config={{
           bounciness: 12,

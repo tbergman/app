@@ -4,7 +4,7 @@ import { View, ViewStyle, Animated } from 'react-native';
 import { colors } from '@hedviginsurance/brand';
 import { Arrow } from 'src/components/icons/Arrow';
 import { Spacing } from 'src/components/Spacing';
-import { Parallel, Spring, Delay } from 'src/components/animated';
+import { Parallel, Spring, Delay } from 'animated-react-native-components';
 
 import OfferScreen2 from 'src/features/offer/containers/screens/OfferScreen2';
 import OfferScreen3 from 'src/features/offer/containers/screens/OfferScreen3';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View } from 'react-native';
-import { Parallel } from 'src/components/animated';
+import { Parallel } from 'animated-react-native-components';
 
 import { Insured } from 'src/features/new-offer/components/features-bubbles/bubbles/insured';
 import { StartDate } from 'src/features/new-offer/components/features-bubbles/bubbles/start-date';
