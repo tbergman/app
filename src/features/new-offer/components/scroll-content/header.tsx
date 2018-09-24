@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 
 const HeaderContainer = styled(View)({
-  backgroundColor: colors.GREEN,
+  backgroundColor: colors.PURPLE,
   height: 50,
   width: '100%',
   alignItems: 'center',
