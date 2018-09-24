@@ -3,7 +3,6 @@ import {
   Animated,
   ScrollView,
   ScrollViewProps,
-  ViewStyle,
   View,
   ViewProps,
 } from 'react-native';
