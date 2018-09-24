@@ -19,6 +19,7 @@ import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { OFFER_SCREEN } from '../../navigation/screens/offer';
+import { NEW_OFFER_SCREEN } from '../../navigation/screens/new-offer';
 import { getMainLayout, setLayout } from '../../navigation/layout';
 
 import {
@@ -207,7 +208,7 @@ class Chat extends React.Component {
     this._stopPolling();
     Navigation.showModal({
       stack: {
-        children: [OFFER_SCREEN],
+        children: [NEW_OFFER_SCREEN],
       },
     });
   };

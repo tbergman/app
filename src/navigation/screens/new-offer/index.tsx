@@ -6,10 +6,14 @@ import { NewOffer } from 'src/features/new-offer';
 import { ComponentRegistrator } from '../types';
 import { CLOSE_BUTTON } from 'src/navigation/screens/buttons';
 import { NavigationEvents } from 'src/navigation/events';
+import { SIGN_BUTTON } from 'src/navigation/screens/new-offer/buttons';
 
 class NewOfferScreen extends React.Component {
   static get options() {
     return {
+      layout: {
+        backgroundColor: colors.LIGHT_GRAY,
+      },
       topBar: {
         visible: true,
         title: {
@@ -17,7 +21,7 @@ class NewOfferScreen extends React.Component {
           color: 'white',
         },
         subtitle: {
-          text: 'LM Ericssons Väg 10',
+          text: '',
           color: 'white',
         },
         largeTitle: {
@@ -28,7 +32,7 @@ class NewOfferScreen extends React.Component {
           color: colors.BLACK_PURPLE,
         },
         leftButtons: [CLOSE_BUTTON(colors.WHITE)],
-        rightButtons: [],
+        rightButtons: [SIGN_BUTTON],
       },
       statusBar: {
         visible: true,
@@ -45,6 +49,7 @@ class NewOfferScreen extends React.Component {
           onNavigationButtonPressed={(_, componentId) =>
             Navigation.dismissModal(componentId)
           }
+          onGlobalEvent={(event) => console.log(event)}
         />
         <NewOffer {...this.props} />
       </React.Fragment>

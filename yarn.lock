@@ -1066,6 +1066,13 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
+"@types/react-native@^0.56.23":
+  version "0.56.23"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.56.23.tgz#00f161fd11cf7dfd7ba31ce7d5178f386dd041fb"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
 "@types/react-primitives@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@types/react-primitives/-/react-primitives-0.6.2.tgz#c1490667968a42029ed6eb4555808e1542e9ccd8"

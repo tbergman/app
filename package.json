@@ -44,6 +44,7 @@
     "@redux-beacon/logger": "^1.0.0",
     "@sampettersson/constate": "^0.8.2",
     "@sampettersson/primitives": "^9.2.12",
+    "@types/react-native": "^0.56.23",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^23.4.2",
     "babel-plugin-flow-react-proptypes": "^24.1.1",
