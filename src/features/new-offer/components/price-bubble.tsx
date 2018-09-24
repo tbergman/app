@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, ViewProps, Text, Animated } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors, fonts } from '@hedviginsurance/brand';
-import { Parallel, Spring, Delay } from 'src/components/animated';
+import { Sequence, Spring, Delay, Gate } from 'src/components/animated';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -34,31 +34,33 @@ const MonthlyLabel = styled(Text)({
 });
 
 export const PriceBubble: React.SFC = () => (
-  <Parallel>
-    <Delay config={{ delay: 500 }} />
-    <Spring
-      config={{
-        bounciness: 12,
-      }}
-      toValue={1}
-      initialValue={0.5}
-    >
-      {(animatedValue) => (
-        <AnimatedView
-          style={{
-            opacity: animatedValue.interpolate({
-              inputRange: [0.5, 1],
-              outputRange: [0, 1],
-            }),
-            transform: [{ scale: animatedValue }],
-          }}
-        >
-          <Circle>
-            <Price>279</Price>
-            <MonthlyLabel>kr/mån</MonthlyLabel>
-          </Circle>
-        </AnimatedView>
-      )}
-    </Spring>
-  </Parallel>
+  <Gate>
+    <Sequence>
+      <Delay config={{ delay: 1500 }} />
+      <Spring
+        config={{
+          bounciness: 12,
+        }}
+        toValue={1}
+        initialValue={0.5}
+      >
+        {(animatedValue) => (
+          <AnimatedView
+            style={{
+              opacity: animatedValue.interpolate({
+                inputRange: [0.5, 1],
+                outputRange: [0, 1],
+              }),
+              transform: [{ scale: animatedValue }],
+            }}
+          >
+            <Circle>
+              <Price>279</Price>
+              <MonthlyLabel>kr/mån</MonthlyLabel>
+            </Circle>
+          </AnimatedView>
+        )}
+      </Spring>
+    </Sequence>
+  </Gate>
 );

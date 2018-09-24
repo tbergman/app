@@ -110,6 +110,7 @@
     "react-native-version": "^2.6.3",
     "react-primitives": "^0.6.0",
     "react-redux": "^5.0.6",
+    "react-spring": "^5.8.0",
     "redux": "^4.0.0",
     "redux-beacon": "^2.0.3",
     "redux-devtools-extension": "^2.13.5",
@@ -117,8 +118,8 @@
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "rn-fetch-blob": "^0.10.12",
-    "typescript": "^3.0.3",
     "schedule": "0.4.0",
+    "typescript": "^3.0.3",
     "uuid": "^3.3.2"
   },
   "rnpm": {

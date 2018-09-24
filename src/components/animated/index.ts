@@ -14,5 +14,6 @@ export {
   Timing,
   Spring,
   Delay,
+  Gate,
   AnimationValueProvider,
 };

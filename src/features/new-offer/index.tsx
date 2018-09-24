@@ -8,13 +8,17 @@ import {
 } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
+import { Insurance } from 'src/graphql/types';
 import { PriceBubble } from 'src/features/new-offer/components/price-bubble';
 import { FeaturesBubbles } from 'src/features/new-offer/components/features-bubbles';
 import { AnimationValueProvider } from 'src/components/animated';
 import { Spacing } from 'src/components/Spacing';
 import { ScrollContent } from 'src/features/new-offer/components/scroll-content';
 import { Checkout } from 'src/features/new-offer/components/checkout';
+import { NavigationOptions } from 'src/navigation/options';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -78,28 +82,45 @@ const getScrollHandler = (animatedValue) =>
     },
   );
 
+const INSURANCE_QUERY = gql`
+  query insurance {
+    insurance {
+      address
+    }
+  }
+`;
+
 export const NewOffer: React.SFC = () => (
-  <>
-    <AnimationValueProvider initialValue={0}>
-      {({ animatedValue }) => (
-        <ScrollContainer
-          onScroll={getScrollHandler(animatedValue)}
-          scrollEventThrottle={1}
-          contentContainerStyle={{
-            alignItems: 'center',
-          }}
-        >
-          <FixedContainer animatedValue={animatedValue}>
-            <Spacing height={35} />
-            <PriceBubble />
-            <FeaturesContainer animatedValue={animatedValue}>
-              <FeaturesBubbles />
-            </FeaturesContainer>
-          </FixedContainer>
-          <ScrollContent scrollAnimatedValue={animatedValue} />
-        </ScrollContainer>
-      )}
-    </AnimationValueProvider>
-    <Checkout />
-  </>
+  <Query<{ insurance: Insurance }> query={INSURANCE_QUERY}>
+    {({ data, loading, error }) =>
+      loading || error ? null : (
+        <>
+          <AnimationValueProvider initialValue={0}>
+            {({ animatedValue }) => (
+              <ScrollContainer
+                onScroll={getScrollHandler(animatedValue)}
+                scrollEventThrottle={1}
+                contentContainerStyle={{
+                  alignItems: 'center',
+                }}
+              >
+                <FixedContainer animatedValue={animatedValue}>
+                  <Spacing height={35} />
+                  <PriceBubble />
+                  <FeaturesContainer animatedValue={animatedValue}>
+                    <FeaturesBubbles />
+                  </FeaturesContainer>
+                </FixedContainer>
+                <ScrollContent scrollAnimatedValue={animatedValue} />
+              </ScrollContainer>
+            )}
+          </AnimationValueProvider>
+          <NavigationOptions
+            options={{ topBar: { subtitle: { text: data.insurance.address } } }}
+          />
+          <Checkout />
+        </>
+      )
+    }
+  </Query>
 );

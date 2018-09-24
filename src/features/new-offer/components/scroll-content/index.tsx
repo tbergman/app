@@ -26,6 +26,24 @@ const Content = styled(View)({
 
 const AnimatedView = Animated.createAnimatedComponent<ViewStyle>(View);
 
+const ScrollContentContainer = styled(AnimatedView)(
+  ({ translateY }: { translateY: Animated.Value }) => ({
+    width: '100%',
+    alignItems: 'center',
+    transform: [{ translateY }],
+  }),
+);
+
+const ArrowContainer = styled(AnimatedView)(
+  ({ scrollAnimatedValue }: { scrollAnimatedValue: Animated.Value }) => ({
+    opacity: scrollAnimatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    }),
+  }),
+);
+
 interface ScrollContentProps {
   scrollAnimatedValue: Animated.Value;
 }
@@ -43,24 +61,10 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
       initialValue={150}
     >
       {(translateY) => (
-        <AnimatedView
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            transform: [{ translateY: translateY }],
-          }}
-        >
-          <AnimatedView
-            style={{
-              opacity: scrollAnimatedValue.interpolate({
-                inputRange: [0, 100],
-                outputRange: [1, 0],
-                extrapolate: 'clamp',
-              }),
-            }}
-          >
+        <ScrollContentContainer translateY={translateY}>
+          <ArrowContainer scrollAnimatedValue={scrollAnimatedValue}>
             <Arrow arrowFill={colors.WHITE} width={20} height={20} />
-          </AnimatedView>
+          </ArrowContainer>
           <Spacing height={20} />
           <Content>
             <Header />
@@ -68,7 +72,7 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
             <OfferScreen3 />
             <OfferScreen4 />
           </Content>
-        </AnimatedView>
+        </ScrollContentContainer>
       )}
     </Spring>
   </Parallel>

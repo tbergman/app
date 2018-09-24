@@ -27,7 +27,7 @@ declare module 'react-native' {
 
     export type AnimatedStyle = BaseAnimatedStyle | BaseTransformStyle;
 
-    export function createAnimatedComponent<T = ViewProps>(
+    export function createAnimatedComponent<T>(
       component: React.ComponentType<T>,
     ): React.ComponentType<
       T | { style?: StyleProp<T['style'] | AnimatedStyle> }

@@ -12,7 +12,7 @@ class NewOfferScreen extends React.Component {
   static get options() {
     return {
       layout: {
-        backgroundColor: colors.LIGHT_GRAY,
+        backgroundColor: colors.BLACK_PURPLE,
       },
       topBar: {
         visible: true,
@@ -22,10 +22,6 @@ class NewOfferScreen extends React.Component {
         },
         subtitle: {
           text: '',
-          color: 'white',
-        },
-        largeTitle: {
-          visible: false,
           color: 'white',
         },
         background: {
