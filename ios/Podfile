@@ -51,6 +51,8 @@ target 'hedvig' do
   pod 'ReactNativeAnalyticsSegmentIo', :path => '../node_modules/react-native-analytics-segment-io'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       if config.name.start_with?("Debug")
