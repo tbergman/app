@@ -1,7 +1,7 @@
 import * as React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 import { View, ScrollView, Image } from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
@@ -63,7 +63,9 @@ const Profile: React.SFC = () => (
       }
 
       if (error) {
-        throw new Error(`error when fetching data: ${JSON.stringify(error, null, 2)}`);
+        throw new Error(
+          `error when fetching data: ${JSON.stringify(error, null, 2)}`,
+        );
       }
 
       const { insurance, cashback } = data;

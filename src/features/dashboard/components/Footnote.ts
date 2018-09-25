@@ -1,5 +1,5 @@
 import { View, Image, Text } from 'react-native';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 
 import { fonts, colors } from '@hedviginsurance/brand';
 
