@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { View } from 'react-native';
 import toJson from 'enzyme-to-json';
 
-import { TranslationsConsumer, replacePlaceholders } from './consumer';
+import { TranslationsConsumer } from './consumer';
 import { TranslationsContext } from './context';
 
 test('should render correct text key', () => {
@@ -26,9 +26,4 @@ test('should render correct text key', () => {
 
   expect(toJson(wrapper)).toMatchSnapshot();
   expect(testFn).toHaveBeenCalled();
-});
-
-test('should replace placeholders correctly', () => {
-  expect(replacePlaceholders(['hello'], '{0} hej')).toEqual('hello hej');
-  expect(replacePlaceholders(['hello'], '{12} hej')).toEqual('{12} hej');
 });
