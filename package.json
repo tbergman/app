@@ -75,7 +75,7 @@
     "lint-staged": "^7.2.0",
     "lodash": "^4.17.10",
     "lottie-react-native": "^2.5.6",
-    "metro-react-native-babel-preset": "^0.45.0",
+    "metro-react-native-babel-preset": "^0.45.6",
     "prettier": "^1.14.2",
     "prettier-eslint-cli": "^4.7.1",
     "promise-defer": "^1.0.0",
