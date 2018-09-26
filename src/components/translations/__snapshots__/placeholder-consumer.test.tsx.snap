@@ -2,10 +2,10 @@
 
 exports[`it should render correctly 1`] = `
 <Component
-  placeholders={
-    Array [
-      <Text />,
-    ]
+  replacements={
+    Object {
+      "testElement": <Text />,
+    }
   }
   textKey="mock"
 >
@@ -61,7 +61,7 @@ exports[`should replace placeholders correctly 2`] = `
 exports[`should replace placeholders correctly 3`] = `
 <View>
   <react-native-mock>
-    {12}
+    {somethingelse}
      mock
   </react-native-mock>
 </View>
@@ -79,13 +79,13 @@ exports[`should replace placeholders correctly 4`] = `
     </Component>
      mock 
     <Component
-      key="1"
+      key="2"
     >
       testing
     </Component>
      mock 
     <Component
-      key="2"
+      key="4"
     >
       <View>
         <react-native-mock />

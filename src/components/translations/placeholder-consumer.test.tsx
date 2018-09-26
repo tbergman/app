@@ -13,14 +13,21 @@ import { mount } from 'enzyme';
 test('should replace placeholders correctly', () => {
   const TestElement = <View />;
 
-  const elementAndText = replacePlaceholders([TestElement], '{0} mock');
+  const elementAndText = replacePlaceholders(
+    {
+      testElement: TestElement,
+    },
+    '{testElement} mock',
+  );
   const elementAndTextWrapper = mount(<View>{elementAndText}</View>);
 
   expect(toJson(elementAndTextWrapper)).toMatchSnapshot();
 
   const elementAndTextWithoutSpace = replacePlaceholders(
-    [TestElement],
-    '{0}mock',
+    {
+      testElement: TestElement,
+    },
+    '{testElement}mock',
   );
   const elementAndTextWithoutSpaceWrapper = mount(
     <View>{elementAndTextWithoutSpace}</View>,
@@ -28,14 +35,22 @@ test('should replace placeholders correctly', () => {
 
   expect(toJson(elementAndTextWithoutSpaceWrapper)).toMatchSnapshot();
 
-  const withUnmatchedIndex = replacePlaceholders(['testing'], '{12} mock');
+  const withUnmatchedIndex = replacePlaceholders(
+    {
+      testing: 'testing',
+    },
+    '{somethingelse} mock',
+  );
   const withUnmatchedIndexWrapper = mount(<View>{withUnmatchedIndex}</View>);
 
   expect(toJson(withUnmatchedIndexWrapper)).toMatchSnapshot();
 
   const withMultiplePlaceholders = replacePlaceholders(
-    [TestElement, 'testing', TestElement],
-    '{0} mock {1} mock {2}',
+    {
+      testElement: TestElement,
+      testing: 'testing',
+    },
+    '{testElement} mock {testing} mock {testElement}',
   );
   const withMultiplePlaceholdersWrapper = mount(
     <View>{withMultiplePlaceholders}</View>,
@@ -47,15 +62,21 @@ test('should replace placeholders correctly', () => {
 test('it should render correctly', () => {
   const TestElement = <Text />;
   const wrapper = mount(
-    <TranslationsContext.Provider value={{ textKeys: { mock: '{0} mock' } }}>
+    <TranslationsContext.Provider
+      value={{ textKeys: { mock: '{testElement} mock' } }}
+    >
       <TranslationsPlaceholderConsumer
         textKey="mock"
-        placeholders={[TestElement]}
+        replacements={{
+          testElement: TestElement,
+        }}
       >
         {(nodes) => <Text>{nodes}</Text>}
       </TranslationsPlaceholderConsumer>
     </TranslationsContext.Provider>,
   );
+
+  expect(wrapper.containsMatchingElement(TestElement)).toBe(true);
 
   expect(toJson(wrapper)).toMatchSnapshot();
 });

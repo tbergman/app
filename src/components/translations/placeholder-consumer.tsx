@@ -4,17 +4,21 @@ import { TranslationsConsumer } from './consumer';
 
 export const TranslationNode: React.SFC = ({ children }) => <>{children}</>;
 
+interface Replacements {
+  [key: string]: React.ReactNode;
+}
+
 interface TranslationsPlaceholderConsumerProps {
   children: (nodes: React.ReactNode[]) => React.ReactNode;
   textKey: string;
-  placeholders: React.ReactNode[];
+  replacements: Replacements;
 }
 
-const placeholderRegex = new RegExp('({[0-9]+})', 'g');
-const placeholderIndexRegex = new RegExp('([0-9]+)', 'g');
+const placeholderRegex = new RegExp('({[a-zA-Z]+})', 'g');
+const placeholderKeyRegex = new RegExp('([a-zA-Z]+)', 'g');
 
 export const replacePlaceholders = (
-  placeholders: React.ReactNode[],
+  replacements: Replacements,
   text: string,
 ) => {
   const matches = text.split(placeholderRegex).filter((value) => value);
@@ -23,14 +27,12 @@ export const replacePlaceholders = (
     return [];
   }
 
-  return matches.map((placeholder) => {
-    if (!placeholderIndexRegex.test(placeholder)) return placeholder;
-    const index = parseInt(placeholder.match(placeholderIndexRegex)![0]);
+  return matches.map((placeholder, index) => {
+    if (!placeholderKeyRegex.test(placeholder)) return placeholder;
+    const key = placeholder.match(placeholderKeyRegex)![0];
 
-    if (placeholders[index]) {
-      return (
-        <TranslationNode key={index}>{placeholders[index]}</TranslationNode>
-      );
+    if (replacements[key]) {
+      return <TranslationNode key={index}>{replacements[key]}</TranslationNode>;
     }
 
     return placeholder;
@@ -39,8 +41,8 @@ export const replacePlaceholders = (
 
 export const TranslationsPlaceholderConsumer: React.SFC<
   TranslationsPlaceholderConsumerProps
-> = ({ textKey, placeholders, children }) => (
+> = ({ textKey, replacements, children }) => (
   <TranslationsConsumer textKey={textKey}>
-    {(text) => children(replacePlaceholders(placeholders, text))}
+    {(text) => children(replacePlaceholders(replacements, text))}
   </TranslationsConsumer>
 );
