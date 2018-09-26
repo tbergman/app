@@ -1,4 +1,4 @@
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 import { View } from 'react-native';
 
 export const Spacing = styled(View)({}, ({ width, height }) => ({

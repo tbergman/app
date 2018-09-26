@@ -7,6 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { Loader } from './src/components/Loader';
 import Dialog from './src/containers/Dialog';
+import { TranslationsProvider } from './src/components/translations/provider';
 
 import { Raven, Store, Persistor } from './src/setupApp';
 
@@ -22,14 +23,16 @@ export const HOC = (options) => (Component) => {
       return (
         <ErrorBoundary raven={Raven}>
           <ApolloProvider client={client}>
-            <Provider store={Store}>
-              <PersistGate loading={<Loader />} persistor={Persistor}>
-                <NavigationContext.Provider value={{ componentId }}>
-                  <Component {...this.props} />
-                  <Dialog />
-                </NavigationContext.Provider>
-              </PersistGate>
-            </Provider>
+            <TranslationsProvider>
+              <Provider store={Store}>
+                <PersistGate loading={<Loader />} persistor={Persistor}>
+                  <NavigationContext.Provider value={{ componentId }}>
+                    <Component {...this.props} />
+                    <Dialog />
+                  </NavigationContext.Provider>
+                </PersistGate>
+              </Provider>
+            </TranslationsProvider>
           </ApolloProvider>
         </ErrorBoundary>
       );

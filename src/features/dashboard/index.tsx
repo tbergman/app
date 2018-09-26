@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 import { ScrollView, View, Text } from 'react-native';
 
 import { Loader } from 'src/components/Loader';
@@ -63,7 +63,9 @@ const Dashboard: React.SFC = () => (
       }
 
       if (error) {
-        throw new Error(`error when fetching data: ${JSON.stringify(error, null, 2)}`);
+        throw new Error(
+          `error when fetching data: ${JSON.stringify(error, null, 2)}`,
+        );
       }
 
       const { insurance } = data;

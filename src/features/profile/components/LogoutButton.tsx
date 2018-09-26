@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 
 import { colors, fonts } from '@hedviginsurance/brand';
 
 interface LogoutButtonProps {
-  onPress(): void
+  onPress(): void;
 }
 
 const LogoutButtonContainer = styled(TouchableOpacity)({

@@ -3,7 +3,7 @@ import Config from '@hedviginsurance/react-native-config'
 import { getUser } from './user'
 import { QueryToInsuranceResolver, Query, Insurance } from '../types';
 
-const getInsurance = async (token) => {
+const getInsurance = async (token: string) => {
   const data = await fetch(`${Config.API_BASE_URL}/insurance`, {
     headers: { Authorization: `Bearer ${token}` },
   });

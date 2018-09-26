@@ -4,7 +4,7 @@ import Permissions from 'react-native-permissions';
 import { connect } from 'react-redux';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import Sound from 'react-native-sound';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 
 import {
   chatActions,
