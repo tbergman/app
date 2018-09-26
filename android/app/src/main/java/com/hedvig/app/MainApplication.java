@@ -33,6 +33,7 @@ import io.branch.rnbranch.RNBranchPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 public class MainApplication extends NavigationApplication {
   @Override
@@ -62,9 +63,8 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RNDeviceInfo(), new SvgPackage(), new ReactNativeConfigPackage(),
-        new RNFetchBlobPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNDeviceInfo(), new SvgPackage(),
+        new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
         new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
         new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
@@ -78,8 +78,8 @@ public class MainApplication extends NavigationApplication {
 
   @Override
   protected void attachBaseContext(Context base) {
-     super.attachBaseContext(base);
-     MultiDex.install(this);
+    super.attachBaseContext(base);
+    MultiDex.install(this);
   }
 
   @Override
