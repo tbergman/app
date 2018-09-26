@@ -87,9 +87,11 @@ exports[`should replace placeholders correctly 4`] = `
     <Component
       key="4"
     >
-      <View>
-        <react-native-mock />
-      </View>
+      <Text>
+        <react-native-mock>
+          mock
+        </react-native-mock>
+      </Text>
     </Component>
   </react-native-mock>
 </View>

@@ -21,6 +21,7 @@ test('should replace placeholders correctly', () => {
   );
   const elementAndTextWrapper = mount(<View>{elementAndText}</View>);
 
+  expect(elementAndTextWrapper.containsMatchingElement(TestElement)).toBe(true);
   expect(toJson(elementAndTextWrapper)).toMatchSnapshot();
 
   const elementAndTextWithoutSpace = replacePlaceholders(
@@ -33,6 +34,9 @@ test('should replace placeholders correctly', () => {
     <View>{elementAndTextWithoutSpace}</View>,
   );
 
+  expect(
+    elementAndTextWithoutSpaceWrapper.containsMatchingElement(TestElement),
+  ).toBe(true);
   expect(toJson(elementAndTextWithoutSpaceWrapper)).toMatchSnapshot();
 
   const withUnmatchedIndex = replacePlaceholders(
@@ -43,19 +47,31 @@ test('should replace placeholders correctly', () => {
   );
   const withUnmatchedIndexWrapper = mount(<View>{withUnmatchedIndex}</View>);
 
+  expect(withUnmatchedIndexWrapper.text().includes('{somethingelse}')).toBe(
+    true,
+  );
   expect(toJson(withUnmatchedIndexWrapper)).toMatchSnapshot();
+
+  const TestElement2 = <Text>mock</Text>;
 
   const withMultiplePlaceholders = replacePlaceholders(
     {
       testElement: TestElement,
+      testElement2: TestElement2,
       testing: 'testing',
     },
-    '{testElement} mock {testing} mock {testElement}',
+    '{testElement} mock {testing} mock {testElement2}',
   );
   const withMultiplePlaceholdersWrapper = mount(
     <View>{withMultiplePlaceholders}</View>,
   );
 
+  expect(
+    withMultiplePlaceholdersWrapper.containsMatchingElement(TestElement),
+  ).toBe(true);
+  expect(
+    withMultiplePlaceholdersWrapper.containsMatchingElement(TestElement2),
+  ).toBe(true);
   expect(toJson(withMultiplePlaceholdersWrapper)).toMatchSnapshot();
 });
 
