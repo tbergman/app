@@ -26,29 +26,41 @@ const Container = styled(View)({
   flexDirection: 'row',
 });
 
+const icons = {
+  ACTIVE: require('assets/icons/my_insurance/aktiv.png'),
+  INACTIVE_WITH_START_DATE: require('assets/icons/my_insurance/startdatum_idle.png'),
+  INACTIVE: require('assets/icons/edit_perils/added_peril.png'),
+};
+
+const getIcon = (status: InsuranceStatus) => {
+  switch (status) {
+    case 'ACTIVE':
+      return icons.ACTIVE;
+    case 'INACTIVE_WITH_START_DATE':
+      return icons.INACTIVE_WITH_START_DATE;
+    case 'INACTIVE':
+      return icons.INACTIVE;
+  }
+};
+
+const getStatusText = (status: InsuranceStatus, activeFrom: string) => {
+  switch (status) {
+    case 'ACTIVE':
+      return 'Aktiv';
+    case 'INACTIVE_WITH_START_DATE':
+      return `Aktiveras ${activeFrom}`;
+    case 'INACTIVE':
+      return 'Inaktiv';
+  }
+};
+
 const InsuranceStatusDisplay: React.SFC<InsuranceStatusProps> = ({
   status,
   activeFrom,
 }) => (
   <Container>
-    <Icon
-      source={
-        {
-          ACTIVE: require('assets/icons/my_insurance/aktiv.png'),
-          INACTIVE_WITH_START_DATE: require('assets/icons/my_insurance/startdatum_idle.png'),
-          INACTIVE: require('assets/icons/edit_perils/added_peril.png'),
-        }[status]
-      }
-    />
-    <StatusText>
-      {
-        {
-          ACTIVE: 'Aktiv',
-          INACTIVE_WITH_START_DATE: `Aktiveras ${activeFrom}`,
-          INACTIVE: 'Inaktiv',
-        }[status]
-      }
-    </StatusText>
+    <Icon source={getIcon(status)} />
+    <StatusText>{getStatusText(status, activeFrom)}</StatusText>
   </Container>
 );
 

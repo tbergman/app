@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correct text key 1`] = `
+<View>
+  <react-native-mock>
+    <Component
+      textKey="mock"
+    >
+      <View>
+        <react-native-mock />
+      </View>
+    </Component>
+  </react-native-mock>
+</View>
+`;

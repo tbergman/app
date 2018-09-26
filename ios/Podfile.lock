@@ -153,6 +153,8 @@ PODS:
     - React/Core
   - RNAudio (4.1.3):
     - React
+  - RNDeviceInfo (0.21.5):
+    - React
   - RNFirebase (4.3.8):
     - Firebase/Core
     - React
@@ -206,6 +208,7 @@ DEPENDENCIES:
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - RNAudio (from `../node_modules/react-native-audio`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -261,6 +264,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/rn-fetch-blob"
   RNAudio:
     :path: "../node_modules/react-native-audio"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFirebase:
     :path: "../node_modules/react-native-firebase/ios"
   RNSound:
@@ -302,6 +307,7 @@ SPEC CHECKSUMS:
   ReactNativePermissions: 9f2d9c45c98800795e6c2ed330e25d11a66a8169
   rn-fetch-blob: 76a8f798dae965bbcd146a2438f2e1d381c91ae3
   RNAudio: 190cf085b4dddd366f4f3f7be1794c78d7d434a3
+  RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
   RNFirebase: 2b25fd2e60269f26bb0a76c71dcc942b35a77df0
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
@@ -310,6 +316,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 041c7e1b9716efefdd0aaea9b97d75810ce2b726
+PODFILE CHECKSUM: f955c5c183d19f90ba248bbe112c3f9fa2c40d61
 
 COCOAPODS: 1.5.3

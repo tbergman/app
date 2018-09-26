@@ -3,7 +3,7 @@
 exports[`<ErrorBoundary /> Should render child 1`] = `"test"`;
 
 exports[`<ErrorBoundary /> Should render error 1`] = `
-<ForwardRef(View)
+<View
   style={
     Object {
       "alignItems": "center",
@@ -16,7 +16,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
     }
   }
 >
-  <ForwardRef(Text)
+  <Text
     style={
       Object {
         "color": "#087d61",
@@ -26,11 +26,10 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
     }
   >
     Oj, nu gick något fel
-  </ForwardRef(Text)>
+  </Text>
   <TouchableOpacity
     accessibilityComponentType="button"
     accessibilityTraits="link"
-    activeOpacity={0.2}
     onPress={[Function]}
     style={
       Object {
@@ -44,7 +43,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
       }
     }
   >
-    <ForwardRef(Text)
+    <Text
       style={
         Object {
           "color": "#FFFFFF",
@@ -54,7 +53,7 @@ exports[`<ErrorBoundary /> Should render error 1`] = `
       }
     >
       Rapportera felet 🙏
-    </ForwardRef(Text)>
+    </Text>
   </TouchableOpacity>
-</ForwardRef(View)>
+</View>
 `;
