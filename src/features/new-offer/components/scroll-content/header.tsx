@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, Text } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const HeaderContainer = styled(View)({
   backgroundColor: colors.PURPLE,
@@ -20,6 +21,8 @@ const Heading = styled(Text)({
 
 export const Header: React.SFC = () => (
   <HeaderContainer>
-    <Heading>Läs allt om skyddet nedan</Heading>
+    <TranslationsConsumer textKey="OFFER_SCROLL_HEADER">
+      {(text) => <Heading>{text}</Heading>}
+    </TranslationsConsumer>
   </HeaderContainer>
 );

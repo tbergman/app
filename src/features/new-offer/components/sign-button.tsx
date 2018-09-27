@@ -13,6 +13,7 @@ import { Parallel, Spring } from 'animated-react-native-components';
 import { fonts, colors } from '@hedviginsurance/brand';
 import { AnimationValueListener } from 'src/components/animation-value-listener';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { Update } from 'react-lifecycle-components';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -68,34 +69,52 @@ export const SignButton: React.SFC<SignButtonProps> = ({
     animatedValue={scrollAnimatedValue}
   >
     {(isActive) => (
-      <Parallel>
-        <Spring
-          toValue={isActive ? 0 : 100}
-          initialValue={0}
-          config={{ bounciness: 10, velocity: 2 }}
-        >
-          {(animatedValue) => (
-            <BounceUpView animatedValue={animatedValue}>
-              <NavigationEvents>
-                {(triggerEvent: (event: { id: string }) => void) => (
-                  <ButtonContainer
-                    onPress={() =>
-                      triggerEvent({
-                        id: 'SignButtonPressed',
-                      })
-                    }
-                  >
-                    <TranslationsConsumer textKey="OFFER_SIGN_BUTTON">
-                      {(text) => <GetText>{text}</GetText>}
-                    </TranslationsConsumer>
-                    <BankID width={20} height={20} />
-                  </ButtonContainer>
-                )}
-              </NavigationEvents>
-            </BounceUpView>
+      <>
+        <NavigationEvents>
+          {(triggerEvent: (event: { id: string }) => void) => (
+            <Update<boolean>
+              was={() => {
+                if (isActive) {
+                  triggerEvent({ id: 'HideSignButton' });
+                } else {
+                  triggerEvent({ id: 'ShowSignButton' });
+                }
+              }}
+              watched={isActive}
+            >
+              {null}
+            </Update>
           )}
-        </Spring>
-      </Parallel>
+        </NavigationEvents>
+        <Parallel>
+          <Spring
+            toValue={isActive ? 0 : 100}
+            initialValue={100}
+            config={{ bounciness: 10, velocity: 2 }}
+          >
+            {(animatedValue) => (
+              <BounceUpView animatedValue={animatedValue}>
+                <NavigationEvents>
+                  {(triggerEvent: (event: { id: string }) => void) => (
+                    <ButtonContainer
+                      onPress={() =>
+                        triggerEvent({
+                          id: 'SignButtonPressed',
+                        })
+                      }
+                    >
+                      <TranslationsConsumer textKey="OFFER_SIGN_BUTTON">
+                        {(text) => <GetText>{text}</GetText>}
+                      </TranslationsConsumer>
+                      <BankID width={20} height={20} />
+                    </ButtonContainer>
+                  )}
+                </NavigationEvents>
+              </BounceUpView>
+            )}
+          </Spring>
+        </Parallel>
+      </>
     )}
   </AnimationValueListener>
 );

@@ -14,6 +14,7 @@ class NewOfferScreen extends React.Component {
       layout: {
         backgroundColor: colors.BLACK_PURPLE,
       },
+      popGesture: false,
       topBar: {
         visible: true,
         title: {

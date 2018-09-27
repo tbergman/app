@@ -14,13 +14,11 @@ import {
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
 import { setLayout, getMainLayout } from '../../../navigation/layout';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { NavigationContext } from 'src/navigation/context';
 
-const showOffer = () =>
-  Navigation.showModal({
-    stack: {
-      children: [NEW_OFFER_SCREEN],
-    },
-  });
+const showOffer = (componentId) => {
+  Navigation.push(componentId, NEW_OFFER_SCREEN);
+};
 
 const showTrustly = (id) =>
   Navigation.showModal({
@@ -53,39 +51,43 @@ class SingleSelectInput extends React.Component {
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
       return (
-        <StyledRightAlignedOptions key={choice.text}>
-          <AnimatedSingleSelectOptionButton
-            hidden={anySelected && !choice.selected}
-            title={choice.text}
-            selected={choice.selected}
-            onPress={() => {
-              if (choice.type === 'selection') {
-                selectChoice(message, choice);
-                done(message);
-              } else if (choice.type === 'link' && choice.view !== null) {
-                selectChoice(message, choice);
-                done(message);
-                if (choice.view === 'Dashboard') {
-                  goToDashboard();
-                } else if (choice.view === 'Offer') {
-                  showOffer();
-                }
-              } else if (choice.type === 'link' && choice.appUrl !== null) {
-                selectChoice(message, choice);
-                done(message);
-                Linking.openURL(choice.appUrl);
-              } else if (choice.type === 'link' && choice.webUrl !== null) {
-                selectChoice(message, choice);
-                done(message);
-                Linking.openURL(choice.webUrl);
-              } else if (choice.type === 'trustly') {
-                showTrustly(choice.id);
-                selectChoice(message, choice);
-                done(message);
-              }
-            }}
-          />
-        </StyledRightAlignedOptions>
+        <NavigationContext>
+          {({ componentId }) => (
+            <StyledRightAlignedOptions key={choice.text}>
+              <AnimatedSingleSelectOptionButton
+                hidden={anySelected && !choice.selected}
+                title={choice.text}
+                selected={choice.selected}
+                onPress={() => {
+                  if (choice.type === 'selection') {
+                    selectChoice(message, choice);
+                    done(message);
+                  } else if (choice.type === 'link' && choice.view !== null) {
+                    selectChoice(message, choice);
+                    done(message);
+                    if (choice.view === 'Dashboard') {
+                      goToDashboard();
+                    } else if (choice.view === 'Offer') {
+                      showOffer(componentId);
+                    }
+                  } else if (choice.type === 'link' && choice.appUrl !== null) {
+                    selectChoice(message, choice);
+                    done(message);
+                    Linking.openURL(choice.appUrl);
+                  } else if (choice.type === 'link' && choice.webUrl !== null) {
+                    selectChoice(message, choice);
+                    done(message);
+                    Linking.openURL(choice.webUrl);
+                  } else if (choice.type === 'trustly') {
+                    showTrustly(choice.id);
+                    selectChoice(message, choice);
+                    done(message);
+                  }
+                }}
+              />
+            </StyledRightAlignedOptions>
+          )}
+        </NavigationContext>
       );
     });
     return <StyledMarginContainer>{opts}</StyledMarginContainer>;

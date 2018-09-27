@@ -4,6 +4,7 @@ import { TouchableOpacity, ViewProps, Animated, View } from 'react-native';
 import { BankID } from 'src/components/icons/BankID';
 import { NavigationEvents } from 'src/navigation/events';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
+import { Container, ActionMap } from 'constate';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
@@ -24,27 +25,57 @@ const FadeInView = styled(AnimatedView)(
   }),
 );
 
+interface State {
+  show: boolean;
+}
+
+interface Actions {
+  setShow: (show: boolean) => void;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setShow: (show) => () => ({
+    show,
+  }),
+};
+
 export const SignButton: React.SFC = () => (
-  <Sequence>
-    <Delay config={{ delay: 500 }} />
-    <Timing toValue={1} initialValue={0} config={{ duration: 500 }}>
-      {(animatedValue) => (
-        <FadeInView animatedValue={animatedValue}>
-          <NavigationEvents>
-            {(triggerEvent: (event: { id: string }) => void) => (
-              <ButtonContainer
-                onPress={() =>
-                  triggerEvent({
-                    id: 'SignButtonPressed',
-                  })
-                }
+  <Container actions={actions} initialState={{ show: true }}>
+    {({ show, setShow }) => (
+      <Sequence>
+        <Delay config={{ delay: 500 }} />
+        <Timing
+          toValue={show ? 1 : 0}
+          initialValue={0}
+          config={{ duration: 250 }}
+        >
+          {(animatedValue) => (
+            <FadeInView animatedValue={animatedValue}>
+              <NavigationEvents
+                onGlobalEvent={(event: { id: string }) => {
+                  if (event.id === 'HideSignButton') {
+                    setShow(false);
+                  } else if (event.id === 'ShowSignButton') {
+                    setShow(true);
+                  }
+                }}
               >
-                <BankID width={15} height={15} />
-              </ButtonContainer>
-            )}
-          </NavigationEvents>
-        </FadeInView>
-      )}
-    </Timing>
-  </Sequence>
+                {(triggerEvent: (event: { id: string }) => void) => (
+                  <ButtonContainer
+                    onPress={() =>
+                      triggerEvent({
+                        id: 'SignButtonPressed',
+                      })
+                    }
+                  >
+                    <BankID width={15} height={15} />
+                  </ButtonContainer>
+                )}
+              </NavigationEvents>
+            </FadeInView>
+          )}
+        </Timing>
+      </Sequence>
+    )}
+  </Container>
 );

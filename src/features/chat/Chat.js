@@ -206,9 +206,9 @@ class Chat extends React.Component {
 
   _showOffer = () => {
     this._stopPolling();
-    Navigation.showModal({
-      stack: {
-        children: [NEW_OFFER_SCREEN],
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: 'Test',
       },
     });
   };
