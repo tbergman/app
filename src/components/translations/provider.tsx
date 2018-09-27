@@ -5,13 +5,17 @@ import gql from 'graphql-tag';
 import { TranslationsContext } from './context';
 import { TextKeys } from './types';
 
-interface TextKey {
-  key: string;
+interface Key {
+  value: string;
+}
+
+interface Translation {
+  key: Key;
   text: string;
 }
 
 interface Language {
-  textKeys: TextKey[];
+  translations: Translation[];
 }
 
 interface Data {
@@ -21,17 +25,19 @@ interface Data {
 const TRANSLATIONS_QUERY = gql`
   query TranslationsQuery {
     languages(where: { code: "sv_SE" }) {
-      textKeys(where: { project: App }) {
-        key
+      translations(where: { project: App }) {
+        key {
+          value
+        }
         text
       }
     }
   }
 `;
 
-export const normalizeKeys = (textKeys: TextKey[]) =>
-  textKeys.reduce((acc: TextKeys, curr: TextKey) => {
-    acc[curr.key] = curr.text;
+export const normalizeTranslations = (translations: Translation[]) =>
+  translations.reduce((acc: TextKeys, curr: Translation) => {
+    acc[curr.key.value] = curr.text;
     return acc;
   }, {});
 
@@ -41,7 +47,7 @@ export const TranslationsProvider: React.SFC = ({ children }) => (
       loading ? null : (
         <TranslationsContext.Provider
           value={{
-            textKeys: normalizeKeys(data!.languages[0].textKeys),
+            textKeys: normalizeTranslations(data!.languages[0].translations),
           }}
         >
           {children}

@@ -380,7 +380,7 @@
             "deprecationReason": null
           },
           {
-            "name": "textKeys",
+            "name": "keys",
             "description": "",
             "args": [
               {
@@ -388,7 +388,7 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "KeyWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -398,7 +398,7 @@
                 "description": "",
                 "type": {
                   "kind": "ENUM",
-                  "name": "TextKeyOrderByInput",
+                  "name": "KeyOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -462,7 +462,98 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "TextKey",
+                  "name": "Key",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "translations",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "TranslationOrderByInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "skip",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "first",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Translation",
                   "ofType": null
                 }
               }
@@ -579,7 +670,7 @@
             "deprecationReason": null
           },
           {
-            "name": "textKey",
+            "name": "key",
             "description": "",
             "args": [
               {
@@ -590,7 +681,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyWhereUniqueInput",
+                    "name": "KeyWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -599,7 +690,34 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKey",
+              "name": "Key",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "translation",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Translation",
               "ofType": null
             },
             "isDeprecated": false,
@@ -954,7 +1072,7 @@
             "deprecationReason": null
           },
           {
-            "name": "textKeysConnection",
+            "name": "keysConnection",
             "description": "",
             "args": [
               {
@@ -962,7 +1080,7 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "KeyWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -972,7 +1090,7 @@
                 "description": "",
                 "type": {
                   "kind": "ENUM",
-                  "name": "TextKeyOrderByInput",
+                  "name": "KeyOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1033,7 +1151,94 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "TextKeyConnection",
+                "name": "KeyConnection",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "translationsConnection",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "TranslationOrderByInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "skip",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "first",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TranslationConnection",
                 "ofType": null
               }
             },
@@ -2744,7 +2949,12 @@
           },
           {
             "kind": "OBJECT",
-            "name": "TextKey",
+            "name": "Translation",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Key",
             "ofType": null
           }
         ]
@@ -4873,31 +5083,31 @@
             "defaultValue": null
           },
           {
-            "name": "textKeys_every",
+            "name": "translations_every",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyWhereInput",
+              "name": "TranslationWhereInput",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "textKeys_some",
+            "name": "translations_some",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyWhereInput",
+              "name": "TranslationWhereInput",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "textKeys_none",
+            "name": "translations_none",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyWhereInput",
+              "name": "TranslationWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -4909,7 +5119,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyWhereInput",
+        "name": "TranslationWhereInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -4924,7 +5134,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 }
               }
@@ -4942,7 +5152,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 }
               }
@@ -4960,7 +5170,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 }
               }
@@ -5372,162 +5582,6 @@
             "defaultValue": null
           },
           {
-            "name": "key",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_not",
-            "description": "All values that are not equal to given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_in",
-            "description": "All values that are contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_not_in",
-            "description": "All values that are not contained in given list.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_lt",
-            "description": "All values less than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_lte",
-            "description": "All values less than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_gt",
-            "description": "All values greater than the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_gte",
-            "description": "All values greater than or equal the given value.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_contains",
-            "description": "All values containing the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_not_contains",
-            "description": "All values not containing the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_starts_with",
-            "description": "All values starting with the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_not_starts_with",
-            "description": "All values not starting with the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_ends_with",
-            "description": "All values ending with the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key_not_ends_with",
-            "description": "All values not ending with the given string.",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "text",
             "description": "",
             "type": {
@@ -5748,6 +5802,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -5781,6 +5845,661 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyWhereInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "AND",
+            "description": "Logical AND on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "OR",
+            "description": "Logical OR on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "NOT",
+            "description": "Logical NOT on all given filters combined by AND.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Status",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "status_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "Status",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_contains",
+            "description": "All values containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_contains",
+            "description": "All values not containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_starts_with",
+            "description": "All values starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_starts_with",
+            "description": "All values not starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_ends_with",
+            "description": "All values ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id_not_ends_with",
+            "description": "All values not ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_not",
+            "description": "All values that are not equal to given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_in",
+            "description": "All values that are contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_not_in",
+            "description": "All values that are not contained in given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_lt",
+            "description": "All values less than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_lte",
+            "description": "All values less than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_gt",
+            "description": "All values greater than the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_gte",
+            "description": "All values greater than or equal the given value.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_contains",
+            "description": "All values containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_not_contains",
+            "description": "All values not containing the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_starts_with",
+            "description": "All values starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_not_starts_with",
+            "description": "All values not starting with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_ends_with",
+            "description": "All values ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value_not_ends_with",
+            "description": "All values not ending with the given string.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "textKeys_every",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "textKeys_some",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "textKeys_none",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -5936,7 +6655,7 @@
             "deprecationReason": null
           },
           {
-            "name": "textKeys",
+            "name": "translations",
             "description": "",
             "args": [
               {
@@ -5944,7 +6663,7 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5954,7 +6673,7 @@
                 "description": "",
                 "type": {
                   "kind": "ENUM",
-                  "name": "TextKeyOrderByInput",
+                  "name": "TranslationOrderByInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -6018,7 +6737,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "TextKey",
+                  "name": "Translation",
                   "ofType": null
                 }
               }
@@ -6072,7 +6791,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "TextKeyOrderByInput",
+        "name": "TranslationOrderByInput",
         "description": "",
         "fields": null,
         "inputFields": null,
@@ -6127,18 +6846,6 @@
             "deprecationReason": null
           },
           {
-            "name": "key_ASC",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "key_DESC",
-            "description": "",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "text_ASC",
             "description": "",
             "isDeprecated": false,
@@ -6167,7 +6874,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "TextKey",
+        "name": "Translation",
         "description": "",
         "fields": [
           {
@@ -6235,22 +6942,6 @@
             "deprecationReason": null
           },
           {
-            "name": "key",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "text",
             "description": "",
             "args": [],
@@ -6300,6 +6991,29 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Key",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6311,6 +7025,265 @@
           }
         ],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Key",
+        "description": "",
+        "fields": [
+          {
+            "name": "status",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "Status",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "textKeys",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "TranslationOrderByInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "skip",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "first",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Translation",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "KeyOrderByInput",
+        "description": "",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "status_ASC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status_DESC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id_ASC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id_DESC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt_ASC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt_DESC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt_ASC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt_DESC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value_ASC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value_DESC",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -6429,7 +7402,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyWhereUniqueInput",
+        "name": "KeyWhereUniqueInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -6444,11 +7417,32 @@
             "defaultValue": null
           },
           {
-            "name": "key",
+            "name": "value",
             "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationWhereUniqueInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -7069,7 +8063,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "TextKeyConnection",
+        "name": "KeyConnection",
         "description": "A connection to a list of items.",
         "fields": [
           {
@@ -7100,7 +8094,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "TextKeyEdge",
+                  "name": "KeyEdge",
                   "ofType": null
                 }
               }
@@ -7117,7 +8111,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "AggregateTextKey",
+                "name": "AggregateKey",
                 "ofType": null
               }
             },
@@ -7132,7 +8126,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "TextKeyEdge",
+        "name": "KeyEdge",
         "description": "An edge in a connection.",
         "fields": [
           {
@@ -7144,7 +8138,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "TextKey",
+                "name": "Key",
                 "ofType": null
               }
             },
@@ -7175,7 +8169,140 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AggregateTextKey",
+        "name": "AggregateKey",
+        "description": "",
+        "fields": [
+          {
+            "name": "count",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TranslationConnection",
+        "description": "A connection to a list of items.",
+        "fields": [
+          {
+            "name": "pageInfo",
+            "description": "Information to aid in pagination.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "edges",
+            "description": "A list of edges.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "TranslationEdge",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "aggregate",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AggregateTranslation",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TranslationEdge",
+        "description": "An edge in a connection.",
+        "fields": [
+          {
+            "name": "node",
+            "description": "The item at the end of the edge.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Translation",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cursor",
+            "description": "A cursor for use in pagination.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AggregateTranslation",
         "description": "",
         "fields": [
           {
@@ -7300,7 +8427,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createTextKey",
+            "name": "createKey",
             "description": "",
             "args": [
               {
@@ -7311,7 +8438,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyCreateInput",
+                    "name": "KeyCreateInput",
                     "ofType": null
                   }
                 },
@@ -7323,7 +8450,38 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "TextKey",
+                "name": "Key",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createTranslation",
+            "description": "",
+            "args": [
+              {
+                "name": "data",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationCreateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Translation",
                 "ofType": null
               }
             },
@@ -7413,7 +8571,7 @@
             "deprecationReason": null
           },
           {
-            "name": "updateTextKey",
+            "name": "updateKey",
             "description": "",
             "args": [
               {
@@ -7424,7 +8582,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyUpdateInput",
+                    "name": "KeyUpdateInput",
                     "ofType": null
                   }
                 },
@@ -7438,7 +8596,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyWhereUniqueInput",
+                    "name": "KeyWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -7447,7 +8605,48 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKey",
+              "name": "Key",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateTranslation",
+            "description": "",
+            "args": [
+              {
+                "name": "data",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationUpdateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Translation",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7562,7 +8761,7 @@
             "deprecationReason": null
           },
           {
-            "name": "deleteTextKey",
+            "name": "deleteKey",
             "description": "",
             "args": [
               {
@@ -7573,7 +8772,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyWhereUniqueInput",
+                    "name": "KeyWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -7582,7 +8781,34 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKey",
+              "name": "Key",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleteTranslation",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Translation",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7707,7 +8933,7 @@
             "deprecationReason": null
           },
           {
-            "name": "upsertTextKey",
+            "name": "upsertKey",
             "description": "",
             "args": [
               {
@@ -7718,7 +8944,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyWhereUniqueInput",
+                    "name": "KeyWhereUniqueInput",
                     "ofType": null
                   }
                 },
@@ -7732,7 +8958,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyCreateInput",
+                    "name": "KeyCreateInput",
                     "ofType": null
                   }
                 },
@@ -7746,7 +8972,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyUpdateInput",
+                    "name": "KeyUpdateInput",
                     "ofType": null
                   }
                 },
@@ -7758,7 +8984,66 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "TextKey",
+                "name": "Key",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "upsertTranslation",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationWhereUniqueInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "create",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationCreateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "update",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationUpdateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Translation",
                 "ofType": null
               }
             },
@@ -7848,7 +9133,7 @@
             "deprecationReason": null
           },
           {
-            "name": "updateManyTextKeys",
+            "name": "updateManyKeys",
             "description": "",
             "args": [
               {
@@ -7859,7 +9144,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "TextKeyUpdateInput",
+                    "name": "KeyUpdateInput",
                     "ofType": null
                   }
                 },
@@ -7870,7 +9155,48 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BatchPayload",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateManyTranslations",
+            "description": "",
+            "args": [
+              {
+                "name": "data",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "TranslationUpdateInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -7997,7 +9323,7 @@
             "deprecationReason": null
           },
           {
-            "name": "deleteManyTextKeys",
+            "name": "deleteManyKeys",
             "description": "",
             "args": [
               {
@@ -8005,7 +9331,34 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereInput",
+                  "name": "KeyWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BatchPayload",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleteManyTranslations",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -8163,11 +9516,11 @@
             "defaultValue": null
           },
           {
-            "name": "textKeys",
+            "name": "translations",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyCreateManyWithoutLanguageInput",
+              "name": "TranslationCreateManyWithoutLanguageInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8179,7 +9532,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyCreateManyWithoutLanguageInput",
+        "name": "TranslationCreateManyWithoutLanguageInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8194,7 +9547,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyCreateWithoutLanguageInput",
+                  "name": "TranslationCreateWithoutLanguageInput",
                   "ofType": null
                 }
               }
@@ -8212,7 +9565,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereUniqueInput",
+                  "name": "TranslationWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -8226,7 +9579,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyCreateWithoutLanguageInput",
+        "name": "TranslationCreateWithoutLanguageInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8237,20 +9590,6 @@
               "kind": "ENUM",
               "name": "Status",
               "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key",
-            "description": "",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null
           },
@@ -8277,6 +9616,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyCreateOneWithoutTextKeysInput",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -8285,7 +9634,38 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyCreateInput",
+        "name": "KeyCreateOneWithoutTextKeysInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyCreateWithoutTextKeysInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "connect",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyWhereUniqueInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyCreateWithoutTextKeysInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8300,7 +9680,7 @@
             "defaultValue": null
           },
           {
-            "name": "key",
+            "name": "value",
             "description": "",
             "type": {
               "kind": "NON_NULL",
@@ -8310,6 +9690,119 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyCreateInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "textKeys",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationCreateManyWithoutKeyInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationCreateManyWithoutKeyInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationCreateWithoutKeyInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "connect",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereUniqueInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationCreateWithoutKeyInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -8342,7 +9835,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageCreateOneWithoutTextKeysInput",
+              "name": "LanguageCreateOneWithoutTranslationsInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8354,7 +9847,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "LanguageCreateOneWithoutTextKeysInput",
+        "name": "LanguageCreateOneWithoutTranslationsInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8363,7 +9856,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageCreateWithoutTextKeysInput",
+              "name": "LanguageCreateWithoutTranslationsInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8385,7 +9878,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "LanguageCreateWithoutTextKeysInput",
+        "name": "LanguageCreateWithoutTranslationsInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8424,6 +9917,71 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationCreateInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "text",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "project",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Project",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "language",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "LanguageCreateOneWithoutTranslationsInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyCreateOneWithoutTextKeysInput",
+              "ofType": null
             },
             "defaultValue": null
           }
@@ -8550,11 +10108,11 @@
             "defaultValue": null
           },
           {
-            "name": "textKeys",
+            "name": "translations",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyUpdateManyWithoutLanguageInput",
+              "name": "TranslationUpdateManyWithoutLanguageInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8566,7 +10124,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyUpdateManyWithoutLanguageInput",
+        "name": "TranslationUpdateManyWithoutLanguageInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8581,7 +10139,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyCreateWithoutLanguageInput",
+                  "name": "TranslationCreateWithoutLanguageInput",
                   "ofType": null
                 }
               }
@@ -8599,7 +10157,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereUniqueInput",
+                  "name": "TranslationWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -8617,7 +10175,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereUniqueInput",
+                  "name": "TranslationWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -8635,7 +10193,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyWhereUniqueInput",
+                  "name": "TranslationWhereUniqueInput",
                   "ofType": null
                 }
               }
@@ -8653,7 +10211,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyUpdateWithWhereUniqueWithoutLanguageInput",
+                  "name": "TranslationUpdateWithWhereUniqueWithoutLanguageInput",
                   "ofType": null
                 }
               }
@@ -8671,7 +10229,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeyUpsertWithWhereUniqueWithoutLanguageInput",
+                  "name": "TranslationUpsertWithWhereUniqueWithoutLanguageInput",
                   "ofType": null
                 }
               }
@@ -8685,7 +10243,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyUpdateWithWhereUniqueWithoutLanguageInput",
+        "name": "TranslationUpdateWithWhereUniqueWithoutLanguageInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8697,7 +10255,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "TextKeyWhereUniqueInput",
+                "name": "TranslationWhereUniqueInput",
                 "ofType": null
               }
             },
@@ -8711,7 +10269,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "TextKeyUpdateWithoutLanguageDataInput",
+                "name": "TranslationUpdateWithoutLanguageDataInput",
                 "ofType": null
               }
             },
@@ -8724,7 +10282,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyUpdateWithoutLanguageDataInput",
+        "name": "TranslationUpdateWithoutLanguageDataInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8734,16 +10292,6 @@
             "type": {
               "kind": "ENUM",
               "name": "Status",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "key",
-            "description": "",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -8767,6 +10315,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyUpdateOneWithoutTextKeysInput",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -8775,21 +10333,47 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyUpsertWithWhereUniqueWithoutLanguageInput",
+        "name": "KeyUpdateOneWithoutTextKeysInput",
         "description": "",
         "fields": null,
         "inputFields": [
           {
-            "name": "where",
+            "name": "create",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "TextKeyWhereUniqueInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "KeyCreateWithoutTextKeysInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "connect",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyWhereUniqueInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "disconnect",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "delete",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -8797,27 +10381,19 @@
             "name": "update",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "TextKeyUpdateWithoutLanguageDataInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "KeyUpdateWithoutTextKeysDataInput",
+              "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "create",
+            "name": "upsert",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "TextKeyCreateWithoutLanguageInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "KeyUpsertWithoutTextKeysInput",
+              "ofType": null
             },
             "defaultValue": null
           }
@@ -8828,7 +10404,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeyUpdateInput",
+        "name": "KeyUpdateWithoutTextKeysDataInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8843,11 +10419,323 @@
             "defaultValue": null
           },
           {
-            "name": "key",
+            "name": "value",
             "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyUpsertWithoutTextKeysInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "update",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "KeyUpdateWithoutTextKeysDataInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "KeyCreateWithoutTextKeysInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpsertWithWhereUniqueWithoutLanguageInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "where",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationWhereUniqueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "update",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationUpdateWithoutLanguageDataInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationCreateWithoutLanguageInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyUpdateInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "textKeys",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationUpdateManyWithoutKeyInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpdateManyWithoutKeyInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationCreateWithoutKeyInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "connect",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereUniqueInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "disconnect",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereUniqueInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "delete",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationWhereUniqueInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "update",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationUpdateWithWhereUniqueWithoutKeyInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "upsert",
+            "description": "",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationUpsertWithWhereUniqueWithoutKeyInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpdateWithWhereUniqueWithoutKeyInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "where",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationWhereUniqueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "data",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationUpdateWithoutKeyDataInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpdateWithoutKeyDataInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
               "ofType": null
             },
             "defaultValue": null
@@ -8877,7 +10765,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageUpdateOneWithoutTextKeysInput",
+              "name": "LanguageUpdateOneWithoutTranslationsInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8889,7 +10777,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "LanguageUpdateOneWithoutTextKeysInput",
+        "name": "LanguageUpdateOneWithoutTranslationsInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -8898,7 +10786,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageCreateWithoutTextKeysInput",
+              "name": "LanguageCreateWithoutTranslationsInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8938,7 +10826,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageUpdateWithoutTextKeysDataInput",
+              "name": "LanguageUpdateWithoutTranslationsDataInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8948,7 +10836,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "LanguageUpsertWithoutTextKeysInput",
+              "name": "LanguageUpsertWithoutTranslationsInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8960,7 +10848,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "LanguageUpdateWithoutTextKeysDataInput",
+        "name": "LanguageUpdateWithoutTranslationsDataInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -9001,7 +10889,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "LanguageUpsertWithoutTextKeysInput",
+        "name": "LanguageUpsertWithoutTranslationsInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -9013,7 +10901,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "LanguageUpdateWithoutTextKeysDataInput",
+                "name": "LanguageUpdateWithoutTranslationsDataInput",
                 "ofType": null
               }
             },
@@ -9027,9 +10915,123 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "LanguageCreateWithoutTextKeysInput",
+                "name": "LanguageCreateWithoutTranslationsInput",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpsertWithWhereUniqueWithoutKeyInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "where",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationWhereUniqueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "update",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationUpdateWithoutKeyDataInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "create",
+            "description": "",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "TranslationCreateWithoutKeyInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationUpdateInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Status",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "text",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "project",
+            "description": "",
+            "type": {
+              "kind": "ENUM",
+              "name": "Project",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "language",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "LanguageUpdateOneWithoutTranslationsInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "key",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "KeyUpdateOneWithoutTextKeysInput",
+              "ofType": null
             },
             "defaultValue": null
           }
@@ -9173,7 +11175,7 @@
             "deprecationReason": null
           },
           {
-            "name": "textKey",
+            "name": "key",
             "description": "",
             "args": [
               {
@@ -9181,7 +11183,7 @@
                 "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeySubscriptionWhereInput",
+                  "name": "KeySubscriptionWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -9189,7 +11191,30 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKeySubscriptionPayload",
+              "name": "KeySubscriptionPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "translation",
+            "description": "",
+            "args": [
+              {
+                "name": "where",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationSubscriptionWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "TranslationSubscriptionPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10452,7 +12477,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "TextKeySubscriptionWhereInput",
+        "name": "KeySubscriptionWhereInput",
         "description": "",
         "fields": null,
         "inputFields": [
@@ -10467,7 +12492,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeySubscriptionWhereInput",
+                  "name": "KeySubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -10485,7 +12510,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeySubscriptionWhereInput",
+                  "name": "KeySubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -10503,7 +12528,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "TextKeySubscriptionWhereInput",
+                  "name": "KeySubscriptionWhereInput",
                   "ofType": null
                 }
               }
@@ -10579,7 +12604,7 @@
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "TextKeyWhereInput",
+              "name": "KeyWhereInput",
               "ofType": null
             },
             "defaultValue": null
@@ -10591,7 +12616,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "TextKeySubscriptionPayload",
+        "name": "KeySubscriptionPayload",
         "description": "",
         "fields": [
           {
@@ -10616,7 +12641,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKey",
+              "name": "Key",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10648,7 +12673,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "TextKeyPreviousValues",
+              "name": "KeyPreviousValues",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10662,7 +12687,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "TextKeyPreviousValues",
+        "name": "KeyPreviousValues",
         "description": "",
         "fields": [
           {
@@ -10730,7 +12755,7 @@
             "deprecationReason": null
           },
           {
-            "name": "key",
+            "name": "value",
             "description": "",
             "args": [],
             "type": {
@@ -10739,6 +12764,291 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TranslationSubscriptionWhereInput",
+        "description": "",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "AND",
+            "description": "Logical AND on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationSubscriptionWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "OR",
+            "description": "Logical OR on all given filters.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationSubscriptionWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "NOT",
+            "description": "Logical NOT on all given filters combined by AND.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TranslationSubscriptionWhereInput",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "mutation_in",
+            "description": "The subscription event gets dispatched when it's listed in mutation_in",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "MutationType",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains",
+            "description": "The subscription event gets only dispatched when one of the updated fields names is included in this list",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains_every",
+            "description": "The subscription event gets only dispatched when all of the field names included in this list have been updated",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedFields_contains_some",
+            "description": "The subscription event gets only dispatched when some of the field names included in this list have been updated",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "node",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "TranslationWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TranslationSubscriptionPayload",
+        "description": "",
+        "fields": [
+          {
+            "name": "mutation",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "MutationType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "node",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Translation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedFields",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previousValues",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "TranslationPreviousValues",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TranslationPreviousValues",
+        "description": "",
+        "fields": [
+          {
+            "name": "status",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "Status",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
                 "ofType": null
               }
             },
