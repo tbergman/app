@@ -7,7 +7,7 @@ import { Dialog } from 'src/features/bankid/Dialog';
 export const CheckoutComp = ({ checkout }) => (
   <>
     <NavigationEvents
-      onGlobalEvent={(event) => {
+      onGlobalEvent={(event: { id: string }) => {
         if (event.id === 'SignButtonPressed') {
           checkout();
         }

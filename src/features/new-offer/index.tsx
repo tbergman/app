@@ -20,6 +20,7 @@ import { ScrollContent } from 'src/features/new-offer/components/scroll-content'
 import { Checkout } from 'src/features/new-offer/components/checkout';
 import { NavigationOptions } from 'src/navigation/options';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { SignButton } from 'src/features/new-offer/components/sign-button';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -102,28 +103,31 @@ export const NewOffer: React.SFC = () => (
         <>
           <AnimationValueProvider initialValue={0}>
             {({ animatedValue }) => (
-              <ScrollContainer
-                onScroll={getScrollHandler(animatedValue)}
-                scrollEventThrottle={1}
-                contentContainerStyle={{
-                  alignItems: 'center',
-                }}
-              >
-                <FixedContainer animatedValue={animatedValue}>
-                  <Spacing height={35} />
-                  <PriceBubble price={data!.insurance.monthlyCost!} />
-                  <FeaturesContainer animatedValue={animatedValue}>
-                    <FeaturesBubbles
-                      personsInHousehold={data!.insurance.personsInHousehold!}
-                      insuredAtOtherCompany={
-                        data!.insurance.insuredAtOtherCompany!
-                      }
-                      type={data!.insurance.type!}
-                    />
-                  </FeaturesContainer>
-                </FixedContainer>
-                <ScrollContent scrollAnimatedValue={animatedValue} />
-              </ScrollContainer>
+              <>
+                <ScrollContainer
+                  onScroll={getScrollHandler(animatedValue)}
+                  scrollEventThrottle={1}
+                  contentContainerStyle={{
+                    alignItems: 'center',
+                  }}
+                >
+                  <FixedContainer animatedValue={animatedValue}>
+                    <Spacing height={35} />
+                    <PriceBubble price={data!.insurance.monthlyCost!} />
+                    <FeaturesContainer animatedValue={animatedValue}>
+                      <FeaturesBubbles
+                        personsInHousehold={data!.insurance.personsInHousehold!}
+                        insuredAtOtherCompany={
+                          data!.insurance.insuredAtOtherCompany!
+                        }
+                        type={data!.insurance.type!}
+                      />
+                    </FeaturesContainer>
+                  </FixedContainer>
+                  <ScrollContent scrollAnimatedValue={animatedValue} />
+                </ScrollContainer>
+                <SignButton scrollAnimatedValue={animatedValue} />
+              </>
             )}
           </AnimationValueProvider>
           <TranslationsConsumer textKey="OFFER_TITLE">

@@ -1,0 +1,101 @@
+import * as React from 'react';
+import styled from '@sampettersson/primitives';
+import {
+  TouchableOpacity,
+  ViewProps,
+  Animated,
+  View,
+  Text,
+} from 'react-native';
+import { BankID } from 'src/components/icons/BankID';
+import { NavigationEvents } from 'src/navigation/events';
+import { Parallel, Spring } from 'animated-react-native-components';
+import { fonts, colors } from '@hedviginsurance/brand';
+import { AnimationValueListener } from 'src/components/animation-value-listener';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+
+const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
+
+const ButtonContainer = styled(TouchableOpacity)({
+  width: 190,
+  height: 50,
+  borderRadius: 20,
+  backgroundColor: 'white',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  paddingLeft: 25,
+  paddingRight: 25,
+  flexDirection: 'row',
+  shadowColor: colors.BLACK_PURPLE,
+  shadowOpacity: 0.15,
+  shadowRadius: 15,
+  shadowOffset: {
+    width: 1,
+    height: 1,
+  },
+});
+
+const GetText = styled(Text)({
+  fontSize: 17,
+  fontFamily: fonts.CIRCULAR,
+  fontWeight: '500',
+});
+
+const BounceUpView = styled(AnimatedView)(
+  ({ animatedValue }: { animatedValue: Animated.Value }) => ({
+    position: 'absolute',
+    bottom: 30,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [
+      {
+        translateY: animatedValue,
+      },
+    ],
+  }),
+);
+
+interface SignButtonProps {
+  scrollAnimatedValue: Animated.Value;
+}
+
+export const SignButton: React.SFC<SignButtonProps> = ({
+  scrollAnimatedValue,
+}) => (
+  <AnimationValueListener
+    testValue={(value) => value > 600}
+    animatedValue={scrollAnimatedValue}
+  >
+    {(isActive) => (
+      <Parallel>
+        <Spring
+          toValue={isActive ? 0 : 100}
+          initialValue={0}
+          config={{ bounciness: 10, velocity: 2 }}
+        >
+          {(animatedValue) => (
+            <BounceUpView animatedValue={animatedValue}>
+              <NavigationEvents>
+                {(triggerEvent: (event: { id: string }) => void) => (
+                  <ButtonContainer
+                    onPress={() =>
+                      triggerEvent({
+                        id: 'SignButtonPressed',
+                      })
+                    }
+                  >
+                    <TranslationsConsumer textKey="OFFER_SIGN_BUTTON">
+                      {(text) => <GetText>{text}</GetText>}
+                    </TranslationsConsumer>
+                    <BankID width={20} height={20} />
+                  </ButtonContainer>
+                )}
+              </NavigationEvents>
+            </BounceUpView>
+          )}
+        </Spring>
+      </Parallel>
+    )}
+  </AnimationValueListener>
+);
