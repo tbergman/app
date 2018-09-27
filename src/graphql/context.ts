@@ -1,18 +1,16 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native';
 
-let token: string;
+let token: string | null;
 const getToken = async () => {
   if (token) {
-    console.log('had token, returning')
-    return token
+    return token;
   }
   token = await AsyncStorage.getItem('@hedvig:token');
-  console.log('getting token')
-  return token
-}
+  return token;
+};
 
 const deleteToken = () => {
-  token = undefined
-}
+  token = null;
+};
 
-export { getToken, deleteToken }
+export { getToken, deleteToken };

@@ -19,6 +19,7 @@ import { Spacing } from 'src/components/Spacing';
 import { ScrollContent } from 'src/features/new-offer/components/scroll-content';
 import { Checkout } from 'src/features/new-offer/components/checkout';
 import { NavigationOptions } from 'src/navigation/options';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -66,7 +67,7 @@ const FeaturesContainer = styled(AnimatedView)(
   }),
 );
 
-const getScrollHandler = (animatedValue) =>
+const getScrollHandler = (animatedValue: Animated.Value) =>
   Animated.event(
     [
       {
@@ -88,6 +89,8 @@ const INSURANCE_QUERY = gql`
       address
       monthlyCost
       personsInHousehold
+      insuredAtOtherCompany
+      type
     }
   }
 `;
@@ -108,10 +111,14 @@ export const NewOffer: React.SFC = () => (
               >
                 <FixedContainer animatedValue={animatedValue}>
                   <Spacing height={35} />
-                  <PriceBubble price={data.insurance.monthlyCost} />
+                  <PriceBubble price={data!.insurance.monthlyCost!} />
                   <FeaturesContainer animatedValue={animatedValue}>
                     <FeaturesBubbles
-                      personsInHousehold={data.insurance.personsInHousehold}
+                      personsInHousehold={data!.insurance.personsInHousehold!}
+                      insuredAtOtherCompany={
+                        data!.insurance.insuredAtOtherCompany!
+                      }
+                      type={data!.insurance.type!}
                     />
                   </FeaturesContainer>
                 </FixedContainer>
@@ -119,9 +126,18 @@ export const NewOffer: React.SFC = () => (
               </ScrollContainer>
             )}
           </AnimationValueProvider>
-          <NavigationOptions
-            options={{ topBar: { subtitle: { text: data.insurance.address } } }}
-          />
+          <TranslationsConsumer textKey="OFFER_TITLE">
+            {(title) => (
+              <NavigationOptions
+                options={{
+                  topBar: {
+                    title: { text: title },
+                    subtitle: { text: data!.insurance.address! },
+                  },
+                }}
+              />
+            )}
+          </TranslationsConsumer>
           <Checkout />
         </>
       )

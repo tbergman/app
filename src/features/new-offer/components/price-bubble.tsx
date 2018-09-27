@@ -43,33 +43,31 @@ interface PriceBubbleProps {
 }
 
 export const PriceBubble: React.SFC<PriceBubbleProps> = ({ price }) => (
-  <Gate>
-    <Sequence>
-      <Delay config={{ delay: 950 }} />
-      <Spring
-        config={{
-          bounciness: 12,
-        }}
-        toValue={1}
-        initialValue={0.5}
-      >
-        {(animatedValue) => (
-          <AnimatedView
-            style={{
-              opacity: animatedValue.interpolate({
-                inputRange: [0.5, 1],
-                outputRange: [0, 1],
-              }),
-              transform: [{ scale: animatedValue }],
-            }}
-          >
-            <Circle>
-              <Price>{price}</Price>
-              <MonthlyLabel>kr/mån</MonthlyLabel>
-            </Circle>
-          </AnimatedView>
-        )}
-      </Spring>
-    </Sequence>
-  </Gate>
+  <Sequence>
+    <Delay config={{ delay: 650 }} />
+    <Spring
+      config={{
+        bounciness: 12,
+      }}
+      toValue={1}
+      initialValue={0.5}
+    >
+      {(animatedValue) => (
+        <AnimatedView
+          style={{
+            opacity: animatedValue.interpolate({
+              inputRange: [0.5, 1],
+              outputRange: [0, 1],
+            }),
+            transform: [{ scale: animatedValue }],
+          }}
+        >
+          <Circle>
+            <Price>{price}</Price>
+            <MonthlyLabel>kr/mån</MonthlyLabel>
+          </Circle>
+        </AnimatedView>
+      )}
+    </Spring>
+  </Sequence>
 );

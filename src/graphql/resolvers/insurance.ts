@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import Config from '@hedviginsurance/react-native-config';
 import { getUser } from './user';
 import { QueryToInsuranceResolver, Query, Insurance } from '../types';
@@ -22,6 +21,7 @@ const insurance: QueryToInsuranceResolver<Query, Insurance> = async (
   ]);
 
   return {
+    insuredAtOtherCompany: insurance.insuredAtOtherCompany,
     personsInHousehold: insurance.personsInHousehold,
     monthlyCost: insurance.currentTotalPrice,
     address: insurance.addressStreet,

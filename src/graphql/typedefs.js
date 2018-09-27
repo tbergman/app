@@ -8,6 +8,7 @@ const typeDefs = `
     status: InsuranceStatus
     type: InsuranceType
     activeFrom: LocalDate
+    insuredAtOtherCompany: Boolean
 
     perilCategories: [PerilCategory]
   }

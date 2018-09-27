@@ -6,9 +6,11 @@ import { Parallel } from 'animated-react-native-components';
 import { Insured } from 'src/features/new-offer/components/features-bubbles/bubbles/insured';
 import { StartDate } from 'src/features/new-offer/components/features-bubbles/bubbles/start-date';
 import { Spacing } from 'src/components/Spacing';
-import { Payment } from 'src/features/new-offer/components/features-bubbles/bubbles/payment';
+import { TravelProtection } from 'src/features/new-offer/components/features-bubbles/bubbles/travel-protection';
 import { Deductible } from 'src/features/new-offer/components/features-bubbles/bubbles/deductible';
 import { BindingPeriod } from 'src/features/new-offer/components/features-bubbles/bubbles/binding-period';
+import { InsuranceType } from 'src/graphql/types';
+import { OwnedAddon } from 'src/features/new-offer/components/features-bubbles/bubbles/owned-addon';
 
 import { Position } from './position';
 
@@ -21,10 +23,14 @@ const Container = styled(View)({
 
 interface FeaturesBubblesProps {
   personsInHousehold: number;
+  insuredAtOtherCompany: boolean;
+  type: InsuranceType;
 }
 
 export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
   personsInHousehold,
+  insuredAtOtherCompany,
+  type,
 }) => (
   <>
     <Spacing height={35} />
@@ -37,10 +43,10 @@ export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
           <BindingPeriod />
         </Position>
         <Position top={140} left="46%">
-          <Payment />
+          {type === InsuranceType.BRF ? <OwnedAddon /> : <TravelProtection />}
         </Position>
         <Position top={25} left="47%">
-          <StartDate />
+          <StartDate insuredAtOtherCompany={insuredAtOtherCompany} />
         </Position>
         <Position top={0} left="20%">
           <Insured personsInHousehold={personsInHousehold} />

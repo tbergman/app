@@ -3,20 +3,16 @@ import { colors } from '@hedviginsurance/brand';
 
 import { Bubble } from '../bubble';
 import { BubbleAnimation } from '../bubble-animation';
-import { Spacing } from 'src/components/Spacing';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import { Title } from './common/title';
-import { Subtitle } from './common/subtitle';
 
-const PAYMENT_TITLE = 'Betalning';
-const PAYMENT_SUBTITLE = 'Autogiro månadsvis';
-
-export const Payment = () => (
+export const OwnedAddon = () => (
   <BubbleAnimation delay={100}>
     <Bubble width={135} height={135} backgroundColor={colors.PURPLE}>
-      <Title>{PAYMENT_TITLE}</Title>
-      <Spacing height={2.5} />
-      <Subtitle>{PAYMENT_SUBTITLE}</Subtitle>
+      <TranslationsConsumer textKey="OFFER_BUBBLES_OWNED_ADDON_TITLE">
+        {(text) => <Title>{text}</Title>}
+      </TranslationsConsumer>
     </Bubble>
   </BubbleAnimation>
 );

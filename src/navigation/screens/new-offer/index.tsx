@@ -17,7 +17,7 @@ class NewOfferScreen extends React.Component {
       topBar: {
         visible: true,
         title: {
-          text: 'Din hemförsäkring',
+          text: '',
           color: 'white',
         },
         subtitle: {
@@ -42,10 +42,10 @@ class NewOfferScreen extends React.Component {
     return (
       <React.Fragment>
         <NavigationEvents
-          onNavigationButtonPressed={(_, componentId) =>
+          onNavigationButtonPressed={(_: any, componentId: string) =>
             Navigation.dismissModal(componentId)
           }
-          onGlobalEvent={(event) => console.log(event)}
+          onGlobalEvent={(event: any) => console.log(event)}
         />
         <NewOffer {...this.props} />
       </React.Fragment>

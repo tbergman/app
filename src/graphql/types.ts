@@ -18,6 +18,7 @@ export interface Query {
 
 export interface Insurance {
   address?: string;
+  insuredAtOtherCompany?: boolean;
   monthlyCost?: number;
   personsInHousehold?: number;
   safetyIncreasers?: Array<string>;
