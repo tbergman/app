@@ -1,22 +1,34 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { TouchableOpacity, ViewProps, Animated, View } from 'react-native';
+import {
+  TouchableOpacity,
+  ViewProps,
+  Animated,
+  View,
+  Text,
+} from 'react-native';
 import { BankID } from 'src/components/icons/BankID';
 import { NavigationEvents } from 'src/navigation/events';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
 import { Container, ActionMap } from 'constate';
+import { fonts } from '@hedviginsurance/brand';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
 const ButtonContainer = styled(TouchableOpacity)({
-  width: 50,
+  width: 80,
   height: 30,
   borderRadius: 20,
   backgroundColor: 'white',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
-  marginLeft: 20,
+});
+
+const TextContainer = styled(Text)({
+  fontSize: 10,
+  paddingRight: 5,
+  fontFamily: fonts.CIRCULAR,
 });
 
 const FadeInView = styled(AnimatedView)(
@@ -50,7 +62,10 @@ export const SignButton: React.SFC = () => (
           config={{ duration: 250 }}
         >
           {(animatedValue) => (
-            <FadeInView animatedValue={animatedValue}>
+            <FadeInView
+              pointerEvents={show ? 'auto' : 'none'}
+              animatedValue={animatedValue}
+            >
               <NavigationEvents
                 onGlobalEvent={(event: { id: string }) => {
                   if (event.id === 'HideSignButton') {
@@ -68,6 +83,7 @@ export const SignButton: React.SFC = () => (
                       })
                     }
                   >
+                    <TextContainer>Signera</TextContainer>
                     <BankID width={15} height={15} />
                   </ButtonContainer>
                 )}

@@ -112,8 +112,9 @@ export const NewOffer: React.SFC = () => (
                   }}
                 >
                   <FixedContainer animatedValue={animatedValue}>
-                    <Spacing height={35} />
+                    <Spacing height={15} />
                     <PriceBubble price={data!.insurance.monthlyCost!} />
+                    <Spacing height={15} />
                     <FeaturesContainer animatedValue={animatedValue}>
                       <FeaturesBubbles
                         personsInHousehold={data!.insurance.personsInHousehold!}

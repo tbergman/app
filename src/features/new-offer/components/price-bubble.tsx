@@ -1,20 +1,28 @@
 import * as React from 'react';
-import { View, ViewProps, Text, Animated } from 'react-native';
+import { View, ViewProps, Text, Animated, Dimensions } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors, fonts } from '@hedviginsurance/brand';
-import {
-  Sequence,
-  Spring,
-  Delay,
-  Gate,
-} from 'animated-react-native-components';
+import { Sequence, Spring, Delay } from 'animated-react-native-components';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
+const LARGE_CIRCLE_SIZE = 180;
+const SMALL_CIRCLE_SIZE = 125;
+
+const getCircleSize = () => {
+  const windowHeight = Dimensions.get('window').height;
+
+  if (windowHeight < 700) {
+    return SMALL_CIRCLE_SIZE;
+  }
+
+  return LARGE_CIRCLE_SIZE;
+};
+
 const Circle = styled(View)({
-  height: 180,
-  width: 180,
-  borderRadius: 100,
+  height: getCircleSize(),
+  width: getCircleSize(),
+  borderRadius: getCircleSize() / 2,
   backgroundColor: colors.WHITE,
   alignItems: 'center',
   justifyContent: 'center',
@@ -28,13 +36,13 @@ const Circle = styled(View)({
 
 const Price = styled(Text)({
   color: colors.BLACK,
-  fontSize: 60,
+  fontSize: getCircleSize() === LARGE_CIRCLE_SIZE ? 60 : 40,
   fontFamily: fonts.CIRCULAR,
 });
 
 const MonthlyLabel = styled(Text)({
   color: colors.BLACK,
-  fontSize: 20,
+  fontSize: getCircleSize() === LARGE_CIRCLE_SIZE ? 20 : 18,
   fontFamily: fonts.CIRCULAR,
 });
 

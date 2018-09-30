@@ -161,6 +161,8 @@ PODS:
   - RNFirebase (4.3.8):
     - Firebase/Core
     - React
+  - RNGestureHandler (1.0.7):
+    - React
   - RNSound (0.10.9):
     - React/Core
     - RNSound/Core (= 0.10.9)
@@ -213,6 +215,7 @@ DEPENDENCIES:
   - RNAudio (from `../node_modules/react-native-audio`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
@@ -271,6 +274,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-device-info"
   RNFirebase:
     :path: "../node_modules/react-native-firebase/ios"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler/ios"
   RNSound:
     :path: "../node_modules/react-native-sound"
   RNSVG:
@@ -312,6 +317,7 @@ SPEC CHECKSUMS:
   RNAudio: 190cf085b4dddd366f4f3f7be1794c78d7d434a3
   RNDeviceInfo: 568c5641057313b4912d08a7742ff0b2f753ed5c
   RNFirebase: 2b25fd2e60269f26bb0a76c71dcc942b35a77df0
+  RNGestureHandler: 968e4453152673aedcbbb7c1ada6700c214cea7a
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
@@ -319,6 +325,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: f955c5c183d19f90ba248bbe112c3f9fa2c40d61
+PODFILE CHECKSUM: 3d288f5654744f201ac34f1d2fed204ed03a070e
 
 COCOAPODS: 1.5.3

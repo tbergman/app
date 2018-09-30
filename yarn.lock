@@ -1008,19 +1008,19 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
 
-"@sampettersson/primitives-core@^9.2.11":
-  version "9.2.11"
-  resolved "https://registry.yarnpkg.com/@sampettersson/primitives-core/-/primitives-core-9.2.11.tgz#8a783d0126196c49a06f5ddbcf5bee5432609e66"
+"@sampettersson/primitives-core@^9.2.12":
+  version "9.2.12"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives-core/-/primitives-core-9.2.12.tgz#9d656ede1e6efa82504ef2aaa3a49f2d106bf3b1"
   dependencies:
     "@emotion/is-prop-valid" "^0.6.3"
     "@types/react-native" "^0.56.19"
     css-to-react-native "^2.2.1"
 
-"@sampettersson/primitives@9.2.15":
-  version "9.2.15"
-  resolved "https://registry.yarnpkg.com/@sampettersson/primitives/-/primitives-9.2.15.tgz#a6a0b01f972ea74766e25dceef01d2cda5e114a0"
+"@sampettersson/primitives@9.2.16":
+  version "9.2.16"
+  resolved "https://registry.yarnpkg.com/@sampettersson/primitives/-/primitives-9.2.16.tgz#2b2d6f90975a71565635d829697378084c2d003b"
   dependencies:
-    "@sampettersson/primitives-core" "^9.2.11"
+    "@sampettersson/primitives-core" "^9.2.12"
     "@types/react-native" "^0.56.19"
     "@types/react-primitives" "^0.6.2"
     babel-plugin-emotion "^9.2.10"
@@ -7981,9 +7981,9 @@ react-lazy-load@^3.0.12:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-lifecycle-components@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-lifecycle-components/-/react-lifecycle-components-1.0.0.tgz#fd5c77899acc5cc6cc76da0c6dadd19701801a6f"
+react-lifecycle-components@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-lifecycle-components/-/react-lifecycle-components-1.1.1.tgz#24880e809228f50da604d4907e5d957340895adf"
 
 react-lifecycles-compat@2.0.0:
   version "2.0.0"
@@ -8044,6 +8044,14 @@ react-native-firebase@^4.3.8:
     opencollective "^1.0.3"
     postinstall-build "^5.0.1"
     prop-types "^15.6.1"
+
+react-native-gesture-handler@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.7.tgz#86677c709c42d04555210cad9759b09e2c657720"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
 
 react-native-iphone-x-helper@^1.0.1, react-native-iphone-x-helper@^1.0.3:
   version "1.0.3"

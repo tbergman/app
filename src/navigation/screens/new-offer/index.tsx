@@ -4,9 +4,11 @@ import { Navigation } from 'react-native-navigation';
 
 import { NewOffer } from 'src/features/new-offer';
 import { ComponentRegistrator } from '../types';
-import { CLOSE_BUTTON } from 'src/navigation/screens/buttons';
 import { NavigationEvents } from 'src/navigation/events';
-import { SIGN_BUTTON } from 'src/navigation/screens/new-offer/buttons';
+import {
+  SIGN_BUTTON,
+  CHAT_BUTTON,
+} from 'src/navigation/screens/new-offer/buttons';
 
 class NewOfferScreen extends React.Component {
   static get options() {
@@ -28,7 +30,7 @@ class NewOfferScreen extends React.Component {
         background: {
           color: colors.BLACK_PURPLE,
         },
-        leftButtons: [CLOSE_BUTTON(colors.WHITE)],
+        leftButtons: [CHAT_BUTTON],
         rightButtons: [SIGN_BUTTON],
       },
       statusBar: {
