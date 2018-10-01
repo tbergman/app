@@ -22,11 +22,7 @@ const WhiteBar = styled(View)({
 });
 
 export const Bar = () => (
-  <BarContainer
-    style={{
-      alignItems: 'center',
-    }}
-  >
+  <BarContainer>
     <WhiteBar />
   </BarContainer>
 );
