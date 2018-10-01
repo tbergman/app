@@ -144,33 +144,37 @@ export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
 }) => (
   <Container actions={actions} initialState={{ open: true }}>
     {({ open, setOpen }) => (
-      <Delayed mounted={open} mountAfter={0} unmountAfter={UNMOUNT_DELAY}>
-        <AnimationValueProvider
-          initialValue={getInitialTranslate(heightPercentage)}
-        >
-          {({ animatedValue }) => {
-            const handleClose = (velocity?: number) => {
-              Animated.spring(animatedValue, {
-                velocity: velocity,
-                bounciness: BOUNCINESS,
-                toValue: getInitialTranslate(heightPercentage),
-                useNativeDriver: true,
-              }).start();
-              setOpen(false);
-              setTimeout(() => {
-                onClose();
-              }, UNMOUNT_DELAY + 50);
-            };
+      <AnimationValueProvider
+        initialValue={getInitialTranslate(heightPercentage)}
+      >
+        {({ animatedValue }) => {
+          const handleClose = (velocity?: number) => {
+            Animated.spring(animatedValue, {
+              velocity: velocity,
+              bounciness: BOUNCINESS,
+              toValue: getInitialTranslate(heightPercentage),
+              useNativeDriver: true,
+            }).start();
+            setOpen(false);
+            setTimeout(() => {
+              onClose();
+            }, UNMOUNT_DELAY + 50);
+          };
 
-            const animateToStart = () =>
-              Animated.spring(animatedValue, {
-                bounciness: BOUNCINESS,
-                toValue: 0,
-                useNativeDriver: true,
-              }).start();
+          const animateToStart = () =>
+            Animated.spring(animatedValue, {
+              bounciness: BOUNCINESS,
+              toValue: 0,
+              useNativeDriver: true,
+            }).start();
 
-            return (
-              <Modal onRequestClose={() => handleClose()} visible transparent>
+          return (
+            <Modal onRequestClose={() => handleClose()} visible transparent>
+              <Delayed
+                mounted={open}
+                mountAfter={0}
+                unmountAfter={UNMOUNT_DELAY}
+              >
                 <Parallel>
                   <Timing
                     toValue={open ? 1 : 0}
@@ -228,11 +232,11 @@ export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
                     </WhiteBackground>
                   </Translation>
                 </PanGestureHandler>
-              </Modal>
-            );
-          }}
-        </AnimationValueProvider>
-      </Delayed>
+              </Delayed>
+            </Modal>
+          );
+        }}
+      </AnimationValueProvider>
     )}
   </Container>
 );
