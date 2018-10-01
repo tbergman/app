@@ -47,47 +47,43 @@ class SingleSelectInput extends React.Component {
   };
 
   render() {
-    const { message, selectChoice, done } = this.props;
+    const { message, selectChoice, done, showOffer } = this.props;
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
       return (
-        <NavigationContext>
-          {({ componentId }) => (
-            <StyledRightAlignedOptions key={choice.text}>
-              <AnimatedSingleSelectOptionButton
-                hidden={anySelected && !choice.selected}
-                title={choice.text}
-                selected={choice.selected}
-                onPress={() => {
-                  if (choice.type === 'selection') {
-                    selectChoice(message, choice);
-                    done(message);
-                  } else if (choice.type === 'link' && choice.view !== null) {
-                    selectChoice(message, choice);
-                    done(message);
-                    if (choice.view === 'Dashboard') {
-                      goToDashboard();
-                    } else if (choice.view === 'Offer') {
-                      showOffer(componentId);
-                    }
-                  } else if (choice.type === 'link' && choice.appUrl !== null) {
-                    selectChoice(message, choice);
-                    done(message);
-                    Linking.openURL(choice.appUrl);
-                  } else if (choice.type === 'link' && choice.webUrl !== null) {
-                    selectChoice(message, choice);
-                    done(message);
-                    Linking.openURL(choice.webUrl);
-                  } else if (choice.type === 'trustly') {
-                    showTrustly(choice.id);
-                    selectChoice(message, choice);
-                    done(message);
-                  }
-                }}
-              />
-            </StyledRightAlignedOptions>
-          )}
-        </NavigationContext>
+        <StyledRightAlignedOptions key={choice.text}>
+          <AnimatedSingleSelectOptionButton
+            hidden={anySelected && !choice.selected}
+            title={choice.text}
+            selected={choice.selected}
+            onPress={() => {
+              if (choice.type === 'selection') {
+                selectChoice(message, choice);
+                done(message);
+              } else if (choice.type === 'link' && choice.view !== null) {
+                selectChoice(message, choice);
+                done(message);
+                if (choice.view === 'Dashboard') {
+                  goToDashboard();
+                } else if (choice.view === 'Offer') {
+                  showOffer();
+                }
+              } else if (choice.type === 'link' && choice.appUrl !== null) {
+                selectChoice(message, choice);
+                done(message);
+                Linking.openURL(choice.appUrl);
+              } else if (choice.type === 'link' && choice.webUrl !== null) {
+                selectChoice(message, choice);
+                done(message);
+                Linking.openURL(choice.webUrl);
+              } else if (choice.type === 'trustly') {
+                showTrustly(choice.id);
+                selectChoice(message, choice);
+                done(message);
+              }
+            }}
+          />
+        </StyledRightAlignedOptions>
       );
     });
     return <StyledMarginContainer>{opts}</StyledMarginContainer>;

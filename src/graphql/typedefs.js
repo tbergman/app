@@ -53,8 +53,14 @@ const typeDefs = `
     cashback: Cashback!
   }
 
+  input SendEventInput {
+    type: String
+    value: String
+  }
+
   type Mutation {
     logout: Boolean
+    sendEvent(event: SendEventInput): Boolean
   }
 
   scalar LocalDate

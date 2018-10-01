@@ -17,16 +17,15 @@ import ParagraphInput from './containers/ParagraphInput';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
-import { NEW_OFFER_SCREEN } from '../../navigation/screens/new-offer';
 
 const inputComponentMap = {
-  multiple_select: <MultipleSelectInput />,
-  text: <ChatTextInput />,
-  number: <ChatNumberInput />,
-  single_select: <SingleSelectInput />,
-  bankid_collect: <BankIdCollectInput />,
-  paragraph: <ParagraphInput />,
-  audio: <AudioInput />,
+  multiple_select: () => <MultipleSelectInput />,
+  text: () => <ChatTextInput />,
+  number: () => <ChatNumberInput />,
+  single_select: (props) => <SingleSelectInput {...props} />,
+  bankid_collect: () => <BankIdCollectInput />,
+  paragraph: () => <ParagraphInput />,
+  audio: () => <AudioInput />,
 };
 
 class UnconnectedPollingMessage extends React.Component {
@@ -51,7 +50,7 @@ const PollingMessage = connect(
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages) => {
+const getInputComponent = (messages, props) => {
   if (messages.length === 0) {
     return null;
   }
@@ -61,10 +60,12 @@ const getInputComponent = (messages) => {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
-      <PollingMessage>{inputComponentMap[lastMessageType]}</PollingMessage>
+      <PollingMessage>
+        {inputComponentMap[lastMessageType](props)}
+      </PollingMessage>
     );
   }
-  return inputComponentMap[lastMessageType];
+  return inputComponentMap[lastMessageType](props);
 };
 
 const styles = StyleSheet.create({
@@ -118,7 +119,7 @@ class Chat extends React.Component {
   _startPolling = () => {
     if (!this._longPollTimeout) {
       this._longPollTimeout = setInterval(() => {
-        this.props.getMessages(this.props.intent);
+        this.props.getMessages(null);
       }, 15000);
     }
   };
@@ -132,15 +133,14 @@ class Chat extends React.Component {
 
   _handleAppStateChange = (appState) => {
     if (appState === 'active') {
-      this.props.getMessages(this.props.intent);
+      this.props.getMessages(null);
     }
   };
 
   _showOffer = () => {
     this._stopPolling();
-    Navigation.push(this.props.componentId, {
-      component: NEW_OFFER_SCREEN,
-    });
+    console.log('show offer');
+    this.props.onRequestClose();
   };
 
   _showDashboard = () => {
@@ -161,10 +161,16 @@ class Chat extends React.Component {
         style={styles.container}
       >
         <View style={styles.messages}>
-          {this.props.messages.length ? <MessageList /> : <Loader />}
+          {this.props.messages.length ? (
+            <MessageList showOffer={this._showOffer} />
+          ) : (
+            <Loader />
+          )}
         </View>
         <View style={styles.response}>
-          {getInputComponent(this.props.messages, this.props.navigation)}
+          {getInputComponent(this.props.messages, {
+            showOffer: this._showOffer,
+          })}
         </View>
       </KeyboardAvoidingView>
     );

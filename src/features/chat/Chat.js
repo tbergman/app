@@ -29,13 +29,13 @@ import {
 } from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
-  multiple_select: <MultipleSelectInput />,
-  text: <ChatTextInput />,
-  number: <ChatNumberInput />,
-  single_select: <SingleSelectInput />,
-  bankid_collect: <BankIdCollectInput />,
-  paragraph: <ParagraphInput />,
-  audio: <AudioInput />,
+  multiple_select: () => <MultipleSelectInput />,
+  text: () => <ChatTextInput />,
+  number: () => <ChatNumberInput />,
+  single_select: (props) => <SingleSelectInput {...props} />,
+  bankid_collect: () => <BankIdCollectInput />,
+  paragraph: () => <ParagraphInput />,
+  audio: () => <AudioInput />,
 };
 
 class UnconnectedPollingMessage extends React.Component {
@@ -60,7 +60,7 @@ const PollingMessage = connect(
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages) => {
+const getInputComponent = (messages, props) => {
   if (messages.length === 0) {
     return null;
   }
@@ -70,10 +70,12 @@ const getInputComponent = (messages) => {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
-      <PollingMessage>{inputComponentMap[lastMessageType]}</PollingMessage>
+      <PollingMessage>
+        {inputComponentMap[lastMessageType](props)}
+      </PollingMessage>
     );
   }
-  return inputComponentMap[lastMessageType];
+  return inputComponentMap[lastMessageType](props);
 };
 
 const styles = StyleSheet.create({
@@ -231,7 +233,9 @@ class Chat extends React.Component {
             {this.props.messages.length ? <MessageList /> : <Loader />}
           </View>
           <View style={styles.response}>
-            {getInputComponent(this.props.messages, this.props.navigation)}
+            {getInputComponent(this.props.messages, {
+              showOffer: this._showOffer,
+            })}
           </View>
         </KeyboardAvoidingView>
       </NavigationOptions>

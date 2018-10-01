@@ -1,5 +1,4 @@
 import { SIGN_BUTTON_COMPONENT } from 'src/navigation/components/sign-button';
-import { CHAT_BUTTON_COMPONENT } from 'src/navigation/components/chat-button';
 
 export const SIGN_BUTTON = {
   id: 'SIGN_BUTTON',
@@ -8,5 +7,8 @@ export const SIGN_BUTTON = {
 
 export const CHAT_BUTTON = {
   id: 'CHAT_BUTTON',
-  component: CHAT_BUTTON_COMPONENT,
+  component: {
+    name: 'ChatButton',
+    alignment: 'center',
+  },
 };
