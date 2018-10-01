@@ -145,6 +145,7 @@ class Chat extends React.Component {
 
   getNavigationOptions = () => {
     const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
+
     if (onboardingDone) {
       if (isModal) {
         return {
@@ -205,9 +206,7 @@ class Chat extends React.Component {
 
   _showOffer = () => {
     this._stopPolling();
-    Navigation.push(this.props.componentId, {
-      component: NEW_OFFER_SCREEN,
-    });
+    Navigation.push(this.props.componentId, NEW_OFFER_SCREEN);
   };
 
   _showDashboard = () => {
