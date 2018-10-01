@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import * as R from 'ramda';
 import PopupDialog from 'react-native-popup-dialog';
+import { DraggableOverlay } from 'src/components/draggable-overlay';
 
 import { XNavigateBackButton } from '../../../components/Button';
 import { PERIL_IMAGE_MAP } from '../../../features/dashboard/components/Peril';
@@ -36,27 +37,8 @@ const { width: viewportWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   backdrop: { height: 0 },
-  dialogClose: {
-    position: 'absolute',
-    left: 15,
-    top: 15,
-    zIndex: 2,
-  },
-  dialog: {
-    backgroundColor: colors.TRANSPARENT,
-    justifyContent: 'center',
-    zIndex: 102,
-    elevation: 1,
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingHorizontal: {
-      [H_SPACIOUS]: 15,
-      [H_REGULAR]: 5,
-      [H_COMPACT]: 5,
-    }[horizontalSizeClass],
-  },
   dialogContent: {
-    position: 'relative',
+    height: '100%',
     backgroundColor: colors.OFF_WHITE,
     borderRadius: 3,
     overflow: 'hidden',
@@ -81,20 +63,23 @@ const styles = StyleSheet.create({
   dialogImage: {
     marginTop: 18,
     marginBottom: 10,
-    height: 120,
-    width: 120,
+    height: 60,
+    width: 60,
   },
   perilsContent: {
     padding: 25,
   },
   perilsHeader: {
     padding: 25,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    flexDirection: 'row',
   },
 });
 
 class PerilsDialog extends React.Component {
+  state = { isVisible: false };
+
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
@@ -103,13 +88,16 @@ class PerilsDialog extends React.Component {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(nextProps) {
     const { activePeril, isPerilsDialogOpen } = this.props;
-    if (activePeril && !isPerilsDialogOpen) {
-      Keyboard.dismiss();
-      this.popupDialog.show();
-    } else if (!activePeril && isPerilsDialogOpen) {
-      this.popupDialog.dismiss();
+
+    if (activePeril !== nextProps.activePeril) {
+      if (activePeril) {
+        Keyboard.dismiss();
+        this.setState({ isVisible: true });
+      } else {
+        this.setState({ isVisible: false });
+      }
     }
   }
 
@@ -128,55 +116,54 @@ class PerilsDialog extends React.Component {
     return (title || '').replace(/[\n-]/g, '');
   }
 
+  getHeightPercentage() {
+    if (this.props.activePeril.description.length > 300) {
+      return 70;
+    }
+
+    if (this.props.activePeril.description.length > 200) {
+      return 60;
+    }
+
+    return 50;
+  }
+
   render() {
     return (
-      <PopupDialog
-        ref={(popupDialog) => {
-          this.popupDialog = popupDialog;
-        }}
-        dismissOnTouchOutside={false}
-        dismissOnHardwareBackPress={false}
-        width={viewportWidth - 20}
-        height={0.99}
-        style={styles.backdrop}
-        dialogStyle={styles.dialog}
-        onShown={this.props.dialogShown}
-        onDismissed={this.props.dialogDismissed}
-      >
-        {this.props.isPerilsDialogOpen &&
-          this.props.activePeril && (
-            <View style={styles.dialogContent}>
-              <View style={styles.dialogClose}>
-                <XNavigateBackButton
-                  onPress={() => this.props.unsetActivePeril()}
-                />
+      this.props.activePeril &&
+      this.state.isVisible && (
+        <DraggableOverlay
+          onClose={() => {
+            this.props.unsetActivePeril();
+            this.setState({ isVisible: false });
+          }}
+          heightPercentage={this.getHeightPercentage()}
+        >
+          <View style={styles.dialogContent}>
+            <View style={styles.perilsHeader}>
+              <View>
+                <Text style={styles.dialogHeading}>
+                  {this.props.activePerilCategoryTitle}
+                </Text>
+                <Text style={styles.dialogSubHeading}>Försäkras mot</Text>
               </View>
-              <ScrollView>
-                <View style={styles.perilsHeader}>
-                  <Text style={styles.dialogHeading}>
-                    {this.props.activePerilCategoryTitle}
-                  </Text>
-                  <Text style={styles.dialogSubHeading}>Försäkras mot</Text>
-                  <Image
-                    style={styles.dialogImage}
-                    source={PERIL_IMAGE_MAP[this.props.activePeril.id]}
-                    resizeMode="contain"
-                  />
-                </View>
-                <View style={styles.contentWrapper}>
-                  <View style={styles.perilsContent}>
-                    <Heading>
-                      {this.cleanTitle(this.props.activePeril.title)}
-                    </Heading>
-                    <Description>
-                      {this.props.activePeril.description}
-                    </Description>
-                  </View>
-                </View>
-              </ScrollView>
+              <Image
+                style={styles.dialogImage}
+                source={PERIL_IMAGE_MAP[this.props.activePeril.id]}
+                resizeMode="contain"
+              />
             </View>
-          )}
-      </PopupDialog>
+            <View style={styles.contentWrapper}>
+              <View style={styles.perilsContent}>
+                <Heading>
+                  {this.cleanTitle(this.props.activePeril.title)}
+                </Heading>
+                <Description>{this.props.activePeril.description}</Description>
+              </View>
+            </View>
+          </View>
+        </DraggableOverlay>
+      )
     );
   }
 }
