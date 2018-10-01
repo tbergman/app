@@ -6,6 +6,7 @@ import {
   Animated,
   View,
   Text,
+  Dimensions,
 } from 'react-native';
 import { BankID } from 'src/components/icons/BankID';
 import { NavigationEvents } from 'src/navigation/events';
@@ -67,7 +68,7 @@ export const SignButton: React.SFC<SignButtonProps> = ({
   scrollAnimatedValue,
 }) => (
   <AnimationValueListener
-    testValue={(value) => value > 600}
+    testValue={(value) => value > Dimensions.get('window').height}
     animatedValue={scrollAnimatedValue}
   >
     {(isActive) => (
