@@ -28,6 +28,7 @@ const ButtonContainer = styled(TouchableOpacity)({
   paddingRight: 25,
   flexDirection: 'row',
   shadowColor: colors.BLACK_PURPLE,
+  elevation: 5,
   shadowOpacity: 0.15,
   shadowRadius: 15,
   shadowOffset: {
@@ -40,6 +41,7 @@ const GetText = styled(Text)({
   fontSize: 17,
   fontFamily: fonts.CIRCULAR,
   fontWeight: '500',
+  color: colors.BLACK,
 });
 
 const BounceUpView = styled(AnimatedView)(

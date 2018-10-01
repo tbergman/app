@@ -144,97 +144,95 @@ export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
 }) => (
   <Container actions={actions} initialState={{ open: true }}>
     {({ open, setOpen }) => (
-      <Modal visible transparent>
-        <Delayed mounted={open} mountAfter={0} unmountAfter={UNMOUNT_DELAY}>
-          <AnimationValueProvider
-            initialValue={getInitialTranslate(heightPercentage)}
-          >
-            {({ animatedValue }) => {
-              const handleClose = (velocity?: number) => {
-                Animated.spring(animatedValue, {
-                  velocity: velocity,
-                  bounciness: BOUNCINESS,
-                  toValue: getInitialTranslate(heightPercentage),
-                  useNativeDriver: true,
-                }).start();
-                setOpen(false);
-                setTimeout(() => {
-                  onClose();
-                }, UNMOUNT_DELAY + 50);
-              };
+      <Delayed mounted={open} mountAfter={0} unmountAfter={UNMOUNT_DELAY}>
+        <AnimationValueProvider
+          initialValue={getInitialTranslate(heightPercentage)}
+        >
+          {({ animatedValue }) => {
+            const handleClose = (velocity?: number) => {
+              Animated.spring(animatedValue, {
+                velocity: velocity,
+                bounciness: BOUNCINESS,
+                toValue: getInitialTranslate(heightPercentage),
+                useNativeDriver: true,
+              }).start();
+              setOpen(false);
+              setTimeout(() => {
+                onClose();
+              }, UNMOUNT_DELAY + 50);
+            };
 
-              const animateToStart = () =>
-                Animated.spring(animatedValue, {
-                  bounciness: BOUNCINESS,
-                  toValue: 0,
-                  useNativeDriver: true,
-                }).start();
+            const animateToStart = () =>
+              Animated.spring(animatedValue, {
+                bounciness: BOUNCINESS,
+                toValue: 0,
+                useNativeDriver: true,
+              }).start();
 
-              return (
-                <>
-                  <Parallel>
-                    <Timing
-                      toValue={open ? 1 : 0}
-                      initialValue={0}
-                      config={{ duration: UNMOUNT_DELAY / 2 }}
-                    >
-                      {(shadowAnimatedValue) => (
-                        <TouchableWithoutFeedback onPress={() => handleClose()}>
-                          <Shadow animatedValue={shadowAnimatedValue} />
-                        </TouchableWithoutFeedback>
-                      )}
-                    </Timing>
-                  </Parallel>
-                  <Mount on={animateToStart}>{null}</Mount>
-                  <PanGestureHandler
-                    onHandlerStateChange={(event) => {
-                      if (event.nativeEvent.oldState === GestureState.ACTIVE) {
-                        if (
-                          shouldBounceBack({
-                            velocityY: event.nativeEvent.velocityY,
-                            translationY: event.nativeEvent.translationY,
-                            heightPercentage,
-                          })
-                        ) {
-                          animateToStart();
-                        } else {
-                          handleClose(event.nativeEvent.velocityY);
-                        }
-                      }
-                    }}
-                    onGestureEvent={Animated.event(
-                      [
-                        {
-                          nativeEvent: {
-                            translationY: animatedValue,
-                          },
-                        },
-                      ],
-                      {
-                        useNativeDriver: true,
-                      },
-                    )}
+            return (
+              <Modal onRequestClose={() => handleClose()} visible transparent>
+                <Parallel>
+                  <Timing
+                    toValue={open ? 1 : 0}
+                    initialValue={0}
+                    config={{ duration: UNMOUNT_DELAY / 2 }}
                   >
-                    <Translation
-                      translationY={animatedValue}
-                      heightPercentage={heightPercentage}
-                    >
-                      <Bar />
-                      <WhiteBackground>
-                        <ContentContainer heightPercentage={heightPercentage}>
-                          {typeof children === 'function'
-                            ? children(handleClose)
-                            : children}
-                        </ContentContainer>
-                      </WhiteBackground>
-                    </Translation>
-                  </PanGestureHandler>
-                </>
-              );
-            }}
-          </AnimationValueProvider>
-        </Delayed>
-      </Modal>
+                    {(shadowAnimatedValue) => (
+                      <TouchableWithoutFeedback onPress={() => handleClose()}>
+                        <Shadow animatedValue={shadowAnimatedValue} />
+                      </TouchableWithoutFeedback>
+                    )}
+                  </Timing>
+                </Parallel>
+                <Mount on={animateToStart}>{null}</Mount>
+                <PanGestureHandler
+                  onHandlerStateChange={(event) => {
+                    if (event.nativeEvent.oldState === GestureState.ACTIVE) {
+                      if (
+                        shouldBounceBack({
+                          velocityY: event.nativeEvent.velocityY,
+                          translationY: event.nativeEvent.translationY,
+                          heightPercentage,
+                        })
+                      ) {
+                        animateToStart();
+                      } else {
+                        handleClose(event.nativeEvent.velocityY);
+                      }
+                    }
+                  }}
+                  onGestureEvent={Animated.event(
+                    [
+                      {
+                        nativeEvent: {
+                          translationY: animatedValue,
+                        },
+                      },
+                    ],
+                    {
+                      useNativeDriver: true,
+                    },
+                  )}
+                >
+                  <Translation
+                    translationY={animatedValue}
+                    heightPercentage={heightPercentage}
+                  >
+                    <Bar />
+                    <WhiteBackground>
+                      <ContentContainer heightPercentage={heightPercentage}>
+                        {typeof children === 'function'
+                          ? children(handleClose)
+                          : children}
+                      </ContentContainer>
+                    </WhiteBackground>
+                  </Translation>
+                </PanGestureHandler>
+              </Modal>
+            );
+          }}
+        </AnimationValueProvider>
+      </Delayed>
     )}
   </Container>
 );
