@@ -18,14 +18,6 @@ import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NEW_OFFER_SCREEN } from '../../navigation/screens/new-offer';
-import { getMainLayout, setLayout } from '../../navigation/layout';
-
-import {
-  RESTART_BUTTON,
-  CLOSE_BUTTON,
-  GO_TO_DASHBOARD_BUTTON,
-  SHOW_OFFER_BUTTON,
-} from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
   multiple_select: <MultipleSelectInput />,
@@ -163,7 +155,7 @@ class Chat extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView
-        keyboardVerticalOffset={isIphoneX() ? 150 : 70}
+        keyboardVerticalOffset={70}
         behavior="padding"
         enabled={Platform.OS === 'ios'}
         style={styles.container}
