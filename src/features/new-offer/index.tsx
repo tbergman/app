@@ -21,6 +21,7 @@ import { Checkout } from 'src/features/new-offer/components/checkout';
 import { NavigationOptions } from 'src/navigation/options';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { SignButton } from 'src/features/new-offer/components/sign-button';
+import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -144,6 +145,7 @@ export const NewOffer: React.SFC = () => (
             )}
           </TranslationsConsumer>
           <Checkout />
+          <PerilsDialog />
         </>
       )
     }
