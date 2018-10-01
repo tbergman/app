@@ -41,18 +41,26 @@ export const normalizeTranslations = (translations: Translation[]) =>
     return acc;
   }, {});
 
+const getTextKeys = (data?: Data) => {
+  console.log(data);
+
+  if (!data || !data.languages || !data.languages[0]) {
+    return {};
+  }
+
+  return normalizeTranslations(data!.languages[0].translations);
+};
+
 export const TranslationsProvider: React.SFC = ({ children }) => (
   <Query<Data> query={TRANSLATIONS_QUERY}>
-    {({ loading, data }) =>
-      loading ? null : (
-        <TranslationsContext.Provider
-          value={{
-            textKeys: normalizeTranslations(data!.languages[0].translations),
-          }}
-        >
-          {children}
-        </TranslationsContext.Provider>
-      )
-    }
+    {({ data }) => (
+      <TranslationsContext.Provider
+        value={{
+          textKeys: getTextKeys(data),
+        }}
+      >
+        {children}
+      </TranslationsContext.Provider>
+    )}
   </Query>
 );
