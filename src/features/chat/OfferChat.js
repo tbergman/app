@@ -105,25 +105,6 @@ class Chat extends React.Component {
 
   constructor(props) {
     super(props);
-    // Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }) {
-    if (buttonId === RESTART_BUTTON.id) {
-      this._resetConversation();
-    }
-
-    if (buttonId === CLOSE_BUTTON.id) {
-      Navigation.dismissModal(this.props.componentId);
-    }
-
-    if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-      setLayout(getMainLayout());
-    }
-
-    if (buttonId === SHOW_OFFER_BUTTON.id) {
-      this._showOffer();
-    }
   }
 
   componentDidMount() {
@@ -141,45 +122,6 @@ class Chat extends React.Component {
     AppState.removeEventListener('change', this._handleAppStateChange);
     this._stopPolling();
   }
-
-  getNavigationOptions = () => {
-    const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
-    if (onboardingDone) {
-      if (isModal) {
-        return {
-          topBar: {
-            leftButtons: [CLOSE_BUTTON],
-            rightButtons: [],
-          },
-        };
-      }
-
-      return {
-        topBar: {
-          leftButtons: [GO_TO_DASHBOARD_BUTTON],
-          rightButtons: [],
-        },
-      };
-    } else {
-      if (showReturnToOfferButton) {
-        {
-          return {
-            topBar: {
-              leftButtons: [],
-              rightButtons: [SHOW_OFFER_BUTTON],
-            },
-          };
-        }
-      }
-
-      return {
-        topBar: {
-          leftButtons: [],
-          rightButtons: [RESTART_BUTTON],
-        },
-      };
-    }
-  };
 
   _startPolling = () => {
     if (!this._longPollTimeout) {
