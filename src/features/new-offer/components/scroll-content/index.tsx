@@ -5,15 +5,12 @@ import { colors } from '@hedviginsurance/brand';
 import { Arrow } from 'src/components/icons/Arrow';
 import { Spacing } from 'src/components/Spacing';
 import { Parallel, Spring, Delay } from 'animated-react-native-components';
-import { DraggableOverlay } from 'src/components/draggable-overlay';
-import { Container, ActionMap } from 'constate';
 
 import OfferScreen2 from 'src/features/offer/containers/screens/OfferScreen2';
 import OfferScreen3 from 'src/features/offer/containers/screens/OfferScreen3';
 import OfferScreen4 from 'src/features/offer/containers/screens/OfferScreen4';
 
 import { Header } from './header';
-import { AnimatedSingleSelectOptionButton } from 'src/features/chat/components/Button';
 
 const Content = styled(View)({
   backgroundColor: colors.WHITE,
@@ -51,20 +48,6 @@ interface ScrollContentProps {
   scrollAnimatedValue: Animated.Value;
 }
 
-interface State {
-  open: boolean;
-}
-
-interface Actions {
-  setOpen: (open: boolean) => void;
-}
-
-const actions: ActionMap<State, Actions> = {
-  setOpen: (open) => () => ({
-    open,
-  }),
-};
-
 export const ScrollContent: React.SFC<ScrollContentProps> = ({
   scrollAnimatedValue,
 }) => (
@@ -85,31 +68,6 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
           <Spacing height={20} />
           <Content>
             <Header />
-            <Container actions={actions} initialState={{ open: false }}>
-              {({ open, setOpen }) => (
-                <>
-                  <Spacing height={20} />
-                  <AnimatedSingleSelectOptionButton
-                    onPress={() => setOpen(true)}
-                    title="Open draggable overlay"
-                  />
-
-                  {open && (
-                    <DraggableOverlay onClose={() => setOpen(false)}>
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          height: '100%',
-                          backgroundColor: 'red',
-                        }}
-                      >
-                        Here will be a peril
-                      </Text>
-                    </DraggableOverlay>
-                  )}
-                </>
-              )}
-            </Container>
             <OfferScreen2 />
             <OfferScreen3 />
             <OfferScreen4 />
