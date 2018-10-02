@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import { Spacing } from 'src/components/Spacing';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
@@ -23,7 +24,7 @@ const Body = styled(Text)({
 
 const Block = styled(View)({
   padding: 20,
-  paddingBottom: 110,
+  paddingBottom: isIphoneX() ? 70 : 110,
   alignItems: 'center',
   backgroundColor: colors.BLACK_PURPLE,
 });
