@@ -8,6 +8,7 @@ import { Header } from 'src/components/draggable-overlay/header';
 import OfferChat from 'src/features/chat/OfferChat';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 interface State {
   open: boolean;
@@ -37,8 +38,9 @@ export const ChatButton: React.SFC = () => (
           <>
             <TouchableOpacity
               onPress={() => {
-                mutate();
-                setOpen(true);
+                mutate().then(() => {
+                  setOpen(true);
+                });
               }}
             >
               <SpeechBubbles height={25} width={25} />
@@ -50,10 +52,12 @@ export const ChatButton: React.SFC = () => (
               >
                 {(handleClose) => (
                   <>
-                    <Header
-                      title="Prata med hedvig"
-                      onCloseClick={handleClose}
-                    />
+                    <TranslationsConsumer textKey="OFFER_CHAT_HEADER">
+                      {(text) => (
+                        <Header title={text} onCloseClick={handleClose} />
+                      )}
+                    </TranslationsConsumer>
+
                     <OfferChat onRequestClose={handleClose} />
                   </>
                 )}
