@@ -3,9 +3,9 @@ import { Update, Mount, Unmount } from 'react-lifecycle-components';
 import { Container, ActionMap } from 'constate';
 
 interface DelayedProps {
-  mounted: boolean;
-  mountAfter: number;
-  unmountAfter: number;
+  mountChildren: boolean;
+  mountChildrenAfter: number;
+  unmountChildrenAfter: number;
 }
 
 interface State {
@@ -28,36 +28,47 @@ const actions: ActionMap<State, Actions> = {
 };
 
 export const Delayed: React.SFC<DelayedProps> = ({
-  mounted,
-  mountAfter,
-  unmountAfter,
+  mountChildren,
+  mountChildrenAfter,
+  unmountChildrenAfter,
   children,
 }) => (
   <Container
     actions={actions}
-    initialState={{ shouldRenderChildren: mounted && mountAfter === 0 }}
+    initialState={{
+      shouldRenderChildren: mountChildren && mountChildrenAfter === 0,
+    }}
   >
     {({ shouldRenderChildren, setShouldRenderChildren, setTimer, timer }) => (
       <Update
         was={() => {
-          if (mounted) {
+          if (mountChildren) {
             setTimer(
-              setTimeout(() => setShouldRenderChildren(true), mountAfter),
+              setTimeout(
+                () => setShouldRenderChildren(true),
+                mountChildrenAfter,
+              ),
             );
           } else {
             setTimer(
-              setTimeout(() => setShouldRenderChildren(false), unmountAfter),
+              setTimeout(
+                () => setShouldRenderChildren(false),
+                unmountChildrenAfter,
+              ),
             );
           }
         }}
-        watched={mounted}
+        watched={mountChildren}
       >
         <>
           <Mount
             on={() => {
-              if (mounted && !shouldRenderChildren) {
+              if (mountChildren && !shouldRenderChildren) {
                 setTimer(
-                  setTimeout(() => setShouldRenderChildren(true), mountAfter),
+                  setTimeout(
+                    () => setShouldRenderChildren(true),
+                    mountChildrenAfter,
+                  ),
                 );
               }
             }}
