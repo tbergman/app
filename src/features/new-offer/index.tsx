@@ -105,6 +105,7 @@ interface ScrollToParams {
 
 interface ScrollViewElement {
   scrollTo: (params: ScrollToParams) => void;
+  flashScrollIndicators: () => void;
 }
 
 interface AnimatedScrollViewComponent {
@@ -112,6 +113,25 @@ interface AnimatedScrollViewComponent {
 }
 
 const NewOfferRef = React.createRef<AnimatedScrollViewComponent>();
+
+const bounceScrollView = () => {
+  const scrollView = NewOfferRef.current!.getNode();
+
+  scrollView.scrollTo({
+    x: 0,
+    y: -25,
+    animated: true,
+  });
+
+  setTimeout(() => {
+    scrollView.scrollTo({
+      x: 0,
+      y: 0,
+      animated: true,
+    });
+    scrollView.flashScrollIndicators();
+  }, 250);
+};
 
 export const NewOffer: React.SFC = () => (
   <Query<{ insurance: Insurance }> query={INSURANCE_QUERY}>
@@ -135,21 +155,7 @@ export const NewOffer: React.SFC = () => (
                     <Spacing height={15} />
                     <FeaturesContainer animatedValue={animatedValue}>
                       <FeaturesBubbles
-                        onPress={() => {
-                          NewOfferRef.current!.getNode().scrollTo({
-                            x: 0,
-                            y: -25,
-                            animated: true,
-                          });
-
-                          setTimeout(() => {
-                            NewOfferRef.current!.getNode().scrollTo({
-                              x: 0,
-                              y: 0,
-                              animated: true,
-                            });
-                          }, 250);
-                        }}
+                        onPress={() => bounceScrollView()}
                         personsInHousehold={data!.insurance.personsInHousehold!}
                         insuredAtOtherCompany={
                           data!.insurance.insuredAtOtherCompany!
