@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
-import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -17,6 +16,8 @@ import ParagraphInput from './containers/ParagraphInput';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
+
+import Dialog from 'src/containers/Dialog';
 
 const inputComponentMap = {
   multiple_select: () => <MultipleSelectInput />,
@@ -154,25 +155,28 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={70}
-        behavior="padding"
-        enabled={Platform.OS === 'ios'}
-        style={styles.container}
-      >
-        <View style={styles.messages}>
-          {this.props.messages.length ? (
-            <MessageList showOffer={this._showOffer} />
-          ) : (
-            <Loader />
-          )}
-        </View>
-        <View style={styles.response}>
-          {getInputComponent(this.props.messages, {
-            showOffer: this._showOffer,
-          })}
-        </View>
-      </KeyboardAvoidingView>
+      <>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={70}
+          behavior="padding"
+          enabled={Platform.OS === 'ios'}
+          style={styles.container}
+        >
+          <View style={styles.messages}>
+            {this.props.messages.length ? (
+              <MessageList showOffer={this._showOffer} />
+            ) : (
+              <Loader />
+            )}
+          </View>
+          <View style={styles.response}>
+            {getInputComponent(this.props.messages, {
+              showOffer: this._showOffer,
+            })}
+          </View>
+        </KeyboardAvoidingView>
+        <Dialog />
+      </>
     );
   }
 }
