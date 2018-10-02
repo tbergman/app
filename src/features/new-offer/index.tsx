@@ -97,6 +97,22 @@ const INSURANCE_QUERY = gql`
   }
 `;
 
+interface ScrollToParams {
+  x: number;
+  y: number;
+  animated: boolean;
+}
+
+interface ScrollViewElement {
+  scrollTo: (params: ScrollToParams) => void;
+}
+
+interface AnimatedScrollViewComponent {
+  getNode: () => ScrollViewElement;
+}
+
+const NewOfferRef = React.createRef<AnimatedScrollViewComponent>();
+
 export const NewOffer: React.SFC = () => (
   <Query<{ insurance: Insurance }> query={INSURANCE_QUERY}>
     {({ data, loading, error }) =>
@@ -111,6 +127,7 @@ export const NewOffer: React.SFC = () => (
                   contentContainerStyle={{
                     alignItems: 'center',
                   }}
+                  innerRef={NewOfferRef}
                 >
                   <FixedContainer animatedValue={animatedValue}>
                     <Spacing height={15} />
@@ -118,6 +135,21 @@ export const NewOffer: React.SFC = () => (
                     <Spacing height={15} />
                     <FeaturesContainer animatedValue={animatedValue}>
                       <FeaturesBubbles
+                        onPress={() => {
+                          NewOfferRef.current!.getNode().scrollTo({
+                            x: 0,
+                            y: -25,
+                            animated: true,
+                          });
+
+                          setTimeout(() => {
+                            NewOfferRef.current!.getNode().scrollTo({
+                              x: 0,
+                              y: 0,
+                              animated: true,
+                            });
+                          }, 250);
+                        }}
                         personsInHousehold={data!.insurance.personsInHousehold!}
                         insuredAtOtherCompany={
                           data!.insurance.insuredAtOtherCompany!
