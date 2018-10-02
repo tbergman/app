@@ -57,7 +57,6 @@ export const ChatButton: React.SFC = () => (
                         <Header title={text} onCloseClick={handleClose} />
                       )}
                     </TranslationsConsumer>
-
                     <OfferChat onRequestClose={handleClose} />
                   </>
                 )}
