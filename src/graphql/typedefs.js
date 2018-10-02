@@ -60,7 +60,7 @@ const typeDefs = `
 
   type Mutation {
     logout: Boolean
-    sendEvent(event: SendEventInput): Boolean
+    offerClosed: Boolean
   }
 
   scalar LocalDate

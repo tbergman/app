@@ -24,16 +24,16 @@ const actions: ActionMap<State, Actions> = {
   }),
 };
 
-const SEND_EVENT_MUTATION = gql`
-  mutation ModalClosedEvent {
-    sendEvent(event: { type: "MODAL_CLOSED", value: "quote" })
+const OFFER_CLOSED_MUTATION = gql`
+  mutation OfferClosed {
+    offerClosed
   }
 `;
 
 export const ChatButton: React.SFC = () => (
   <Container actions={actions} initialState={{ open: false }}>
     {({ open, setOpen }) => (
-      <Mutation mutation={SEND_EVENT_MUTATION}>
+      <Mutation mutation={OFFER_CLOSED_MUTATION}>
         {(mutate) => (
           <>
             <TouchableOpacity
