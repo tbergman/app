@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Image,
   BackHandler,
-  Dimensions,
   Keyboard,
 } from 'react-native';
 import * as R from 'ramda';
