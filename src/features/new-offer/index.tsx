@@ -22,6 +22,7 @@ import { NavigationOptions } from 'src/navigation/options';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { SignButton } from 'src/features/new-offer/components/sign-button';
 import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
+import { NEW_OFFER_OPTIONS } from 'src/navigation/screens/new-offer/options';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -179,6 +180,7 @@ export const NewOffer: React.SFC = () => (
             {(title) => (
               <NavigationOptions
                 options={{
+                  ...NEW_OFFER_OPTIONS,
                   topBar: {
                     title: { text: title },
                     subtitle: { text: data!.insurance.address! },
