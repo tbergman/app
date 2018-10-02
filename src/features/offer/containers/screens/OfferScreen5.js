@@ -242,7 +242,7 @@ class OfferScreen extends React.Component {
 }
 
 const OfferContainer = connect(
-  null,
+  (state) => ({ insurance: state.insurance }),
   null,
 )(OfferScreen);
 

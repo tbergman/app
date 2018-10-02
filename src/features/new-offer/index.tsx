@@ -158,7 +158,12 @@ export const NewOffer: React.SFC = () => (
                       />
                     </FeaturesContainer>
                   </FixedContainer>
-                  <ScrollContent scrollAnimatedValue={animatedValue} />
+                  <ScrollContent
+                    insuredAtOtherCompany={
+                      data!.insurance.insuredAtOtherCompany!
+                    }
+                    scrollAnimatedValue={animatedValue}
+                  />
                 </ScrollContainer>
                 <SignButton scrollAnimatedValue={animatedValue} />
               </>
