@@ -140,7 +140,6 @@ class Chat extends React.Component {
 
   _showOffer = () => {
     this._stopPolling();
-    console.log('show offer');
     this.props.onRequestClose();
   };
 
