@@ -1,6 +1,8 @@
 import React from 'react';
 import { colors } from '@hedviginsurance/brand';
 import { Navigation } from 'react-native-navigation';
+import { Mount } from 'react-lifecycle-components';
+import { AsyncStorage } from 'react-native';
 
 import { NewOffer } from 'src/features/new-offer';
 import { ComponentRegistrator } from '../types';
@@ -9,6 +11,8 @@ import {
   SIGN_BUTTON,
   CHAT_BUTTON,
 } from 'src/navigation/screens/new-offer/buttons';
+
+import { IS_VIEWING_OFFER } from 'src/constants';
 
 class NewOfferScreen extends React.Component {
   static get options() {
@@ -50,6 +54,9 @@ class NewOfferScreen extends React.Component {
           }
           onGlobalEvent={(event: any) => console.log(event)}
         />
+        <Mount on={() => AsyncStorage.setItem(IS_VIEWING_OFFER, 'true')}>
+          {null}
+        </Mount>
         <NewOffer {...this.props} />
       </React.Fragment>
     );
