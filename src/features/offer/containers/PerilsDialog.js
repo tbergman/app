@@ -88,10 +88,10 @@ class PerilsDialog extends React.Component {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
 
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     const { activePeril, isPerilsDialogOpen } = this.props;
 
-    if (activePeril !== nextProps.activePeril) {
+    if (activePeril !== prevProps.activePeril) {
       if (activePeril) {
         Keyboard.dismiss();
         this.setState({ isVisible: true });
