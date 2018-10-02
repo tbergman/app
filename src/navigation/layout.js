@@ -13,6 +13,9 @@ import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { OFFER_SCREEN } from 'src/navigation/screens/offer';
+
+import { getOfferGroup } from 'src/navigation/screens/offer/ab-test';
 
 export const getMarketingLayout = () => ({
   root: {
@@ -76,13 +79,28 @@ export const getChatLayout = () => ({
   },
 });
 
-export const getOfferLayout = () => ({
-  root: {
-    stack: {
-      children: [NEW_OFFER_SCREEN],
-    },
-  },
-});
+export const getOfferLayout = async () => {
+  if ((await getOfferGroup()) === 'new') {
+    return {
+      root: {
+        stack: {
+          children: [NEW_OFFER_SCREEN],
+        },
+      },
+    };
+  }
+
+  return {
+    modals: [
+      {
+        stack: {
+          children: [OFFER_SCREEN],
+        },
+      },
+    ],
+    ...getChatLayout(),
+  };
+};
 
 export const getInitialLayout = async () => {
   const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
@@ -114,7 +132,8 @@ export const getInitialLayout = async () => {
       const isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
 
       if (isViewingOffer) {
-        return resolve(getOfferLayout());
+        const OFFER_LAYOUT = await getOfferLayout();
+        return resolve(OFFER_LAYOUT);
       }
 
       return resolve(getChatLayout());
