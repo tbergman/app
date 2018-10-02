@@ -7,22 +7,13 @@ import {
   Image,
   BackHandler,
   Dimensions,
-  ScrollView,
   Keyboard,
 } from 'react-native';
 import * as R from 'ramda';
-import PopupDialog from 'react-native-popup-dialog';
 import { DraggableOverlay } from 'src/components/draggable-overlay';
 
-import { XNavigateBackButton } from '../../../components/Button';
 import { PERIL_IMAGE_MAP } from '../../../features/dashboard/components/Peril';
 
-import {
-  horizontalSizeClass,
-  H_SPACIOUS,
-  H_REGULAR,
-  H_COMPACT,
-} from '../../../services/DimensionSizes';
 import {
   PERILS_DIALOG_SHOWN,
   PERILS_DIALOG_DISMISSED,
@@ -33,10 +24,7 @@ import { Heading } from '../components/Heading';
 
 import { colors } from '@hedviginsurance/brand';
 
-const { width: viewportWidth } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
-  backdrop: { height: 0 },
   dialogContent: {
     height: '100%',
     backgroundColor: colors.OFF_WHITE,
@@ -89,7 +77,7 @@ class PerilsDialog extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { activePeril, isPerilsDialogOpen } = this.props;
+    const { activePeril } = this.props;
 
     if (activePeril !== prevProps.activePeril) {
       if (activePeril) {
