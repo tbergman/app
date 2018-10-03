@@ -1,5 +1,6 @@
 import { AsyncStorage, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import Branch from 'react-native-branch';
 
 import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
@@ -13,6 +14,7 @@ import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { getMockLayout } from 'src/navigation/mock';
 
 export const getMarketingLayout = () => ({
   root: {
@@ -85,6 +87,13 @@ export const getOfferLayout = () => ({
 });
 
 export const getInitialLayout = async () => {
+  const referringParams = await Branch.getLatestReferringParams();
+  const url = referringParams['+non_branch_link'] || '';
+
+  if (url.includes('mock')) {
+    return getMockLayout(url);
+  }
+
   const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
     SEEN_MARKETING_CAROUSEL_KEY,
   );

@@ -3,7 +3,6 @@ import { Query, QueryResult } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { Insurance } from 'src/graphql/types';
-import { ApolloError } from 'apollo-client';
 
 const QUERY = gql`
   query Perils {

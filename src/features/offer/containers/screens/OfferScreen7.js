@@ -153,7 +153,7 @@ class OfferScreen extends React.Component {
       }[verticalSizeClass] || regular;
 
     return (
-      <Query query={query}>
+      <Query query={QUERY}>
         {({ data, loading, error }) =>
           loading || error ? null : (
             <View style={styles.container}>

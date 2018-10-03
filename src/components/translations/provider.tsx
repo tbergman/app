@@ -42,8 +42,6 @@ export const normalizeTranslations = (translations: Translation[]) =>
   }, {});
 
 const getTextKeys = (data?: Data) => {
-  console.log(data);
-
   if (!data || !data.languages || !data.languages[0]) {
     return {};
   }
