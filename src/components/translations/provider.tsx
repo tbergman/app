@@ -51,13 +51,13 @@ const getTextKeys = (data?: Data) => {
 
 export const TranslationsProvider: React.SFC = ({ children }) => (
   <Query<Data> query={TRANSLATIONS_QUERY}>
-    {({ data }) => (
+    {({ data, loading }) => (
       <TranslationsContext.Provider
         value={{
           textKeys: getTextKeys(data),
         }}
       >
-        {children}
+        {loading ? null : children}
       </TranslationsContext.Provider>
     )}
   </Query>
