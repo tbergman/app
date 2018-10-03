@@ -9,6 +9,9 @@ const typeDefs = `
     type: InsuranceType
     activeFrom: LocalDate
     insuredAtOtherCompany: Boolean
+    presaleInformationUrl: String
+    policyUrl: String
+    currentInsurerName: String
 
     perilCategories: [PerilCategory]
   }

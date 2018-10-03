@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
@@ -9,6 +7,7 @@ import {
 } from '../../../../services/DimensionSizes';
 import { PerilsOverview } from '../PerilsOverview';
 import { Hero } from '../../components/Hero';
+import { PerilsQuery } from './perils-query';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -19,8 +18,6 @@ const styles = StyleSheet.create({
 
 class OfferScreen extends React.Component {
   render() {
-    // Is there a better way?
-    const category = this.props.insurance.categories[0];
     const regular = require('../../../../../assets/offer/hero/you.png');
     const spacious = require('../../../../../assets/offer/hero/you-xl.png');
     const heroImage =
@@ -29,31 +26,35 @@ class OfferScreen extends React.Component {
       }[verticalSizeClass] || regular;
 
     return (
-      <View style={styles.container}>
-        <PerilsOverview
-          title="Personskyddet"
-          categoryTitle={category.title}
-          description={
-            <React.Fragment>
-              Hedvig skyddar dig mot obehagliga saker som kan hända på
-              hemmaplan, och det mesta som kan hända när du är ute
-              och&nbsp;reser.
-            </React.Fragment>
-          }
-          perils={category.perils}
-          explainer={'Tryck på ikonerna för mer info'}
-          hero={
-            <Hero containerStyle={styles.heroBackground} source={heroImage} />
-          }
-        />
-      </View>
+      <PerilsQuery>
+        {({ data, loading, error }) =>
+          loading || error ? null : (
+            <View style={styles.container}>
+              <PerilsOverview
+                title="Personskyddet"
+                categoryTitle={data.insurance.perilCategories[0].title}
+                description={
+                  <React.Fragment>
+                    Hedvig skyddar dig mot obehagliga saker som kan hända på
+                    hemmaplan, och det mesta som kan hända när du är ute
+                    och&nbsp;reser.
+                  </React.Fragment>
+                }
+                perils={data.insurance.perilCategories[0].perils}
+                explainer={'Tryck på ikonerna för mer info'}
+                hero={
+                  <Hero
+                    containerStyle={styles.heroBackground}
+                    source={heroImage}
+                  />
+                }
+              />
+            </View>
+          )
+        }
+      </PerilsQuery>
     );
   }
 }
 
-const OfferContainer = connect(
-  (state) => ({ insurance: state.insurance }),
-  null,
-)(OfferScreen);
-
-export default OfferContainer;
+export default OfferScreen;
