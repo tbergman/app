@@ -68,7 +68,7 @@ export const SignButton: React.SFC<SignButtonProps> = ({
   scrollAnimatedValue,
 }) => (
   <AnimationValueListener
-    testValue={(value) => value > Dimensions.get('window').height}
+    testValue={(value) => value >= Dimensions.get('window').height * 0.5}
     animatedValue={scrollAnimatedValue}
   >
     {(isActive) => (
