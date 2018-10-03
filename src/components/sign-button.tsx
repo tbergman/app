@@ -6,14 +6,26 @@ import {
   Animated,
   View,
   Text,
+  Platform,
 } from 'react-native';
 import { BankID } from 'src/components/icons/BankID';
 import { NavigationEvents } from 'src/navigation/events';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
 import { Container, ActionMap } from 'constate';
-import { fonts } from '@hedviginsurance/brand';
+import { fonts, colors } from '@hedviginsurance/brand';
 
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
+
+const ButtonViewContainer = styled(View)(
+  Platform.select({
+    ios: {},
+    android: {
+      paddingTop: 12.5,
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+  }),
+);
 
 const ButtonContainer = styled(TouchableOpacity)({
   width: 80,
@@ -29,6 +41,7 @@ const TextContainer = styled(Text)({
   fontSize: 10,
   paddingRight: 5,
   fontFamily: fonts.CIRCULAR,
+  color: colors.BLACK,
 });
 
 const FadeInView = styled(AnimatedView)(
@@ -52,46 +65,48 @@ const actions: ActionMap<State, Actions> = {
 };
 
 export const SignButton: React.SFC = () => (
-  <Container actions={actions} initialState={{ show: true }}>
-    {({ show, setShow }) => (
-      <Sequence>
-        <Delay config={{ delay: 500 }} />
-        <Timing
-          toValue={show ? 1 : 0}
-          initialValue={0}
-          config={{ duration: 250 }}
-        >
-          {(animatedValue) => (
-            <FadeInView
-              pointerEvents={show ? 'auto' : 'none'}
-              animatedValue={animatedValue}
-            >
-              <NavigationEvents
-                onGlobalEvent={(event: { id: string }) => {
-                  if (event.id === 'HideSignButton') {
-                    setShow(false);
-                  } else if (event.id === 'ShowSignButton') {
-                    setShow(true);
-                  }
-                }}
+  <ButtonViewContainer>
+    <Container actions={actions} initialState={{ show: true }}>
+      {({ show, setShow }) => (
+        <Sequence>
+          <Delay config={{ delay: 500 }} />
+          <Timing
+            toValue={show ? 1 : 0}
+            initialValue={0}
+            config={{ duration: 250 }}
+          >
+            {(animatedValue) => (
+              <FadeInView
+                pointerEvents={show ? 'auto' : 'none'}
+                animatedValue={animatedValue}
               >
-                {(triggerEvent: (event: { id: string }) => void) => (
-                  <ButtonContainer
-                    onPress={() =>
-                      triggerEvent({
-                        id: 'SignButtonPressed',
-                      })
+                <NavigationEvents
+                  onGlobalEvent={(event: { id: string }) => {
+                    if (event.id === 'HideSignButton') {
+                      setShow(false);
+                    } else if (event.id === 'ShowSignButton') {
+                      setShow(true);
                     }
-                  >
-                    <TextContainer>Signera</TextContainer>
-                    <BankID width={15} height={15} />
-                  </ButtonContainer>
-                )}
-              </NavigationEvents>
-            </FadeInView>
-          )}
-        </Timing>
-      </Sequence>
-    )}
-  </Container>
+                  }}
+                >
+                  {(triggerEvent: (event: { id: string }) => void) => (
+                    <ButtonContainer
+                      onPress={() =>
+                        triggerEvent({
+                          id: 'SignButtonPressed',
+                        })
+                      }
+                    >
+                      <TextContainer>Signera</TextContainer>
+                      <BankID width={15} height={15} />
+                    </ButtonContainer>
+                  )}
+                </NavigationEvents>
+              </FadeInView>
+            )}
+          </Timing>
+        </Sequence>
+      )}
+    </Container>
+  </ButtonViewContainer>
 );

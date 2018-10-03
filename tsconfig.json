@@ -7,7 +7,6 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
     "typeRoots": ["./typings", "./node_modules/@types"],
     "baseUrl": "./",
