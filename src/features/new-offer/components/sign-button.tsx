@@ -21,7 +21,7 @@ const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 const ButtonContainer = styled(TouchableOpacity)({
   width: 190,
   height: 50,
-  borderRadius: 20,
+  borderRadius: 30,
   backgroundColor: 'white',
   alignItems: 'center',
   justifyContent: 'space-between',
