@@ -22,6 +22,7 @@ import { NavigationOptions } from 'src/navigation/options';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { SignButton } from 'src/features/new-offer/components/sign-button';
 import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
+import { NEW_OFFER_OPTIONS } from 'src/navigation/screens/new-offer/options';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -97,6 +98,42 @@ const INSURANCE_QUERY = gql`
   }
 `;
 
+interface ScrollToParams {
+  x: number;
+  y: number;
+  animated: boolean;
+}
+
+interface ScrollViewElement {
+  scrollTo: (params: ScrollToParams) => void;
+  flashScrollIndicators: () => void;
+}
+
+interface AnimatedScrollViewComponent {
+  getNode: () => ScrollViewElement;
+}
+
+const NewOfferRef = React.createRef<AnimatedScrollViewComponent>();
+
+const bounceScrollView = () => {
+  const scrollView = NewOfferRef.current!.getNode();
+
+  scrollView.scrollTo({
+    x: 0,
+    y: -25,
+    animated: true,
+  });
+
+  setTimeout(() => {
+    scrollView.scrollTo({
+      x: 0,
+      y: 0,
+      animated: true,
+    });
+    scrollView.flashScrollIndicators();
+  }, 250);
+};
+
 export const NewOffer: React.SFC = () => (
   <Query<{ insurance: Insurance }> query={INSURANCE_QUERY}>
     {({ data, loading, error }) =>
@@ -111,6 +148,7 @@ export const NewOffer: React.SFC = () => (
                   contentContainerStyle={{
                     alignItems: 'center',
                   }}
+                  innerRef={NewOfferRef}
                 >
                   <FixedContainer animatedValue={animatedValue}>
                     <Spacing height={15} />
@@ -118,6 +156,7 @@ export const NewOffer: React.SFC = () => (
                     <Spacing height={15} />
                     <FeaturesContainer animatedValue={animatedValue}>
                       <FeaturesBubbles
+                        onPress={() => bounceScrollView()}
                         personsInHousehold={data!.insurance.personsInHousehold!}
                         insuredAtOtherCompany={
                           data!.insurance.insuredAtOtherCompany!
@@ -126,7 +165,12 @@ export const NewOffer: React.SFC = () => (
                       />
                     </FeaturesContainer>
                   </FixedContainer>
-                  <ScrollContent scrollAnimatedValue={animatedValue} />
+                  <ScrollContent
+                    insuredAtOtherCompany={
+                      data!.insurance.insuredAtOtherCompany!
+                    }
+                    scrollAnimatedValue={animatedValue}
+                  />
                 </ScrollContainer>
                 <SignButton scrollAnimatedValue={animatedValue} />
               </>
@@ -136,6 +180,7 @@ export const NewOffer: React.SFC = () => (
             {(title) => (
               <NavigationOptions
                 options={{
+                  ...NEW_OFFER_OPTIONS,
                   topBar: {
                     title: { text: title },
                     subtitle: { text: data!.insurance.address! },

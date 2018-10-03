@@ -17,6 +17,8 @@ import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 
+import Dialog from 'src/containers/Dialog';
+
 const inputComponentMap = {
   multiple_select: () => <MultipleSelectInput />,
   text: () => <ChatTextInput />,
@@ -152,25 +154,28 @@ class Chat extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={70}
-        behavior="padding"
-        enabled={Platform.OS === 'ios'}
-        style={styles.container}
-      >
-        <View style={styles.messages}>
-          {this.props.messages.length ? (
-            <MessageList showOffer={this._showOffer} />
-          ) : (
-            <Loader />
-          )}
-        </View>
-        <View style={styles.response}>
-          {getInputComponent(this.props.messages, {
-            showOffer: this._showOffer,
-          })}
-        </View>
-      </KeyboardAvoidingView>
+      <>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={70}
+          behavior="padding"
+          enabled={Platform.OS === 'ios'}
+          style={styles.container}
+        >
+          <View style={styles.messages}>
+            {this.props.messages.length ? (
+              <MessageList showOffer={this._showOffer} />
+            ) : (
+              <Loader />
+            )}
+          </View>
+          <View style={styles.response}>
+            {getInputComponent(this.props.messages, {
+              showOffer: this._showOffer,
+            })}
+          </View>
+        </KeyboardAvoidingView>
+        <Dialog />
+      </>
     );
   }
 }

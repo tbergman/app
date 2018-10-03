@@ -9,10 +9,10 @@ import { colors, fonts } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';
-import { OFFER_SCREEN } from './screens/offer';
 import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 
 export const getMarketingLayout = () => ({
   root: {
@@ -77,14 +77,11 @@ export const getChatLayout = () => ({
 });
 
 export const getOfferLayout = () => ({
-  modals: [
-    {
-      stack: {
-        children: [OFFER_SCREEN],
-      },
+  root: {
+    stack: {
+      children: [NEW_OFFER_SCREEN],
     },
-  ],
-  ...getChatLayout(),
+  },
 });
 
 export const getInitialLayout = async () => {

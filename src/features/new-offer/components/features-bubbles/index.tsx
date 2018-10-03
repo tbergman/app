@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Parallel } from 'animated-react-native-components';
 
 import { Insured } from 'src/features/new-offer/components/features-bubbles/bubbles/insured';
@@ -24,30 +24,36 @@ interface FeaturesBubblesProps {
   personsInHousehold: number;
   insuredAtOtherCompany: boolean;
   type: InsuranceType;
+  onPress: () => void;
 }
 
 export const FeaturesBubbles: React.SFC<FeaturesBubblesProps> = ({
   personsInHousehold,
   insuredAtOtherCompany,
   type,
+  onPress,
 }) => (
-  <Parallel>
-    <Container>
-      <Position top={190} left="23%">
-        <Deductible />
-      </Position>
-      <Position top={80} left="0%">
-        <BindingPeriod />
-      </Position>
-      <Position top={140} left="46%">
-        {type === InsuranceType.BRF ? <OwnedAddon /> : <TravelProtection />}
-      </Position>
-      <Position top={25} left="47%">
-        <StartDate insuredAtOtherCompany={insuredAtOtherCompany} />
-      </Position>
-      <Position top={0} left="20%">
-        <Insured personsInHousehold={personsInHousehold} />
-      </Position>
-    </Container>
-  </Parallel>
+  <TouchableWithoutFeedback onPress={() => onPress()}>
+    <View>
+      <Parallel>
+        <Container>
+          <Position top={190} left="23%">
+            <Deductible />
+          </Position>
+          <Position top={80} left="0%">
+            <BindingPeriod />
+          </Position>
+          <Position top={140} left="46%">
+            {type === InsuranceType.BRF ? <OwnedAddon /> : <TravelProtection />}
+          </Position>
+          <Position top={25} left="47%">
+            <StartDate insuredAtOtherCompany={insuredAtOtherCompany} />
+          </Position>
+          <Position top={0} left="20%">
+            <Insured personsInHousehold={personsInHousehold} />
+          </Position>
+        </Container>
+      </Parallel>
+    </View>
+  </TouchableWithoutFeedback>
 );

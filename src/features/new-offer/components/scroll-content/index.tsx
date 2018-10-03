@@ -1,16 +1,19 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, ViewStyle, Animated, Text } from 'react-native';
-import { colors } from '@hedviginsurance/brand';
 import { Arrow } from 'src/components/icons/Arrow';
 import { Spacing } from 'src/components/Spacing';
 import { Parallel, Spring, Delay } from 'animated-react-native-components';
+import { colors } from '@hedviginsurance/brand';
 
 import OfferScreen2 from 'src/features/offer/containers/screens/OfferScreen2';
 import OfferScreen3 from 'src/features/offer/containers/screens/OfferScreen3';
 import OfferScreen4 from 'src/features/offer/containers/screens/OfferScreen4';
+import OfferScreen5 from 'src/features/offer/containers/screens/OfferScreen5';
+import OfferScreen7 from 'src/features/offer/containers/screens/OfferScreen7';
 
 import { Header } from './header';
+import { GetHedvig } from './get-hedvig';
 
 const Content = styled(View)({
   backgroundColor: colors.WHITE,
@@ -46,10 +49,12 @@ const ArrowContainer = styled(AnimatedView)(
 
 interface ScrollContentProps {
   scrollAnimatedValue: Animated.Value;
+  insuredAtOtherCompany: boolean;
 }
 
 export const ScrollContent: React.SFC<ScrollContentProps> = ({
   scrollAnimatedValue,
+  insuredAtOtherCompany,
 }) => (
   <Parallel>
     <Delay config={{ delay: 950 }} />
@@ -71,6 +76,9 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
             <OfferScreen2 />
             <OfferScreen3 />
             <OfferScreen4 />
+            <OfferScreen5 />
+            {insuredAtOtherCompany && <OfferScreen7 />}
+            <GetHedvig />
           </Content>
         </ScrollContentContainer>
       )}
