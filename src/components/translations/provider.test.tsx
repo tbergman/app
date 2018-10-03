@@ -1,12 +1,14 @@
 import 'jest';
 
 import { TextKeys } from './types';
-import { normalizeKeys } from './provider';
+import { normalizeTranslations } from './provider';
 
-test('should normalize text keys response into object', () => {
-  const result: TextKeys = normalizeKeys([
+test('should normalize translations response into object', () => {
+  const result: TextKeys = normalizeTranslations([
     {
-      key: 'mock',
+      key: {
+        value: 'mock',
+      },
       text: 'test',
     },
   ]);

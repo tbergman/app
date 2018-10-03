@@ -1,17 +1,18 @@
 import { insurance } from './insurance';
 import { cashback } from './cashback';
 import { logout } from './logout';
+import { sendEvent } from './send-event';
 import { Resolver } from '../types';
-import { IResolvers } from 'graphql-tools';
 
-const resolvers: IResolvers<Resolver> = {
-  Query: () => ({
+const resolvers: Resolver = {
+  Query: {
     insurance,
     cashback,
-  }),
-  Mutation: () => ({
+  },
+  Mutation: {
     logout,
-  }),
+    sendEvent,
+  },
 };
 
 export { resolvers };

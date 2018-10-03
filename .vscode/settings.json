@@ -7,5 +7,6 @@
     "**/node_modules": true
   },
   "npm.enableScriptExplorer": true,
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

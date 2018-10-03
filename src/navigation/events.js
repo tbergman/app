@@ -3,10 +3,21 @@ import { Navigation } from 'react-native-navigation';
 
 import { NavigationContext } from './context';
 
+const globalEventListeners = new Map();
+
+const triggerEvent = (event) =>
+  globalEventListeners.forEach((eventListener) => eventListener(event));
+
 class NavigationEventsHandler extends React.Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
+
+    this.globalEventId =
+      '_' +
+      Math.random()
+        .toString(36)
+        .substr(2, 9);
 
     if (props.onNavigationCommand) {
       this.unregisterCommands = Navigation.events().registerCommandListener(
@@ -16,7 +27,15 @@ class NavigationEventsHandler extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.onGlobalEvent) {
+      globalEventListeners.set(this.globalEventId, this.props.onGlobalEvent);
+    }
+  }
+
   componentWillUnmount() {
+    globalEventListeners.delete(this.globalEventId);
+
     if (this.unregisterCommands) {
       this.unregisterCommands();
     }
@@ -27,7 +46,9 @@ class NavigationEventsHandler extends React.Component {
   }
 
   render() {
-    return this.props.children || null;
+    return typeof this.props.children === 'function'
+      ? this.props.children(triggerEvent)
+      : this.props.children || null;
   }
 }
 

@@ -3,10 +3,12 @@ const typeDefs = `
     address: String
     monthlyCost: Int
     safetyIncreasers: [String!]
+    personsInHousehold: Int
     certificateUrl: String
     status: InsuranceStatus
     type: InsuranceType
     activeFrom: LocalDate
+    insuredAtOtherCompany: Boolean
 
     perilCategories: [PerilCategory]
   }
@@ -51,8 +53,14 @@ const typeDefs = `
     cashback: Cashback!
   }
 
+  input SendEventInput {
+    type: String
+    value: String
+  }
+
   type Mutation {
     logout: Boolean
+    sendEvent(event: SendEventInput): Boolean
   }
 
   scalar LocalDate

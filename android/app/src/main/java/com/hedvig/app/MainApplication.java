@@ -19,6 +19,7 @@ import io.branch.referral.Branch;
 import com.horcrux.svg.SvgPackage;
 import android.support.multidex.MultiDex;
 import android.content.Context;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +64,7 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNDeviceInfo(), new SvgPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNGestureHandlerPackage(), new RNDeviceInfo(), new SvgPackage(),
         new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
         new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),

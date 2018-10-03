@@ -82,7 +82,6 @@ const api = function*(action) {
           return;
         }
       } else {
-        console.error('Was forced to retry request, tries: ', tries); // eslint-disable-line no-console
         yield delay(500);
       }
     }
