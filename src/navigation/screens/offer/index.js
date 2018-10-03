@@ -1,8 +1,6 @@
 import React from 'react';
 
 import OfferSwiper from '../../../features/offer';
-import { Experiment } from 'src/components/experiment';
-import { NewOffer } from 'src/features/new-offer';
 
 class OfferScreen extends React.Component {
   static get options() {
