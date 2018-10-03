@@ -13,12 +13,6 @@ import {
 
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
 import { setLayout, getMainLayout } from '../../../navigation/layout';
-import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
-import { NavigationContext } from 'src/navigation/context';
-
-const showOffer = (componentId) => {
-  Navigation.push(componentId, NEW_OFFER_SCREEN);
-};
 
 const showTrustly = (id) =>
   Navigation.showModal({
