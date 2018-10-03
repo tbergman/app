@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation, Options } from 'react-native-navigation';
+import { Navigation } from 'react-native-navigation';
 
 import { NavigationContext } from './context';
 import { Mount, Update } from 'react-lifecycle-components';
