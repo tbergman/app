@@ -139,7 +139,7 @@ export const setLayout = ({ root, modals = [], overlays = [] }) => {
         fontFamily: fonts.CIRCULAR,
       },
       subtitle: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       leftButtons: {
         fontFamily: fonts.CIRCULAR,

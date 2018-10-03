@@ -17,7 +17,7 @@ class NewOfferScreen extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <NavigationEvents
           onNavigationButtonPressed={(_: any, componentId: string) =>
             Navigation.dismissModal(componentId)
@@ -28,7 +28,7 @@ class NewOfferScreen extends React.Component {
           {null}
         </Mount>
         <NewOffer {...this.props} />
-      </React.Fragment>
+      </>
     );
   }
 }

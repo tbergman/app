@@ -171,9 +171,9 @@ export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
           return (
             <Modal onRequestClose={() => handleClose()} visible transparent>
               <Delayed
-                mounted={open}
-                mountAfter={0}
-                unmountAfter={UNMOUNT_DELAY}
+                mountChildren={open}
+                mountChildrenAfter={0}
+                unmountChildrenAfter={UNMOUNT_DELAY}
               >
                 <Parallel>
                   <Timing
