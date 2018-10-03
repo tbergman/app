@@ -78,7 +78,7 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
             <OfferScreen4 />
             <OfferScreen5 />
             {insuredAtOtherCompany && <OfferScreen7 />}
-            <GetHedvig />
+            <GetHedvig scrollAnimatedValue={scrollAnimatedValue} />
           </Content>
         </ScrollContentContainer>
       )}
