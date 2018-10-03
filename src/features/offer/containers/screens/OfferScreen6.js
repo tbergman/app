@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import {
   Text,
@@ -169,9 +167,4 @@ class OfferScreen extends React.Component {
   }
 }
 
-const OfferContainer = connect(
-  null,
-  null,
-)(OfferScreen);
-
-export default OfferContainer;
+export default OfferScreen;

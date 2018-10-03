@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
@@ -10,6 +8,7 @@ import {
 import { PerilsOverview } from '../PerilsOverview';
 import { Hero } from '../../components/Hero';
 import { isStudentInsurance } from '../../../../utils';
+import { PerilsQuery } from './perils-query';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -20,8 +19,6 @@ const styles = StyleSheet.create({
 
 class OfferScreen extends React.Component {
   render() {
-    const { insurance } = this.props;
-    const category = this.props.insurance.categories[2];
     const regular = require('../../../../../assets/offer/hero/stuff.png');
     const spacious = require('../../../../../assets/offer/hero/stuff-xl.png');
     const heroImage =
@@ -30,28 +27,37 @@ class OfferScreen extends React.Component {
       }[verticalSizeClass] || regular;
 
     return (
-      <View style={styles.container}>
-        <PerilsOverview
-          title="Prylskyddet"
-          categoryTitle={category.title}
-          description={
-            <React.Fragment>
-              Med Hedvig får du ett komplett skydd för dina prylar.
-              Drulleförsäkring ingår och täcker prylar värda upp till
-              {isStudentInsurance(insurance) ? ' 25 000' : ' 50 000'} kr styck.
-            </React.Fragment>
-          }
-          perils={category.perils}
-          hero={
-            <Hero containerStyle={styles.heroBackground} source={heroImage} />
-          }
-        />
-      </View>
+      <PerilsQuery>
+        {({ data, loading, error }) =>
+          loading || error ? null : (
+            <View style={styles.container}>
+              <PerilsOverview
+                title="Prylskyddet"
+                categoryTitle={data.insurance.perilCategories[2].title}
+                description={
+                  <React.Fragment>
+                    Med Hedvig får du ett komplett skydd för dina prylar.
+                    Drulleförsäkring ingår och täcker prylar värda upp till
+                    {isStudentInsurance(data.insurance.type)
+                      ? ' 25 000'
+                      : ' 50 000'}{' '}
+                    kr styck.
+                  </React.Fragment>
+                }
+                perils={data.insurance.perilCategories[2].perils}
+                hero={
+                  <Hero
+                    containerStyle={styles.heroBackground}
+                    source={heroImage}
+                  />
+                }
+              />
+            </View>
+          )
+        }
+      </PerilsQuery>
     );
   }
 }
 
-export default connect(
-  (state) => ({ insurance: state.insurance }),
-  null,
-)(OfferScreen);
+export default OfferScreen;
