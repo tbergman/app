@@ -86,10 +86,13 @@ const hitSlop = {
 
 class PerilsOverview extends React.Component {
   render() {
+    const { disableScroll } = this.props;
+    const ContainerComp = disableScroll ? View : ScrollView;
+
     return (
       <View style={styles.container}>
         {this.props.hero}
-        <ScrollView style={styles.scroll}>
+        <ContainerComp style={styles.scroll}>
           <View style={styles.scrollContent}>
             <View style={styles.perilsDescription}>
               <Heading>{this.props.title}</Heading>
@@ -124,7 +127,7 @@ class PerilsOverview extends React.Component {
               <Text style={styles.moreInfo}>{this.props.explainer}</Text>
             ) : null}
           </View>
-        </ScrollView>
+        </ContainerComp>
       </View>
     );
   }

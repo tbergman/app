@@ -128,13 +128,17 @@ class OfferScreen extends React.Component {
         [V_SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
+    const { disableScroll } = this.props;
+
+    const ContainerComp = disableScroll ? View : ScrollView;
+
     return (
       <Query query={QUERY}>
         {({ data, loading, error }) =>
           loading || error ? null : (
             <View style={styles.container}>
               <Hero containerStyle={styles.heroBackground} source={heroImage} />
-              <ScrollView style={styles.scroll}>
+              <ContainerComp style={styles.scroll}>
                 <View style={styles.scrollContent}>
                   <View style={styles.content}>
                     <View>
@@ -251,7 +255,7 @@ class OfferScreen extends React.Component {
                     </View>
                   </View>
                 </View>
-              </ScrollView>
+              </ContainerComp>
             </View>
           )
         }
