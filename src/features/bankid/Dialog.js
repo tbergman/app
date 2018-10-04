@@ -8,7 +8,6 @@ import {
   StyleSheet,
   ActivityIndicator,
   Linking,
-  Dimensions,
   Keyboard,
   Modal,
   TouchableWithoutFeedback,
@@ -202,8 +201,6 @@ const messages = [
     getMessage: () => UNKNOWN_ERROR_MESSAGE,
   },
 ];
-
-const { width: viewportWidth } = Dimensions.get('window');
 
 class Dialog extends React.Component {
   state = {

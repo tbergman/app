@@ -1888,15 +1888,6 @@ babel-plugin-flow-react-proptypes@^24.1.1:
     babel-traverse "^6.25.0"
     babel-types "^6.25.0"
 
-babel-plugin-flow-react-proptypes@^9.1.1:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-9.2.0.tgz#d32594b5c85ea90cb625e10f9954d114526ddeae"
-  dependencies:
-    babel-core "^6.25.0"
-    babel-template "^6.25.0"
-    babel-traverse "^6.25.0"
-    babel-types "^6.25.0"
-
 babel-plugin-functional-hmr@^1.0.24:
   version "1.0.24"
   resolved "https://registry.yarnpkg.com/babel-plugin-functional-hmr/-/babel-plugin-functional-hmr-1.0.24.tgz#9be1f40cad49c186793421b970532638f8091e30"
@@ -8112,13 +8103,6 @@ react-native-navigation@2.0.2485:
 react-native-permissions@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
-
-react-native-popup-dialog@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.15.0.tgz#26c494babc4c627bb3ec8146203bb04fa3827b7f"
-  dependencies:
-    babel-plugin-flow-react-proptypes "^9.1.1"
-    prop-types "^15.6.0"
 
 react-native-root-siblings@^3.0.0:
   version "3.1.0"
