@@ -41,6 +41,7 @@
 	<string>__RN_CONFIG_CODE_PUSH_IOS_DEPLOYMENT_KEY</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>bankid</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
