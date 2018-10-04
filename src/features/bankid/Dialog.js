@@ -266,7 +266,11 @@ class Dialog extends React.Component {
       isCurrentlySigning && (
         <Modal transparent>
           <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={() => this._dismiss()}>
+            <TouchableWithoutFeedback
+              accessibilityTraits="none"
+              accessibilityComponentType="none"
+              onPress={() => this._dismiss()}
+            >
               <View style={styles.shadow} />
             </TouchableWithoutFeedback>
             <View style={styles.content}>
