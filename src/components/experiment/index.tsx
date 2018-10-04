@@ -6,28 +6,30 @@ import getClosest from 'get-closest';
 
 import { SegmentTracker } from 'src/features/analytics/SegmentTracker';
 
-interface ExperimentProps {
-  name: string;
-  groups: string[];
-  children: (selectedExperiment: string) => React.ReactNode;
-}
-
-export const getGroup = async (name: string, groups: string[]) => {
-  const persistedGroup = await AsyncStorage.getItem(`experiment-${name}`);
+export const getGroup = async <T extends {}>(
+  name: string,
+  groups: Array<keyof T>,
+) => {
+  const persistedGroup = (await AsyncStorage.getItem(
+    `experiment-${name}`,
+  )) as keyof T;
 
   if (persistedGroup) {
     return persistedGroup;
   } else {
-    return await pickGroup(name, groups);
+    return await pickGroup<T>(name, groups);
   }
 };
 
-const pickGroup = async (name: string, groups: string[]) => {
+const pickGroup = async <T extends {}>(
+  name: string,
+  groups: Array<keyof T>,
+) => {
   const randomNumber = Math.random() * (groups.length - 1);
   const indexes = groups.map((_, index) => index);
   const closestIndex = getClosest.number(randomNumber, indexes);
   const group = groups[closestIndex];
-  await AsyncStorage.setItem(`experiment-${name}`, group);
+  await AsyncStorage.setItem(`experiment-${name}`, String(group));
 
   SegmentTracker.track('SelectedExperiment', {
     name,
@@ -38,11 +40,11 @@ const pickGroup = async (name: string, groups: string[]) => {
 };
 
 interface State {
-  group: string;
+  group: string | number | symbol;
 }
 
 interface Actions {
-  setGroup: (group: string) => void;
+  setGroup: (group: string | number | symbol) => void;
 }
 
 const actions: ActionMap<State, Actions> = {
@@ -51,11 +53,17 @@ const actions: ActionMap<State, Actions> = {
   }),
 };
 
-export const Experiment: React.SFC<ExperimentProps> = ({
+interface ExperimentProps<T extends {}> {
+  name: string;
+  groups: Array<keyof T>;
+  children: (selectedExperiment: string | number | symbol) => React.ReactNode;
+}
+
+export const Experiment = <T extends {}>({
   name,
   groups,
   children,
-}) => (
+}: ExperimentProps<T>) => (
   <Container actions={actions}>
     {({ group, setGroup }) =>
       group ? (

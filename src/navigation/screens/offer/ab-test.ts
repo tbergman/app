@@ -8,21 +8,25 @@ export enum OFFER_GROUPS {
   NEW = 'new',
 }
 
+const SCREENS = {
+  [OFFER_GROUPS.NEW]: {
+    group: OFFER_GROUPS.NEW,
+    screen: NEW_OFFER_SCREEN,
+  },
+  [OFFER_GROUPS.OLD]: {
+    group: OFFER_GROUPS.NEW,
+    screen: OFFER_SCREEN,
+  },
+};
+
 export const getOfferGroup = () =>
   getGroup('offeringScreens', [OFFER_GROUPS.OLD, OFFER_GROUPS.NEW]);
 
 export const getOfferScreen = async () => {
   const group = await getOfferGroup();
 
-  if (group === OFFER_GROUPS.NEW) {
-    return {
-      group,
-      screen: NEW_OFFER_SCREEN,
-    };
-  } else {
-    return {
-      group,
-      screen: OFFER_SCREEN,
-    };
-  }
+  return {
+    screen: SCREENS[group],
+    group,
+  };
 };
