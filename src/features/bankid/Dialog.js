@@ -264,7 +264,7 @@ class Dialog extends React.Component {
     return (
       this.state.isVisible &&
       isCurrentlySigning && (
-        <Modal transparent>
+        <Modal onRequestClose={() => this._dismiss()} transparent>
           <View style={styles.container}>
             <TouchableWithoutFeedback
               accessibilityTraits="none"
