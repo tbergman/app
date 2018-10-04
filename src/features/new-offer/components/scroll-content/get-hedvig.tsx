@@ -1,26 +1,55 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Animated, TextProps } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import styled from '@sampettersson/primitives';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { Container, ActionMap } from 'constate';
 
 import { Spacing } from 'src/components/Spacing';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 
-const Title = styled(Text)({
-  fontFamily: fonts.CIRCULAR,
-  fontWeight: '800',
-  color: colors.WHITE,
-  fontSize: 25,
-});
+const AnimatedText = Animated.createAnimatedComponent<TextProps>(Text);
 
-const Body = styled(Text)({
-  fontFamily: fonts.CIRCULAR,
-  color: colors.WHITE,
-  fontWeight: '400',
-  fontSize: 15,
-  textAlign: 'center',
-});
+const Title = styled(AnimatedText)(
+  ({
+    scrollAnimatedValue,
+    positionFromTop,
+  }: {
+    scrollAnimatedValue: Animated.Value;
+    positionFromTop: number;
+  }) => ({
+    fontFamily: fonts.CIRCULAR,
+    fontWeight: '800',
+    color: colors.WHITE,
+    fontSize: 25,
+    opacity: scrollAnimatedValue.interpolate({
+      inputRange: [positionFromTop, positionFromTop + 100],
+      outputRange: [0, 1],
+      extrapolate: 'clamp',
+    }),
+  }),
+);
+
+const Body = styled(AnimatedText)(
+  ({
+    scrollAnimatedValue,
+    positionFromTop,
+  }: {
+    scrollAnimatedValue: Animated.Value;
+    positionFromTop: number;
+  }) => ({
+    fontFamily: fonts.CIRCULAR,
+    color: colors.WHITE,
+    fontWeight: '400',
+    fontSize: 15,
+    textAlign: 'center',
+    opacity: scrollAnimatedValue.interpolate({
+      inputRange: [positionFromTop, positionFromTop + 120],
+      outputRange: [0, 1],
+      extrapolate: 'clamp',
+    }),
+  }),
+);
 
 const Block = styled(View)({
   padding: 20,
@@ -29,14 +58,56 @@ const Block = styled(View)({
   backgroundColor: colors.BLACK_PURPLE,
 });
 
-export const GetHedvig = () => (
-  <Block>
-    <TranslationsConsumer textKey="OFFER_GET_HEDVIG_TITLE">
-      {(text) => <Title>{text}</Title>}
-    </TranslationsConsumer>
-    <Spacing height={15} />
-    <TranslationsConsumer textKey="OFFER_GET_HEDVIG_BODY">
-      {(text) => <Body>{text}</Body>}
-    </TranslationsConsumer>
-  </Block>
+interface State {
+  positionFromTop: number;
+}
+
+interface Actions {
+  setPositionFromTop: (positionFromTop: number) => void;
+}
+
+interface GetHedvigProps {
+  scrollAnimatedValue: Animated.Value;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setPositionFromTop: (positionFromTop) => () => ({
+    positionFromTop,
+  }),
+};
+
+export const GetHedvig: React.SFC<GetHedvigProps> = ({
+  scrollAnimatedValue,
+}) => (
+  <Container actions={actions} initialState={{ positionFromTop: 0 }}>
+    {({ positionFromTop, setPositionFromTop }) => (
+      <View
+        onLayout={(event) => setPositionFromTop(event.nativeEvent.layout.y)}
+      >
+        <Block>
+          <TranslationsConsumer textKey="OFFER_GET_HEDVIG_TITLE">
+            {(text) => (
+              <Title
+                scrollAnimatedValue={scrollAnimatedValue}
+                positionFromTop={positionFromTop}
+              >
+                {text}
+              </Title>
+            )}
+          </TranslationsConsumer>
+          <Spacing height={15} />
+          <TranslationsConsumer textKey="OFFER_GET_HEDVIG_BODY">
+            {(text) => (
+              <Body
+                scrollAnimatedValue={scrollAnimatedValue}
+                positionFromTop={positionFromTop}
+              >
+                {text}
+              </Body>
+            )}
+          </TranslationsConsumer>
+        </Block>
+      </View>
+    )}
+  </Container>
 );

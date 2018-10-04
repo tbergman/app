@@ -26,6 +26,9 @@ export interface Insurance {
   type?: InsuranceType;
   activeFrom?: LocalDate;
   insuredAtOtherCompany?: boolean;
+  presaleInformationUrl?: string;
+  policyUrl?: string;
+  currentInsurerName?: string;
   perilCategories?: Array<PerilCategory | null>;
 }
 
@@ -118,6 +121,9 @@ export interface InsuranceTypeResolver<TParent = any> {
   type?: InsuranceToTypeResolver<TParent>;
   activeFrom?: InsuranceToActiveFromResolver<TParent>;
   insuredAtOtherCompany?: InsuranceToInsuredAtOtherCompanyResolver<TParent>;
+  presaleInformationUrl?: InsuranceToPresaleInformationUrlResolver<TParent>;
+  policyUrl?: InsuranceToPolicyUrlResolver<TParent>;
+  currentInsurerName?: InsuranceToCurrentInsurerNameResolver<TParent>;
   perilCategories?: InsuranceToPerilCategoriesResolver<TParent>;
 }
 
@@ -154,6 +160,18 @@ export interface InsuranceToActiveFromResolver<TParent = any, TResult = any> {
 }
 
 export interface InsuranceToInsuredAtOtherCompanyResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+}
+
+export interface InsuranceToPresaleInformationUrlResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+}
+
+export interface InsuranceToPolicyUrlResolver<TParent = any, TResult = any> {
+  (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
+}
+
+export interface InsuranceToCurrentInsurerNameResolver<TParent = any, TResult = any> {
   (parent: TParent, args: {}, context: any, info: GraphQLResolveInfo): TResult | Promise<TResult>;
 }
 

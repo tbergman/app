@@ -1133,6 +1133,12 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/uuid@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.4.tgz#7af69360fa65ef0decb41fd150bf4ca5c0cefdf5"
+  dependencies:
+    "@types/node" "*"
+
 "@types/zen-observable@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
@@ -1876,15 +1882,6 @@ babel-plugin-emotion@^9.2.8:
 babel-plugin-flow-react-proptypes@^24.1.1:
   version "24.1.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-24.1.1.tgz#a40088bdcf22bbe7d10fe05dad7edf747940df43"
-  dependencies:
-    babel-core "^6.25.0"
-    babel-template "^6.25.0"
-    babel-traverse "^6.25.0"
-    babel-types "^6.25.0"
-
-babel-plugin-flow-react-proptypes@^9.1.1:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-9.2.0.tgz#d32594b5c85ea90cb625e10f9954d114526ddeae"
   dependencies:
     babel-core "^6.25.0"
     babel-template "^6.25.0"
@@ -4311,6 +4308,10 @@ generator-to-promise@^1.0.0:
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
+
+get-closest@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/get-closest/-/get-closest-0.0.4.tgz#269ac776d1e6022aa0fd586dd708e8a7d32269af"
 
 get-own-enumerable-property-symbols@^2.0.1:
   version "2.0.1"
@@ -8102,13 +8103,6 @@ react-native-navigation@2.0.2485:
 react-native-permissions@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
-
-react-native-popup-dialog@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.15.0.tgz#26c494babc4c627bb3ec8146203bb04fa3827b7f"
-  dependencies:
-    babel-plugin-flow-react-proptypes "^9.1.1"
-    prop-types "^15.6.0"
 
 react-native-root-siblings@^3.0.0:
   version "3.1.0"

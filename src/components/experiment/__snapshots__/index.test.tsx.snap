@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render content 1`] = `
+<Component
+  groups={
+    Array [
+      "A",
+      "B",
+      "C",
+    ]
+  }
+  name="mock"
+>
+  <Container
+    actions={
+      Object {
+        "setGroup": [Function],
+      }
+    }
+  >
+    <InnerContainer
+      actions={
+        Object {
+          "setGroup": [Function],
+        }
+      }
+      initialState={Object {}}
+    >
+      <View>
+        <react-native-mock />
+      </View>
+    </InnerContainer>
+  </Container>
+</Component>
+`;

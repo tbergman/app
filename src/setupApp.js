@@ -8,6 +8,7 @@ import uuidv4 from 'uuid/v4';
 import Branch from 'react-native-branch';
 import Config from '@hedviginsurance/react-native-config';
 import { Navigation } from 'react-native-navigation';
+import { openMockLayout } from 'src/navigation/mock';
 
 import * as hedvigRedux from '../hedvig-redux';
 
@@ -227,6 +228,12 @@ Branch.subscribe(({ error, params }) => {
   if (error) {
     SentryInstance.captureException(error);
     return;
+  }
+
+  const url = params['+non_branch_link'] || '';
+
+  if (url.includes('mock')) {
+    openMockLayout(url);
   }
 
   store.dispatch({

@@ -21,7 +21,7 @@ const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 const ButtonContainer = styled(TouchableOpacity)({
   width: 190,
   height: 50,
-  borderRadius: 20,
+  borderRadius: 30,
   backgroundColor: 'white',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -68,7 +68,7 @@ export const SignButton: React.SFC<SignButtonProps> = ({
   scrollAnimatedValue,
 }) => (
   <AnimationValueListener
-    testValue={(value) => value > Dimensions.get('window').height}
+    testValue={(value) => value >= Dimensions.get('window').height * 0.5}
     animatedValue={scrollAnimatedValue}
   >
     {(isActive) => (

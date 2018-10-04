@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { TouchableOpacity, Platform, View } from 'react-native';
+import {
+  TouchableOpacity,
+  Platform,
+  View,
+  ViewProps,
+  Animated,
+} from 'react-native';
 import { Container, ActionMap } from 'constate';
 import styled from '@sampettersson/primitives';
+import { Sequence, Delay, Timing } from 'animated-react-native-components';
 
 import { SpeechBubbles } from 'src/components/icons/SpeechBubbles';
 import { DraggableOverlay } from 'src/components/draggable-overlay';
@@ -10,6 +17,8 @@ import OfferChat from 'src/features/chat/OfferChat';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
+
+const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
 const ChatButtonContainer = styled(View)(
   Platform.select({
@@ -49,15 +58,24 @@ export const ChatButton: React.SFC = () => (
         <Mutation mutation={OFFER_CLOSED_MUTATION}>
           {(mutate) => (
             <>
-              <TouchableOpacity
-                onPress={() => {
-                  mutate().then(() => {
-                    setOpen(true);
-                  });
-                }}
-              >
-                <SpeechBubbles height={25} width={25} />
-              </TouchableOpacity>
+              <Sequence>
+                <Delay config={{ delay: 500 }} />
+                <Timing toValue={1} initialValue={0} config={{ duration: 250 }}>
+                  {(animatedValue) => (
+                    <AnimatedView style={{ opacity: animatedValue }}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          mutate().then(() => {
+                            setOpen(true);
+                          });
+                        }}
+                      >
+                        <SpeechBubbles height={25} width={25} />
+                      </TouchableOpacity>
+                    </AnimatedView>
+                  )}
+                </Timing>
+              </Sequence>
               {open && (
                 <DraggableOverlay
                   heightPercentage={90}
