@@ -208,8 +208,16 @@ class Chat extends React.Component {
 
   _showOffer = async () => {
     this._stopPolling();
-    const SCREEN = await getOfferScreen();
-    Navigation.push(this.props.componentId, SCREEN);
+    const { screen, group } = await getOfferScreen();
+    if (group === 'old') {
+      Navigation.showModal({
+        stack: {
+          children: [screen],
+        },
+      });
+    } else {
+      Navigation.push(this.props.componentId, screen);
+    }
   };
 
   _showDashboard = () => {

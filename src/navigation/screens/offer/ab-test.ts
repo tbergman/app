@@ -9,8 +9,14 @@ export const getOfferScreen = async () => {
   const group = await getOfferGroup();
 
   if (group === 'new') {
-    return NEW_OFFER_SCREEN;
+    return {
+      group,
+      screen: NEW_OFFER_SCREEN,
+    };
   } else {
-    return OFFER_SCREEN;
+    return {
+      group,
+      screen: OFFER_SCREEN,
+    };
   }
 };

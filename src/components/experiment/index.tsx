@@ -23,7 +23,7 @@ export const getGroup = async (name: string, groups: string[]) => {
 };
 
 const pickGroup = async (name: string, groups: string[]) => {
-  const randomNumber = Math.random() * groups.length - 1;
+  const randomNumber = Math.random() * (groups.length - 1);
   const indexes = groups.map((_, index) => index);
   const closestIndex = getClosest.number(randomNumber, indexes);
   const group = groups[closestIndex];
