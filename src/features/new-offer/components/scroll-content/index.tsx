@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, ViewStyle, Animated, Text } from 'react-native';
+import { View, ViewStyle, Animated, Dimensions } from 'react-native';
 import { Arrow } from 'src/components/icons/Arrow';
 import { Spacing } from 'src/components/Spacing';
 import { Spring, Delay, Sequence } from 'animated-react-native-components';
@@ -63,7 +63,7 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
         bounciness: 5,
       }}
       toValue={0}
-      initialValue={150}
+      initialValue={Dimensions.get('window').height * 0.3}
     >
       {(translateY) => (
         <ScrollContentContainer translateY={translateY}>
