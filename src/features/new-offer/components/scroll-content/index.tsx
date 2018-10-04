@@ -22,7 +22,7 @@ const Content = styled(View)({
   shadowOpacity: 0.1,
   shadowRadius: 20,
   shadowOffset: {
-    height: -5,
+    height: -20,
     width: 0,
   },
 });
