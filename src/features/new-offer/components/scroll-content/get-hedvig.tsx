@@ -10,7 +10,7 @@ import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const AnimatedText = Animated.createAnimatedComponent<TextProps>(Text);
 
-const CONTENT_INSET = isIphoneX() ? 35 : 0;
+const CONTENT_INSET = isIphoneX() ? 70 : 0;
 
 const Title = styled(AnimatedText)(
   ({
