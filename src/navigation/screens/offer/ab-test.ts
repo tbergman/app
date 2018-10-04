@@ -9,14 +9,8 @@ export enum OFFER_GROUPS {
 }
 
 const SCREENS = {
-  [OFFER_GROUPS.NEW]: {
-    group: OFFER_GROUPS.NEW,
-    screen: NEW_OFFER_SCREEN,
-  },
-  [OFFER_GROUPS.OLD]: {
-    group: OFFER_GROUPS.NEW,
-    screen: OFFER_SCREEN,
-  },
+  [OFFER_GROUPS.NEW]: NEW_OFFER_SCREEN,
+  [OFFER_GROUPS.OLD]: OFFER_SCREEN,
 };
 
 export const getOfferGroup = () =>
