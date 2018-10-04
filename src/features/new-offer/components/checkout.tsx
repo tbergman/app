@@ -4,7 +4,7 @@ import { OFFER_CHECKOUT } from 'src/features/offer/state/actions';
 import { NavigationEvents } from 'src/navigation/events';
 import { Dialog } from 'src/features/bankid/Dialog';
 
-export const CheckoutComp = ({ checkout }) => (
+export const CheckoutComp = ({ checkout }: { checkout: () => void }) => (
   <>
     <NavigationEvents
       onGlobalEvent={(event: { id: string }) => {
@@ -17,7 +17,7 @@ export const CheckoutComp = ({ checkout }) => (
   </>
 );
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     checkout: () => {
       dispatch({

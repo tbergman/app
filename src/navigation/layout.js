@@ -15,7 +15,10 @@ import { FAB_COMPONENT } from './components/fab';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { OFFER_SCREEN } from 'src/navigation/screens/offer';
 
-import { getOfferGroup } from 'src/navigation/screens/offer/ab-test';
+import {
+  getOfferGroup,
+  OFFER_GROUPS,
+} from 'src/navigation/screens/offer/ab-test';
 
 export const getMarketingLayout = () => ({
   root: {
@@ -80,7 +83,7 @@ export const getChatLayout = () => ({
 });
 
 export const getOfferLayout = async () => {
-  if ((await getOfferGroup()) === 'new') {
+  if ((await getOfferGroup()) === OFFER_GROUPS.NEW) {
     return {
       root: {
         stack: {

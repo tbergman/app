@@ -8,11 +8,11 @@ import {
   StyleSheet,
   ActivityIndicator,
   Linking,
-  Dimensions,
   Keyboard,
+  Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import * as R from 'ramda';
-import PopupDialog from 'react-native-popup-dialog';
 
 import {
   BANKID_SIGN,
@@ -24,17 +24,25 @@ import {
 import { colors } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
-  dialog: {
-    backgroundColor: colors.TRANSPARENT,
+  container: {
+    alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 100,
+    height: '100%',
+    position: 'relative',
+  },
+  shadow: {
+    backgroundColor: colors.BLACK,
+    opacity: 0.5,
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
   },
   content: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.WHITE,
     borderRadius: 8,
-    paddingTop: 10,
+    maxWidth: '80%',
   },
   status: {
     fontFamily: 'CircularStd-Book',
@@ -194,9 +202,11 @@ const messages = [
   },
 ];
 
-const { width: viewportWidth } = Dimensions.get('window');
-
 class Dialog extends React.Component {
+  state = {
+    isVisible: false,
+  };
+
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this._signCancel);
   }
@@ -214,15 +224,15 @@ class Dialog extends React.Component {
   }
 
   _show() {
-    if (!this.props.bankid.isDialogOpen) {
+    if (!this.state.isVisible) {
       Keyboard.dismiss();
-      this.popupDialog.show();
+      this.setState({ isVisible: true });
     }
   }
 
   _dismiss() {
-    if (this.props.bankid.isDialogOpen) {
-      this.popupDialog.dismiss();
+    if (this.state.isVisible) {
+      this.setState({ isVisible: false });
     }
   }
 
@@ -251,22 +261,18 @@ class Dialog extends React.Component {
 
   render() {
     const { isCurrentlySigning } = this.props.bankid.sign;
-    const { isDialogOpen } = this.props.bankid;
     return (
-      <PopupDialog
-        ref={(popupDialog) => {
-          this.popupDialog = popupDialog;
-        }}
-        dismissOnTouchOutside={false}
-        width={viewportWidth - 60}
-        height={1}
-        style={styles.backdrop}
-        onShown={this.props.dialogShown}
-        onDismissed={this.props.dialogDismissed}
-        dialogStyle={styles.dialog}
-      >
-        {isDialogOpen &&
-          isCurrentlySigning && (
+      this.state.isVisible &&
+      isCurrentlySigning && (
+        <Modal onRequestClose={() => this._dismiss()} transparent>
+          <View style={styles.container}>
+            <TouchableWithoutFeedback
+              accessibilityTraits="none"
+              accessibilityComponentType="none"
+              onPress={() => this._dismiss()}
+            >
+              <View style={styles.shadow} />
+            </TouchableWithoutFeedback>
             <View style={styles.content}>
               {this.getStatus() === 'pending' && (
                 <Fragment>
@@ -322,8 +328,9 @@ class Dialog extends React.Component {
                 </Fragment>
               )}
             </View>
-          )}
-      </PopupDialog>
+          </View>
+        </Modal>
+      )
     );
   }
 }

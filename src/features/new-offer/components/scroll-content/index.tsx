@@ -3,7 +3,7 @@ import styled from '@sampettersson/primitives';
 import { View, ViewStyle, Animated, Text } from 'react-native';
 import { Arrow } from 'src/components/icons/Arrow';
 import { Spacing } from 'src/components/Spacing';
-import { Parallel, Spring, Delay } from 'animated-react-native-components';
+import { Spring, Delay, Sequence } from 'animated-react-native-components';
 import { colors } from '@hedviginsurance/brand';
 
 import OfferScreen2 from 'src/features/offer/containers/screens/OfferScreen2';
@@ -56,7 +56,7 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
   scrollAnimatedValue,
   insuredAtOtherCompany,
 }) => (
-  <Parallel>
+  <Sequence>
     <Delay config={{ delay: 950 }} />
     <Spring
       config={{
@@ -78,10 +78,10 @@ export const ScrollContent: React.SFC<ScrollContentProps> = ({
             <OfferScreen4 />
             <OfferScreen5 />
             {insuredAtOtherCompany && <OfferScreen7 />}
-            <GetHedvig />
+            <GetHedvig scrollAnimatedValue={scrollAnimatedValue} />
           </Content>
         </ScrollContentContainer>
       )}
     </Spring>
-  </Parallel>
+  </Sequence>
 );
