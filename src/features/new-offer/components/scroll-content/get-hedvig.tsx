@@ -10,7 +10,7 @@ import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const AnimatedText = Animated.createAnimatedComponent<TextProps>(Text);
 
-const CONTENT_INSET = isIphoneX() ? 70 : 0;
+const CONTENT_INSET = isIphoneX() ? 75 : 0;
 
 const Title = styled(AnimatedText)(
   ({
@@ -27,7 +27,7 @@ const Title = styled(AnimatedText)(
     opacity: scrollAnimatedValue.interpolate({
       inputRange: [
         positionFromTop - CONTENT_INSET,
-        positionFromTop - CONTENT_INSET + 100,
+        positionFromTop - CONTENT_INSET + 60,
       ],
       outputRange: [0, 1],
       extrapolate: 'clamp',
@@ -51,7 +51,7 @@ const Body = styled(AnimatedText)(
     opacity: scrollAnimatedValue.interpolate({
       inputRange: [
         positionFromTop - CONTENT_INSET,
-        positionFromTop - CONTENT_INSET + 120,
+        positionFromTop - CONTENT_INSET + 80,
       ],
       outputRange: [0, 1],
       extrapolate: 'clamp',
