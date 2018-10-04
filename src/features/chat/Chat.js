@@ -19,7 +19,10 @@ import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { getMainLayout, setLayout } from '../../navigation/layout';
-import { getOfferScreen } from 'src/navigation/screens/offer/ab-test';
+import {
+  getOfferScreen,
+  OFFER_GROUPS,
+} from 'src/navigation/screens/offer/ab-test';
 
 import {
   RESTART_BUTTON,
@@ -209,7 +212,8 @@ class Chat extends React.Component {
   _showOffer = async () => {
     this._stopPolling();
     const { screen, group } = await getOfferScreen();
-    if (group === 'old') {
+
+    if (group === OFFER_GROUPS.OLD) {
       Navigation.showModal({
         stack: {
           children: [screen],
