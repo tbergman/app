@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { PerilsQuery } from './perils-query';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 
 import {
   verticalSizeClass,
@@ -31,14 +33,19 @@ class OfferScreen extends React.Component {
           loading || error ? null : (
             <View style={styles.container}>
               <PerilsOverview
-                title="Lägenhetsskyddet"
+                title={
+                  <TranslationsPlaceholderConsumer
+                    replacements={{ address: data.insurance.address }}
+                    textKey="OFFER_APARTMENT_PROTECTION_TITLE"
+                  >
+                    {(nodes) => nodes}
+                  </TranslationsPlaceholderConsumer>
+                }
                 categoryTitle={data.insurance.perilCategories[1].title}
                 description={
-                  <React.Fragment>
-                    Vi vet hur mycket ett hem betyder. Därför ger vi det ett
-                    riktigt bra skydd, så att du kan känna dig trygg i
-                    alla&nbsp;lägen.
-                  </React.Fragment>
+                  <TranslationsConsumer textKey="OFFER_APARTMENT_PROTECTION_DESCRIPTION">
+                    {(text) => text}
+                  </TranslationsConsumer>
                 }
                 perils={data.insurance.perilCategories[1].perils}
                 hero={
