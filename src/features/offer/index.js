@@ -14,6 +14,7 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import debounce from 'debounce';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
 import {
@@ -149,6 +150,12 @@ const hitSlop = {
 };
 
 class OfferSwiper extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.trackOfferStepCompleted = debounce(props.trackOfferStepCompleted, 500);
+    this.trackOfferStepViewed = debounce(props.trackOfferStepViewed, 500);
+  }
   componentDidMount() {
     this.props.getInsurance();
     // Routing to Offer view from BaseRouter when
@@ -184,14 +191,8 @@ class OfferSwiper extends React.Component {
     if (
       this.props.activeOfferScreenIndex !== prevProps.activeOfferScreenIndex
     ) {
-      this.props.trackOfferStepCompleted(
-        prevProps.activeOfferScreenIndex,
-        orderId,
-      );
-      this.props.trackOfferStepViewed(
-        this.props.activeOfferScreenIndex,
-        orderId,
-      );
+      this.trackOfferStepCompleted(prevProps.activeOfferScreenIndex, orderId);
+      this.trackOfferStepViewed(this.props.activeOfferScreenIndex, orderId);
     }
   }
 
