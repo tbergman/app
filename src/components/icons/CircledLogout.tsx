@@ -2,10 +2,7 @@ import * as React from 'react';
 import { Svg, Path } from 'react-native-svg';
 import { colors } from '@hedviginsurance/brand';
 
-interface IconSize {
-  width: number;
-  height: number;
-}
+import { IconSize } from './types';
 
 interface CircledLogoutProps extends IconSize {
   ovalFill?: string;

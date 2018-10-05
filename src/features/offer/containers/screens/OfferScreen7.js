@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import * as R from 'ramda';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import {
   horizontalSizeClass,
@@ -131,12 +131,20 @@ const insuranceNames = [
   },
 ];
 
+const QUERY = gql`
+  query SwitcherScreen {
+    insurance {
+      currentInsurerName
+    }
+  }
+`;
+
+const getDisplayName = (currentInsurerName) =>
+  R.find(R.propEq('currentInsurerName', currentInsurerName))(insuranceNames)
+    .displayName;
+
 class OfferScreen extends React.Component {
   render() {
-    const { currentInsurerName } = this.props.insurance;
-    const insuranceName = R.find(
-      R.propEq('currentInsurerName', currentInsurerName),
-    )(insuranceNames).displayName;
     const regular = require('../../../../../assets/offer/hero/switch.png');
     const spacious = require('../../../../../assets/offer/hero/switch-xl.png');
     const heroImage =
@@ -144,55 +152,61 @@ class OfferScreen extends React.Component {
         [V_SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
-    return (
-      <View style={styles.container}>
-        <Hero containerStyle={styles.heroBackground} source={heroImage} />
-        <ScrollView style={styles.scroll}>
-          <View style={styles.scrollContent}>
-            <View style={styles.content}>
-              <Text style={styles.heading}>
-                Hedvig sköter bytet {insuranceName}
-              </Text>
+    const { disableScroll } = this.props;
 
-              <View style={styles.stepsContainer}>
-                <View style={styles.step}>
-                  <View style={styles.stepNumber}>
-                    <Text style={styles.stepNumberText}>1</Text>
+    const ContainerComp = disableScroll ? View : ScrollView;
+
+    return (
+      <Query query={QUERY}>
+        {({ data, loading, error }) =>
+          loading || error ? null : (
+            <View style={styles.container}>
+              <Hero containerStyle={styles.heroBackground} source={heroImage} />
+              <ContainerComp style={styles.scroll}>
+                <View style={styles.scrollContent}>
+                  <View style={styles.content}>
+                    <Text style={styles.heading}>
+                      Hedvig sköter bytet{' '}
+                      {getDisplayName(data.insurance.currentInsurerName)}
+                    </Text>
+
+                    <View style={styles.stepsContainer}>
+                      <View style={styles.step}>
+                        <View style={styles.stepNumber}>
+                          <Text style={styles.stepNumberText}>1</Text>
+                        </View>
+                        <Text style={styles.stepLabel}>
+                          Signera med ditt mobila&nbsp;BankID
+                        </Text>
+                      </View>
+                      <View style={styles.step}>
+                        <View style={styles.stepNumber}>
+                          <Text style={styles.stepNumberText}>2</Text>
+                        </View>
+                        <Text style={styles.stepLabel}>
+                          Hedvig kontaktar ditt försäkringsbolag och säger upp
+                          din gamla försäkring
+                        </Text>
+                      </View>
+                      <View style={styles.step}>
+                        <View style={styles.stepNumber}>
+                          <Text style={styles.stepNumberText}>3</Text>
+                        </View>
+                        <Text style={styles.stepLabel}>
+                          Din Hedvigförsäkring aktiveras samma dag som din gamla
+                          försäkring går ut
+                        </Text>
+                      </View>
+                    </View>
                   </View>
-                  <Text style={styles.stepLabel}>
-                    Signera med ditt mobila&nbsp;BankID
-                  </Text>
                 </View>
-                <View style={styles.step}>
-                  <View style={styles.stepNumber}>
-                    <Text style={styles.stepNumberText}>2</Text>
-                  </View>
-                  <Text style={styles.stepLabel}>
-                    Hedvig kontaktar ditt försäkringsbolag och säger upp din
-                    gamla försäkring
-                  </Text>
-                </View>
-                <View style={styles.step}>
-                  <View style={styles.stepNumber}>
-                    <Text style={styles.stepNumberText}>3</Text>
-                  </View>
-                  <Text style={styles.stepLabel}>
-                    Din Hedvigförsäkring aktiveras samma dag som din gamla
-                    försäkring går ut
-                  </Text>
-                </View>
-              </View>
+              </ContainerComp>
             </View>
-          </View>
-        </ScrollView>
-      </View>
+          )
+        }
+      </Query>
     );
   }
 }
 
-const OfferContainer = connect(
-  null,
-  null,
-)(OfferScreen);
-
-export default OfferContainer;
+export default OfferScreen;

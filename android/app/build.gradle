@@ -22,8 +22,8 @@ android {
     applicationId project.env.get('APP_ID')
     minSdkVersion 19
     multiDexEnabled true
-    versionCode 35
-    versionName '2.1.1'
+    versionCode 36
+    versionName '2.2.0'
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
     resValue "string", "build_config_package", "com.hedvig.app"
@@ -74,7 +74,8 @@ android {
 }
 
 dependencies {
-  // Link dependencies
+  compile project(':react-native-gesture-handler')
+  compile project(':react-native-device-info')
   compile project(':react-native-svg')
   compile project(':react-native-config')
   compile project(':rn-fetch-blob')

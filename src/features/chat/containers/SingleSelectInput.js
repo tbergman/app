@@ -11,16 +11,8 @@ import {
   StyledMarginContainer,
 } from '../styles/chat';
 
-import { OFFER_SCREEN } from '../../../navigation/screens/offer';
 import { PAYMENT_SCREEN } from '../../../navigation/screens/payment';
 import { setLayout, getMainLayout } from '../../../navigation/layout';
-
-const showOffer = () =>
-  Navigation.showModal({
-    stack: {
-      children: [OFFER_SCREEN],
-    },
-  });
 
 const showTrustly = (id) =>
   Navigation.showModal({
@@ -49,7 +41,7 @@ class SingleSelectInput extends React.Component {
   };
 
   render() {
-    const { message, selectChoice, done } = this.props;
+    const { message, selectChoice, done, showOffer } = this.props;
     let anySelected = message.body.choices.some((choice) => choice.selected);
     let opts = message.body.choices.map((choice) => {
       return (

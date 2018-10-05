@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import styled from '@emotion/primitives';
+import styled from '@sampettersson/primitives';
 
 import { colors } from '@hedviginsurance/brand';
 import { Spacing } from '../../components/Spacing';

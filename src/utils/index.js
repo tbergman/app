@@ -1,6 +1,5 @@
 import { INSURANCE_TYPES } from '../constants';
-export const isApartmentOwner = (insurance) => {
-  const { insuranceType } = insurance;
+export const isApartmentOwner = (insuranceType) => {
   switch (insuranceType) {
     case INSURANCE_TYPES.BRF:
     case INSURANCE_TYPES.SUBLET_BRF:
@@ -11,8 +10,7 @@ export const isApartmentOwner = (insurance) => {
   }
 };
 
-export const isStudentInsurance = (insurance) => {
-  const { insuranceType } = insurance;
+export const isStudentInsurance = (insuranceType) => {
   switch (insuranceType) {
     case INSURANCE_TYPES.STUDENT_BRF:
     case INSURANCE_TYPES.STUDENT_RENT:

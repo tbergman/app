@@ -69,8 +69,8 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
 
   componentDidMount() {
     Animated.sequence([
-      Animated.delay(100),
       Animated.spring(this.state.slideAnim, {
+        delay: 100,
         toValue: 0,
         useNativeDriver: true,
       }),
@@ -122,9 +122,9 @@ export class AnimatedMultipleSelectOptionButton extends React.Component {
 
   componentDidMount() {
     Animated.sequence([
-      Animated.delay(100),
       Animated.spring(this.state.slideAnim, {
         toValue: 0,
+        delay: 100,
         useNativeDriver: true,
       }),
     ]).start();

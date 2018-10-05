@@ -333,6 +333,7 @@ export default class MarketingCarousel extends React.Component {
       orderId,
       componentId,
     } = this.props;
+
     if (activeMarketingScreenIndex === 3) {
       Navigation.setStackRoot(componentId, CHAT_SCREEN);
       startChat(orderId);

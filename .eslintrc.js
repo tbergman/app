@@ -8,6 +8,7 @@ module.exports = {
     browser: true,
     jest: true,
     node: true,
+    es6: true,
   },
   plugins: ['react', 'react-native', 'react-native-a11y'],
   extends: [

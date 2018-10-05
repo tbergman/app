@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import {
   View,
@@ -10,6 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import {
   verticalSizeClass,
@@ -99,6 +99,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const QUERY = gql`
+  query LegalScreen {
+    insurance {
+      presaleInformationUrl
+      policyUrl
+      type
+    }
+  }
+`;
+
 const HEDVIG_INTEGRITET_S3_LINK =
   'https://s3.eu-central-1.amazonaws.com/com-hedvig-web-content/Hedvig+-+integritetspolicy.pdf';
 
@@ -111,7 +121,6 @@ const hitSlop = {
 
 class OfferScreen extends React.Component {
   render() {
-    const { insurance } = this.props;
     const regular = require('../../../../../assets/offer/hero/legal.png');
     const spacious = require('../../../../../assets/offer/hero/legal-xl.png');
     const heroImage =
@@ -119,131 +128,140 @@ class OfferScreen extends React.Component {
         [V_SPACIOUS]: spacious,
       }[verticalSizeClass] || regular;
 
-    return (
-      <View style={styles.container}>
-        <Hero containerStyle={styles.heroBackground} source={heroImage} />
-        <ScrollView style={styles.scroll}>
-          <View style={styles.scrollContent}>
-            <View style={styles.content}>
-              <View>
-                <Text style={styles.header}>Viktiga villkor</Text>
-              </View>
-              <View style={styles.bulletContainer}>
-                <CheckedBullet
-                  label={
-                    <React.Fragment>
-                      Sveriges enda försäkring
-                      {'\n'}
-                      helt utan bindningstid
-                    </React.Fragment>
-                  }
-                />
-                {isApartmentOwner(insurance) && (
-                  <CheckedBullet
-                    label={
-                      <React.Fragment>
-                        Lägenheten är försäkrad
-                        {'\n'}
-                        utan begränsning
-                      </React.Fragment>
-                    }
-                  />
-                )}
-                <CheckedBullet
-                  label={
-                    <React.Fragment>
-                      Maxersättning för prylarna
-                      {'\n'}i ditt hem är{' '}
-                      {isStudentInsurance(insurance) ? '200 000' : '1 miljon'}{' '}
-                      kr
-                    </React.Fragment>
-                  }
-                />
-                <CheckedBullet
-                  label={
-                    <React.Fragment>
-                      Självrisken är 1&nbsp;500&nbsp;kr
-                    </React.Fragment>
-                  }
-                />
-              </View>
-            </View>
+    const { disableScroll } = this.props;
 
-            <View style={styles.legalLinkWrapper}>
-              <View style={styles.legalLinkContainer}>
-                <TouchableOpacity
-                  onPress={() =>
-                    Linking.openURL(this.props.insurance.presaleInformationUrl)
-                  }
-                  hitSlop={hitSlop}
-                  style={styles.legalLink}
-                  accessibilityTraits="link"
-                  accessibilityComponentType="button"
-                >
-                  <View style={styles.legalLinkContent}>
-                    <Image
-                      style={styles.legalLinkIcon}
-                      source={require('../../../../../assets/icons/offer/legal/forkopsinformation.png')}
-                    />
-                    <Text style={styles.legalLinkLabel}>
-                      Förköps-
-                      {'\n'}
-                      information
-                    </Text>
+    const ContainerComp = disableScroll ? View : ScrollView;
+
+    return (
+      <Query query={QUERY}>
+        {({ data, loading, error }) =>
+          loading || error ? null : (
+            <View style={styles.container}>
+              <Hero containerStyle={styles.heroBackground} source={heroImage} />
+              <ContainerComp style={styles.scroll}>
+                <View style={styles.scrollContent}>
+                  <View style={styles.content}>
+                    <View>
+                      <Text style={styles.header}>Viktiga villkor</Text>
+                    </View>
+                    <View style={styles.bulletContainer}>
+                      <CheckedBullet
+                        label={
+                          <React.Fragment>
+                            Sveriges enda försäkring
+                            {'\n'}
+                            helt utan bindningstid
+                          </React.Fragment>
+                        }
+                      />
+                      {isApartmentOwner(data.insurance.type) && (
+                        <CheckedBullet
+                          label={
+                            <React.Fragment>
+                              Lägenheten är försäkrad
+                              {'\n'}
+                              utan begränsning
+                            </React.Fragment>
+                          }
+                        />
+                      )}
+                      <CheckedBullet
+                        label={
+                          <React.Fragment>
+                            Maxersättning för prylarna
+                            {'\n'}i ditt hem är{' '}
+                            {isStudentInsurance(data.insurance.type)
+                              ? '200 000'
+                              : '1 miljon'}{' '}
+                            kr
+                          </React.Fragment>
+                        }
+                      />
+                      <CheckedBullet
+                        label={
+                          <React.Fragment>
+                            Självrisken är 1&nbsp;500&nbsp;kr
+                          </React.Fragment>
+                        }
+                      />
+                    </View>
                   </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() =>
-                    Linking.openURL(this.props.insurance.policyUrl)
-                  }
-                  hitSlop={hitSlop}
-                  style={styles.legalLink}
-                  accessibilityTraits="link"
-                  accessibilityComponentType="button"
-                >
-                  <View style={styles.legalLinkContent}>
-                    <Image
-                      style={styles.legalLinkIcon}
-                      source={require('../../../../../assets/icons/offer/legal/forsakringsvillkor.png')}
-                    />
-                    <Text style={styles.legalLinkLabel}>
-                      Försäkrings-
-                      {'\n'}
-                      villkor
-                    </Text>
+
+                  <View style={styles.legalLinkWrapper}>
+                    <View style={styles.legalLinkContainer}>
+                      <TouchableOpacity
+                        onPress={() =>
+                          Linking.openURL(data.insurance.presaleInformationUrl)
+                        }
+                        hitSlop={hitSlop}
+                        style={styles.legalLink}
+                        accessibilityTraits="link"
+                        accessibilityComponentType="button"
+                      >
+                        <View style={styles.legalLinkContent}>
+                          <Image
+                            style={styles.legalLinkIcon}
+                            source={require('../../../../../assets/icons/offer/legal/forkopsinformation.png')}
+                          />
+                          <Text style={styles.legalLinkLabel}>
+                            Förköps-
+                            {'\n'}
+                            information
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() =>
+                          Linking.openURL(data.insurance.policyUrl)
+                        }
+                        hitSlop={hitSlop}
+                        style={styles.legalLink}
+                        accessibilityTraits="link"
+                        accessibilityComponentType="button"
+                      >
+                        <View style={styles.legalLinkContent}>
+                          <Image
+                            style={styles.legalLinkIcon}
+                            source={require('../../../../../assets/icons/offer/legal/forsakringsvillkor.png')}
+                          />
+                          <Text style={styles.legalLinkLabel}>
+                            Försäkrings-
+                            {'\n'}
+                            villkor
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() =>
+                          Linking.openURL(HEDVIG_INTEGRITET_S3_LINK)
+                        }
+                        hitSlop={hitSlop}
+                        style={styles.legalLink}
+                        accessibilityTraits="link"
+                        accessibilityComponentType="button"
+                      >
+                        <View style={styles.legalLinkContent}>
+                          <Image
+                            style={styles.legalLinkIcon}
+                            source={require('../../../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
+                          />
+                          <Text style={styles.legalLinkLabel}>
+                            Personuppgifts-
+                            {'\n'}
+                            policy
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(HEDVIG_INTEGRITET_S3_LINK)}
-                  hitSlop={hitSlop}
-                  style={styles.legalLink}
-                  accessibilityTraits="link"
-                  accessibilityComponentType="button"
-                >
-                  <View style={styles.legalLinkContent}>
-                    <Image
-                      style={styles.legalLinkIcon}
-                      source={require('../../../../../assets/icons/offer/legal/personuppgiftspolicy.png')}
-                    />
-                    <Text style={styles.legalLinkLabel}>
-                      Personuppgifts-
-                      {'\n'}
-                      policy
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
+                </View>
+              </ContainerComp>
             </View>
-          </View>
-        </ScrollView>
-      </View>
+          )
+        }
+      </Query>
     );
   }
 }
 
-const OfferContainer = connect(
-  null,
-  null,
-)(OfferScreen);
-
-export default OfferContainer;
+export default OfferScreen;

@@ -5,14 +5,20 @@ import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 import { CHAT_SCREEN } from './screens/chat';
 import { MARKETING_SCREEN } from './screens/marketing';
-import { OFFER_SCREEN } from './screens/offer';
 import { DASHBOARD_SCREEN } from './screens/dashboard';
 import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
+import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
+import { OFFER_SCREEN } from 'src/navigation/screens/offer';
+
+import {
+  getOfferGroup,
+  OFFER_GROUPS,
+} from 'src/navigation/screens/offer/ab-test';
 
 export const getMarketingLayout = () => ({
   root: {
@@ -76,16 +82,28 @@ export const getChatLayout = () => ({
   },
 });
 
-export const getOfferLayout = () => ({
-  modals: [
-    {
-      stack: {
-        children: [OFFER_SCREEN],
+export const getOfferLayout = async () => {
+  if ((await getOfferGroup()) === OFFER_GROUPS.NEW) {
+    return {
+      root: {
+        stack: {
+          children: [NEW_OFFER_SCREEN],
+        },
       },
-    },
-  ],
-  ...getChatLayout(),
-});
+    };
+  }
+
+  return {
+    modals: [
+      {
+        stack: {
+          children: [OFFER_SCREEN],
+        },
+      },
+    ],
+    ...getChatLayout(),
+  };
+};
 
 export const getInitialLayout = async () => {
   const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
@@ -117,7 +135,8 @@ export const getInitialLayout = async () => {
       const isViewingOffer = await AsyncStorage.getItem(IS_VIEWING_OFFER);
 
       if (isViewingOffer) {
-        return resolve(getOfferLayout());
+        const OFFER_LAYOUT = await getOfferLayout();
+        return resolve(OFFER_LAYOUT);
       }
 
       return resolve(getChatLayout());
@@ -125,21 +144,24 @@ export const getInitialLayout = async () => {
   });
 };
 
-export const setLayout = ({ root, modals, overlays }) => {
+export const setLayout = ({ root, modals = [], overlays = [] }) => {
   Navigation.setDefaultOptions({
     topBar: {
       animate: false,
       title: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
+      },
+      subtitle: {
+        fontFamily: fonts.CIRCULAR,
       },
       leftButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       rightButtons: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
       },
       largeTitle: {
-        fontFamily: 'CircularStd-Book',
+        fontFamily: fonts.CIRCULAR,
         fontSize: 30,
       },
     },
@@ -153,7 +175,7 @@ export const setLayout = ({ root, modals, overlays }) => {
       selectedIconColor: colors.PURPLE,
       textColor: colors.DARK_GRAY,
       selectedTextColor: colors.PURPLE,
-      fontFamily: 'CircularStd-Book',
+      fontFamily: fonts.CIRCULAR,
       fontSize: 13,
     },
     layout: {

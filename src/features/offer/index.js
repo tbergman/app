@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
-    top: 20,
+    top: ifIphoneX ? 40 : 20,
     left: 17,
     zIndex: 2,
   },

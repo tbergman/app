@@ -18,8 +18,11 @@ import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
-import { OFFER_SCREEN } from '../../navigation/screens/offer';
 import { getMainLayout, setLayout } from '../../navigation/layout';
+import {
+  getOfferScreen,
+  OFFER_GROUPS,
+} from 'src/navigation/screens/offer/ab-test';
 
 import {
   RESTART_BUTTON,
@@ -29,13 +32,13 @@ import {
 } from '../../navigation/screens/chat/buttons';
 
 const inputComponentMap = {
-  multiple_select: <MultipleSelectInput />,
-  text: <ChatTextInput />,
-  number: <ChatNumberInput />,
-  single_select: <SingleSelectInput />,
-  bankid_collect: <BankIdCollectInput />,
-  paragraph: <ParagraphInput />,
-  audio: <AudioInput />,
+  multiple_select: () => <MultipleSelectInput />,
+  text: () => <ChatTextInput />,
+  number: () => <ChatNumberInput />,
+  single_select: (props) => <SingleSelectInput {...props} />,
+  bankid_collect: () => <BankIdCollectInput />,
+  paragraph: () => <ParagraphInput />,
+  audio: () => <AudioInput />,
 };
 
 class UnconnectedPollingMessage extends React.Component {
@@ -60,7 +63,7 @@ const PollingMessage = connect(
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages) => {
+const getInputComponent = (messages, props) => {
   if (messages.length === 0) {
     return null;
   }
@@ -70,10 +73,12 @@ const getInputComponent = (messages) => {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
-      <PollingMessage>{inputComponentMap[lastMessageType]}</PollingMessage>
+      <PollingMessage>
+        {inputComponentMap[lastMessageType](props)}
+      </PollingMessage>
     );
   }
-  return inputComponentMap[lastMessageType];
+  return inputComponentMap[lastMessageType](props);
 };
 
 const styles = StyleSheet.create({
@@ -145,6 +150,7 @@ class Chat extends React.Component {
 
   getNavigationOptions = () => {
     const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
+
     if (onboardingDone) {
       if (isModal) {
         return {
@@ -203,13 +209,19 @@ class Chat extends React.Component {
     }
   };
 
-  _showOffer = () => {
+  _showOffer = async () => {
     this._stopPolling();
-    Navigation.showModal({
-      stack: {
-        children: [OFFER_SCREEN],
-      },
-    });
+    const { screen, group } = await getOfferScreen();
+
+    if (group === OFFER_GROUPS.OLD) {
+      Navigation.showModal({
+        stack: {
+          children: [screen],
+        },
+      });
+    } else {
+      Navigation.push(this.props.componentId, screen);
+    }
   };
 
   _showDashboard = () => {
@@ -234,7 +246,9 @@ class Chat extends React.Component {
             {this.props.messages.length ? <MessageList /> : <Loader />}
           </View>
           <View style={styles.response}>
-            {getInputComponent(this.props.messages, this.props.navigation)}
+            {getInputComponent(this.props.messages, {
+              showOffer: this._showOffer,
+            })}
           </View>
         </KeyboardAvoidingView>
       </NavigationOptions>

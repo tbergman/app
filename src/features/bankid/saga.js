@@ -48,7 +48,7 @@ const buildBankIdClientUrl = (autoStartToken) => {
     Config.APP_SCHEME
   }://`;
   const androidBankIdClientUrl = `bankid:///${params}`;
-  const iOsBankIdClientUrl = `https://app.bankid.com/${params}`;
+  const iOsBankIdClientUrl = `bankid://${params}`;
   const bankIdClientUrl =
     Platform.OS === 'ios' ? iOsBankIdClientUrl : androidBankIdClientUrl;
   return bankIdClientUrl;

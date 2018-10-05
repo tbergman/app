@@ -1,7 +1,8 @@
-import { connect } from 'react-redux';
-
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { PerilsQuery } from './perils-query';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 
 import {
   verticalSizeClass,
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
 
 class OfferScreen extends React.Component {
   render() {
-    const category = this.props.insurance.categories[1];
     const regular = require('../../../../../assets/offer/hero/house.png');
     const spacious = require('../../../../../assets/offer/hero/house-xl.png');
     const heroImage =
@@ -28,29 +28,39 @@ class OfferScreen extends React.Component {
       }[verticalSizeClass] || regular;
 
     return (
-      <View style={styles.container}>
-        <PerilsOverview
-          title="Lägenhetsskyddet"
-          categoryTitle={category.title}
-          description={
-            <React.Fragment>
-              Vi vet hur mycket ett hem betyder. Därför ger vi det ett riktigt
-              bra skydd, så att du kan känna dig trygg i alla&nbsp;lägen.
-            </React.Fragment>
-          }
-          perils={category.perils}
-          hero={
-            <Hero containerStyle={styles.heroBackground} source={heroImage} />
-          }
-        />
-      </View>
+      <PerilsQuery>
+        {({ data, loading, error }) =>
+          loading || error ? null : (
+            <View style={styles.container}>
+              <PerilsOverview
+                title={
+                  <TranslationsPlaceholderConsumer
+                    replacements={{ address: data.insurance.address }}
+                    textKey="OFFER_APARTMENT_PROTECTION_TITLE"
+                  >
+                    {(nodes) => nodes}
+                  </TranslationsPlaceholderConsumer>
+                }
+                categoryTitle={data.insurance.perilCategories[1].title}
+                description={
+                  <TranslationsConsumer textKey="OFFER_APARTMENT_PROTECTION_DESCRIPTION">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
+                perils={data.insurance.perilCategories[1].perils}
+                hero={
+                  <Hero
+                    containerStyle={styles.heroBackground}
+                    source={heroImage}
+                  />
+                }
+              />
+            </View>
+          )
+        }
+      </PerilsQuery>
     );
   }
 }
 
-const OfferContainer = connect(
-  null,
-  null,
-)(OfferScreen);
-
-export default OfferContainer;
+export default OfferScreen;

@@ -4,10 +4,9 @@ exports[`<Peril /> Should render correctly 1`] = `
 <TouchableOpacity
   accessibilityComponentType="button"
   accessibilityTraits="image"
-  activeOpacity={0.2}
   onPress={[Function]}
 >
-  <ForwardRef(View)
+  <View
     style={
       Object {
         "alignItems": "center",
@@ -17,7 +16,7 @@ exports[`<Peril /> Should render correctly 1`] = `
       }
     }
   >
-    <ForwardRef(Image)
+    <Image
       source={
         Object {
           "testUri": "../../../assets/icons/perils/you/juridisk_tvist.png",
@@ -30,7 +29,7 @@ exports[`<Peril /> Should render correctly 1`] = `
         }
       }
     />
-    <ForwardRef(Text)
+    <Text
       style={
         Object {
           "color": "#9B9BAA",
@@ -42,7 +41,7 @@ exports[`<Peril /> Should render correctly 1`] = `
       }
     >
       Juridisk tvist
-    </ForwardRef(Text)>
-  </ForwardRef(View)>
+    </Text>
+  </View>
 </TouchableOpacity>
 `;
