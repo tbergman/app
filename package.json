@@ -36,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.0.0-rc.1",
+    "@babel/core": "^7.1.2",
     "@hedviginsurance/brand": "^1.3.1",
     "@hedviginsurance/podspec-generator": "^0.2.3",
     "@hedviginsurance/react-native-config": "^0.11.6",
@@ -89,7 +89,7 @@
     "lint-staged": "^7.2.0",
     "lodash": "^4.17.10",
     "lottie-react-native": "^2.5.6",
-    "metro-react-native-babel-preset": "^0.45.6",
+    "metro-react-native-babel-preset": "^0.47.1",
     "prettier": "^1.14.2",
     "prettier-eslint-cli": "^4.7.1",
     "promise-defer": "^1.0.0",
