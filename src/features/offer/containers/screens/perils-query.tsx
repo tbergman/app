@@ -7,6 +7,7 @@ import { Insurance } from 'src/graphql/types';
 const QUERY = gql`
   query Perils {
     insurance {
+      address
       type
       perilCategories {
         title
