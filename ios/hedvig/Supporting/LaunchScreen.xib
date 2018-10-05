@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,21 +16,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-Ds-K5f">
-                    <rect key="frame" x="85" y="176" width="150" height="128"/>
+                    <rect key="frame" x="66.5" y="200" width="187" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="128" id="zmw-QW-aS2"/>
+                        <constraint firstAttribute="height" constant="80" id="OXu-9W-8PT"/>
+                        <constraint firstAttribute="width" constant="187" id="rRK-RF-0sm"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="mHm-Ds-K5f" firstAttribute="centerX" secondItem="OfY-5Y-tS4" secondAttribute="centerX" id="KUs-xB-KiX"/>
-                <constraint firstItem="mHm-Ds-K5f" firstAttribute="centerY" secondItem="OfY-5Y-tS4" secondAttribute="centerY" id="taY-pb-Pd9"/>
+                <constraint firstItem="mHm-Ds-K5f" firstAttribute="centerY" secondItem="OfY-5Y-tS4" secondAttribute="centerY" id="a0Q-lW-Hne"/>
+                <constraint firstItem="mHm-Ds-K5f" firstAttribute="centerX" secondItem="OfY-5Y-tS4" secondAttribute="centerX" id="ocQ-RP-zmd"/>
             </constraints>
-            <point key="canvasLocation" x="201" y="453"/>
+            <point key="canvasLocation" x="200.625" y="452.5"/>
         </view>
     </objects>
     <resources>
-        <image name="launch_icon" width="150" height="47"/>
+        <image name="launch_icon" width="300" height="94"/>
     </resources>
 </document>
