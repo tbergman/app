@@ -10,6 +10,8 @@ import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 const AnimatedText = Animated.createAnimatedComponent<TextProps>(Text);
 
+const CONTENT_INSET = isIphoneX() ? 75 : 0;
+
 const Title = styled(AnimatedText)(
   ({
     scrollAnimatedValue,
@@ -23,7 +25,10 @@ const Title = styled(AnimatedText)(
     color: colors.WHITE,
     fontSize: 25,
     opacity: scrollAnimatedValue.interpolate({
-      inputRange: [positionFromTop, positionFromTop + 100],
+      inputRange: [
+        positionFromTop - CONTENT_INSET,
+        positionFromTop - CONTENT_INSET + 60,
+      ],
       outputRange: [0, 1],
       extrapolate: 'clamp',
     }),
@@ -44,7 +49,10 @@ const Body = styled(AnimatedText)(
     fontSize: 15,
     textAlign: 'center',
     opacity: scrollAnimatedValue.interpolate({
-      inputRange: [positionFromTop, positionFromTop + 120],
+      inputRange: [
+        positionFromTop - CONTENT_INSET,
+        positionFromTop - CONTENT_INSET + 80,
+      ],
       outputRange: [0, 1],
       extrapolate: 'clamp',
     }),
@@ -53,7 +61,7 @@ const Body = styled(AnimatedText)(
 
 const Block = styled(View)({
   padding: 20,
-  paddingBottom: isIphoneX() ? 70 : 110,
+  paddingBottom: isIphoneX() ? 75 : 110,
   alignItems: 'center',
   backgroundColor: colors.BLACK_PURPLE,
 });

@@ -156,7 +156,7 @@ class Chat extends React.Component {
     return (
       <>
         <KeyboardAvoidingView
-          keyboardVerticalOffset={70}
+          keyboardVerticalOffset={ifIphoneX ? 90 : 70}
           behavior="padding"
           enabled={Platform.OS === 'ios'}
           style={styles.container}
