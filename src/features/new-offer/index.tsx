@@ -173,6 +173,7 @@ export const NewOffer: React.SFC = () => (
                   />
                 </ScrollContainer>
                 <SignButton scrollAnimatedValue={animatedValue} />
+                <Checkout monthlyCost={data!.insurance.monthlyCost!} />
               </>
             )}
           </AnimationValueProvider>
@@ -189,7 +190,6 @@ export const NewOffer: React.SFC = () => (
               />
             )}
           </TranslationsConsumer>
-          <Checkout />
           <PerilsDialog />
         </>
       )
