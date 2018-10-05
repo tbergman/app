@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
 
 import {
   verticalSizeClass,
@@ -31,17 +32,23 @@ class OfferScreen extends React.Component {
           loading || error ? null : (
             <View style={styles.container}>
               <PerilsOverview
-                title="Personskyddet"
+                title={
+                  <TranslationsConsumer textKey="OFFER_PERSONAL_PROTECTION_TITLE">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
                 categoryTitle={data.insurance.perilCategories[0].title}
                 description={
-                  <React.Fragment>
-                    Hedvig skyddar dig mot obehagliga saker som kan hända på
-                    hemmaplan, och det mesta som kan hända när du är ute
-                    och&nbsp;reser.
-                  </React.Fragment>
+                  <TranslationsConsumer textKey="OFFER_PERSONAL_PROTECTION_DESCRIPTION">
+                    {(text) => text}
+                  </TranslationsConsumer>
                 }
                 perils={data.insurance.perilCategories[0].perils}
-                explainer={'Tryck på ikonerna för mer info'}
+                explainer={
+                  <TranslationsConsumer textKey="OFFER_PERILS_EXPLAINER">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
                 hero={
                   <Hero
                     containerStyle={styles.heroBackground}
