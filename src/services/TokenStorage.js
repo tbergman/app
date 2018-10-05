@@ -15,7 +15,7 @@ export async function loadToken() {
 
 export async function saveToken(token) {
   try {
-    await AsyncStorage.setItem(TOKEN_KEY, token);
+    await AsyncStorage.setItem(TOKEN_KEY, String(token));
   } catch (error) {
     throw new Error('Error saving token', error);
   }
