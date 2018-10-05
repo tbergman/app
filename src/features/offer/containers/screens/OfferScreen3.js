@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { TranslationsConsumer } from 'src/components/translations/consumer';
+import { TranslationsPlaceholderConsumer } from 'src/components/translations/placeholder-consumer';
 
 import {
   verticalSizeClass,
@@ -32,17 +34,31 @@ class OfferScreen extends React.Component {
           loading || error ? null : (
             <View style={styles.container}>
               <PerilsOverview
-                title="Prylskyddet"
+                title={
+                  <TranslationsConsumer textKey="OFFER_STUFF_PROTECTION_TITLE">
+                    {(text) => text}
+                  </TranslationsConsumer>
+                }
                 categoryTitle={data.insurance.perilCategories[2].title}
                 description={
-                  <React.Fragment>
-                    Med Hedvig får du ett komplett skydd för dina prylar.
-                    Drulleförsäkring ingår och täcker prylar värda upp till
-                    {isStudentInsurance(data.insurance.type)
-                      ? ' 25 000'
-                      : ' 50 000'}{' '}
-                    kr styck.
-                  </React.Fragment>
+                  <TranslationsPlaceholderConsumer
+                    textKey="OFFER_STUFF_PROTECTION_DESCRIPTION"
+                    replacements={{
+                      protectionAmount: (
+                        <TranslationsConsumer
+                          textKey={
+                            isStudentInsurance(data.insurance.type)
+                              ? 'STUFF_PROTECTION_AMOUNT_STUDENT'
+                              : 'STUFF_PROTECTION_AMOUNT'
+                          }
+                        >
+                          {(text) => text}
+                        </TranslationsConsumer>
+                      ),
+                    }}
+                  >
+                    {(nodes) => nodes}
+                  </TranslationsPlaceholderConsumer>
                 }
                 perils={data.insurance.perilCategories[2].perils}
                 hero={
