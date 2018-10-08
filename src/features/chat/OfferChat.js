@@ -155,18 +155,25 @@ class Chat extends React.Component {
   render() {
     return (
       <>
-        <View style={styles.messages}>
-          {this.props.messages.length ? (
-            <MessageList showOffer={this._showOffer} />
-          ) : (
-            <Loader />
-          )}
-        </View>
-        <View style={styles.response}>
-          {getInputComponent(this.props.messages, {
-            showOffer: this._showOffer,
-          })}
-        </View>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={ifIphoneX ? 90 : 70}
+          behavior="padding"
+          enabled={Platform.OS === 'ios'}
+          style={styles.container}
+        >
+          <View style={styles.messages}>
+            {this.props.messages.length ? (
+              <MessageList showOffer={this._showOffer} />
+            ) : (
+              <Loader />
+            )}
+          </View>
+          <View style={styles.response}>
+            {getInputComponent(this.props.messages, {
+              showOffer: this._showOffer,
+            })}
+          </View>
+        </KeyboardAvoidingView>
         <Dialog />
       </>
     );
