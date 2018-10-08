@@ -6,7 +6,6 @@ import {
   Modal,
   ViewProps,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
 } from 'react-native';
 import {
   AnimationValueProvider,
