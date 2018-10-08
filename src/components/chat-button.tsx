@@ -9,6 +9,7 @@ import {
 import { Container, ActionMap } from 'constate';
 import styled from '@sampettersson/primitives';
 import { Sequence, Delay, Timing } from 'animated-react-native-components';
+import { Navigation } from 'react-native-navigation';
 
 import { SpeechBubbles } from 'src/components/icons/SpeechBubbles';
 import { DraggableOverlay } from 'src/components/draggable-overlay';
@@ -18,14 +19,15 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { TranslationsConsumer } from 'src/components/translations/consumer';
 
+import { CHAT_SCREEN } from 'src/navigation/screens/chat';
+
 const AnimatedView = Animated.createAnimatedComponent<ViewProps>(View);
 
 const ChatButtonContainer = styled(View)(
   Platform.select({
     ios: {},
     android: {
-      paddingTop: 15,
-      paddingRight: 20,
+      paddingRight: 10,
       paddingLeft: 10,
     },
   }),
@@ -66,7 +68,15 @@ export const ChatButton: React.SFC = () => (
                       <TouchableOpacity
                         onPress={() => {
                           mutate().then(() => {
-                            setOpen(true);
+                            if (Platform.OS === 'android') {
+                              Navigation.showModal({
+                                stack: {
+                                  children: [CHAT_SCREEN],
+                                },
+                              });
+                            } else {
+                              setOpen(true);
+                            }
                           });
                         }}
                       >

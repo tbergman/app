@@ -13,7 +13,7 @@ import {
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { isIphoneX, ifIphoneX } from 'react-native-iphone-x-helper';
 import debounce from 'debounce';
 
 import { insuranceActions, eventActions } from '../../../hedvig-redux';
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   swiperContainer: { flex: 1 },
   closeOffer: {
     position: 'absolute',
-    top: ifIphoneX ? 40 : 20,
+    top: isIphoneX() ? 40 : 20,
     left: 17,
     zIndex: 2,
   },
