@@ -5,6 +5,7 @@ import {
   ScrollViewProps,
   View,
   ViewProps,
+  Platform,
 } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
@@ -23,6 +24,7 @@ import { TranslationsConsumer } from 'src/components/translations/consumer';
 import { SignButton } from 'src/features/new-offer/components/sign-button';
 import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
 import { NEW_OFFER_OPTIONS } from 'src/navigation/screens/new-offer/options';
+import { AndroidHeader } from 'src/features/new-offer/android-header';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -142,6 +144,9 @@ export const NewOffer: React.SFC = () => (
           <AnimationValueProvider initialValue={0}>
             {({ animatedValue }) => (
               <>
+                {Platform.OS === 'android' && (
+                  <AndroidHeader subtitle={data!.insurance.address!} />
+                )}
                 <ScrollContainer
                   onScroll={getScrollHandler(animatedValue)}
                   scrollEventThrottle={1}

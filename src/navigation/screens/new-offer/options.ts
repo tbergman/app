@@ -12,8 +12,14 @@ export const NEW_OFFER_OPTIONS = {
   },
   popGesture: false,
   topBar: {
-    drawBehind: false,
-    visible: true,
+    drawBehind: Platform.select({
+      ios: false,
+      android: true,
+    }),
+    visible: Platform.select({
+      ios: true,
+      android: false,
+    }),
     title: {
       text: '',
       color: 'white',
@@ -25,14 +31,16 @@ export const NEW_OFFER_OPTIONS = {
     background: {
       color: colors.BLACK_PURPLE,
     },
-    leftButtons: [CHAT_BUTTON],
+    leftButtons: Platform.select({
+      ios: [CHAT_BUTTON],
+      android: [],
+    }),
     rightButtons: Platform.select({
       ios: [SIGN_BUTTON],
       android: [CHAT_BUTTON, SIGN_BUTTON],
     }),
   },
   statusBar: {
-    height: 20,
     visible: true,
     style: 'light',
     drawBehind: false,

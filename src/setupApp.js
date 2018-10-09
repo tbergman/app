@@ -229,7 +229,6 @@ let persistor = persistStore(store);
 
 Branch.subscribe(({ error, params }) => {
   if (error) {
-    SentryInstance.captureException(error);
     return;
   }
 
