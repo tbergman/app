@@ -75,8 +75,11 @@ let SentryInstance = Sentry;
 let ravenMiddleware;
 
 if (!__DEV__) {
+  const environment =
+    Config.ENVIRONMENT === 'production' ? 'production' : 'test';
+
   SentryInstance.config(Config.SENTRY_DSN, {
-    environment: Config.ENVIRONMENT,
+    environment,
     deactivateStacktraceMerging: false,
   }).install();
 
