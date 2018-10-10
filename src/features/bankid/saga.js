@@ -1,4 +1,4 @@
-import { Linking, Platform } from 'react-native';
+import { Linking } from 'react-native';
 import {
   call,
   take,
@@ -47,11 +47,8 @@ const buildBankIdClientUrl = (autoStartToken) => {
   const params = `?autostarttoken=${autoStartToken}&redirect=${
     Config.APP_SCHEME
   }://`;
-  const androidBankIdClientUrl = `bankid:///${params}`;
-  const iOsBankIdClientUrl = `bankid://${params}`;
-  const bankIdClientUrl =
-    Platform.OS === 'ios' ? iOsBankIdClientUrl : androidBankIdClientUrl;
-  return bankIdClientUrl;
+  const clientUrl = `bankid:///${params}`;
+  return clientUrl;
 };
 
 const canOpenURL = (url) => {

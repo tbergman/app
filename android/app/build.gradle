@@ -10,6 +10,7 @@ project.ext.react = [
 ]
 
 apply from: '../../node_modules/react-native/react.gradle'
+apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 
 def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
@@ -22,8 +23,8 @@ android {
     applicationId project.env.get('APP_ID')
     minSdkVersion 19
     multiDexEnabled true
-    versionCode 36
-    versionName '2.2.0'
+    versionCode 37
+    versionName '2.2.1'
     missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
 
     resValue "string", "build_config_package", "com.hedvig.app"

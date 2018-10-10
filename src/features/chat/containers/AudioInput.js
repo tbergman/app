@@ -138,7 +138,6 @@ class AudioInput extends React.Component {
   };
 
   restartRecording = () => {
-    this.prepareRecordingPath();
     this.setState({ isFinished: false });
   };
 

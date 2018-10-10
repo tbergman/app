@@ -20,7 +20,6 @@ const ButtonViewContainer = styled(View)(
   Platform.select({
     ios: {},
     android: {
-      paddingTop: 12.5,
       paddingLeft: 10,
       paddingRight: 10,
     },

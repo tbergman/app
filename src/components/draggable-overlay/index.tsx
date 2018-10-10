@@ -169,7 +169,12 @@ export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
             }).start();
 
           return (
-            <Modal onRequestClose={() => handleClose()} visible transparent>
+            <Modal
+              animationType="none"
+              onRequestClose={() => handleClose()}
+              visible
+              transparent
+            >
               <Delayed
                 mountChildren={open}
                 mountChildrenAfter={0}

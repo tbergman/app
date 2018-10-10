@@ -8,10 +8,10 @@ export enum OFFER_GROUPS {
   NEW = 'new',
 }
 
-const SCREENS = {
+const getScreens = () => ({
   [OFFER_GROUPS.NEW]: NEW_OFFER_SCREEN,
   [OFFER_GROUPS.OLD]: OFFER_SCREEN,
-};
+});
 
 export const getOfferGroup = () =>
   getGroup('offeringScreens', [OFFER_GROUPS.OLD, OFFER_GROUPS.NEW]);
@@ -20,7 +20,7 @@ export const getOfferScreen = async () => {
   const group = await getOfferGroup();
 
   return {
-    screen: SCREENS[group],
+    screen: getScreens()[group],
     group,
   };
 };
