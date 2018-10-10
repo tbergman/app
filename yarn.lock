@@ -803,9 +803,9 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/graphql@^14.0.1":
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.1.tgz#ff44c20fefdf0cf8c390f64b0dfbbc3c10dbaa87"
+"@types/graphql@^0.13.2":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.13.4.tgz#55ae9c29f0fd6b85ee536f5c72b4769d5c5e06b1"
 
 "@types/jest@^23.3.2":
   version "23.3.3"
@@ -814,6 +814,10 @@
 "@types/node@*":
   version "10.11.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.4.tgz#e8bd933c3f78795d580ae41d86590bfc1f4f389d"
+
+"@types/node@^9.4.6":
+  version "9.6.35"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.35.tgz#197dd535c094362a7c95f0b78f07583d6681ed26"
 
 "@types/prop-types@*":
   version "15.5.6"
@@ -1086,6 +1090,14 @@ apollo-link-schema@^1.1.0:
   resolved "https://registry.yarnpkg.com/apollo-link-schema/-/apollo-link-schema-1.1.1.tgz#b36b513d1a008184ae8cfc2aad4fce445df5f149"
   dependencies:
     apollo-link "^1.2.3"
+
+apollo-link@1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npmjs.org/apollo-link/-/apollo-link-1.2.1.tgz#c120b16059f9bd93401b9f72b94d2f80f3f305d2"
+  dependencies:
+    "@types/node" "^9.4.6"
+    apollo-utilities "^1.0.0"
+    zen-observable-ts "^0.8.6"
 
 apollo-link@^1.0.0, apollo-link@^1.2.3:
   version "1.2.3"
@@ -3797,11 +3809,11 @@ graphql-tag@^2.9.2:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.0.tgz#87da024be863e357551b2b8700e496ee2d4353ae"
 
-graphql-tools@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-4.0.0.tgz#6ea01937c6f947212f83567ba687e97c22fdd2a6"
+graphql-tools@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-3.0.0.tgz#ff22ad15315fc268de8639d03936b911d78b9e9b"
   dependencies:
-    apollo-link "^1.2.3"
+    apollo-link "1.2.1"
     apollo-utilities "^1.0.1"
     deprecated-decorator "^0.1.6"
     iterall "^1.1.3"
@@ -7047,7 +7059,7 @@ react-transform-hmr@1.0.4, react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^16.5.0:
+react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   dependencies:
@@ -7478,7 +7490,13 @@ saxes@^3.1.2:
   dependencies:
     xmlchars "^1.3.1"
 
-schedule@0.5.0, schedule@^0.5.0:
+schedule@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/schedule/-/schedule-0.4.0.tgz#fa20cfd0bfbf91c47d02272fd7096780d3170bbb"
+  dependencies:
+    object-assign "^4.1.1"
+
+schedule@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/schedule/-/schedule-0.5.0.tgz#c128fffa0b402488b08b55ae74bb9df55cc29cc8"
   dependencies:
@@ -8713,7 +8731,7 @@ yazl@^2.4.1:
   dependencies:
     buffer-crc32 "~0.2.3"
 
-zen-observable-ts@^0.8.10:
+zen-observable-ts@^0.8.10, zen-observable-ts@^0.8.6:
   version "0.8.10"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.10.tgz#18e2ce1c89fe026e9621fd83cc05168228fce829"
   dependencies:
