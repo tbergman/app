@@ -35,8 +35,8 @@ interface Typename {
   __typename: string;
 }
 
-export const getNewOfferingScreensLayout = async () => {
-  await client.writeQuery<{ insurance: Insurance | Typename }>({
+export const addMockData = () =>
+  client.writeQuery<{ insurance: Insurance | Typename }>({
     query: QUERY,
     data: {
       insurance: {
@@ -102,12 +102,3 @@ export const getNewOfferingScreensLayout = async () => {
       },
     },
   });
-
-  return {
-    root: {
-      stack: {
-        children: [NEW_OFFER_SCREEN],
-      },
-    },
-  };
-};
