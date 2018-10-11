@@ -5,7 +5,10 @@ import OfferChat from './OfferChat';
 
 describe('<OfferChat />', () => {
   it('Should render without crashing', () => {
-    const component = shallow(<OfferChat />);
+    const spy = jest.fn();
+    const component = shallow(
+      <OfferChat showDashboard={() => {}} onRequestClose={() => {}} />,
+    );
     expect(component).not.toThrow();
   });
 });

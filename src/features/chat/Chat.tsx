@@ -49,17 +49,26 @@ interface UnconnectedPollingMessageProps {
   stopPolling: () => void;
 }
 
-const inputComponentMap = {
-  multiple_select: () => <MultipleSelectInput />,
-  text: () => <ChatTextInput />,
-  number: () => <ChatNumberInput />,
-  single_select: (props: any) => <SingleSelectInput {...props} />,
-  bankid_collect: () => <BankIdCollectInput />,
-  paragraph: () => <ParagraphInput />,
-  audio: () => <AudioInput />,
+const inputComponentMap = (type: string, props: any) => {
+  switch (type) {
+    case 'multiple_select':
+      return <MultipleSelectInput />;
+    case 'text':
+      return <ChatTextInput />;
+    case 'number':
+      return <ChatNumberInput />;
+    case 'single_select':
+      return <SingleSelectInput {...props} />;
+    case 'bankid_collect':
+      return <BankIdCollectInput />;
+    case 'paragraph':
+      return <ParagraphInput />;
+    case 'audio':
+      return <AudioInput />;
+    default:
+      return <View />;
+  }
 };
-
-const _longPollTimeout: any = null;
 
 class UnconnectedPollingMessage extends React.Component<
   UnconnectedPollingMessageProps
@@ -77,11 +86,13 @@ class UnconnectedPollingMessage extends React.Component<
   }
 }
 
+const newTypes: any = types;
+
 const PollingMessage = connect(
   undefined,
   (dispatch: any) => ({
-    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
+    startPolling: () => dispatch({ type: newTypes.START_POLLING_MESSAGES }),
+    stopPolling: () => dispatch({ type: newTypes.STOP_POLLING_MESSAGES }),
   }),
 )(UnconnectedPollingMessage);
 
@@ -97,11 +108,11 @@ const getInputComponent = (messages: Array<any>, props: any) => {
     lastMessageType = lastMessage.body.type;
     return (
       <PollingMessage>
-        {inputComponentMap[lastMessageType](props)}
+        {inputComponentMap(lastMessageType, props)}
       </PollingMessage>
     );
   }
-  return inputComponentMap[lastMessageType](props);
+  return inputComponentMap(lastMessageType, props);
 };
 
 const styles = StyleSheet.create({
@@ -147,7 +158,8 @@ class Chat extends React.Component<ChatProps> {
     }
 
     if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
-      setLayout(getMainLayout());
+      let layout: any = getMainLayout();
+      setLayout(layout);
     }
 
     if (buttonId === SHOW_OFFER_BUTTON.id) {
@@ -221,7 +233,7 @@ class Chat extends React.Component<ChatProps> {
 
   _stopPolling = () => {
     if (this._longPollTimeout) {
-      clearInterval(_longPollTimeout);
+      clearInterval(this._longPollTimeout);
       this._longPollTimeout = null;
     }
   };

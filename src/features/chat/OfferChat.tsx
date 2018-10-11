@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -19,14 +19,25 @@ import * as selectors from './state/selectors';
 
 import Dialog from 'src/containers/Dialog';
 
-const inputComponentMap = {
-  multiple_select: () => <MultipleSelectInput />,
-  text: () => <ChatTextInput />,
-  number: () => <ChatNumberInput />,
-  single_select: (props: any) => <SingleSelectInput {...props} />,
-  bankid_collect: () => <BankIdCollectInput />,
-  paragraph: () => <ParagraphInput />,
-  audio: () => <AudioInput />,
+const inputComponentMap = (type: string, props: any) => {
+  switch (type) {
+    case 'multiple_select':
+      return <MultipleSelectInput />;
+    case 'text':
+      return <ChatTextInput />;
+    case 'number':
+      return <ChatNumberInput />;
+    case 'single_select':
+      return <SingleSelectInput {...props} />;
+    case 'bankid_collect':
+      return <BankIdCollectInput />;
+    case 'paragraph':
+      return <ParagraphInput />;
+    case 'audio':
+      return <AudioInput />;
+    default:
+      return <View />;
+  }
 };
 
 interface UnconnectedPollingMessageProps {
@@ -61,11 +72,13 @@ class UnconnectedPollingMessage extends React.Component<
   }
 }
 
+const newTypes: any = types;
+
 const PollingMessage = connect(
   undefined,
   (dispatch: any) => ({
-    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
+    startPolling: () => dispatch({ type: newTypes.START_POLLING_MESSAGES }),
+    stopPolling: () => dispatch({ type: newTypes.STOP_POLLING_MESSAGES }),
   }),
 )(UnconnectedPollingMessage);
 
@@ -75,16 +88,17 @@ const getInputComponent = (messages: Array<any>, props: any) => {
   }
   let lastMessage: any = messages[0];
   let lastMessageType: any = lastMessage.body.type;
+
   if (lastMessageType === 'polling') {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
     return (
       <PollingMessage>
-        {inputComponentMap[lastMessageType](props)}
+        {inputComponentMap(lastMessageType, props)}
       </PollingMessage>
     );
   }
-  return inputComponentMap[lastMessageType](props);
+  return inputComponentMap(lastMessageType, props);
 };
 
 const styles = StyleSheet.create({

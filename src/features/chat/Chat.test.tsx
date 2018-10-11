@@ -5,7 +5,11 @@ import Chat from './Chat';
 
 describe('<Chat />', () => {
   it('Should render without crashing', () => {
-    const component = shallow(<Chat />);
+    const spy = jest.fn();
+
+    const component = shallow(
+      <Chat isModal={true} componentId={'123'} showDashboard={spy} />,
+    );
     expect(component).not.toThrow();
   });
 });
