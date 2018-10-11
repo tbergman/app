@@ -73,8 +73,8 @@ const getInputComponent = (messages: Array<any>, props: any) => {
   if (messages.length === 0) {
     return null;
   }
-  let lastMessage = messages[0];
-  let lastMessageType = lastMessage.body.type;
+  let lastMessage: any = messages[0];
+  let lastMessageType: any = lastMessage.body.type;
   if (lastMessageType === 'polling') {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
@@ -90,9 +90,14 @@ const getInputComponent = (messages: Array<any>, props: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...ifIphoneX({
-      marginBottom: 20,
-    }),
+    ...ifIphoneX(
+      {
+        marginBottom: 20,
+      },
+      {
+        marginBottom: 0,
+      },
+    ),
   },
   messages: {
     flex: 1,
@@ -108,6 +113,7 @@ const styles = StyleSheet.create({
 
 class Chat extends React.Component<ChatProps> {
   static defaultProps = { onboardingDone: false };
+  _longPollTimeout: any = null;
 
   constructor(props: ChatProps) {
     super(props);

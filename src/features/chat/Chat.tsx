@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
@@ -23,7 +23,6 @@ import {
   getOfferScreen,
   OFFER_GROUPS,
 } from 'src/navigation/screens/offer/ab-test';
-
 import {
   RESTART_BUTTON,
   CLOSE_BUTTON,
@@ -60,6 +59,8 @@ const inputComponentMap = {
   audio: () => <AudioInput />,
 };
 
+const _longPollTimeout: any = null;
+
 class UnconnectedPollingMessage extends React.Component<
   UnconnectedPollingMessageProps
 > {
@@ -90,6 +91,7 @@ const getInputComponent = (messages: Array<any>, props: any) => {
   }
   let lastMessage = messages[0];
   let lastMessageType = lastMessage.body.type;
+
   if (lastMessageType === 'polling') {
     lastMessage = messages[1];
     lastMessageType = lastMessage.body.type;
@@ -105,9 +107,14 @@ const getInputComponent = (messages: Array<any>, props: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...ifIphoneX({
-      marginBottom: 20,
-    }),
+    ...ifIphoneX(
+      {
+        marginBottom: 20,
+      },
+      {
+        marginBottom: 0,
+      },
+    ),
   },
   messages: {
     flex: 1,
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
 
 class Chat extends React.Component<ChatProps> {
   static defaultProps = { onboardingDone: false };
+  _longPollTimeout: any = null;
 
   constructor(props: ChatProps) {
     super(props);
@@ -213,7 +221,7 @@ class Chat extends React.Component<ChatProps> {
 
   _stopPolling = () => {
     if (this._longPollTimeout) {
-      clearInterval(this._longPollTimeout);
+      clearInterval(_longPollTimeout);
       this._longPollTimeout = null;
     }
   };
