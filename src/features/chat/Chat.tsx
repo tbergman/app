@@ -40,7 +40,7 @@ interface ChatProps {
   intent: string;
   messages: Array<Object>;
   getAvatars: () => void;
-  getMessages: (intent: string) => void;
+  getMessages: (intent: null | string) => void;
   showDashboard: () => void;
   resetConversation: () => void;
 }
@@ -122,12 +122,6 @@ const styles = StyleSheet.create({
 });
 
 class Chat extends React.Component<ChatProps> {
-  /*static propTypes = {
-    getMessages: PropTypes.func.isRequired,
-    getAvatars: PropTypes.func.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object),
-    onboardingDone: PropTypes.bool,
-  };*/
   static defaultProps = { onboardingDone: false };
 
   constructor(props: ChatProps) {
@@ -291,7 +285,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getMessages: (intent: string) =>
+    getMessages: (intent: null | string) =>
       dispatch(
         chatActions.getMessages({
           intent,
