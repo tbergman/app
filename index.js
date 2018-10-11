@@ -4,8 +4,11 @@ import { YellowBox } from 'react-native';
 import { HOC } from './App';
 import { setInitialLayout } from './src/navigation/layout';
 import { register } from './src/navigation/register';
+import { patchCustomConfig } from './src/features/debug/patch-custom-config';
 
 import { setupPushNotifications } from './src/setupPushNotifications';
+
+patchCustomConfig();
 
 YellowBox.ignoreWarnings(['constantsToExport']);
 

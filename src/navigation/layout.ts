@@ -1,7 +1,11 @@
 import { AsyncStorage, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
-import { SEEN_MARKETING_CAROUSEL_KEY, IS_VIEWING_OFFER } from '../constants';
+import {
+  SEEN_MARKETING_CAROUSEL_KEY,
+  IS_VIEWING_OFFER,
+  LAUNCH_DEBUG,
+} from '../constants';
 import { Store } from '../setupApp';
 
 import { insuranceActions } from '../../hedvig-redux';
@@ -14,6 +18,7 @@ import { PROFILE_SCREEN } from './screens/profile';
 import { FAB_COMPONENT } from './components/fab';
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { OFFER_SCREEN } from 'src/navigation/screens/offer';
+import { DEBUG_SCREEN } from 'src/navigation/screens/debug';
 
 import {
   getOfferGroup,
@@ -57,21 +62,24 @@ export const getMainLayout = () => ({
       ],
     },
   },
-  overlays: Platform.OS === 'ios' && [
-    {
-      component: {
-        name: FAB_COMPONENT.name,
-        options: {
-          layout: {
-            backgroundColor: 'transparent',
+  overlays:
+    Platform.OS === 'ios'
+      ? [
+          {
+            component: {
+              name: FAB_COMPONENT.name,
+              options: {
+                layout: {
+                  backgroundColor: 'transparent',
+                },
+                overlay: {
+                  interceptTouchOutside: false,
+                },
+              },
+            },
           },
-          overlay: {
-            interceptTouchOutside: false,
-          },
-        },
-      },
-    },
-  ],
+        ]
+      : [],
 });
 
 export const getChatLayout = () => ({
@@ -82,30 +90,46 @@ export const getChatLayout = () => ({
   },
 });
 
-export const getOfferLayout = async () => {
-  if ((await getOfferGroup()) === OFFER_GROUPS.NEW) {
-    return {
-      root: {
-        stack: {
-          children: [NEW_OFFER_SCREEN],
-        },
+export const getNewOfferLayout = () => ({
+  root: {
+    stack: {
+      children: [NEW_OFFER_SCREEN],
+    },
+  },
+});
+
+export const getOldOfferLayout = () => ({
+  modals: [
+    {
+      stack: {
+        children: [OFFER_SCREEN],
       },
-    };
+    },
+  ],
+  ...getChatLayout(),
+});
+
+export const getOfferLayout: () => Promise<any> = async () => {
+  if ((await getOfferGroup()) === OFFER_GROUPS.NEW) {
+    return getNewOfferLayout();
   }
 
-  return {
-    modals: [
-      {
-        stack: {
-          children: [OFFER_SCREEN],
-        },
-      },
-    ],
-    ...getChatLayout(),
-  };
+  return getOfferLayout();
 };
 
+export const getDebugLayout = () => ({
+  root: {
+    stack: {
+      children: [DEBUG_SCREEN],
+    },
+  },
+});
+
 export const getInitialLayout = async () => {
+  if (await AsyncStorage.getItem(LAUNCH_DEBUG)) {
+    return getDebugLayout();
+  }
+
   const alreadySeenMarketingCarousel = await AsyncStorage.getItem(
     SEEN_MARKETING_CAROUSEL_KEY,
   );
@@ -144,7 +168,15 @@ export const getInitialLayout = async () => {
   });
 };
 
-export const setLayout = ({ root, modals = [], overlays = [] }) => {
+export const setLayout = ({
+  root,
+  modals = [],
+  overlays = [],
+}: {
+  root: any;
+  modals?: any[];
+  overlays?: any[];
+}) => {
   Navigation.setDefaultOptions({
     topBar: {
       animate: false,
@@ -197,6 +229,6 @@ export const setLayout = ({ root, modals = [], overlays = [] }) => {
 };
 
 export const setInitialLayout = async () => {
-  const layout = await getInitialLayout();
+  const layout: any = await getInitialLayout();
   setLayout(layout);
 };
