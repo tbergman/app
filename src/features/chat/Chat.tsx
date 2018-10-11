@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -30,18 +30,39 @@ import {
   GO_TO_DASHBOARD_BUTTON,
   SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
+import { any } from 'async';
+
+interface ChatProps {
+  onboardingDone: boolean;
+  isModal: boolean;
+  showReturnToOfferButton: boolean;
+  componentId: string;
+  intent: string;
+  messages: Array<Object>;
+  getAvatars: () => void;
+  getMessages: (intent: string) => void;
+  showDashboard: () => void;
+  resetConversation: () => void;
+}
+
+interface UnconnectedPollingMessageProps {
+  startPolling: () => void;
+  stopPolling: () => void;
+}
 
 const inputComponentMap = {
   multiple_select: () => <MultipleSelectInput />,
   text: () => <ChatTextInput />,
   number: () => <ChatNumberInput />,
-  single_select: (props) => <SingleSelectInput {...props} />,
+  single_select: (props: any) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
   paragraph: () => <ParagraphInput />,
   audio: () => <AudioInput />,
 };
 
-class UnconnectedPollingMessage extends React.Component {
+class UnconnectedPollingMessage extends React.Component<
+  UnconnectedPollingMessageProps
+> {
   componentDidMount() {
     this.props.startPolling();
   }
@@ -57,13 +78,13 @@ class UnconnectedPollingMessage extends React.Component {
 
 const PollingMessage = connect(
   undefined,
-  (dispatch) => ({
+  (dispatch: any) => ({
     startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
     stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages, props) => {
+const getInputComponent = (messages: Array<any>, props: any) => {
   if (messages.length === 0) {
     return null;
   }
@@ -100,21 +121,21 @@ const styles = StyleSheet.create({
   },
 });
 
-class Chat extends React.Component {
-  static propTypes = {
+class Chat extends React.Component<ChatProps> {
+  /*static propTypes = {
     getMessages: PropTypes.func.isRequired,
     getAvatars: PropTypes.func.isRequired,
     messages: PropTypes.arrayOf(PropTypes.object),
     onboardingDone: PropTypes.bool,
-  };
+  };*/
   static defaultProps = { onboardingDone: false };
 
-  constructor(props) {
+  constructor(props: ChatProps) {
     super(props);
     Navigation.events().bindComponent(this);
   }
 
-  navigationButtonPressed({ buttonId }) {
+  navigationButtonPressed(buttonId: Object) {
     if (buttonId === RESTART_BUTTON.id) {
       this._resetConversation();
     }
@@ -203,7 +224,7 @@ class Chat extends React.Component {
     }
   };
 
-  _handleAppStateChange = (appState) => {
+  _handleAppStateChange = (appState: string) => {
     if (appState === 'active') {
       this.props.getMessages(this.props.intent);
     }
@@ -256,7 +277,7 @@ class Chat extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     messages: state.chat.messages,
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
@@ -268,9 +289,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    getMessages: (intent) =>
+    getMessages: (intent: string) =>
       dispatch(
         chatActions.getMessages({
           intent,
