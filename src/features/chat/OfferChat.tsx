@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, Alert } from 'react-native';
+import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { Update, Mount, Unmount } from 'react-lifecycle-components';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -56,21 +57,29 @@ interface ChatProps {
   onRequestClose: () => void;
 }
 
-class UnconnectedPollingMessage extends React.Component<
-  UnconnectedPollingMessageProps
-> {
-  componentDidMount() {
-    this.props.startPolling();
-  }
-
-  componentWillUnmount() {
-    this.props.stopPolling();
-  }
-
-  render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>;
-  }
-}
+const UnconnectedPollingMessage: React.SFC<UnconnectedPollingMessageProps> = ({
+  startPolling,
+  stopPolling,
+  children,
+}) => (
+  <>
+    <Mount
+      on={() => {
+        startPolling();
+      }}
+    >
+      {null}
+    </Mount>
+    <Unmount
+      on={() => {
+        stopPolling();
+      }}
+    >
+      {null}
+    </Unmount>
+    {children}
+  </>
+);
 
 const newTypes: any = types;
 
