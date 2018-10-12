@@ -45,7 +45,8 @@ const Label = styled(Text)({
 
 const Input = styled(TextInput)({
   width: '100%',
-  height: 25,
+  height: 40,
+  fontSize: 15,
   fontFamily: fonts.CIRCULAR,
   borderBottomWidth: 1,
   borderBottomColor: colors.PURPLE,
@@ -71,7 +72,11 @@ export const Config = () => (
     {({ isOpen, setIsOpen }) => (
       <>
         <Row onPress={() => setIsOpen(true)}>Change app environment config</Row>
-        <Modal visible={isOpen} animationType="slide">
+        <Modal
+          onRequestClose={() => setIsOpen(false)}
+          visible={isOpen}
+          animationType="slide"
+        >
           <ModalContent>
             <Spacing height={20} />
             <Label>Gateway url</Label>
