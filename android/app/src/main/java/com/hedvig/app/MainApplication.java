@@ -64,7 +64,9 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNGestureHandlerPackage(), new RNDeviceInfo(), new SvgPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNFSPackage(),
+            new ReactVideoPackage(), new RNGestureHandlerPackage(), new RNDeviceInfo(), new SvgPackage(),
         new ReactNativeConfigPackage(), new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
         new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),

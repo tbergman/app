@@ -56,6 +56,10 @@ target 'hedvig' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       if config.name.start_with?("Debug")
