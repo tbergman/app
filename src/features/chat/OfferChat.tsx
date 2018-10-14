@@ -1,10 +1,8 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { Update, Mount, Unmount } from 'react-lifecycle-components';
 
 import MessageList from './containers/MessageList';
 import ChatNumberInput from './containers/ChatNumberInput';
@@ -47,51 +45,41 @@ interface UnconnectedPollingMessageProps {
 }
 
 interface ChatProps {
-  onboardingDone: boolean;
-  intent: null | string;
-  messages: Array<Object>;
+  onboardingDone?: boolean;
+  intent?: null | string;
+  messages?: Array<object>;
   getAvatars: () => void;
   getMessages: (intent: null | string) => void;
-  showDashboard: () => void;
-  resetConversation: () => void;
-  onRequestClose: () => void;
+  showDashboard?: () => void;
+  resetConversation?: () => void;
+  onRequestClose?: () => void;
 }
 
-const UnconnectedPollingMessage: React.SFC<UnconnectedPollingMessageProps> = ({
-  startPolling,
-  stopPolling,
-  children,
-}) => (
-  <>
-    <Mount
-      on={() => {
-        startPolling();
-      }}
-    >
-      {null}
-    </Mount>
-    <Unmount
-      on={() => {
-        stopPolling();
-      }}
-    >
-      {null}
-    </Unmount>
-    {children}
-  </>
-);
+class UnconnectedPollingMessage extends React.Component<
+  UnconnectedPollingMessageProps
+> {
+  componentDidMount() {
+    this.props.startPolling();
+  }
 
-const newTypes: any = types;
+  componentWillUnmount() {
+    this.props.stopPolling();
+  }
+
+  render() {
+    return <React.Fragment>{this.props.children}</React.Fragment>;
+  }
+}
 
 const PollingMessage = connect(
   undefined,
   (dispatch: any) => ({
-    startPolling: () => dispatch({ type: newTypes.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: newTypes.STOP_POLLING_MESSAGES }),
+    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
+    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages: Array<any>, props: any) => {
+const getInputComponent = (messages: Array<object>, props: any) => {
   if (messages.length === 0) {
     return null;
   }
@@ -143,7 +131,7 @@ class Chat extends React.Component<ChatProps> {
   }
 
   componentDidMount() {
-    this.props.getMessages(this.props.intent);
+    this.props.getMessages(this.props.intent!);
     this.props.getAvatars();
     AppState.addEventListener('change', this._handleAppStateChange);
     this._startPolling();
@@ -181,16 +169,16 @@ class Chat extends React.Component<ChatProps> {
 
   _showOffer = () => {
     this._stopPolling();
-    this.props.onRequestClose();
+    this.props.onRequestClose!();
   };
 
   _showDashboard = () => {
     this._stopPolling();
-    this.props.showDashboard();
+    this.props.showDashboard!();
   };
 
   _resetConversation = () => {
-    this.props.resetConversation();
+    this.props.resetConversation!();
   };
 
   render() {
@@ -203,14 +191,14 @@ class Chat extends React.Component<ChatProps> {
           style={styles.container}
         >
           <View style={styles.messages}>
-            {this.props.messages.length ? (
+            {this.props.messages!.length ? (
               <MessageList showOffer={this._showOffer} />
             ) : (
               <Loader />
             )}
           </View>
           <View style={styles.response}>
-            {getInputComponent(this.props.messages, {
+            {getInputComponent(this.props.messages!, {
               showOffer: this._showOffer,
             })}
           </View>
