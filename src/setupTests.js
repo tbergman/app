@@ -19,8 +19,5 @@ jest.mock('react-native', () => require('react-native-mock-render'), {
 
 jest.mock('@hedviginsurance/react-native-config', () => ({}));
 jest.mock('react-native-firebase', () => ({}));
-jest.mock('apollo-link-http', () => ({}));
-jest.mock('graphql-tools', () => ({}));
-jest.mock('graphql', () => ({}));
 
 jest.useFakeTimers();
