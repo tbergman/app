@@ -8,8 +8,7 @@ class OfferScreen extends React.Component {
       topBar: {
         visible: false,
         elevation: 0,
-        drawBehind: false,
-        height: 0,
+        drawBehind: true,
       },
       statusBar: {
         visible: true,
