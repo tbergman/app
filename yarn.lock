@@ -722,15 +722,6 @@
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
 
-"@hedviginsurance/react-native-navigation@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-navigation/-/react-native-navigation-2.0.2.tgz#dafbcde960d556d5008230ce213eab11accd20c8"
-  dependencies:
-    hoist-non-react-statics "2.x.x"
-    lodash "4.x.x"
-    prop-types "15.x.x"
-    react-lifecycles-compat "2.0.0"
-
 "@redux-beacon/logger@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
@@ -3920,15 +3911,15 @@ header-case@^1.0.0:
     no-case "^2.2.0"
     upper-case "^1.1.3"
 
-hoist-non-react-statics@2.x.x, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
-
-hoist-non-react-statics@^3.0.0:
+hoist-non-react-statics@3.x.x, hoist-non-react-statics@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
   dependencies:
     react-is "^16.3.2"
+
+hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -6808,11 +6799,11 @@ react-native-mock-render@^0.1.2:
     react-timer-mixin "^0.13.3"
     warning "^2.1.0"
 
-react-native-navigation@2.0.2485:
-  version "2.0.2485"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2485.tgz#bf1ce63bf282314f84843cc086cdc94ac1f31746"
+react-native-navigation@2.0.2582:
+  version "2.0.2582"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2582.tgz#cb2b15ed68b618f6ff2adb67e716352af0147d03"
   dependencies:
-    hoist-non-react-statics "2.x.x"
+    hoist-non-react-statics "3.x.x"
     lodash "4.x.x"
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
