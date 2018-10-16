@@ -75,9 +75,9 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-image-picker')
-    compile project(':react-native-fs')
-    compile project(':react-native-video')
+  compile project(':react-native-image-picker')
+  compile project(':react-native-fs')
+  compile project(':react-native-video')
   compile project(':react-native-gesture-handler')
   compile project(':react-native-device-info')
   compile project(':react-native-svg')
