@@ -35,6 +35,9 @@ import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.leo_pharma.analytics.AnalyticsPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.imagepicker.ImagePickerPackage;
+import com.rnfs.RNFSPackage;
+import com.brentvatne.react.ReactVideoPackage;
 
 public class MainApplication extends NavigationApplication {
   @Override
