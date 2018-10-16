@@ -25,8 +25,6 @@ import {
 import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
-import { Giphy } from 'src/components/icons/Giphy';
-import { Spacing } from 'src/components/Spacing';
 import { GiphyMessage } from '../components/giphy-message';
 
 const Image = createImageProgress(FastImage);
