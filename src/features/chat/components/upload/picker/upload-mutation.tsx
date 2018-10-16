@@ -4,11 +4,13 @@ import { Mutation, MutationFunc } from 'react-apollo';
 import gql from 'graphql-tag';
 import { ReactNativeFile } from 'apollo-upload-client';
 import fs from 'react-native-fs';
-import { UploadLoader } from './upload-loader';
 import styled from '@sampettersson/primitives';
 import path from 'path';
 import mime from 'mime-types';
 import url from 'url';
+import { Container, ActionMap } from 'constate';
+
+import { UploadLoader } from './upload-loader';
 
 const UploadMutationContainer = styled(View)({
   position: 'relative',
@@ -22,6 +24,20 @@ const UPLOAD_MUTATION = gql`
   }
 `;
 
+interface State {
+  isUploading: boolean;
+}
+
+interface Actions {
+  setIsUploading: (isUploading: boolean) => void;
+}
+
+const actions: ActionMap<State, Actions> = {
+  setIsUploading: (isUploading) => () => ({
+    isUploading,
+  }),
+};
+
 interface UploadResponse {
   uploadFile: {
     signedUrl: string | null;
@@ -30,7 +46,7 @@ interface UploadResponse {
 
 interface UploadMutationProps {
   children: (
-    uploadFile: (uri: string) => Promise<{ url: string | null }>,
+    uploadFile: (uri: string) => Promise<{ url: string } | Error>,
   ) => React.ReactNode;
 }
 
@@ -47,9 +63,15 @@ const getRealURI = async (uri: string, filename: string) => {
   );
 };
 
-const uploadHandler = (mutate: MutationFunc<UploadResponse>) => async (
-  uri: string,
-) => {
+const uploadHandler = (
+  mutate: MutationFunc<UploadResponse>,
+  setIsUploading: ((isUploading: boolean) => void),
+  isUploading: boolean,
+) => async (uri: string) => {
+  if (isUploading) return new Error('Already uploading');
+
+  setIsUploading(true);
+
   const filename = path.basename(url.parse(uri).pathname || '');
   const realURI = await getRealURI(uri, filename);
 
@@ -65,26 +87,30 @@ const uploadHandler = (mutate: MutationFunc<UploadResponse>) => async (
     },
   });
 
+  setIsUploading(false);
+
   if (response && response.data) {
     return {
       url: response.data!.uploadFile.signedUrl,
     };
   }
 
-  return {
-    url: null,
-  };
+  return new Error("File couldn't be uploaded");
 };
 
 export const UploadMutation: React.SFC<UploadMutationProps> = ({
   children,
 }) => (
-  <Mutation mutation={UPLOAD_MUTATION}>
-    {(mutate, { loading }) => (
-      <UploadMutationContainer>
-        {children(uploadHandler(mutate))}
-        {loading && <UploadLoader />}
-      </UploadMutationContainer>
+  <Container actions={actions} initialState={{ isUploading: false }}>
+    {({ isUploading, setIsUploading }) => (
+      <Mutation mutation={UPLOAD_MUTATION}>
+        {(mutate) => (
+          <UploadMutationContainer>
+            {children(uploadHandler(mutate, setIsUploading, isUploading))}
+            {isUploading && <UploadLoader />}
+          </UploadMutationContainer>
+        )}
+      </Mutation>
     )}
-  </Mutation>
+  </Container>
 );
