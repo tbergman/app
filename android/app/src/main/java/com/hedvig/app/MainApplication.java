@@ -39,6 +39,7 @@ import com.imagepicker.ImagePickerPackage;
 import com.rnfs.RNFSPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
+import com.cmcewen.blurview.BlurViewPackage;
 
 public class MainApplication extends NavigationApplication {
   @Override
@@ -70,6 +71,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new BlurViewPackage(),
         new FastImageViewPackage(),
         new ImagePickerPackage(),
         new RNFSPackage(),

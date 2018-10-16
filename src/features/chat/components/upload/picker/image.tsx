@@ -3,6 +3,7 @@ import { TouchableWithoutFeedback, View, Image as RNImage } from 'react-native';
 import styled from '@sampettersson/primitives';
 
 import { UploadMutation } from './upload-mutation';
+import { Presend } from './presend';
 
 const Padding = styled(View)({
   padding: 10,
@@ -29,21 +30,30 @@ interface ImageProps {
 export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
   <UploadMutation>
     {(uploadFile) => (
-      <TouchableWithoutFeedback
-        onPress={() =>
-          uploadFile(uri).then((response) => {
-            if (response) {
-              onUpload(response.url!);
-            }
-          })
-        }
-      >
-        <Padding>
-          <BorderRadius>
-            <ImageContainer source={{ uri }} />
-          </BorderRadius>
-        </Padding>
-      </TouchableWithoutFeedback>
+      <Padding>
+        <BorderRadius>
+          <Presend
+            onPressSend={() => {
+              uploadFile(uri).then((response) => {
+                if (response instanceof Error) {
+                } else {
+                  onUpload(response.url);
+                }
+              });
+            }}
+          >
+            {(showPresendOverlay) => (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  showPresendOverlay();
+                }}
+              >
+                <ImageContainer source={{ uri }} />
+              </TouchableWithoutFeedback>
+            )}
+          </Presend>
+        </BorderRadius>
+      </Padding>
     )}
   </UploadMutation>
 );

@@ -89,9 +89,9 @@ const uploadHandler = (
 
   setIsUploading(false);
 
-  if (response && response.data) {
+  if (response && response.data && response.data.uploadFile!.signedUrl) {
     return {
-      url: response.data!.uploadFile.signedUrl,
+      url: response.data!.uploadFile!.signedUrl!,
     };
   }
 
