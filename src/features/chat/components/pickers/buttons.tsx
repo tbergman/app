@@ -1,6 +1,4 @@
 import * as React from 'react';
-import styled from '@sampettersson/primitives';
-import { View } from 'react-native';
 
 import { UploadButton } from '../upload/button';
 import { GiphyButton } from '../giphy-picker/button';

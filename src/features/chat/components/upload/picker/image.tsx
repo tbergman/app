@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import { TouchableWithoutFeedback, View, Image as RNImage } from 'react-native';
 import styled from '@sampettersson/primitives';
 
 import { UploadMutation } from './upload-mutation';
@@ -17,7 +16,7 @@ const BorderRadius = styled(View)({
   overflow: 'hidden',
 });
 
-const ImageContainer = styled(FastImage)({
+const ImageContainer = styled(RNImage)({
   height: '100%',
   width: '100%',
 });

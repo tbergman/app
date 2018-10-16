@@ -29,8 +29,9 @@ export const Provider: React.SFC = ({ children }) => (
         value={{
           isOpen,
           setIsOpen: (value) => {
-            schedule();
-            setIsOpen(value);
+            schedule(() => {
+              setIsOpen(value);
+            });
           },
         }}
       >

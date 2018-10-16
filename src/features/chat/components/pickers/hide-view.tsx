@@ -15,7 +15,7 @@ const HideViewContainer = styled(AnimatedView)(
   }) => ({
     width: hidden ? 0 : 50,
     opacity: animatedValue,
-    overflow: 'hidden',
+    pointerEvents: hidden ? 'none' : 'all',
   }),
 );
 
