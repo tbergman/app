@@ -60,6 +60,8 @@ target 'hedvig' do
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       if config.name.start_with?("Debug")

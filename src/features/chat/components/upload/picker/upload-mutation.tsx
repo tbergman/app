@@ -6,6 +6,9 @@ import { ReactNativeFile } from 'apollo-upload-client';
 import fs from 'react-native-fs';
 import { UploadLoader } from './upload-loader';
 import styled from '@sampettersson/primitives';
+import path from 'path';
+import mime from 'mime-types';
+import url from 'url';
 
 const UploadMutationContainer = styled(View)({
   position: 'relative',
@@ -14,14 +17,14 @@ const UploadMutationContainer = styled(View)({
 const UPLOAD_MUTATION = gql`
   mutation UploadMutation($file: Upload!) {
     uploadFile(file: $file) @uploadLink {
-      url
+      signedUrl
     }
   }
 `;
 
 interface UploadResponse {
   uploadFile: {
-    url: string | null;
+    signedUrl: string | null;
   };
 }
 
@@ -31,20 +34,29 @@ interface UploadMutationProps {
   ) => React.ReactNode;
 }
 
-const uploadHandler = (mutate: MutationFunc<UploadResponse>) => async (
-  uri: string,
-) => {
-  const result = await fs.copyAssetsFileIOS(
+const getRealURI = async (uri: string, filename: string) => {
+  if (!uri.includes('assets-library')) {
+    return uri;
+  }
+
+  return await fs.copyAssetsFileIOS(
     uri,
-    `${fs.DocumentDirectoryPath}/hedvig-upload-file.jpg`,
+    `${fs.DocumentDirectoryPath}/${filename}`,
     0,
     0,
   );
+};
+
+const uploadHandler = (mutate: MutationFunc<UploadResponse>) => async (
+  uri: string,
+) => {
+  const filename = path.basename(url.parse(uri).pathname || '');
+  const realURI = await getRealURI(uri, filename);
 
   const file = new ReactNativeFile({
-    uri: `${result}`,
-    name: 'hedvig-upload-file.jpg',
-    type: 'image/jpg',
+    uri: realURI,
+    name: filename.toLowerCase(),
+    type: mime.lookup(filename) || '',
   });
 
   const response = await mutate({
@@ -55,7 +67,7 @@ const uploadHandler = (mutate: MutationFunc<UploadResponse>) => async (
 
   if (response && response.data) {
     return {
-      url: response.data!.uploadFile.url,
+      url: response.data!.uploadFile.signedUrl,
     };
   }
 

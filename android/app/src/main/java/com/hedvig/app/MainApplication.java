@@ -65,6 +65,7 @@ public class MainApplication extends NavigationApplication {
 
   protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new ImagePickerPackage(),
             new RNFSPackage(),
             new ReactVideoPackage(), new RNGestureHandlerPackage(), new RNDeviceInfo(), new SvgPackage(),
         new ReactNativeConfigPackage(), new RNFetchBlobPackage(),

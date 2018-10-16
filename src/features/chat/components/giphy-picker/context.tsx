@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Container, ActionMap } from 'constate';
+
 import { schedule } from '../pickers/layout-animation';
 
 interface State {

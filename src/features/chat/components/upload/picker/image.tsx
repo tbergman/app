@@ -1,13 +1,24 @@
 import * as React from 'react';
-import { Image as RNImage, TouchableWithoutFeedback } from 'react-native';
+import { Image as RNImage, TouchableWithoutFeedback, View } from 'react-native';
 import styled from '@sampettersson/primitives';
 
 import { UploadMutation } from './upload-mutation';
 
-const ImageContainer = styled(RNImage)({
-  height: 300,
+const Padding = styled(View)({
+  padding: 10,
+  paddingRight: 0,
+  height: 250,
   width: 250,
-  marginRight: 2,
+});
+
+const BorderRadius = styled(View)({
+  borderRadius: 10,
+  overflow: 'hidden',
+});
+
+const ImageContainer = styled(RNImage)({
+  height: '100%',
+  width: '100%',
 });
 
 interface ImageProps {
@@ -27,7 +38,11 @@ export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
           })
         }
       >
-        <ImageContainer source={{ uri }} />
+        <Padding>
+          <BorderRadius>
+            <ImageContainer source={{ uri }} />
+          </BorderRadius>
+        </Padding>
       </TouchableWithoutFeedback>
     )}
   </UploadMutation>

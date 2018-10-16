@@ -5,19 +5,26 @@ import {
 } from 'graphql-tools';
 import { buildClientSchema } from 'graphql';
 import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from 'apollo-link-context';
 
 import giraffeSchema from './external-schemas/giraffe.json';
 
 import { resolvers } from './resolvers';
 import { typeDefs } from './typedefs';
 
+import { getToken } from './context';
+
 const uploadLink = createUploadLink({
-  uri: 'http://10.0.1.13.xip.io:4000/graphql',
+  uri: 'https://graphql.dev.hedvigit.com/graphql',
 });
+
+const setAuthorizationLink = setContext(async () => ({
+  headers: { Authorization: await getToken() },
+}));
 
 const executableGiraffeSchema = makeRemoteExecutableSchema({
   schema: buildClientSchema(giraffeSchema),
-  link: uploadLink,
+  link: setAuthorizationLink.concat(uploadLink),
 });
 
 const executableLocalSchema = makeExecutableSchema({ typeDefs, resolvers });
