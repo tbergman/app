@@ -43,6 +43,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Reachability (~> 5.2)
     - Protobuf (~> 3.1)
+  - FLAnimatedImage (1.0.12)
   - Folly (2016.10.31.00):
     - boost-for-react-native
     - DoubleConversion
@@ -91,6 +92,11 @@ PODS:
     - React
   - react-native-config (0.11.6):
     - React
+  - react-native-fast-image (5.0.11):
+    - FLAnimatedImage
+    - React
+    - SDWebImage/Core
+    - SDWebImage/GIF
   - react-native-image-picker (0.27.1):
     - React
   - react-native-video (3.2.1):
@@ -170,6 +176,10 @@ PODS:
     - React/Core
   - RNSVG (7.0.3):
     - React
+  - SDWebImage/Core (4.4.2)
+  - SDWebImage/GIF (4.4.2):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
   - Sentry (4.0.1):
     - Sentry/Core (= 4.0.1)
   - Sentry/Core (4.0.1)
@@ -192,6 +202,7 @@ DEPENDENCIES:
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - react-native-branch (from `../node_modules/react-native-branch`)
   - "react-native-config (from `../node_modules/@hedviginsurance/react-native-config`)"
+  - react-native-fast-image (from `../node_modules/react-native-fast-image`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-video (from `../node_modules/react-native-video`)
   - React/ART (from `../node_modules/react-native`)
@@ -234,12 +245,14 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FLAnimatedImage
     - GoogleAppMeasurement
     - GoogleUtilities
     - JWT
     - lottie-ios
     - nanopb
     - Protobuf
+    - SDWebImage
     - Sentry
     - SSZipArchive
 
@@ -262,6 +275,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-branch"
   react-native-config:
     :path: "../node_modules/@hedviginsurance/react-native-config"
+  react-native-fast-image:
+    :path: "../node_modules/react-native-fast-image"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-video:
@@ -307,6 +322,7 @@ SPEC CHECKSUMS:
   FirebaseCore: c6079de64c1a87000e52e9b408dddcadc901177f
   FirebaseInstanceID: 78ba376fcd5b94c001f9999b2cbd3d1f1e56e78d
   FirebaseMessaging: 000b32447b461b34b6b912b23ec11be20b503b5b
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: e8acf0ebbf99759d3ff18c86c292a5898282dcde
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0
@@ -319,6 +335,7 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-branch: 8988998ef912c6373dc39a24e4638f02a1268265
   react-native-config: 9314df2fa7cca076e4bb38b8068210029beded14
+  react-native-fast-image: cba3d9bf9c2cf8ddb643d887a686c53a5dd90a2c
   react-native-image-picker: f42de90075c5b1af53417af927631d909a1a746e
   react-native-video: 6db316323366025251a815c49ca0e2edabe30a2a
   ReactNativeAnalyticsSegmentIo: d571ea899d7dfcd864fbd6dfbbd04e23ef04786a
@@ -332,11 +349,12 @@ SPEC CHECKSUMS:
   RNGestureHandler: 968e4453152673aedcbbb7c1ada6700c214cea7a
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Sentry: a38f7879924c02239e121b19d993d23bdd1684db
   SentryReactNative: d476259b21060a59dc637a29a40d60f0aac09cf7
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: cf9f0aec229a00aa2bf44576d3c1e1c21a6a9185
+PODFILE CHECKSUM: e4e39611d9743a0099c8a350ff377e9e15a1eb4b
 
 COCOAPODS: 1.5.3

@@ -38,6 +38,7 @@ import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.imagepicker.ImagePickerPackage;
 import com.rnfs.RNFSPackage;
 import com.brentvatne.react.ReactVideoPackage;
+import com.dylanvann.fastimage.FastImageViewPackage;
 
 public class MainApplication extends NavigationApplication {
   @Override
@@ -69,6 +70,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new FastImageViewPackage(),
         new ImagePickerPackage(),
         new RNFSPackage(),
         new ReactVideoPackage(),

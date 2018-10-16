@@ -9,9 +9,10 @@ import {
   PixelRatio,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Image from 'react-native-image-progress';
+import { createImageProgress } from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
-import { colors, fonts } from '@hedviginsurance/brand';
+import { colors } from '@hedviginsurance/brand';
 
 import {
   StyledDefaultMessageText,
@@ -27,6 +28,8 @@ import LoadingIndicator from '../containers/LoadingIndicator';
 import { Giphy } from 'src/components/icons/Giphy';
 import { Spacing } from 'src/components/Spacing';
 import { GiphyMessage } from '../components/giphy-message';
+
+const Image = createImageProgress(FastImage);
 
 const window = Dimensions.get('window');
 // (window width - (2 outer margin + 2 inner margin) * 0.98)

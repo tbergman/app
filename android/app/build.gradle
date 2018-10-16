@@ -75,6 +75,7 @@ android {
 }
 
 dependencies {
+  compile project(':react-native-fast-image')
   compile project(':react-native-image-picker')
   compile project(':react-native-fs')
   compile project(':react-native-video')

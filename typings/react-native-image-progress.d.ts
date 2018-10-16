@@ -1,6 +1,6 @@
 declare module 'react-native-image-progress' {
   import { ComponentType } from 'react';
-
+  import FastImage, { FastImageProperties } from 'react-native-fast-image';
   import { ImageProps } from 'react-native';
   import * as Progress from 'react-native-progress';
 
@@ -14,6 +14,10 @@ declare module 'react-native-image-progress' {
   }
 
   const Image: ComponentType<ImageProps & ImageProgressProps>;
+
+  export const createImageProgress: (
+    imageComponent: typeof FastImage,
+  ) => ComponentType<ImageProps & ImageProgressProps & FastImageProperties>;
 
   export default Image;
 }

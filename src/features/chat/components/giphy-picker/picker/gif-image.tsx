@@ -2,9 +2,12 @@ import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, TouchableOpacity } from 'react-native';
 import { colors } from '@hedviginsurance/brand';
+import FastImage from 'react-native-fast-image';
 
-import Image from 'react-native-image-progress';
+import { createImageProgress } from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
+
+const Image = createImageProgress(FastImage);
 
 const Box = styled(View)({
   paddingLeft: 10,
