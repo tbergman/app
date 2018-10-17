@@ -7,6 +7,7 @@ import { Data } from './data';
 import { Image } from './image';
 import { Video } from './video';
 import { Header } from './header';
+import { Delayed } from 'src/components/Delayed';
 
 const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
   height: isOpen ? 250 : 0,
@@ -22,30 +23,36 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
       <PickerContainer isOpen={isOpen}>
-        <Data shouldLoad={isOpen}>
-          {({ photos, shouldLoadMore }) => (
-            <FlatList
-              ListHeaderComponent={Header}
-              data={photos!.edges!}
-              renderItem={({ item }) =>
-                item.node.type.includes('Photo') ? (
-                  <Image
-                    uri={item.node.image.uri}
-                    onUpload={(url) => {
-                      sendMessage(url);
-                      setIsOpen(false);
-                    }}
-                  />
-                ) : (
-                  <Video uri={item.node.image.uri} />
-                )
-              }
-              keyExtractor={(item) => String(item.node.image.uri)}
-              onEndReached={() => shouldLoadMore()}
-              horizontal
-            />
-          )}
-        </Data>
+        <Delayed
+          mountChildren={isOpen}
+          unmountChildrenAfter={500}
+          mountChildrenAfter={0}
+        >
+          <Data shouldLoad={isOpen}>
+            {({ photos, shouldLoadMore }) => (
+              <FlatList
+                ListHeaderComponent={Header}
+                data={photos!.edges!}
+                renderItem={({ item }) =>
+                  item.node.type.includes('Photo') ? (
+                    <Image
+                      uri={item.node.image.uri}
+                      onUpload={(url) => {
+                        sendMessage(url);
+                        setIsOpen(false);
+                      }}
+                    />
+                  ) : (
+                    <Video uri={item.node.image.uri} />
+                  )
+                }
+                keyExtractor={(item) => String(item.node.image.uri)}
+                onEndReached={() => shouldLoadMore()}
+                horizontal
+              />
+            )}
+          </Data>
+        </Delayed>
       </PickerContainer>
     )}
   </Consumer>
