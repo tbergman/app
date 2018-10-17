@@ -9,6 +9,7 @@ import { Spacing } from 'src/components/Spacing';
 import { UploadMutation } from './upload-mutation';
 import { UploadingAnimation } from './uploading-animation';
 import { ImageLibrary } from 'src/components/icons/ImageLibrary';
+import { Camera } from 'src/components/icons/Camera';
 
 const HeaderContainer = styled(View)({
   padding: 10,
@@ -31,7 +32,28 @@ interface HeaderProps {
 
 export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
   <HeaderContainer>
-    <PickerButton />
+    <UploadMutation>
+      {(upload, isUploading) => (
+        <PickerButton
+          onPress={() => {
+            ImagePicker.launchCamera(options, (response) => {
+              if (response.uri) {
+                upload(response.uri).then((uploadResponse) => {
+                  if (uploadResponse instanceof Error) {
+                  } else {
+                    onUpload(uploadResponse.url);
+                  }
+                });
+              }
+            });
+          }}
+        >
+          <UploadingAnimation isUploading={isUploading}>
+            <Camera width={30} height={30} />
+          </UploadingAnimation>
+        </PickerButton>
+      )}
+    </UploadMutation>
     <Spacing height={10} />
     <UploadMutation>
       {(upload, isUploading) => (
