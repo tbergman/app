@@ -19,7 +19,7 @@ export const GiphyMessage: React.SFC<GiphyMessageProps> = ({ url }) => (
       marginBottom: 10,
     }}
   >
-    <Image
+    <ProgressImage
       source={{
         uri: url,
       }}
