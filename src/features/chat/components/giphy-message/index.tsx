@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { colors } from '@hedviginsurance/brand';
-import Image from 'react-native-image-progress';
+import ProgressImage from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 
 import { Giphy } from 'src/components/icons/Giphy';
