@@ -3,8 +3,10 @@ import { Text, TouchableOpacity } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
 import { View } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 
 import { Spacing } from 'src/components/Spacing';
+import { UploadMutation } from './upload-mutation';
 
 const HeaderContainer = styled(View)({
   padding: 10,
@@ -19,10 +21,33 @@ const PickerButton = styled(TouchableOpacity)({
   borderRadius: 10,
 });
 
-export const Header = () => (
+const options = {};
+
+interface HeaderProps {
+  onUpload: (url: string) => void;
+}
+
+export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
   <HeaderContainer>
     <PickerButton />
     <Spacing height={10} />
-    <PickerButton />
+    <UploadMutation>
+      {(upload) => (
+        <PickerButton
+          onPress={() => {
+            ImagePicker.launchImageLibrary(options, (response) => {
+              if (response.origURL) {
+                upload(response.origURL).then((uploadResponse) => {
+                  if (uploadResponse instanceof Error) {
+                  } else {
+                    onUpload(uploadResponse.url);
+                  }
+                });
+              }
+            });
+          }}
+        />
+      )}
+    </UploadMutation>
   </HeaderContainer>
 );

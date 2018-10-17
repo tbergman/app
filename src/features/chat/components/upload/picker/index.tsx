@@ -31,7 +31,14 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
           <Data shouldLoad={isOpen}>
             {({ photos, shouldLoadMore }) => (
               <FlatList
-                ListHeaderComponent={Header}
+                ListHeaderComponent={() => (
+                  <Header
+                    onUpload={(url) => {
+                      sendMessage(url);
+                      setIsOpen(false);
+                    }}
+                  />
+                )}
                 data={photos!.edges!}
                 renderItem={({ item }) =>
                   item.node.type.includes('Photo') ? (
