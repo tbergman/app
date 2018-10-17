@@ -45,22 +45,27 @@ export const UploadingAnimation: React.SFC<UploadingAnimationProps> = ({
       >
         {(animatedValue) => (
           <>
-            <Spinner
-              style={{
-                opacity: animatedValue.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, 1],
-                }),
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <View style={{ width: 40, height: 40 }}>
-                <Progress.CircleSnail animating={isUploading} color={'white'} />
-              </View>
-              <Spacing height={5} />
-              <SpinnerText>Laddar upp...</SpinnerText>
-            </Spinner>
+            {isUploading && (
+              <Spinner
+                style={{
+                  opacity: animatedValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 1],
+                  }),
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <View style={{ width: 40, height: 40 }}>
+                  <Progress.CircleSnail
+                    animating={isUploading}
+                    color={'white'}
+                  />
+                </View>
+                <Spacing height={5} />
+                <SpinnerText>Laddar upp...</SpinnerText>
+              </Spinner>
+            )}
             <Content
               style={{
                 opacity: animatedValue.interpolate({
