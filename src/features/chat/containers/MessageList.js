@@ -59,6 +59,12 @@ const styles = StyleSheet.create({
   userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
+  inlineImage: { width: 200, height: 200 },
+  inlineImageContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginBottom: 10,
+  },
 });
 
 const renderImage = (message) => {
@@ -115,7 +121,7 @@ const renderImageOrText = (message, index) => {
 
     const IMAGE_SIZE = PixelRatio.getPixelSizeForLayoutSize(200);
     return (
-      <View style={{ borderRadius: 10, overflow: 'hidden', marginBottom: 10 }}>
+      <View style={styles.inlineImageContainer}>
         <Image
           source={{
             uri: `http://abafc0b8ed07911e88d120258812f1c3-1012500579.eu-central-1.elb.amazonaws.com/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
@@ -128,7 +134,7 @@ const renderImageOrText = (message, index) => {
             thickness: 5,
             color: colors.PINK,
           }}
-          style={{ width: 200, height: 200 }}
+          style={styles.inlineImage}
         />
       </View>
     );
