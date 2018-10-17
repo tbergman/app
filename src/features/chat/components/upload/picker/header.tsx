@@ -7,6 +7,8 @@ import ImagePicker from 'react-native-image-picker';
 
 import { Spacing } from 'src/components/Spacing';
 import { UploadMutation } from './upload-mutation';
+import { UploadingAnimation } from './uploading-animation';
+import { ImageLibrary } from 'src/components/icons/ImageLibrary';
 
 const HeaderContainer = styled(View)({
   padding: 10,
@@ -32,7 +34,7 @@ export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
     <PickerButton />
     <Spacing height={10} />
     <UploadMutation>
-      {(upload) => (
+      {(upload, isUploading) => (
         <PickerButton
           onPress={() => {
             ImagePicker.launchImageLibrary(options, (response) => {
@@ -46,7 +48,11 @@ export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
               }
             });
           }}
-        />
+        >
+          <UploadingAnimation isUploading={isUploading}>
+            <ImageLibrary width={16} height={16} />
+          </UploadingAnimation>
+        </PickerButton>
       )}
     </UploadMutation>
   </HeaderContainer>
