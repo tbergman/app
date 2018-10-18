@@ -1,3 +1,4 @@
+import Config from '@hedviginsurance/react-native-config';
 import {
   makeExecutableSchema,
   makeRemoteExecutableSchema,
@@ -15,7 +16,7 @@ import { typeDefs } from './typedefs';
 import { getToken } from './context';
 
 const uploadLink = createUploadLink({
-  uri: 'https://graphql.dev.hedvigit.com/graphql',
+  uri: Config.GRAPHQL_URL,
 });
 
 const setAuthorizationLink = setContext(async () => ({

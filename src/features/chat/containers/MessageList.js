@@ -15,6 +15,7 @@ import { createImageProgress } from 'react-native-image-progress';
 import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
 import { colors } from '@hedviginsurance/brand';
+import Config from '@hedviginsurance/react-native-config';
 
 import {
   StyledDefaultMessageText,
@@ -128,7 +129,9 @@ const renderImageOrText = (message, index) => {
       <View style={styles.inlineImageContainer}>
         <Image
           source={{
-            uri: `https://pig.dev.hedvigit.com/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
+            uri: `${
+              Config.PIG_URL
+            }/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
               message.body.text,
             )}`,
           }}
