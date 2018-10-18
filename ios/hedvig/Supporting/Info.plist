@@ -62,6 +62,8 @@
 	<string>Bluetooth usage description here</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Calendar usage description here</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Hedvig använder kameran för att du skall kunna skicka bilder från dig</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Hedvig använder mikrofonen till att spela in meddelanden från dig</string>
 	<key>NSMotionUsageDescription</key>

@@ -7,12 +7,15 @@ import {
   FlatList,
   Text,
   PixelRatio,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { createImageProgress } from 'react-native-image-progress';
 import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
 import { colors } from '@hedviginsurance/brand';
+import Config from '@hedviginsurance/react-native-config';
 
 import {
   StyledDefaultMessageText,
@@ -64,6 +67,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.LIGHT_GRAY,
   },
 });
 
@@ -124,19 +129,43 @@ const renderImageOrText = (message, index) => {
       <View style={styles.inlineImageContainer}>
         <Image
           source={{
-            uri: `http://abafc0b8ed07911e88d120258812f1c3-1012500579.eu-central-1.elb.amazonaws.com/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
+            uri: `${
+              Config.PIG_URL
+            }/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
               message.body.text,
             )}`,
           }}
           indicator={Progress.CircleSnail}
           indicatorProps={{
-            size: 80,
-            thickness: 5,
-            color: colors.PINK,
+            size: 40,
+            thickness: 3,
+            color: colors.PURPLE,
           }}
           style={styles.inlineImage}
         />
       </View>
+    );
+  }
+
+  if (message.body.text.includes('hedvig-app-uploads')) {
+    return (
+      <TouchableOpacity
+        accessibilityLabel="Ladda ner fil"
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        onPress={() => Linking.openURL(message.body.text)}
+      >
+        <StyledUserChatMessage
+          withMargin={
+            !message.header.statusMessage ||
+            (message.header.statusMessage && index !== 1)
+          }
+        >
+          <StyledDefaultUserMessageText>
+            Du laddade upp en fil
+          </StyledDefaultUserMessageText>
+        </StyledUserChatMessage>
+      </TouchableOpacity>
     );
   }
 

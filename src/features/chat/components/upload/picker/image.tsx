@@ -29,10 +29,11 @@ interface ImageProps {
 
 export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
   <UploadMutation>
-    {(uploadFile) => (
+    {(uploadFile, isUploading) => (
       <Padding>
         <BorderRadius>
           <Presend
+            isUploading={isUploading}
             onPressSend={() => {
               uploadFile(uri).then((response) => {
                 if (response instanceof Error) {

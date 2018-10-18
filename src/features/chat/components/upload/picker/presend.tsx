@@ -19,6 +19,8 @@ import {
   Delay,
 } from 'animated-react-native-components';
 import { Delayed } from 'src/components/Delayed';
+import { UploadingAnimation } from './uploading-animation';
+import { Update } from 'react-lifecycle-components';
 
 interface State {
   isVisible: boolean;
@@ -84,12 +86,27 @@ const SendButtonText = styled(Text)({
 interface PresendProps {
   children: (showPresendOverlay: () => void) => React.ReactNode;
   onPressSend: () => void;
+  isUploading: boolean;
 }
 
-export const Presend: React.SFC<PresendProps> = ({ children, onPressSend }) => (
+export const Presend: React.SFC<PresendProps> = ({
+  children,
+  onPressSend,
+  isUploading,
+}) => (
   <Container actions={actions} initialState={{ isVisible: false }}>
     {({ isVisible, setIsVisible }) => (
       <>
+        <Update
+          watched={isUploading}
+          was={() => {
+            if (!isUploading) {
+              setIsVisible(false);
+            }
+          }}
+        >
+          {null}
+        </Update>
         {children(() => {
           setIsVisible(true);
         })}
@@ -117,14 +134,13 @@ export const Presend: React.SFC<PresendProps> = ({ children, onPressSend }) => (
                         >
                           {(animatedValue) => (
                             <ButtonAnimation animatedValue={animatedValue}>
-                              <SendButton
-                                onPress={() => {
-                                  setIsVisible(false);
-                                  onPressSend();
-                                }}
-                              >
-                                <SendButtonText>Skicka</SendButtonText>
-                              </SendButton>
+                              <UploadingAnimation isUploading={isUploading}>
+                                <SendButton onPress={() => onPressSend()}>
+                                  <View>
+                                    <SendButtonText>Skicka</SendButtonText>
+                                  </View>
+                                </SendButton>
+                              </UploadingAnimation>
                             </ButtonAnimation>
                           )}
                         </Spring>

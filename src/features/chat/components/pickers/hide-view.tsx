@@ -15,7 +15,6 @@ const HideViewContainer = styled(AnimatedView)(
   }) => ({
     width: hidden ? 0 : 50,
     opacity: animatedValue,
-    pointerEvents: hidden ? 'none' : 'all',
   }),
 );
 
@@ -31,7 +30,11 @@ export const HideView: React.SFC<HideViewProps> = ({ hidden, children }) => (
       config={{ duration: 250 }}
     >
       {(animatedValue) => (
-        <HideViewContainer hidden={hidden} animatedValue={animatedValue}>
+        <HideViewContainer
+          pointerEvents={hidden ? 'none' : 'auto'}
+          hidden={hidden}
+          animatedValue={animatedValue}
+        >
           {children}
         </HideViewContainer>
       )}

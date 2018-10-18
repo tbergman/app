@@ -10,8 +10,6 @@ import mime from 'mime-types';
 import url from 'url';
 import { Container, ActionMap } from 'constate';
 
-import { UploadLoader } from './upload-loader';
-
 const UploadMutationContainer = styled(View)({
   position: 'relative',
 });
@@ -47,6 +45,7 @@ interface UploadResponse {
 interface UploadMutationProps {
   children: (
     uploadFile: (uri: string) => Promise<{ url: string } | Error>,
+    isUploading: boolean,
   ) => React.ReactNode;
 }
 
@@ -106,8 +105,10 @@ export const UploadMutation: React.SFC<UploadMutationProps> = ({
       <Mutation mutation={UPLOAD_MUTATION}>
         {(mutate) => (
           <UploadMutationContainer>
-            {children(uploadHandler(mutate, setIsUploading, isUploading))}
-            {isUploading && <UploadLoader />}
+            {children(
+              uploadHandler(mutate, setIsUploading, isUploading),
+              isUploading,
+            )}
           </UploadMutationContainer>
         )}
       </Mutation>
