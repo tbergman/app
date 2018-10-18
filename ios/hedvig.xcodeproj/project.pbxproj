@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		231F4F0DB0FA37B4C0BB04B0 /* libPods-hedvig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF509FE5A31209D36FE61B /* libPods-hedvig.a */; };
 		2ACE4012D5344BA68AE83CA9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E11984458714DEDB8081244 /* libz.tbd */; };
@@ -194,6 +195,9 @@
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};

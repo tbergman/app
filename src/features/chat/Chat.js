@@ -63,22 +63,15 @@ const PollingMessage = connect(
   }),
 )(UnconnectedPollingMessage);
 
-const getInputComponent = (messages, props) => {
+const getInputComponent = (messages) => {
   if (messages.length === 0) {
     return null;
   }
-  let lastMessage = messages[0];
-  let lastMessageType = lastMessage.body.type;
-  if (lastMessageType === 'polling') {
-    lastMessage = messages[1];
-    lastMessageType = lastMessage.body.type;
-    return (
-      <PollingMessage>
-        {inputComponentMap[lastMessageType](props)}
-      </PollingMessage>
-    );
-  }
-  return inputComponentMap[lastMessageType](props);
+
+  const lastMessage = messages[0];
+  const lastMessageType = lastMessage.body.type;
+
+  return inputComponentMap[lastMessageType];
 };
 
 const styles = StyleSheet.create({
@@ -190,9 +183,6 @@ class Chat extends React.Component {
 
   _startPolling = () => {
     if (!this._longPollTimeout) {
-      this._longPollTimeout = setInterval(() => {
-        this.props.getMessages(this.props.intent);
-      }, 15000);
     }
   };
 
@@ -233,6 +223,16 @@ class Chat extends React.Component {
     this.props.resetConversation();
   };
 
+  renderInput = () => {
+    const Component = getInputComponent(this.props.messages);
+
+    if (!Component) {
+      return null;
+    }
+
+    return <Component showOffer={this._showOffer} />;
+  };
+
   render() {
     return (
       <NavigationOptions options={this.getNavigationOptions()}>
@@ -245,11 +245,7 @@ class Chat extends React.Component {
           <View style={styles.messages}>
             {this.props.messages.length ? <MessageList /> : <Loader />}
           </View>
-          <View style={styles.response}>
-            {getInputComponent(this.props.messages, {
-              showOffer: this._showOffer,
-            })}
-          </View>
+          <View style={styles.response}>{this.renderInput()}</View>
         </KeyboardAvoidingView>
       </NavigationOptions>
     );

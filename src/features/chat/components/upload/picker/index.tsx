@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Consumer } from '../context';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Keyboard } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
 import { Data } from './data';
@@ -8,6 +8,7 @@ import { Image } from './image';
 import { Video } from './video';
 import { Header } from './header';
 import { Delayed } from 'src/components/Delayed';
+import { Update } from 'react-lifecycle-components';
 
 const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
   height: isOpen ? 250 : 0,
@@ -23,6 +24,16 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
       <PickerContainer isOpen={isOpen}>
+        <Update
+          watched={isOpen}
+          was={() => {
+            if (isOpen) {
+              Keyboard.dismiss();
+            }
+          }}
+        >
+          {null}
+        </Update>
         <Delayed
           mountChildren={isOpen}
           unmountChildrenAfter={500}
