@@ -7,8 +7,6 @@ import {
   FlatList,
   Text,
   PixelRatio,
-  TouchableOpacity,
-  Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { createImageProgress } from 'react-native-image-progress';
@@ -17,6 +15,7 @@ import * as Progress from 'react-native-progress';
 import { colors } from '@hedviginsurance/brand';
 import Config from '@hedviginsurance/react-native-config';
 import Hyperlink from 'react-native-hyperlink';
+import isUrl from 'is-url';
 
 import {
   StyledDefaultMessageText,
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
   inlineImage: { width: 280, height: 200 },
   inlineImageContainer: {
-    borderRadius: 10,
+    borderRadius: 20,
     overflow: 'hidden',
     marginBottom: 10,
     borderWidth: StyleSheet.hairlineWidth,
@@ -116,11 +115,12 @@ class HeroMessage extends React.Component {
 
 const renderImageOrText = (message, index) => {
   if (
-    message.body.text.includes('.jpg') ||
-    message.body.text.includes('.png') ||
-    message.body.text.includes('.jpeg') ||
-    message.body.text.includes('.bmp') ||
-    message.body.text.includes('.gif')
+    isUrl(message.body.text) &&
+    (message.body.text.includes('.jpg') ||
+      message.body.text.includes('.png') ||
+      message.body.text.includes('.jpeg') ||
+      message.body.text.includes('.bmp') ||
+      message.body.text.includes('.gif'))
   ) {
     if (message.body.text.includes('giphy')) {
       return <GiphyMessage url={message.body.text} />;
