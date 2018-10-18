@@ -153,7 +153,10 @@ const renderImageOrText = (message, index) => {
     !message.header.statusMessage ||
     (message.header.statusMessage && index !== 1);
 
-  if (message.body.text.includes('hedvig-app-uploads')) {
+  if (
+    isUrl(message.body.text) &&
+    message.body.text.includes('hedvig-app-uploads')
+  ) {
     return <FileMessage url={message.body.text} withMargin={withMargin} />;
   }
 
