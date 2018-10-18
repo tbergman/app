@@ -149,7 +149,11 @@ const renderImageOrText = (message, index) => {
 
   if (message.body.text.includes('hedvig-app-uploads')) {
     return (
-      <TouchableOpacity onPress={() => Linking.openURL(message.body.text)}>
+      <TouchableOpacity
+        accessibilityLabel="Ladda ner fil"
+        accessibilityComponentType="button"
+        onPress={() => Linking.openURL(message.body.text)}
+      >
         <StyledUserChatMessage
           withMargin={
             !message.header.statusMessage ||
