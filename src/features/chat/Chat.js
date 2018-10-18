@@ -183,6 +183,9 @@ class Chat extends React.Component {
 
   _startPolling = () => {
     if (!this._longPollTimeout) {
+      this._longPollTimeout = setInterval(() => {
+        this.props.getMessages(this.props.intent);
+      }, 15000);
     }
   };
 
