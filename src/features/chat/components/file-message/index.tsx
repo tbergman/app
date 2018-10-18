@@ -33,7 +33,7 @@ export const FileMessage: React.SFC<FileMessageProps> = ({
   >
     <StyledUserChatMessage withMargin={withMargin}>
       <Content>
-        <File width={20} height={40} />
+        <File width={20} height={25} />
         <Spacing width={5} />
         <StyledDefaultUserMessageText>
           {path.extname(url.split('?')[0]).replace('.', '')} fil uppladdad
