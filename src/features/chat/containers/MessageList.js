@@ -16,6 +16,7 @@ import FastImage from 'react-native-fast-image';
 import * as Progress from 'react-native-progress';
 import { colors } from '@hedviginsurance/brand';
 import Config from '@hedviginsurance/react-native-config';
+import Hyperlink from 'react-native-hyperlink';
 
 import {
   StyledDefaultMessageText,
@@ -188,9 +189,14 @@ const renderImageOrText = (message, index) => {
           (message.header.statusMessage && index !== 1)
         }
       >
-        <StyledDefaultUserMessageText>
-          {message.body.text}
-        </StyledDefaultUserMessageText>
+        <Hyperlink
+          linkDefault={true}
+          linkStyle={{ textDecorationLine: 'underline' }}
+        >
+          <StyledDefaultUserMessageText>
+            {message.body.text}
+          </StyledDefaultUserMessageText>
+        </Hyperlink>
       </StyledUserChatMessage>
     </>
   );
@@ -204,9 +210,11 @@ class DefaultHedvigMessage extends React.Component {
     } else {
       return (
         <AnimatedStyledChatMessage>
-          <StyledDefaultMessageText>
-            {message.body.text}
-          </StyledDefaultMessageText>
+          <Hyperlink>
+            <StyledDefaultMessageText>
+              {message.body.text}
+            </StyledDefaultMessageText>
+          </Hyperlink>
         </AnimatedStyledChatMessage>
       );
     }
