@@ -135,7 +135,13 @@ export class StyledDefaultMessageText extends React.Component {
 
 export class StyledDefaultUserMessageText extends React.Component {
   render() {
-    return <Text {...this.props} selectable style={styles.userMessageText} />;
+    return (
+      <Text
+        {...this.props}
+        selectable
+        style={[styles.userMessageText, this.props.style]}
+      />
+    );
   }
 }
 

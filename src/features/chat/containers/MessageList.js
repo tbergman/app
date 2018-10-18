@@ -30,6 +30,7 @@ import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
 import { GiphyMessage } from '../components/giphy-message';
+import { FileMessage } from '../components/file-message';
 
 const Image = createImageProgress(FastImage);
 
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
-  inlineImage: { width: 200, height: 200 },
+  inlineImage: { width: 280, height: 200 },
   inlineImageContainer: {
     borderRadius: 10,
     overflow: 'hidden',
@@ -148,25 +149,12 @@ const renderImageOrText = (message, index) => {
     );
   }
 
+  const withMargin =
+    !message.header.statusMessage ||
+    (message.header.statusMessage && index !== 1);
+
   if (message.body.text.includes('hedvig-app-uploads')) {
-    return (
-      <TouchableOpacity
-        accessibilityLabel="Ladda ner fil"
-        accessibilityComponentType="button"
-        onPress={() => Linking.openURL(message.body.text)}
-      >
-        <StyledUserChatMessage
-          withMargin={
-            !message.header.statusMessage ||
-            (message.header.statusMessage && index !== 1)
-          }
-        >
-          <StyledDefaultUserMessageText>
-            Du laddade upp en fil
-          </StyledDefaultUserMessageText>
-        </StyledUserChatMessage>
-      </TouchableOpacity>
-    );
+    return <FileMessage url={message.body.text} withMargin={withMargin} />;
   }
 
   return (
@@ -183,12 +171,7 @@ const renderImageOrText = (message, index) => {
           <EditMessageButton index={index} />
         </View>
       )}
-      <StyledUserChatMessage
-        withMargin={
-          !message.header.statusMessage ||
-          (message.header.statusMessage && index !== 1)
-        }
-      >
+      <StyledUserChatMessage withMargin={withMargin}>
         <Hyperlink
           linkDefault={true}
           linkStyle={{ textDecorationLine: 'underline' }}
