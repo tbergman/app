@@ -41,28 +41,6 @@ const inputComponentMap = {
   audio: () => <AudioInput />,
 };
 
-class UnconnectedPollingMessage extends React.Component {
-  componentDidMount() {
-    this.props.startPolling();
-  }
-
-  componentWillUnmount() {
-    this.props.stopPolling();
-  }
-
-  render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>;
-  }
-}
-
-const PollingMessage = connect(
-  undefined,
-  (dispatch) => ({
-    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
-  }),
-)(UnconnectedPollingMessage);
-
 const getInputComponent = (messages) => {
   if (messages.length === 0) {
     return null;
