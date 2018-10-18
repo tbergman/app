@@ -107,7 +107,7 @@ export const Config = () => (
               }}
             />
             <Spacing height={20} />
-            <Label>Pig url</Label>
+            <Label>🐷 url</Label>
             <Spacing height={10} />
             <Input
               placeholder="Pig url"
@@ -121,7 +121,7 @@ export const Config = () => (
               }}
             />
             <Spacing height={20} />
-            <Label>Graphql url</Label>
+            <Label>🦒 url</Label>
             <Spacing height={10} />
             <Input
               placeholder="Graphql url"
