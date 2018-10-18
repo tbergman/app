@@ -10,6 +10,11 @@ import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
 import { colors } from '@hedviginsurance/brand';
+import { Provider } from '../components/upload/context';
+import { Picker } from '../components/upload/picker';
+import { Buttons } from '../components/pickers/buttons';
+import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
+import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -47,20 +52,14 @@ class ChatTextInput extends React.Component {
     height: 0,
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.message.globalId !== prevProps.message.globalId) {
-      if (this.ref) {
-        this.ref.focus();
-      }
-    }
-  }
-
-  _send = () => {
+  _send = (message) => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       this.props.requestPushNotifications();
     }
     if (!this.props.isSending) {
-      const inputValue = String(this.props.inputValue);
+      const inputValue = String(
+        typeof message === 'string' ? message : this.props.inputValue,
+      );
       this._onTextChange('');
       this.props.send(this.props.message, inputValue);
     }
@@ -79,31 +78,38 @@ class ChatTextInput extends React.Component {
   render() {
     const { isSending, inputValue } = this.props;
     return (
-      <StyledTextInputContainer>
-        <TextInput
-          ref={(ref) => (this.ref = ref)}
-          style={[
-            styles.textInput,
-            { height: Math.max(40, this.state.height) },
-          ]}
-          autoFocus
-          placeholder="Skriv här..."
-          value={inputValue}
-          underlineColorAndroid="transparent"
-          onChangeText={this._onTextChange}
-          multiline
-          returnKeyType="send"
-          enablesReturnKeyAutomatically
-          blurOnSubmit
-          onSubmitEditing={this._send}
-          editable={!isSending}
-          onContentSizeChange={this._handleContentSizeChange}
-        />
-        <SendButton
-          onPress={this._send}
-          disabled={!(inputValue && inputValue.length > 0 && !isSending)}
-        />
-      </StyledTextInputContainer>
+      <Provider>
+        <GiphyProvider>
+          <StyledTextInputContainer>
+            <Buttons />
+            <TextInput
+              ref={(ref) => (this.ref = ref)}
+              style={[
+                styles.textInput,
+                { height: Math.max(40, this.state.height) },
+              ]}
+              autoFocus
+              placeholder="Skriv här..."
+              value={inputValue}
+              underlineColorAndroid="transparent"
+              onChangeText={this._onTextChange}
+              multiline
+              returnKeyType="send"
+              enablesReturnKeyAutomatically
+              blurOnSubmit
+              onSubmitEditing={this._send}
+              editable={!isSending}
+              onContentSizeChange={this._handleContentSizeChange}
+            />
+            <SendButton
+              onPress={this._send}
+              disabled={!(inputValue && inputValue.length > 0 && !isSending)}
+            />
+          </StyledTextInputContainer>
+          <Picker sendMessage={this._send} />
+          <GiphyPicker sendMessage={this._send} />
+        </GiphyProvider>
+      </Provider>
     );
   }
 }

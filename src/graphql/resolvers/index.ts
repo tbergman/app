@@ -2,9 +2,9 @@ import { insurance } from './insurance';
 import { cashback } from './cashback';
 import { logout } from './logout';
 import { offerClosed } from './offer-closed';
-import { Resolver } from '../types';
+import { IResolvers } from 'graphql-tools';
 
-const resolvers: Resolver = {
+const resolvers: IResolvers<any, any> = {
   Query: {
     insurance,
     cashback,
