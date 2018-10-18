@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.LIGHT_GRAY,
   },
+  underline: { textDecorationLine: 'underline' },
 });
 
 const renderImage = (message) => {
@@ -175,10 +176,7 @@ const renderImageOrText = (message, index) => {
         </View>
       )}
       <StyledUserChatMessage withMargin={withMargin}>
-        <Hyperlink
-          linkDefault={true}
-          linkStyle={{ textDecorationLine: 'underline' }}
-        >
+        <Hyperlink linkDefault={true} linkStyle={styles.underline}>
           <StyledDefaultUserMessageText>
             {message.body.text}
           </StyledDefaultUserMessageText>
