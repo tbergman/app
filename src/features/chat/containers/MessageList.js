@@ -152,6 +152,7 @@ const renderImageOrText = (message, index) => {
       <TouchableOpacity
         accessibilityLabel="Ladda ner fil"
         accessibilityComponentType="button"
+        accessibilityTraits="button"
         onPress={() => Linking.openURL(message.body.text)}
       >
         <StyledUserChatMessage
