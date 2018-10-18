@@ -15,7 +15,7 @@ import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
 import { Loader } from '../../components/Loader';
-import { chatActions, dialogActions, types } from '../../../hedvig-redux';
+import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { getMainLayout, setLayout } from '../../navigation/layout';
