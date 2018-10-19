@@ -10,11 +10,13 @@ import { Spacing } from 'src/components/Spacing';
 
 import { Props } from './types';
 
-const MessageContainer = styled(View)({
-  borderRadius: 20,
-  overflow: 'hidden',
-  marginBottom: 10,
-});
+const MessageContainer = styled(View)(
+  ({ withMargin }: { withMargin: boolean }) => ({
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginBottom: withMargin ? 10 : 0,
+  }),
+);
 
 const GiphyText = styled(Text)({
   marginTop: 1,
@@ -41,8 +43,8 @@ const SizedProgressImage = styled(ProgressImage)({
   height: 200,
 });
 
-export const GiphyMessage: React.SFC<Props> = ({ message }) => (
-  <MessageContainer>
+export const GiphyMessage: React.SFC<Props> = ({ message, withMargin }) => (
+  <MessageContainer withMargin={withMargin}>
     <SizedProgressImage
       source={{
         uri: message.body.text,
