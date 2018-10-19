@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
 class ChatTextInput extends React.Component {
   static propTypes = {
-    message: PropTypes.object, // TODO Better definition for the shape of a message - should be reusable
+    message: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     isSending: PropTypes.bool,
     inputValue: PropTypes.string,
@@ -52,10 +52,14 @@ class ChatTextInput extends React.Component {
     height: 0,
   };
 
-  _send = (message) => {
+  requestPush = () => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       this.props.requestPushNotifications();
     }
+  };
+
+  _send = (message) => {
+    this.requestPush();
     if (!this.props.isSending) {
       const inputValue = String(
         typeof message === 'string' ? message : this.props.inputValue,
@@ -63,6 +67,17 @@ class ChatTextInput extends React.Component {
       this._onTextChange('');
       this.props.send(this.props.message, inputValue);
     }
+  };
+
+  sendFileMessage = (key) => {
+    this.requestPush();
+    this.props.send(
+      this.props.message,
+      JSON.stringify({
+        type: 'file',
+        key: key,
+      }),
+    );
   };
 
   _handleContentSizeChange = (event) => {
@@ -106,7 +121,7 @@ class ChatTextInput extends React.Component {
               disabled={!(inputValue && inputValue.length > 0 && !isSending)}
             />
           </StyledTextInputContainer>
-          <Picker sendMessage={this._send} />
+          <Picker sendMessage={this.sendFileMessage} />
           <GiphyPicker sendMessage={this._send} />
         </GiphyProvider>
       </Provider>
@@ -131,6 +146,8 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
+    sendFile: (message, bodyOverride) =>
+      dispatch(chatActions.sendChatResponse(message, bodyOverride)),
     requestPushNotifications: async () => {
       if (Platform.OS === 'android') {
         return dispatch({

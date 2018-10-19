@@ -24,7 +24,7 @@ const ImageContainer = styled(RNImage)({
 
 interface ImageProps {
   uri: string;
-  onUpload: (url: string) => void;
+  onUpload: (key: string) => void;
 }
 
 export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
@@ -38,7 +38,7 @@ export const Image: React.SFC<ImageProps> = ({ uri, onUpload }) => (
               uploadFile(uri).then((response) => {
                 if (response instanceof Error) {
                 } else {
-                  onUpload(response.url);
+                  onUpload(response.key);
                 }
               });
             }}

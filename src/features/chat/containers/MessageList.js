@@ -30,11 +30,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
-  userMessageEditButton: {
-    marginLeft: 5,
-    marginRight: 1,
-  },
-  userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
 });

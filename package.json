@@ -13,7 +13,8 @@
     "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "postversion": "react-native-version",
-    "generate-graphql-types": "ts-node scripts/generate-graphql-types.js"
+    "generate-graphql-types": "ts-node scripts/generate-graphql-types.js",
+    "download-giraffe-schema": "apollo schema:download src/graphql/external-schemas/giraffe.json --endpoint=https://graphql.dev.hedvigit.com/graphql"
   },
   "jest": {
     "preset": "react-native",

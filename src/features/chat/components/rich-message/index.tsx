@@ -1,17 +1,13 @@
 import * as React from 'react';
 import isUrl from 'is-url';
-import path from 'path';
 
 import { Props } from './types';
 import { TextMessage } from './text';
 import { GiphyMessage } from './giphy';
 import { ImageMessage } from './image';
+import { FileMessage } from './file';
 
-const isGiphyMessage = (url: string) => url.includes('giphy.com');
-const isImageMessage = (url: string) =>
-  !!['.jpg', '.png', '.gif', '.jpeg'].find((extension) =>
-    path.extname(url).includes(extension),
-  );
+import { isGiphyMessage, isImageMessage } from './utils';
 
 export const RichMessage: React.SFC<Props> = ({
   message,
@@ -30,6 +26,12 @@ export const RichMessage: React.SFC<Props> = ({
         <ImageMessage message={message} withMargin={withMargin} index={index} />
       );
     }
+  }
+
+  if (message.body.text.startsWith('{') && message.body.text.endsWith('}')) {
+    return (
+      <FileMessage message={message} withMargin={withMargin} index={index} />
+    );
   }
 
   return (
