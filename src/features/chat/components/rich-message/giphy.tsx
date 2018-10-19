@@ -8,9 +8,7 @@ import styled from '@sampettersson/primitives';
 import { Giphy } from 'src/components/icons/Giphy';
 import { Spacing } from 'src/components/Spacing';
 
-interface GiphyMessageProps {
-  url: string;
-}
+import { Props } from './types';
 
 const MessageContainer = styled(View)({
   borderRadius: 20,
@@ -43,11 +41,11 @@ const SizedProgressImage = styled(ProgressImage)({
   height: 200,
 });
 
-export const GiphyMessage: React.SFC<GiphyMessageProps> = ({ url }) => (
+export const GiphyMessage: React.SFC<Props> = ({ message }) => (
   <MessageContainer>
     <SizedProgressImage
       source={{
-        uri: url,
+        uri: message.body.text,
       }}
       indicator={Progress.CircleSnail}
       indicatorProps={{
