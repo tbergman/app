@@ -24,7 +24,7 @@ const setAuthorizationLink = setContext(async () => ({
 }));
 
 const executableGiraffeSchema = makeRemoteExecutableSchema({
-  schema: buildClientSchema(giraffeSchema as any),
+  schema: buildClientSchema(giraffeSchema),
   link: setAuthorizationLink.concat(uploadLink),
 });
 
