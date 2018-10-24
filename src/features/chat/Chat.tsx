@@ -65,11 +65,11 @@ const Response = styled(View)({
 });
 
 const Chat: React.SFC<ChatProps> = (props) => {
-  let _longPollTimeout: any = null;
+  let longPollTimeout: any = null;
 
   const navigationButtonPressed = ({ buttonId, componentId }: any) => {
     if (buttonId === RESTART_BUTTON.id) {
-      _resetConversation();
+      resetConversation();
     }
 
     if (buttonId === CLOSE_BUTTON.id) {
@@ -81,24 +81,24 @@ const Chat: React.SFC<ChatProps> = (props) => {
     }
 
     if (buttonId === SHOW_OFFER_BUTTON.id) {
-      _showOffer();
+      showOffer();
     }
   };
 
   const mount = () => {
     props.getMessages(props.intent!);
     props.getAvatars();
-    AppState.addEventListener('change', _handleAppStateChange);
-    _startPolling();
+    AppState.addEventListener('change', handleAppStateChange);
+    startPolling();
   };
 
   const update = () => {
-    _startPolling();
+    startPolling();
   };
 
   const unmount = () => {
-    AppState.removeEventListener('change', _handleAppStateChange);
-    _stopPolling();
+    AppState.removeEventListener('change', handleAppStateChange);
+    stopPolling();
   };
 
   const getNavigationOptions = () => {
@@ -141,29 +141,29 @@ const Chat: React.SFC<ChatProps> = (props) => {
     }
   };
 
-  const _startPolling = () => {
-    if (!_longPollTimeout) {
-      _longPollTimeout = setInterval(() => {
+  const startPolling = () => {
+    if (!longPollTimeout) {
+      longPollTimeout = setInterval(() => {
         props.getMessages(props.intent!);
       }, 15000);
     }
   };
 
-  const _stopPolling = () => {
-    if (_longPollTimeout) {
-      clearInterval(_longPollTimeout);
-      _longPollTimeout = null;
+  const stopPolling = () => {
+    if (longPollTimeout) {
+      clearInterval(longPollTimeout);
+      longPollTimeout = null;
     }
   };
 
-  const _handleAppStateChange = (appState: string) => {
+  const handleAppStateChange = (appState: string) => {
     if (appState === 'active') {
       props.getMessages(props.intent!);
     }
   };
 
-  const _showOffer = async () => {
-    _stopPolling();
+  const showOffer = async () => {
+    stopPolling();
     const { screen, group } = await getOfferScreen();
 
     if (group === OFFER_GROUPS.OLD) {
@@ -177,12 +177,12 @@ const Chat: React.SFC<ChatProps> = (props) => {
     }
   };
 
-  const _showDashboard = () => {
-    _stopPolling();
+  const showDashboard = () => {
+    stopPolling();
     props.showDashboard!();
   };
 
-  const _resetConversation = () => {
+  const resetConversation = () => {
     props.resetConversation!();
   };
 
@@ -226,7 +226,7 @@ const Chat: React.SFC<ChatProps> = (props) => {
             {props.messages!.length ? <MessageList /> : <Loader />}
           </Messages>
           <Response>
-            <InputComponent showOffer={_showOffer} messages={props.messages} />
+            <InputComponent showOffer={showOffer} messages={props.messages} />
           </Response>
         </KeyboardAvoid>
       </NavigationOptions>

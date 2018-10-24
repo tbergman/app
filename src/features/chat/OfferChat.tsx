@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { Mount, Update, Unmount } from 'react-lifecycle-components';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -48,92 +49,100 @@ const Response = styled(View)({
   paddingTop: 8,
 });
 
-class Chat extends React.Component<ChatProps> {
-  static defaultProps = { onboardingDone: false };
-  _longPollTimeout: any = null;
+const Chat: React.SFC<ChatProps> = (props) => {
+  let longPollTimeout: any = null;
 
-  constructor(props: ChatProps) {
-    super(props);
-  }
+  const mount = () => {
+    props.getMessages(props.intent!);
+    props.getAvatars();
+    AppState.addEventListener('change', handleAppStateChange);
+    startPolling();
+  };
 
-  componentDidMount() {
-    this.props.getMessages(this.props.intent!);
-    this.props.getAvatars();
-    AppState.addEventListener('change', this._handleAppStateChange);
-    this._startPolling();
-  }
+  const update = () => {
+    startPolling();
+  };
 
-  componentDidUpdate() {
-    this._startPolling();
-  }
+  const unmount = () => {
+    AppState.removeEventListener('change', handleAppStateChange);
+    stopPolling();
+  };
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-    this._stopPolling();
-  }
-
-  _startPolling = () => {
-    if (!this._longPollTimeout) {
-      this._longPollTimeout = setInterval(() => {
-        this.props.getMessages(null);
+  const startPolling = () => {
+    if (!longPollTimeout) {
+      longPollTimeout = setInterval(() => {
+        props.getMessages(null);
       }, 15000);
     }
   };
 
-  _stopPolling = () => {
-    if (this._longPollTimeout) {
-      clearInterval(this._longPollTimeout);
-      this._longPollTimeout = null;
+  const stopPolling = () => {
+    if (longPollTimeout) {
+      clearInterval(longPollTimeout);
+      longPollTimeout = null;
     }
   };
 
-  _handleAppStateChange = (appState: string) => {
+  const handleAppStateChange = (appState: string) => {
     if (appState === 'active') {
-      this.props.getMessages(null);
+      props.getMessages(null);
     }
   };
 
-  _showOffer = () => {
-    this._stopPolling();
-    this.props.onRequestClose!();
+  const showOffer = () => {
+    stopPolling();
+    props.onRequestClose!();
   };
 
-  _showDashboard = () => {
-    this._stopPolling();
-    this.props.showDashboard!();
+  const showDashboard = () => {
+    stopPolling();
+    props.showDashboard!();
   };
 
-  _resetConversation = () => {
-    this.props.resetConversation!();
+  const resetConversation = () => {
+    props.resetConversation!();
   };
 
-  render() {
-    return (
-      <>
-        <KeyboardAvoid
-          keyboardVerticalOffset={ifIphoneX ? 90 : 70}
-          behavior="padding"
-          enabled={Platform.OS === 'ios'}
-        >
-          <Messages>
-            {this.props.messages!.length ? (
-              <MessageList showOffer={this._showOffer} />
-            ) : (
-              <Loader />
-            )}
-          </Messages>
-          <Response>
-            <InputComponent
-              messages={this.props.messages}
-              showOffer={this._showOffer}
-            />
-          </Response>
-        </KeyboardAvoid>
-        <Dialog />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Mount
+        on={() => {
+          mount();
+        }}
+      />
+      <Unmount
+        on={() => {
+          unmount();
+        }}
+      />
+      <Update
+        was={() => {
+          update();
+        }}
+        watched={props}
+      />
+      <KeyboardAvoid
+        keyboardVerticalOffset={ifIphoneX ? 90 : 70}
+        behavior="padding"
+        enabled={Platform.OS === 'ios'}
+      >
+        <Messages>
+          {props.messages!.length ? (
+            <MessageList showOffer={showOffer} />
+          ) : (
+            <Loader />
+          )}
+        </Messages>
+        <Response>
+          <InputComponent messages={props.messages} showOffer={showOffer} />
+        </Response>
+      </KeyboardAvoid>
+      <Dialog />
+    </>
+  );
+};
+
+Chat.defaultProps = { onboardingDone: false };
 
 const mapStateToProps = (state: any) => {
   return {
