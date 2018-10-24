@@ -107,6 +107,34 @@ export const Config = () => (
               }}
             />
             <Spacing height={20} />
+            <Label>🐷 url</Label>
+            <Spacing height={10} />
+            <Input
+              placeholder="Pig url"
+              defaultValue={RNConfig.PIG_URL}
+              onChangeText={(text: string) => {
+                Object.defineProperty(RNConfig, 'PIG_URL', {
+                  get: function() {
+                    return text;
+                  },
+                });
+              }}
+            />
+            <Spacing height={20} />
+            <Label>🦒 url</Label>
+            <Spacing height={10} />
+            <Input
+              placeholder="Graphql url"
+              defaultValue={RNConfig.GRAPHQL_URL}
+              onChangeText={(text: string) => {
+                Object.defineProperty(RNConfig, 'GRAPHQL_URL', {
+                  get: function() {
+                    return text;
+                  },
+                });
+              }}
+            />
+            <Spacing height={20} />
             <Button
               onPress={() => {
                 AsyncStorage.setItem(CUSTOM_CONFIG, JSON.stringify(RNConfig));

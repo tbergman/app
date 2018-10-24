@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Image,
   Dimensions,
   StyleSheet,
   FlatList,
   Text,
+  PixelRatio,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { createImageProgress } from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
+import * as Progress from 'react-native-progress';
+import { colors } from '@hedviginsurance/brand';
+import Config from '@hedviginsurance/react-native-config';
 
 import {
   StyledDefaultMessageText,
@@ -21,6 +28,9 @@ import {
 import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
+import { GiphyMessage } from '../components/giphy-message';
+
+const Image = createImageProgress(FastImage);
 
 const window = Dimensions.get('window');
 // (window width - (2 outer margin + 2 inner margin) * 0.98)
@@ -52,6 +62,14 @@ const styles = StyleSheet.create({
   userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
+  inlineImage: { width: 200, height: 200 },
+  inlineImageContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginBottom: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.LIGHT_GRAY,
+  },
 });
 
 const renderImage = (message) => {
@@ -94,6 +112,91 @@ class HeroMessage extends React.Component {
   }
 }
 
+const renderImageOrText = (message, index) => {
+  if (
+    message.body.text.includes('.jpg') ||
+    message.body.text.includes('.png') ||
+    message.body.text.includes('.jpeg') ||
+    message.body.text.includes('.bmp') ||
+    message.body.text.includes('.gif')
+  ) {
+    if (message.body.text.includes('giphy')) {
+      return <GiphyMessage url={message.body.text} />;
+    }
+
+    const IMAGE_SIZE = PixelRatio.getPixelSizeForLayoutSize(200);
+    return (
+      <View style={styles.inlineImageContainer}>
+        <Image
+          source={{
+            uri: `${
+              Config.PIG_URL
+            }/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
+              message.body.text,
+            )}`,
+          }}
+          indicator={Progress.CircleSnail}
+          indicatorProps={{
+            size: 40,
+            thickness: 3,
+            color: colors.PURPLE,
+          }}
+          style={styles.inlineImage}
+        />
+      </View>
+    );
+  }
+
+  if (message.body.text.includes('hedvig-app-uploads')) {
+    return (
+      <TouchableOpacity
+        accessibilityLabel="Ladda ner fil"
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        onPress={() => Linking.openURL(message.body.text)}
+      >
+        <StyledUserChatMessage
+          withMargin={
+            !message.header.statusMessage ||
+            (message.header.statusMessage && index !== 1)
+          }
+        >
+          <StyledDefaultUserMessageText>
+            Du laddade upp en fil
+          </StyledDefaultUserMessageText>
+        </StyledUserChatMessage>
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <>
+      {message.header.editAllowed && (
+        <View
+          style={[
+            styles.userMessageEditButton,
+            !message.header.statusMessage
+              ? styles.userMessageEditButtonWithStatusMessage
+              : undefined,
+          ]}
+        >
+          <EditMessageButton index={index} />
+        </View>
+      )}
+      <StyledUserChatMessage
+        withMargin={
+          !message.header.statusMessage ||
+          (message.header.statusMessage && index !== 1)
+        }
+      >
+        <StyledDefaultUserMessageText>
+          {message.body.text}
+        </StyledDefaultUserMessageText>
+      </StyledUserChatMessage>
+    </>
+  );
+};
+
 class DefaultHedvigMessage extends React.Component {
   render() {
     const { message } = this.props;
@@ -102,7 +205,6 @@ class DefaultHedvigMessage extends React.Component {
     } else {
       return (
         <AnimatedStyledChatMessage>
-          {renderImage(message)}
           <StyledDefaultMessageText>
             {message.body.text}
           </StyledDefaultMessageText>
@@ -115,35 +217,10 @@ class DefaultHedvigMessage extends React.Component {
 class DefaultUserMessage extends React.Component {
   render() {
     const { message, index } = this.props;
-    let maybeEditMessageButton;
-    if (message.header.editAllowed) {
-      maybeEditMessageButton = (
-        <View
-          style={[
-            styles.userMessageEditButton,
-            !message.header.statusMessage
-              ? styles.userMessageEditButtonWithStatusMessage
-              : undefined,
-          ]}
-        >
-          <EditMessageButton index={index} />
-        </View>
-      );
-    }
     return (
       <View style={styles.userMessageOuterContainer}>
         <View style={styles.userMessageInnerContainer}>
-          {maybeEditMessageButton}
-          <StyledUserChatMessage
-            withMargin={
-              !message.header.statusMessage ||
-              (message.header.statusMessage && index !== 1)
-            }
-          >
-            <StyledDefaultUserMessageText>
-              {message.body.text}
-            </StyledDefaultUserMessageText>
-          </StyledUserChatMessage>
+          {renderImageOrText(message, index)}
         </View>
         {message.header.statusMessage &&
           index === 1 && (
@@ -206,6 +283,10 @@ const renderMessage = (message, idx) => {
 class MessageList extends React.Component {
   _renderItem = ({ item, index }) => renderMessage(item, index);
   _keyExtractor = (item) => '' + item.globalId;
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.messages !== this.props.messages;
+  }
 
   render() {
     return (

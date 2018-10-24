@@ -179,7 +179,6 @@ export const setLayout = ({
 }) => {
   Navigation.setDefaultOptions({
     topBar: {
-      animate: false,
       title: {
         fontFamily: fonts.CIRCULAR,
       },

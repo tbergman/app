@@ -22,6 +22,7 @@ const handleCheckout = function*() {
   yield put({
     type: TRACK_OFFER_SIGNED,
     payload: {
+      affiliation: 'hedvig in-app sign',
       revenue: insurance.currentTotalPrice,
       order_id: analytics.orderId,
       currency: 'SEK',

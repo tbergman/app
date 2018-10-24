@@ -14,7 +14,7 @@ import BankIdCollectInput from './containers/BankIdCollectInput';
 import AudioInput from './containers/AudioInput';
 import ParagraphInput from './containers/ParagraphInput';
 import { Loader } from '../../components/Loader';
-import { chatActions, dialogActions, types } from '../../../hedvig-redux';
+import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
 import { getMainLayout, setLayout } from '../../navigation/layout';
@@ -48,68 +48,25 @@ interface UnconnectedPollingMessageProps {
   stopPolling: () => void;
 }
 
-const inputComponentMap = (type: string, props: any) => {
-  switch (type) {
-    case 'multiple_select':
-      return <MultipleSelectInput />;
-    case 'text':
-      return <ChatTextInput />;
-    case 'number':
-      return <ChatNumberInput />;
-    case 'single_select':
-      return <SingleSelectInput {...props} />;
-    case 'bankid_collect':
-      return <BankIdCollectInput />;
-    case 'paragraph':
-      return <ParagraphInput />;
-    case 'audio':
-      return <AudioInput />;
-    default:
-      return <View />;
-  }
+const inputComponentMap = {
+  multiple_select: () => <MultipleSelectInput />,
+  text: () => <ChatTextInput />,
+  number: () => <ChatNumberInput />,
+  single_select: (props: any) => <SingleSelectInput {...props} />,
+  bankid_collect: () => <BankIdCollectInput />,
+  paragraph: () => <ParagraphInput />,
+  audio: () => <AudioInput />,
 };
 
-class UnconnectedPollingMessage extends React.Component<
-  UnconnectedPollingMessageProps
-> {
-  componentDidMount() {
-    this.props.startPolling();
-  }
-
-  componentWillUnmount() {
-    this.props.stopPolling();
-  }
-
-  render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>;
-  }
-}
-
-const PollingMessage = connect(
-  undefined,
-  (dispatch: any) => ({
-    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
-  }),
-)(UnconnectedPollingMessage);
-
-const getInputComponent = (messages: Array<any>, props: any) => {
+const getInputComponent = (messages: any) => {
   if (messages.length === 0) {
     return null;
   }
-  let lastMessage = messages[0];
-  let lastMessageType = lastMessage.body.type;
 
-  if (lastMessageType === 'polling') {
-    lastMessage = messages[1];
-    lastMessageType = lastMessage.body.type;
-    return (
-      <PollingMessage>
-        {inputComponentMap(lastMessageType, props)}
-      </PollingMessage>
-    );
-  }
-  return inputComponentMap(lastMessageType, props);
+  const lastMessage = messages[0];
+  const lastMessageType = lastMessage.body.type;
+
+  return inputComponentMap[lastMessageType];
 };
 
 const styles = StyleSheet.create({
@@ -264,11 +221,21 @@ class Chat extends React.Component<ChatProps> {
     this.props.resetConversation!();
   };
 
+  renderInput = () => {
+    const Component: any = getInputComponent(this.props.messages);
+
+    if (!Component) {
+      return null;
+    }
+
+    return <Component showOffer={this._showOffer} />;
+  };
+
   render() {
     return (
       <NavigationOptions options={this.getNavigationOptions()}>
         <KeyboardAvoidingView
-          keyboardVerticalOffset={isIphoneX() ? 100 : 60}
+          keyboardVerticalOffset={isIphoneX() ? 85 : 60}
           behavior="padding"
           enabled={Platform.OS === 'ios'}
           style={styles.container}
@@ -276,11 +243,7 @@ class Chat extends React.Component<ChatProps> {
           <View style={styles.messages}>
             {this.props.messages!.length ? <MessageList /> : <Loader />}
           </View>
-          <View style={styles.response}>
-            {getInputComponent(this.props.messages!, {
-              showOffer: this._showOffer,
-            })}
-          </View>
+          <View style={styles.response}>{this.renderInput()}</View>
         </KeyboardAvoidingView>
       </NavigationOptions>
     );
