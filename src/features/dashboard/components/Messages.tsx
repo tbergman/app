@@ -11,7 +11,6 @@ export const Messages: React.SFC = () => {
 
   return (
     <>
-      <Spacing height={20} />
       <Message
         message={
           <TranslationsConsumer textKey="TRUSTLY_PAYMENT_SETUP_MESSAGE">
