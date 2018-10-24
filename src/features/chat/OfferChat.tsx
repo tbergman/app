@@ -9,7 +9,7 @@ import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
 import { Loader } from '../../components/Loader';
-import { chatActions, dialogActions, types } from '../../../hedvig-redux';
+import { chatActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 
 import Dialog from 'src/containers/Dialog';
@@ -94,15 +94,6 @@ const Chat: React.SFC<ChatProps> = (props) => {
     props.onRequestClose!();
   };
 
-  const showDashboard = () => {
-    stopPolling();
-    props.showDashboard!();
-  };
-
-  const resetConversation = () => {
-    props.resetConversation!();
-  };
-
   return (
     <>
       <Mount
@@ -165,18 +156,6 @@ const mapDispatchToProps = (dispatch: any) => {
         }),
       ),
     getAvatars: () => dispatch(chatActions.getAvatars()),
-    resetConversation: () =>
-      dispatch(
-        dialogActions.showDialog({
-          title: 'Vill du börja om?',
-          paragraph:
-            'Om du trycker ja så börjar\nkonversationen om från början',
-          confirmButtonTitle: 'Ja',
-          dismissButtonTitle: 'Nej',
-          onConfirm: () => dispatch(chatActions.resetConversation()),
-          onDismiss: () => {},
-        }),
-      ),
     editLastResponse: () => dispatch(chatActions.editLastResponse()),
   };
 };

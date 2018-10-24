@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, Alert } from 'react-native';
+import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
@@ -175,11 +175,6 @@ const Chat: React.SFC<ChatProps> = (props) => {
     } else {
       Navigation.push(props.componentId!, screen);
     }
-  };
-
-  const showDashboard = () => {
-    stopPolling();
-    props.showDashboard!();
   };
 
   const resetConversation = () => {
