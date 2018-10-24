@@ -9,6 +9,7 @@ import { AnimatedView } from 'src/components/AnimatedPrimitives';
 
 const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
   maxHeight: visible ? 'auto' : 0,
+  marginTop: visible ? 20 : 0,
   overflow: 'hidden',
 }));
 
