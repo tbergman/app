@@ -6,13 +6,7 @@ import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
-import ChatNumberInput from './containers/ChatNumberInput';
-import ChatTextInput from './containers/ChatTextInput';
-import MultipleSelectInput from './containers/MultipleSelectInput';
-import SingleSelectInput from './containers/SingleSelectInput';
-import BankIdCollectInput from './containers/BankIdCollectInput';
-import AudioInput from './containers/AudioInput';
-import ParagraphInput from './containers/ParagraphInput';
+import InputComponent from './components/InputComponent';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
@@ -28,7 +22,6 @@ import {
   GO_TO_DASHBOARD_BUTTON,
   SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
-import InputComponent from './components/InputComponent';
 
 interface ChatProps {
   onboardingDone?: boolean;

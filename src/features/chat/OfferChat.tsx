@@ -5,39 +5,12 @@ import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
-import ChatNumberInput from './containers/ChatNumberInput';
-import ChatTextInput from './containers/ChatTextInput';
-import MultipleSelectInput from './containers/MultipleSelectInput';
-import SingleSelectInput from './containers/SingleSelectInput';
-import BankIdCollectInput from './containers/BankIdCollectInput';
-import AudioInput from './containers/AudioInput';
-import ParagraphInput from './containers/ParagraphInput';
+import InputComponent from './components/InputComponent';
 import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions, types } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 
 import Dialog from 'src/containers/Dialog';
-
-const inputComponentMap = (type: string, props: any) => {
-  switch (type) {
-    case 'multiple_select':
-      return <MultipleSelectInput />;
-    case 'text':
-      return <ChatTextInput />;
-    case 'number':
-      return <ChatNumberInput />;
-    case 'single_select':
-      return <SingleSelectInput {...props} />;
-    case 'bankid_collect':
-      return <BankIdCollectInput />;
-    case 'paragraph':
-      return <ParagraphInput />;
-    case 'audio':
-      return <AudioInput />;
-    default:
-      return <View />;
-  }
-};
 
 interface UnconnectedPollingMessageProps {
   startPolling: () => void;
@@ -78,25 +51,6 @@ const PollingMessage = connect(
     stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
   }),
 )(UnconnectedPollingMessage);
-
-const getInputComponent = (messages: Array<object>, props: any) => {
-  if (messages.length === 0) {
-    return null;
-  }
-  let lastMessage: any = messages[0];
-  let lastMessageType: any = lastMessage.body.type;
-
-  if (lastMessageType === 'polling') {
-    lastMessage = messages[1];
-    lastMessageType = lastMessage.body.type;
-    return (
-      <PollingMessage>
-        {inputComponentMap(lastMessageType, props)}
-      </PollingMessage>
-    );
-  }
-  return inputComponentMap(lastMessageType, props);
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -198,9 +152,10 @@ class Chat extends React.Component<ChatProps> {
             )}
           </View>
           <View style={styles.response}>
-            {getInputComponent(this.props.messages!, {
-              showOffer: this._showOffer,
-            })}
+            <InputComponent
+              messages={this.props.messages}
+              showOffer={this._showOffer}
+            />
           </View>
         </KeyboardAvoidingView>
         <Dialog />
