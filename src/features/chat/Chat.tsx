@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
+import { Mount, Update, Unmount } from 'react-lifecycle-components';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -12,6 +13,7 @@ import { Loader } from '../../components/Loader';
 import { chatActions, dialogActions } from '../../../hedvig-redux';
 import * as selectors from './state/selectors';
 import { NavigationOptions } from '../../navigation/options';
+import { NavigationEvents } from 'src/navigation/events';
 import { getMainLayout, setLayout } from '../../navigation/layout';
 import {
   getOfferScreen,
@@ -62,22 +64,16 @@ const Response = styled(View)({
   paddingTop: 8,
 });
 
-class Chat extends React.Component<ChatProps> {
-  static defaultProps = { onboardingDone: false };
-  _longPollTimeout: any = null;
+const Chat: React.SFC<ChatProps> = (props) => {
+  let _longPollTimeout: any = null;
 
-  constructor(props: ChatProps) {
-    super(props);
-    Navigation.events().bindComponent(this);
-  }
-
-  navigationButtonPressed({ buttonId }: any) {
+  const navigationButtonPressed = ({ buttonId, componentId }: any) => {
     if (buttonId === RESTART_BUTTON.id) {
-      this._resetConversation();
+      _resetConversation();
     }
 
     if (buttonId === CLOSE_BUTTON.id) {
-      Navigation.dismissModal(this.props.componentId!);
+      Navigation.dismissModal(props.componentId!);
     }
 
     if (buttonId === GO_TO_DASHBOARD_BUTTON.id) {
@@ -85,28 +81,28 @@ class Chat extends React.Component<ChatProps> {
     }
 
     if (buttonId === SHOW_OFFER_BUTTON.id) {
-      this._showOffer();
+      _showOffer();
     }
-  }
+  };
 
-  componentDidMount() {
-    this.props.getMessages(this.props.intent!);
-    this.props.getAvatars();
-    AppState.addEventListener('change', this._handleAppStateChange);
-    this._startPolling();
-  }
+  const mount = () => {
+    props.getMessages(props.intent!);
+    props.getAvatars();
+    AppState.addEventListener('change', _handleAppStateChange);
+    _startPolling();
+  };
 
-  componentDidUpdate() {
-    this._startPolling();
-  }
+  const update = () => {
+    _startPolling();
+  };
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-    this._stopPolling();
-  }
+  const unmount = () => {
+    AppState.removeEventListener('change', _handleAppStateChange);
+    _stopPolling();
+  };
 
-  getNavigationOptions = () => {
-    const { onboardingDone, isModal, showReturnToOfferButton } = this.props;
+  const getNavigationOptions = () => {
+    const { onboardingDone, isModal, showReturnToOfferButton } = props;
 
     if (onboardingDone) {
       if (isModal) {
@@ -145,29 +141,29 @@ class Chat extends React.Component<ChatProps> {
     }
   };
 
-  _startPolling = () => {
-    if (!this._longPollTimeout) {
-      this._longPollTimeout = setInterval(() => {
-        this.props.getMessages(this.props.intent!);
+  const _startPolling = () => {
+    if (!_longPollTimeout) {
+      _longPollTimeout = setInterval(() => {
+        props.getMessages(props.intent!);
       }, 15000);
     }
   };
 
-  _stopPolling = () => {
-    if (this._longPollTimeout) {
-      clearInterval(this._longPollTimeout);
-      this._longPollTimeout = null;
+  const _stopPolling = () => {
+    if (_longPollTimeout) {
+      clearInterval(_longPollTimeout);
+      _longPollTimeout = null;
     }
   };
 
-  _handleAppStateChange = (appState: string) => {
+  const _handleAppStateChange = (appState: string) => {
     if (appState === 'active') {
-      this.props.getMessages(this.props.intent!);
+      props.getMessages(props.intent!);
     }
   };
 
-  _showOffer = async () => {
-    this._stopPolling();
+  const _showOffer = async () => {
+    _stopPolling();
     const { screen, group } = await getOfferScreen();
 
     if (group === OFFER_GROUPS.OLD) {
@@ -177,41 +173,68 @@ class Chat extends React.Component<ChatProps> {
         },
       });
     } else {
-      Navigation.push(this.props.componentId!, screen);
+      Navigation.push(props.componentId!, screen);
     }
   };
 
-  _showDashboard = () => {
-    this._stopPolling();
-    this.props.showDashboard!();
+  const _showDashboard = () => {
+    _stopPolling();
+    props.showDashboard!();
   };
 
-  _resetConversation = () => {
-    this.props.resetConversation!();
+  const _resetConversation = () => {
+    props.resetConversation!();
   };
 
-  render() {
-    return (
-      <NavigationOptions options={this.getNavigationOptions()}>
+  return (
+    <>
+      <NavigationEvents
+        onNavigationButtonPressed={(event: any) =>
+          navigationButtonPressed(event)
+        }
+      />
+      <Mount
+        on={() => {
+          mount();
+        }}
+      >
+        {null}
+      </Mount>
+      <Update
+        was={() => {
+          update();
+        }}
+        watched={props}
+      >
+        {null}
+      </Update>
+      <Unmount
+        on={() => {
+          unmount();
+        }}
+      >
+        {null}
+      </Unmount>
+
+      <NavigationOptions options={getNavigationOptions()}>
         <KeyboardAvoid
           keyboardVerticalOffset={isIphoneX() ? 85 : 60}
           behavior="padding"
           enabled={Platform.OS === 'ios'}
         >
           <Messages>
-            {this.props.messages!.length ? <MessageList /> : <Loader />}
+            {props.messages!.length ? <MessageList /> : <Loader />}
           </Messages>
           <Response>
-            <InputComponent
-              showOffer={this._showOffer}
-              messages={this.props.messages}
-            />
+            <InputComponent showOffer={_showOffer} messages={props.messages} />
           </Response>
         </KeyboardAvoid>
       </NavigationOptions>
-    );
-  }
-}
+    </>
+  );
+};
+
+Chat.defaultProps = { onboardingDone: false };
 
 const mapStateToProps = (state: any) => {
   return {
