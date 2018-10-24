@@ -13,6 +13,7 @@ import { DeductibleFootnote } from 'src/features/dashboard/components/Deductible
 import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
 import { InsuranceAmountFootnote } from 'src/features/dashboard/components/InsuranceAmountFootnote';
 import { TravelFootnote } from 'src/features/dashboard/components/TravelFootnote';
+import { Messages } from 'src/features/dashboard/components/Messages';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
@@ -40,6 +41,9 @@ const DASHBOARD_QUERY = gql`
 const Container = styled(ScrollView)({
   flex: 1,
   backgroundColor: colors.OFF_WHITE,
+});
+
+const InsetPadding = styled(View)({
   paddingLeft: 24,
   paddingRight: 24,
 });
@@ -72,21 +76,31 @@ const Dashboard: React.SFC = () => (
       const { status, activeFrom, type, perilCategories } = insurance;
 
       return (
-        <Container>
+        <Container contentContainerStyle={{ paddingBottom: 50 }}>
           <Spacing height={24} />
-          <Header>
-            <Heading>Min hemförsäkring</Heading>
-            <InsuranceStatusDisplay status={status} activeFrom={activeFrom} />
-          </Header>
+          <InsetPadding>
+            <Header>
+              <Heading>Min hemförsäkring</Heading>
+              <InsuranceStatusDisplay status={status} activeFrom={activeFrom} />
+            </Header>
+          </InsetPadding>
+          <Messages />
+          <InsetPadding>
+            <PerilCategories perilCategories={perilCategories} />
+          </InsetPadding>
           <Spacing height={24} />
-          <PerilCategories perilCategories={perilCategories} />
-          <Spacing height={24} />
-          <DeductibleFootnote />
-          <OwnerFootnote type={type} />
+          <InsetPadding>
+            <DeductibleFootnote />
+            <OwnerFootnote type={type} />
+          </InsetPadding>
           <Spacing height={16} />
-          <InsuranceAmountFootnote type={type} />
+          <InsetPadding>
+            <InsuranceAmountFootnote type={type} />
+          </InsetPadding>
           <Spacing height={16} />
-          <TravelFootnote />
+          <InsetPadding>
+            <TravelFootnote />
+          </InsetPadding>
         </Container>
       );
     }}
