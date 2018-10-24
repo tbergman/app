@@ -28,7 +28,7 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   const { messages } = props;
 
   if (messages.length === 0) {
-    return <></>;
+    return null;
   }
 
   const lastMessage = messages[0];
