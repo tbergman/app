@@ -13,7 +13,8 @@
     "create-podspecs": "podspec-generator node_modules/react-native-analytics-segment-io --ios=9.0 --source_files=ios/RNAnalyticsSegmentIO --dependencies=React,Analytics",
     "format": "prettier-eslint --write \"src/**/*.js\"",
     "postversion": "react-native-version",
-    "generate-graphql-types": "ts-node scripts/generate-graphql-types.js"
+    "generate-graphql-types": "ts-node scripts/generate-graphql-types.js",
+    "generate-graphql-components": "CODEGEN_NO_NAMESPACES=true gql-gen --schema https://graphql.dev.hedvigit.com/graphql --template graphql-codegen-typescript-react-apollo-template --out ./src/graphql/components.tsx './src/**/*.graphql'"
   },
   "jest": {
     "preset": "react-native",
@@ -84,7 +85,7 @@
     "eslint-plugin-react-native-a11y": "^1.0.0",
     "generator-to-promise": "^1.0.0",
     "get-closest": "^0.0.4",
-    "graphql": "^0.13.2",
+    "graphql": "^14.0.2",
     "graphql-schema-typescript": "^1.2.3",
     "graphql-tag": "^2.9.2",
     "graphql-tools": "3.0.0",
@@ -180,5 +181,9 @@
       }
     }
   },
-  "version": "2.2.1"
+  "version": "2.2.1",
+  "devDependencies": {
+    "graphql-code-generator": "^0.12.6",
+    "graphql-codegen-typescript-react-apollo-template": "^0.12.6"
+  }
 }

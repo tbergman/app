@@ -9,10 +9,7 @@ import {
 } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { colors } from '@hedviginsurance/brand';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
 
-import { Insurance } from 'src/graphql/types';
 import { PriceBubble } from 'src/features/new-offer/components/price-bubble';
 import { FeaturesBubbles } from 'src/features/new-offer/components/features-bubbles';
 import { AnimationValueProvider } from 'animated-react-native-components';
@@ -25,6 +22,8 @@ import { SignButton } from 'src/features/new-offer/components/sign-button';
 import { PerilsDialog } from 'src/features/offer/containers/PerilsDialog';
 import { NEW_OFFER_OPTIONS } from 'src/navigation/screens/new-offer/options';
 import { AndroidHeader } from 'src/features/new-offer/android-header';
+
+import { NewOfferComponent } from 'src/graphql/components';
 
 const AnimatedScrollView = Animated.createAnimatedComponent<ScrollViewProps>(
   ScrollView,
@@ -88,18 +87,6 @@ const getScrollHandler = (animatedValue: Animated.Value) =>
     },
   );
 
-const INSURANCE_QUERY = gql`
-  query insurance {
-    insurance {
-      address
-      monthlyCost
-      personsInHousehold
-      insuredAtOtherCompany
-      type
-    }
-  }
-`;
-
 interface ScrollToParams {
   x: number;
   y: number;
@@ -137,7 +124,7 @@ const bounceScrollView = () => {
 };
 
 export const NewOffer: React.SFC = () => (
-  <Query<{ insurance: Insurance }> query={INSURANCE_QUERY}>
+  <NewOfferComponent>
     {({ data, loading, error }) =>
       loading || error ? null : (
         <>
@@ -199,5 +186,5 @@ export const NewOffer: React.SFC = () => (
         </>
       )
     }
-  </Query>
+  </NewOfferComponent>
 );
