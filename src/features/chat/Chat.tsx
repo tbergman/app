@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
@@ -50,16 +50,16 @@ const initialState: State = {
 };
 
 interface Effects {
-  startPolling: (props: any) => void;
+  startPolling: (getMessages: any, intent: any) => void;
   stopPolling: () => void;
 }
 
 const effects: EffectMap<State, Effects> = {
-  startPolling: (props) => ({ setState, state }: any) => {
+  startPolling: (getMessages, intent) => ({ setState, state }: any) => {
     if (!state.longPollTimeout) {
       setState((state: any) => ({
         longPollTimeout: setInterval(() => {
-          props.getMessages(props.intent!);
+          getMessages(intent!);
         }, 15000),
       }));
     }
@@ -98,9 +98,11 @@ const Response = styled(View)({
   paddingTop: 8,
 });
 
-const getNavigationOptions = (props: any) => {
-  const { onboardingDone, isModal, showReturnToOfferButton } = props;
-
+const getNavigationOptions = (
+  onboardingDone: any,
+  isModal: any,
+  showReturnToOfferButton: any,
+) => {
   if (onboardingDone) {
     if (isModal) {
       return {
@@ -138,7 +140,7 @@ const getNavigationOptions = (props: any) => {
   }
 };
 
-const showOffer = async (stopPolling: any, props: any) => {
+const showOffer = async (stopPolling: any, componentId: any) => {
   stopPolling();
   const { screen, group } = await getOfferScreen();
 
@@ -149,28 +151,42 @@ const showOffer = async (stopPolling: any, props: any) => {
       },
     });
   } else {
-    Navigation.push(props.componentId!, screen);
+    Navigation.push(componentId!, screen);
   }
 };
 
-const handleAppStateChange = (appState: string, props: any) => {
+const handleAppStateChange = (
+  appState: string,
+  getMessages: any,
+  intent: any,
+) => {
   if (appState === 'active') {
-    props.getMessages(props.intent!);
+    getMessages(intent!);
   }
 };
 
-const Chat: React.SFC<ChatProps> = (props) => (
+const Chat: React.SFC<ChatProps> = ({
+  onboardingDone = false,
+  isModal,
+  showReturnToOfferButton,
+  componentId,
+  intent,
+  messages,
+  getAvatars,
+  getMessages,
+  resetConversation,
+}) => (
   <Container effects={effects} initialState={initialState}>
     {({ startPolling, stopPolling }) => (
       <>
         <NavigationEvents
           onNavigationButtonPressed={(event: any) => {
             if (event.buttonId === RESTART_BUTTON.id) {
-              props.resetConversation!();
+              resetConversation!();
             }
 
             if (event.buttonId === CLOSE_BUTTON.id) {
-              Navigation.dismissModal(props.componentId!);
+              Navigation.dismissModal(componentId!);
             }
 
             if (event.buttonId === GO_TO_DASHBOARD_BUTTON.id) {
@@ -178,34 +194,34 @@ const Chat: React.SFC<ChatProps> = (props) => (
             }
 
             if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-              showOffer(stopPolling, props);
+              showOffer(stopPolling, componentId);
             }
           }}
         />
         <Mount
           on={() => {
-            props.getMessages(props.intent!);
-            props.getAvatars();
+            getMessages(intent!);
+            getAvatars();
             AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, props);
+              handleAppStateChange(appState, getMessages, intent);
             });
-            startPolling(props);
+            startPolling(getMessages, intent);
           }}
         >
           {null}
         </Mount>
         <Update
           was={() => {
-            startPolling(props);
+            startPolling(getMessages, intent);
           }}
-          watched={props}
+          watched={messages}
         >
           {null}
         </Update>
         <Unmount
           on={() => {
             AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, props);
+              handleAppStateChange(appState, getMessages, intent);
             });
             stopPolling();
           }}
@@ -213,17 +229,23 @@ const Chat: React.SFC<ChatProps> = (props) => (
           {null}
         </Unmount>
 
-        <NavigationOptions options={getNavigationOptions(props)}>
+        <NavigationOptions
+          options={getNavigationOptions(
+            onboardingDone,
+            isModal,
+            showReturnToOfferButton,
+          )}
+        >
           <KeyboardAvoid
             keyboardVerticalOffset={isIphoneX() ? 85 : 60}
             behavior="padding"
             enabled={Platform.OS === 'ios'}
           >
             <Messages>
-              {props.messages!.length ? <MessageList /> : <Loader />}
+              {messages!.length ? <MessageList /> : <Loader />}
             </Messages>
             <Response>
-              <InputComponent showOffer={showOffer} messages={props.messages} />
+              <InputComponent showOffer={showOffer} messages={messages} />
             </Response>
           </KeyboardAvoid>
         </NavigationOptions>
@@ -231,8 +253,6 @@ const Chat: React.SFC<ChatProps> = (props) => (
     )}
   </Container>
 );
-
-Chat.defaultProps = { onboardingDone: false };
 
 const mapStateToProps = (state: any) => {
   return {

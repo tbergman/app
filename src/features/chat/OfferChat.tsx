@@ -5,6 +5,7 @@ import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
+import { Container, EffectMap } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -24,6 +25,39 @@ interface ChatProps {
   resetConversation?: () => void;
   onRequestClose?: () => void;
 }
+
+interface State {
+  longPollTimeout: any;
+}
+
+const initialState: State = {
+  longPollTimeout: null,
+};
+
+interface Effects {
+  startPolling: (getMessages: any, intent: any) => void;
+  stopPolling: () => void;
+}
+
+const effects: EffectMap<State, Effects> = {
+  startPolling: (getMessages, intent) => ({ setState, state }: any) => {
+    if (!state.longPollTimeout) {
+      setState((state: any) => ({
+        longPollTimeout: setInterval(() => {
+          getMessages(intent!);
+        }, 15000),
+      }));
+    }
+  },
+  stopPolling: () => ({ setState, state }: any) => {
+    if (state.longPollTimeout) {
+      clearInterval(state.longPollTimeout);
+      setState((state: any) => ({
+        longPollTimeout: null,
+      }));
+    }
+  },
+};
 
 const KeyboardAvoid = styled(KeyboardAvoidingView)({
   flex: 1,
@@ -49,91 +83,82 @@ const Response = styled(View)({
   paddingTop: 8,
 });
 
-const Chat: React.SFC<ChatProps> = (props) => {
-  let longPollTimeout: any = null;
-
-  const mount = () => {
-    props.getMessages(props.intent!);
-    props.getAvatars();
-    AppState.addEventListener('change', handleAppStateChange);
-    startPolling();
-  };
-
-  const update = () => {
-    startPolling();
-  };
-
-  const unmount = () => {
-    AppState.removeEventListener('change', handleAppStateChange);
-    stopPolling();
-  };
-
-  const startPolling = () => {
-    if (!longPollTimeout) {
-      longPollTimeout = setInterval(() => {
-        props.getMessages(null);
-      }, 15000);
-    }
-  };
-
-  const stopPolling = () => {
-    if (longPollTimeout) {
-      clearInterval(longPollTimeout);
-      longPollTimeout = null;
-    }
-  };
-
-  const handleAppStateChange = (appState: string) => {
-    if (appState === 'active') {
-      props.getMessages(null);
-    }
-  };
-
-  const showOffer = () => {
-    stopPolling();
-    props.onRequestClose!();
-  };
-
-  return (
-    <>
-      <Mount
-        on={() => {
-          mount();
-        }}
-      />
-      <Unmount
-        on={() => {
-          unmount();
-        }}
-      />
-      <Update
-        was={() => {
-          update();
-        }}
-        watched={props}
-      />
-      <KeyboardAvoid
-        keyboardVerticalOffset={ifIphoneX ? 90 : 70}
-        behavior="padding"
-        enabled={Platform.OS === 'ios'}
-      >
-        <Messages>
-          {props.messages!.length ? (
-            <MessageList showOffer={showOffer} />
-          ) : (
-            <Loader />
-          )}
-        </Messages>
-        <Response>
-          <InputComponent messages={props.messages} showOffer={showOffer} />
-        </Response>
-      </KeyboardAvoid>
-      <Dialog />
-    </>
-  );
+const handleAppStateChange = (
+  appState: string,
+  getMessages: any,
+  intent: any,
+) => {
+  if (appState === 'active') {
+    getMessages(intent!);
+  }
 };
 
-Chat.defaultProps = { onboardingDone: false };
+const showOffer = (stopPolling: any, props: any) => {
+  stopPolling();
+  props.onRequestClose!();
+};
+
+const Chat: React.SFC<ChatProps> = ({
+  onboardingDone,
+  intent,
+  messages,
+  getAvatars,
+  getMessages,
+  showDashboard,
+  resetConversation,
+  onRequestClose,
+}) => {
+  return (
+    <Container effects={effects} initialState={initialState}>
+      {({ startPolling, stopPolling }) => (
+        <>
+          <Mount
+            on={() => {
+              getMessages(intent!);
+              getAvatars();
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              startPolling(getMessages, intent);
+            }}
+          />
+          <Update
+            was={() => {
+              startPolling(getMessages, intent);
+            }}
+            watched={messages}
+          />
+          <Unmount
+            on={() => {
+              AppState.addEventListener('change', (appState) => {
+                handleAppStateChange(appState, getMessages, intent);
+              });
+              stopPolling();
+            }}
+          />
+
+          <KeyboardAvoid
+            keyboardVerticalOffset={ifIphoneX ? 90 : 70}
+            behavior="padding"
+            enabled={Platform.OS === 'ios'}
+          >
+            <Messages>
+              {messages!.length ? (
+                <MessageList showOffer={showOffer} />
+              ) : (
+                <Loader />
+              )}
+            </Messages>
+            <Response>
+              <InputComponent messages={messages} showOffer={showOffer} />
+            </Response>
+          </KeyboardAvoid>
+          <Dialog />
+        </>
+      )}
+    </Container>
+  );
+};
 
 const mapStateToProps = (state: any) => {
   return {
