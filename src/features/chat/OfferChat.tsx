@@ -12,11 +12,6 @@ import * as selectors from './state/selectors';
 
 import Dialog from 'src/containers/Dialog';
 
-interface UnconnectedPollingMessageProps {
-  startPolling: () => void;
-  stopPolling: () => void;
-}
-
 interface ChatProps {
   onboardingDone?: boolean;
   intent?: null | string;
@@ -27,30 +22,6 @@ interface ChatProps {
   resetConversation?: () => void;
   onRequestClose?: () => void;
 }
-
-class UnconnectedPollingMessage extends React.Component<
-  UnconnectedPollingMessageProps
-> {
-  componentDidMount() {
-    this.props.startPolling();
-  }
-
-  componentWillUnmount() {
-    this.props.stopPolling();
-  }
-
-  render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>;
-  }
-}
-
-const PollingMessage = connect(
-  undefined,
-  (dispatch: any) => ({
-    startPolling: () => dispatch({ type: types.START_POLLING_MESSAGES }),
-    stopPolling: () => dispatch({ type: types.STOP_POLLING_MESSAGES }),
-  }),
-)(UnconnectedPollingMessage);
 
 const styles = StyleSheet.create({
   container: {
