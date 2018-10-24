@@ -33,7 +33,7 @@ import {
 
 const inputComponentMap = {
   multiple_select: () => <MultipleSelectInput />,
-  text: () => <ChatTextInput />,
+  text: (props) => <ChatTextInput {...props} />,
   number: () => <ChatNumberInput />,
   single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
@@ -211,7 +211,9 @@ class Chat extends React.Component {
       return null;
     }
 
-    return <Component showOffer={this._showOffer} />;
+    return (
+      <Component showOffer={this._showOffer} message={this.props.messages[0]} />
+    );
   };
 
   render() {

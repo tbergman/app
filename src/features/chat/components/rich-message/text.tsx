@@ -16,6 +16,7 @@ const EditMessageButtonContainer = styled(View)(
     marginLeft: 5,
     marginRight: 1,
     marginBottom: hasStatusMessage ? 0 : 10,
+    alignItems: 'flex-end',
   }),
 );
 

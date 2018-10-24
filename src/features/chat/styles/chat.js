@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     flexDirection: 'row',
+    alignItems: 'flex-end',
     marginRight: 8,
     marginLeft: 8,
     marginBottom: 8,
