@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { View, StyleSheet, AppState, KeyboardAvoidingView } from 'react-native';
+import { View, AppState, KeyboardAvoidingView } from 'react-native';
+import styled from '@sampettersson/primitives';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import MessageList from './containers/MessageList';
@@ -23,28 +24,28 @@ interface ChatProps {
   onRequestClose?: () => void;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    ...ifIphoneX(
-      {
-        marginBottom: 20,
-      },
-      {
-        marginBottom: 0,
-      },
-    ),
-  },
-  messages: {
-    flex: 1,
-    alignSelf: 'stretch',
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  response: {
-    alignItems: 'stretch',
-    paddingTop: 8,
-  },
+const KeyboardAvoid = styled(KeyboardAvoidingView)({
+  flex: 1,
+  ...ifIphoneX(
+    {
+      marginBottom: 20,
+    },
+    {
+      marginBottom: 0,
+    },
+  ),
+});
+
+const Messages = styled(View)({
+  flex: 1,
+  alignSelf: 'stretch',
+  paddingLeft: 16,
+  paddingRight: 16,
+});
+
+const Response = styled(View)({
+  alignItems: 'stretch',
+  paddingTop: 8,
 });
 
 class Chat extends React.Component<ChatProps> {
@@ -109,26 +110,25 @@ class Chat extends React.Component<ChatProps> {
   render() {
     return (
       <>
-        <KeyboardAvoidingView
+        <KeyboardAvoid
           keyboardVerticalOffset={ifIphoneX ? 90 : 70}
           behavior="padding"
           enabled={Platform.OS === 'ios'}
-          style={styles.container}
         >
-          <View style={styles.messages}>
+          <Messages>
             {this.props.messages!.length ? (
               <MessageList showOffer={this._showOffer} />
             ) : (
               <Loader />
             )}
-          </View>
-          <View style={styles.response}>
+          </Messages>
+          <Response>
             <InputComponent
               messages={this.props.messages}
               showOffer={this._showOffer}
             />
-          </View>
-        </KeyboardAvoidingView>
+          </Response>
+        </KeyboardAvoid>
         <Dialog />
       </>
     );
