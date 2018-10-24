@@ -28,6 +28,7 @@ import {
   GO_TO_DASHBOARD_BUTTON,
   SHOW_OFFER_BUTTON,
 } from '../../navigation/screens/chat/buttons';
+import InputComponent from './components/InputComponent';
 
 interface ChatProps {
   onboardingDone?: boolean;
@@ -47,27 +48,6 @@ interface UnconnectedPollingMessageProps {
   startPolling: () => void;
   stopPolling: () => void;
 }
-
-const inputComponentMap = {
-  multiple_select: () => <MultipleSelectInput />,
-  text: () => <ChatTextInput />,
-  number: () => <ChatNumberInput />,
-  single_select: (props: any) => <SingleSelectInput {...props} />,
-  bankid_collect: () => <BankIdCollectInput />,
-  paragraph: () => <ParagraphInput />,
-  audio: () => <AudioInput />,
-};
-
-const getInputComponent = (messages: any) => {
-  if (messages.length === 0) {
-    return null;
-  }
-
-  const lastMessage = messages[0];
-  const lastMessageType = lastMessage.body.type;
-
-  return inputComponentMap[lastMessageType];
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -221,16 +201,6 @@ class Chat extends React.Component<ChatProps> {
     this.props.resetConversation!();
   };
 
-  renderInput = () => {
-    const Component: any = getInputComponent(this.props.messages);
-
-    if (!Component) {
-      return null;
-    }
-
-    return <Component showOffer={this._showOffer} />;
-  };
-
   render() {
     return (
       <NavigationOptions options={this.getNavigationOptions()}>
@@ -243,7 +213,12 @@ class Chat extends React.Component<ChatProps> {
           <View style={styles.messages}>
             {this.props.messages!.length ? <MessageList /> : <Loader />}
           </View>
-          <View style={styles.response}>{this.renderInput()}</View>
+          <View style={styles.response}>
+            <InputComponent
+              showOffer={this._showOffer}
+              messages={this.props.messages}
+            />
+          </View>
         </KeyboardAvoidingView>
       </NavigationOptions>
     );
