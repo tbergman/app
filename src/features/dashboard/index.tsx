@@ -13,7 +13,7 @@ import { DeductibleFootnote } from 'src/features/dashboard/components/Deductible
 import { OwnerFootnote } from 'src/features/dashboard/components/OwnerFootnote';
 import { InsuranceAmountFootnote } from 'src/features/dashboard/components/InsuranceAmountFootnote';
 import { TravelFootnote } from 'src/features/dashboard/components/TravelFootnote';
-import { Messages } from 'src/features/dashboard/components/Messages';
+import { Messages } from 'src/features/dashboard/components/messages';
 
 const DASHBOARD_QUERY = gql`
   query DashboardQuery {
