@@ -6,7 +6,7 @@ import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
-import { Container, EffectMap } from 'constate';
+import { Container, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -42,7 +42,7 @@ interface ChatProps {
 }
 
 interface State {
-  longPollTimeout: any;
+  longPollTimeout: number | null;
 }
 
 const initialState: State = {
@@ -50,24 +50,27 @@ const initialState: State = {
 };
 
 interface Effects {
-  startPolling: (getMessages: any, intent: any) => void;
+  startPolling: (getMessages: Function, intent: string) => void;
   stopPolling: () => void;
 }
 
 const effects: EffectMap<State, Effects> = {
-  startPolling: (getMessages, intent) => ({ setState, state }: any) => {
+  startPolling: (getMessages, intent) => ({
+    setState,
+    state,
+  }: EffectProps<State>) => {
     if (!state.longPollTimeout) {
-      setState((state: any) => ({
+      setState(() => ({
         longPollTimeout: setInterval(() => {
           getMessages(intent!);
         }, 15000),
       }));
     }
   },
-  stopPolling: () => ({ setState, state }: any) => {
+  stopPolling: () => ({ setState, state }: EffectProps<State>) => {
     if (state.longPollTimeout) {
       clearInterval(state.longPollTimeout);
-      setState((state: any) => ({
+      setState(() => ({
         longPollTimeout: null,
       }));
     }
@@ -99,9 +102,9 @@ const Response = styled(View)({
 });
 
 const getNavigationOptions = (
-  onboardingDone: any,
-  isModal: any,
-  showReturnToOfferButton: any,
+  onboardingDone: boolean,
+  isModal: boolean,
+  showReturnToOfferButton: boolean,
 ) => {
   if (onboardingDone) {
     if (isModal) {
@@ -140,7 +143,7 @@ const getNavigationOptions = (
   }
 };
 
-const showOffer = async (stopPolling: any, componentId: any) => {
+const showOffer = async (stopPolling: Function, componentId: string) => {
   stopPolling();
   const { screen, group } = await getOfferScreen();
 
@@ -157,8 +160,8 @@ const showOffer = async (stopPolling: any, componentId: any) => {
 
 const handleAppStateChange = (
   appState: string,
-  getMessages: any,
-  intent: any,
+  getMessages: Function,
+  intent: string,
 ) => {
   if (appState === 'active') {
     getMessages(intent!);
@@ -194,7 +197,7 @@ const Chat: React.SFC<ChatProps> = ({
             }
 
             if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-              showOffer(stopPolling, componentId);
+              showOffer(stopPolling, componentId!);
             }
           }}
         />
@@ -203,16 +206,16 @@ const Chat: React.SFC<ChatProps> = ({
             getMessages(intent!);
             getAvatars();
             AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
+              handleAppStateChange(appState, getMessages, intent!);
             });
-            startPolling(getMessages, intent);
+            startPolling(getMessages, intent!);
           }}
         >
           {null}
         </Mount>
         <Update
           was={() => {
-            startPolling(getMessages, intent);
+            startPolling(getMessages, intent!);
           }}
           watched={messages}
         >
@@ -221,7 +224,7 @@ const Chat: React.SFC<ChatProps> = ({
         <Unmount
           on={() => {
             AppState.addEventListener('change', (appState) => {
-              handleAppStateChange(appState, getMessages, intent);
+              handleAppStateChange(appState, getMessages, intent!);
             });
             stopPolling();
           }}
@@ -232,8 +235,8 @@ const Chat: React.SFC<ChatProps> = ({
         <NavigationOptions
           options={getNavigationOptions(
             onboardingDone,
-            isModal,
-            showReturnToOfferButton,
+            isModal!,
+            showReturnToOfferButton!,
           )}
         >
           <KeyboardAvoid

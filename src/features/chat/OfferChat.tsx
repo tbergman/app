@@ -5,7 +5,7 @@ import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
-import { Container, EffectMap } from 'constate';
+import { Container, EffectMap, EffectProps } from 'constate';
 
 import MessageList from './containers/MessageList';
 import InputComponent from './components/InputComponent';
@@ -27,7 +27,7 @@ interface ChatProps {
 }
 
 interface State {
-  longPollTimeout: any;
+  longPollTimeout: number | null;
 }
 
 const initialState: State = {
@@ -35,12 +35,15 @@ const initialState: State = {
 };
 
 interface Effects {
-  startPolling: (getMessages: any, intent: any) => void;
+  startPolling: (getMessages: Function, intent: string) => void;
   stopPolling: () => void;
 }
 
 const effects: EffectMap<State, Effects> = {
-  startPolling: (getMessages, intent) => ({ setState, state }: any) => {
+  startPolling: (getMessages, intent) => ({
+    setState,
+    state,
+  }: EffectProps<State>) => {
     if (!state.longPollTimeout) {
       setState((state: any) => ({
         longPollTimeout: setInterval(() => {
@@ -49,7 +52,7 @@ const effects: EffectMap<State, Effects> = {
       }));
     }
   },
-  stopPolling: () => ({ setState, state }: any) => {
+  stopPolling: () => ({ setState, state }: EffectProps<State>) => {
     if (state.longPollTimeout) {
       clearInterval(state.longPollTimeout);
       setState((state: any) => ({
@@ -85,15 +88,15 @@ const Response = styled(View)({
 
 const handleAppStateChange = (
   appState: string,
-  getMessages: any,
-  intent: any,
+  getMessages: Function,
+  intent: string,
 ) => {
   if (appState === 'active') {
     getMessages(intent!);
   }
 };
 
-const showOffer = (stopPolling: any, props: any) => {
+const showOffer = (stopPolling: Function, props: any) => {
   stopPolling();
   props.onRequestClose!();
 };
@@ -104,9 +107,6 @@ const Chat: React.SFC<ChatProps> = ({
   messages,
   getAvatars,
   getMessages,
-  showDashboard,
-  resetConversation,
-  onRequestClose,
 }) => {
   return (
     <Container effects={effects} initialState={initialState}>
@@ -117,21 +117,21 @@ const Chat: React.SFC<ChatProps> = ({
               getMessages(intent!);
               getAvatars();
               AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
+                handleAppStateChange(appState, getMessages, intent!);
               });
-              startPolling(getMessages, intent);
+              startPolling(getMessages, intent!);
             }}
           />
           <Update
             was={() => {
-              startPolling(getMessages, intent);
+              startPolling(getMessages, intent!);
             }}
             watched={messages}
           />
           <Unmount
             on={() => {
               AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
+                handleAppStateChange(appState, getMessages, intent!);
               });
               stopPolling();
             }}

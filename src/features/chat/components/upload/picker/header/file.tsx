@@ -79,7 +79,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
                 }
                 onClose={() => setIsOpen(false)}
               >
-                {(handleClose) => (
+                {(handleClose: Function) => (
                   <OverlayContent>
                     <Spacing height={20} />
                     <Heading>Vad vill du skicka?</Heading>
@@ -111,7 +111,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
                             {
                               filetype: [DocumentPickerUtil.allFiles()],
                             },
-                            (_, res) => {
+                            (_: any, res: any) => {
                               setTimeout(() => {
                                 handleClose();
                                 upload(res.uri).then((uploadResponse) => {

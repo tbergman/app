@@ -19,5 +19,8 @@ jest.mock('react-native', () => require('react-native-mock-render'), {
 
 jest.mock('@hedviginsurance/react-native-config', () => ({}));
 jest.mock('react-native-firebase', () => ({}));
+jest.mock('react-native-fs', () => ({}));
+jest.mock('react-native-document-picker', () => ({}));
+jest.mock('react-native-gesture-handler', () => ({}));
 
 jest.useFakeTimers();
