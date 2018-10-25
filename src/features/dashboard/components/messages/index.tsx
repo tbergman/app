@@ -9,7 +9,9 @@ import { MessagesComponent, DirectDebitStatus } from 'src/graphql/components';
 export const Messages: React.SFC = () => (
   <MessagesComponent>
     {({ data, loading, error }) =>
-      loading || error || data === undefined ? null : (
+      loading || error || data === undefined ? (
+        <Spacing height={24} />
+      ) : (
         <>
           {data.directDebitStatus === DirectDebitStatus.NEEDS_SETUP && (
             <Message
