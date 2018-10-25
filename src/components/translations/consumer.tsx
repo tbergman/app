@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TranslationsContext } from './context';
 
-interface ConsumerProps {
+export interface ConsumerProps {
   children: (text: string) => React.ReactNode;
   textKey: string;
 }
