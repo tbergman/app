@@ -1,12 +1,14 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import Color from 'color';
+import { Delay, Timing, Sequence } from 'animated-react-native-components';
 
 import { ConsumerProps } from 'src/components/translations/consumer';
 import { Spacing } from 'src/components/Spacing';
-import { MessageAnimation } from './MessageAnimation';
+import { MessageHeightAnimation } from './MessageHeightAnimation';
+import { AnimatedView } from 'src/components/AnimatedPrimitives';
 
 export enum MessageType {
   ERROR = 'error',
@@ -26,11 +28,15 @@ const messageTypeTextColors = {
   [MessageType.NOTIFY]: colors.BLACK,
 };
 
-const MessageContainer = styled(View)(
+const MessageContainer = styled(View)({
+  padding: 15,
+  alignItems: 'center',
+  height: 95,
+});
+
+const Background = styled(View)(
   ({ messageType }: { messageType: MessageType }) => ({
     backgroundColor: messageTypeColors[messageType],
-    padding: 15,
-    alignItems: 'center',
   }),
 );
 
@@ -61,6 +67,12 @@ const ActionButtonText = styled(Text)({
   fontSize: 14,
 });
 
+const FadeIn = styled(AnimatedView)(
+  ({ animatedValue }: { animatedValue: Animated.Value }) => ({
+    opacity: animatedValue,
+  }),
+);
+
 interface MessageProps {
   message: String | React.ReactElement<ConsumerProps>;
   messageType: MessageType;
@@ -74,13 +86,24 @@ export const Message: React.SFC<MessageProps> = ({
   action,
   onPressAction,
 }) => (
-  <MessageAnimation>
-    <MessageContainer messageType={messageType}>
-      <MessageText messageType={messageType}>{message}</MessageText>
-      <Spacing height={15} />
-      <ActionButton messageType={messageType} onPress={onPressAction}>
-        <ActionButtonText>{action}</ActionButtonText>
-      </ActionButton>
-    </MessageContainer>
-  </MessageAnimation>
+  <MessageHeightAnimation>
+    <Background messageType={messageType}>
+      <Sequence>
+        <Delay config={{ delay: 400 }} />
+        <Timing initialValue={0} toValue={1} config={{ duration: 250 }}>
+          {(animatedValue) => (
+            <FadeIn animatedValue={animatedValue}>
+              <MessageContainer>
+                <MessageText messageType={messageType}>{message}</MessageText>
+                <Spacing height={15} />
+                <ActionButton messageType={messageType} onPress={onPressAction}>
+                  <ActionButtonText>{action}</ActionButtonText>
+                </ActionButton>
+              </MessageContainer>
+            </FadeIn>
+          )}
+        </Timing>
+      </Sequence>
+    </Background>
+  </MessageHeightAnimation>
 );

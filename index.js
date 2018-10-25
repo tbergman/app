@@ -13,7 +13,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 
 patchCustomConfig();
 
-YellowBox.ignoreWarnings(['constantsToExport']);
+YellowBox.ignoreWarnings(['constantsToExport', 'RNDocumentPicker']);
 
 const registerHandler = (name, componentCreator) =>
   Navigation.registerComponent(name, () => {
