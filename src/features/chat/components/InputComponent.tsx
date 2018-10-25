@@ -34,7 +34,7 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   const lastMessage = messages[0];
   const lastMessageType = lastMessage.body.type;
 
-  const Component: any = inputComponentMap[lastMessageType];
+  const Component: React.ComponentType = inputComponentMap[lastMessageType];
   return <Component {...props} />;
 };
 

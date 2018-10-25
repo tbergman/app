@@ -1,10 +1,21 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Chat from './Chat';
 
-describe('<Chat />', () => {
-  it('Should render without crashing', () => {
-    expect(shallow(<Chat isModal={false} />)).not.toThrow();
-  });
+const dummyProps = {
+  onboardingDone: false,
+  isModal: false,
+  showReturnToOfferButton: false,
+  componentId: '',
+  intrent: '',
+  messages: [],
+  insurance: '',
+  getAvatars: () => {},
+  getMessages: (intent: string) => {},
+  resetConversation: () => {},
+};
+
+it('Should render without crashing', () => {
+  expect(shallow(<Chat {...dummyProps} />)).not.toThrow();
 });

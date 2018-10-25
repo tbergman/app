@@ -151,7 +151,7 @@ export const getInitialLayout = async () => {
       if (
         ['ACTIVE', 'INACTIVE_WITH_START_DATE', 'INACTIVE'].indexOf(
           insurance.status,
-        ) != -1
+        ) !== -1
       ) {
         return resolve(getMainLayout());
       }

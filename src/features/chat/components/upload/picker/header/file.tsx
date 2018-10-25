@@ -79,7 +79,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
                 }
                 onClose={() => setIsOpen(false)}
               >
-                {(handleClose: Function) => (
+                {(handleClose: (() => void)) => (
                   <OverlayContent>
                     <Spacing height={20} />
                     <Heading>Vad vill du skicka?</Heading>

@@ -15,15 +15,16 @@ import * as selectors from './state/selectors';
 
 import Dialog from 'src/containers/Dialog';
 
+import { Message } from './types';
+
 interface ChatProps {
-  onboardingDone?: boolean;
-  intent?: null | string;
-  messages?: Array<object>;
+  onboardingDone: boolean;
+  intent: string;
+  messages: Array<Message>;
   getAvatars: () => void;
-  getMessages: (intent: null | string) => void;
-  showDashboard?: () => void;
-  resetConversation?: () => void;
-  onRequestClose?: () => void;
+  getMessages: (intent: string) => void;
+  resetConversation: () => void;
+  onRequestClose: () => void;
 }
 
 interface State {
@@ -35,7 +36,10 @@ const initialState: State = {
 };
 
 interface Effects {
-  startPolling: (getMessages: Function, intent: string) => void;
+  startPolling: (
+    getMessages: ((intent: string) => void),
+    intent: string,
+  ) => void;
   stopPolling: () => void;
 }
 
@@ -47,7 +51,7 @@ const effects: EffectMap<State, Effects> = {
     if (!state.longPollTimeout) {
       setState((state: any) => ({
         longPollTimeout: setInterval(() => {
-          getMessages(intent!);
+          getMessages(intent);
         }, 15000),
       }));
     }
@@ -88,21 +92,20 @@ const Response = styled(View)({
 
 const handleAppStateChange = (
   appState: string,
-  getMessages: Function,
+  getMessages: (intent: string) => void,
   intent: string,
 ) => {
   if (appState === 'active') {
-    getMessages(intent!);
+    getMessages(intent);
   }
 };
 
-const showOffer = (stopPolling: Function, props: any) => {
+const showOffer = (stopPolling: () => void, props: any) => {
   stopPolling();
-  props.onRequestClose!();
+  props.onRequestClose();
 };
 
 const Chat: React.SFC<ChatProps> = ({
-  onboardingDone,
   intent,
   messages,
   getAvatars,
@@ -114,24 +117,24 @@ const Chat: React.SFC<ChatProps> = ({
         <>
           <Mount
             on={() => {
-              getMessages(intent!);
+              getMessages(intent);
               getAvatars();
               AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent!);
+                handleAppStateChange(appState, getMessages, intent);
               });
-              startPolling(getMessages, intent!);
+              startPolling(getMessages, intent);
             }}
           />
           <Update
             was={() => {
-              startPolling(getMessages, intent!);
+              startPolling(getMessages, intent);
             }}
             watched={messages}
           />
           <Unmount
             on={() => {
               AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent!);
+                handleAppStateChange(appState, getMessages, intent);
               });
               stopPolling();
             }}
@@ -143,7 +146,7 @@ const Chat: React.SFC<ChatProps> = ({
             enabled={Platform.OS === 'ios'}
           >
             <Messages>
-              {messages!.length ? (
+              {messages.length ? (
                 <MessageList showOffer={showOffer} />
               ) : (
                 <Loader />
@@ -166,7 +169,6 @@ const mapStateToProps = (state: any) => {
     showReturnToOfferButton: selectors.shouldShowReturnToOfferScreenButton(
       state,
     ),
-    insurance: state.insurance,
     intent: state.conversation.intent,
     onboardingDone: selectors.isOnboardingDone(state),
   };

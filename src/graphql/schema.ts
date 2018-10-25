@@ -1,3 +1,5 @@
+/* tslint:disable */
+
 import Config from '@hedviginsurance/react-native-config';
 import {
   makeExecutableSchema,
