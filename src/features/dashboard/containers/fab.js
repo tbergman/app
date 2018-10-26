@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Image } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Parallel, Spring } from 'animated-react-native-components';
@@ -14,6 +14,13 @@ import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
 import { getFabActions } from '../state/selectors';
 import { colors } from '@hedviginsurance/brand';
+
+const styles = StyleSheet.create({
+  animatedView: {
+    position: 'absolute',
+    bottom: 0,
+  },
+});
 
 class FloatingActionButton extends React.Component {
   static propTypes = {
@@ -97,18 +104,19 @@ class FloatingActionButton extends React.Component {
           >
             {(animatedValue) => (
               <AnimatedView
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  transform: [
-                    {
-                      translateY: animatedValue.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [100, 0],
-                      }),
-                    },
-                  ],
-                }}
+                style={[
+                  styles.animatedView,
+                  {
+                    transform: [
+                      {
+                        translateY: animatedValue.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [100, 0],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
               >
                 <FloatingAction
                   color="#651eff"
