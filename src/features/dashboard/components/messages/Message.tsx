@@ -1,6 +1,12 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, Text, TouchableOpacity, Animated } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Animated,
+  StyleSheet,
+} from 'react-native';
 import { colors, fonts } from '@hedviginsurance/brand';
 import Color from 'color';
 import { Delay, Timing, Sequence } from 'animated-react-native-components';
@@ -9,6 +15,7 @@ import { ConsumerProps } from 'src/components/translations/consumer';
 import { Spacing } from 'src/components/Spacing';
 import { MessageHeightAnimation } from './MessageHeightAnimation';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
+import { Measure } from 'src/components/Measure';
 
 export enum MessageType {
   ERROR = 'error',
@@ -28,15 +35,21 @@ const messageTypeTextColors = {
   [MessageType.NOTIFY]: colors.BLACK,
 };
 
-const MessageContainer = styled(View)({
+const MessageContainer = styled(View)(({ height }: { height: number }) => ({
   padding: 15,
   alignItems: 'center',
-  height: 95,
-});
+  height: height ? height : 'auto',
+}));
 
 const Background = styled(View)(
   ({ messageType }: { messageType: MessageType }) => ({
     backgroundColor: messageTypeColors[messageType],
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: Color(messageTypeColors[messageType])
+      .darken(0.3)
+      .rgb()
+      .toString(),
   }),
 );
 
@@ -44,7 +57,10 @@ const MessageText = styled(Text)(
   ({ messageType }: { messageType: MessageType }) => ({
     color: messageTypeTextColors[messageType],
     fontFamily: fonts.CIRCULAR,
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 22,
+    maxWidth: 280,
+    textAlign: 'center',
   }),
 );
 
@@ -93,13 +109,22 @@ export const Message: React.SFC<MessageProps> = ({
         <Timing initialValue={0} toValue={1} config={{ duration: 250 }}>
           {(animatedValue) => (
             <FadeIn animatedValue={animatedValue}>
-              <MessageContainer>
-                <MessageText messageType={messageType}>{message}</MessageText>
-                <Spacing height={15} />
-                <ActionButton messageType={messageType} onPress={onPressAction}>
-                  <ActionButtonText>{action}</ActionButtonText>
-                </ActionButton>
-              </MessageContainer>
+              <Measure>
+                {(height) => (
+                  <MessageContainer height={height}>
+                    <MessageText messageType={messageType}>
+                      {message}
+                    </MessageText>
+                    <Spacing height={15} />
+                    <ActionButton
+                      messageType={messageType}
+                      onPress={onPressAction}
+                    >
+                      <ActionButtonText>{action}</ActionButtonText>
+                    </ActionButton>
+                  </MessageContainer>
+                )}
+              </Measure>
             </FadeIn>
           )}
         </Timing>

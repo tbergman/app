@@ -1,13 +1,13 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
-import { View, LayoutAnimation, Animated } from 'react-native';
+import { View, LayoutAnimation } from 'react-native';
 import { Mount } from 'react-lifecycle-components';
 
 import { OpenState } from 'src/components/OpenState';
 
 const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
-  marginTop: visible ? 20 : 0,
-  height: visible ? 95 : 0,
+  marginBottom: visible ? 15 : 0,
+  maxHeight: visible ? Number.MAX_SAFE_INTEGER : 0,
   overflow: 'hidden',
 }));
 
@@ -19,7 +19,7 @@ export const MessageHeightAnimation: React.SFC = ({ children }) => (
           on={() => {
             setTimeout(() => {
               LayoutAnimation.configureNext({
-                duration: 500,
+                duration: 600,
                 create: {
                   type: LayoutAnimation.Types.spring,
                   springDamping: 1,
