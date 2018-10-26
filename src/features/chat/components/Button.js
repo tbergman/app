@@ -79,34 +79,7 @@ export class AnimatedSingleSelectOptionButton extends React.Component {
 
   render() {
     const { title, selected, disabled, onPress, hidden } = this.props;
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        disabled={disabled}
-        style={[
-          styles.buttonBase,
-          styles.chatOptionButton,
-          {
-            transform: [{ translateX: this.state.slideAnim }],
-          },
-          selected ? styles.buttonColorSelected : styles.buttonColorNotSelected,
-          hidden ? styles.buttonHidden : undefined,
-        ]}
-        accessibilityTraits="button"
-        accessibilityComponentType="button"
-      >
-        <Text
-          style={[
-            styles.buttonText,
-            selected
-              ? styles.buttonTextColorSelected
-              : styles.buttonTextColorNotSelected,
-          ]}
-        >
-          {title}
-        </Text>
-      </TouchableOpacity>
-    );
+    return null;
   }
 }
 
