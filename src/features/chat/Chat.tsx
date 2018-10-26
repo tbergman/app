@@ -122,18 +122,14 @@ const getNavigationOptions = (
         rightButtons: [],
       },
     };
+  } else if (showReturnToOfferButton) {
+    return {
+      topBar: {
+        leftButtons: [],
+        rightButtons: [SHOW_OFFER_BUTTON],
+      },
+    };
   } else {
-    if (showReturnToOfferButton) {
-      {
-        return {
-          topBar: {
-            leftButtons: [],
-            rightButtons: [SHOW_OFFER_BUTTON],
-          },
-        };
-      }
-    }
-
     return {
       topBar: {
         leftButtons: [],
@@ -299,3 +295,4 @@ const ChatContainer = connect(
 )(Chat);
 
 export default ChatContainer;
+export { Chat as PureChat };

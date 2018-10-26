@@ -4494,7 +4494,7 @@ export function NewOfferHOC<TProps = {}>(
 ) {
   return ReactApollo.graphql<TProps, NewOfferQuery, NewOfferVariables>(
     NewOfferDocument,
-    operationOptions,
+    operationOptions as any,
   );
 }
 export const OfferPerilsDocument = gql`
@@ -4537,6 +4537,6 @@ export function OfferPerilsHOC<TProps = {}>(
 ) {
   return ReactApollo.graphql<TProps, OfferPerilsQuery, OfferPerilsVariables>(
     OfferPerilsDocument,
-    operationOptions,
+    operationOptions as any,
   );
 }

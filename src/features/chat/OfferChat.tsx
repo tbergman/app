@@ -23,7 +23,6 @@ interface ChatProps {
   messages: Array<Message>;
   getAvatars: () => void;
   getMessages: (intent: string) => void;
-  resetConversation: () => void;
   onRequestClose: () => void;
 }
 
@@ -110,58 +109,56 @@ const Chat: React.SFC<ChatProps> = ({
   messages,
   getAvatars,
   getMessages,
-}) => {
-  return (
-    <Container effects={effects} initialState={initialState}>
-      {({ startPolling, stopPolling }) => (
-        <>
-          <Mount
-            on={() => {
-              getMessages(intent);
-              getAvatars();
-              AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
-              });
-              startPolling(getMessages, intent);
-            }}
-          />
-          <Update
-            was={() => {
-              startPolling(getMessages, intent);
-            }}
-            watched={messages}
-          />
-          <Unmount
-            on={() => {
-              AppState.addEventListener('change', (appState) => {
-                handleAppStateChange(appState, getMessages, intent);
-              });
-              stopPolling();
-            }}
-          />
+}) => (
+  <Container effects={effects} initialState={initialState}>
+    {({ startPolling, stopPolling }) => (
+      <>
+        <Mount
+          on={() => {
+            getMessages(intent);
+            getAvatars();
+            AppState.addEventListener('change', (appState) => {
+              handleAppStateChange(appState, getMessages, intent);
+            });
+            startPolling(getMessages, intent);
+          }}
+        />
+        <Update
+          was={() => {
+            startPolling(getMessages, intent);
+          }}
+          watched={messages}
+        />
+        <Unmount
+          on={() => {
+            AppState.addEventListener('change', (appState) => {
+              handleAppStateChange(appState, getMessages, intent);
+            });
+            stopPolling();
+          }}
+        />
 
-          <KeyboardAvoid
-            keyboardVerticalOffset={ifIphoneX ? 90 : 70}
-            behavior="padding"
-            enabled={Platform.OS === 'ios'}
-          >
-            <Messages>
-              {messages.length ? (
-                <MessageList showOffer={showOffer} />
-              ) : (
-                <Loader />
-              )}
-            </Messages>
-            <Response>
-              <InputComponent messages={messages} showOffer={showOffer} />
-            </Response>
-          </KeyboardAvoid>
-          <Dialog />
-        </>
-      )}
-    </Container>
-  );
-};
+        <KeyboardAvoid
+          keyboardVerticalOffset={ifIphoneX ? 90 : 70}
+          behavior="padding"
+          enabled={Platform.OS === 'ios'}
+        >
+          <Messages>
+            {messages.length ? (
+              <MessageList showOffer={showOffer} />
+            ) : (
+              <Loader />
+            )}
+          </Messages>
+          <Response>
+            <InputComponent messages={messages} showOffer={showOffer} />
+          </Response>
+        </KeyboardAvoid>
+        <Dialog />
+      </>
+    )}
+  </Container>
+);
 
 const mapStateToProps = (state: any) => {
   return {
@@ -193,3 +190,4 @@ const ChatContainer = connect(
 )(Chat);
 
 export default ChatContainer;
+export { Chat as PureOfferChat };

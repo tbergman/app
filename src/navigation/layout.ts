@@ -185,12 +185,6 @@ export const setLayout = ({
       subtitle: {
         fontFamily: fonts.CIRCULAR,
       },
-      leftButtons: {
-        fontFamily: fonts.CIRCULAR,
-      },
-      rightButtons: {
-        fontFamily: fonts.CIRCULAR,
-      },
       largeTitle: {
         fontFamily: fonts.CIRCULAR,
         fontSize: 30,
@@ -199,7 +193,6 @@ export const setLayout = ({
     statusBar: {
       visible: true,
       drawBehind: false,
-      blur: true,
     },
     bottomTab: {
       iconColor: colors.DARK_GRAY,
