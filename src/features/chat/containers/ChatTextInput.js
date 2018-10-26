@@ -12,7 +12,6 @@ import { SendButton } from '../components/Button';
 import { colors } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
-import { Buttons } from '../components/pickers/buttons';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 
@@ -81,7 +80,6 @@ class ChatTextInput extends React.Component {
       <Provider>
         <GiphyProvider>
           <StyledTextInputContainer>
-            <Buttons />
             <TextInput
               ref={(ref) => (this.ref = ref)}
               style={[

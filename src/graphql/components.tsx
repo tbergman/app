@@ -50,6 +50,7 @@ export interface Query {
   member: Member;
   gifs: Gif[];
   file: File;
+  directDebitStatus: DirectDebitStatus;
 }
 
 export interface Language extends Node {
@@ -1380,7 +1381,6 @@ export interface KeyWhereUniqueInput {
 
 export interface TranslationWhereUniqueInput {
   id?: string | null;
-  text?: string | null;
 }
 
 export interface PerilWhereUniqueInput {
@@ -2318,6 +2318,11 @@ export enum SignState {
   COMPLETED = 'COMPLETED',
 }
 
+export enum DirectDebitStatus {
+  NEEDS_SETUP = 'NEEDS_SETUP',
+  ACTIVE = 'ACTIVE',
+}
+
 export enum OfferStatus {
   SUCCESS = 'SUCCESS',
   FAIL = 'FAIL',
@@ -2441,6 +2446,11 @@ export interface QueryResolvers<Context = any> {
   member?: QueryMemberResolver<Member, any, Context>;
   gifs?: QueryGifsResolver<Gif[], any, Context>;
   file?: QueryFileResolver<File, any, Context>;
+  directDebitStatus?: QueryDirectDebitStatusResolver<
+    DirectDebitStatus,
+    any,
+    Context
+  >;
 }
 
 export type QueryLanguagesResolver<
@@ -2495,6 +2505,12 @@ export type QueryFileResolver<R = File, Parent = any, Context = any> = Resolver<
 export interface QueryFileArgs {
   key: string;
 }
+
+export type QueryDirectDebitStatusResolver<
+  R = DirectDebitStatus,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
 
 export interface LanguageResolvers<Context = any> {
   status?: LanguageStatusResolver<Status, any, Context>;
@@ -4411,6 +4427,13 @@ export type PerilCategoryPreviousValuesNameResolver<
   Context = any
 > = Resolver<R, Parent, Context>;
 
+export type MessagesVariables = {};
+
+export type MessagesQuery = {
+  __typename?: 'Query';
+  directDebitStatus: DirectDebitStatus;
+};
+
 export type NewOfferVariables = {};
 
 export type NewOfferQuery = {
@@ -4462,6 +4485,35 @@ import * as React from 'react';
 
 import gql from 'graphql-tag';
 
+export const MessagesDocument = gql`
+  query Messages {
+    directDebitStatus
+  }
+`;
+export class MessagesComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<MessagesQuery, MessagesVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<MessagesQuery, MessagesVariables>
+        query={MessagesDocument}
+        {...this.props as any}
+      />
+    );
+  }
+}
+export function MessagesHOC<TProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    MessagesQuery,
+    MessagesVariables
+  >,
+) {
+  return ReactApollo.graphql<TProps, MessagesQuery, MessagesVariables>(
+    MessagesDocument,
+    operationOptions,
+  );
+}
 export const NewOfferDocument = gql`
   query NewOffer {
     insurance {
