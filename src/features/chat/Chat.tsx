@@ -236,7 +236,7 @@ const Chat: React.SFC<ChatProps> = ({
           )}
         >
           <KeyboardAvoid
-            keyboardVerticalOffset={isIphoneX() ? 85 : 60}
+            keyboardVerticalOffset={isIphoneX() ? 85 : 65}
             behavior="padding"
             enabled={Platform.OS === 'ios'}
           >

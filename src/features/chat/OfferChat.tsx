@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { isIphoneX, ifIphoneX } from 'react-native-iphone-x-helper';
 import { Mount, Update, Unmount } from 'react-lifecycle-components';
 import { Container, EffectMap, EffectProps } from 'constate';
 
@@ -122,13 +122,17 @@ const Chat: React.SFC<ChatProps> = ({
             });
             startPolling(getMessages, intent);
           }}
-        />
+        >
+          {null}
+        </Mount>
         <Update
           was={() => {
             startPolling(getMessages, intent);
           }}
           watched={messages}
-        />
+        >
+          {null}
+        </Update>
         <Unmount
           on={() => {
             AppState.addEventListener('change', (appState) => {
@@ -136,10 +140,11 @@ const Chat: React.SFC<ChatProps> = ({
             });
             stopPolling();
           }}
-        />
-
+        >
+          {null}
+        </Unmount>
         <KeyboardAvoid
-          keyboardVerticalOffset={ifIphoneX ? 90 : 70}
+          keyboardVerticalOffset={isIphoneX() ? 95 : 75}
           behavior="padding"
           enabled={Platform.OS === 'ios'}
         >
