@@ -4,7 +4,7 @@ import styled from '@sampettersson/primitives';
 import { format } from 'date-fns';
 
 import { fonts, colors } from '@hedviginsurance/brand';
-import { InsuranceStatus } from 'src/graphql/types';
+import { InsuranceStatus } from 'src/graphql/components';
 
 interface InsuranceStatusProps {
   status: InsuranceStatus;

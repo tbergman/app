@@ -3,7 +3,7 @@
     "target": "es5",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "lib": ["es5", "es2015"],
+    "lib": ["es5", "es2015", "esnext"],
     "jsx": "react",
     "allowJs": true,
     "noEmit": true,
