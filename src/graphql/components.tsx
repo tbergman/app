@@ -4511,7 +4511,7 @@ export function MessagesHOC<TProps = {}>(
 ) {
   return ReactApollo.graphql<TProps, MessagesQuery, MessagesVariables>(
     MessagesDocument,
-    operationOptions,
+    operationOptions as any,
   );
 }
 export const NewOfferDocument = gql`
