@@ -1,28 +1,35 @@
+import Config from '@hedviginsurance/react-native-config';
 import {
   makeExecutableSchema,
   makeRemoteExecutableSchema,
   mergeSchemas,
 } from 'graphql-tools';
-import { HttpLink } from 'apollo-link-http';
 import { buildClientSchema } from 'graphql';
+import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from 'apollo-link-context';
 
-import translationSchema from './external-schemas/translations.json';
+import giraffeSchema from './external-schemas/giraffe.json';
 
 import { resolvers } from './resolvers';
 import { typeDefs } from './typedefs';
 
-const translationsLink = new HttpLink({
-  uri: 'https://api-euwest.graphcms.com/v1/cjmawd9hw036a01cuzmjhplka/master',
-  fetch,
+import { getToken } from './context';
+
+const uploadLink = createUploadLink({
+  uri: Config.GRAPHQL_URL,
 });
 
-const executableTranslationsSchema = makeRemoteExecutableSchema({
-  schema: buildClientSchema(translationSchema),
-  link: translationsLink,
+const setAuthorizationLink = setContext(async () => ({
+  headers: { Authorization: await getToken() },
+}));
+
+const executableGiraffeSchema = makeRemoteExecutableSchema({
+  schema: buildClientSchema(giraffeSchema),
+  link: setAuthorizationLink.concat(uploadLink),
 });
 
 const executableLocalSchema = makeExecutableSchema({ typeDefs, resolvers });
 
 export const schema = mergeSchemas({
-  schemas: [executableTranslationsSchema, executableLocalSchema],
+  schemas: [executableLocalSchema, executableGiraffeSchema],
 });
