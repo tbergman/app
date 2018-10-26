@@ -897,10 +897,10 @@
     xcode "^1.0.0"
     yargs "^12.0.1"
 
-"@types/apollo-upload-client@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@types/apollo-upload-client/-/apollo-upload-client-8.1.0.tgz#688fd68d15da59aacbd56951dedfa9a3ab5302cf"
-  integrity sha512-ZriXM8NE9dmwX3Nmcs1pcPNvuYQvHJ0oPv0cYiOr1V2f9yVtwJvfGTXuMwif294JwwqyFiI53nXNbTnO4cZUXA==
+"@types/apollo-upload-client@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@types/apollo-upload-client/-/apollo-upload-client-8.1.1.tgz#ea4e015da059ee8afd734cdc30d86146dc2aab50"
+  integrity sha512-6kVNS8QinfRLre0JimJGQmV2TtY4u5gemVEGsu4GDTs38te7v8wGCGEz32zEZoU1KVdIcQ/+s2xRoL78kemkIw==
   dependencies:
     "@types/extract-files" "*"
     apollo-link "^1.0.0"
