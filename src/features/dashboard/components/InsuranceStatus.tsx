@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Image, Text } from 'react-native';
 import styled from '@sampettersson/primitives';
+import { format } from 'date-fns';
 
 import { fonts, colors } from '@hedviginsurance/brand';
 import { InsuranceStatus } from 'src/graphql/types';
@@ -48,7 +49,7 @@ const getStatusText = (status: InsuranceStatus, activeFrom: string) => {
     case 'ACTIVE':
       return 'Aktiv';
     case 'INACTIVE_WITH_START_DATE':
-      return `Aktiveras ${activeFrom}`;
+      return `Aktiveras ${format(activeFrom, 'YYYY-MM-DD')}`;
     case 'INACTIVE':
       return 'Inaktiv';
   }

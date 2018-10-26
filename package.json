@@ -72,6 +72,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.14",
     "babel-preset-es2016": "^6.24.1",
     "constate": "^0.8.2",
+    "date-fns": "^1.29.0",
     "debounce": "^1.2.0",
     "dot-prop-immutable": "^1.4.0",
     "enzyme": "^3.6.0",
