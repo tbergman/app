@@ -18,10 +18,6 @@ describe('<AnimatedSingleSelectOptionButton />', () => {
       shallow(<AnimatedSingleSelectOptionButton {...standardProps} />),
     ).not.toThrow();
   });
-
-  it('Should not be visible when hidden is true', () => {
-    shallow(<AnimatedSingleSelectOptionButton {...standardProps} hidden />);
-  });
 });
 
 describe('<AnimatedMultipleSelectOptionButton />', () => {
