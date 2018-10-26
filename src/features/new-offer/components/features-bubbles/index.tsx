@@ -8,7 +8,7 @@ import { StartDate } from 'src/features/new-offer/components/features-bubbles/bu
 import { TravelProtection } from 'src/features/new-offer/components/features-bubbles/bubbles/travel-protection';
 import { Deductible } from 'src/features/new-offer/components/features-bubbles/bubbles/deductible';
 import { BindingPeriod } from 'src/features/new-offer/components/features-bubbles/bubbles/binding-period';
-import { InsuranceType } from 'src/graphql/types';
+import { InsuranceType } from 'src/graphql/components';
 import { OwnedAddon } from 'src/features/new-offer/components/features-bubbles/bubbles/owned-addon';
 
 import { Position } from './position';

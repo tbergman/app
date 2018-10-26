@@ -2,7 +2,7 @@ import * as React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import styled from '@sampettersson/primitives';
-import { View, ScrollView, Image } from 'react-native';
+import { View, ScrollView, Image, AsyncStorage } from 'react-native';
 
 import { colors } from '@hedviginsurance/brand';
 import { Loader } from 'src/components/Loader';
@@ -14,6 +14,10 @@ import { PaymentRow } from 'src/features/profile/components/PaymentRow';
 import { InsuranceCertificateRow } from 'src/features/profile/components/InsuranceCertificateRow';
 import { LogoutButton } from 'src/features/profile/logoutButton';
 import { SelectCashback } from './components/select-cashback';
+
+import { Store } from 'src/setupApp';
+import { setLayout, getMarketingLayout } from 'src/navigation/layout';
+import { deleteToken } from 'src/graphql/context';
 
 const PROFILE_QUERY = gql`
   query ProfileQuery {
@@ -101,6 +105,14 @@ const Profile: React.SFC = () => (
               <LogoutButton
                 onPress={async () => {
                   await logout();
+                  deleteToken();
+                  Store.dispatch({ type: 'DELETE_TOKEN' });
+                  Store.dispatch({ type: 'DELETE_TRACKING_ID' });
+                  Store.dispatch({ type: 'AUTHENTICATE' });
+                  await AsyncStorage.removeItem(
+                    '@hedvig:alreadySeenMarketingCarousel',
+                  );
+                  setLayout(getMarketingLayout());
                   client.clearStore();
                 }}
               />
