@@ -4480,6 +4480,13 @@ export type PerilCategoryPreviousValuesNameResolver<
   Context = any
 > = Resolver<R, Parent, Context>;
 
+export type MessagesVariables = {};
+
+export type MessagesQuery = {
+  __typename?: 'Query';
+  directDebitStatus: DirectDebitStatus;
+};
+
 export type NewOfferVariables = {};
 
 export type NewOfferQuery = {
@@ -4560,6 +4567,35 @@ import * as React from 'react';
 
 import gql from 'graphql-tag';
 
+export const MessagesDocument = gql`
+  query Messages {
+    directDebitStatus
+  }
+`;
+export class MessagesComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<MessagesQuery, MessagesVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<MessagesQuery, MessagesVariables>
+        query={MessagesDocument}
+        {...this.props as any}
+      />
+    );
+  }
+}
+export function MessagesHOC<TProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    MessagesQuery,
+    MessagesVariables
+  >,
+) {
+  return ReactApollo.graphql<TProps, MessagesQuery, MessagesVariables>(
+    MessagesDocument,
+    operationOptions,
+  );
+}
 export const NewOfferDocument = gql`
   query NewOffer {
     insurance {
