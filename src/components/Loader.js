@@ -13,7 +13,7 @@ export class Loader extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#651EFF" />
+        <ActivityIndicator size={this.props.size || 'large'} color="#651EFF" />
       </View>
     );
   }

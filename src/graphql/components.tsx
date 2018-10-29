@@ -46,7 +46,8 @@ export interface Query {
   languages: Language[];
   insurance: Insurance;
   cashback: Cashback;
-  signStatus: SignStatus;
+  cashbackOptions: Cashback[];
+  signStatus?: SignStatus | null;
   member: Member;
   gifs: Gif[];
   file: File;
@@ -122,6 +123,10 @@ export interface Cashback {
   id?: string | null;
   name?: string | null;
   imageUrl?: string | null;
+  selectedUrl?: string | null;
+  description?: string | null;
+  title?: string | null;
+  paragraph?: string | null;
 }
 
 export interface SignStatus {
@@ -154,6 +159,7 @@ export interface Mutation {
   createOffer?: boolean | null;
   signOffer?: boolean | null;
   uploadFile: File;
+  selectCashbackOption: Cashback;
 }
 
 export interface Subscription {
@@ -2243,6 +2249,9 @@ export interface SignOfferMutationArgs {
 export interface UploadFileMutationArgs {
   file: Upload;
 }
+export interface SelectCashbackOptionMutationArgs {
+  id: string;
+}
 export interface UrlAssetArgs {
   transformation?: AssetTransformationInput | null;
 }
@@ -2442,7 +2451,8 @@ export interface QueryResolvers<Context = any> {
   languages?: QueryLanguagesResolver<Language[], any, Context>;
   insurance?: QueryInsuranceResolver<Insurance, any, Context>;
   cashback?: QueryCashbackResolver<Cashback, any, Context>;
-  signStatus?: QuerySignStatusResolver<SignStatus, any, Context>;
+  cashbackOptions?: QueryCashbackOptionsResolver<Cashback[], any, Context>;
+  signStatus?: QuerySignStatusResolver<SignStatus | null, any, Context>;
   member?: QueryMemberResolver<Member, any, Context>;
   gifs?: QueryGifsResolver<Gif[], any, Context>;
   file?: QueryFileResolver<File, any, Context>;
@@ -2478,8 +2488,13 @@ export type QueryCashbackResolver<
   Parent = any,
   Context = any
 > = Resolver<R, Parent, Context>;
+export type QueryCashbackOptionsResolver<
+  R = Cashback[],
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
 export type QuerySignStatusResolver<
-  R = SignStatus,
+  R = SignStatus | null,
   Parent = any,
   Context = any
 > = Resolver<R, Parent, Context>;
@@ -2901,6 +2916,10 @@ export interface CashbackResolvers<Context = any> {
   id?: CashbackIdResolver<string | null, any, Context>;
   name?: CashbackNameResolver<string | null, any, Context>;
   imageUrl?: CashbackImageUrlResolver<string | null, any, Context>;
+  selectedUrl?: CashbackSelectedUrlResolver<string | null, any, Context>;
+  description?: CashbackDescriptionResolver<string | null, any, Context>;
+  title?: CashbackTitleResolver<string | null, any, Context>;
+  paragraph?: CashbackParagraphResolver<string | null, any, Context>;
 }
 
 export type CashbackIdResolver<
@@ -2914,6 +2933,26 @@ export type CashbackNameResolver<
   Context = any
 > = Resolver<R, Parent, Context>;
 export type CashbackImageUrlResolver<
+  R = string | null,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
+export type CashbackSelectedUrlResolver<
+  R = string | null,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
+export type CashbackDescriptionResolver<
+  R = string | null,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
+export type CashbackTitleResolver<
+  R = string | null,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
+export type CashbackParagraphResolver<
   R = string | null,
   Parent = any,
   Context = any
@@ -3011,6 +3050,11 @@ export interface MutationResolvers<Context = any> {
   createOffer?: MutationCreateOfferResolver<boolean | null, any, Context>;
   signOffer?: MutationSignOfferResolver<boolean | null, any, Context>;
   uploadFile?: MutationUploadFileResolver<File, any, Context>;
+  selectCashbackOption?: MutationSelectCashbackOptionResolver<
+    Cashback,
+    any,
+    Context
+  >;
 }
 
 export type MutationLogoutResolver<
@@ -3048,6 +3092,15 @@ export type MutationUploadFileResolver<
 > = Resolver<R, Parent, Context>;
 export interface MutationUploadFileArgs {
   file: Upload;
+}
+
+export type MutationSelectCashbackOptionResolver<
+  R = Cashback,
+  Parent = any,
+  Context = any
+> = Resolver<R, Parent, Context>;
+export interface MutationSelectCashbackOptionArgs {
+  id: string;
 }
 
 export interface SubscriptionResolvers<Context = any> {
@@ -4480,6 +4533,35 @@ export type OfferPerilsPerils = {
   description?: string | null;
 };
 
+export type CashbackOptionsVariables = {};
+
+export type CashbackOptionsQuery = {
+  __typename?: 'Query';
+  cashbackOptions: CashbackOptionsCashbackOptions[];
+};
+
+export type CashbackOptionsCashbackOptions = {
+  __typename?: 'Cashback';
+  id?: string | null;
+  name?: string | null;
+};
+
+export type SelectCashbackOptionVariables = {
+  id: string;
+};
+
+export type SelectCashbackOptionMutation = {
+  __typename?: 'Mutation';
+  selectCashbackOption: SelectCashbackOptionSelectCashbackOption;
+};
+
+export type SelectCashbackOptionSelectCashbackOption = {
+  __typename?: 'Cashback';
+  id?: string | null;
+  name?: string | null;
+  imageUrl?: string | null;
+};
+
 import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
 
@@ -4591,4 +4673,81 @@ export function OfferPerilsHOC<TProps = {}>(
     OfferPerilsDocument,
     operationOptions as any,
   );
+}
+export const CashbackOptionsDocument = gql`
+  query CashbackOptions {
+    cashbackOptions {
+      id
+      name
+    }
+  }
+`;
+export class CashbackOptionsComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<CashbackOptionsQuery, CashbackOptionsVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<CashbackOptionsQuery, CashbackOptionsVariables>
+        query={CashbackOptionsDocument}
+        {...this.props as any}
+      />
+    );
+  }
+}
+export function CashbackOptionsHOC<TProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    CashbackOptionsQuery,
+    CashbackOptionsVariables
+  >,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    CashbackOptionsQuery,
+    CashbackOptionsVariables
+  >(CashbackOptionsDocument, operationOptions);
+}
+export const SelectCashbackOptionDocument = gql`
+  mutation SelectCashbackOption($id: ID!) {
+    selectCashbackOption(id: $id) {
+      id
+      name
+      imageUrl
+    }
+  }
+`;
+export class SelectCashbackOptionComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<
+      SelectCashbackOptionMutation,
+      SelectCashbackOptionVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<
+        SelectCashbackOptionMutation,
+        SelectCashbackOptionVariables
+      >
+        mutation={SelectCashbackOptionDocument}
+        {...this.props as any}
+      />
+    );
+  }
+}
+export function SelectCashbackOptionHOC<TProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    SelectCashbackOptionMutation,
+    SelectCashbackOptionVariables
+  >,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    SelectCashbackOptionMutation,
+    SelectCashbackOptionVariables
+  >(SelectCashbackOptionDocument, operationOptions);
 }
