@@ -887,10 +887,10 @@
   resolved "https://registry.yarnpkg.com/@types/extract-files/-/extract-files-3.1.0.tgz#a93ce5b82b81a9b420f3a6d14b9bfc043779fd2b"
   integrity sha512-tLNI7qpktX1NYqE4yXSp9sHgBJOH4kO03WAgeZYDC+xhi005ZDEHkHVdy+/zoNEHasu5kJIU0yqECgT7xxANdg==
 
-"@types/graphql@^0.13.2":
-  version "0.13.4"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.13.4.tgz#55ae9c29f0fd6b85ee536f5c72b4769d5c5e06b1"
-  integrity sha512-B4yel4ro2nTb3v0pYO8vO6SjgvFJSrwUY+IO6TUSLdOSB+gQFslylrhRCHxvXMIhxB71mv5PEE9dAX+24S8sew==
+"@types/graphql@^14.0.3":
+  version "14.0.3"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.3.tgz#389e2e5b83ecdb376d9f98fae2094297bc112c1c"
+  integrity sha512-TcFkpEjcQK7w8OcrQcd7iIBPjU0rdyi3ldj6d0iJ4PPSzbWqPBvXj9KSwO14hTOX2dm9RoiH7VuxksJLNYdXUQ==
 
 "@types/handlebars@4.0.39":
   version "4.0.39"
