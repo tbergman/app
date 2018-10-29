@@ -6,8 +6,6 @@ import firebase from 'react-native-firebase';
 import styled from '@sampettersson/primitives';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
-import { StyledTextInputContainer } from '../styles/chat';
-import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
 import { Buttons } from '../components/pickers/buttons';
@@ -124,7 +122,6 @@ class ChatTextInput extends React.Component {
                 multiline
                 returnKeyType="default"
                 enablesReturnKeyAutomatically
-                multiline={true}
                 onContentSizeChange={this._handleContentSizeChange}
               />
               <SendButton
