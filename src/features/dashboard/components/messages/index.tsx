@@ -10,9 +10,10 @@ export const Messages: React.SFC = () => (
   <MessagesComponent>
     {({ data, loading, error }) =>
       loading || error || data === undefined ? (
-        <Spacing height={24} />
+        <Spacing height={15} />
       ) : (
         <>
+          <Spacing height={15} />
           {data.directDebitStatus === DirectDebitStatus.NEEDS_SETUP && (
             <Message
               message={
@@ -29,7 +30,6 @@ export const Messages: React.SFC = () => (
               onPressAction={() => {}}
             />
           )}
-          <Spacing height={24} />
         </>
       )
     }
