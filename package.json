@@ -87,7 +87,7 @@
     "generator-to-promise": "^1.0.0",
     "get-closest": "^0.0.4",
     "graphql": "^14.0.2",
-    "graphql-code-generator": "0.13.0-alpha.ff7cf3bf",
+    "graphql-code-generator": "^0.13.0-alpha.ff7cf3bf",
     "graphql-codegen-typescript-react-apollo-template": "0.13.0-alpha.ff7cf3bf",
     "graphql-tag": "^2.9.2",
     "husky": "^1.1.2",
