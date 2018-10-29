@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "moduleResolution": "node",
-    "lib": ["es5", "es2015"],
+    "resolveJsonModule": true,
+    "lib": ["es5", "es2015", "esnext"],
     "jsx": "react",
     "allowJs": true,
     "noEmit": true,

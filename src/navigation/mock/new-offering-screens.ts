@@ -1,6 +1,6 @@
 import { NEW_OFFER_SCREEN } from 'src/navigation/screens/new-offer';
 import { client } from 'src/graphql/client';
-import { Insurance } from 'src/graphql/types';
+import { Insurance } from 'src/graphql/components';
 import gql from 'graphql-tag';
 
 const QUERY = gql`

@@ -10,10 +10,10 @@ import { StyledTextInputContainer } from '../styles/chat';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
+import { Buttons } from '../components/pickers/buttons';
 import { colors } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
-import { Buttons } from '../components/pickers/buttons';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 
