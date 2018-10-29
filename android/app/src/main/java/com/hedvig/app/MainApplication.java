@@ -40,6 +40,7 @@ import com.rnfs.RNFSPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.cmcewen.blurview.BlurViewPackage;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 
 public class MainApplication extends NavigationApplication {
   @Override
@@ -69,30 +70,14 @@ public class MainApplication extends NavigationApplication {
   }
 
   protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new ReactNativeDocumentPicker(),
-        new BlurViewPackage(),
-        new FastImageViewPackage(),
-        new ImagePickerPackage(),
-        new RNFSPackage(),
-        new ReactVideoPackage(),
-        new RNGestureHandlerPackage(),
-        new RNDeviceInfo(),
-        new SvgPackage(),
-        new ReactNativeConfigPackage(),
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new ReactNativeDocumentPicker(), new BlurViewPackage(),
+        new FastImageViewPackage(), new ImagePickerPackage(), new RNFSPackage(), new ReactVideoPackage(),
+        new RNGestureHandlerPackage(), new RNDeviceInfo(), new SvgPackage(), new ReactNativeConfigPackage(),
         new RNFetchBlobPackage(),
         new CodePush(BuildConfig.CODE_PUSH_ANDROID_DEPLOYMENT_KEY, getApplicationContext(), isDebug()),
-        new RNSoundPackage(),
-        new RNSentryPackage(),
-        new RNFirebasePackage(),
-        new RNFirebaseNotificationsPackage(),
-        new RNFirebaseMessagingPackage(),
-        new RNBranchPackage(),
-        new ReactNativeAudioPackage(),
-        new AnalyticsPackage(),
-        new LottiePackage()
-    );
+        new RNSoundPackage(), new RNSentryPackage(), new RNFirebasePackage(), new RNFirebaseNotificationsPackage(),
+        new RNFirebaseMessagingPackage(), new RNBranchPackage(), new ReactNativeAudioPackage(), new AnalyticsPackage(),
+        new LottiePackage());
   }
 
   @Override
