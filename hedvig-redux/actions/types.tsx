@@ -46,7 +46,7 @@ const typesList = [
   'DELETE_TRACKING_ID',
 ];
 
-const typesMap = {};
+const typesMap: any = {};
 typesList.forEach((t) => (typesMap[t] = t));
 
 module.exports = typesMap;

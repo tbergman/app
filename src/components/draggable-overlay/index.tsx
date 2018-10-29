@@ -134,7 +134,7 @@ const actions: ActionMap<State, Actions> = {
 interface DraggableOverlayProps {
   onClose?: () => void;
   heightPercentage?: number;
-  children: ((handleClose: () => void) => React.ReactNode) | React.ReactNode;
+  children: ((handleClose: (velocity?: number) => void) => React.ReactNode);
 }
 
 export const DraggableOverlay: React.SFC<DraggableOverlayProps> = ({
