@@ -11,14 +11,21 @@ import ParagraphInput from '../containers/ParagraphInput';
 
 interface InputComponentProps {
   messages: any;
-  showOffer: any;
+  showOffer: () => void;
 }
 
-const inputComponentMap: { [key: string]: any } = {
+interface InputComponentMapProps {
+  message: any;
+  showOffer: () => void;
+}
+
+const inputComponentMap: {
+  [key: string]: React.SFC<InputComponentMapProps>;
+} = {
   multiple_select: () => <MultipleSelectInput />,
   text: () => <ChatTextInput />,
   number: () => <ChatNumberInput />,
-  single_select: (props: any) => <SingleSelectInput {...props} />,
+  single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
   paragraph: () => <ParagraphInput />,
   audio: () => <AudioInput />,
@@ -34,8 +41,13 @@ const InputComponent: React.SFC<InputComponentProps> = (props) => {
   const lastMessage = messages[0];
   const lastMessageType = lastMessage.body.type;
 
-  const Component: React.ComponentType = inputComponentMap[lastMessageType];
-  return <Component {...props} />;
+  const Component = inputComponentMap[lastMessageType];
+
+  if (!Component) {
+    return null;
+  }
+
+  return <Component {...props} message={lastMessage} />;
 };
 
 export default InputComponent;
