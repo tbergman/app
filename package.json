@@ -88,7 +88,7 @@
     "get-closest": "^0.0.4",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "husky": "^1.1.1",
+    "husky": "^1.1.2",
     "jest": "^23.6.0",
     "jsdom": "^12.2.0",
     "jsdom-global": "^3.0.2",
