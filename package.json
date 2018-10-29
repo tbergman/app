@@ -156,7 +156,10 @@
     "ts-jest": "^23.10.1",
     "typescript": "^3.1.3",
     "url": "^0.11.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "graphql-code-generator": "0.13.0-alpha.c0fdf220",
+    "graphql-codegen-core": "0.13.0-alpha.ff7cf3bf",
+    "graphql-codegen-typescript-react-apollo-template": "0.13.0-alpha.ff7cf3bf"
   },
   "rnpm": {
     "assets": [
@@ -180,9 +183,5 @@
       }
     }
   },
-  "version": "2.2.1",
-  "devDependencies": {
-    "graphql-code-generator": "^0.12.6",
-    "graphql-codegen-typescript-react-apollo-template": "^0.12.6"
-  }
+  "version": "2.2.1"
 }
