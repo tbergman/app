@@ -1,0 +1,6 @@
+query CashbackOptions {
+    cashbackOptions {
+        id
+        name
+    }
+}

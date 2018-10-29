@@ -13,6 +13,7 @@ import { SafetyIncreasersRow } from 'src/features/profile/components/SafetyIncre
 import { PaymentRow } from 'src/features/profile/components/PaymentRow';
 import { InsuranceCertificateRow } from 'src/features/profile/components/InsuranceCertificateRow';
 import { LogoutButton } from 'src/features/profile/logoutButton';
+import { SelectCashback } from './components/select-cashback';
 
 import { Store } from 'src/setupApp';
 import { setLayout, getMarketingLayout } from 'src/navigation/layout';
@@ -79,19 +80,22 @@ const Profile: React.SFC = () => (
         monthlyCost,
         certificateUrl,
       } = insurance;
-      const { name: cashbackName, imageUrl: cashbackImageUrl } = cashback;
 
       return (
         <Container>
           <Header>
             <Spacing height={8} />
-            <CashbackImage
-              source={{ uri: cashbackImageUrl }}
-              resizeMode="contain"
-            />
+            {cashback ? (
+              <CashbackImage
+                source={{ uri: cashback.imageUrl }}
+                resizeMode="contain"
+              />
+            ) : (
+              <SelectCashback />
+            )}
             <Spacing height={16} />
           </Header>
-          <CashbackRow name={cashbackName} />
+          {cashback && <CashbackRow name={cashback.name} />}
           <InsuranceAddressRow address={address} />
           <SafetyIncreasersRow safetyIncreasers={safetyIncreasers} />
           <PaymentRow monthlyCost={monthlyCost} />
