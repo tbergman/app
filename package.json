@@ -158,7 +158,7 @@
     "url": "^0.11.0",
     "uuid": "^3.3.2",
     "graphql-code-generator": "0.13.0-alpha.c0fdf220",
-    "graphql-codegen-core": "0.13.0-alpha.ff7cf3bf",
+    "graphql-codegen-core": "0.13.0-alpha.42376d8c",
     "graphql-codegen-typescript-react-apollo-template": "0.13.0-alpha.ff7cf3bf"
   },
   "rnpm": {

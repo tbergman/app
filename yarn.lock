@@ -4549,10 +4549,10 @@ graphql-codegen-compiler@0.13.0-alpha.c0fdf220:
     handlebars "4.0.12"
     moment "2.22.2"
 
-graphql-codegen-core@0.13.0-alpha.c0fdf220, graphql-codegen-core@0.13.0-alpha.ff7cf3bf:
-  version "0.13.0-alpha.ff7cf3bf"
-  resolved "https://registry.yarnpkg.com/graphql-codegen-core/-/graphql-codegen-core-0.13.0-alpha.ff7cf3bf.tgz#e2c85c5ad986bcb30c754c7c2146ac5801b8e037"
-  integrity sha512-jgFIaZd2LHVz5py4vZqvEsw0WKqd/L496h0aT12GU45dWEGaI5UKjnSOS6kDks9yyoKmEP/7Az3fyvH8geWb1g==
+graphql-codegen-core@0.13.0-alpha.42376d8c, graphql-codegen-core@0.13.0-alpha.c0fdf220:
+  version "0.13.0-alpha.42376d8c"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-core/-/graphql-codegen-core-0.13.0-alpha.42376d8c.tgz#0105083009a75cb97aa584a1de0dff2cd89e0566"
+  integrity sha512-QeiVBIfoKhl6AQBeKFkBMB31rzVeyURDNbpYRlKXlYNVtNba822pNtOdtZf9bTylgiWuOGfwp+PfFwcd6TeKGQ==
   dependencies:
     change-case "3.0.2"
     common-tags "1.8.0"
