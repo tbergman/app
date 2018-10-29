@@ -85,13 +85,14 @@ const Profile: React.SFC = () => (
         <Container>
           <Header>
             <Spacing height={8} />
-            {cashback && (
+            {cashback ? (
               <CashbackImage
                 source={{ uri: cashback.imageUrl }}
                 resizeMode="contain"
               />
+            ) : (
+              <SelectCashback />
             )}
-            {!cashback && <SelectCashback />}
             <Spacing height={16} />
           </Header>
           {cashback && <CashbackRow name={cashback.name} />}
