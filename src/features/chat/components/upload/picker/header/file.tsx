@@ -94,7 +94,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
                                 (uploadResponse) => {
                                   if (uploadResponse instanceof Error) {
                                   } else {
-                                    onUpload(uploadResponse.url);
+                                    onUpload(uploadResponse.key);
                                   }
                                 },
                               );
@@ -117,7 +117,7 @@ export const File: React.SFC<FileProps> = ({ onUpload }) => (
                                 upload(res.uri).then((uploadResponse) => {
                                   if (uploadResponse instanceof Error) {
                                   } else {
-                                    onUpload(uploadResponse.url);
+                                    onUpload(uploadResponse.key);
                                   }
                                 });
                               }, 50);

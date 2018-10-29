@@ -930,6 +930,7 @@
 "@types/react-native-document-picker@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/react-native-document-picker/-/react-native-document-picker-2.0.0.tgz#8ecb47e9eb609ada9e13a8fcb42e4c20e1f5c613"
+  integrity sha512-CCN9tVX7Hgjp8NQ81eH3PT7SIhNPnwY78eP4zTer7Bz+oLGRZBb+w8A68tQKzLGC72gMA3r+fzK9DGa/9+E8JQ==
 
 "@types/react-native-fs@^2.8.2":
   version "2.8.2"
@@ -5298,6 +5299,7 @@ is-upper-case@^1.1.0:
 is-url@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
 
 is-utf8@^0.2.0:
   version "0.2.1"
@@ -6073,6 +6075,7 @@ levn@^0.3.0, levn@~0.3.0:
 linkify-it@^1.2.0:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-1.2.4.tgz#0773526c317c8fd13bd534ee1d180ff88abf881a"
+  integrity sha1-B3NSbDF8j9E71TTuHRgP+Iq/iBo=
   dependencies:
     uc.micro "^1.0.1"
 
@@ -6411,6 +6414,7 @@ math-random@^1.0.1:
 mdurl@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
+  integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
 
 mem@^1.1.0:
   version "1.1.0"
@@ -8171,6 +8175,7 @@ react-native-heic-converter@^1.1.1:
 react-native-hyperlink@^0.0.14:
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.14.tgz#138bbfe5b410667d1e37f04a2b4713163ab0ed81"
+  integrity sha1-E4u/5bQQZn0eN/BKK0cTFjqw7YE=
   dependencies:
     linkify-it "^1.2.0"
     mdurl "^1.0.0"
@@ -9888,6 +9893,7 @@ ua-parser-js@^0.7.18:
 uc.micro@^1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.5.tgz#0c65f15f815aa08b560a61ce8b4db7ffc3f45376"
+  integrity sha512-JoLI4g5zv5qNyT09f4YAvEZIIV1oOjqnewYg5D38dkQljIzpPT296dbIGvKro3digYI1bkb7W6EP1y4uDlmzLg==
 
 uglify-es@^3.1.9:
   version "3.3.9"
