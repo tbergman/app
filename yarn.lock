@@ -4509,10 +4509,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6,
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
   integrity sha1-Dovf5NHduIVNZOBOp8AOKgJuVlg=
 
-graphql-code-generator@0.13.0-alpha.c0fdf220:
-  version "0.13.0-alpha.c0fdf220"
-  resolved "https://registry.yarnpkg.com/graphql-code-generator/-/graphql-code-generator-0.13.0-alpha.c0fdf220.tgz#c0f6be1aaf0a1f21fc1d05ab4e30e2e3be8cd818"
-  integrity sha512-Q5RIj/zAOtt2Mvj+zuP7K61slbThPuI+UAEGRW7Uzx7awQEWQbQAaDEIZEoC+QE06bdR8VpTwrpc1DozWriM0g==
+graphql-code-generator@0.13.0-alpha.ff7cf3bf:
+  version "0.13.0-alpha.ff7cf3bf"
+  resolved "https://registry.yarnpkg.com/graphql-code-generator/-/graphql-code-generator-0.13.0-alpha.ff7cf3bf.tgz#0ace07a8999c31fd13cc51cb422ded69abe5e4da"
+  integrity sha512-SQ5cs7CF+be61io/6NNDG7ccZ7UVhGBymrNgQBWKhQ9dVdMU1s89IzETU+67Jdjb4IahUqF2XXsBg+JkiDJehA==
   dependencies:
     "@graphql-modules/epoxy" "0.1.9"
     "@types/babylon" "6.16.3"
@@ -4524,8 +4524,8 @@ graphql-code-generator@0.13.0-alpha.c0fdf220:
     commander "2.19.0"
     fb-watchman "2.0.0"
     glob "7.1.3"
-    graphql-codegen-compiler "0.13.0-alpha.c0fdf220"
-    graphql-codegen-core "0.13.0-alpha.c0fdf220"
+    graphql-codegen-compiler "0.13.0-alpha.ff7cf3bf"
+    graphql-codegen-core "0.13.0-alpha.ff7cf3bf"
     graphql-config "2.2.1"
     graphql-import "0.7.1"
     is-glob "4.0.0"
@@ -4537,22 +4537,22 @@ graphql-code-generator@0.13.0-alpha.c0fdf220:
     request "2.88.0"
     valid-url "1.0.9"
 
-graphql-codegen-compiler@0.13.0-alpha.c0fdf220:
-  version "0.13.0-alpha.c0fdf220"
-  resolved "https://registry.yarnpkg.com/graphql-codegen-compiler/-/graphql-codegen-compiler-0.13.0-alpha.c0fdf220.tgz#2bf47eb3d9bf4b4800310697b50fda6c39be8789"
-  integrity sha512-fQFe23IWp/F3KIcI2LQRZS7dQS5yfeyguV7ySUeLCGZmqxSkRIhFZriWb8H37YFkWliOfr5EhSZM3UYiJLGdDQ==
+graphql-codegen-compiler@0.13.0-alpha.ff7cf3bf:
+  version "0.13.0-alpha.ff7cf3bf"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-compiler/-/graphql-codegen-compiler-0.13.0-alpha.ff7cf3bf.tgz#409b1e4ea1f37d82a214bceb881ecaecc04a4c24"
+  integrity sha512-8i7/Bb5r9KQnuxOEBl45yiZWSl+AKEbvVUNk9u5aOcD5jj+5q55SnWdktLWC838TBPpIx0RY6PiJRGKgktuqBQ==
   dependencies:
     "@types/handlebars" "4.0.39"
     change-case "3.0.2"
     common-tags "1.8.0"
-    graphql-codegen-core "0.13.0-alpha.c0fdf220"
+    graphql-codegen-core "0.13.0-alpha.ff7cf3bf"
     handlebars "4.0.12"
     moment "2.22.2"
 
-graphql-codegen-core@0.13.0-alpha.42376d8c, graphql-codegen-core@0.13.0-alpha.c0fdf220:
-  version "0.13.0-alpha.42376d8c"
-  resolved "https://registry.yarnpkg.com/graphql-codegen-core/-/graphql-codegen-core-0.13.0-alpha.42376d8c.tgz#0105083009a75cb97aa584a1de0dff2cd89e0566"
-  integrity sha512-QeiVBIfoKhl6AQBeKFkBMB31rzVeyURDNbpYRlKXlYNVtNba822pNtOdtZf9bTylgiWuOGfwp+PfFwcd6TeKGQ==
+graphql-codegen-core@0.13.0-alpha.ff7cf3bf:
+  version "0.13.0-alpha.ff7cf3bf"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-core/-/graphql-codegen-core-0.13.0-alpha.ff7cf3bf.tgz#e2c85c5ad986bcb30c754c7c2146ac5801b8e037"
+  integrity sha512-jgFIaZd2LHVz5py4vZqvEsw0WKqd/L496h0aT12GU45dWEGaI5UKjnSOS6kDks9yyoKmEP/7Az3fyvH8geWb1g==
   dependencies:
     change-case "3.0.2"
     common-tags "1.8.0"
