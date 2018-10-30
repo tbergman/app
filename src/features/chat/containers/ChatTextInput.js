@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StyleSheet, TextInput, Platform } from 'react-native';
+import { StyleSheet, TextInput, Platform, View } from 'react-native';
 import firebase from 'react-native-firebase';
+import styled from '@sampettersson/primitives';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
-import { StyledTextInputContainer } from '../styles/chat';
-import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
 import { colors } from '@hedviginsurance/brand';
@@ -19,24 +18,38 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     alignSelf: 'stretch',
-    height: 40,
+    minHeight: 40,
     paddingTop: 10,
     paddingRight: 16,
     paddingBottom: 10,
     paddingLeft: 16,
     marginRight: 8,
-    backgroundColor: colors.WHITE,
-    borderColor: colors.PURPLE,
-    borderWidth: 1,
-    borderRadius: 24,
     fontSize: 16,
     overflow: 'hidden',
   },
 });
 
+const Bar = styled(View)({
+  flexDirection: 'row',
+  alignItems: 'flex-end',
+  marginRight: 8,
+  marginLeft: 8,
+  marginBottom: 8,
+});
+
+const TextInputContainer = styled(View)({
+  flexDirection: 'row',
+  flex: 1,
+  backgroundColor: colors.WHITE,
+  borderColor: colors.PURPLE,
+  borderWidth: 1,
+  borderRadius: 24,
+  alignItems: 'flex-end',
+});
+
 class ChatTextInput extends React.Component {
   static propTypes = {
-    message: PropTypes.object, // TODO Better definition for the shape of a message - should be reusable
+    message: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     isSending: PropTypes.bool,
     inputValue: PropTypes.string,
@@ -51,17 +64,32 @@ class ChatTextInput extends React.Component {
     height: 0,
   };
 
-  _send = (message) => {
+  requestPush = () => {
     if (this.props.message.header.shouldRequestPushNotifications) {
       this.props.requestPushNotifications();
     }
+  };
+
+  _send = (message) => {
+    this.requestPush();
     if (!this.props.isSending) {
       const inputValue = String(
-        typeof message === 'string' ? message : this.props.inputValue,
+        typeof message === 'string' ? message : this.state.inputValue,
       );
-      this._onTextChange('');
+      this.ref.clear();
       this.props.send(this.props.message, inputValue);
     }
+  };
+
+  sendFileMessage = (key) => {
+    this.requestPush();
+    this.props.send(
+      this.props.message,
+      JSON.stringify({
+        type: 'file',
+        key: key,
+      }),
+    );
   };
 
   _handleContentSizeChange = (event) => {
@@ -71,53 +99,44 @@ class ChatTextInput extends React.Component {
   };
 
   _onTextChange = (text) => {
-    this.props.onChange(text);
+    this.setState({ inputValue: text });
   };
 
   render() {
-    const { isSending, inputValue } = this.props;
     return (
       <Provider>
         <GiphyProvider>
-          <StyledTextInputContainer>
-            <TextInput
-              ref={(ref) => (this.ref = ref)}
-              style={[
-                styles.textInput,
-                { height: Math.max(40, this.state.height) },
-              ]}
-              autoFocus
-              placeholder="Skriv här..."
-              value={inputValue}
-              underlineColorAndroid="transparent"
-              onChangeText={this._onTextChange}
-              multiline
-              returnKeyType="send"
-              enablesReturnKeyAutomatically
-              blurOnSubmit
-              onSubmitEditing={this._send}
-              editable={!isSending}
-              onContentSizeChange={this._handleContentSizeChange}
-            />
-            <SendButton
-              onPress={this._send}
-              disabled={!(inputValue && inputValue.length > 0 && !isSending)}
-            />
-          </StyledTextInputContainer>
-          <Picker sendMessage={this._send} />
+          <Bar>
+            <TextInputContainer>
+              <TextInput
+                ref={(ref) => (this.ref = ref)}
+                style={[styles.textInput]}
+                autoFocus
+                scrollEnabled={false}
+                autoCapitalize="none"
+                placeholder="Skriv här..."
+                underlineColorAndroid="transparent"
+                onChangeText={this._onTextChange}
+                multiline
+                returnKeyType="default"
+                enablesReturnKeyAutomatically
+                onContentSizeChange={this._handleContentSizeChange}
+              />
+              <SendButton
+                onPress={this._send}
+                disabled={
+                  !(this.state.inputValue && this.state.inputValue.length > 0)
+                }
+              />
+            </TextInputContainer>
+          </Bar>
+          <Picker sendMessage={this.sendFileMessage} />
           <GiphyPicker sendMessage={this._send} />
         </GiphyProvider>
       </Provider>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    message: state.chat.messages[0],
-    isSending: selectors.isSendingChatMessage(state),
-    inputValue: selectors.getInputValue(state),
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -129,6 +148,8 @@ const mapDispatchToProps = (dispatch) => {
           text,
         }),
       ),
+    sendFile: (message, bodyOverride) =>
+      dispatch(chatActions.sendChatResponse(message, bodyOverride)),
     requestPushNotifications: async () => {
       if (Platform.OS === 'android') {
         return dispatch({
@@ -163,7 +184,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const ChatTextInputContainer = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(ChatTextInput);
 

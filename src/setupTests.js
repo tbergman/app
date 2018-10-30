@@ -7,9 +7,12 @@ Enzyme.configure({ adapter: new Adapter() });
 jest.mock('react-native-analytics-segment-io', () => ({
   track: () => {},
 }));
+
 jest.mock('react-native-branch', () => ({
   BranchEvent: {},
 }));
+
+jest.mock('@hedviginsurance/react-native-config', () => ({}));
 
 jest.mock('react-native', () => require('react-native-mock-render'), {
   virtual: true,
@@ -22,10 +25,13 @@ jest.mock('react-native-firebase', () => ({
 }));
 jest.mock('react-native-fs', () => ({}));
 jest.mock('react-native-document-picker', () => ({}));
-jest.mock('react-native-gesture-handler', () => ({}));
 jest.mock('react-native-analytics-segment-io', () => ({
   setup: () => {},
   track: () => {},
+}));
+
+jest.mock('react-native-gesture-handler', () => ({
+  RectButton: require('react-native-mock-render').TouchableWithoutFeedback,
 }));
 
 jest.mock('react-native-navigation', () => ({

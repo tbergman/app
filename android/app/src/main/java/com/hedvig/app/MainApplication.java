@@ -40,6 +40,7 @@ import com.rnfs.RNFSPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.cmcewen.blurview.BlurViewPackage;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 
 public class MainApplication extends NavigationApplication {
   @Override

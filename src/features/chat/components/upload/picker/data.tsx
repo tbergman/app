@@ -65,8 +65,6 @@ const loadPhotos = async ({ photos, setPhotos }: Actions & State) => {
       return;
     }
 
-    console.log(cameraRoll.edges);
-
     setPhotos({
       ...cameraRoll,
       edges: [...photos!.edges!, ...cameraRoll.edges],
