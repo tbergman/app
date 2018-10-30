@@ -37,7 +37,11 @@ export const SelectCashback = () => (
           <>
             <Update
               watched={isOpen}
-              was={() => triggerEvent({ name: 'showModal' })}
+              was={() => {
+                if (isOpen) {
+                  triggerEvent({ name: 'showModal' });
+                }
+              }}
             >
               {null}
             </Update>
