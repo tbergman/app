@@ -32,36 +32,44 @@ const ButtonContainer = styled(View)({
 export const SelectCashback = () => (
   <OpenState initialOpenState={false}>
     {({ isOpen, setIsOpen }) => (
-      <>
-        <NavigationEvents>
-          {(triggerEvent: (event: { name: string }) => void) => (
+      <NavigationEvents>
+        {(triggerEvent: (event: { name: string }) => void) => (
+          <>
             <Update
               watched={isOpen}
-              was={() =>
-                triggerEvent({ name: isOpen ? 'showModal' : 'dismissModal' })
-              }
+              was={() => triggerEvent({ name: 'showModal' })}
             >
               {null}
             </Update>
-          )}
-        </NavigationEvents>
-        <CircledExclamationMark width={30} height={30} />
-        <Spacing height={20} />
-        <MessageContainer>
-          <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_MESSAGE">
-            {(text) => <MessageText>{text}</MessageText>}
-          </TranslationsConsumer>
-          <ButtonContainer>
-            <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_ACTION">
-              {(text) => (
-                <DialogButton title={text} onPress={() => setIsOpen(true)} />
-              )}
-            </TranslationsConsumer>
-          </ButtonContainer>
-        </MessageContainer>
-        {isOpen && <Picker close={() => setIsOpen(false)} />}
-        <Spacing height={20} />
-      </>
+            <CircledExclamationMark width={30} height={30} />
+            <Spacing height={20} />
+            <MessageContainer>
+              <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_MESSAGE">
+                {(text) => <MessageText>{text}</MessageText>}
+              </TranslationsConsumer>
+              <ButtonContainer>
+                <TranslationsConsumer textKey="CASHBACK_NEEDS_SETUP_ACTION">
+                  {(text) => (
+                    <DialogButton
+                      title={text}
+                      onPress={() => setIsOpen(true)}
+                    />
+                  )}
+                </TranslationsConsumer>
+              </ButtonContainer>
+            </MessageContainer>
+            {isOpen && (
+              <Picker
+                close={() => {
+                  setIsOpen(false);
+                  triggerEvent({ name: 'dismissModal' });
+                }}
+              />
+            )}
+            <Spacing height={20} />
+          </>
+        )}
+      </NavigationEvents>
     )}
   </OpenState>
 );
