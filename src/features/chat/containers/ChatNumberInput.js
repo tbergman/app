@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
+import styled from '@sampettersson/primitives';
 
 import { chatActions } from '../../../../hedvig-redux';
-import { StyledTextInputContainer } from '../styles/chat';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
@@ -20,13 +20,27 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 16,
     marginRight: 8,
-    backgroundColor: colors.WHITE,
-    borderColor: colors.PURPLE,
-    borderWidth: 1,
-    borderRadius: 24,
     fontSize: 16,
     overflow: 'hidden',
   },
+});
+
+const Bar = styled(View)({
+  flexDirection: 'row',
+  alignItems: 'flex-end',
+  marginRight: 8,
+  marginLeft: 8,
+  marginBottom: 8,
+});
+
+const TextInputContainer = styled(View)({
+  flexDirection: 'row',
+  flex: 1,
+  backgroundColor: colors.WHITE,
+  borderColor: colors.PURPLE,
+  borderWidth: 1,
+  borderRadius: 24,
+  alignItems: 'flex-end',
 });
 
 class ChatNumberInput extends React.Component {
@@ -63,23 +77,26 @@ class ChatNumberInput extends React.Component {
   render() {
     const { isSending, inputValue } = this.props;
     return (
-      <StyledTextInputContainer>
-        <TextInput
-          ref={(ref) => (this.ref = ref)}
-          style={styles.textInput}
-          placeholder="Skriv här..."
-          autoFocus
-          keyboardType="numeric"
-          value={inputValue || ''}
-          underlineColorAndroid="transparent"
-          onChangeText={this._onTextChange}
-          onSubmitEditing={this._send}
-        />
-        <SendButton
-          onPress={this._send}
-          disabled={!(inputValue && inputValue.length > 0 && !isSending)}
-        />
-      </StyledTextInputContainer>
+      <Bar>
+        <TextInputContainer>
+          <TextInput
+            ref={(ref) => (this.ref = ref)}
+            style={styles.textInput}
+            placeholder="Skriv här..."
+            autoFocus
+            keyboardType="numeric"
+            value={inputValue || ''}
+            underlineColorAndroid="transparent"
+            onChangeText={this._onTextChange}
+            onSubmitEditing={this._send}
+          />
+          <SendButton
+            onPress={this._send}
+            disabled={!(inputValue && inputValue.length > 0 && !isSending)}
+            size="small"
+          />
+        </TextInputContainer>
+      </Bar>
     );
   }
 }
