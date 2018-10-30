@@ -1,43 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  Dimensions,
-  StyleSheet,
-  FlatList,
-  Text,
-  PixelRatio,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { createImageProgress } from 'react-native-image-progress';
-import FastImage from 'react-native-fast-image';
-import * as Progress from 'react-native-progress';
-import { colors } from '@hedviginsurance/brand';
-import Config from '@hedviginsurance/react-native-config';
+import Hyperlink from 'react-native-hyperlink';
 
 import {
   StyledDefaultMessageText,
-  StyledDefaultUserMessageText,
   AnimatedStyledChatMessage,
-  StyledUserChatMessage,
-  StyledHeroMessage,
   StyledAvatarContainer,
 } from '../styles/chat';
-import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
-import { GiphyMessage } from '../components/giphy-message';
-
-const Image = createImageProgress(FastImage);
-
-const window = Dimensions.get('window');
-// (window width - (2 outer margin + 2 inner margin) * 0.98)
-const heroImageWidth = Math.round((window.width - 64) * 0.98);
+import { RichMessage } from '../components/rich-message';
 
 const styles = StyleSheet.create({
-  heroMessage: { height: 200, width: heroImageWidth },
   scrollContent: {
     flex: 1,
     paddingTop: 16,
@@ -55,147 +30,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
-  userMessageEditButton: {
-    marginLeft: 5,
-    marginRight: 1,
-  },
-  userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
-  inlineImage: { width: 200, height: 200 },
-  inlineImageContainer: {
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginBottom: 10,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.LIGHT_GRAY,
-  },
 });
-
-const renderImage = (message) => {
-  if (
-    message.body.imageURL &&
-    message.body.imageHeight &&
-    message.body.imageWidth
-  ) {
-    return (
-      <Image
-        source={{ uri: message.body.imageURL }}
-        style={{
-          height: message.body.imageHeight,
-          width: message.body.imageWidth,
-        }}
-      />
-    );
-  } else {
-    return null;
-  }
-};
-
-// TODO: Investigate if this is actually in use. If not, delete it
-class HeroMessage extends React.Component {
-  static propTypes = { message: PropTypes.object };
-
-  render() {
-    const { message } = this.props;
-    return (
-      <StyledHeroMessage>
-        {renderImage(message)}
-        <StyledDefaultMessageText>{message.body.text}</StyledDefaultMessageText>
-        <Image
-          resizeMode="contain"
-          source={{ uri: message.body.imageUri }}
-          style={styles.heroMessage}
-        />
-      </StyledHeroMessage>
-    );
-  }
-}
-
-const renderImageOrText = (message, index) => {
-  if (
-    message.body.text.includes('.jpg') ||
-    message.body.text.includes('.png') ||
-    message.body.text.includes('.jpeg') ||
-    message.body.text.includes('.bmp') ||
-    message.body.text.includes('.gif')
-  ) {
-    if (message.body.text.includes('giphy')) {
-      return <GiphyMessage url={message.body.text} />;
-    }
-
-    const IMAGE_SIZE = PixelRatio.getPixelSizeForLayoutSize(200);
-    return (
-      <View style={styles.inlineImageContainer}>
-        <Image
-          source={{
-            uri: `${
-              Config.PIG_URL
-            }/unsafe/${IMAGE_SIZE}x${IMAGE_SIZE}/smart/${encodeURIComponent(
-              message.body.text,
-            )}`,
-          }}
-          indicator={Progress.CircleSnail}
-          indicatorProps={{
-            size: 40,
-            thickness: 3,
-            color: colors.PURPLE,
-          }}
-          style={styles.inlineImage}
-        />
-      </View>
-    );
-  }
-
-  if (message.body.text.includes('hedvig-app-uploads')) {
-    return (
-      <TouchableOpacity
-        accessibilityLabel="Ladda ner fil"
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        onPress={() => Linking.openURL(message.body.text)}
-      >
-        <StyledUserChatMessage
-          withMargin={
-            !message.header.statusMessage ||
-            (message.header.statusMessage && index !== 1)
-          }
-        >
-          <StyledDefaultUserMessageText>
-            Du laddade upp en fil
-          </StyledDefaultUserMessageText>
-        </StyledUserChatMessage>
-      </TouchableOpacity>
-    );
-  }
-
-  return (
-    <>
-      {message.header.editAllowed && (
-        <View
-          style={[
-            styles.userMessageEditButton,
-            !message.header.statusMessage
-              ? styles.userMessageEditButtonWithStatusMessage
-              : undefined,
-          ]}
-        >
-          <EditMessageButton index={index} />
-        </View>
-      )}
-      <StyledUserChatMessage
-        withMargin={
-          !message.header.statusMessage ||
-          (message.header.statusMessage && index !== 1)
-        }
-      >
-        <StyledDefaultUserMessageText>
-          {message.body.text}
-        </StyledDefaultUserMessageText>
-      </StyledUserChatMessage>
-    </>
-  );
-};
 
 class DefaultHedvigMessage extends React.Component {
   render() {
@@ -205,9 +42,11 @@ class DefaultHedvigMessage extends React.Component {
     } else {
       return (
         <AnimatedStyledChatMessage>
-          <StyledDefaultMessageText>
-            {message.body.text}
-          </StyledDefaultMessageText>
+          <Hyperlink>
+            <StyledDefaultMessageText>
+              {message.body.text}
+            </StyledDefaultMessageText>
+          </Hyperlink>
         </AnimatedStyledChatMessage>
       );
     }
@@ -217,10 +56,19 @@ class DefaultHedvigMessage extends React.Component {
 class DefaultUserMessage extends React.Component {
   render() {
     const { message, index } = this.props;
+
+    const withMargin =
+      !message.header.statusMessage ||
+      (message.header.statusMessage && index !== 1);
+
     return (
       <View style={styles.userMessageOuterContainer}>
         <View style={styles.userMessageInnerContainer}>
-          {renderImageOrText(message, index)}
+          <RichMessage
+            index={index}
+            message={message}
+            withMargin={withMargin}
+          />
         </View>
         {message.header.statusMessage &&
           index === 1 && (
@@ -236,8 +84,8 @@ class DefaultUserMessage extends React.Component {
 const UserMessageMapping = {};
 
 const HedvigMessageMapping = {
-  hero: HeroMessage,
-  bankid_collect: () => null, // <-- This is how to not render certain types of messages from Hedvig
+  hero: () => null,
+  bankid_collect: () => null,
   audio: () => null,
   polling: () => null,
 };

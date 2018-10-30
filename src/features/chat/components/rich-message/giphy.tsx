@@ -8,15 +8,15 @@ import styled from '@sampettersson/primitives';
 import { Giphy } from 'src/components/icons/Giphy';
 import { Spacing } from 'src/components/Spacing';
 
-interface GiphyMessageProps {
-  url: string;
-}
+import { Props } from './types';
 
-const MessageContainer = styled(View)({
-  borderRadius: 20,
-  overflow: 'hidden',
-  marginBottom: 10,
-});
+const MessageContainer = styled(View)(
+  ({ withMargin }: { withMargin: boolean }) => ({
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginBottom: withMargin ? 10 : 0,
+  }),
+);
 
 const GiphyText = styled(Text)({
   marginTop: 1,
@@ -43,11 +43,11 @@ const SizedProgressImage = styled(ProgressImage)({
   height: 200,
 });
 
-export const GiphyMessage: React.SFC<GiphyMessageProps> = ({ url }) => (
-  <MessageContainer>
+export const GiphyMessage: React.SFC<Props> = ({ message, withMargin }) => (
+  <MessageContainer withMargin={withMargin}>
     <SizedProgressImage
       source={{
-        uri: url,
+        uri: message.body.text,
       }}
       indicator={Progress.CircleSnail}
       indicatorProps={{

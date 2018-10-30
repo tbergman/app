@@ -17,7 +17,7 @@ const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
 }));
 
 interface PickerProps {
-  sendMessage: (message: string) => void;
+  sendMessage: (key: string) => void;
 }
 
 export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
@@ -44,8 +44,8 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
               <FlatList
                 ListHeaderComponent={() => (
                   <Header
-                    onUpload={(url) => {
-                      sendMessage(url);
+                    onUpload={(key) => {
+                      sendMessage(key);
                       setIsOpen(false);
                     }}
                   />
@@ -55,8 +55,8 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                   item.node.type.includes('Photo') ? (
                     <Image
                       uri={item.node.image.uri}
-                      onUpload={(url) => {
-                        sendMessage(url);
+                      onUpload={(key) => {
+                        sendMessage(key);
                         setIsOpen(false);
                       }}
                     />

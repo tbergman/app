@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   },
   buttonTextColorSelected: { color: colors.WHITE },
   buttonTextColorNotSelected: { color: colors.PURPLE },
-  sendButton: { width: 40, height: 40 },
-  editMessageButton: { width: 24, height: 24, alignSelf: 'center' },
+  sendButton: { width: 30, height: 30, marginRight: 5, marginBottom: 5 },
+  editMessageButton: { width: 24, height: 24, alignSelf: 'flex-end' },
 });
 
 export class AnimatedSingleSelectOptionButton extends React.Component {

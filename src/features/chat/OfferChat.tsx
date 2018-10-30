@@ -99,9 +99,9 @@ const handleAppStateChange = (
   }
 };
 
-const showOffer = (stopPolling: () => void, props: any) => {
+const showOffer = (stopPolling: () => void, onRequestClose: () => void) => {
   stopPolling();
-  props.onRequestClose();
+  onRequestClose();
 };
 
 const Chat: React.SFC<ChatProps> = ({
@@ -109,6 +109,7 @@ const Chat: React.SFC<ChatProps> = ({
   messages,
   getAvatars,
   getMessages,
+  onRequestClose,
 }) => (
   <Container effects={effects} initialState={initialState}>
     {({ startPolling, stopPolling }) => (
@@ -150,13 +151,18 @@ const Chat: React.SFC<ChatProps> = ({
         >
           <Messages>
             {messages.length ? (
-              <MessageList showOffer={showOffer} />
+              <MessageList
+                showOffer={() => showOffer(stopPolling, onRequestClose)}
+              />
             ) : (
               <Loader />
             )}
           </Messages>
           <Response>
-            <InputComponent messages={messages} showOffer={showOffer} />
+            <InputComponent
+              messages={messages}
+              showOffer={() => showOffer(stopPolling, onRequestClose)}
+            />
           </Response>
         </KeyboardAvoid>
         <Dialog />

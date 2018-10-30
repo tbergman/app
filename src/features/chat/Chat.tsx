@@ -139,8 +139,7 @@ const getNavigationOptions = (
   }
 };
 
-const showOffer = async (stopPolling: () => void, componentId: string) => {
-  stopPolling();
+const showOffer = async (componentId: string) => {
   const { screen, group } = await getOfferScreen();
 
   if (group === OFFER_GROUPS.OLD) {
@@ -193,7 +192,7 @@ const Chat: React.SFC<ChatProps> = ({
             }
 
             if (event.buttonId === SHOW_OFFER_BUTTON.id) {
-              showOffer(stopPolling, componentId);
+              showOffer(componentId);
             }
           }}
         />
@@ -245,7 +244,7 @@ const Chat: React.SFC<ChatProps> = ({
             </Messages>
             <Response>
               <InputComponent
-                showOffer={() => showOffer(stopPolling, componentId)}
+                showOffer={() => showOffer(componentId)}
                 messages={messages}
               />
             </Response>

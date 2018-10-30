@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
 import styled from '@sampettersson/primitives';
-import { colors } from '@hedviginsurance/brand';
 import { View } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
@@ -34,7 +32,7 @@ export const Header: React.SFC<HeaderProps> = ({ onUpload }) => (
                 upload(response.uri).then((uploadResponse) => {
                   if (uploadResponse instanceof Error) {
                   } else {
-                    onUpload(uploadResponse.url);
+                    onUpload(uploadResponse.key);
                   }
                 });
               }

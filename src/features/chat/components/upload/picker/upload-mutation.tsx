@@ -17,7 +17,7 @@ const UploadMutationContainer = styled(View)({
 const UPLOAD_MUTATION = gql`
   mutation UploadMutation($file: Upload!) {
     uploadFile(file: $file) @uploadLink {
-      signedUrl
+      key
     }
   }
 `;
@@ -38,13 +38,13 @@ const actions: ActionMap<State, Actions> = {
 
 interface UploadResponse {
   uploadFile: {
-    signedUrl: string | null;
+    key: string;
   };
 }
 
 interface UploadMutationProps {
   children: (
-    uploadFile: (uri: string) => Promise<{ url: string } | Error>,
+    uploadFile: (uri: string) => Promise<{ key: string } | Error>,
     isUploading: boolean,
   ) => React.ReactNode;
 }
@@ -88,9 +88,9 @@ const uploadHandler = (
 
   setIsUploading(false);
 
-  if (response && response.data && response.data.uploadFile!.signedUrl) {
+  if (response && response.data && response.data.uploadFile!.key) {
     return {
-      url: response.data!.uploadFile!.signedUrl!,
+      key: response.data!.uploadFile!.key,
     };
   }
 
