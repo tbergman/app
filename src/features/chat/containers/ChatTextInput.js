@@ -122,7 +122,16 @@ class ChatTextInput extends React.Component {
                 underlineColorAndroid="transparent"
                 onChangeText={this._onTextChange}
                 multiline={this.props.message.header.richTextChatCompatible}
-                returnKeyType="default"
+                returnKeyType={
+                  this.props.message.header.richTextChatCompatible
+                    ? 'default'
+                    : 'send'
+                }
+                onSubmitEditing={() => {
+                  if (!this.props.message.header.richTextChatCompatible) {
+                    this._send();
+                  }
+                }}
                 enablesReturnKeyAutomatically
                 onContentSizeChange={this._handleContentSizeChange}
               />
