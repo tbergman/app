@@ -5,7 +5,6 @@ import { Props } from './types';
 import { TextMessage } from './text';
 import { GiphyMessage } from './giphy';
 import { ImageMessage } from './image';
-import { FileMessage } from './file';
 
 import { isGiphyMessage, isImageMessage } from './utils';
 
@@ -26,12 +25,6 @@ export const RichMessage: React.SFC<Props> = ({
         <ImageMessage message={message} withMargin={withMargin} index={index} />
       );
     }
-  }
-
-  if (message.body.text.startsWith('{') && message.body.text.endsWith('}')) {
-    return (
-      <FileMessage message={message} withMargin={withMargin} index={index} />
-    );
   }
 
   return (
