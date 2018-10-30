@@ -117,7 +117,7 @@ class ChatTextInput extends React.Component {
                 placeholder="Skriv här..."
                 underlineColorAndroid="transparent"
                 onChangeText={this._onTextChange}
-                multiline
+                multiline={this.props.message.header.richTextChatCompatible}
                 returnKeyType="default"
                 enablesReturnKeyAutomatically
                 onContentSizeChange={this._handleContentSizeChange}
@@ -127,6 +127,7 @@ class ChatTextInput extends React.Component {
                 disabled={
                   !(this.state.inputValue && this.state.inputValue.length > 0)
                 }
+                size="small"
               />
             </TextInputContainer>
           </Bar>

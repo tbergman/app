@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   buttonTextColorSelected: { color: colors.WHITE },
   buttonTextColorNotSelected: { color: colors.PURPLE },
   sendButton: { width: 30, height: 30, marginRight: 5, marginBottom: 5 },
+  sendButtonLarge: { width: 40, height: 40 },
   editMessageButton: { width: 24, height: 24, alignSelf: 'flex-end' },
 });
 
@@ -173,13 +174,16 @@ export class SendButton extends React.Component {
   static _hitSlop = { top: 20, right: 20, bottom: 20, left: 20 };
 
   render() {
-    const { onPress, disabled } = this.props;
+    const { onPress, disabled, size } = this.props;
     if (disabled) {
       return (
         <View>
           <Image
             source={require('../../../../assets/icons/chat/send_idle.png')}
-            style={styles.sendButton}
+            style={[
+              styles.sendButton,
+              size !== 'small' && styles.sendButtonLarge,
+            ]}
           />
         </View>
       );
@@ -194,7 +198,10 @@ export class SendButton extends React.Component {
       >
         <Image
           source={require('../../../../assets/icons/chat/send.png')}
-          style={styles.sendButton}
+          style={[
+            styles.sendButton,
+            size !== 'small' && styles.sendButtonLarge,
+          ]}
         />
       </TouchableOpacity>
     );

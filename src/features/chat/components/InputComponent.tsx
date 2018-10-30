@@ -22,7 +22,7 @@ const inputComponentMap: {
   [key: string]: React.SFC<InputComponentMapProps>;
 } = {
   multiple_select: () => <MultipleSelectInput />,
-  text: () => <ChatTextInput />,
+  text: (props) => <ChatTextInput {...props} />,
   number: () => <ChatNumberInput />,
   single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
