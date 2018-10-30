@@ -8,7 +8,7 @@ import { chatActions } from '../../../../hedvig-redux';
 import * as selectors from '../state/selectors';
 import { SendButton } from '../components/Button';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     fontSize: 16,
     overflow: 'hidden',
+    fontFamily: fonts.CIRCULAR,
   },
 });
 
