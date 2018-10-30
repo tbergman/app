@@ -21,14 +21,17 @@ const scheduleAnimation = () => {
     create: {
       type: LayoutAnimation.Types.spring,
       springDamping: 1,
+      property: LayoutAnimation.Properties.scaleXY,
     },
     update: {
       type: LayoutAnimation.Types.spring,
       springDamping: 1,
+      property: LayoutAnimation.Properties.scaleXY,
     },
     delete: {
       type: LayoutAnimation.Types.spring,
       springDamping: 1,
+      property: LayoutAnimation.Properties.scaleXY,
     },
   });
 };
