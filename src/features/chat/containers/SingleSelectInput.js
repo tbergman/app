@@ -23,6 +23,7 @@ const showTrustly = (id) =>
             ...PAYMENT_SCREEN.component,
             passProps: {
               id,
+              startedFromChat: true,
             },
           },
         },

@@ -220,7 +220,7 @@ export interface Mutation {
 
   offerClosed: boolean;
 
-  startTrustly: Url;
+  startDirectDebitRegistration: Url;
 }
 
 export interface Subscription {
@@ -3021,6 +3021,14 @@ export type OfferPerilsPerils = {
   description?: string | null;
 };
 
+export type DirectDebitRegistrationVariables = {};
+
+export type DirectDebitRegistrationMutation = {
+  __typename?: 'Mutation';
+
+  startDirectDebitRegistration: Url;
+};
+
 export type CashbackOptionsVariables = {};
 
 export type CashbackOptionsQuery = {
@@ -3175,6 +3183,45 @@ export function OfferPerilsHOC<
     OfferPerilsDocument,
     operationOptions,
   );
+}
+export const DirectDebitRegistrationDocument = gql`
+  mutation DirectDebitRegistration {
+    startDirectDebitRegistration
+  }
+`;
+export class DirectDebitRegistrationComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<
+      DirectDebitRegistrationMutation,
+      DirectDebitRegistrationVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<
+        DirectDebitRegistrationMutation,
+        DirectDebitRegistrationVariables
+      >
+        mutation={DirectDebitRegistrationDocument}
+        {...this['props'] as any}
+      />
+    );
+  }
+}
+export function DirectDebitRegistrationHOC<
+  TProps = any,
+  OperationOptions = ReactApollo.OperationOption<
+    TProps,
+    DirectDebitRegistrationMutation,
+    DirectDebitRegistrationVariables
+  >
+>(operationOptions: OperationOptions) {
+  return ReactApollo.graphql<
+    TProps,
+    DirectDebitRegistrationMutation,
+    DirectDebitRegistrationVariables
+  >(DirectDebitRegistrationDocument, operationOptions);
 }
 export const CashbackOptionsDocument = gql`
   query CashbackOptions {

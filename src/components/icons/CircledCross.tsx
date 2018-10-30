@@ -1,16 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Svg, Circle, G, Polygon } from 'react-native-svg';
 
 import { colors } from '@hedviginsurance/brand';
+import { IconSize } from './types';
 
-export const CircledCross = ({
+interface CircledCrossProps extends IconSize {
+  crossFillColor?: string;
+  circleStrokeColor?: string;
+}
+
+export const CircledCross: React.SFC<CircledCrossProps> = ({
   width,
   height,
-  crossFillColor,
-  circleStrokeColor,
+  crossFillColor = colors.PINK,
+  circleStrokeColor = colors.PINK,
 }) => (
-  <Svg height={height} width={width} version="1.1" viewBox="0 0 37 37">
+  <Svg height={height} width={width} viewBox="0 0 37 37">
     <G fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
       <G transform="translate(1.000000, 1.000000)">
         <Circle x="17.5" y="17.5" r="17.5" stroke={circleStrokeColor} />
@@ -28,15 +34,3 @@ export const CircledCross = ({
     </G>
   </Svg>
 );
-
-CircledCross.defaultProps = {
-  crossFillColor: colors.PINK,
-  circleStrokeColor: colors.PINK,
-};
-
-CircledCross.propTypes = {
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  crossFillColor: PropTypes.oneOf(Object.values(colors)),
-  circleStrokeColor: PropTypes.oneOf(Object.values(colors)),
-};
