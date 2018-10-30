@@ -220,6 +220,14 @@ export const setLayout = ({
   }
 };
 
+export const setAfterBankIdLayout = async () => {
+  const layout: any = await getInitialLayout();
+
+  if (layout === getMainLayout()) {
+    setLayout(layout);
+  }
+}
+
 export const setInitialLayout = async () => {
   const layout: any = await getInitialLayout();
   setLayout(layout);
