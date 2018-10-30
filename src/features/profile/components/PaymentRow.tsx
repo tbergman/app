@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { Navigation } from 'react-native-navigation';
+
+import { PAYMENT_SCREEN } from 'src/navigation/screens/payment';
 import {
+  TouchableProfileRow,
   ProfileRow,
   ProfileRowTextContainer,
   ProfileRowHeader,
@@ -8,11 +12,19 @@ import {
 import { ProfileBankAccountIcon } from 'src/components/Icon';
 
 interface PaymentRowProps {
-  monthlyCost: number
+  monthlyCost: number;
 }
 
 const PaymentRow: React.SFC<PaymentRowProps> = ({ monthlyCost }) => (
-  <ProfileRow>
+  <TouchableProfileRow
+    onPress={() =>
+      Navigation.showModal({
+        stack: {
+          children: [PAYMENT_SCREEN],
+        },
+      })
+    }
+  >
     <ProfileBankAccountIcon />
     <ProfileRowTextContainer>
       <ProfileRowHeader>Min betalning</ProfileRowHeader>
@@ -20,7 +32,7 @@ const PaymentRow: React.SFC<PaymentRowProps> = ({ monthlyCost }) => (
         {monthlyCost} kr/månad. Betalas via autogiro
       </ProfileRowText>
     </ProfileRowTextContainer>
-  </ProfileRow>
+  </TouchableProfileRow>
 );
 
 export { PaymentRow };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@sampettersson/primitives';
 import { View, LayoutAnimation } from 'react-native';
-import { Mount } from 'react-lifecycle-components';
+import { Mount, Update } from 'react-lifecycle-components';
 
 import { OpenState } from 'src/components/OpenState';
 
@@ -11,35 +11,59 @@ const HeightConstraint = styled(View)(({ visible }: { visible: boolean }) => ({
   overflow: 'hidden',
 }));
 
-export const MessageHeightAnimation: React.SFC = ({ children }) => (
+interface MessageHeightAnimationProps {
+  visible: boolean;
+}
+
+const scheduleAnimation = () => {
+  LayoutAnimation.configureNext({
+    duration: 600,
+    create: {
+      type: LayoutAnimation.Types.spring,
+      springDamping: 1,
+    },
+    update: {
+      type: LayoutAnimation.Types.spring,
+      springDamping: 1,
+    },
+    delete: {
+      type: LayoutAnimation.Types.spring,
+      springDamping: 1,
+    },
+  });
+};
+
+export const MessageHeightAnimation: React.SFC<MessageHeightAnimationProps> = ({
+  children,
+  visible,
+}) => (
   <OpenState initialOpenState={false}>
     {({ isOpen, setIsOpen }) => (
       <>
         <Mount
           on={() => {
+            if (!visible) return;
             setTimeout(() => {
-              LayoutAnimation.configureNext({
-                duration: 600,
-                create: {
-                  type: LayoutAnimation.Types.spring,
-                  springDamping: 1,
-                },
-                update: {
-                  type: LayoutAnimation.Types.spring,
-                  springDamping: 1,
-                },
-                delete: {
-                  type: LayoutAnimation.Types.spring,
-                  springDamping: 1,
-                },
-              });
               setIsOpen(true);
+              scheduleAnimation();
             }, 50);
           }}
         >
           {null}
         </Mount>
-        <HeightConstraint visible={isOpen}>{children}</HeightConstraint>
+
+        <Update
+          was={() => {
+            setIsOpen(true);
+            scheduleAnimation();
+          }}
+          watched={visible}
+        >
+          {null}
+        </Update>
+        <HeightConstraint visible={visible && isOpen}>
+          {children}
+        </HeightConstraint>
       </>
     )}
   </OpenState>
