@@ -1,5 +1,6 @@
 import React from 'react';
 import Payment from '../../../features/payment';
+import { StandalonePayment } from 'src/features/payment/StandalonePayment';
 import { CLOSE_BUTTON } from './buttons';
 
 class PaymentScreen extends React.Component {
@@ -20,7 +21,11 @@ class PaymentScreen extends React.Component {
   }
 
   render() {
-    return <Payment {...this.props} />;
+    if (this.props.startedFromChat) {
+      return <Payment {...this.props} />;
+    }
+
+    return <StandalonePayment {...this.props} />;
   }
 }
 

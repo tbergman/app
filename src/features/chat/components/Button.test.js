@@ -18,15 +18,6 @@ describe('<AnimatedSingleSelectOptionButton />', () => {
       shallow(<AnimatedSingleSelectOptionButton {...standardProps} />),
     ).not.toThrow();
   });
-
-  it('Should not be visible when hidden is true', () => {
-    const component = shallow(
-      <AnimatedSingleSelectOptionButton {...standardProps} hidden />,
-    );
-    expect(component.props().style.filter((s) => s.opacity === 0)).toHaveLength(
-      1,
-    );
-  });
 });
 
 describe('<AnimatedMultipleSelectOptionButton />', () => {

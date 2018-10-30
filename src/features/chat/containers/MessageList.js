@@ -1,33 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {
-  View,
-  Image,
-  Dimensions,
-  StyleSheet,
-  FlatList,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
+import Hyperlink from 'react-native-hyperlink';
 
 import {
   StyledDefaultMessageText,
-  StyledDefaultUserMessageText,
   AnimatedStyledChatMessage,
-  StyledUserChatMessage,
-  StyledHeroMessage,
   StyledAvatarContainer,
 } from '../styles/chat';
-import EditMessageButton from '../containers/EditMessageButton';
 import Avatar from '../containers/Avatar';
 import LoadingIndicator from '../containers/LoadingIndicator';
-
-const window = Dimensions.get('window');
-// (window width - (2 outer margin + 2 inner margin) * 0.98)
-const heroImageWidth = Math.round((window.width - 64) * 0.98);
+import { RichMessage } from '../components/rich-message';
 
 const styles = StyleSheet.create({
-  heroMessage: { height: 200, width: heroImageWidth },
   scrollContent: {
     flex: 1,
     paddingTop: 16,
@@ -45,54 +30,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
   },
-  userMessageEditButton: {
-    marginLeft: 5,
-    marginRight: 1,
-  },
-  userMessageEditButtonWithStatusMessage: { marginBottom: 10 },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
 });
-
-const renderImage = (message) => {
-  if (
-    message.body.imageURL &&
-    message.body.imageHeight &&
-    message.body.imageWidth
-  ) {
-    return (
-      <Image
-        source={{ uri: message.body.imageURL }}
-        style={{
-          height: message.body.imageHeight,
-          width: message.body.imageWidth,
-        }}
-      />
-    );
-  } else {
-    return null;
-  }
-};
-
-// TODO: Investigate if this is actually in use. If not, delete it
-class HeroMessage extends React.Component {
-  static propTypes = { message: PropTypes.object };
-
-  render() {
-    const { message } = this.props;
-    return (
-      <StyledHeroMessage>
-        {renderImage(message)}
-        <StyledDefaultMessageText>{message.body.text}</StyledDefaultMessageText>
-        <Image
-          resizeMode="contain"
-          source={{ uri: message.body.imageUri }}
-          style={styles.heroMessage}
-        />
-      </StyledHeroMessage>
-    );
-  }
-}
 
 class DefaultHedvigMessage extends React.Component {
   render() {
@@ -102,10 +42,11 @@ class DefaultHedvigMessage extends React.Component {
     } else {
       return (
         <AnimatedStyledChatMessage>
-          {renderImage(message)}
-          <StyledDefaultMessageText>
-            {message.body.text}
-          </StyledDefaultMessageText>
+          <Hyperlink>
+            <StyledDefaultMessageText>
+              {message.body.text}
+            </StyledDefaultMessageText>
+          </Hyperlink>
         </AnimatedStyledChatMessage>
       );
     }
@@ -115,35 +56,19 @@ class DefaultHedvigMessage extends React.Component {
 class DefaultUserMessage extends React.Component {
   render() {
     const { message, index } = this.props;
-    let maybeEditMessageButton;
-    if (message.header.editAllowed) {
-      maybeEditMessageButton = (
-        <View
-          style={[
-            styles.userMessageEditButton,
-            !message.header.statusMessage
-              ? styles.userMessageEditButtonWithStatusMessage
-              : undefined,
-          ]}
-        >
-          <EditMessageButton index={index} />
-        </View>
-      );
-    }
+
+    const withMargin =
+      !message.header.statusMessage ||
+      (message.header.statusMessage && index !== 1);
+
     return (
       <View style={styles.userMessageOuterContainer}>
         <View style={styles.userMessageInnerContainer}>
-          {maybeEditMessageButton}
-          <StyledUserChatMessage
-            withMargin={
-              !message.header.statusMessage ||
-              (message.header.statusMessage && index !== 1)
-            }
-          >
-            <StyledDefaultUserMessageText>
-              {message.body.text}
-            </StyledDefaultUserMessageText>
-          </StyledUserChatMessage>
+          <RichMessage
+            index={index}
+            message={message}
+            withMargin={withMargin}
+          />
         </View>
         {message.header.statusMessage &&
           index === 1 && (
@@ -159,8 +84,8 @@ class DefaultUserMessage extends React.Component {
 const UserMessageMapping = {};
 
 const HedvigMessageMapping = {
-  hero: HeroMessage,
-  bankid_collect: () => null, // <-- This is how to not render certain types of messages from Hedvig
+  hero: () => null,
+  bankid_collect: () => null,
   audio: () => null,
   polling: () => null,
 };
@@ -206,6 +131,10 @@ const renderMessage = (message, idx) => {
 class MessageList extends React.Component {
   _renderItem = ({ item, index }) => renderMessage(item, index);
   _keyExtractor = (item) => '' + item.globalId;
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.messages !== this.props.messages;
+  }
 
   render() {
     return (

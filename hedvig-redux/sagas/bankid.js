@@ -1,5 +1,6 @@
 import { call, take, takeLatest, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import gql from 'graphql-tag';
 import {
   API,
   DEPRECATED_BANKID_COLLECT,
@@ -43,6 +44,28 @@ const collectHandler = function*() {
       isDone(state.deprecatedBankId.response, state.deprecatedBankId.tryCount)
     ) {
       yield put({ type: DEPRECATED_BANKID_COLLECT_COMPLETE });
+      const { client } = require('src/graphql/client');
+      client
+        .query({
+          query: gql`
+            query insurance {
+              insurance {
+                status
+              }
+            }
+          `,
+        })
+        .then(({ data }) => {
+          const {
+            getMainLayout,
+            setLayout,
+            shouldShowDashboard,
+          } = require('src/navigation/layout');
+
+          if (shouldShowDashboard(data.insurance.status)) {
+            setLayout(getMainLayout());
+          }
+        });
       yield put(getMessages());
     } else {
       yield call(delay, COLLECT_DELAY_MS);

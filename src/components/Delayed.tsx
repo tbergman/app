@@ -10,12 +10,12 @@ interface DelayedProps {
 
 interface State {
   shouldRenderChildren: boolean;
-  timer: NodeJS.Timer;
+  timer: number;
 }
 
 interface Actions {
   setShouldRenderChildren: (shouldRenderChildren: boolean) => void;
-  setTimer: (timer: NodeJS.Timer) => void;
+  setTimer: (timer: number) => void;
 }
 
 const actions: ActionMap<State, Actions> = {

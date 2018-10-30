@@ -5,5 +5,9 @@ export const SIGN_BUTTON_COMPONENT = {
   alignment: 'center',
 };
 
-export const register = (registerComponent) =>
-  registerComponent(SIGN_BUTTON_COMPONENT.name, () => SignButton);
+export const register = (
+  registerComponent: (
+    signButtonComponentName: string,
+    getSignButton: () => React.StatelessComponent,
+  ) => void,
+) => registerComponent(SIGN_BUTTON_COMPONENT.name, () => SignButton);

@@ -6,6 +6,7 @@ const getDeviceInfo = () => ({
   model: DeviceInfo.getModel(),
   deviceId: DeviceInfo.getDeviceId(),
   uniqueId: DeviceInfo.getUniqueID(),
+  version: DeviceInfo.getVersion(),
 });
 
 export { getDeviceInfo };

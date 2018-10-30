@@ -2,16 +2,26 @@ import { Platform } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Image } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import { Parallel, Spring } from 'animated-react-native-components';
 
+import { Delayed } from 'src/components/Delayed';
+import { AnimatedView } from 'src/components/AnimatedPrimitives';
 import { NavigationEvents } from '../../../navigation/events';
 
 import { chatActions } from '../../../../hedvig-redux';
 import FabAction from '../components/FabAction';
 import { getFabActions } from '../state/selectors';
 import { colors } from '@hedviginsurance/brand';
+
+const styles = StyleSheet.create({
+  animatedView: {
+    position: 'absolute',
+    bottom: 0,
+  },
+});
 
 class FloatingActionButton extends React.Component {
   static propTypes = {
@@ -72,44 +82,75 @@ class FloatingActionButton extends React.Component {
     }
   };
 
+  onGlobalEvent = ({ name }) => {
+    this.onNavigationCommand(name);
+  };
+
   render() {
     const { fabActions } = this.props;
 
     return (
-      <React.Fragment>
+      <Delayed mountChildren mountChildrenAfter={500} unmountChildrenAfter={0}>
         {Platform.OS === 'ios' && (
-          <NavigationEvents onNavigationCommand={this.onNavigationCommand} />
-        )}
-        {this.state.show && (
-          <FloatingAction
-            color="#651eff"
-            distanceToEdge={isIphoneX() ? 55 : 20}
-            position={Platform.OS === 'ios' ? 'center' : 'right'}
-            customButtonStyles={{
-              shadowColor: colors.PURPLE,
-              shadowOffset: {
-                width: 0,
-                height: 0,
-              },
-            }}
-            floatingIcon={
-              <Image
-                source={require('../../../../assets/buttons/fab/fab-icon.png')}
-              />
-            }
-            overlayColor="rgba(0,0,0,0.15)"
-            actions={fabActions.map((a) => ({
-              name: a.triggerUrl,
-              margin: 0,
-              render: (props) => (
-                <FabAction {...props} text={a.text} enabled={a.enabled} />
-              ),
-            }))}
-            actionsPaddingTopBottom={0}
-            onPressItem={this.handlePressItem}
+          <NavigationEvents
+            onNavigationCommand={this.onNavigationCommand}
+            onGlobalEvent={this.onGlobalEvent}
           />
         )}
-      </React.Fragment>
+        <Parallel>
+          <Spring
+            initialValue={0}
+            toValue={this.state.show ? 1 : 0}
+            config={{ bounciness: 5 }}
+          >
+            {(animatedValue) => (
+              <AnimatedView
+                style={[
+                  styles.animatedView,
+                  {
+                    transform: [
+                      {
+                        translateY: animatedValue.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [isIphoneX() ? 120 : 100, 0],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
+              >
+                <FloatingAction
+                  color="#651eff"
+                  distanceToEdge={isIphoneX() ? 55 : 20}
+                  position={Platform.OS === 'ios' ? 'center' : 'right'}
+                  customButtonStyles={{
+                    shadowColor: colors.PURPLE,
+                    shadowOffset: {
+                      width: 0,
+                      height: 0,
+                    },
+                  }}
+                  floatingIcon={
+                    <Image
+                      source={require('../../../../assets/buttons/fab/fab-icon.png')}
+                    />
+                  }
+                  overlayColor="rgba(0,0,0,0.15)"
+                  actions={fabActions.map((a) => ({
+                    name: a.triggerUrl,
+                    margin: 0,
+                    render: (props) => (
+                      <FabAction {...props} text={a.text} enabled={a.enabled} />
+                    ),
+                  }))}
+                  actionsPaddingTopBottom={0}
+                  onPressItem={this.handlePressItem}
+                />
+              </AnimatedView>
+            )}
+          </Spring>
+        </Parallel>
+      </Delayed>
     );
   }
 }
