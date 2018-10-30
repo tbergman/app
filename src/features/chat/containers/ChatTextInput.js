@@ -8,7 +8,7 @@ import styled from '@sampettersson/primitives';
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { SendButton } from '../components/Button';
 
-import { colors } from '@hedviginsurance/brand';
+import { colors, fonts } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     fontSize: 16,
     overflow: 'hidden',
+    fontFamily: fonts.CIRCULAR,
   },
 });
 
