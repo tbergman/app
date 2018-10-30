@@ -111,7 +111,7 @@ class FloatingActionButton extends React.Component {
                       {
                         translateY: animatedValue.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [100, 0],
+                          outputRange: [isIphoneX() ? 120 : 100, 0],
                         }),
                       },
                     ],
