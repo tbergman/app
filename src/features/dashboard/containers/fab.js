@@ -7,6 +7,7 @@ import { FloatingAction } from '@hedviginsurance/react-native-floating-action';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Parallel, Spring } from 'animated-react-native-components';
 
+import { Delayed } from 'src/components/Delayed';
 import { AnimatedView } from 'src/components/AnimatedPrimitives';
 import { NavigationEvents } from '../../../navigation/events';
 
@@ -89,7 +90,7 @@ class FloatingActionButton extends React.Component {
     const { fabActions } = this.props;
 
     return (
-      <React.Fragment>
+      <Delayed mountChildren mountChildrenAfter={500} unmountChildrenAfter={0}>
         {Platform.OS === 'ios' && (
           <NavigationEvents
             onNavigationCommand={this.onNavigationCommand}
@@ -149,7 +150,7 @@ class FloatingActionButton extends React.Component {
             )}
           </Spring>
         </Parallel>
-      </React.Fragment>
+      </Delayed>
     );
   }
 }
