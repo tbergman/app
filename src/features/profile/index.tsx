@@ -85,7 +85,7 @@ const Profile: React.SFC = () => (
         <Container>
           <Header>
             <Spacing height={8} />
-            {cashback ? (
+            {cashback.imageUrl ? (
               <CashbackImage
                 source={{ uri: cashback.imageUrl }}
                 resizeMode="contain"
