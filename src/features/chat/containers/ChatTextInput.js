@@ -8,7 +8,6 @@ import styled from '@sampettersson/primitives';
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { SendButton } from '../components/Button';
 
-import { Buttons } from '../components/pickers/buttons';
 import { colors } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
@@ -108,7 +107,6 @@ class ChatTextInput extends React.Component {
       <Provider>
         <GiphyProvider>
           <Bar>
-            <Buttons />
             <TextInputContainer>
               <TextInput
                 ref={(ref) => (this.ref = ref)}

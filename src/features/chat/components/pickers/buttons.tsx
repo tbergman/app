@@ -9,6 +9,13 @@ import { HideView } from './hide-view';
 
 export const Buttons: React.SFC = () => (
   <>
+    <GiphyConsumer>
+      {({ isOpen }) => (
+        <HideView hidden={isOpen}>
+          <UploadButton />
+        </HideView>
+      )}
+    </GiphyConsumer>
     <UploadConsumer>
       {({ isOpen }) => (
         <HideView hidden={isOpen}>
