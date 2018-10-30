@@ -112,7 +112,11 @@ class ChatTextInput extends React.Component {
                 ref={(ref) => (this.ref = ref)}
                 style={[styles.textInput]}
                 autoFocus
-                scrollEnabled={false}
+                scrollEnabled={
+                  this.props.message.header.richTextChatCompatible
+                    ? false
+                    : undefined
+                }
                 autoCapitalize="none"
                 placeholder="Skriv här..."
                 underlineColorAndroid="transparent"
