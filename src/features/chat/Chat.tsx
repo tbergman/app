@@ -244,7 +244,10 @@ const Chat: React.SFC<ChatProps> = ({
               {messages.length ? <MessageList /> : <Loader />}
             </Messages>
             <Response>
-              <InputComponent showOffer={showOffer} messages={messages} />
+              <InputComponent
+                showOffer={() => showOffer(stopPolling, componentId)}
+                messages={messages}
+              />
             </Response>
           </KeyboardAvoid>
         </NavigationOptions>

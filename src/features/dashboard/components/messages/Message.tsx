@@ -94,6 +94,7 @@ interface MessageProps {
   messageType: MessageType;
   action: String | React.ReactElement<ConsumerProps>;
   onPressAction: () => void;
+  visible: boolean;
 }
 
 export const Message: React.SFC<MessageProps> = ({
@@ -101,8 +102,9 @@ export const Message: React.SFC<MessageProps> = ({
   message,
   action,
   onPressAction,
+  visible,
 }) => (
-  <MessageHeightAnimation>
+  <MessageHeightAnimation visible={visible}>
     <Background messageType={messageType}>
       <Sequence>
         <Delay config={{ delay: 400 }} />

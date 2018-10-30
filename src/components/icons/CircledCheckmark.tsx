@@ -1,16 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { Svg, Circle, G, Polygon } from 'react-native-svg';
 
 import { colors } from '@hedviginsurance/brand';
+import { IconSize } from './types';
 
-export const CircledCheckmark = ({
+interface CircledCheckmarkProps extends IconSize {
+  checkmarkFillColor?: string;
+  circleStrokeColor?: string;
+}
+
+export const CircledCheckmark: React.SFC<CircledCheckmarkProps> = ({
   height,
   width,
-  checkmarkFillColor,
-  circleStrokeColor,
+  checkmarkFillColor = colors.GREEN,
+  circleStrokeColor = colors.GREEN,
 }) => (
-  <Svg height={height} width={width} version="1.1" viewBox="0 0 37 37">
+  <Svg height={height} width={width} viewBox="0 0 37 37">
     <G fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
       <G transform="translate(1.000000, 1.000000)">
         <G
@@ -35,15 +40,3 @@ export const CircledCheckmark = ({
     </G>
   </Svg>
 );
-
-CircledCheckmark.defaultProps = {
-  checkmarkFillColor: colors.GREEN,
-  circleStrokeColor: colors.GREEN,
-};
-
-CircledCheckmark.propTypes = {
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  checkmarkFillColor: PropTypes.oneOf(Object.values(colors)),
-  circleStrokeColor: PropTypes.oneOf(Object.values(colors)),
-};
