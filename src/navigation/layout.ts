@@ -125,7 +125,7 @@ export const getDebugLayout = () => ({
   },
 });
 
-const shouldShowDashboard = (insuranceStatus: string) =>
+export const shouldShowDashboard = (insuranceStatus: string) =>
   ['ACTIVE', 'INACTIVE_WITH_START_DATE', 'INACTIVE'].indexOf(
     insuranceStatus,
   ) !== -1;
