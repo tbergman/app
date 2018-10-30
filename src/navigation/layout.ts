@@ -125,6 +125,11 @@ export const getDebugLayout = () => ({
   },
 });
 
+const shouldShowDashboard = (insuranceStatus: string) =>
+  ['ACTIVE', 'INACTIVE_WITH_START_DATE', 'INACTIVE'].indexOf(
+    insuranceStatus,
+  ) !== -1;
+
 export const getInitialLayout = async () => {
   if (await AsyncStorage.getItem(LAUNCH_DEBUG)) {
     return getDebugLayout();
@@ -148,11 +153,7 @@ export const getInitialLayout = async () => {
 
       unsubscribe();
 
-      if (
-        ['ACTIVE', 'INACTIVE_WITH_START_DATE', 'INACTIVE'].indexOf(
-          insurance.status,
-        ) !== -1
-      ) {
+      if (shouldShowDashboard(insurance.status)) {
         return resolve(getMainLayout());
       }
 
@@ -219,14 +220,6 @@ export const setLayout = ({
     overlays.forEach((overlay) => Navigation.showOverlay(overlay));
   }
 };
-
-export const setAfterBankIdLayout = async () => {
-  const layout: any = await getInitialLayout();
-
-  if (layout === getMainLayout()) {
-    setLayout(layout);
-  }
-}
 
 export const setInitialLayout = async () => {
   const layout: any = await getInitialLayout();
