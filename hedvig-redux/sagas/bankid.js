@@ -43,6 +43,8 @@ const collectHandler = function*() {
       isDone(state.deprecatedBankId.response, state.deprecatedBankId.tryCount)
     ) {
       yield put({ type: DEPRECATED_BANKID_COLLECT_COMPLETE });
+      const { setLayout, getMainLayout } = require('src/navigation/layout');
+      setLayout(getMainLayout());
       yield put(getMessages());
     } else {
       yield call(delay, COLLECT_DELAY_MS);
