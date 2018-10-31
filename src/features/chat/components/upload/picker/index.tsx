@@ -20,58 +20,76 @@ interface PickerProps {
   sendMessage: (key: string) => void;
 }
 
+interface ListHeaderContextProps {
+  sendMessage: (key: string) => void;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+const ListHeaderContext = React.createContext<ListHeaderContextProps>({
+  sendMessage: () => {},
+  setIsOpen: () => {},
+});
+
+const ListHeaderComponent = () => (
+  <ListHeaderContext.Consumer>
+    {({ sendMessage, setIsOpen }) => (
+      <Header
+        onUpload={(key) => {
+          sendMessage(key);
+          setIsOpen(false);
+        }}
+      />
+    )}
+  </ListHeaderContext.Consumer>
+);
+
 export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
   <Consumer>
     {({ isOpen, setIsOpen }) => (
-      <PickerContainer isOpen={isOpen}>
-        <Update
-          watched={isOpen}
-          was={() => {
-            if (isOpen) {
-              Keyboard.dismiss();
-            }
-          }}
-        >
-          {null}
-        </Update>
-        <Delayed
-          mountChildren={isOpen}
-          unmountChildrenAfter={500}
-          mountChildrenAfter={0}
-        >
-          <Data shouldLoad={isOpen}>
-            {({ photos, shouldLoadMore }) => (
-              <FlatList
-                ListHeaderComponent={() => (
-                  <Header
-                    onUpload={(key) => {
-                      sendMessage(key);
-                      setIsOpen(false);
-                    }}
-                  />
-                )}
-                data={photos!.edges!}
-                renderItem={({ item }) =>
-                  item.node.type.includes('Photo') ? (
-                    <Image
-                      uri={item.node.image.uri}
-                      onUpload={(key) => {
-                        sendMessage(key);
-                        setIsOpen(false);
-                      }}
-                    />
-                  ) : (
-                    <Video uri={item.node.image.uri} />
-                  )
-                }
-                keyExtractor={(item) => String(item.node.image.uri)}
-                onEndReached={() => shouldLoadMore()}
-                horizontal
-              />
-            )}
-          </Data>
-        </Delayed>
-      </PickerContainer>
+      <ListHeaderContext.Provider value={{ setIsOpen, sendMessage }}>
+        <PickerContainer isOpen={isOpen}>
+          <Update
+            watched={isOpen}
+            was={() => {
+              if (isOpen) {
+                Keyboard.dismiss();
+              }
+            }}
+          >
+            {null}
+          </Update>
+          <Delayed
+            mountChildren={isOpen}
+            unmountChildrenAfter={500}
+            mountChildrenAfter={0}
+          >
+            <Data shouldLoad={isOpen}>
+              {({ photos, shouldLoadMore }) => (
+                <FlatList
+                  ListHeaderComponent={ListHeaderComponent}
+                  data={photos!.edges!}
+                  renderItem={({ item }) =>
+                    item.node.type.includes('Photo') ? (
+                      <Image
+                        uri={item.node.image.uri}
+                        onUpload={(key) => {
+                          sendMessage(key);
+                          setIsOpen(false);
+                        }}
+                      />
+                    ) : (
+                      <Video uri={item.node.image.uri} />
+                    )
+                  }
+                  keyExtractor={(item) => String(item.node.image.uri)}
+                  onEndReached={() => shouldLoadMore()}
+                  horizontal
+                />
+              )}
+            </Data>
+          </Delayed>
+        </PickerContainer>
+      </ListHeaderContext.Provider>
     )}
   </Consumer>
 );

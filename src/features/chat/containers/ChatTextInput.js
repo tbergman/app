@@ -13,6 +13,7 @@ import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
 import { Provider as GiphyProvider } from '../components/giphy-picker/context';
+import { Buttons } from '../components/pickers/buttons';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -108,6 +109,7 @@ class ChatTextInput extends React.Component {
       <Provider>
         <GiphyProvider>
           <Bar>
+            <Buttons />
             <TextInputContainer>
               <TextInput
                 ref={(ref) => (this.ref = ref)}
