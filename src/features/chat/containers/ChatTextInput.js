@@ -1,9 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StyleSheet, TextInput, Platform, View } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  Platform,
+  View,
+  InputAccessoryView,
+} from 'react-native';
 import firebase from 'react-native-firebase';
 import styled from '@sampettersson/primitives';
+import color from 'color';
 
 import { chatActions, dialogActions } from '../../../../hedvig-redux';
 import { SendButton } from '../components/Button';
@@ -12,14 +19,19 @@ import { colors, fonts } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
-import { Provider as GiphyProvider } from '../components/giphy-picker/context';
+import {
+  Provider as GiphyProvider,
+  Consumer as GiphyConsumer,
+} from '../components/giphy-picker/context';
 import { Buttons } from '../components/pickers/buttons';
+import { BlurView } from 'react-native-blur';
 
 const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     alignSelf: 'stretch',
     minHeight: 40,
+    maxHeight: 160,
     paddingTop: 10,
     paddingRight: 16,
     paddingBottom: 10,
@@ -31,20 +43,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const Bar = styled(View)({
+const Absolute = styled(View)({
+  width: '100%',
+});
+
+const BarContainer = styled(View)({
+  borderTopWidth: StyleSheet.hairlineWidth,
+  borderTopColor: color(colors.DARK_GRAY).lighten(0.15),
+});
+
+const Bar = styled(BlurView)({
   flexDirection: 'row',
   alignItems: 'flex-end',
-  marginRight: 8,
-  marginLeft: 8,
-  marginBottom: 8,
+  paddingTop: 8,
+  paddingRight: 8,
+  paddingLeft: 8,
+  paddingBottom: 8,
 });
 
 const TextInputContainer = styled(View)({
   flexDirection: 'row',
   flex: 1,
   backgroundColor: colors.WHITE,
-  borderColor: colors.PURPLE,
-  borderWidth: 1,
+  borderColor: color(colors.DARK_GRAY).lighten(0.15),
+  borderWidth: StyleSheet.hairlineWidth,
   borderRadius: 24,
   alignItems: 'flex-end',
 });
@@ -94,61 +116,58 @@ class ChatTextInput extends React.Component {
     );
   };
 
-  _handleContentSizeChange = (event) => {
-    if (event && event.nativeEvent && event.nativeEvent.contentSize) {
-      this.setState({ height: event.nativeEvent.contentSize.height });
-    }
-  };
-
   _onTextChange = (text) => {
     this.setState({ inputValue: text });
   };
 
   render() {
+    const richTextChatCompatible = this.props.message.header
+      .richTextChatCompatible;
     return (
       <Provider>
         <GiphyProvider>
-          <Bar>
-            <Buttons />
-            <TextInputContainer>
-              <TextInput
-                ref={(ref) => (this.ref = ref)}
-                style={[styles.textInput]}
-                autoFocus
-                scrollEnabled={
-                  this.props.message.header.richTextChatCompatible
-                    ? false
-                    : undefined
-                }
-                autoCapitalize="none"
-                placeholder="Skriv här..."
-                underlineColorAndroid="transparent"
-                onChangeText={this._onTextChange}
-                multiline={this.props.message.header.richTextChatCompatible}
-                returnKeyType={
-                  this.props.message.header.richTextChatCompatible
-                    ? 'default'
-                    : 'send'
-                }
-                onSubmitEditing={() => {
-                  if (!this.props.message.header.richTextChatCompatible) {
-                    this._send();
-                  }
-                }}
-                enablesReturnKeyAutomatically
-                onContentSizeChange={this._handleContentSizeChange}
-              />
-              <SendButton
-                onPress={this._send}
-                disabled={
-                  !(this.state.inputValue && this.state.inputValue.length > 0)
-                }
-                size="small"
-              />
-            </TextInputContainer>
-          </Bar>
-          <Picker sendMessage={this.sendFileMessage} />
-          <GiphyPicker sendMessage={this._send} />
+          <InputAccessoryView>
+            <Absolute>
+              <BarContainer>
+                <Bar blurType="xlight">
+                  {richTextChatCompatible && <Buttons />}
+                  <TextInputContainer>
+                    <TextInput
+                      ref={(ref) => (this.ref = ref)}
+                      style={[styles.textInput]}
+                      autoFocus
+                      autoCapitalize="none"
+                      placeholder="Skriv här..."
+                      underlineColorAndroid="transparent"
+                      onChangeText={this._onTextChange}
+                      multiline={richTextChatCompatible}
+                      returnKeyType={
+                        richTextChatCompatible ? 'default' : 'send'
+                      }
+                      onSubmitEditing={() => {
+                        if (!richTextChatCompatible) {
+                          this._send();
+                        }
+                      }}
+                      enablesReturnKeyAutomatically
+                    />
+                    <SendButton
+                      onPress={this._send}
+                      disabled={
+                        !(
+                          this.state.inputValue &&
+                          this.state.inputValue.length > 0
+                        )
+                      }
+                      size="small"
+                    />
+                  </TextInputContainer>
+                </Bar>
+              </BarContainer>
+              <Picker sendMessage={this.sendFileMessage} />
+              <GiphyPicker sendMessage={this._send} />
+            </Absolute>
+          </InputAccessoryView>
         </GiphyProvider>
       </Provider>
     );

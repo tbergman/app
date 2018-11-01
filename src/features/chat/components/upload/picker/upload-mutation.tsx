@@ -16,7 +16,7 @@ const UploadMutationContainer = styled(View)({
 
 const UPLOAD_MUTATION = gql`
   mutation UploadMutation($file: Upload!) {
-    uploadFile(file: $file) @uploadLink {
+    uploadFile(file: $file) {
       key
     }
   }

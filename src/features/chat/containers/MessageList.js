@@ -1,7 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
+import KeyboardSpacer from './KeyboardSpacer';
 
 import {
   StyledDefaultMessageText,
@@ -15,8 +22,6 @@ import { RichMessage } from '../components/rich-message';
 const styles = StyleSheet.create({
   scrollContent: {
     flex: 1,
-    paddingTop: 16,
-    paddingBottom: 16,
   },
   statusMessage: {
     fontFamily: 'CircularStd-Book',
@@ -133,19 +138,23 @@ class MessageList extends React.Component {
   _keyExtractor = (item) => '' + item.globalId;
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.messages !== this.props.messages;
+    return nextProps.messages[0].globalId !== this.props.messages[0].globalId;
   }
 
   render() {
     return (
       <FlatList
         inverted
+        contentContainerStyle={{
+          paddingBottom: 20,
+        }}
         style={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         data={this.props.messages}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         keyboardDismissMode="interactive"
+        ListHeaderComponent={<KeyboardSpacer restSpacing={58.8} />}
       />
     );
   }
