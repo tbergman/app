@@ -13,7 +13,6 @@ import { Update } from 'react-lifecycle-components';
 const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
   height: isOpen ? 250 : 0,
   width: '100%',
-  backgroundColor: colors.LIGHT_GRAY,
 }));
 
 interface PickerProps {

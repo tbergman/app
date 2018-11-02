@@ -49,10 +49,10 @@ const Absolute = styled(View)({
 
 const BarContainer = styled(View)({
   borderTopWidth: StyleSheet.hairlineWidth,
-  borderTopColor: color(colors.DARK_GRAY).lighten(0.15),
+  borderColor: color(colors.DARK_GRAY).lighten(0.15),
 });
 
-const Bar = styled(BlurView)({
+const Bar = styled(View)({
   flexDirection: 'row',
   alignItems: 'flex-end',
   paddingTop: 8,
@@ -129,38 +129,42 @@ class ChatTextInput extends React.Component {
           <InputAccessoryView>
             <Absolute>
               <BarContainer>
-                <Bar blurType="xlight">
-                  {richTextChatCompatible && <Buttons />}
-                  <TextInputContainer>
-                    <TextInput
-                      ref={(ref) => (this.ref = ref)}
-                      style={[styles.textInput]}
-                      autoFocus
-                      autoCapitalize="none"
-                      placeholder="Skriv här..."
-                      underlineColorAndroid="transparent"
-                      onChangeText={this._onTextChange}
-                      multiline={richTextChatCompatible}
-                      returnKeyType={
-                        richTextChatCompatible ? 'default' : 'send'
-                      }
-                      onSubmitEditing={() => {
-                        if (!richTextChatCompatible) {
-                          this._send();
-                        }
-                      }}
-                      enablesReturnKeyAutomatically
-                    />
-                    <SendButton
-                      onPress={this._send}
-                      disabled={!this.state.inputValue}
-                      size="small"
-                    />
-                  </TextInputContainer>
-                </Bar>
+                <BlurView blurType="xlight">
+                  <View>
+                    <Bar>
+                      {richTextChatCompatible && <Buttons />}
+                      <TextInputContainer>
+                        <TextInput
+                          ref={(ref) => (this.ref = ref)}
+                          style={[styles.textInput]}
+                          autoFocus
+                          autoCapitalize="none"
+                          placeholder="Skriv här..."
+                          underlineColorAndroid="transparent"
+                          onChangeText={this._onTextChange}
+                          multiline={richTextChatCompatible}
+                          returnKeyType={
+                            richTextChatCompatible ? 'default' : 'send'
+                          }
+                          onSubmitEditing={() => {
+                            if (!richTextChatCompatible) {
+                              this._send();
+                            }
+                          }}
+                          enablesReturnKeyAutomatically
+                        />
+                        <SendButton
+                          onPress={this._send}
+                          disabled={!this.state.inputValue}
+                          size="small"
+                        />
+                      </TextInputContainer>
+                    </Bar>
+                    <Picker sendMessage={this.sendFileMessage} />
+                    <GiphyPicker sendMessage={this._send} />
+                  </View>
+                </BlurView>
               </BarContainer>
-              <Picker sendMessage={this.sendFileMessage} />
-              <GiphyPicker sendMessage={this._send} />
             </Absolute>
           </InputAccessoryView>
         </GiphyProvider>
