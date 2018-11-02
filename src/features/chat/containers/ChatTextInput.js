@@ -64,7 +64,7 @@ const Bar = styled(BlurView)({
 const TextInputContainer = styled(View)({
   flexDirection: 'row',
   flex: 1,
-  backgroundColor: colors.WHITE,
+  backgroundColor: color(colors.WHITE).alpha(0.8),
   borderColor: color(colors.DARK_GRAY).lighten(0.15),
   borderWidth: StyleSheet.hairlineWidth,
   borderRadius: 24,
@@ -86,6 +86,7 @@ class ChatTextInput extends React.Component {
 
   state = {
     height: 0,
+    inputValue: '',
   };
 
   requestPush = () => {
@@ -93,10 +94,6 @@ class ChatTextInput extends React.Component {
       this.props.requestPushNotifications();
     }
   };
-
-  shouldComponentUpdate() {
-    return false;
-  }
 
   _send = (message) => {
     this.requestPush();
@@ -156,12 +153,7 @@ class ChatTextInput extends React.Component {
                     />
                     <SendButton
                       onPress={this._send}
-                      disabled={
-                        !(
-                          this.state.inputValue &&
-                          this.state.inputValue.length > 0
-                        )
-                      }
+                      disabled={!this.state.inputValue}
                       size="small"
                     />
                   </TextInputContainer>
