@@ -94,6 +94,10 @@ class ChatTextInput extends React.Component {
     }
   };
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   _send = (message) => {
     this.requestPush();
     if (!this.props.isSending) {
@@ -121,8 +125,7 @@ class ChatTextInput extends React.Component {
   };
 
   render() {
-    const richTextChatCompatible = this.props.message.header
-      .richTextChatCompatible;
+    const richTextChatCompatible = true;
     return (
       <Provider>
         <GiphyProvider>

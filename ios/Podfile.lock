@@ -175,6 +175,8 @@ PODS:
     - React
   - RNGestureHandler (1.0.7):
     - React
+  - RNReanimated (1.0.0-alpha.10):
+    - React
   - RNSound (0.10.9):
     - React/Core
     - RNSound/Core (= 0.10.9)
@@ -213,20 +215,20 @@ DEPENDENCIES:
   - react-native-fast-image (from `../node_modules/react-native-fast-image`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-video (from `../node_modules/react-native-video`)
-  - React/ART (from `../node_modules/react-native`)
-  - React/Core (from `../node_modules/react-native`)
-  - React/CxxBridge (from `../node_modules/react-native`)
-  - React/DevSupport (from `../node_modules/react-native`)
-  - React/RCTActionSheet (from `../node_modules/react-native`)
-  - React/RCTAnimation (from `../node_modules/react-native`)
-  - React/RCTCameraRoll (from `../node_modules/react-native`)
-  - React/RCTGeolocation (from `../node_modules/react-native`)
-  - React/RCTImage (from `../node_modules/react-native`)
-  - React/RCTLinkingIOS (from `../node_modules/react-native`)
-  - React/RCTNetwork (from `../node_modules/react-native`)
-  - React/RCTText (from `../node_modules/react-native`)
-  - React/RCTVibration (from `../node_modules/react-native`)
-  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - "React/ART (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/Core (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/CxxBridge (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/DevSupport (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTActionSheet (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTAnimation (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTCameraRoll (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTGeolocation (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTImage (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTLinkingIOS (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTNetwork (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTText (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTVibration (from `../node_modules/@hedviginsurance/react-native`)"
+  - "React/RCTWebSocket (from `../node_modules/@hedviginsurance/react-native`)"
   - ReactNativeAnalyticsSegmentIo (from `../node_modules/react-native-analytics-segment-io`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
@@ -236,6 +238,7 @@ DEPENDENCIES:
   - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
@@ -279,7 +282,7 @@ EXTERNAL SOURCES:
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   React:
-    :path: "../node_modules/react-native"
+    :path: "../node_modules/@hedviginsurance/react-native"
   react-native-blur:
     :path: "../node_modules/react-native-blur"
   react-native-branch:
@@ -312,6 +315,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler/ios"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNSound:
     :path: "../node_modules/react-native-sound"
   RNSVG:
@@ -363,6 +368,7 @@ SPEC CHECKSUMS:
   RNFirebase: 2b25fd2e60269f26bb0a76c71dcc942b35a77df0
   RNFS: bbb1a64eb245763daf34aea86f97c97c4e85f74c
   RNGestureHandler: 968e4453152673aedcbbb7c1ada6700c214cea7a
+  RNReanimated: 45d9313b7a62318ed00d60a811937321e43e076e
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
@@ -371,6 +377,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: fcb56eb1e653f1929bb73e5e70e3f6c640b80f3b
+PODFILE CHECKSUM: ef6df70afbe6d94575fc28af777a5eccbe15d380
 
 COCOAPODS: 1.5.3

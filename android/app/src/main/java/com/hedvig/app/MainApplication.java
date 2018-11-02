@@ -72,6 +72,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new ReanimatedPackage(),
         new ReactNativeDocumentPicker(),
         new BlurViewPackage(),
         new FastImageViewPackage(),

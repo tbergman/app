@@ -12,7 +12,6 @@ const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
   height: isOpen ? 250 : 0,
   width: '100%',
   backgroundColor: colors.LIGHT_GRAY,
-  overflow: 'hidden',
 }));
 
 interface PickerProps {
@@ -25,7 +24,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
       <PickerContainer isOpen={isOpen}>
         <Delayed
           mountChildren={isOpen}
-          unmountChildrenAfter={300}
+          unmountChildrenAfter={30000}
           mountChildrenAfter={0}
         >
           <SearchBar>

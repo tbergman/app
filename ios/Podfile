@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 target 'hedvig' do
   pod 'React',
-    :path => "../node_modules/react-native",
+    :path => "../node_modules/@hedviginsurance/react-native",
     :inhibit_warnings => true,
     :subspecs => [
       "Core",
@@ -67,6 +67,8 @@ target 'hedvig' do
   pod 'react-native-blur', :path => '../node_modules/react-native-blur'
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
