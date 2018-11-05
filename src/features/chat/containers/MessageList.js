@@ -134,10 +134,6 @@ class MessageList extends React.Component {
   _renderItem = ({ item, index }) => renderMessage(item, index);
   _keyExtractor = (item) => '' + item.globalId;
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.messages[0].globalId !== this.props.messages[0].globalId;
-  }
-
   render() {
     return (
       <FlatList
