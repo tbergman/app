@@ -8,10 +8,10 @@ import Collapsible from 'react-native-collapsible';
 import { Data } from './data';
 import { SearchBar } from './search-bar';
 
-const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
+const PickerContainer = styled(View)({
   height: 250,
   width: '100%',
-}));
+});
 
 interface PickerProps {
   sendMessage: (message: string) => void;
@@ -24,7 +24,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
         <PickerContainer isOpen={isOpen}>
           <Delayed
             mountChildren={isOpen}
-            unmountChildrenAfter={30000}
+            unmountChildrenAfter={500}
             mountChildrenAfter={0}
           >
             <SearchBar>

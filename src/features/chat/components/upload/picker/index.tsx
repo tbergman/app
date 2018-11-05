@@ -10,10 +10,10 @@ import { Delayed } from 'src/components/Delayed';
 import { Update } from 'react-lifecycle-components';
 import Collapsible from 'react-native-collapsible';
 
-const PickerContainer = styled(View)(({ isOpen }: { isOpen: boolean }) => ({
+const PickerContainer = styled(View)({
   height: 250,
   width: '100%',
-}));
+});
 
 interface PickerProps {
   sendMessage: (key: string) => void;
