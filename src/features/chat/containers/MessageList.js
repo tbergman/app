@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
 import KeyboardSpacer from './KeyboardSpacer';
@@ -37,6 +31,9 @@ const styles = StyleSheet.create({
   },
   messageUserContainer: { flexDirection: 'row-reverse', alignSelf: 'flex-end' },
   messageHedvigContainer: { flexDirection: 'row', alignSelf: 'flex-start' },
+  flatListContentContainer: {
+    paddingBottom: 20,
+  },
 });
 
 class DefaultHedvigMessage extends React.Component {
@@ -145,9 +142,7 @@ class MessageList extends React.Component {
     return (
       <FlatList
         inverted
-        contentContainerStyle={{
-          paddingBottom: 20,
-        }}
+        contentContainerStyle={styles.flatListContentContainer}
         style={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         data={this.props.messages}
