@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from '@hedviginsurance/react-native-keyboard-spacer';
 
 import {
   StyledDefaultMessageText,

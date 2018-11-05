@@ -757,6 +757,11 @@
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-floating-action/-/react-native-floating-action-1.11.3.tgz#1f974e3a5ca73d05ae8575552137b55465a4602f"
   integrity sha512-jSqgHj4fJ0mQv/Wzxx6Cm0nbpolCJBAtIyDtItdJTjdyq5GEBIiTJJazZnWTitCSizj6ay+I2VONe2ctJFThMw==
 
+"@hedviginsurance/react-native-keyboard-spacer@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#2c6e2f3f2257f6b551094d97ad01774c83efe1de"
+  integrity sha512-6wn9yUhVjSc4zkOAkQA+o3+8yoXv+M+TeN+TW8AQPgBICpG5AdYwlq0SMG8c+36f4n2zSBzosyO2Yvl2sxtVnA==
+
 "@hedviginsurance/react-native@^0.57.41":
   version "0.57.41"
   resolved "https://registry.yarnpkg.com/@hedviginsurance/react-native/-/react-native-0.57.41.tgz#39817f1f3d39f3f9f912af6d2438ee227525ed9d"
@@ -8324,11 +8329,6 @@ react-native-iphone-x-helper@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
   integrity sha512-xIeTo4s77wwKgBZLVRIZC9tM9/PkXS46Ul76NXmvmixEb3ZwqGdQesR3zRiLMOoIdfOURB6N9bba9po7+x9Bag==
-
-react-native-keyboard-spacer@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
-  integrity sha1-RvGKMgQyCYol6p+on1FD3SVNMy0=
 
 react-native-mock-render@^0.1.2:
   version "0.1.2"
