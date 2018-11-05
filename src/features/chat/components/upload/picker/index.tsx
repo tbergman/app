@@ -67,7 +67,7 @@ export const Picker: React.SFC<PickerProps> = ({ sendMessage }) => (
                 {({ photos, shouldLoadMore }) => (
                   <FlatList
                     ListHeaderComponent={ListHeaderComponent}
-                    data={photos!.edges!}
+                    data={photos ? photos.edges || [] : []}
                     renderItem={({ item }) =>
                       item.node.type.includes('Photo') ? (
                         <Image
