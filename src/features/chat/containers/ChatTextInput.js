@@ -118,7 +118,8 @@ class ChatTextInput extends React.Component {
   };
 
   render() {
-    const richTextChatCompatible = true;
+    const richTextChatCompatible = this.props.message.header
+      .richTextChatCompatible;
     return (
       <Provider>
         <GiphyProvider>

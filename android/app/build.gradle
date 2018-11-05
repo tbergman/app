@@ -75,7 +75,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-reanimated')
   compile project(':react-native-document-picker')
   compile project(':react-native-blur')
   compile project(':react-native-fast-image')
