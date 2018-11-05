@@ -8375,11 +8375,6 @@ react-native-progress@^3.5.0:
   dependencies:
     prop-types "^15.5.8"
 
-react-native-reanimated@^1.0.0-alpha.10:
-  version "1.0.0-alpha.10"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.0.0-alpha.10.tgz#e9e6fb35a2cf52fdc912b9fbc76f34f80698e530"
-  integrity sha512-dbZG/Lh5Q+6zRvS7+gIkZKmXTG7XVqHbpMROL1LApBBMQwuLq/uLtKk/nBSn1+mNmazPrPMTehI7TG3AEkctww==
-
 react-native-root-siblings@^3.0.0:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.1.4.tgz#ff155c5f7a3f84465b700b1995bd4cb62b0f0695"

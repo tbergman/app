@@ -19,12 +19,8 @@ import { colors, fonts } from '@hedviginsurance/brand';
 import { Provider } from '../components/upload/context';
 import { Picker } from '../components/upload/picker';
 import { Picker as GiphyPicker } from '../components/giphy-picker/picker';
-import {
-  Provider as GiphyProvider,
-  Consumer as GiphyConsumer,
-} from '../components/giphy-picker/context';
+import { Provider as GiphyProvider } from '../components/giphy-picker/context';
 import { Buttons } from '../components/pickers/buttons';
-import { BlurView } from 'react-native-blur';
 
 const styles = StyleSheet.create({
   textInput: {
