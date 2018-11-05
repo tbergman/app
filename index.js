@@ -17,6 +17,7 @@ YellowBox.ignoreWarnings([
   'constantsToExport',
   'RNDocumentPicker',
   '<InputAccessory',
+  'Overriding',
 ]);
 
 const registerHandler = (name, componentCreator) =>
