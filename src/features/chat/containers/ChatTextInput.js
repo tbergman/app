@@ -79,6 +79,7 @@ class ChatTextInput extends React.Component {
   state = {
     height: 0,
     inputValue: '',
+    scrollEnabled: false,
   };
 
   requestPush = () => {
@@ -133,13 +134,26 @@ class ChatTextInput extends React.Component {
                       placeholder="Skriv här..."
                       underlineColorAndroid="transparent"
                       onChangeText={this._onTextChange}
+                      scrollEnabled={
+                        richTextChatCompatible
+                          ? this.state.scrollEnabled
+                          : undefined
+                      }
                       multiline={richTextChatCompatible}
+                      keyboardType={this.props.keyboardType}
                       returnKeyType={
                         richTextChatCompatible ? 'default' : 'send'
                       }
                       onSubmitEditing={() => {
                         if (!richTextChatCompatible) {
                           this._send();
+                        }
+                      }}
+                      onContentSizeChange={(event) => {
+                        if (event.nativeEvent.contentSize.height > 130) {
+                          this.setState({ scrollEnabled: true });
+                        } else {
+                          this.setState({ scrollEnabled: false });
                         }
                       }}
                       enablesReturnKeyAutomatically

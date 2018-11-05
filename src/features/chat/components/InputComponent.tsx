@@ -23,7 +23,7 @@ const inputComponentMap: {
 } = {
   multiple_select: () => <MultipleSelectInput />,
   text: (props) => <ChatTextInput {...props} />,
-  number: () => <ChatNumberInput />,
+  number: (props) => <ChatTextInput {...props} keyboardType="numeric" />,
   single_select: (props) => <SingleSelectInput {...props} />,
   bankid_collect: () => <BankIdCollectInput />,
   paragraph: () => <ParagraphInput />,
