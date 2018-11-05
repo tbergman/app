@@ -131,6 +131,7 @@
     "react-native-image-picker": "^0.27.1",
     "react-native-image-progress": "^1.1.1",
     "react-native-iphone-x-helper": "^1.2.0",
+    "react-native-keyboard-spacer": "^0.4.1",
     "react-native-mock-render": "^0.1.2",
     "react-native-navigation": "2.0.2631",
     "react-native-paper": "^2.1.3",

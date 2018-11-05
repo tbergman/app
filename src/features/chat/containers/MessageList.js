@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Hyperlink from 'react-native-hyperlink';
-import KeyboardSpacer from './KeyboardSpacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import {
   StyledDefaultMessageText,
@@ -149,7 +149,7 @@ class MessageList extends React.Component {
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         keyboardDismissMode="interactive"
-        ListHeaderComponent={<KeyboardSpacer restSpacing={58.8} />}
+        ListHeaderComponent={<KeyboardSpacer />}
       />
     );
   }
