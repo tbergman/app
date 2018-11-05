@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, InputAccessoryView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, AppState, KeyboardAvoidingView } from 'react-native';
@@ -234,21 +234,13 @@ const Chat: React.SFC<ChatProps> = ({
             showReturnToOfferButton,
           )}
         >
-          <KeyboardAvoid
-            keyboardVerticalOffset={isIphoneX() ? 85 : 65}
-            behavior="padding"
-            enabled={Platform.OS === 'ios'}
-          >
-            <Messages>
-              {messages.length ? <MessageList /> : <Loader />}
-            </Messages>
-            <Response>
-              <InputComponent
-                showOffer={() => showOffer(componentId)}
-                messages={messages}
-              />
-            </Response>
-          </KeyboardAvoid>
+          <Messages>{messages.length ? <MessageList /> : <Loader />}</Messages>
+          <Response>
+            <InputComponent
+              showOffer={() => showOffer(componentId)}
+              messages={messages}
+            />
+          </Response>
         </NavigationOptions>
       </>
     )}
