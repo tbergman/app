@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import ChatNumberInput from '../containers/ChatNumberInput';
 import ChatTextInput from '../containers/ChatTextInput';
 import MultipleSelectInput from '../containers/MultipleSelectInput';
 import SingleSelectInput from '../containers/SingleSelectInput';
