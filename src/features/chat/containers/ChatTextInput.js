@@ -131,7 +131,12 @@ class ChatTextInput extends React.Component {
                       style={[styles.textInput]}
                       autoFocus
                       autoCapitalize="none"
-                      placeholder="Skriv här..."
+                      placeholder={
+                        this.props.keyboardType === 'numeric' ||
+                        !richTextChatCompatible
+                          ? 'Skriv här...'
+                          : 'Aa'
+                      }
                       underlineColorAndroid="transparent"
                       onChangeText={this._onTextChange}
                       scrollEnabled={
